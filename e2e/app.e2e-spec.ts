@@ -9,6 +9,6 @@ describe('vieraslajit App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to vrs!');
+    expect(page.getParagraphText()).toEqual('Vieraslajit');
   });
 });
