@@ -5,10 +5,4 @@ export class ApiService {
 
   constructor() { }
 
-  testi() {
-    return {
-      testValue: 'dataa'
-    }
-  }
-
 }
