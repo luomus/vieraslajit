@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @Component({
   selector: 'vrs-root',
