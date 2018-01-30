@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
+import { FooterComponent } from './shared/footer/footer.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+
 @Component({
   selector: 'vrs-root',
   templateUrl: './app.component.html',
