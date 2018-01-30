@@ -1,15 +1,19 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from './api/api.service';
+
 import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
-  declarations: [FooterComponent],
+  declarations: [NavbarComponent, FooterComponent],
   providers: [],
-  exports: [FooterComponent]
+  exports: [ NavbarComponent, RouterModule, FooterComponent ]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
