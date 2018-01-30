@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TaxonComponent } from './taxon.component';
+import { TaxonListComponent } from './taxon-list/taxon-list.component';
 
 import { routing } from './taxon.routing';
 
@@ -9,6 +9,6 @@ import { routing } from './taxon.routing';
     CommonModule,
     routing
   ],
-  declarations: [TaxonComponent]
+  declarations: [TaxonListComponent]
 })
 export class TaxonModule { }
