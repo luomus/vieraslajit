@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from './shared/shared.module';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -10,7 +11,8 @@ describe('AppComponent', () => {
       ],
       imports: [
         TranslateModule.forRoot(),
-        RouterTestingModule
+        RouterTestingModule,
+        SharedModule
       ]
     }).compileComponents();
   }));
