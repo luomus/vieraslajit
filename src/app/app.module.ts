@@ -8,6 +8,8 @@ import { VrsRouterModule } from './vrs-router.module';
 
 import { AppComponent } from './app.component';
 
+import { SharedModule } from './shared/shared.module';
+
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -26,7 +28,8 @@ export function HttpLoaderFactory(http: HttpClient) {
             deps: [HttpClient]
         }
     }),
-    VrsRouterModule
+    VrsRouterModule,
+    SharedModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

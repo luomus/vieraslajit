@@ -12,11 +12,13 @@ export class AppComponent {
 
   constructor(translate: TranslateService) {
     this.translate = translate;
+
     // oletuskieli jos käännöstä ei löydy halutulla kielellä
     translate.setDefaultLang('fi');
 
     // oletuskieli jos haluttua kieltä ei ole saatavilla
     translate.use('fi');
+
   }
 
   switchLanguage(language: string) {
