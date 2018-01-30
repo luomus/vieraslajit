@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaxonComponent implements OnInit {
 
-  private taxon = [
+  taxon = [
     { name: "ruokosammakko" },
     { name: "espanjansiruetana" },
     { name: "jalohaukka" }
