@@ -24,7 +24,9 @@ export class TaxonListComponent implements OnInit {
   onSearchChange(value) {
     let _selected = [];
     for(let t of this.taxa) {
-      if(t.name.toUpperCase().includes(value.toUpperCase())) _selected.push(t);
+      if(t.name.toUpperCase().includes(value.toUpperCase())
+        || t.class.toUpperCase().includes(value.toUpperCase()))
+        _selected.push(t);
     }
     this.selected = _selected;
   }
