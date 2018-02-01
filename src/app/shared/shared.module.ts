@@ -6,6 +6,7 @@ import {SearchComponent} from './googlesearch/search/search.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
+import { TaxonService } from './service/taxon.service';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ export class SharedModule {
       return {
         ngModule: SharedModule,
         providers: [
-          ApiService
+          ApiService,
+          TaxonService
         ]
       };
   }
