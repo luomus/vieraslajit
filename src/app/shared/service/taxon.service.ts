@@ -12,13 +12,14 @@ export class TaxonService {
   constructor(private apiService: ApiService) { }
 
 
-  getTaxonomy(taxonId: string): Observable<PagedResult<Taxonomy>> {
+  getTaxonomy(taxonId: string, group: string): Observable<PagedResult<Taxonomy>> {
     return this.apiService
-      .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId, {invasiveSpeciesFilter: true});
+      .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
+      { invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: true, lang: 'fi' });
   }
 
   getInformalGroups(lang: string): Observable<PagedResult<Informal>> {
     return this.apiService
-    .informalTaxonGroups(LajiApi.Endpoints.informalRoots, {lang: lang});
+      .informalTaxonGroups(LajiApi.Endpoints.informalRoots, { lang: lang });
   }
 }

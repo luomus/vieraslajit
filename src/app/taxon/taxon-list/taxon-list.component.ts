@@ -14,6 +14,7 @@ export class TaxonListComponent implements OnInit {
 
   groups$: Observable<PagedResult<Informal>>;
   taxon$: Observable<PagedResult<Taxonomy>>;
+  selectedGroup: Informal;
 
   taxon = [
     { name: "ruokosammakko" },
@@ -27,7 +28,13 @@ export class TaxonListComponent implements OnInit {
 
   ngOnInit() {
     this.groups$ = this.taxonService.getInformalGroups('fi');
-    this.taxon$ = this.taxonService.getTaxonomy('MVL.2');
-   }
+    // this.taxon$ = this.taxonService.getTaxonomy('MX.37600', 'MVL.2');
+  }
+
+  onSelect(group: Informal): void {
+    this.selectedGroup = group;
+    console.log(this.selectedGroup.id);
+    this.taxon$ = this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id);
+  }
 
 }
