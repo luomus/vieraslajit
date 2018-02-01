@@ -1,8 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from './api/api.service';
-import {SearchComponent} from './googlesearch/search/search.component';
-
+import { SearchComponent } from './googlesearch/search/search.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
@@ -14,7 +13,7 @@ import { RouterModule } from '@angular/router';
   ],
   declarations: [NavbarComponent, FooterComponent, SearchComponent],
   providers: [],
-  exports: [ NavbarComponent, RouterModule, FooterComponent ]
+  exports: [ NavbarComponent, RouterModule, FooterComponent, SearchComponent ]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
