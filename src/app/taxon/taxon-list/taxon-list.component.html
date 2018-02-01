@@ -1,3 +1,20 @@
-<ul>
-  <li *ngFor="let species of taxon">{{species.name}}</li>
-</ul>
+<form>
+  <input [(ngModel)]="search" (ngModelChange)="onSearchChange($event)"
+  [ngModelOptions]="{standalone: true}"
+  type="text" class="form-control" placeholder="Filter">
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Species</th>
+      <th scope="col">Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let species of selected">
+      <td><a [routerLink]="[species.id]">{{species.name}}</a></td>
+      <td>{{species.class}}</td>
+    </tr>
+  </tbody>
+</table>

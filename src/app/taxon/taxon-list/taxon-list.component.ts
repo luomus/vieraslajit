@@ -7,15 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaxonListComponent implements OnInit {
 
-  taxon = [
-    { name: "ruokosammakko" },
-    { name: "espanjansiruetana" },
-    { name: "jalohaukka" }
+  selected = [];
+
+  taxa = [
+    { name: "Ruokosammakko", class: "Sammakkoeläimet", id: "1" },
+    { name: "Espanjansiruetana", class: "Kotilot", id: "2" },
+    { name: "Jalohaukat", class: "Linnut", id: "3" }
   ];
 
   constructor() { }
 
   ngOnInit() {
+    this.selected = this.taxa;
+  }
+
+  onSearchChange(value) {
+    let _selected = [];
+    for(let t of this.taxa) {
+      if(t.name.toUpperCase().includes(value.toUpperCase())) _selected.push(t);
+    }
+    this.selected = _selected;
   }
 
 }
