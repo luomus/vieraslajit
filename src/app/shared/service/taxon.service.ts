@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService, LajiApi } from '../api/api.service';
 import { Observable } from 'rxjs/Observable';
 import { PagedResult } from '../model/PagedResult';
-import { Taxonomy } from '../model/Taxonomy';
+import { Taxonomy, TaxonomyDescription } from '../model/Taxonomy';
 import { Informal } from '../model/Informal';
 import { query } from '@angular/core/src/render3/instructions';
 
@@ -21,5 +21,10 @@ export class TaxonService {
   getInformalGroups(lang: string): Observable<PagedResult<Informal>> {
     return this.apiService
       .informalTaxonGroups(LajiApi.Endpoints.informalRoots, { lang: lang });
+  }
+
+  getTaxonDescription(taxonId: string, lang: string): Observable<TaxonomyDescription> {
+    return this.apiService
+      .taxonomyDescription(LajiApi.Endpoints.description, taxonId, { lang: lang});
   }
 }

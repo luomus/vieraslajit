@@ -1,11 +1,3 @@
 <ul>
-  <li *ngFor="let group of (groups$ | async)?.results" (click)="onSelect(group)">{{group.name}}</li>
+  <li *ngFor="let species of taxon">{{species.name}}</li>
 </ul>
-------
-<div *ngIf="selectedGroup">
-  <ul>
-    <li *ngFor="let taxon of (taxon$ | async)?.results">
-      {{taxon.vernacularName || taxon.scientificName}}
-    </li>
-  </ul>
-</div>
