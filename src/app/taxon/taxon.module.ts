@@ -6,12 +6,14 @@ import { TaxonListComponent } from './taxon-list/taxon-list.component';
 import { TaxonCardComponent } from './taxon-card/taxon-card.component';
 
 import { routing } from './taxon.routing';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     routing,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   declarations: [TaxonListComponent, TaxonCardComponent]
 })

@@ -1,5 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Observable } from 'rxjs/Observable';
+import { PagedResult } from '../../shared/model/PagedResult';
+import { Taxonomy, TaxonomyDescription } from '../../shared/model/Taxonomy';
+import { TaxonService } from '../../shared/service/taxon.service';
+import { Informal } from '../../shared/model/Informal';
+
 @Component({
   selector: 'vrs-taxon-list',
   templateUrl: './taxon-list.component.html',
@@ -17,7 +23,7 @@ export class TaxonListComponent implements OnInit {
     { name: "Jalohaukat", class: "Linnut", id: "3" }
   ];
 
-  constructor() { }
+  constructor( ) { }
 
   ngOnInit() {
     this.selected = this.taxa;
