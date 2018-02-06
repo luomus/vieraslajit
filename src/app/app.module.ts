@@ -9,8 +9,7 @@ import { VrsRouterModule } from './vrs-router.module';
 import { AppComponent } from './app.component';
 
 import { SharedModule } from './shared/shared.module';
-import { InvesiveGeneralComponent } from './invesive-general/invesive-general.component';
-import { InvasiveGuideComponent } from './invasive-guide/invasive-guide.component';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -18,9 +17,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    InvesiveGeneralComponent,
-    InvasiveGuideComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

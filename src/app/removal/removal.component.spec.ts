@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InvasiveGuideComponent } from './invasive-guide.component';
+import { RemovalComponent } from './removal.component';
 
-describe('InvasiveGuideComponent', () => {
-  let component: InvasiveGuideComponent;
-  let fixture: ComponentFixture<InvasiveGuideComponent>;
+describe('RemovalComponent', () => {
+  let component: RemovalComponent;
+  let fixture: ComponentFixture<RemovalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InvasiveGuideComponent ]
+      declarations: [ RemovalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InvasiveGuideComponent);
+    fixture = TestBed.createComponent(RemovalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
