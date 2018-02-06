@@ -18,9 +18,7 @@ export class TaxonListComponent implements OnInit {
     { name: "jalohaukka" }
   ];
 
-  constructor(
-    private taxonService: TaxonService
-  ) { }
+  constructor( ) { }
 
   ngOnInit() {
   }

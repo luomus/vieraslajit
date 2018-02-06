@@ -14,19 +14,19 @@ import { TaxonService } from './service/taxon.service';
     CommonModule,
     RouterModule
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [NavbarComponent, FooterComponent, SearchComponent],
   providers: [],
-  exports: [ NavbarComponent, RouterModule, FooterComponent, SearchComponent ]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
-      return {
-        ngModule: SharedModule,
-        providers: [
-          ApiService,
-          TaxonService
-        ]
-      };
+    return {
+      ngModule: SharedModule,
+      providers: [
+        ApiService,
+        TaxonService
+      ]
+    };
   }
 }
