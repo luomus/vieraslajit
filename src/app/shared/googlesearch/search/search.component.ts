@@ -16,6 +16,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.gcsesearch = this.sanitizer.bypassSecurityTrustHtml("<gcse:search></gcse:search>");
+   
     var cx = '012427346317921450655:zacgnrqdi0q';
     var gcse = document.createElement('script');
     gcse.type = 'text/javascript';
