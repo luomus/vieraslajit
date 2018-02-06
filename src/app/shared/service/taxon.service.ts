@@ -23,8 +23,8 @@ export class TaxonService {
       .informalTaxonGroups(LajiApi.Endpoints.informalRoots, { lang: lang });
   }
 
-  getTaxonDescription(taxonId: string, lang: string): Observable<TaxonomyDescription> {
+  getTaxonDescription(taxonId: string, lang: string): Observable<Array<any>> {
     return this.apiService
-      .taxonomyFindById(LajiApi.Endpoints.description, taxonId, {lang: lang});
+      .taxonomyFindById(LajiApi.Endpoints.description, taxonId, {lang: lang, blacklist: 'eol:api'});
   }
 }
