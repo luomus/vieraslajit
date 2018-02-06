@@ -6,6 +6,7 @@ import { SearchComponent } from './googlesearch/search/search.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
+import { TaxonService } from './service/taxon.service';
 
 
 @NgModule({
@@ -13,18 +14,19 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [NavbarComponent, FooterComponent, SearchComponent],
   providers: [],
-  exports: [ NavbarComponent, RouterModule, FooterComponent, SearchComponent ]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
-      return {
-        ngModule: SharedModule,
-        providers: [
-          ApiService
-        ]
-      };
+    return {
+      ngModule: SharedModule,
+      providers: [
+        ApiService,
+        TaxonService
+      ]
+    };
   }
 }
