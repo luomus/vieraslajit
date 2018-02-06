@@ -25,6 +25,6 @@ export class TaxonService {
 
   getTaxonDescription(taxonId: string, lang: string): Observable<TaxonomyDescription> {
     return this.apiService
-      .taxonomyDescription(LajiApi.Endpoints.description, taxonId, { lang: lang});
+      .taxonomyFindById(LajiApi.Endpoints.description, taxonId, {lang: lang});
   }
 }

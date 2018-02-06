@@ -11,15 +11,6 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  taxonomyDescription(endpoint: LajiApi.Endpoints.description, id: string, query: LajiApi.Query): Observable<TaxonomyDescription>;
-  taxonomyDescription(endpoint: LajiApi.Endpoints, id: string, query: object = {}): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
-    return this.httpClient.get(
-      url,
-      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
-    );
-  }
-
   informalTaxonGroups(endpoint: LajiApi.Endpoints.informalRoots, query: LajiApi.Query): Observable<PagedResult<Informal>>;
   informalTaxonGroups(endpoint: LajiApi.Endpoints, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
@@ -30,6 +21,7 @@ export class ApiService {
   }
 
   taxonomyFindById(endpoint: LajiApi.Endpoints.taxon, id: string): Observable<Taxonomy>;
+  taxonomyFindById(endpoint: LajiApi.Endpoints.description, id: string, query: LajiApi.Query): Observable<TaxonomyDescription>;
   taxonomyFindById(endpoint: LajiApi.Endpoints.taxonSpecies, id: string, query: LajiApi.Query): Observable<PagedResult<Taxonomy>>;
   taxonomyFindById(endpoint: LajiApi.Endpoints, id: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
