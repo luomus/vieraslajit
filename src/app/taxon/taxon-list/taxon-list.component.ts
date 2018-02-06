@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'vrs-taxon-list',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./taxon-list.component.scss']
 })
 export class TaxonListComponent implements OnInit {
+
+  @Input() search = "";
 
   selected = [];
 
