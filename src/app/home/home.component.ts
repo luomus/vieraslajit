@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchComponent } from '../shared/googlesearch/search/search.component';
+
 
 @Component({
   selector: 'vrs-home',
