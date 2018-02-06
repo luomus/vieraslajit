@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchComponent } from './search.component';
+import { SharedModule } from '../../shared.module';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
