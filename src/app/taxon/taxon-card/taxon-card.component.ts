@@ -1,5 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TaxonService } from '../../shared/service/taxon.service';
+import { TaxonomyDescription } from '../../shared/model/Taxonomy';
+import { Observable } from 'rxjs/Observable';
+
 
 @Component({
   selector: 'vrs-taxon-card',
@@ -8,14 +12,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class TaxonCardComponent implements OnInit, OnDestroy {
-  id: number;
-  private sub: any;
 
-  constructor(private route: ActivatedRoute) {}
+  id: string;
+  private sub: any;
+  desc$: TaxonomyDescription;
+
+  constructor(private route: ActivatedRoute, private taxonService: TaxonService) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-       this.id = +params['id']; // (+) converts string 'id' to a number
+      this.id = params['id']; // (+) converts string 'id' to a number
+    });
+    this.taxonService.getTaxonDescription(this.id, 'fi').subscribe(data => {
+      this.desc$ = data[0];
     });
   }
 
