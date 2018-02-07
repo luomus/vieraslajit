@@ -1,3 +1,6 @@
 {
-  "SUBTITLE": "Information about invasive species in Finland"
+  "SUBTITLE": "Information about invasive species in Finland",
+  "navigation.home": "Home",
+  "navigation.taxonomy": "Taxon",
+  "navigation.removal": "Removal"
 }
