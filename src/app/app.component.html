@@ -3,12 +3,14 @@
 </head>
 <body>
     <div class="container-fluid">
-        <header><h1>Vieraslajit</h1></header>
+        <h1>Vieraslajit</h1>
         <vrs-navbar></vrs-navbar>
-        <h3 translate>SUBTITLE</h3>
-        <button (click)="switchLanguage('fi')">fi</button>
-        <button (click)="switchLanguage('se')">se</button>
-        <button (click)="switchLanguage('en')">en</button>
+        <div class="float-right">
+            <p translate>SUBTITLE</p>
+            <button (click)="switchLanguage('fi')">fi</button>
+            <button (click)="switchLanguage('se')">se</button>
+            <button (click)="switchLanguage('en')">en</button>
+        </div>
         <router-outlet></router-outlet>
     </div>
     
