@@ -1,3 +1,6 @@
 {
-  "SUBTITLE": "Tietoa suomen vieraslajeista"
+  "SUBTITLE": "Tietoa suomen vieraslajeista",
+  "navigation.home": "Koti",
+  "navigation.taxonomy": "Lajit",
+  "navigation.removal": "Torjunta"
 }
