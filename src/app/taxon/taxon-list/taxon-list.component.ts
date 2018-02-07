@@ -38,8 +38,8 @@ export class TaxonListComponent implements OnInit {
   onSearchChange(value) {
     let _selected = [];
     for (let t of this.taxa$) {
-      if (t.vernacularName.toUpperCase().includes(value.toUpperCase())
-        || t.scientificName.toUpperCase().includes(value.toUpperCase())) {
+      if ((t.vernacularName && t.vernacularName.toUpperCase().includes(value.toUpperCase())) ||
+        (t.scientificName.toUpperCase().includes(value.toUpperCase()))) {
         _selected.push(t);
       }
     }
@@ -48,7 +48,6 @@ export class TaxonListComponent implements OnInit {
 
   onGroupSelect(target) {
     this.selectedGroup = target;
-    console.log(this.selectedGroup.id);
     this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id).subscribe(data => {
       this.taxa$ = data.results;
       this.selected = this.taxa$;
