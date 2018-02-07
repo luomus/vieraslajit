@@ -23,8 +23,9 @@ export class TaxonListComponent implements OnInit {
     { name: "Jalohaukat", class: "Linnut", id: "3" }
   ];
 
-  taxa$: Observable<PagedResult<Taxonomy>>;
+  taxa$: Taxonomy[];
   groups$: Informal[];
+  selectedGroup: Informal;
 
   constructor(private taxonService: TaxonService) { }
 
@@ -32,19 +33,26 @@ export class TaxonListComponent implements OnInit {
     this.taxonService.getInformalGroups('fi').subscribe((data) => {
       this.groups$ = data.results;
     });
-    this.taxa$ = this.taxonService.getTaxonomy('MX.37600', 'MVL.1'); // Example group.
-    this.selected = this.taxa;
   }
 
   onSearchChange(value) {
     let _selected = [];
-    for (let t of this.taxa) {
-      if (t.name.toUpperCase().includes(value.toUpperCase())
-        || t.class.toUpperCase().includes(value.toUpperCase())) {
+    for (let t of this.taxa$) {
+      if (t.vernacularName.toUpperCase().includes(value.toUpperCase())
+        || t.scientificName.toUpperCase().includes(value.toUpperCase())) {
         _selected.push(t);
       }
     }
     this.selected = _selected;
+  }
+
+  onGroupSelect(target) {
+    this.selectedGroup = target;
+    console.log(this.selectedGroup.id);
+    this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id).subscribe(data => {
+      this.taxa$ = data.results;
+      this.selected = this.taxa$;
+    });
   }
 
 }

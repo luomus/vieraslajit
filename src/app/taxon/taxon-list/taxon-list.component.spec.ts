@@ -3,6 +3,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { TaxonListComponent } from './taxon-list.component';
+import { TaxonService } from '../../shared/service/taxon.service';
+import { ApiService } from '../../shared/api/api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('TaxonListComponent', () => {
   let component: TaxonListComponent;
@@ -11,7 +14,8 @@ describe('TaxonListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TaxonListComponent ],
-      imports: [ FormsModule, RouterTestingModule ]
+      imports: [ FormsModule, RouterTestingModule, HttpClientModule ],
+      providers: [ TaxonService, ApiService ]
     })
     .compileComponents();
   }));
