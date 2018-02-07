@@ -1,3 +1,6 @@
 {
-  "SUBTITLE": "ruotsinkielistä juttua"
+  "SUBTITLE": "ruotsinkielistä juttua",
+  "navigation.home": "Hem",
+  "navigation.taxonomy": "Arter",
+  "navigation.removal": "Avlägsnande"
 }
