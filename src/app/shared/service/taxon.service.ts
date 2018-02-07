@@ -12,7 +12,7 @@ export class TaxonService {
   constructor(private apiService: ApiService) { }
 
 
-  getTaxonomy(taxonId: string, group: string): Observable<PagedResult<Taxonomy>> {
+  getTaxonomy(taxonId: string, group?: string): Observable<PagedResult<Taxonomy>> {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
       { invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: true, lang: 'fi' });
@@ -23,8 +23,8 @@ export class TaxonService {
       .informalTaxonGroups(LajiApi.Endpoints.informalRoots, { lang: lang });
   }
 
-  getTaxonDescription(taxonId: string, lang: string): Observable<TaxonomyDescription> {
+  getTaxonDescription(taxonId: string, lang: string): Observable<Array<any>> {
     return this.apiService
-      .taxonomyFindById(LajiApi.Endpoints.description, taxonId, {lang: lang});
+      .taxonomyFindById(LajiApi.Endpoints.description, taxonId, {lang: lang, blacklist: 'eol:api'});
   }
 }
