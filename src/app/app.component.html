@@ -1,8 +1,19 @@
-<h1>Vieraslajit</h1>
-<h3 translate>SUBTITLE</h3>
-<button (click)="switchLanguage('fi')">fi</button>
-<button (click)="switchLanguage('se')">se</button>
-<button (click)="switchLanguage('en')">en</button>
-<vrs-navbar></vrs-navbar>
-<router-outlet></router-outlet>
-<vrs-footer></vrs-footer>
+<head>
+    <title>Vieraslajit</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <header><h1>Vieraslajit</h1></header>
+        <vrs-navbar></vrs-navbar>
+        <h3 translate>SUBTITLE</h3>
+        <button (click)="switchLanguage('fi')">fi</button>
+        <button (click)="switchLanguage('se')">se</button>
+        <button (click)="switchLanguage('en')">en</button>
+        <router-outlet></router-outlet>
+    </div>
+    
+    <footer
+        ><vrs-footer></vrs-footer>
+    </footer>
+    
+</body>
