@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TaxonService } from '../../shared/service/taxon.service';
-import { TaxonomyDescription } from '../../shared/model/Taxonomy';
+import { TaxonomyDescription, TaxonomyImage } from '../../shared/model/Taxonomy';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -16,6 +16,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   id: string;
   private sub: any;
   desc$: TaxonomyDescription;
+  media$: Array<TaxonomyImage>;
 
   constructor(private route: ActivatedRoute, private taxonService: TaxonService) { }
 
@@ -25,6 +26,9 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     });
     this.taxonService.getTaxonDescription(this.id, 'fi').subscribe(data => {
       this.desc$ = data[0];
+    });
+    this.taxonService.getTaxonMedia(this.id, 'fi').subscribe(data => {
+      this.media$ = data;
     });
   }
 

@@ -3,13 +3,11 @@
 </ng-container>
 
 <div *ngFor="let group of desc$?.groups">
-  <ng-container *ngIf="group.title === 'Vieraslajitietoa'">
-    <h2>{{group.title}}</h2>
-    <div *ngFor="let variable of group.variables">
-      <h4>
-        {{variable.title}}
-      </h4>
-      <span [innerHTML]="variable.content"></span>
-    </div>
-  </ng-container>
+  <h2>{{group.title}}</h2>
+  <div *ngFor="let variable of group.variables">
+    <h4>
+      {{variable.title}}
+    </h4>
+    <span [innerHTML]="variable.content"></span>
+  </div>
 </div>

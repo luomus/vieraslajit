@@ -3,8 +3,8 @@
     placeholder="Filter">
 </form>
 <div class="row">
-<div *ngFor="let group of groups$" (click)="onGroupSelect(group)" class="col-xs-6 col-md-4 col-lg-3">{{group.name}}
-</div>
+  <div *ngFor="let group of groups$" (click)="onGroupSelect(group)" class="col-xs-6 col-md-4 col-lg-3">{{group.name}}
+  </div>
 </div>
 <ng-container *ngIf="selectedGroup">
   <table class="table">
