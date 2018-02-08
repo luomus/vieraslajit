@@ -4,6 +4,8 @@
 </form>
 <div class="row">
 <div *ngFor="let group of groups$" (click)="onGroupSelect(group)" class="col-xs-6 col-md-4 col-lg-3">{{group.name}}
+<img source= "assets/images/{{group.id}}.jpg">
+
 </div>
 </div>
 <ng-container *ngIf="selectedGroup">
