@@ -21,7 +21,7 @@ export class ApiService {
   }
 
   taxonomyFindById(endpoint: LajiApi.Endpoints.taxon, id: string): Observable<Taxonomy>;
-  taxonomyFindById(endpoint: LajiApi.Endpoints.description, id: string, query: LajiApi.Query): Observable<TaxonomyDescription>;
+  taxonomyFindById(endpoint: LajiApi.Endpoints.description, id: string, query: LajiApi.Query): Observable<Array<any>>;
   taxonomyFindById(endpoint: LajiApi.Endpoints.taxonSpecies, id: string, query: LajiApi.Query): Observable<PagedResult<Taxonomy>>;
   taxonomyFindById(endpoint: LajiApi.Endpoints, id: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
@@ -47,5 +47,6 @@ export namespace LajiApi {
     invasiveSpeciesFilter?: boolean;
     pageSize?: number;
     onlyFinnish?: boolean;
+    blacklist?: string;
   }
 }

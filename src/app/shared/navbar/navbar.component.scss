@@ -1,0 +1,24 @@
+.navbar-dark {
+    background: #f89525;
+    padding: 0;
+}
+
+.navbar-dark .navbar-brand {
+    color: #fff;
+}
+
+.navbar-dark .nav-link {
+    color: #fff;
+}
+
+
+.navbar-dark .navbar-toggler-icon {
+    color: #fff;
+    
+}
+
+/*Hover state for top level links*/
+li:hover a {
+    background: #f78706;
+}
+
