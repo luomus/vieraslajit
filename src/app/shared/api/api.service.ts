@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Taxonomy, TaxonomyDescription } from '../model/Taxonomy';
+import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../model/Taxonomy';
 import { Observable } from 'rxjs/Observable';
 import { PagedResult } from '../model/PagedResult';
 import { Informal } from '../model/Informal';
@@ -11,6 +11,7 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
+  // InformalTaxonGroup
   informalTaxonGroups(endpoint: LajiApi.Endpoints.informalRoots, query: LajiApi.Query): Observable<PagedResult<Informal>>;
   informalTaxonGroups(endpoint: LajiApi.Endpoints, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
@@ -20,7 +21,9 @@ export class ApiService {
     );
   }
 
+  // Taxa
   taxonomyFindById(endpoint: LajiApi.Endpoints.taxon, id: string): Observable<Taxonomy>;
+  taxonomyFindById(endpoint: LajiApi.Endpoints.media, id: string, query: LajiApi.Query): Observable<Array<TaxonomyImage>>;
   taxonomyFindById(endpoint: LajiApi.Endpoints.description, id: string, query: LajiApi.Query): Observable<Array<any>>;
   taxonomyFindById(endpoint: LajiApi.Endpoints.taxonSpecies, id: string, query: LajiApi.Query): Observable<PagedResult<Taxonomy>>;
   taxonomyFindById(endpoint: LajiApi.Endpoints, id: string, query: object = {}): Observable<any> {
@@ -38,7 +41,8 @@ export namespace LajiApi {
     taxon = 'taxa/%id%',
     taxonSpecies = 'taxa/%id%/species',
     document = 'document',
-    description = 'taxa/%id%/descriptions'
+    description = 'taxa/%id%/descriptions',
+    media = 'taxa/%id%/media'
   }
 
   export interface Query {
