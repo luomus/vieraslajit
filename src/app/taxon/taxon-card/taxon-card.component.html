@@ -1,13 +1,32 @@
-<ng-container *ngIf="desc$ === undefined">
-  <p>Vieraslajitietoja ei löytynyt.</p>
-</ng-container>
-
-<div *ngFor="let group of desc$?.groups">
-  <h2>{{group.title}}</h2>
-  <div *ngFor="let variable of group.variables">
-    <h4>
-      {{variable.title}}
-    </h4>
-    <span [innerHTML]="variable.content"></span>
+<div class="container-fluid">
+  <h1>{{taxon?.vernacularName}}
+    <span [class.cursive]="taxon?.cursiveName">({{taxon?.scientificName}})</span>
+  </h1>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card" *ngFor="let group of desc$?.groups">
+        <div class="card-header" role="tab">
+          <strong>{{group.title}}</strong>
+        </div>
+        <div class="card-block" *ngFor="let variable of group.variables">
+          <h4 class="card-title">
+            {{variable.title}}
+          </h4>
+          <span class="card-text" [innerHTML]="variable.content"></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Kuvat</strong>
+        </div>
+        <div class="card-block">
+          <ng-container *ngFor="let image of media$">
+            <img src="{{image.thumbnailURL}}" style="padding: 2px"/>
+          </ng-container>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
