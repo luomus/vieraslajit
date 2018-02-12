@@ -36,7 +36,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   @Input() placeholder: string;
   @Input() limit:10;
   @Input() selectTo ='/taxon';
-  @Input() minLength ='3';
+  @Input() minLength = 3;
   @Input() visible=true;
   @Output() visibleTaxon = new EventEmitter<any>();
   public search='';
@@ -138,6 +138,12 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     }
     if(this.subCnt){
       this.subCnt.unsubscribe();
+    }
+
+    if (this.search.length < this.minLength) {
+      this.loading = false;
+      this.changeDetector.markForCheck();
+      return;
     }
 
     this.loading =true;
