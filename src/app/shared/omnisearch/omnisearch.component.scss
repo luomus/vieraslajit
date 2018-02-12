@@ -16,19 +16,17 @@
     color: #aaa;
     border-radius: 10px;
     min-width: 250px;
-  }
-  .omni-search-results.right {
-    right: 0;
-    left: auto;
-  }
-  
-  .omni-search-results .matches .active {
-    color: #2C3E50;
-    font-weight: bold;
-  }
-  
-  .omni-search-results .scientificName.cursive {
-    font-style: italic;
+    &.right {
+      right: 0;
+      left: auto;
+    }
+    .matches .active {
+      color: #2C3E50;
+      font-weight: bold;
+    }
+    .scientificName.cursive {
+      font-style: italic;
+    }
   }
   
   .taxon-match {
@@ -37,14 +35,13 @@
   
   .btn-default {
     border-left-color: #fff;
-  }
-  
-  .btn-default:hover {
-    border-left-color: #fff;
-    background-color: #fff;
-    border-top: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    &:hover {
+      border-left-color: #fff;
+      background-color: #fff;
+      border-top: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
   }
   
   .taxon-match, .observations, .taxonomy {
@@ -56,23 +53,20 @@
     background-position: top left;
   }
   
-  @media only screen and (min-width : 992px) {
+  @media only screen and (min-width: 992px) {
     .omni-search-results {
       min-width: 727px;
-    }
-  
-    .omni-search-results .first-col {
-      border-left: 1px solid #999;
+      .first-col {
+        border-left: 1px solid #999;
+      }
     }
   }
   
   .omni {
     border-radius: 30px;
-  
     -webkit-transition: all .4s;
     -moz-transition: all .4s;
     transition: all .4s;
-  
   }
   
   .omni-search:after {
@@ -85,19 +79,18 @@
     right: 9px;
   }
   
-  .omni.expandRight {
-    float: right;
-    padding-right: 20px;
-  }
-  
-  .omni.expand {
-    width: 90px;
-    border-color: rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-  }
-  
-  .omni.expand.open,
-  .omni.expand:focus {
-    width: 100%;
-    background-color: #fff;
+  .omni {
+    &.expandRight {
+      float: right;
+      padding-right: 20px;
+    }
+    &.expand {
+      width: 90px;
+      border-color: rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      &.open, &:focus {
+        width: 100%;
+        background-color: #fff;
+      }
+    }
   }

@@ -18,7 +18,7 @@ import { OmnisearchComponent } from './omnisearch/omnisearch.component';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [NavbarComponent, FooterComponent, SearchComponent, OmnisearchComponent],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, OmnisearchComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

@@ -7,7 +7,6 @@
          [class.expand]="expand === 'right' || expand === 'left'"
          [class.open]="taxa.length > 0 && search.length > 0"
          [value]="search"
-         [formControl]="searchControl"
          placeholder="{{placeholder}}" autoComplete="off"/>
 
   <div style="clear: both"></div>
@@ -28,10 +27,10 @@
           {{'omniSearch.matches'}}
           <div class="row">
             <div class="col-md-12 taxon-match informal-group-image {{taxon.informalTaxonGroupsClass}}">
-              <a [routerLink]="['/taxon/' + taxon.key] | localize" (click)="close()"><span class="vernacularName">{{taxon.payload.vernacularName | multiLang}}</span></a><br>
-              <a [routerLink]="['/taxon/' + taxon.key] | localize" (click)="close()"><span
+              <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()"><span class="vernacularName">{{taxon.payload.vernacularName}}</span></a><br>
+              <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()"><span
                       class="scientificName" [ngClass]="{cursive: taxon.payload.cursiveName}">{{taxon.payload.scientificName}}</span></a><br>
-              {{'omniSearch.rank'}}: {{taxon.payload.taxonRankId | label}}<br>
+              {{'omniSearch.rank'}}: {{taxon.payload.taxonRankId}<br>
               {{'omniSearch.groups'}:<br>
               <ul>
                 <li *ngFor="let group of taxon.informalTaxonGroups">{{group}}</li>
@@ -43,7 +42,7 @@
           {{ 'navigation.observation' }
           <div class="row">
             <div class="col-md-offset-1 col-md-11 observations" *ngIf="taxon">
-              <a [routerLink]="['/observation'] | localize" [queryParams]="{target: (taxon.key | toFullUri), reset: true }" (click)="close()">
+              <a [routerLink]="['/observation']" [queryParams]="{target: (taxon.key), reset: true }" (click)="close()">
                 {{taxon?.count}}
                 {{'omniSearch.allObservation'}
               </a>
@@ -52,7 +51,7 @@
           {{ 'omniSearch.links'}}
           <div class="row">
             <div class="col-md-offset-1 col-md-11 taxonomy" *ngIf="taxon">
-              <a [routerLink]="['/taxon/taxonomy/' + taxon.key] | localize" (click)="close()">
+              <a [routerLink]="['/taxon/taxonomy/' + taxon.key]" (click)="close()">
                 {{'omniSearch.taxonTree'}}
               </a>
             </div>

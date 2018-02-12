@@ -18,11 +18,11 @@ import {
     import { TaxonService } from '../../shared/service/taxon.service'
     import { ApiService } from '../../shared/api/api.service';
     import{Router} from '@angular/router'
-    import{LocalizeRouterService} from '../../locale/localize-router.service'
     import 'rxjs/add/operator/do';
     import 'rxjs/add/operator/debounceTime';
     import 'rxjs/add/operator/combineLatest';
-    ;
+    import 'rxjs/add/observable/of';
+    
     
 
 @Component({
@@ -35,7 +35,6 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() placeholder: string;
   @Input() limit:10;
-  @Input() delay: 200;
   @Input() selectTo ='/taxon';
   @Input() minLength ='3';
   @Input() visible=true;
@@ -50,7 +49,6 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   private subCnt:Subscription;
   private inputChange:Subscription;
   private el: Element;
-  public lang: 'fi';
 
 
 
@@ -59,7 +57,6 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     private changeDetector:ChangeDetectorRef,
     private apiService:ApiService,
     private taxonservice:TaxonService,
-    private localizeRouterService:LocalizeRouterService,
     viewContainerRef:ViewContainerRef
   ) {
     this.el = viewContainerRef.element.nativeElement;
@@ -67,7 +64,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     this.inputChange = this.searchControl.valueChanges
-    .do(value => this.search = value).debounceTime(this.delay)
+    .do(value => this.search = value)
     .subscribe(value =>{
       this.updateTaxa();
     });
@@ -93,7 +90,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
       this.taxon.informalGroupsClass = this.taxon.payload.informalGroups.reduce((p,c) =>p+''+c.id,'');
       this.taxon.informalGroups = this.taxon.payload.informalGroups.map(group=>group.name).reverse();
       this.subCnt=Observable.of(this.taxon.key).combineLatest(
-        this.taxonservice.getWareHouseQueryCount({taxonId: this.taxon.key}),
+        this.taxonservice.getWareHouseQueryCount('count','fi',this.taxon.key),
         (id, cnt) =>{
           return{id:id, cnt: cnt};
         }).subscribe(data => {
@@ -113,13 +110,13 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   keyEvent(e){
-    //key up
+    // up key
     if(e.keyCode ===38){
       if(this.taxa[this.active -1]){
         this.activate(this.active-1);
       }
     }
-    //key down
+    //down key
     if(e.keyCode ===40){
       if(this.taxa[this.active +1]){
         this.activate(this.active+1);
@@ -128,7 +125,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     //Enter
     if(e.keyCode ===13){
       if(this.taxa[this.active]){
-        this.router.navigate(this.localizeRouterService.translateRoute([this.selectTo, this.taxa[this.active].key]));
+       // this.router.navigate(this.localizeRouterService.translateRoute([this.selectTo, this.taxa[this.active].key]));
         this.close();
       }
     }
@@ -144,8 +141,8 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     this.loading =true;
-    this.subTaxa = this.taxonservice.getAutocomplete({field:this.taxon, q:this.search,
-      limit:''+this.limit}).subscribe(
+    this.subTaxa = this.taxonservice.getAutocomplete('taxon',this.search,
+      ''+this.limit).subscribe(
       data =>{
         this.taxa=data;
         this.loading=false;

@@ -34,14 +34,14 @@ export class TaxonService {
       .taxonomyFindById(LajiApi.Endpoints.media, taxonId, { lang: lang, blacklist: 'eol:api' });
   }
   //Get autocomplete for taxon search.
-  getAutocomplete(field:string, lang:string, q:string):Observable<Array<Autocomplete>>{
+  getAutocomplete(field:string, q:string, lang:string):Observable<Array<Autocomplete>>{
     return this.apiService
-    .autocompleteFindByField(LajiApi.Endpoints.autocomplete, field, {q,includeSelf:true,onlyFinnish:true,onlyInvasive:true,onlySpecies:true,lang: lang})
+    .autocompleteFindByField(LajiApi.Endpoints.autocomplete, field, {q,includeSelf:true,onlyFinnish:true,onlyInvasive:true,onlySpecies:true,lang:lang})
   }
   //Get warehouse query count for taxon search.
-  getWareHouseQueryCount(count:string, lang:string):Observable<Array<any>>{
+  getWareHouseQueryCount(count:string, lang:string, taxonId):Observable<Array<any>>{
     return this.apiService
-    .warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount,count,{lang:lang});
+    .warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount,count,{lang:lang,taxonId});
   }
 
 }
