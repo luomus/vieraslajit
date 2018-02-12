@@ -23,7 +23,7 @@
         </div>
         <div class="card-block">
           <ng-container *ngFor="let image of media$">
-            <img src="{{image.thumbnailURL}}" style="padding: 2px"/>
+            <a href="{{image.fullURL}}"><img src="{{image.thumbnailURL}}" style="padding: 2px"/></a>
           </ng-container>
         </div>
       </div>
