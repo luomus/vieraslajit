@@ -10,7 +10,8 @@ import {
     ViewContainerRef,
     OnChanges,
     OnDestroy } from '@angular/core';
-
+    import { Autocomplete } from '../../shared/model/Autocomplete';
+    import { WarehouseQueryCount } from '../../shared/model/Warehouse'
     import{Subscription} from 'rxjs/Subscription'
     import{Observable} from 'rxjs/Observable'
     import{FormControl} from'@angular/forms'
@@ -21,6 +22,7 @@ import {
     import 'rxjs/add/operator/do';
     import 'rxjs/add/operator/debounceTime';
     import 'rxjs/add/operator/combineLatest';
+    ;
     
 
 @Component({
@@ -48,6 +50,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   private subCnt:Subscription;
   private inputChange:Subscription;
   private el: Element;
+  public lang: 'fi';
 
 
 
@@ -55,9 +58,12 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     private router:Router,
     private changeDetector:ChangeDetectorRef,
     private apiService:ApiService,
+    private taxonservice:TaxonService,
     private localizeRouterService:LocalizeRouterService,
     viewContainerRef:ViewContainerRef
-  ) { }
+  ) {
+    this.el = viewContainerRef.element.nativeElement;
+   }
 
   ngOnInit() {
     this.inputChange = this.searchControl.valueChanges
@@ -87,7 +93,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
       this.taxon.informalGroupsClass = this.taxon.payload.informalGroups.reduce((p,c) =>p+''+c.id,'');
       this.taxon.informalGroups = this.taxon.payload.informalGroups.map(group=>group.name).reverse();
       this.subCnt=Observable.of(this.taxon.key).combineLatest(
-        this.apiService.warehouseQueryCount({taxonId: this.taxon.key}),
+        this.taxonservice.getWareHouseQueryCount({taxonId: this.taxon.key}),
         (id, cnt) =>{
           return{id:id, cnt: cnt};
         }).subscribe(data => {
@@ -138,12 +144,8 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     this.loading =true;
-    this.subTaxa = this.apiService.autocompleteFindByField({field:taxon,
-      q:this.search,
-      limit:''+this.limit,
-      includePayload:true,
-      matchType:this.matchType
-    }).subscribe(
+    this.subTaxa = this.taxonservice.getAutocomplete({field:this.taxon, q:this.search,
+      limit:''+this.limit}).subscribe(
       data =>{
         this.taxa=data;
         this.loading=false;

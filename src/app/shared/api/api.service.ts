@@ -13,7 +13,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   //Autocomplete
-  autocompleteFindByField(endpoint:LajiApi.Endpoints.autocomplete, field: string,  query:LajiApi.AutocompleteQuery):Observable<Autocomplete>{
+  autocompleteFindByField(endpoint:LajiApi.Endpoints.autocomplete, field: string, query: object = {}):Observable<any>{
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
      url,
@@ -22,7 +22,7 @@ export class ApiService {
   }
 
   //Warehouse query count
-  warehouseQueryCount(endpoint:LajiApi.Endpoints.warehousequerycount, count:number, query:LajiApi.WareHouseQueryCountQuery):Observable<WarehouseQueryCount>{
+  warehouseQueryCountGet(endpoint:LajiApi.Endpoints.warehousequerycount, count:string,query: object = {}):Observable<any>{
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
      url,
@@ -78,19 +78,4 @@ export namespace LajiApi {
 
   }
 
-  export interface AutocompleteQuery{
-    q?:string;
-    includeSelf?:boolean;
-    onlySpecies?:boolean;
-    onlyFinnish?:boolean;
-    onlyInvasive?:boolean;
-    lang:string;
-    limit:string;
-    includePayload:boolean;
-
-  }
-  export interface WareHouseQueryCountQuery{
-
-    
-  }
 }
