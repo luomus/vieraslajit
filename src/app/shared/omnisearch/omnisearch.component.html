@@ -1,0 +1,64 @@
+<div class="form-group omni-search" *ngIf="visible" (keyup)="keyEvent($event)">
+  <label class="sr-only" for="search-box">{{placeholder}}</label>
+  <input type="text"
+         class="form-control input-sm omni"
+         id="search-box"
+         [class.expandRight]="expand === 'right'"
+         [class.expand]="expand === 'right' || expand === 'left'"
+         [class.open]="taxa.length > 0 && search.length > 0"
+         [value]="search"
+         [formControl]="searchControl"
+         placeholder="{{placeholder}}" autoComplete="off"/>
+
+  <div style="clear: both"></div>
+  <div class="col-sm-12" *ngIf="taxa.length > 0 && search.length > 0">
+    <div class="omni-search-results" [class.right]="expand === 'right'" (lajiClickOutSide)="close()">
+      <div class="row" *ngIf="taxon">
+        <div class="col-md-3 matches">
+          <h5
+                  class="match"
+                  *ngFor="let taxon of taxa; let i=index"
+                  [ngClass]="{active: i === active, link: i !== active}"
+                  (click)="activate(i)">
+            {{taxon.value}}
+          </h5>
+        </div>
+        <hr class="hidden-md hidden-lg">
+        <div class="col-md-5 first-col">
+          {{'omniSearch.matches'}}
+          <div class="row">
+            <div class="col-md-12 taxon-match informal-group-image {{taxon.informalTaxonGroupsClass}}">
+              <a [routerLink]="['/taxon/' + taxon.key] | localize" (click)="close()"><span class="vernacularName">{{taxon.payload.vernacularName | multiLang}}</span></a><br>
+              <a [routerLink]="['/taxon/' + taxon.key] | localize" (click)="close()"><span
+                      class="scientificName" [ngClass]="{cursive: taxon.payload.cursiveName}">{{taxon.payload.scientificName}}</span></a><br>
+              {{'omniSearch.rank'}}: {{taxon.payload.taxonRankId | label}}<br>
+              {{'omniSearch.groups'}:<br>
+              <ul>
+                <li *ngFor="let group of taxon.informalTaxonGroups">{{group}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 second-col">
+          {{ 'navigation.observation' }
+          <div class="row">
+            <div class="col-md-offset-1 col-md-11 observations" *ngIf="taxon">
+              <a [routerLink]="['/observation'] | localize" [queryParams]="{target: (taxon.key | toFullUri), reset: true }" (click)="close()">
+                {{taxon?.count}}
+                {{'omniSearch.allObservation'}
+              </a>
+            </div>
+          </div>
+          {{ 'omniSearch.links'}}
+          <div class="row">
+            <div class="col-md-offset-1 col-md-11 taxonomy" *ngIf="taxon">
+              <a [routerLink]="['/taxon/taxonomy/' + taxon.key] | localize" (click)="close()">
+                {{'omniSearch.taxonTree'}}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

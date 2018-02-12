@@ -5,6 +5,7 @@ import { PagedResult } from '../model/PagedResult';
 import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../model/Taxonomy';
 import { Informal } from '../model/Informal';
 import { query } from '@angular/core/src/render3/instructions';
+import { Autocomplete } from '../model/Autocomplete';
 
 @Injectable()
 export class TaxonService {
@@ -32,4 +33,15 @@ export class TaxonService {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.media, taxonId, { lang: lang, blacklist: 'eol:api' });
   }
+  //Get autocomplete for taxon search.
+  getAutocomplete(field:string, lang:string):Observable<Array<Autocomplete>>{
+    return this.apiService
+    .autocompleteFindByField(LajiApi.Endpoints.autocomplete, field, {includeSelf:true,onlyFinnish:true,onlyInvasive:true,onlySpecies:true})
+  }
+  //Get warehouse query count for taxon search.
+  getWareHouseQueryCount(count:number, lang:string):Observable<Array<any>>{
+    return this.apiService
+    .warehouseQueryCountFindByCount(LajiApi.Endpoints.warehousequerycount,count,{lang:lang});
+  }
+
 }

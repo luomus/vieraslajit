@@ -5,11 +5,30 @@ import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../model/Taxonomy'
 import { Observable } from 'rxjs/Observable';
 import { PagedResult } from '../model/PagedResult';
 import { Informal } from '../model/Informal';
-
+import { Autocomplete } from '../model/Autocomplete';
+import { WarehouseQueryCount } from '../model/Warehouse';
 @Injectable()
 export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
+
+  //Autocomplete
+  autocompleteFindByField(endpoint:LajiApi.Endpoints.autocomplete, field: string,  query:LajiApi.AutocompleteQuery):Observable<Autocomplete>{
+    const url = `${environment.lajiApi.url}/${endpoint}`;
+    return this.httpClient.get(
+     url,
+       { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+        );
+  }
+
+  //Warehouse query count
+  warehouseQueryCount(endpoint:LajiApi.Endpoints.warehousequerycount, count:number, query:LajiApi.WareHouseQueryCountQuery):Observable<WarehouseQueryCount>{
+    const url = `${environment.lajiApi.url}/${endpoint}`;
+    return this.httpClient.get(
+     url,
+      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+      );
+  }
 
   // InformalTaxonGroup
   informalTaxonGroups(endpoint: LajiApi.Endpoints.informalRoots, query: LajiApi.Query): Observable<PagedResult<Informal>>;
@@ -42,7 +61,9 @@ export namespace LajiApi {
     taxonSpecies = 'taxa/%id%/species',
     document = 'document',
     description = 'taxa/%id%/descriptions',
-    media = 'taxa/%id%/media'
+    media = 'taxa/%id%/media',
+    autocomplete ='autocomplete/%field%',
+    warehousequerycount='warehouse/query/%count%'
   }
 
   export interface Query {
@@ -52,5 +73,24 @@ export namespace LajiApi {
     pageSize?: number;
     onlyFinnish?: boolean;
     blacklist?: string;
+    
+    
+
+  }
+
+  export interface AutocompleteQuery{
+    q?:string;
+    includeSelf?:boolean;
+    onlySpecies?:boolean;
+    onlyFinnish?:boolean;
+    onlyInvasive?:boolean;
+    lang:string;
+    limit:string;
+    includePayload:boolean;
+
+  }
+  export interface WareHouseQueryCountQuery{
+
+    
   }
 }

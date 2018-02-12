@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { TaxonService } from './service/taxon.service';
+import { OmnisearchComponent } from './omnisearch/omnisearch.component';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { TaxonService } from './service/taxon.service';
     RouterModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, FooterComponent, SearchComponent],
+  declarations: [NavbarComponent, FooterComponent, SearchComponent, OmnisearchComponent],
   providers: [],
   exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent]
 })
