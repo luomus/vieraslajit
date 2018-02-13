@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TaxonService } from '../../shared/service/taxon.service';
-import { TaxonomyDescription, TaxonomyImage } from '../../shared/model/Taxonomy';
+import { TaxonomyDescription, TaxonomyImage, Taxonomy } from '../../shared/model/Taxonomy';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -14,6 +14,7 @@ import { Observable } from 'rxjs/Observable';
 export class TaxonCardComponent implements OnInit, OnDestroy {
 
   id: string;
+  taxon: Taxonomy;
   private sub: any;
   desc$: TaxonomyDescription;
   media$: Array<TaxonomyImage>;
@@ -23,6 +24,9 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id']; // (+) converts string 'id' to a number
+    });
+    this.taxonService.getTaxon(this.id).subscribe(data => {
+      this.taxon = data;
     });
     this.taxonService.getTaxonDescription(this.id, 'fi').subscribe(data => {
       this.desc$ = data[0];
