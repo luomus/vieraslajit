@@ -18,6 +18,12 @@ export class TaxonService {
       .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
         { invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: false, lang: 'fi' });
   }
+
+  // Get one taxon
+  getTaxon(taxonId: string): Observable<Taxonomy> {
+    return this.apiService
+      .taxonomyFindById(LajiApi.Endpoints.taxon, taxonId, {lang: 'fi'});
+  }
   // Get root groups.
   getInformalGroups(lang: string): Observable<PagedResult<Informal>> {
     return this.apiService
