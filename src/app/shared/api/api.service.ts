@@ -13,6 +13,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   //Autocomplete
+  autocompleteFindByField(endpoint:LajiApi.Endpoints.autocomplete, field: string, query:LajiApi.AutocompleteQuery):Observable<Autocomplete>;
   autocompleteFindByField(endpoint:LajiApi.Endpoints.autocomplete, field: string, query: object = {}):Observable<any>{
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
@@ -22,6 +23,7 @@ export class ApiService {
   }
 
   //Warehouse query count
+  warehouseQueryCountGet(endpoint:LajiApi.Endpoints.warehousequerycount, count:string,query: LajiApi.warehousequerycountQuery):Observable<WarehouseQueryCount>;
   warehouseQueryCountGet(endpoint:LajiApi.Endpoints.warehousequerycount, count:string,query: object = {}):Observable<any>{
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
@@ -62,8 +64,8 @@ export namespace LajiApi {
     document = 'document',
     description = 'taxa/%id%/descriptions',
     media = 'taxa/%id%/media',
-    autocomplete ='autocomplete/%field%',
-    warehousequerycount='warehouse/query/%count%'
+    autocomplete ='autocomplete/taxon',
+    warehousequerycount='warehouse/query/count'
   }
 
   export interface Query {
@@ -75,6 +77,17 @@ export namespace LajiApi {
     blacklist?: string;
     
     
+
+  }
+  export interface AutocompleteQuery{
+    q?:string;
+    includePayload?:boolean;
+    onlyInvasive?:boolean;
+
+  }
+
+  export interface warehousequerycountQuery{
+
 
   }
 

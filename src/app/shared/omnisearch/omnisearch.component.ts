@@ -38,13 +38,14 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   @Input() selectTo ='/taxon';
   @Input() minLength = 3;
   @Input() visible=true;
+  @Input() expand = '';
   @Output() visibleTaxon = new EventEmitter<any>();
   public search='';
   public searchControl = new FormControl();
   public active = 0;
   public taxa = [];
   public taxon: any;
-  public loading = false;
+  public loading = false; 
   private subTaxa: Subscription;
   private subCnt:Subscription;
   private inputChange:Subscription;
@@ -53,7 +54,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
 
 
   constructor(
-    private router:Router,
+    
     private changeDetector:ChangeDetectorRef,
     private apiService:ApiService,
     private taxonservice:TaxonService,
@@ -62,15 +63,20 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     this.el = viewContainerRef.element.nativeElement;
    }
 
-  ngOnInit() {
+   ngOnInit() {
+     console.log('Init')
     this.inputChange = this.searchControl.valueChanges
-    .do(value => this.search = value)
-    .subscribe(value =>{
-      this.updateTaxa();
-    });
+      .do(value => this.search = value)
+      .subscribe(value => {
+        console.log('Update')
+        this.updateTaxa();
+        
+      });
+  
   }
   ngOnChanges(){
     this.updateTaxa();
+    console.log('Change');
 
   }
   ngOnDestroy(){
@@ -85,6 +91,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   }
   activate(index: number):void{
     if(this.taxa[index]){
+      console.log('activate');
       this.active =index;
       this.taxon = this.taxa[index];
       this.taxon.informalGroupsClass = this.taxon.payload.informalGroups.reduce((p,c) =>p+''+c.id,'');
@@ -133,12 +140,6 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private updateTaxa(){
-    if (this.subTaxa){
-      this.subTaxa.unsubscribe();
-    }
-    if(this.subCnt){
-      this.subCnt.unsubscribe();
-    }
 
     if (this.search.length < this.minLength) {
       this.loading = false;
@@ -147,11 +148,12 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     this.loading =true;
-    this.subTaxa = this.taxonservice.getAutocomplete('taxon',this.search,
-      ''+this.limit).subscribe(
+    this.subTaxa = this.taxonservice.getAutocomplete('taxon',this.search).subscribe(
+      
       data =>{
         this.taxa=data;
         this.loading=false;
+        console.log('Autocomplete');
         this.activate(0);
         this.changeDetector.markForCheck()
       }
