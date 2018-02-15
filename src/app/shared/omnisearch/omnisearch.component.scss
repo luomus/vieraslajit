@@ -16,7 +16,7 @@
     border-right: 1px solid #999;
     border-left: 1px solid #999;
     border-bottom: 1px solid #999;
-    color: #aaa;
+    color: rgb(43, 42, 42);
     border-radius: 10px;
     min-width: 250px;
     &.right {
@@ -36,19 +36,9 @@
     padding-left: 65px;
   }
   
-  .btn-default {
-    border-left-color: #fff;
-    &:hover {
-      border-left-color: #fff;
-      background-color: #fff;
-      border-top: 1px solid #ccc;
-      border-right: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
-    }
-  }
   
   .taxon-match, .observations, .taxonomy {
-    color: #2c2c2c;
+    color: rgb(43, 42, 42);
   }
   
   

@@ -7,9 +7,11 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { TaxonService } from './service/taxon.service';
+import { NewsService } from './service/news.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { OmnisearchComponent } from './omnisearch/omnisearch.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { LanguageSelectorComponent } from './navbar/language-selector/language-selector.component';
 
 
 @NgModule({
@@ -21,9 +23,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, FooterComponent, SearchComponent, OmnisearchComponent],
+  declarations: [NavbarComponent, FooterComponent, SearchComponent, OmnisearchComponent,LanguageSelectorComponent],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule,OmnisearchComponent]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule,OmnisearchComponent,LanguageSelectorComponent]
+  
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
@@ -31,7 +34,8 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         ApiService,
-        TaxonService
+        TaxonService,
+        NewsService
       ]
     };
   }

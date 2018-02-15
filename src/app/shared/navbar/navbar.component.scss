@@ -1,5 +1,7 @@
+ @import '../../../assets/styles/vars';
+
 .navbar-dark {
-    background: #f89525;
+     background: $navbar-background;
     padding: 0;
 }
 
@@ -19,6 +21,6 @@
 
 /*Hover state for top level links*/
 li:hover a {
-    background: #f78706;
+ background: $navbar-background-hover;
 }
 
