@@ -54,5 +54,6 @@ export namespace LajiApi {
     pageSize?: number;
     onlyFinnish?: boolean;
     blacklist?: string;
+    selectedFields?: string;
   }
 }

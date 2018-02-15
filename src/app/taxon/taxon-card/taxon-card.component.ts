@@ -18,6 +18,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   private sub: any;
   desc$: TaxonomyDescription;
   media$: Array<TaxonomyImage>;
+  family$: Array<Taxonomy>;
 
   constructor(private route: ActivatedRoute, private taxonService: TaxonService) { }
 
@@ -35,7 +36,11 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       this.media$ = data;
     });
     this.taxonService.getTaxonParents(this.id, 'fi').subscribe(data => {
-      console.log(data);
+      if (data.some(e => e.taxonRank === 'MX.subfamily')) {
+        this.family$ = data.filter(value => value.taxonRank === 'MX.subfamily');
+      } else {
+        this.family$ = data.filter(value => value.taxonRank === 'MX.family');
+      }
     })
   }
 
