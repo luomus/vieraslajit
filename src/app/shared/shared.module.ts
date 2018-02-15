@@ -7,17 +7,19 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { TaxonService } from './service/taxon.service';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    TranslateModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [NavbarComponent, FooterComponent, SearchComponent],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
