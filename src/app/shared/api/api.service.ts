@@ -55,5 +55,6 @@ export namespace LajiApi {
     onlyFinnish?: boolean;
     blacklist?: string;
     selectedFields?: string;
+    langFallback?: boolean;
   }
 }
