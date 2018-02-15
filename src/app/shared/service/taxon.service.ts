@@ -12,10 +12,10 @@ export class TaxonService {
   constructor(private apiService: ApiService) { }
 
   // Get all species in the group.
-  getTaxonomy(taxonId: string, group?: string): Observable<PagedResult<Taxonomy>> {
+  getTaxonomy(taxonId: string, group?: string, lang?: string): Observable<PagedResult<Taxonomy>> {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
-        { invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: false, lang: 'fi' });
+        { invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: false, lang: lang, langFallback: false});
   }
 
   // Get one taxon
@@ -37,5 +37,10 @@ export class TaxonService {
   getTaxonMedia(taxonId: string, lang: string): Observable<Array<TaxonomyImage>> {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.media, taxonId, { lang: lang, blacklist: 'eol:api' });
+  }
+  // Get taxon parents up to Biota
+  getTaxonParents(taxonId: string, lang: string): Observable<Array<Taxonomy>> {
+    return this.apiService
+      .taxonomyFindById(LajiApi.Endpoints.taxonParents, taxonId, { lang: lang, selectedFields: 'id, vernacularName, scientificName, taxonRank' });
   }
 }
