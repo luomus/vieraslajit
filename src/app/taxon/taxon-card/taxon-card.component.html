@@ -32,8 +32,36 @@
           <strong>Tietokortti</strong>
         </div>
         <div class="card-block">
-          <strong>Lisätietoa lajit.fi-sivustolla</strong>
-          <a href="https://laji.fi/taxon/{{id}}">https://laji.fi/taxon/{{id}}</a>
+          <div>
+          <strong>Nimi</strong>
+          {{taxon?.vernacularName}}
+          </div>
+          <div>
+            <strong>Tieteellinen nimi</strong>
+            <em>{{taxon?.scientificName}}</em>
+          </div>
+          <div>
+            <strong>Lisätietoa lajit.fi-sivustolla</strong>
+            <a href="http://tun.fi/{{id}}">http://tun.fi/{{id}}</a>
+          </div>
+          <div>
+            <strong>Hallinnolliset ominaisuudet (administrativeStatuses) </strong>
+            <ul>
+              <li *ngFor="let status of taxon?.administrativeStatuses">{{status}}</li>
+            </ul>
+          </div>
+          <div>
+            <strong>Vakiintunut Suomeen</strong> (stableInFinland)
+            {{taxon?.stableInFinland == true ? 'Kyllä' : 'Ei' }}
+          </div>
+          <div>
+            <strong>Vakiintuneisuus</strong> (occurrenceInFinland)
+            {{taxon?.occurrenceInFinland}}
+          </div>
+          <div>
+            <strong>Vaarallinen kasvintuhoaja</strong>
+            {{quarantinePlantPest == true ? 'Kyllä' : 'Ei' }}
+          </div>
         </div>
       </div>
     </div>

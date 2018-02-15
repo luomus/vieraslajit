@@ -18,6 +18,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   private sub: any;
   desc$: TaxonomyDescription;
   media$: Array<TaxonomyImage>;
+  quarantinePlantPest: boolean;  //Vaarallinen kasvintuhoaja
 
   constructor(private route: ActivatedRoute, private taxonService: TaxonService) { }
 
@@ -27,6 +28,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     });
     this.taxonService.getTaxon(this.id).subscribe(data => {
       this.taxon = data;
+      this.quarantinePlantPest = this.taxon.administrativeStatuses.includes("MX.quarantinePlantPest");
     });
     this.taxonService.getTaxonDescription(this.id, 'fi').subscribe(data => {
       this.desc$ = data[0];
