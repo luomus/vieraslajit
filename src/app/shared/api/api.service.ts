@@ -26,6 +26,7 @@ export class ApiService {
   taxonomyFindById(endpoint: LajiApi.Endpoints.media, id: string, query: LajiApi.Query): Observable<Array<TaxonomyImage>>;
   taxonomyFindById(endpoint: LajiApi.Endpoints.description, id: string, query: LajiApi.Query): Observable<Array<any>>;
   taxonomyFindById(endpoint: LajiApi.Endpoints.taxonSpecies, id: string, query: LajiApi.Query): Observable<PagedResult<Taxonomy>>;
+  taxonomyFindById(endpoint: LajiApi.Endpoints.taxonParents, id: string, query: LajiApi.Query): Observable<Array<Taxonomy>>;
   taxonomyFindById(endpoint: LajiApi.Endpoints, id: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.get(
@@ -38,6 +39,7 @@ export class ApiService {
 export namespace LajiApi {
   export enum Endpoints {
     informalRoots = 'informal-taxon-groups/roots',
+    taxonParents = 'taxa/%id%/parents',
     taxon = 'taxa/%id%',
     taxonSpecies = 'taxa/%id%/species',
     document = 'document',

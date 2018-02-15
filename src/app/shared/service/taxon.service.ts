@@ -32,4 +32,9 @@ export class TaxonService {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.media, taxonId, { lang: lang, blacklist: 'eol:api' });
   }
+
+  getTaxonParents(taxonId: string, lang: string): Observable<Array<Taxonomy>> {
+    return this.apiService
+      .taxonomyFindById(LajiApi.Endpoints.taxonParents, taxonId, { lang: lang });
+  }
 }

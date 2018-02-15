@@ -30,6 +30,9 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     this.taxonService.getTaxonMedia(this.id, 'fi').subscribe(data => {
       this.media$ = data;
     });
+    this.taxonService.getTaxonParents(this.id, 'fi').subscribe(data => {
+      console.log(data);
+    })
   }
 
   ngOnDestroy() {
