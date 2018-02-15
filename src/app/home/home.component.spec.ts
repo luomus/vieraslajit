@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import{SharedModule} from '../shared/shared.module';
 import { HomeComponent } from './home.component';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -9,7 +10,8 @@ describe('HomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
-      imports:[SharedModule]
+      imports:[SharedModule, TranslateModule.forRoot()],
+      providers:[TranslateService]
     })
     .compileComponents();
   }));
