@@ -1,15 +1,18 @@
 .omni-search {
     margin-bottom: 0;
+    margin-top: 5;
+    padding:10px;
     position: relative;
   }
   
   .omni-search-results {
-    position: absolute;
+    position: relative;
     left: 0;
     right: 1px;
+    
     background-color: #ffffff;
-    padding: 5px;
-    z-index: 1029;
+    padding: 10px;
+   
     border-right: 1px solid #999;
     border-left: 1px solid #999;
     border-bottom: 1px solid #999;
@@ -21,7 +24,7 @@
       left: auto;
     }
     .matches .active {
-      color: #2C3E50;
+      color:#fa7d09;
       font-weight: bold;
     }
     .scientificName.cursive {
@@ -48,10 +51,6 @@
     color: #2c2c2c;
   }
   
-  .omni-search-results .informal-group-image {
-    background-size: auto 65px;
-    background-position: top left;
-  }
   
   @media only screen and (min-width: 992px) {
     .omni-search-results {
@@ -63,21 +62,11 @@
   }
   
   .omni {
-    border-radius: 30px;
     -webkit-transition: all .4s;
     -moz-transition: all .4s;
     transition: all .4s;
   }
   
-  .omni-search:after {
-    content: "\e003";
-    font-family: "Glyphicons Halflings";
-    line-height: 1;
-    position: absolute;
-    color: #7d7d7d;
-    top: 7px;
-    right: 9px;
-  }
   
   .omni {
     &.expandRight {

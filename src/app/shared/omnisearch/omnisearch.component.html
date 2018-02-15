@@ -9,7 +9,7 @@
          [class.open]="taxa.length > 0 && search.length > 0"
          [value]="search"
          [formControl]="searchControl"
-         placeholder="Hae" autoComplete="off"/>/>
+         placeholder="Hae" autoComplete="off"/>
 
   <div style="clear: both"></div>
   <div class="col-sm-12" *ngIf="taxa.length > 0 && search.length > 0">
@@ -26,14 +26,12 @@
         </div>
         <hr class="hidden-md hidden-lg">
         <div class="col-md-5 first-col">
-          {{'omniSearch.matches'}}
+          Tietoa lajista
           <div class="row">
             <div class="col-md-12 taxon-match informal-group-image {{taxon.informalTaxonGroupsClass}}">
               <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()"><span class="vernacularName">{{taxon.payload.vernacularName}}</span></a><br>
               <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()"><span
                       class="scientificName" [ngClass]="{cursive: taxon.payload.cursiveName}">{{taxon.payload.scientificName}}</span></a><br>
-              {{'omniSearch.rank'}}: {{taxon.payload.taxonRankId}<br>
-              {{'omniSearch.groups'}:<br>
               <ul>
                 <li *ngFor="let group of taxon.informalTaxonGroups">{{group}}</li>
               </ul>
@@ -41,20 +39,19 @@
           </div>
         </div>
         <div class="col-md-3 second-col">
-          {{ 'navigation.observation' }
+          Havainnot
           <div class="row">
             <div class="col-md-offset-1 col-md-11 observations" *ngIf="taxon">
               <a [routerLink]="['/observation']" [queryParams]="{target: (taxon.key), reset: true }" (click)="close()">
-                {{taxon?.count}}
-                {{'omniSearch.allObservation'}
+                {{taxon.count}}
               </a>
             </div>
           </div>
-          {{ 'omniSearch.links'}}
+          Taksonomiapuu
           <div class="row">
             <div class="col-md-offset-1 col-md-11 taxonomy" *ngIf="taxon">
               <a [routerLink]="['/taxon/taxonomy/' + taxon.key]" (click)="close()">
-                {{'omniSearch.taxonTree'}}
+                Näytä puu
               </a>
             </div>
           </div>

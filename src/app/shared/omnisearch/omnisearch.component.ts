@@ -46,10 +46,12 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   public taxa = [];
   public taxon: any;
   public loading = false; 
+  
   private subTaxa: Subscription;
   private subCnt:Subscription;
   private inputChange:Subscription;
   private el: Element;
+
 
 
 
@@ -58,17 +60,16 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     private changeDetector:ChangeDetectorRef,
     private apiService:ApiService,
     private taxonservice:TaxonService,
+    private router:Router,
     viewContainerRef:ViewContainerRef
   ) {
     this.el = viewContainerRef.element.nativeElement;
    }
 
    ngOnInit() {
-     console.log('Init')
     this.inputChange = this.searchControl.valueChanges
       .do(value => this.search = value)
       .subscribe(value => {
-        console.log('Update')
         this.updateTaxa();
         
       });
@@ -76,7 +77,6 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   }
   ngOnChanges(){
     this.updateTaxa();
-    console.log('Change');
 
   }
   ngOnDestroy(){
@@ -91,15 +91,12 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   }
   activate(index: number):void{
     if(this.taxa[index]){
-      console.log('activate');
       this.active =index;
       this.taxon = this.taxa[index];
-      this.taxon.informalGroupsClass = this.taxon.payload.informalGroups.reduce((p,c) =>p+''+c.id,'');
-      this.taxon.informalGroups = this.taxon.payload.informalGroups.map(group=>group.name).reverse();
       this.subCnt=Observable.of(this.taxon.key).combineLatest(
         this.taxonservice.getWareHouseQueryCount('count','fi',this.taxon.key),
         (id, cnt) =>{
-          return{id:id, cnt: cnt};
+          return{id:id, cnt: cnt.total};
         }).subscribe(data => {
           this.taxa.map(auto=>{
           if(auto.key === data.id){
@@ -132,7 +129,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     //Enter
     if(e.keyCode ===13){
       if(this.taxa[this.active]){
-       // this.router.navigate(this.localizeRouterService.translateRoute([this.selectTo, this.taxa[this.active].key]));
+        this.router.navigate([this.selectTo, this.taxa[this.active].key]);
         this.close();
       }
     }
@@ -153,7 +150,6 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
       data =>{
         this.taxa=data;
         this.loading=false;
-        console.log('Autocomplete');
         this.activate(0);
         this.changeDetector.markForCheck()
       }

@@ -47,7 +47,7 @@ export class TaxonService {
   //Get warehouse query count for taxon search.
   getWareHouseQueryCount(count:string, lang:string, taxonId):Observable<any>{
     return this.apiService
-    .warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount,count,{taxonId});
+    .warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount,count,{cache:false,taxonId,individualCountMin:1});
   }
 
 }

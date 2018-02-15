@@ -25,7 +25,7 @@ export class ApiService {
   //Warehouse query count
   warehouseQueryCountGet(endpoint:LajiApi.Endpoints.warehousequerycount, count:string,query: LajiApi.warehousequerycountQuery):Observable<WarehouseQueryCount>;
   warehouseQueryCountGet(endpoint:LajiApi.Endpoints.warehousequerycount, count:string,query: object = {}):Observable<any>{
-    const url = `${environment.lajiApi.url}/${endpoint}`;
+    const url = `${environment.lajiApi.url}${endpoint}`;
     return this.httpClient.get(
      url,
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
@@ -87,6 +87,9 @@ export namespace LajiApi {
   }
 
   export interface warehousequerycountQuery{
+    cache?:boolean;
+    taxonId?:string;
+    individualCountMin?:number;
 
 
   }
