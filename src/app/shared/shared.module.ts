@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { TaxonService } from './service/taxon.service';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { OmnisearchComponent } from './omnisearch/omnisearch.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -15,13 +16,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule,
+    TranslateModule,
     FormsModule,
     ReactiveFormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [NavbarComponent, FooterComponent, SearchComponent, OmnisearchComponent],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, OmnisearchComponent]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule,OmnisearchComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
