@@ -5,6 +5,7 @@ import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../model/Taxonomy'
 import { Observable } from 'rxjs/Observable';
 import { PagedResult } from '../model/PagedResult';
 import { Informal } from '../model/Informal';
+import { NewsElement } from '../model/NewsElement';
 
 @Injectable()
 export class ApiService {
@@ -34,6 +35,16 @@ export class ApiService {
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
     );
   }
+
+  // News
+  newsArray(endpoint: LajiApi.Endpoints.newsArray, query: LajiApi.Query): Observable<PagedResult<NewsElement>>;
+  newsArray(endpoint: LajiApi.Endpoints, query: object = {}): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`;
+    return this.httpClient.get(
+      url,
+      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+    );
+  }
 }
 
 export namespace LajiApi {
@@ -44,14 +55,17 @@ export namespace LajiApi {
     taxonSpecies = 'taxa/%id%/species',
     document = 'document',
     description = 'taxa/%id%/descriptions',
-    media = 'taxa/%id%/media'
+    media = 'taxa/%id%/media',
+    newsArray = 'news',
+    newsElement = 'news/%id%'
   }
 
   export interface Query {
     lang?: string;
     informalGroupFilters?: string;
     invasiveSpeciesFilter?: boolean;
-    pageSize?: number;
+    pageSize?: string;
+    page?: string;
     onlyFinnish?: boolean;
     blacklist?: string;
     selectedFields?: string;
