@@ -1,11 +1,14 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { MetadataService } from './metadata.service';
+import { ApiService } from '../api/api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('MetadataService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MetadataService]
+      imports: [HttpClientModule],
+      providers: [MetadataService, ApiService]
     });
   });
 

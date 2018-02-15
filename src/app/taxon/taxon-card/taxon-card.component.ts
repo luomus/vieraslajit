@@ -28,7 +28,6 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     });
     this.taxonService.getTaxon(this.id).subscribe(data => {
       this.taxon = data;
-      console.log(this.taxon);
     });
     this.taxonService.getTaxonDescription(this.id, 'fi').subscribe(data => {
       this.desc$ = data[0];

@@ -10,6 +10,8 @@ import { TaxonService } from './service/taxon.service';
 import { NewsService } from './service/news.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { LanguageSelectorComponent } from './navbar/language-selector/language-selector.component';
+import { LabelPipe } from './pipe/label.pipe';
+import { MetadataService } from './service/metadata.service';
 
 
 @NgModule({
@@ -19,9 +21,9 @@ import { LanguageSelectorComponent } from './navbar/language-selector/language-s
     TranslateModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent],
+  declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, LabelPipe],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule, LanguageSelectorComponent]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule, LanguageSelectorComponent, LabelPipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
@@ -30,7 +32,8 @@ export class SharedModule {
       providers: [
         ApiService,
         TaxonService,
-        NewsService
+        NewsService,
+        MetadataService
       ]
     };
   }
