@@ -2,5 +2,11 @@
   "home.h1": "Tervetuloa vieraslajiportaaliin!",
   "navigation.home": "Koti",
   "navigation.taxonomy": "Lajit",
-  "navigation.removal": "Torjunta"
+  "navigation.removal": "Torjunta",
+  "taxonomy.folkname": "Kansankielinen nimi",
+  "taxonomy.scientificname": "Tieteellinen nimi",
+  "taxonomy.class": "Luokka",
+  "taxonomy.onEuList": "EU lista",
+  "taxonomy.finnishList": "Kansallinen lista",
+  "taxonomy.established": "Vakiintuneisuus"
 }

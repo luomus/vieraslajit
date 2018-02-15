@@ -1,8 +1,8 @@
 {
-  "home.h1": "Information about invasive species in Finland",
-  "navigation.home": "Home",
-  "navigation.taxonomy": "Taxon",
-  "navigation.removal": "Removal",
+  "home.h1": "ruotsinkielistä juttua",
+  "navigation.home": "Hem",
+  "navigation.taxonomy": "Arter",
+  "navigation.removal": "Avlägsnande",
   "taxonomy.folkname": "Vernacular name",
   "taxonomy.scientificname": "Scientific name",
   "taxonomy.class": "Class",

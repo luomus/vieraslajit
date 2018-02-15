@@ -7,6 +7,7 @@ import { TaxonCardComponent } from './taxon-card/taxon-card.component';
 
 import { routing } from './taxon.routing';
 import { SharedModule } from '../shared/shared.module';
+import { TaxonGridComponent } from './taxon-grid/taxon-grid.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     SharedModule
   ],
-  declarations: [TaxonListComponent, TaxonCardComponent]
+  declarations: [TaxonListComponent, TaxonCardComponent, TaxonGridComponent]
 })
 export class TaxonModule { }

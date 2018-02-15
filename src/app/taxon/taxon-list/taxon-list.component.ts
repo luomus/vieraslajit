@@ -5,6 +5,7 @@ import { PagedResult } from '../../shared/model/PagedResult';
 import { Taxonomy, TaxonomyDescription } from '../../shared/model/Taxonomy';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { Informal } from '../../shared/model/Informal';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'vrs-taxon-list',
@@ -17,20 +18,14 @@ export class TaxonListComponent implements OnInit {
 
   selected = [];
 
-  taxa = [
-    { name: "Ruokosammakko", class: "Sammakkoeläimet", id: "1" },
-    { name: "Espanjansiruetana", class: "Kotilot", id: "2" },
-    { name: "Jalohaukat", class: "Linnut", id: "3" }
-  ];
-
   taxa$: Taxonomy[];
   groups$: Informal[];
   selectedGroup: Informal;
 
-  constructor(private taxonService: TaxonService) { }
+  constructor(private taxonService: TaxonService, private translateService: TranslateService) { }
 
   ngOnInit() {
-    this.taxonService.getInformalGroups('fi').subscribe((data) => {
+    this.taxonService.getInformalGroups(this.translateService.currentLang).subscribe((data) => {
       this.groups$ = data.results;
     });
   }
@@ -48,10 +43,9 @@ export class TaxonListComponent implements OnInit {
 
   onGroupSelect(target) {
     this.selectedGroup = target;
-    this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id).subscribe(data => {
+    this.taxonService.getTaxonomy('MX.37600', this.translateService.currentLang, this.selectedGroup.id).subscribe(data => {
       this.taxa$ = data.results;
       this.selected = this.taxa$;
     });
   }
-
 }
