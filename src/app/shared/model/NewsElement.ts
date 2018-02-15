@@ -1,10 +1,10 @@
 export interface NewsElement {
     "id": "string",
     "external": true,
-    "externalURL": "string",
+    "externalURL"?: "string",
     "title": "string",
-    "content": "string",
+    "content"?: "string",
     "posted": "string",
-    "modified": "string",
+    "modified"?: "string",
     "tag": "string"
 }
