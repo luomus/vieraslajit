@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { TaxonService } from './service/taxon.service';
 import { NewsService } from './service/news.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { LanguageSelectorComponent } from './navbar/language-selector/language-selector.component';
 
 
 @NgModule({
@@ -18,9 +19,9 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
     TranslateModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, FooterComponent, SearchComponent],
+  declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule, LanguageSelectorComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
