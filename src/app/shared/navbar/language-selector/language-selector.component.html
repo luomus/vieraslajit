@@ -1,5 +1,8 @@
-<div class="float-right">
-    <button (click)="switchLanguage('fi')">fi</button>
-    <button (click)="switchLanguage('se')">se</button>
-    <button (click)="switchLanguage('en')">en</button>
+<div class="language-selector">
+    <button class="dropbtn">Language</button>
+    <div class="dropdown-content">
+    <a href="javascript:;" (click)="switchLanguage('fi')">Finnish</a>
+    <a href="javascript:;" (click)="switchLanguage('se')">Swedish</a>
+    <a href="javascript:;" (click)="switchLanguage('en')">English</a>
+    </div>
 </div>
