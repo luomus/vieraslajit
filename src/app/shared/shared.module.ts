@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { TaxonService } from './service/taxon.service';
+import { NewsService } from './service/news.service';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         ApiService,
-        TaxonService
+        TaxonService,
+        NewsService
       ]
     };
   }
