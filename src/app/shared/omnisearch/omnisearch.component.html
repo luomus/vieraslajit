@@ -13,7 +13,7 @@
 
   <div style="clear: both"></div>
   <!-- <div id="gcse" *ngIf="taxa.length === 0 && search.length > 3">
-    <vrs-search></vrs-search>
+    GOOGLEHAKUTULOKSIIN JOTENKIN
 </div>    -->
   <div class="col-sm-12" *ngIf="taxa.length > 0 && search.length > 0">
     <div class="omni-search-results" [class.right]="expand === 'right'">
@@ -32,8 +32,8 @@
           <div translate>omnisearch.information</div>
           <div class="row">
             <div class="col-md-12 taxon-match">
-              <a routerLink="['/taxon/' + taxon.key]" (click)="close()"><span class="vernacularName">{{taxon.payload.vernacularName}}</span></a><br>
-              <a routerLink="['/taxon/' + taxon.key]" (click)="close()"><span
+              <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()"><span class="vernacularName">{{taxon.payload.vernacularName}}</span></a><br>
+              <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()"><span
                       class="scientificName" [ngClass]="{cursive: taxon.payload.cursiveName}">{{taxon.payload.scientificName}}</span></a><br>
               <ul>
                 <li *ngFor="let group of taxon.informalTaxonGroups">{{group}}</li>
@@ -45,7 +45,7 @@
           <div translate>omnisearch.observations</div>
           <div class="row">
             <div class="col-md-offset-1 col-md-11 observations" *ngIf="taxon">
-              <a routerLink="['/observation']" queryParams="{target: (taxon.key), reset: true }" (click)="close()">
+              <a [routerLink]="['/observation']" queryParams="{target: (taxon.key), reset: true }" (click)="close()">
                 {{taxon.count}}
               </a>
             </div>
@@ -53,7 +53,7 @@
          <div translate>omnisearch.taxontree</div>
           <div class="row">
             <div class="col-md-offset-1 col-md-11 taxonomy" *ngIf="taxon">
-              <a routerLink="['/taxon/taxonomy/' + taxon.key]" (click)="close()" translate>
+              <a [routerLink]="['/taxon/taxonomy/' + taxon.key]" (click)="close()" translate>
                omnisearch.showtree
               </a>
             </div>
