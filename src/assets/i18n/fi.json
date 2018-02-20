@@ -3,5 +3,10 @@
   "navigation.home": "Koti",
   "navigation.taxonomy": "Lajit",
   "navigation.removal": "Torjunta",
-  "navigation.news": "Uutiset"
+  "navigation.news": "Uutiset",
+  "omnisearch.information": "Lisätietoa",
+  "omnisearch.observations": "Havainnot",
+  "omnisearch.taxontree":"Taksonomiapuu",
+  "omnisearch.showtree":"Näytä puu",
+  "omnisearch.search": "Hae lajeja"
 }

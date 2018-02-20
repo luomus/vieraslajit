@@ -3,5 +3,10 @@
   "navigation.home": "Hem",
   "navigation.taxonomy": "Arter",
   "navigation.removal": "Avlägsnande",
-  "navigation.news": "Nyheter"
+  "navigation.news": "Nyheter",
+  "omnisearch.information": "Information",
+  "omnisearch.observations": "Besökte",
+  "omnisearch.taxontree":"Taxonomy tree",
+  "omnisearch.showtree":"Visa trädet",
+  "omnisearch.search":"Sök efter arter"
 }
