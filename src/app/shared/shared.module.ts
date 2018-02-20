@@ -12,18 +12,21 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { LanguageSelectorComponent } from './navbar/language-selector/language-selector.component';
 import { LabelPipe } from './pipe/label.pipe';
 import { MetadataService } from './service/metadata.service';
-
+import { OmnisearchComponent } from './omnisearch/omnisearch.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, LabelPipe],
+  declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent,OmnisearchComponent, LabelPipe],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule, LanguageSelectorComponent, LabelPipe]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule, LanguageSelectorComponent,OmnisearchComponent, LabelPipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

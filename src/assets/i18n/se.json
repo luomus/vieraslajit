@@ -2,5 +2,10 @@
   "home.h1": "ruotsinkielistä juttua",
   "navigation.home": "Hem",
   "navigation.taxonomy": "Arter",
-  "navigation.removal": "Avlägsnande"
+  "navigation.removal": "Avlägsnande",
+  "omnisearch.information": "Information",
+  "omnisearch.observations": "Besökte",
+  "omnisearch.taxontree":"Taxonomy tree",
+  "omnisearch.showtree":"Visa trädet",
+  "omnisearch.search":"Sök efter arter"
 }
