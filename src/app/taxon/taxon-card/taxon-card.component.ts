@@ -18,11 +18,11 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   private sub: any;
   desc$: TaxonomyDescription;
   media$: Array<TaxonomyImage>;
-<<<<<<< HEAD
+
   quarantinePlantPest: boolean;  //Vaarallinen kasvintuhoaja
-=======
+
   family$: Array<Taxonomy>;
->>>>>>> bd9da8b09413367b5c18e3e6bfd17bc22222b8c8
+
 
   constructor(private route: ActivatedRoute, private taxonService: TaxonService) { }
 

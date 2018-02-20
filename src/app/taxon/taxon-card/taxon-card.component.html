@@ -24,9 +24,7 @@
         </div>
         <div class="card-block">
           <ng-container *ngFor="let image of media$">
-            <a href="{{image.fullURL}}">
-              <img src="{{image.thumbnailURL}}" style="padding: 2px" />
-            </a>
+            <a href="{{image.fullURL}}"><img src="{{image.thumbnailURL}}" style="padding: 2px"/></a>
           </ng-container>
         </div>
       </div>
@@ -50,7 +48,7 @@
           <div>
             <strong>Hallinnolliset ominaisuudet (administrativeStatuses) </strong>
             <ul>
-              <li *ngFor="let status of taxon?.administrativeStatuses">{{status}}</li>
+              <li *ngFor="let status of taxon?.administrativeStatuses">{{status | label: 'MX.adminStatusEnum'}} </li>
             </ul>
           </div>
           <div>
