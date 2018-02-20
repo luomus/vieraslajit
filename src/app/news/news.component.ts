@@ -8,9 +8,14 @@ import { NewsService } from '../shared/service/news.service';
 })
 export class NewsComponent implements OnInit {
 
+  news: Array<any> = [];
+
   constructor(private newsService: NewsService) { }
 
   ngOnInit() {
+    this.newsService.getNewsArray('1', '10').subscribe((data) => {
+      this.news = data.results;
+    });
   }
 
 }
