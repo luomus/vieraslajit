@@ -1,5 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ApiService } from '../shared/api/api.service';
+import { HttpClientModule } from '@angular/common/http';
+import { NewsService } from '../shared/service/news.service';
 import { NewsComponent } from './news.component';
 
 describe('NewsComponent', () => {
@@ -8,7 +11,9 @@ describe('NewsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewsComponent ]
+      declarations: [ NewsComponent ],
+      imports: [HttpClientModule],
+      providers: [ApiService, NewsService]
     })
     .compileComponents();
   }));
