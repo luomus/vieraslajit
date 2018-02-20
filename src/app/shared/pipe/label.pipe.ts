@@ -10,9 +10,9 @@ export class LabelPipe implements PipeTransform {
 
   constructor(private metadataService: MetadataService) { }
 
-  transform(value: string, args?: any): any {
+  transform(value: string, range?: string): any {
     // Replace range and lang params with something better later.
-    this.metadataService.getMetadataRange('MX.adminStatusEnum', 'fi').subscribe(data => {
+    this.metadataService.getMetadataRange(range, 'fi').subscribe(data => {
       this.rangeData = data;
     });
     this.rangeData
