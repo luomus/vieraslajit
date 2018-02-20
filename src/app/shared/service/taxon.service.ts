@@ -20,9 +20,9 @@ export class TaxonService {
   }
 
   // Get one taxon
-  getTaxon(taxonId: string): Observable<Taxonomy> {
+  getTaxon(taxonId: string, lang?: string): Observable<Taxonomy> {
     return this.apiService
-      .taxonomyFindById(LajiApi.Endpoints.taxon, taxonId, { lang: 'fi' });
+      .taxonomyFindById(LajiApi.Endpoints.taxon, taxonId, { lang: lang });
   }
   // Get root groups.
   getInformalGroups(lang: string): Observable<PagedResult<Informal>> {
@@ -44,14 +44,14 @@ export class TaxonService {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.taxonParents, taxonId, { lang: lang, selectedFields: 'id, vernacularName, scientificName, taxonRank' });
   }
-    //Get autocomplete for taxon search.
-    getAutocomplete(field:string, q:string):Observable<any>{
-      return this.apiService
-      .autocompleteFindByField(LajiApi.Endpoints.autocomplete, field, {q,includePayload:true,onlyInvasive:true});
-    }
-    //Get warehouse query count for taxon search.
-    getWareHouseQueryCount(count:string, lang:string, taxonId):Observable<any>{
-      return this.apiService
-      .warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount,count,{cache:false,taxonId,individualCountMin:1});
-    }
+  //Get autocomplete for taxon search.
+  getAutocomplete(field: string, q: string): Observable<any> {
+    return this.apiService
+      .autocompleteFindByField(LajiApi.Endpoints.autocomplete, field, { q, includePayload: true, onlyInvasive: true });
+  }
+  //Get warehouse query count for taxon search.
+  getWareHouseQueryCount(count: string, lang: string, taxonId): Observable<any> {
+    return this.apiService
+      .warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount, count, { cache: false, taxonId, individualCountMin: 1 });
+  }
 }
