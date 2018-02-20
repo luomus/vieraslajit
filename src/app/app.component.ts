@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import {OmnisearchComponent} from './shared/omnisearch/omnisearch.component'
 
 
 @Component({
@@ -24,7 +25,4 @@ export class AppComponent {
 
   }
 
-  switchLanguage(language: string) {
-    this.translate.use(language);
-  }
 }

@@ -1,6 +1,11 @@
 {
-  "SUBTITLE": "Information about invasive species in Finland",
+  "home.h1": "Information about invasive species in Finland",
   "navigation.home": "Home",
   "navigation.taxonomy": "Taxon",
-  "navigation.removal": "Removal"
+  "navigation.removal": "Removal",
+  "omnisearch.information": "Information",
+  "omnisearch.observations": "Observations",
+  "omnisearch.taxontree":"Taxonomy tree",
+  "omnisearch.showtree":"Show tree",
+  "omnisearch.search": "Search for species"
 }

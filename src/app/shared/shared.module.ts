@@ -7,17 +7,26 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { TaxonService } from './service/taxon.service';
-
+import { NewsService } from './service/news.service';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { LanguageSelectorComponent } from './navbar/language-selector/language-selector.component';
+import { LabelPipe } from './pipe/label.pipe';
+import { MetadataService } from './service/metadata.service';
+import { OmnisearchComponent } from './omnisearch/omnisearch.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, FooterComponent, SearchComponent],
+  declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent,OmnisearchComponent, LabelPipe],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule, LanguageSelectorComponent,OmnisearchComponent, LabelPipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
@@ -25,7 +34,9 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         ApiService,
-        TaxonService
+        TaxonService,
+        NewsService,
+        MetadataService
       ]
     };
   }

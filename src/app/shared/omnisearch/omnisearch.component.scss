@@ -1,0 +1,75 @@
+.omni-search {
+    margin-bottom: 0;
+    margin-top: 5;
+    padding:10px;
+    position: relative;
+  }
+  
+  .omni-search-results {
+    position: relative;
+    left: 0;
+    right: 1px;
+    
+    background-color: #ffffff;
+    padding: 10px;
+   
+    border-right: 1px solid #999;
+    border-left: 1px solid #999;
+    border-bottom: 1px solid #999;
+    color: rgb(43, 42, 42);
+    border-radius: 10px;
+    min-width: 250px;
+    &.right {
+      right: 0;
+      left: auto;
+    }
+    .matches .active {
+      color:#fa7d09;
+      font-weight: bold;
+    }
+    .scientificName.cursive {
+      font-style: italic;
+    }
+  }
+  
+  .taxon-match {
+    padding-left: 65px;
+  }
+  
+  
+  .taxon-match, .observations, .taxonomy {
+    color: rgb(43, 42, 42);
+  }
+  
+  
+  @media only screen and (min-width: 992px) {
+    .omni-search-results {
+      min-width: 727px;
+      .first-col {
+        border-left: 1px solid #999;
+      }
+    }
+  }
+  
+  .omni {
+    -webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+  }
+  
+  
+  .omni {
+    &.expandRight {
+      float: right;
+      padding-right: 20px;
+    }
+    &.expand {
+      width: 90px;
+      border-color: rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      &.open, &:focus {
+        width: 100%;
+        background-color: #fff;
+      }
+    }
+  }

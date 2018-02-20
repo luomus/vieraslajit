@@ -18,7 +18,11 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   private sub: any;
   desc$: TaxonomyDescription;
   media$: Array<TaxonomyImage>;
+<<<<<<< HEAD
   quarantinePlantPest: boolean;  //Vaarallinen kasvintuhoaja
+=======
+  family$: Array<Taxonomy>;
+>>>>>>> bd9da8b09413367b5c18e3e6bfd17bc22222b8c8
 
   constructor(private route: ActivatedRoute, private taxonService: TaxonService) { }
 
@@ -36,6 +40,13 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     this.taxonService.getTaxonMedia(this.id, 'fi').subscribe(data => {
       this.media$ = data;
     });
+    this.taxonService.getTaxonParents(this.id, 'fi').subscribe(data => {
+      if (data.some(e => e.taxonRank === 'MX.subfamily')) {
+        this.family$ = data.filter(value => value.taxonRank === 'MX.subfamily');
+      } else {
+        this.family$ = data.filter(value => value.taxonRank === 'MX.family');
+      }
+    })
   }
 
   ngOnDestroy() {
