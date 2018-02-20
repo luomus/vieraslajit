@@ -32,8 +32,8 @@
           <div translate>omnisearch.information</div>
           <div class="row">
             <div class="col-md-12 taxon-match">
-              <a [routerLink]="['/taxon/' + taxon.key]" (click)=" navigate()"><span class="vernacularName">{{taxon.payload.vernacularName}}</span></a><br>
-              <a [routerLink]="['/taxon/' + taxon.key]" (click)=" navigate()"><span
+              <a [routerLink]="['/taxon/' + taxon.key]"><span class="vernacularName">{{taxon.payload.vernacularName}}</span></a><br>
+              <a [routerLink]="['/taxon/' + taxon.key]"><span
                       class="scientificName" [ngClass]="{cursive: taxon.payload.cursiveName}">{{taxon.payload.scientificName}}</span></a><br>
               <ul>
                 <li *ngFor="let group of taxon.informalTaxonGroups">{{group}}</li>
