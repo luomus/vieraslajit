@@ -6,16 +6,48 @@ import { Observable } from 'rxjs/Observable';
 import { PagedResult } from '../model/PagedResult';
 import { Informal } from '../model/Informal';
 import { NewsElement } from '../model/NewsElement';
+import { Autocomplete } from '../model/Autocomplete';
+import { WarehouseQueryCount } from '../model/Warehouse';
 
 @Injectable()
 export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
+  //Autocomplete
+  autocompleteFindByField(endpoint:LajiApi.Endpoints.autocomplete, field: string, query:LajiApi.AutocompleteQuery):Observable<Autocomplete>;
+  autocompleteFindByField(endpoint:LajiApi.Endpoints.autocomplete, field: string, query: object = {}):Observable<any>{
+    const url = `${environment.lajiApi.url}/${endpoint}`;
+    return this.httpClient.get(
+     url,
+       { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+        );
+  }
+
+  //Warehouse query count
+  warehouseQueryCountGet(endpoint:LajiApi.Endpoints.warehousequerycount, count:string,query: LajiApi.warehousequerycountQuery):Observable<WarehouseQueryCount>;
+  warehouseQueryCountGet(endpoint:LajiApi.Endpoints.warehousequerycount, count:string,query: object = {}):Observable<any>{
+    const url = `${environment.lajiApi.url}${endpoint}`;
+    return this.httpClient.get(
+     url,
+      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+      );
+  }
+
   // InformalTaxonGroup
   informalTaxonGroups(endpoint: LajiApi.Endpoints.informalRoots, query: LajiApi.Query): Observable<PagedResult<Informal>>;
   informalTaxonGroups(endpoint: LajiApi.Endpoints, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
+    return this.httpClient.get(
+      url,
+      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+    );
+  }
+
+  // Metadata
+  fetchMetadata(endpoint: LajiApi.Endpoints.metadataRange, range: string, query: LajiApi.Query): Observable<Array<any>>;
+  fetchMetadata(endpoint: LajiApi.Endpoints, range?: string, query: object = {}): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%range%', range);
     return this.httpClient.get(
       url,
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
@@ -56,8 +88,11 @@ export namespace LajiApi {
     document = 'document',
     description = 'taxa/%id%/descriptions',
     media = 'taxa/%id%/media',
+    metadataRange = 'metadata/ranges/%range%',
     newsArray = 'news',
-    newsElement = 'news/%id%'
+    newsElement = 'news/%id%',
+    autocomplete ='autocomplete/taxon',
+    warehousequerycount='warehouse/query/count'
   }
 
   export interface Query {
@@ -71,4 +106,18 @@ export namespace LajiApi {
     selectedFields?: string;
     langFallback?: boolean;
   }
+  export interface AutocompleteQuery{
+    q?:string;
+    includePayload?:boolean;
+    onlyInvasive?:boolean;
+  }
+
+  export interface warehousequerycountQuery{
+    cache?:boolean;
+    taxonId?:string;
+    individualCountMin?:number;
+
+
+  }
+
 }
