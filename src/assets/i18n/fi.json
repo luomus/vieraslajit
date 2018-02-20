@@ -8,5 +8,11 @@
   "taxonomy.class": "Luokka",
   "taxonomy.onEuList": "EU lista",
   "taxonomy.finnishList": "Kansallinen lista",
-  "taxonomy.established": "Vakiintuneisuus"
+  "taxonomy.established": "Vakiintuneisuus",
+  "navigation.news": "Uutiset",
+  "omnisearch.information": "Lisätietoa",
+  "omnisearch.observations": "Havainnot",
+  "omnisearch.taxontree":"Taksonomiapuu",
+  "omnisearch.showtree":"Näytä puu",
+  "omnisearch.search": "Hae lajeja"
 }

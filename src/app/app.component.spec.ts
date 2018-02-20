@@ -3,6 +3,11 @@ import { AppComponent } from './app.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from './shared/shared.module';
+import { TaxonService } from './shared/service/taxon.service';
+import { ApiService } from './shared/api/api.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -12,8 +17,13 @@ describe('AppComponent', () => {
       imports: [
         TranslateModule.forRoot(),
         RouterTestingModule,
-        SharedModule
-      ]
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule
+      ],
+      providers:[ ApiService, TaxonService ]
+      
     }).compileComponents();
   }));
   it('should create the app', async(() => {
