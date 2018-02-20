@@ -19,10 +19,11 @@ export class NewsComponent implements OnInit {
   }
 
   getNews(page) {
-    this.newsService.getNewsArray(page, '10').subscribe((data) => {
+    this.newsService.getNewsArray(page, '5').subscribe((data) => {
       this.news = data.results;
       this.data = data;
       this.pages = [];
+      console.log(data);
       for(let i = 0; i < data.lastPage; i++) {
         this.pages.push(i+1);
       }
