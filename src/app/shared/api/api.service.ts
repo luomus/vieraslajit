@@ -44,6 +44,16 @@ export class ApiService {
     );
   }
 
+  // Metadata
+  fetchMetadata(endpoint: LajiApi.Endpoints.metadataRange, range: string, query: LajiApi.Query): Observable<Array<any>>;
+  fetchMetadata(endpoint: LajiApi.Endpoints, range?: string, query: object = {}): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%range%', range);
+    return this.httpClient.get(
+      url,
+      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+    );
+  }
+
   // Taxa
   taxonomyFindById(endpoint: LajiApi.Endpoints.taxon, id: string, query: LajiApi.Query): Observable<Taxonomy>;
   taxonomyFindById(endpoint: LajiApi.Endpoints.media, id: string, query: LajiApi.Query): Observable<Array<TaxonomyImage>>;
@@ -78,6 +88,7 @@ export namespace LajiApi {
     document = 'document',
     description = 'taxa/%id%/descriptions',
     media = 'taxa/%id%/media',
+    metadataRange = 'metadata/ranges/%range%',
     newsArray = 'news',
     newsElement = 'news/%id%',
     autocomplete ='autocomplete/taxon',

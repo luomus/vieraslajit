@@ -16,13 +16,13 @@ export class TaxonService {
   getTaxonomy(taxonId: string, group?: string, lang?: string): Observable<PagedResult<Taxonomy>> {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
-        { invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: false, lang: lang, langFallback: false});
+        { invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: false, lang: lang, langFallback: false });
   }
 
   // Get one taxon
   getTaxon(taxonId: string): Observable<Taxonomy> {
     return this.apiService
-      .taxonomyFindById(LajiApi.Endpoints.taxon, taxonId, {lang: 'fi'});
+      .taxonomyFindById(LajiApi.Endpoints.taxon, taxonId, { lang: 'fi' });
   }
   // Get root groups.
   getInformalGroups(lang: string): Observable<PagedResult<Informal>> {
