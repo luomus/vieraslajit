@@ -13,7 +13,7 @@
 
   <div style="clear: both"></div>
   <!-- <div id="gcse" *ngIf="taxa.length === 0 && search.length > 3">
-    GOOGLEHAKUTULOKSIIN JOTENKIN
+    GOOGLEHAKUTULOKSIIN 
 </div>    -->
   <div class="col-sm-12" *ngIf="taxa.length > 0 && search.length > 0">
     <div class="omni-search-results" [class.right]="expand === 'right'">
@@ -32,8 +32,8 @@
           <div translate>omnisearch.information</div>
           <div class="row">
             <div class="col-md-12 taxon-match">
-              <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()"><span class="vernacularName">{{taxon.payload.vernacularName}}</span></a><br>
-              <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()"><span
+              <a [routerLink]="['/taxon/' + taxon.key]" (click)=" navigate()"><span class="vernacularName">{{taxon.payload.vernacularName}}</span></a><br>
+              <a [routerLink]="['/taxon/' + taxon.key]" (click)=" navigate()"><span
                       class="scientificName" [ngClass]="{cursive: taxon.payload.cursiveName}">{{taxon.payload.scientificName}}</span></a><br>
               <ul>
                 <li *ngFor="let group of taxon.informalTaxonGroups">{{group}}</li>
