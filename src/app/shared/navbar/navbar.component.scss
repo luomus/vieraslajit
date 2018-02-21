@@ -2,25 +2,39 @@
 
 .navbar-dark {
     background: $navbar-background;
-    padding: 0;
+    padding-top: 20px;
+    padding-bottom: 0px;
 }
 
-.navbar-dark .navbar-brand {
+.navbar-dark {
     color: #fff;
 }
 
-.navbar-dark .nav-link {
-    color: #fff;
+.navbar-brand {
+    color: #333;
+    background: $content-background;
+    padding: 10px;
+    padding-bottom: 8px;
+    border-radius: 8px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+    &:hover {
+        color: $navbar-background-hover;
+    }
 }
 
+.nav-item {
+    font-size: 16px;
 
-.navbar-dark .navbar-toggler-icon {
-    color: #fff;
-    
+    a {
+        color: #fff;
+    }
 }
 
 /*Hover state for top level links*/
-li:hover a {
+.navbar-nav li:hover a {
     background: $navbar-background-hover;
+    border-radius: 5px;
+    color: #fff;
 }
-

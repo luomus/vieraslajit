@@ -1,0 +1,10 @@
+@import '../assets/styles/vars';
+
+.back-bg {
+    background-color: $back-background;
+    min-height: 100%;
+}
+
+.main-bg {
+    background-color: $content-background;
+}
