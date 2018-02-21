@@ -1,8 +1,46 @@
 <div class="container">
-    <ul *ngFor="let article of news">
-        <li>
-          <h3>{{article.title}}</h3>
-          <span [innerHTML]="article.content"></span>
-        </li>
-      </ul>
+  <ul *ngFor="let article of news">
+    <li>
+      <h3>{{article.title}}</h3>
+      <span [innerHTML]="article.content"></span>
+    </li>
+  </ul>
+
+  <nav aria-label="Pagination">
+    <ul class="pagination" *ngIf="pages.length <= 7">
+      <li class="page-item" *ngFor="let page of pages"><a class="page-link" (click)="getNews(page)">{{page}}</a></li>
+    </ul>
+
+    <ul class="pagination" *ngIf="pages.length > 7">
+      <ng-container *ngIf="data.currentPage < 5">
+        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(1)">1</a></li>
+        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(2)">2</a></li>
+        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(3)">3</a></li>
+        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(4)">4</a></li>
+        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(5)">5</a></li>
+        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link">...</a></li>
+        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(data.lastPage)">{{data.lastPage}}</a></li>    
+      </ng-container>
+
+      <ng-container *ngIf="data.currentPage >= 5 && data.currentPage <= data.lastPage - 4">
+        <li class="page-item"><a class="page-link" (click)="getNews(1)">1</a></li>
+        <li class="page-item"><a class="page-link">...</a></li>
+        <li class="page-item"><a class="page-link" (click)="getNews(data.currentPage - 1)">{{data.currentPage - 1}}</a></li>
+        <li class="page-item"><a class="page-link" (click)="getNews(data.currentPage)">{{data.currentPage}}</a></li>
+        <li class="page-item"><a class="page-link" (click)="getNews(data.currentPage + 1)">{{data.currentPage + 1}}</a></li>
+        <li class="page-item"><a class="page-link">...</a></li>
+        <li class="page-item"><a class="page-link" (click)="getNews(data.lastPage)">{{data.lastPage}}</a></li>    
+      </ng-container>
+
+      <ng-container *ngIf="data.currentPage > data.lastPage - 4">
+        <li class="page-item"><a class="page-link" (click)="getNews(1)">1</a></li>
+        <li class="page-item"><a class="page-link">...</a></li>
+        <li class="page-item"><a class="page-link" (click)="getNews(data.lastPage - 4)">{{data.lastPage - 4}}</a></li>
+        <li class="page-item"><a class="page-link" (click)="getNews(data.lastPage - 3)">{{data.lastPage - 3}}</a></li>
+        <li class="page-item"><a class="page-link" (click)="getNews(data.lastPage - 2)">{{data.lastPage - 2}}</a></li>
+        <li class="page-item"><a class="page-link" (click)="getNews(data.lastPage - 1)">{{data.lastPage - 1}}</a></li>
+        <li class="page-item"><a class="page-link" (click)="getNews(data.lastPage)">{{data.lastPage}}</a></li>    
+      </ng-container>
+   </ul>
+  </nav>
 </div>
