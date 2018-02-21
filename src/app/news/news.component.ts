@@ -9,8 +9,8 @@ import { NewsService } from '../shared/service/news.service';
 export class NewsComponent implements OnInit {
 
   data: object;
-  news: Array<any> = [];
-  pages: Array<number> = [];
+  news: any [] = []; 
+  pages: number [] = []; 
 
   constructor(private newsService: NewsService) { }
 
@@ -19,14 +19,22 @@ export class NewsComponent implements OnInit {
   }
 
   getNews(page) {
-    this.newsService.getNewsArray(page, '5').subscribe((data) => {
-      this.news = data.results;
+    this.newsService.getNewsArray(page, '100').subscribe((data) => {
+
+      /*
+      data.results.forEach(newsElement=>console.log(newsElement.tag)); 
+      laji.fi API:ista ei vielä tule "vieraslajit.fi" tagilla mitään uutisia eli siksi seuraavassa
+      haetaan testausmielessä taxonomy-tagilla
+      */
+      this.news= data.results
+        .filter(newsElement => newsElement.tag.includes("taxonomy"));
+ 
       this.data = data;
-      this.pages = [];
-      console.log(data);
+
       for(let i = 0; i < data.lastPage; i++) {
-        this.pages.push(i+1);
-      }
+        this.pages.push(i+1); 
+      } 
+
     });
   }
 
