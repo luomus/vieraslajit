@@ -16,12 +16,13 @@ import { Subscription } from 'rxjs/Subscription';
 export class TaxonCardComponent implements OnInit, OnDestroy {
 
   private id: string;
-  private taxon: Taxonomy;
   private sub: any;
   private subTrans: Subscription;
-  private desc$: TaxonomyDescription;
-  private media$: Array<TaxonomyImage>;
-  private family$: Array<Taxonomy>;
+
+  taxon: Taxonomy;
+  desc$: TaxonomyDescription;
+  media$: Array<TaxonomyImage>;
+  family$: Array<Taxonomy>;
 
   constructor(private route: ActivatedRoute, private taxonService: TaxonService, private translate: TranslateService) { }
 
@@ -46,7 +47,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       } else {
         this.family$ = data.filter(value => value.taxonRank === 'MX.family');
       }
-    })
+    });
   }
 
   refresh() {
@@ -65,10 +66,11 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       } else {
         this.family$ = data.filter(value => value.taxonRank === 'MX.family');
       }
-    })
+    });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.subTrans.unsubscribe();
   }
 }

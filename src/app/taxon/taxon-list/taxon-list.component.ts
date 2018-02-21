@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { PagedResult } from '../../shared/model/PagedResult';
@@ -13,15 +13,16 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './taxon-list.component.html',
   styleUrls: ['./taxon-list.component.scss']
 })
-export class TaxonListComponent implements OnInit {
+export class TaxonListComponent implements OnInit, OnDestroy {
 
   @Input() search = '';
 
-  private selected = [];
-  private taxa$: Taxonomy[];
-  private groups$: Informal[];
-  private selectedGroup: Informal;
   private subTrans: Subscription;
+
+  selected = [];
+  taxa$: Taxonomy[];
+  groups$: Informal[];
+  selectedGroup: Informal;
 
   constructor(private taxonService: TaxonService, private translate: TranslateService) { }
 
@@ -36,7 +37,7 @@ export class TaxonListComponent implements OnInit {
     this.taxonService.getInformalGroups(this.translate.currentLang).subscribe((data) => {
       this.groups$ = data.results;
     });
-    if(this.selectedGroup){
+    if (this.selectedGroup) {
       this.onGroupSelect(this.selectedGroup);
     }
   }
@@ -60,7 +61,7 @@ export class TaxonListComponent implements OnInit {
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subTrans.unsubscribe();
   }
 
