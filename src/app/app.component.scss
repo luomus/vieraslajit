@@ -3,8 +3,15 @@
 .back-bg {
     background-color: $back-background;
     min-height: 100%;
+    padding-top: 20px;
 }
 
 .main-bg {
     background-color: $content-background;
+    padding: 0px;
+    border-radius: $content-border-radius;
+}
+
+.vrs-content {
+    padding: 50px;
 }

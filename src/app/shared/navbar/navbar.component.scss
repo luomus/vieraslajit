@@ -4,6 +4,8 @@
     background: $navbar-background;
     padding-top: 20px;
     padding-bottom: 0px;
+    border-top-left-radius: $content-border-radius;
+    border-top-right-radius: $content-border-radius;
 }
 
 .navbar-dark {
