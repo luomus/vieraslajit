@@ -88,6 +88,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   close(){
     this.search = '';
     this.taxa=[];
+    
   }
   activate(index: number):void{
     if(this.taxa[index]){
