@@ -6,15 +6,12 @@
     padding-bottom: 0px;
     border-top-left-radius: $content-border-radius;
     border-top-right-radius: $content-border-radius;
-}
-
-.navbar-dark {
-    color: #fff;
+    color: $content-background;
 }
 
 .navbar-brand {
-    color: #333;
-    background: $content-background;
+    color: $content-background;
+    background: $primary-light;
     padding: 10px;
     padding-bottom: 8px;
     border-radius: 8px;
@@ -22,7 +19,7 @@
     border-bottom-right-radius: 0px;
 
     &:hover {
-        color: $navbar-background-hover;
+        color: $content-background;
     }
 }
 
@@ -30,7 +27,7 @@
     font-size: 16px;
 
     a {
-        color: #fff;
+        color: $content-background;
     }
 }
 
@@ -38,5 +35,10 @@
 .navbar-nav li:hover a {
     background: $navbar-background-hover;
     border-radius: 5px;
-    color: #fff;
+    color: $content-background;
+}
+
+.breadcrumb-bar {
+    background: linear-gradient(-90deg, $primary, $primary-light);
+    height: 25px;
 }
