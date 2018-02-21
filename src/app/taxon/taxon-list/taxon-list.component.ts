@@ -5,6 +5,8 @@ import { PagedResult } from '../../shared/model/PagedResult';
 import { Taxonomy, TaxonomyDescription } from '../../shared/model/Taxonomy';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { Informal } from '../../shared/model/Informal';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'vrs-taxon-list',
@@ -15,24 +17,28 @@ export class TaxonListComponent implements OnInit {
 
   @Input() search = '';
 
-  selected = [];
+  private selected = [];
+  private taxa$: Taxonomy[];
+  private groups$: Informal[];
+  private selectedGroup: Informal;
+  private subTrans: Subscription;
 
-  taxa = [
-    { name: "Ruokosammakko", class: "Sammakkoeläimet", id: "1" },
-    { name: "Espanjansiruetana", class: "Kotilot", id: "2" },
-    { name: "Jalohaukat", class: "Linnut", id: "3" }
-  ];
-
-  taxa$: Taxonomy[];
-  groups$: Informal[];
-  selectedGroup: Informal;
-
-  constructor(private taxonService: TaxonService) { }
+  constructor(private taxonService: TaxonService, private translate: TranslateService) { }
 
   ngOnInit() {
-    this.taxonService.getInformalGroups('fi').subscribe((data) => {
+    this.subTrans = this.translate.onLangChange.subscribe(this.refresh.bind(this));
+    this.taxonService.getInformalGroups(this.translate.currentLang).subscribe((data) => {
       this.groups$ = data.results;
     });
+  }
+
+  refresh() {
+    this.taxonService.getInformalGroups(this.translate.currentLang).subscribe((data) => {
+      this.groups$ = data.results;
+    });
+    if(this.selectedGroup){
+      this.onGroupSelect(this.selectedGroup);
+    }
   }
 
   onSearchChange(value) {
@@ -48,10 +54,14 @@ export class TaxonListComponent implements OnInit {
 
   onGroupSelect(target) {
     this.selectedGroup = target;
-    this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id).subscribe(data => {
+    this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id, this.translate.currentLang).subscribe(data => {
       this.taxa$ = data.results;
       this.selected = this.taxa$;
     });
+  }
+
+  ngOnDestroy(){
+    this.subTrans.unsubscribe();
   }
 
 }
