@@ -2,25 +2,43 @@
 
 .navbar-dark {
     background: $navbar-background;
-    padding: 0;
+    padding-top: 20px;
+    padding-bottom: 0px;
+    border-top-left-radius: $content-border-radius;
+    border-top-right-radius: $content-border-radius;
+    color: $content-background;
 }
 
-.navbar-dark .navbar-brand {
-    color: #fff;
+.navbar-brand {
+    color: $content-background;
+    background: $primary-light;
+    padding: 10px;
+    padding-bottom: 8px;
+    border-radius: 8px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+    &:hover {
+        color: $content-background;
+    }
 }
 
-.navbar-dark .nav-link {
-    color: #fff;
-}
+.nav-item {
+    font-size: 16px;
 
-
-.navbar-dark .navbar-toggler-icon {
-    color: #fff;
-    
+    a {
+        color: $content-background;
+    }
 }
 
 /*Hover state for top level links*/
-li:hover a {
+.navbar-nav li:hover a {
     background: $navbar-background-hover;
+    border-radius: 5px;
+    color: $content-background;
 }
 
+.breadcrumb-bar {
+    background: linear-gradient(-90deg, $primary, $primary-light);
+    height: 25px;
+}

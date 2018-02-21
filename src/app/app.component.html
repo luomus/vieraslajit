@@ -1,16 +1,12 @@
 <head>
     <title>Vieraslajit</title>
 </head>
-<body>
-    <vrs-navbar></vrs-navbar>
-    <vrs-omnisearch></vrs-omnisearch>
+<body class="back-bg">
+    <!--<vrs-omnisearch></vrs-omnisearch>-->
     
-    <div class="container-fluid">
-        <router-outlet></router-outlet>
+    <div class="container main-bg">
+        <vrs-navbar></vrs-navbar>
+        <div class="vrs-content"><router-outlet></router-outlet></div>
+        <footer><vrs-footer></vrs-footer></footer>
     </div>
-    
-    
-    <footer><vrs-footer></vrs-footer>
-    </footer>
-    
 </body>
