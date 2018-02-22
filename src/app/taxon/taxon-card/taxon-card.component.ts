@@ -15,15 +15,15 @@ import { Subscription } from 'rxjs/Subscription';
 
 export class TaxonCardComponent implements OnInit, OnDestroy {
 
-  private id: string;
   private sub: any;
   private subTrans: Subscription;
 
+  id: string;
   taxon: Taxonomy;
   desc: TaxonomyDescription;
   media: Array<TaxonomyImage>;
   family: Array<Taxonomy>;
-
+  quarantinePlantPest: boolean;  //Vaarallinen kasvintuhoaja
   constructor(private route: ActivatedRoute, private taxonService: TaxonService, private translate: TranslateService) { }
 
   ngOnInit() {
@@ -38,6 +38,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   update() {
     this.taxonService.getTaxon(this.id, this.translate.currentLang).subscribe(data => {
       this.taxon = data;
+      this.quarantinePlantPest = this.taxon.administrativeStatuses.includes("MX.quarantinePlantPest");
     });
     this.taxonService.getTaxonDescription(this.id, this.translate.currentLang).subscribe(data => {
       this.desc = data[0];
