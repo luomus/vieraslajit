@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import 'rxjs/add/operator/map';
+
 import { Observable } from 'rxjs/Observable';
 import { PagedResult } from '../../shared/model/PagedResult';
 import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../../shared/model/Taxonomy';
@@ -19,8 +19,7 @@ export class TaxonListComponent implements OnInit {
   id: string;
   selected = [];
   changeView: false;
-  image: string;
-  imageUrl: string;
+  media$: Array<TaxonomyImage>;
   taxa$: Taxonomy[];
   groups$: Informal[];
   selectedGroup: Informal;
@@ -44,17 +43,21 @@ export class TaxonListComponent implements OnInit {
     this.selected = _selected;
   }
 
-  getThumbnail(id) {
-     this.taxonService.getTaxonMedia(id, this.translateService.currentLang).subscribe(data => {
-      this.imageUrl = data[0].thumbnailURL;
-    });
-  }
-
   onGroupSelect(target) {
     this.selectedGroup = target;
     this.taxonService.getTaxonomy('MX.37600',  this.selectedGroup.id, this.translateService.currentLang).subscribe(data => {
       this.taxa$ = data.results;
+      this.taxa$.forEach(element => {
+        this.taxonService
+        .getTaxonMedia(element.id, this.translateService.currentLang).subscribe(data => {
+          if (data.length > 0) {
+            element.thumbnail = data[0].thumbnailURL;
+          } else {
+            element.thumbnail = 'assets/images/logos/vieraslaji-logo-70x70.png';
+          }
+        });
+      });
       this.selected = this.taxa$;
-    });    
+    });
   }
 }
