@@ -3,7 +3,7 @@
 
 ## Project links
 
-### Code
+### Code and product
 * [![Build Status](https://travis-ci.org/Vieraslajit/Vieraslajit.svg?branch=master)](https://travis-ci.org/Vieraslajit/Vieraslajit)
 
 * [Github](https://github.com/Vieraslajit/Vieraslajit)
@@ -19,7 +19,7 @@
 ### Communication
 * [Slack](https://vieraslajit.slack.com)
 
-## Customer links
+## Customer's links
 * [Vieraslajit.fi (current)](https://vieraslajit.fi)
 
 * [Laji.fi API](https://api.laji.fi/explorer/)
