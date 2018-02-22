@@ -10,5 +10,16 @@ $light:         $gray-100;
 $dark:          $gray-800;
 */
 
-$navbar-background: #f89525;
-$navbar-background-hover: #f78706;
+// orange: #f89525
+// dark-orange: #f78706
+
+$primary-light: #f7a951;
+$primary: #f89525;
+
+$navbar-background: #222;
+$navbar-background-hover: $primary;
+
+$back-background: #eee;
+$content-background: #fefefe;
+
+$content-border-radius: 12px;
