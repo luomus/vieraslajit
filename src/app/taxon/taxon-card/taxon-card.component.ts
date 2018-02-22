@@ -15,10 +15,10 @@ import { Subscription } from 'rxjs/Subscription';
 
 export class TaxonCardComponent implements OnInit, OnDestroy {
 
-  private id: string;
   private sub: any;
   private subTrans: Subscription;
 
+  id: string;
   taxon: Taxonomy;
   desc: TaxonomyDescription;
   media: Array<TaxonomyImage>;
