@@ -10,7 +10,9 @@ export class NewsComponent implements OnInit {
 
   data: object;
   news: any [] = []; 
-  pages: number [] = []; 
+  pages: number [] = [];
+
+  pageSize: number= 5; 
 
   constructor(private newsService: NewsService) { }
 
@@ -19,7 +21,8 @@ export class NewsComponent implements OnInit {
   }
 
   getNews(page) {
-    this.newsService.getNewsArray(page, '100').subscribe((data) => {
+    
+    this.newsService.getNewsArray(page, this.pageSize.toString()).subscribe((data) => {
 
       /*
       data.results.forEach(newsElement=>console.log(newsElement.tag)); 
@@ -30,8 +33,6 @@ export class NewsComponent implements OnInit {
         .filter(newsElement => newsElement.tag.includes("taxonomy"));
  
       this.data = data;
-
-
 
       for(let i = 0; i < data.lastPage; i++) {
         this.pages.push(i+1); 
