@@ -14,6 +14,7 @@ export class NewsComponent implements OnInit {
   news: Array<any> = [];
   private subTrans: Subscription;
   pages: Array<number> = [];
+  pageSize = 5;
 
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
@@ -24,14 +25,23 @@ export class NewsComponent implements OnInit {
   }
 
   getNews(page) {
-    this.newsService.getNewsArray(page, '5', this.translate.currentLang).subscribe((data) => {
-      this.news = data.results;
+    
+    this.newsService.getNewsArray(page, this.pageSize.toString(), this.translate.currentLang).subscribe((data) => {
+
+     /* 
+      laji.fi API:ista ei vielä tule "vieraslajit.fi" tagilla uutisia joissa contentia (vain externalUrl) 
+      tarviiko välttämättä näyttää vanhoja teknisiä tiedotteita mutta nyt vielä tässä jotta on testattavana
+      newsElementtejä joissa on contentia.
+      */
+      this.news= data.results
+        .filter(newsElement => newsElement.tag.includes(("technical")) || newsElement.tag.includes(("vieraslajit.fi")));
+ 
       this.data = data;
-      this.pages = [];
-      console.log(data);
-      for (let i = 0; i < data.lastPage; i++) {
-        this.pages.push(i + 1);
-      }
+
+      for(let i = 0; i < data.lastPage; i++) {
+        this.pages.push(i+1); 
+      } 
+
     });
   }
 
