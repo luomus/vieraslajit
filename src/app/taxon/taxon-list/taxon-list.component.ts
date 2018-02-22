@@ -27,13 +27,11 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   constructor(private taxonService: TaxonService, private translate: TranslateService) { }
 
   ngOnInit() {
-    this.subTrans = this.translate.onLangChange.subscribe(this.refresh.bind(this));
-    this.taxonService.getInformalGroups(this.translate.currentLang).subscribe((data) => {
-      this.groups = data.results;
-    });
+    this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.update();
   }
 
-  refresh() {
+  update() {
     this.taxonService.getInformalGroups(this.translate.currentLang).subscribe((data) => {
       this.groups = data.results;
     });

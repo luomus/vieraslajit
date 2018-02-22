@@ -22,7 +22,7 @@ export class TaxonService {
   // Get one taxon
   getTaxon(taxonId: string, lang?: string): Observable<Taxonomy> {
     return this.apiService
-      .taxonomyFindById(LajiApi.Endpoints.taxon, taxonId, { lang: lang });
+      .taxonomyFindById(LajiApi.Endpoints.taxon, taxonId, { lang: lang , langFallback: false});
   }
   // Get root groups.
   getInformalGroups(lang: string): Observable<PagedResult<Informal>> {
