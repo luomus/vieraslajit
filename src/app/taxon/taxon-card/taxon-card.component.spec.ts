@@ -7,6 +7,9 @@ import 'rxjs/add/observable/of';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { ApiService } from '../../shared/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LabelPipe } from '../../shared/pipe/label.pipe';
+import { MetadataService } from '../../shared/service/metadata.service';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 describe('TaxonCardComponent', () => {
   let component: TaxonCardComponent;
@@ -14,9 +17,9 @@ describe('TaxonCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TaxonCardComponent],
-      imports: [HttpClientModule],
-      providers: [TaxonService, ApiService,
+      declarations: [TaxonCardComponent, LabelPipe],
+      imports: [HttpClientModule, TranslateModule.forRoot()],
+      providers: [TaxonService, ApiService, TranslateService, MetadataService,
         {
           provide: ActivatedRoute,
           useValue: {

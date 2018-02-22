@@ -15,5 +15,11 @@
   "omnisearch.observations": "Observations",
   "omnisearch.taxontree":"Taxonomy tree",
   "omnisearch.showtree":"Show tree",
-  "omnisearch.search": "Search for species"
+  "omnisearch.search": "Search for species",
+  "taxon.pictures": "Pictures",
+  "removal.h1": "Disposal",
+  "removal.info": "Find information on how to safely dispose invasive species",
+  "removal.additionalInfo": "More specific information can be found on taxon's information page.",
+  "removal.byName": "Find taxon by name or",
+  "removal.taxonIdentification": "move to species search."
 }
