@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
           technical.push(d);
         }
       }
-      console.log(data);
       let i: number = 0;
       for (let d of technical) {
         let date: Date = new Date(0);

@@ -1,0 +1,20 @@
+@import '../../../assets/styles/vars';
+
+.card-body {
+    background-color: white;
+}
+
+.card {
+    width: 90%;
+    height: 90%;
+}
+
+.card-text {
+    height: 20px;
+    font-size: 15px;
+    color:  $navbar-background;
+}
+
+.card:hover {
+    background-color: whitesmoke;
+}

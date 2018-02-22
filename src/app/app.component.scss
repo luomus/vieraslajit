@@ -1,0 +1,19 @@
+@import '../assets/styles/vars';
+
+.back-bg {
+    background: $back-background;
+    min-height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.main-bg {
+    background-color: $content-background;
+    padding: 0px;
+    border-radius: $content-border-radius;
+    box-shadow: 0px 0px 10px $navbar-background;
+}
+
+.vrs-content {
+    padding: 50px;
+}
