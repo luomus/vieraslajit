@@ -1,29 +1,46 @@
 @import '../../../assets/styles/vars';
 
-.card-body {
+/** SelectGroup icons styling **/
+
+#selectGroup-card-body {
     background-color: white;
 }
 
-.card {
+#selectGroup-card {
+    margin-top: 5%;
+    margin-bottom: 5%;
     width: 90%;
-    height: 90%;
+    height: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
 }
 
-.card-text {
+#selectGroup-card:hover {
+    background-color: whitesmoke;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+#selectGroup-card-text {
     height: 20px;
     font-size: auto;
     color:  $navbar-background;
     text-align: center;
 }
 
-.card:hover {
-    background-color: whitesmoke;
+#selectGroup-img {
+    width: 100%;
+    object-fit: cover;
 }
+
+/** Species filter **/
 
 .form-inline {
     margin-left: 0.5%;
     background-color: whitesmoke;
+    
 }
+
+/** List and grid tabs **/
 
 .nav-item .active {
     background-color: whitesmoke;
@@ -33,6 +50,41 @@
     background-color: whitesmoke;
 }
 
+/** Species grid styling **/
+
 #taxongrid {
     background-color: whitesmoke;
+}
+
+#cardcontainer {
+    padding: 2px 16px; 
+}
+
+#species-card {
+    margin-top: 10%;
+    margin-bottom: 5%;    
+    width: 100%;
+    height: 90%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+#species-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+#species-img {
+    width: 100%;
+    height: 10vw;
+    object-fit: cover;
+}
+
+#species-card-text {
+    height: 20px;
+    font-size: auto;
+    text-align: center;
+}
+
+#species-card-body {
+    background-color: white;
 }

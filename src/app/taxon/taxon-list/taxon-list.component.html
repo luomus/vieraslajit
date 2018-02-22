@@ -1,10 +1,10 @@
 <ng-container>
   <div class="card-group container">
-    <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card small text-center">
-        <img class="card-img-top img-responsive" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
-        <div class="card-body">
-            <p class="card-text">{{group.name}}</p>
+    <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card small text-center" id="selectGroup-card">
+        <img class="card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
+        <div class="card-body" id="selectGroup-card-body">
+            <p class="card-text" id="selectGroup-card-text">{{group.name}}</p>
         </div>
       </div>
     </div>
@@ -56,14 +56,14 @@
   </div>
 </div>
 
-<div class="tab-pane container" id="taxongrid">
+<div class="tab-pane container" id="cardcontainer">
     <div *ngIf="changeView">
       <div class="card-group" id="taxongrid">
-        <div *ngFor="let species of selected" class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
-          <div class="card small text-center">
-            <img class="card-img-top img-responsive" [src]="species.thumbnail">
-            <div class="card-body">
-              <a class="card-text" [routerLink]="[species.id]">{{species.vernacularName || species.scientificName}}</a>
+        <div *ngFor="let species of selected" class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card small text-center" id="species-card">
+            <img class="card-img-top img-responsive" [src]="species.thumbnail" id="species-img">
+            <div class="card-body" id="species-card-body">
+              <a class="card-text" id="species-card-text" [routerLink]="[species.id]">{{species.vernacularName || species.scientificName}}</a>
             </div>
           </div>
         </div>
