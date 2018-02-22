@@ -1,6 +1,6 @@
 <ng-container>
   <div class="card-group container">
-    <div *ngFor="let group of groups$" (click)="onGroupSelect(group)" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
       <div class="card small text-center">
         <img class="card-img-top img-responsive" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
         <div class="card-body">

@@ -4,6 +4,7 @@ import { ApiService } from '../shared/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NewsService } from '../shared/service/news.service';
 import { NewsComponent } from './news.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('NewsComponent', () => {
   let component: NewsComponent;
@@ -12,7 +13,7 @@ describe('NewsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ NewsComponent ],
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, TranslateModule.forRoot()],
       providers: [ApiService, NewsService]
     })
     .compileComponents();
