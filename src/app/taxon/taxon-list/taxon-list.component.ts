@@ -30,10 +30,6 @@ export class TaxonListComponent implements OnInit {
     this.taxonService.getInformalGroups(this.translateService.currentLang).subscribe((data) => {
       this.groups$ = data.results;
     });
-
-    this.taxonService.getTaxonMedia(this.id, this.translateService.currentLang).subscribe(data => {
-      this.media$ = data;
-    });
   }
   
   onSearchChange(value) {
@@ -51,6 +47,16 @@ export class TaxonListComponent implements OnInit {
     this.selectedGroup = target;
     this.taxonService.getTaxonomy('MX.37600',  this.selectedGroup.id, this.translateService.currentLang).subscribe(data => {
       this.taxa$ = data.results;
+      this.taxa$.forEach(element => {
+        this.taxonService
+        .getTaxonMedia(element.id, this.translateService.currentLang).subscribe(data => {
+          if (data.length > 0) {
+            element.thumbnail = data[0].thumbnailURL;
+          } else {
+            element.thumbnail = 'assets/images/logos/vieraslaji-logo-70x70.png';
+          }
+        });
+      });
       this.selected = this.taxa$;
     });
   }

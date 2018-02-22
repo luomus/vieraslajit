@@ -11,10 +11,28 @@
 
 .card-text {
     height: 20px;
-    font-size: 15px;
+    font-size: auto;
     color:  $navbar-background;
+    text-align: center;
 }
 
 .card:hover {
+    background-color: whitesmoke;
+}
+
+.form-inline {
+    margin-left: 0.5%;
+    background-color: whitesmoke;
+}
+
+.nav-item .active {
+    background-color: whitesmoke;
+}
+
+.table {
+    background-color: whitesmoke;
+}
+
+#taxongrid {
     background-color: whitesmoke;
 }
