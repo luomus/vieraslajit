@@ -5,6 +5,7 @@ import { ApiService } from '../../shared/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('OmnisearchComponent', () => {
   let component: OmnisearchComponent;
@@ -13,7 +14,7 @@ describe('OmnisearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations:[OmnisearchComponent],
-      imports:[HttpClientModule,FormsModule,ReactiveFormsModule,RouterTestingModule],
+      imports:[HttpClientModule,FormsModule,ReactiveFormsModule,RouterTestingModule, TranslateModule.forRoot()],
       providers:[ ApiService, TaxonService ]
     })
     .compileComponents();
