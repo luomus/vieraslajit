@@ -1,5 +1,6 @@
 {
   "home.h1": "Information about invasive species in Finland",
+  "home.introduction": "Here you can find help for identification and also report observations of invasive alien species. The pages contain information, images and distribution maps of invasive species in Finland. There are also instructions on how to safely dispose invasive species, if you happen to encounter any on your premises. All species of the national invasives check-list are not represented here yet, but information will be completed soon.",
   "navigation.home": "Home",
   "navigation.taxonomy": "Taxon",
   "navigation.removal": "Removal",
@@ -14,5 +15,11 @@
   "omnisearch.observations": "Observations",
   "omnisearch.taxontree":"Taxonomy tree",
   "omnisearch.showtree":"Show tree",
-  "omnisearch.search": "Search for species"
+  "omnisearch.search": "Search for species",
+  "taxon.pictures": "Pictures",
+  "removal.h1": "Disposal",
+  "removal.info": "Find information on how to safely dispose invasive species",
+  "removal.additionalInfo": "More specific information can be found on taxon's information page.",
+  "removal.byName": "Find taxon by name or",
+  "removal.taxonIdentification": "move to species search."
 }
