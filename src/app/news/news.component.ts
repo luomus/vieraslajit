@@ -14,7 +14,7 @@ export class NewsComponent implements OnInit {
 
   pageSize: number= 5; 
 
-  constructor(private newsService: NewsService) { }
+  constructor(private newsService: NewsService)/*, private translate: TranslateService)*/{ }
 
   ngOnInit() {
     this.getNews(1);
@@ -24,13 +24,12 @@ export class NewsComponent implements OnInit {
     
     this.newsService.getNewsArray(page, this.pageSize.toString()).subscribe((data) => {
 
-      /*
-      data.results.forEach(newsElement=>console.log(newsElement.tag)); 
-      laji.fi API:ista ei vielä tule "vieraslajit.fi" tagilla mitään uutisia eli siksi seuraavassa
-      haetaan testausmielessä taxonomy-tagilla
+     /* 
+      laji.fi API:ista ei vielä tule "vieraslajit.fi" tagilla uutisia joissa contentia (vain externalUrl) 
+      eli siksi seuraavassa haetaan testausmielessä myös taxonomy-tagilla
       */
       this.news= data.results
-        .filter(newsElement => newsElement.tag.includes("taxonomy"));
+        .filter(newsElement => newsElement.tag.includes(("taxonomy")) || newsElement.tag.includes(("vieraslajit.fi")));
  
       this.data = data;
 
