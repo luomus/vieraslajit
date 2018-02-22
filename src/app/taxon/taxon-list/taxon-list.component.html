@@ -61,7 +61,7 @@
       <div class="card-group" id="taxongrid">
         <div *ngFor="let species of selected" class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
           <div class="card small text-center">
-            <img class="card-img-top img-responsive" src="assets/images/logos/vieraslaji-logo-70x70.png" alt="no image yet">
+            <img class="card-img-top img-responsive" [src]="getThumbnail(species.id) | async" alt="assets/images/logos/vieraslaji-logo-70x70.png">
             <div class="card-body">
               <a class="card-text" [routerLink]="[species.id]">{{species.vernacularName || species.scientificName}}</a>
             </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { PagedResult } from '../../shared/model/PagedResult';
 import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../../shared/model/Taxonomy';
@@ -19,7 +19,8 @@ export class TaxonListComponent implements OnInit {
   id: string;
   selected = [];
   changeView: false;
-  media$: Array<TaxonomyImage>;
+  image: string;
+  imageUrl: string;
   taxa$: Taxonomy[];
   groups$: Informal[];
   selectedGroup: Informal;
@@ -29,10 +30,6 @@ export class TaxonListComponent implements OnInit {
   ngOnInit() {
     this.taxonService.getInformalGroups(this.translateService.currentLang).subscribe((data) => {
       this.groups$ = data.results;
-    });
-
-    this.taxonService.getTaxonMedia(this.id, this.translateService.currentLang).subscribe(data => {
-      this.media$ = data;
     });
   }
   
@@ -47,11 +44,17 @@ export class TaxonListComponent implements OnInit {
     this.selected = _selected;
   }
 
+  getThumbnail(id) {
+     this.taxonService.getTaxonMedia(id, this.translateService.currentLang).subscribe(data => {
+      this.imageUrl = data[0].thumbnailURL;
+    });
+  }
+
   onGroupSelect(target) {
     this.selectedGroup = target;
     this.taxonService.getTaxonomy('MX.37600',  this.selectedGroup.id, this.translateService.currentLang).subscribe(data => {
       this.taxa$ = data.results;
       this.selected = this.taxa$;
-    });
+    });    
   }
 }
