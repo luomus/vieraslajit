@@ -20,9 +20,9 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   private subTrans: Subscription;
 
   taxon: Taxonomy;
-  desc$: TaxonomyDescription;
-  media$: Array<TaxonomyImage>;
-  family$: Array<Taxonomy>;
+  desc: TaxonomyDescription;
+  media: Array<TaxonomyImage>;
+  family: Array<Taxonomy>;
 
   constructor(private route: ActivatedRoute, private taxonService: TaxonService, private translate: TranslateService) { }
 
@@ -36,16 +36,16 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       this.taxon = data;
     });
     this.taxonService.getTaxonDescription(this.id, this.translate.currentLang).subscribe(data => {
-      this.desc$ = data[0];
+      this.desc = data[0];
     });
     this.taxonService.getTaxonMedia(this.id, this.translate.currentLang).subscribe(data => {
-      this.media$ = data;
+      this.media = data;
     });
     this.taxonService.getTaxonParents(this.id, this.translate.currentLang).subscribe(data => {
       if (data.some(e => e.taxonRank === 'MX.subfamily')) {
-        this.family$ = data.filter(value => value.taxonRank === 'MX.subfamily');
+        this.family = data.filter(value => value.taxonRank === 'MX.subfamily');
       } else {
-        this.family$ = data.filter(value => value.taxonRank === 'MX.family');
+        this.family = data.filter(value => value.taxonRank === 'MX.family');
       }
     });
   }
@@ -55,17 +55,17 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       this.taxon = data;
     });
     this.taxonService.getTaxonDescription(this.id, this.translate.currentLang).subscribe(data => {
-      this.desc$ = data[0];
+      this.desc = data[0];
       console.log(data);
     });
     this.taxonService.getTaxonMedia(this.id, this.translate.currentLang).subscribe(data => {
-      this.media$ = data;
+      this.media = data;
     });
     this.taxonService.getTaxonParents(this.id, this.translate.currentLang).subscribe(data => {
       if (data.some(e => e.taxonRank === 'MX.subfamily')) {
-        this.family$ = data.filter(value => value.taxonRank === 'MX.subfamily');
+        this.family = data.filter(value => value.taxonRank === 'MX.subfamily');
       } else {
-        this.family$ = data.filter(value => value.taxonRank === 'MX.family');
+        this.family = data.filter(value => value.taxonRank === 'MX.family');
       }
     });
   }

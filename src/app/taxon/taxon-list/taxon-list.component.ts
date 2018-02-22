@@ -20,8 +20,8 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   private subTrans: Subscription;
 
   selected = [];
-  taxa$: Taxonomy[];
-  groups$: Informal[];
+  taxa: Taxonomy[];
+  groups: Informal[];
   selectedGroup: Informal;
 
   constructor(private taxonService: TaxonService, private translate: TranslateService) { }
@@ -29,13 +29,13 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subTrans = this.translate.onLangChange.subscribe(this.refresh.bind(this));
     this.taxonService.getInformalGroups(this.translate.currentLang).subscribe((data) => {
-      this.groups$ = data.results;
+      this.groups = data.results;
     });
   }
 
   refresh() {
     this.taxonService.getInformalGroups(this.translate.currentLang).subscribe((data) => {
-      this.groups$ = data.results;
+      this.groups = data.results;
     });
     if (this.selectedGroup) {
       this.onGroupSelect(this.selectedGroup);
@@ -44,7 +44,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
 
   onSearchChange(value) {
     let _selected = [];
-    for (let t of this.taxa$) {
+    for (let t of this.taxa) {
       if ((t.vernacularName && t.vernacularName.toUpperCase().includes(value.toUpperCase())) ||
         (t.scientificName.toUpperCase().includes(value.toUpperCase()))) {
         _selected.push(t);
@@ -56,8 +56,8 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   onGroupSelect(target) {
     this.selectedGroup = target;
     this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id, this.translate.currentLang).subscribe(data => {
-      this.taxa$ = data.results;
-      this.selected = this.taxa$;
+      this.taxa = data.results;
+      this.selected = this.taxa;
     });
   }
 
