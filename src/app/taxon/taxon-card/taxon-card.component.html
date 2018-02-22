@@ -6,7 +6,7 @@
   </h1>
   <div class="row">
     <div class="col-sm-6">
-      <div class="card" *ngFor="let group of desc$?.groups">
+      <div class="card" *ngFor="let group of desc?.groups">
         <div class="card-header" role="tab">
           <strong>{{group.title}}</strong>
         </div>
@@ -21,10 +21,10 @@
     <div class="col-sm-6">
       <div class="card">
         <div class="card-header">
-          <strong>Kuvat</strong>
+          <strong translate>taxon.pictures</strong>
         </div>
         <div class="card-block">
-          <ng-container *ngFor="let image of media$">
+          <ng-container *ngFor="let image of media">
             <a href="{{image.fullURL}}">
               <img src="{{image.thumbnailURL}}" style="padding: 2px" />
             </a>

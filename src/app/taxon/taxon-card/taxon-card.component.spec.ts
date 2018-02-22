@@ -19,7 +19,7 @@ describe('TaxonCardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TaxonCardComponent, LabelPipe],
       imports: [HttpClientModule, TranslateModule.forRoot()],
-      providers: [TaxonService, ApiService, MetadataService,
+      providers: [TaxonService, ApiService, TranslateService, MetadataService,
         {
           provide: ActivatedRoute,
           useValue: {
