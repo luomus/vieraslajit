@@ -10,5 +10,10 @@
   "omnisearch.taxontree": "Taksonomiapuu",
   "omnisearch.showtree": "Näytä puu",
   "omnisearch.search": "Hae lajeja",
-  "taxon.pictures": "Kuvat"
+  "taxon.pictures": "Kuvat",
+  "removal.h1": "Torjunta",
+  "removal.info": "Hae tietoa vieraslajien torjunnasta",
+  "removal.additionalInfo": "Tarkemmat torjuntaohjeet löytyvät lajin tietosivulta.",
+  "removal.byName": "Hae lajia nimellä tai",
+  "removal.taxonIdentification": "siirry lajitunnistukseen kuvan perusteella."
 }

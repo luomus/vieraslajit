@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { RemovalComponent } from './removal.component';
 
 import { routing } from './removal.routing';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    routing
+    routing,
+    SharedModule
   ],
   declarations: [RemovalComponent]
 })
