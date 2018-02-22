@@ -1,6 +1,9 @@
 {
   "home.h1": "Tervetuloa vieraslajiportaaliin!",
-  "home.introduction": "Tämän kansallisen vieraslajiportaalin avulla voit tunnistaa ja ilmoittaa vieraslajeja. Sivuilta löydät tietoa ja kuvia vieraslajeista, karttoja vieraslajien levinneisyydestä sekä torjuntaohjeita. Kaikista vieraslajeista ei vielä ole kuvauksia tai kuvia, mutta ne lisätään mahdollisimman pian.",
+  "home.description": "Tämän kansallisen vieraslajiportaalin avulla voit tunnistaa ja ilmoittaa vieraslajeja. Sivuilta löydät tietoa ja kuvia vieraslajeista, karttoja vieraslajien levinneisyydestä sekä torjuntaohjeita. Kaikista vieraslajeista ei vielä ole kuvauksia tai kuvia, mutta ne lisätään mahdollisimman pian.",
+  "home.whatare.h": "Mitä on vieraslajit?",
+  "home.whatare.p":
+  "Vieraslajit ovat lajeja, jotka ovat levinneet luontaiselta levinneisyysalueeltaan uudelle alueelle ihmisen mukana joko tahattomasti tai tarkoituksella. Vieraslajit voivat aiheuttaa haittaa ympäristölle ja ekosysteemipalveluille, mutta myös taloudellista haittaa vaikuttamalla esimerkiksi ihmisten, eläinten tai kasvien terveyteen tai kiinteistöjen ar­voon. Haitat voivat myös olla sosiaalisia tai esteettisiä. Tällaisia selkeitä haittoja aiheuttavia vierasperäi­siä lajeja kutsutaan haitallisiksi vieraslajeiksi.",
   "navigation.home": "Koti",
   "navigation.taxonomy": "Lajit",
   "navigation.removal": "Torjunta",
