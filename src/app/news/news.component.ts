@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
+import { NewsElement } from '../shared/model/NewsElement';
+import { PagedResult } from '../shared/model/PagedResult';
 
 @Component({
   selector: 'vrs-news',
@@ -10,23 +12,21 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class NewsComponent implements OnInit {
 
-  data: object;
-  news: Array<any> = [];
+  private data: PagedResult<NewsElement>;
+  private news: Array<NewsElement> = [];
   private subTrans: Subscription;
-  pages: Array<number> = [];
-  pageSize = 5;
+  private pages: Array<number> = [];
+  private pageSize = 5;
 
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
   ngOnInit() {
     this.subTrans = this.translate.onLangChange.subscribe(this.getNews.bind(this));
-
     this.getNews(1);
   }
 
   getNews(page) {
-    
-    this.newsService.getNewsArray(page, this.pageSize.toString(), this.translate.currentLang).subscribe((data) => {
+    this.newsService.getPage(page, this.pageSize.toString(), this.translate.currentLang).subscribe((data) => {
 
      /* 
       laji.fi API:ista ei vielä tule "vieraslajit.fi" tagilla uutisia joissa contentia (vain externalUrl) 

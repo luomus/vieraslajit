@@ -39,6 +39,7 @@
     </ul>
 
     <ul class="pagination" *ngIf="pages.length > 7">
+      
       <ng-container *ngIf="data.currentPage < 5">
         <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(1)">1</a></li>
         <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(2)">2</a></li>
