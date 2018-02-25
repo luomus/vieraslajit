@@ -33,24 +33,24 @@
       </div>
       <div class="card">
         <div class="card-header">
-          <strong>Tietokortti</strong>
+          <strong translate>taxon.card</strong>
         </div>
         <div class="card-block">
           <div>
-            <strong>Nimi</strong>
+            <strong translate>taxon.name</strong>
             {{taxon?.vernacularName}}
           </div>
           <div>
-            <strong>Tieteellinen nimi</strong>
+            <strong translate>taxon.scientific</strong>
             <em>{{taxon?.scientificName}}</em>
           </div>
           <div>
-            <strong>Lisätietoa lajit.fi-sivustolla</strong>
+            <strong translate>taxon.moreInfo</strong>
             <a href="http://tun.fi/{{id}}">http://tun.fi/{{id}}</a>
           </div>
           <ng-container *ngIf="taxon?.administrativeStatuses">
             <div>
-              <strong>Hallinnolliset ominaisuudet (administrativeStatuses) </strong>
+              <strong translate>taxon.administrative</strong>
               <ul>
                 <li *ngFor="let status of taxon.administrativeStatuses">
                   {{status | label: 'MX.adminStatusEnum' | async}}
@@ -59,13 +59,15 @@
             </div>
           </ng-container>
           <div>
-            <strong>Vakiintunut Suomeen</strong> (stableInFinland) {{taxon?.stableInFinland == true ? 'Kyllä' : 'Ei' }}
+            <strong translate>taxon.establishedFin</strong>
+            <span translate>{{taxon?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
           </div>
           <div>
-            <strong>Vakiintuneisuus</strong> {{taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum' | async }}
+            <strong translate>taxon.establishment</strong>
+            <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate }}</span>
           </div>
           <div>
-            <strong>Vaarallinen kasvintuhoaja</strong>
+            <strong translate>Vaarallinen kasvintuhoaja</strong>
             {{quarantinePlantPest == true ? 'Kyllä' : 'Ei' }}
           </div>
         </div>

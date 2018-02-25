@@ -4,7 +4,7 @@
       <div class="card small text-center" id="selectGroup-card">
         <img class="card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
         <div class="card-body" id="selectGroup-card-body">
-            <p class="card-text" id="selectGroup-card-text">{{group.name}}</p>
+          <p class="card-text" id="selectGroup-card-text">{{group.name}}</p>
         </div>
       </div>
     </div>
@@ -13,52 +13,52 @@
 <br>
 <ng-container *ngIf="selectedGroup">
 
-    <ul class="nav nav-tabs container" id="autoscroll">
-      <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" (click)="changeView=false">List</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" (click)="changeView=true">Grid</a>
-      </li>
-      <form class="form-inline">
-          <input class="form-control mr-sm-2" [(ngModel)]="search" (ngModelChange)="onSearchChange($event)" [ngModelOptions]="{standalone: true}" type="text" class="form-control"
-            placeholder="Filter">
-      </form>
-    </ul>
-    <br>
-    
-<div class="tab-pane container" id="taxontable">
-  <div *ngIf="!changeView">
-    <div class="table-responsive table-hover">
-      <table class="table table-sm" id="taxontable">
-        <thead>
-          <tr>
-            <th scope="col" translate>taxonomy.folkname</th>
-            <th scope="col" translate>taxonomy.scientificname</th>
-            <th scope="col" translate>taxonomy.onEuList</th>
-            <th scope="col" translate>taxonomy.finnishList</th>
-            <th scope="col" translate>taxonomy.established</th>
-            <th scope="col" translate>taxonomy.class</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let species of selected">
-            <td>
-              <a [routerLink]="[species.id]">{{species.vernacularName || species.scientificName}}</a>
-            </td>
-            <td>{{species.scientificName}}</td>
-            <td>placeholder</td>
-            <td>placeholder</td>
-            <td>{{species?.stableInFinland == true ? 'Kyllä' : 'Ei' }}</td>
-            <td>{{selectedGroup.name}}</td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-  </div>
-</div>
+  <ul class="nav nav-tabs container" id="autoscroll">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" (click)="changeView=false">List</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" (click)="changeView=true">Grid</a>
+    </li>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" [(ngModel)]="search" (ngModelChange)="onSearchChange($event)" [ngModelOptions]="{standalone: true}"
+        type="text" class="form-control" placeholder="Filter">
+    </form>
+  </ul>
+  <br>
 
-<div class="tab-pane container" id="cardcontainer">
+  <div class="tab-pane container" id="taxontable">
+    <div *ngIf="!changeView">
+      <div class="table-responsive table-hover">
+        <table class="table table-sm" id="taxontable">
+          <thead>
+            <tr>
+              <th scope="col" translate>taxonomy.folkname</th>
+              <th scope="col" translate>taxonomy.scientificname</th>
+              <th scope="col" translate>taxonomy.onEuList</th>
+              <th scope="col" translate>taxonomy.finnishList</th>
+              <th scope="col" translate>taxonomy.established</th>
+              <th scope="col" translate>taxonomy.class</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let species of selected">
+              <td>
+                <a [routerLink]="[species.id]">{{species.vernacularName || species.scientificName}}</a>
+              </td>
+              <td>{{species.scientificName}}</td>
+              <td translate>{{species?.administrativeStatuses?.includes('MX.euInvasiveSpeciesList') ? 'taxonomy.yes' : 'taxonomy.no'}}</td>
+              <td translate>{{species?.administrativeStatuses?.includes('MX.nationallySignificantInvasiveSpecies') ? 'taxonomy.yes' : 'taxonomy.no'}}</td>
+              <td translate>{{species?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</td>
+              <td>{{selectedGroup.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane container" id="cardcontainer">
     <div *ngIf="changeView">
       <div class="card-group" id="taxongrid">
         <div *ngFor="let species of selected" class="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -69,7 +69,7 @@
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   </div>
 
