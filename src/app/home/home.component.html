@@ -1,14 +1,36 @@
-<div class="container" id="infobox">
-  <div class="row" *ngFor="let alert of alerts">
-      <div class="alert alert-secondary" role="alert">
-          {{alert.title}}
-      </div>
-  </div>
-  <div class="row">
-    <div class="col">
-        <h1 translate>home.h1</h1>
-        <p>Tämän kansallisen vieraslajiportaalin avulla voit tunnistaa ja ilmoittaa vieraslajeja. Sivuilta löydät tietoa ja kuvia vieraslajeista, karttoja vieraslajien levinneisyydestä sekä torjuntaohjeita. Kaikista vieraslajeista ei vielä ole kuvauksia tai kuvia, mutta ne lisätään mahdollisimman pian.</p>      
+<div class="container">
+  <div class="row justify-content-center" *ngFor="let alert of alerts">
+    <div class="alert alert-danger" role="alert">
+        {{alert.title}}
     </div>
   </div>
+  <div class="row">
+    <div class="col-8">
+        <h1 translate>home.h1</h1>
+        <p translate>home.description</p>
+        
+        <h3 translate>home.whatare.h</h3>
+        <p translate>home.whatare.p</p>
+    </div>
+    <div class="col-4 card">
+                <div class="card-body">
+                    <h3 class="card-title">Ajankohtaista</h3>
+                    <div class="border-top py-3">
+                        <h5 class="text-muted">Uutinen 1</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                    <div class="border-top py-3">
+                        <h5 class="text-muted">Uutinen 2</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                </div>
+    </div>
+  </div>
+  <!-- Commented until working...
   <vrs-search id="searchbox"></vrs-search>
+  -->
 </div>

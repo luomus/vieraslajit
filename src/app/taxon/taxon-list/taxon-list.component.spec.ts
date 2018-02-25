@@ -6,6 +6,7 @@ import { TaxonListComponent } from './taxon-list.component';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { ApiService } from '../../shared/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('TaxonListComponent', () => {
   let component: TaxonListComponent;
@@ -13,11 +14,11 @@ describe('TaxonListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TaxonListComponent ],
-      imports: [ FormsModule, RouterTestingModule, HttpClientModule ],
-      providers: [ TaxonService, ApiService ]
+      declarations: [TaxonListComponent],
+      imports: [FormsModule, RouterTestingModule, HttpClientModule, TranslateModule.forRoot()],
+      providers: [TaxonService, ApiService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -26,7 +27,5 @@ describe('TaxonListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+
 });
