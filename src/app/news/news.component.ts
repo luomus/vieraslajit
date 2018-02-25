@@ -16,13 +16,12 @@ export class NewsComponent implements OnInit {
   private news: Array<NewsElement> = [];
   private newsView: Array<NewsElement>= [];
   private subTrans: Subscription;
-  private pages: Array<number> = [1,2,3]
-  private pageSizeFetch = 30;
+  private pages: Array<number> = []
+  private pageSizeFetch = 50;
   private pageSizeView=5;
   private fetchedTimes: number=0;
   /* MI: Koska API:sta ei voi hakea uutisia tagilla, on haettava yli halutun uutismäärän/sivu,
-  jotta saadaan uutissivulle haluttu määrä vieraslajiuutisia ilman toistuvia API-hakuja, kun osa haetuista
-  uutisista suodatetaan pois ja "sivu jää vajaaksi".
+  jotta saadaan uutissivulle haluttu määrä vieraslajiuutisia.
   Tämä tarkoittaa käytännössä, että menetetään API:n ominaisuus tuoda uutiset valmiiksi sivutettuna eli 
   voisi myös kysyä asiakkaalta, saisiko API:in suodatuksen tagilla (ja päivämäärällä)!
   Mietin myös uutisdatan hakua kaikki kerralla, jolloin olisi voinut pitää ui:ssa tiedon sivujen määrästä.
@@ -32,6 +31,9 @@ export class NewsComponent implements OnInit {
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
   ngOnInit() {
+    for (let i=1; i<=this.pageSizeView; i++){
+      this.pages.push(i);
+    }
     this.subTrans = this.translate.onLangChange.subscribe(this.getNews.bind(this));
     this.getNews(1);
   }
@@ -63,15 +65,19 @@ export class NewsComponent implements OnInit {
   }
 
   previous(){
-    let current = this.pages.length;
+    let current = this.pages[this.pages.length-1];
+    if (current>5){
     this.pages.pop();
+    this.pages.unshift(current-this.pageSizeView);
     this.populateView(current-1);
+    }
   }
 
   next(){
-    let nextPage= this.pages.length+1;
-    this.pages.push(nextPage);
-    this.populateView(nextPage);
+    let current= this.pages[this.pages.length-1];
+    this.pages.shift();
+    this.pages.push(current+1);
+    this.populateView(current+1);
   }
 
   populateView(pageView){

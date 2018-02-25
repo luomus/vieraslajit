@@ -43,7 +43,9 @@
       </li>
     </ul>
   </nav>
-<!--
+
+<!-- Tämä näkymä toimii vain, kun apista tulevaa dataa voi käyttää sellaisenaan ja sivutettuna (eli dataa ei 
+  tarvitse suodattaa esim. tagilla)
   <nav aria-label="Pagination">
     <ul class="pagination" *ngIf="pages.length <= 7">
       <li class="page-item" *ngFor="let page of pages"><a class="page-link" (click)="getNews(page)">{{page}}</a></li>
