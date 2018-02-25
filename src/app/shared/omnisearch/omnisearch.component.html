@@ -10,11 +10,7 @@
          [value]="search"
          [formControl]="searchControl"
          placeholder="Hae" autoComplete="off"/>
-
-  <div style="clear: both"></div>
-  <!-- <div id="gcse" *ngIf="taxa.length === 0 && search.length > 3">
-    GOOGLEHAKUTULOKSIIN 
-</div>    -->
+    
   <div class="col-sm-12" *ngIf="taxa.length > 0 && search.length > 0">
     <div class="omni-search-results" [class.right]="expand === 'right'">
       <div class="row">
