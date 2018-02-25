@@ -17,7 +17,7 @@ export class NewsComponent implements OnInit {
   private newsView: Array<NewsElement>= [];
   private subTrans: Subscription;
   private pages: Array<number> = [1,2,3]
-  private pageSizeFetch = 50;
+  private pageSizeFetch = 30;
   private pageSizeView=5;
   private fetchedTimes: number=0;
   /* MI: Koska API:sta ei voi hakea uutisia tagilla, on haettava yli halutun uutismäärän/sivu,
@@ -44,8 +44,9 @@ export class NewsComponent implements OnInit {
       tarviiko välttämättä näyttää vanhoja teknisiä tiedotteita mutta nyt vielä tässä jotta on testattavana
       newsElementtejä joissa on contentia.
       */
-      this.news= data.results
-        .filter(newsElement => newsElement.tag.includes(("technical")) || newsElement.tag.includes(("vieraslajit.fi")));
+      
+      this.news.push.apply(this.news, data.results
+        .filter(newsElement => newsElement.tag.includes(("technical")) || newsElement.tag.includes(("vieraslajit.fi"))));
       
       this.fetchedTimes++;
       
@@ -76,7 +77,7 @@ export class NewsComponent implements OnInit {
   populateView(pageView){
     let newsNeeded= this.pageSizeView * pageView;
 
-    if (this.news.length < newsNeeded){
+    if (this.news.length < newsNeeded+this.pageSizeView){
       this.getNews(this.fetchedTimes+1);
     }
     this.newsView= this.news.slice(newsNeeded-this.pageSizeView,newsNeeded);  
