@@ -14,9 +14,9 @@ export class NewsComponent implements OnInit {
 
   //private data: PagedResult<NewsElement>;
   private news: Array<NewsElement> = [];
-  private newsView: Array<NewsElement>= [];
+  newsView: Array<NewsElement>= [];
   private subTrans: Subscription;
-  private pages: Array<number> = []
+  pages: Array<number> = []
   private pageSizeFetch = 50;
   private pageSizeView=5;
   private fetchedTimes: number=0;
