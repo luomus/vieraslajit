@@ -25,5 +25,12 @@
   "removal.additionalInfo": "Tarkemmat torjuntaohjeet löytyvät lajin tietosivulta.",
   "removal.byName": "Hae lajia nimellä tai",
   "removal.taxonIdentification": "siirry lajitunnistukseen kuvan perusteella.",
-  "legal.h1":"Lainsäädäntö"
+  "legal.h1":"Lainsäädäntö",
+  "legal.legislation":"Lainsäädäntö",
+  "legal.h2":"Vieraslajilaki",
+  "legal.h3":"EU:n lainsäädäntö",
+  "legal.h4":"Euroopan unionin luettelo",
+  "legal.h5":"EU:n vieraslajiasetuksen mukaiset luvat"
+
+ 
 }
