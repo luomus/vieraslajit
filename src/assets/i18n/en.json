@@ -31,5 +31,12 @@
   "removal.info": "Find information on how to safely dispose invasive species",
   "removal.additionalInfo": "More specific information can be found on taxon's information page.",
   "removal.byName": "Find taxon by name or",
-  "removal.taxonIdentification": "move to species search."
+  "removal.taxonIdentification": "move to species search.",
+  "legal.h1":"Legislation",
+  "legal.legislation":"Legislation",
+  "legal.invasivelaw": "Vieraslajilaki",
+  "legal.h2": "Invasive species law",
+  "legal.h3":"EU legislation",
+  "legal.h4":"EU catalog",
+  "legal.h5":"EU permissions"
 }
