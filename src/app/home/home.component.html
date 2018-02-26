@@ -15,18 +15,17 @@
     <div class="col-4 card">
                 <div class="card-body">
                     <h3 class="card-title">Ajankohtaista</h3>
-                    <div class="border-top py-3">
-                        <h5 class="text-muted">Uutinen 1</h5>
+                    <div *ngFor="let n of news" class="border-top py-3">
+                        <h5 class="card-title">{{n.title}}
+                                <a routerLink="/news" class="card-link">Lue lisää</a>
+                        </h5>
+                        <!--
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="card-link">Card link</a>
                         <a href="#" class="card-link">Another link</a>
+                        -->
                     </div>
-                    <div class="border-top py-3">
-                        <h5 class="text-muted">Uutinen 2</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
+
                 </div>
     </div>
   </div>
