@@ -46,7 +46,7 @@
           </div>
           <ng-container *ngIf="taxon?.administrativeStatuses">
             <div>
-               <!-- <strong translate>taxon.administrative</strong> -->
+              <!-- <strong translate>taxon.administrative</strong> -->
               <ul>
                 <li *ngFor="let status of taxon.administrativeStatuses">
                   {{status | label: 'MX.adminStatusEnum' | async}}
