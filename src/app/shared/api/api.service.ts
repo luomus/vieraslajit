@@ -69,8 +69,8 @@ export class ApiService {
   }
 
   // News
-  newsArray(endpoint: LajiApi.Endpoints.newsArray, query: LajiApi.Query): Observable<PagedResult<NewsElement>>;
-  newsArray(endpoint: LajiApi.Endpoints, query: object = {}): Observable<any> {
+  newsFindAll(endpoint: LajiApi.Endpoints.newsArray, query: LajiApi.Query): Observable<PagedResult<NewsElement>>;
+  newsFindAll(endpoint: LajiApi.Endpoints, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
       url,
