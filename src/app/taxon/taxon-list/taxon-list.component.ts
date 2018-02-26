@@ -42,9 +42,6 @@ export class TaxonListComponent implements OnInit, OnDestroy {
     if (this.selectedGroup) {
       this.onGroupSelect(this.selectedGroup);
     }
-    this.taxonService.getTaxonMedia(this.id, this.translate.currentLang).subscribe(data => {
-      this.media = data;
-    });
   }
 
   onSearchChange(value) {
@@ -62,8 +59,27 @@ export class TaxonListComponent implements OnInit, OnDestroy {
     this.selectedGroup = target;
     this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id, this.translate.currentLang).subscribe(data => {
       this.taxa = data.results;
+      this.taxa.forEach(element => {
+        this.taxonService
+        .getTaxonMedia(element.id, 'fi').subscribe(data => {
+          if (data.length > 0) {
+            element.thumbnail = data[0].thumbnailURL;
+          } else {
+            element.thumbnail = 'assets/images/logos/vieraslaji-logo-70x70.png';
+          }
+        });
+      });
       this.selected = this.taxa;
     });
+    this.myScroller();
+  }
+
+  myScroller() {
+    setTimeout(function() {
+      var scroller = document.getElementById("autoscroll");
+      scroller.scrollTop = scroller.scrollHeight;
+      scroller.scrollIntoView();
+    }, 500);  
   }
 
   ngOnDestroy() {
