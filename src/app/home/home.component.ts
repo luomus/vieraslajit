@@ -11,18 +11,22 @@ import { TranslateService } from '@ngx-translate/core';
 export class HomeComponent implements OnInit {
 
   alerts: Array<any> = [];
+  news: Array<any>= [];
 
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
   ngOnInit() {
-    this.newsService.getPage('1', '10', this.translate.currentLang).subscribe((data) => {
+    this.newsService.getPage('1', '30', this.translate.currentLang).subscribe((data) => {
       let technical: Array<any> = [0];
       for(let d of data.results) {
         if (d.tag.includes("technical")) {
           technical.push(d);
         }
+        if (d.tag.includes("vieraslajit.fi")&&this.news.length<6) {
+            this.news.push(d);
+          }  
       }
-      let i: number = 0;
+      let i:number = 0;
       for (let d of technical) {
         let date: Date = new Date(0);
         date.setUTCMilliseconds(Number(d.posted));
