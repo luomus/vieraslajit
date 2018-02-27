@@ -7,6 +7,9 @@
   "navigation.home": "Koti",
   "navigation.taxonomy": "Lajit",
   "navigation.removal": "Torjunta",
+  "navigation.list": "Lista",
+  "navigation.grid": "Kuvat",
+  "taxonomy.taxongroup": "Lajiryhmät",
   "taxonomy.folkname": "Kansankielinen nimi",
   "taxonomy.scientificname": "Tieteellinen nimi",
   "taxonomy.class": "Luokka",
@@ -41,6 +44,4 @@
   "legal.h3":"EU:n lainsäädäntö",
   "legal.h4":"Euroopan unionin luettelo",
   "legal.h5":"EU:n vieraslajiasetuksen mukaiset luvat"
-
- 
 }
