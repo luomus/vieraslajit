@@ -1,6 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { OmnisearchComponent } from '../shared/omnisearch/omnisearch.component'
 
 import { RemovalComponent } from './removal.component';
+import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
+import { TaxonService } from '../shared/service/taxon.service';
+import { ApiService } from '../shared/api/api.service';
 
 describe('RemovalComponent', () => {
   let component: RemovalComponent;
@@ -8,7 +16,9 @@ describe('RemovalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RemovalComponent ]
+      declarations: [ RemovalComponent],
+      imports: [SharedModule, FormsModule, RouterTestingModule, HttpClientModule, TranslateModule.forRoot()],
+      providers: [TaxonService, ApiService]
     })
     .compileComponents();
   }));
