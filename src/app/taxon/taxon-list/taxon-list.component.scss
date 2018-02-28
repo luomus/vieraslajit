@@ -9,8 +9,8 @@
 #selectGroup-card {
     margin-top: 5%;
     margin-bottom: 5%;
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 80%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
 }
@@ -21,14 +21,14 @@
 }
 
 #selectGroup-card-text {
-    height: 20px;
+    width: 100%;
     font-size: auto;
     color:  $navbar-background;
-    text-align: center;
 }
 
 #selectGroup-img {
     width: 100%;
+    height: 80%;
     object-fit: cover;
 }
 
@@ -36,14 +36,16 @@
 
 .form-inline {
     margin-left: 0.5%;
-    background-color: whitesmoke;
-    
 }
 
 /** List and grid tabs **/
 
 .nav-item .active {
     background-color: whitesmoke;
+}
+
+.nav-item {
+    background-color: white;
 }
 
 /** Species grid styling **/
@@ -80,15 +82,13 @@
 }
 
 #species-card-text {
-    height: 20px;
+    width: 100%;
+    height: 50%;
     font-size: auto;
     text-align: center;
 }
 
 #species-card-body {
     background-color: white;
-}
-
-#autoscroll {
-    overflow: scroll;
+    height: 30%;
 }

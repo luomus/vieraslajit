@@ -1,24 +1,41 @@
-<ng-container>
-  <div class="card-group container">
-    <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card small text-center" id="selectGroup-card">
-        <img class="card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
-        <div class="card-body" id="selectGroup-card-body">
-          <p class="card-text" id="selectGroup-card-text">{{group.name}}</p>
+<div id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="card">
+      <div class="card-header" role="tab" id="headingOne">
+        <h5 class="mb-0" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" translate>
+            taxonomy.taxongroup
+            <ng-container *ngIf="selectedGroup"> > {{selectedGroup.name}}</ng-container>
+          </a>
+        </h5>
+      </div>
+
+      <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+          <div class="card-block">
+              <ng-container>
+                  <div class="card-group container">
+                    <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-12 col-sm-6 col-md-4 col-lg-3">
+                      <div class="card" id="selectGroup-card" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <img class="card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
+                        <div class="card-body" id="selectGroup-card-body">
+                          <p class="card-text" id="selectGroup-card-text">{{group.name}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</ng-container>
+
 <br>
 <ng-container *ngIf="selectedGroup">
 
   <ul class="nav nav-tabs container" id="autoscroll">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" (click)="changeView=false">List</a>
+      <a class="nav-link active" data-toggle="tab" (click)="changeView=false" translate>navigation.list</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" (click)="changeView=true">Grid</a>
+      <a class="nav-link" data-toggle="tab" (click)="changeView=true" translate>navigation.grid</a>
     </li>
     <form class="form-inline">
       <input class="form-control mr-sm-2" [(ngModel)]="search" (ngModelChange)="onSearchChange($event)" [ngModelOptions]="{standalone: true}"
@@ -38,7 +55,6 @@
               <th scope="col" translate>taxonomy.onEuList</th>
               <th scope="col" translate>taxonomy.finnishList</th>
               <th scope="col" translate>taxonomy.established</th>
-              <th scope="col" translate>taxonomy.class</th>
             </tr>
           </thead>
           <tbody>
@@ -50,7 +66,6 @@
               <td translate>{{species?.administrativeStatuses?.includes('MX.euInvasiveSpeciesList') ? 'taxonomy.yes' : 'taxonomy.no'}}</td>
               <td translate>{{species?.administrativeStatuses?.includes('MX.nationallySignificantInvasiveSpecies') ? 'taxonomy.yes' : 'taxonomy.no'}}</td>
               <td translate>{{species?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</td>
-              <td>{{selectedGroup.name}}</td>
             </tr>
           </tbody>
         </table>
@@ -72,6 +87,4 @@
       </div>
     </div>
   </div>
-
-
 </ng-container>

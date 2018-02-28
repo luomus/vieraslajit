@@ -79,7 +79,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
       var scroller = document.getElementById("autoscroll");
       scroller.scrollTop = scroller.scrollHeight;
       scroller.scrollIntoView();
-    }, 500);  
+    }, 0);  
   }
 
   ngOnDestroy() {
