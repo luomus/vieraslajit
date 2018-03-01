@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchComponent } from '../shared/googlesearch/search/search.component';
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
+import {OmnisearchComponent} from '../shared/omnisearch/omnisearch.component'
 
 @Component({
   selector: 'vrs-home',
