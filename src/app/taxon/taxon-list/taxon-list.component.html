@@ -1,3 +1,5 @@
+<div id="omnisearch"><vrs-omnisearch></vrs-omnisearch></div>
+
 <div id="accordion" role="tablist" aria-multiselectable="true">
     <div class="card">
       <div class="card-header" role="tab" id="headingOne">
@@ -55,6 +57,7 @@
               <th scope="col" translate>taxonomy.onEuList</th>
               <th scope="col" translate>taxonomy.finnishList</th>
               <th scope="col" translate>taxonomy.established</th>
+              <th scope="col" translate>taxonomy.quarantinePlantPest</th>
             </tr>
           </thead>
           <tbody>
@@ -66,6 +69,7 @@
               <td translate>{{species?.administrativeStatuses?.includes('MX.euInvasiveSpeciesList') ? 'taxonomy.yes' : 'taxonomy.no'}}</td>
               <td translate>{{species?.administrativeStatuses?.includes('MX.nationallySignificantInvasiveSpecies') ? 'taxonomy.yes' : 'taxonomy.no'}}</td>
               <td translate>{{species?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</td>
+              <td translate>{{species?.administrativeStatuses?.includes('MX.quarantinePlantPest') ? 'taxonomy.yes' : 'taxonomy.no'}}</td>
             </tr>
           </tbody>
         </table>
