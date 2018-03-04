@@ -42,3 +42,8 @@
     background: linear-gradient(-90deg, $primary, $primary-light);
     height: 25px;
 }
+
+.gsc-control-cse {
+	padding: 0 !important;
+	background: $navbar-background !important;
+}
