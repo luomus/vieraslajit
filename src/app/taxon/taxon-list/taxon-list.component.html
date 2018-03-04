@@ -29,7 +29,10 @@
 
   <div class="tab-pane container" id="taxontable">
     <div *ngIf="!changeView">
-      <div class="table-responsive table-hover">
+      <ngx-datatable class="material striped" [rows]="selected" [columns]="columns">
+      </ngx-datatable>
+
+      <!-- <div class="table-responsive table-hover">
         <table class="table table-sm" id="taxontable">
           <thead>
             <tr>
@@ -54,7 +57,7 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> -->
     </div>
   </div>
 
