@@ -22,7 +22,7 @@
   "taxon.card": "Tietokortti",
   "taxon.name": "Yleiskielinen nimi",
   "taxon.scientific": "Tieteellinen nimi",
-  "taxon.moreInfo": "Lisätietoa lajit.fi-sivustolla",
+  "taxon.lajiFi": "Lisää tietoa lajista löydät laji.fi-sivustolta.",
   "taxon.administrative": "Hallinnolliset ominaisuudet",
   "taxon.establishedFin": "Vakiintunut Suomeen",
   "taxon.establishment": "Vakiintuneisuus",
