@@ -1,10 +1,20 @@
-<div class="container">
-    <vrs-omnisearch></vrs-omnisearch>
-  <div class="row justify-content-center" *ngFor="let alert of alerts">
-    <div class="alert alert-danger" role="alert">
-        {{alert.title}}
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">VIERASLAJIT.FI</h1>
+            <p class="lead">
+                <a class="btn btn-alert btn-lg" href="#" role="button">Learn more</a>
+            </p>
+        </div>
     </div>
-  </div>
+
+    <vrs-omnisearch></vrs-omnisearch>
+  
+    <div class="row justify-content-center" *ngFor="let alert of alerts">
+        <div class="alert alert-danger" role="alert">
+        {{alert.title}}
+        </div>
+    </div>
   <div class="row">
     <div class="col-8">
         <h1 translate>home.h1</h1>
@@ -14,20 +24,20 @@
         <p translate>home.whatare.p</p>
     </div>
     <div class="col-4 card">
-                <div class="card-body">
-                    <h3 class="card-title">Ajankohtaista</h3>
-                    <div *ngFor="let n of news" class="border-top py-3">
-                        <h5 class="card-title">{{n.title}}
-                                <a routerLink="/news" class="card-link">Lue lisää</a>
-                        </h5>
-                        <!--
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                        -->
-                    </div>
+        <div class="card-body">
+            <h3 class="card-title">Ajankohtaista</h3>
+            <div *ngFor="let n of news" class="border-top py-3">
+                <h5 class="card-title">{{n.title}}
+                    <a routerLink="/news" class="card-link">Lue lisää</a>
+                </h5>
+                <!--
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                -->
+            </div>
 
-                </div>
+        </div>
     </div>
   </div>
   <!-- Commented until working...
