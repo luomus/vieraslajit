@@ -7,13 +7,15 @@ import { TaxonCardComponent } from './taxon-card/taxon-card.component';
 
 import { routing } from './taxon.routing';
 import { SharedModule } from '../shared/shared.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
     CommonModule,
     routing,
     FormsModule,
-    SharedModule
+    SharedModule,
+    NgxDatatableModule
   ],
   declarations: [TaxonListComponent, TaxonCardComponent]
 })

@@ -32,6 +32,12 @@ export interface Taxonomy {
 
     thumbnail?: string;
 
+    /* is taxon on EU-list */
+    onEUList?: boolean;
+
+    /* is taxon on national list */
+    onNationalList?: boolean;
+
     /**
      *  If lang parameter is 'multi' this will be a lang object instead of a string or an array of strings!
      */
