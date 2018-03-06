@@ -24,16 +24,20 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   id: string;
   selected = [];
   taxa: Taxonomy[];
+  page: PagedResult<Taxonomy>
   changeView: false;
   groups: Informal[];
   selectedGroup: Informal;
   media: Array<TaxonomyImage>;
+  selectedPage: number;
   columns = [];
+  messages = {};
 
   constructor(private taxonService: TaxonService, private translate: TranslateService, private router: Router) { }
 
   ngOnInit() {
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.selectedPage = 1;
     this.update();
   }
 
@@ -46,7 +50,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
     }
     this.columns = [
       { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), canAutoResize: false, draggable: false, resizeable: false },
-      { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: false, draggable: false, resizeable: false, width: 170 },
+      { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: false, draggable: false, resizeable: false, width: 150},
       { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
       { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
       { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
@@ -66,7 +70,8 @@ export class TaxonListComponent implements OnInit, OnDestroy {
 
   onGroupSelect(target) {
     this.selectedGroup = target;
-    this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id, this.translate.currentLang).subscribe(data => {
+    this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id, this.translate.currentLang, this.selectedPage).subscribe(data => {
+      this.page = data;
       this.taxa = data.results;
       this.taxa.forEach(element => {
         if (element.administrativeStatuses) {
@@ -93,6 +98,15 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   onSelect(event) {
     this.router.navigate(['/taxon', event.selected.shift().id]);
   }
+
+  setPage(event) {
+    this.selectedPage = event.offset + 1;
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    this.onGroupSelect(this.selectedGroup);
+  }
+
+
 
   ngOnDestroy() {
     this.subTrans.unsubscribe();
