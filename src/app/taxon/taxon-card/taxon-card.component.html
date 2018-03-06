@@ -63,13 +63,19 @@
             <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate }}</span>
           </div>
           <div>
-            <strong translate>Vaarallinen kasvintuhoaja</strong>
-            {{quarantinePlantPest == true ? 'Kyllä' : 'Ei' }}
+            <strong translate>taxonomy.quarantinePlantPest</strong>
+            <span translate>{{quarantinePlantPest == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
           </div>
-          <div>
-            <strong translate>taxon.moreInfo</strong>
-            <a href="http://tun.fi/{{id}}">http://tun.fi/{{id}}</a>
-          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <a href="https://laji.fi" target="_blank"><img src="https://laji.fi/static/images/icons/favicon.ico" alt="laji.fi"></a>
+          <strong translate>Laji.fi</strong>
+        </div>
+        <div class="card-block">
+          <span translate>taxon.lajiFi</span>
+          <a href="http://tun.fi/{{id}}" target="_blank">http://tun.fi/{{id}}</a>
         </div>
       </div>
     </div>
