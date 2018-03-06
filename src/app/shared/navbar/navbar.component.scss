@@ -33,7 +33,8 @@
 
 /*Hover state for top level links*/
 .navbar-nav li:hover a {
-    background: coral;
+    background: $navbar-background-hover;
     border-radius: 5px;
     color: $content-background;
 }
+

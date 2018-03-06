@@ -7,6 +7,15 @@
   "navigation.news": "Nyheter",
   "navigation.list": "List",
   "navigation.grid": "Grid",
+  "navigation.about": "Allmänt",
+  "dropdown.taxonomy": "Artlista",
+  "dropdown.speciesComparison": "Jämför arter",
+  "dropdown.info": "Information om främmande arter",
+  "dropdown.news": "Nyheter",
+  "dropdown.legal":"Lagar och förordningar",
+  "dropdown.projects":"Projekt",
+  "dropdown.publication":"Publikationer",
+  "dropdown.guides":"Anvisningar och handledningar",
   "taxonomy.taxongroup": "Taxongroup",
   "taxonomy.folkname": "Vernacular name",
   "taxonomy.scientificname": "Scientific name",
@@ -32,5 +41,4 @@
   "omnisearch.showtree": "Visa trädet",
   "omnisearch.search": "Sök efter arter",
   "legal.h1":"Legislatur",
-  "legal.legislation":"Legislatur"
 }
