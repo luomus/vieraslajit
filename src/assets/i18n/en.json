@@ -21,7 +21,7 @@
   "taxon.moreInfo": "More info at laji.fi",
   "taxon.administrative": "Administrative status",
   "taxon.establishedFin": "Established in Finland",
-  "taxon.establishment": "Establishment",
+  "taxon.occurrence": "Establishment",
   "taxon.unknown": "Unknown",
   "navigation.news": "News",
   "omnisearch.information": "Information",
@@ -41,5 +41,7 @@
   "legal.h2": "Invasive species law",
   "legal.h3":"EU legislation",
   "legal.h4":"EU catalog",
-  "legal.h5":"EU permissions"
+  "legal.h5":"EU permissions",
+  "true": "Yes",
+  "false": "No"
 }

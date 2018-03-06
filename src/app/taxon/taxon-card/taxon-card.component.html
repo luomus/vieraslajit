@@ -59,7 +59,7 @@
             <span translate>{{taxon?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
           </div>
           <div>
-            <strong translate>taxon.establishment</strong>
+            <strong translate>taxon.occurrence</strong>
             <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate }}</span>
           </div>
           <div>

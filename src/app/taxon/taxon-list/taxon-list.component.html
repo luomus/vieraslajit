@@ -30,7 +30,7 @@
 <br>
 <ng-container *ngIf="selectedGroup">
 
-  <ul class="nav nav-tabs container" id="autoscroll">
+  <ul class="nav nav-tabs container">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" (click)="changeView=false" translate>navigation.list</a>
     </li>
@@ -46,7 +46,16 @@
 
   <div class="tab-pane container" id="taxontable">
     <div *ngIf="!changeView">
-      <ngx-datatable class="material striped" [rows]="selected" [columns]="columns">
+      <ngx-datatable class="material selection-cell"
+        [rows]="selected" 
+        [columnMode]="'force'"
+        [columns]="columns" 
+        [headerHeight]="50"
+        [rowHeight]="50"
+        [reorderable]='false'
+        [selectionType]="'row'"
+        [sorts]="[{prop: 'stableString', dir: 'desc'}]"
+        (select)="onSelect($event)">
       </ngx-datatable>
 
       <!-- <div class="table-responsive table-hover">

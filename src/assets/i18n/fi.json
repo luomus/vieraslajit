@@ -13,7 +13,7 @@
   "taxonomy.folkname": "Kansankielinen nimi",
   "taxonomy.scientificname": "Tieteellinen nimi",
   "taxonomy.class": "Luokka",
-  "taxonomy.onEuList": "EU lista",
+  "taxonomy.onEuList": "EU-lista",
   "taxonomy.finnishList": "Kansallinen lista",
   "taxonomy.established": "Vakiintuneisuus",
   "taxonomy.yes": "Kyllä",
@@ -24,7 +24,7 @@
   "taxon.moreInfo": "Lisätietoa lajit.fi-sivustolla",
   "taxon.administrative": "Hallinnolliset ominaisuudet",
   "taxon.establishedFin": "Vakiintunut Suomeen",
-  "taxon.establishment": "Vakiintuneisuus",
+  "taxon.occurrence": "Esiintyminen",
   "taxon.unknown": "Tuntematon", 
   "navigation.news": "Uutiset",
   "omnisearch.information": "Lisätietoa",
@@ -43,5 +43,7 @@
   "legal.h2":"Vieraslajilaki",
   "legal.h3":"EU:n lainsäädäntö",
   "legal.h4":"Euroopan unionin luettelo",
-  "legal.h5":"EU:n vieraslajiasetuksen mukaiset luvat"
+  "legal.h5":"EU:n vieraslajiasetuksen mukaiset luvat",
+  "true": "Kyllä",
+  "false": "Ei"
 }

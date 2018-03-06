@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { PagedResult } from '../../shared/model/PagedResult';
@@ -8,10 +9,12 @@ import { Informal } from '../../shared/model/Informal';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
 
+
 @Component({
   selector: 'vrs-taxon-list',
   templateUrl: './taxon-list.component.html',
-  styleUrls: ['./taxon-list.component.scss']
+  styleUrls: ['./taxon-list.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TaxonListComponent implements OnInit, OnDestroy {
 
@@ -27,7 +30,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   media: Array<TaxonomyImage>;
   columns = [];
 
-  constructor(private taxonService: TaxonService, private translate: TranslateService) { }
+  constructor(private taxonService: TaxonService, private translate: TranslateService, private router: Router) { }
 
   ngOnInit() {
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
@@ -42,12 +45,11 @@ export class TaxonListComponent implements OnInit, OnDestroy {
       this.onGroupSelect(this.selectedGroup);
     }
     this.columns = [
-      { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname') },
-      { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname') },
-      { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList') },
-      { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList') },
-      /*   { name: 'taxonomy.established' },
-         { name: 'taxonomy.class' } */
+      { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), canAutoResize: false, draggable: false, resizeable: false },
+      { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: false, draggable: false, resizeable: false, width: 170 },
+      { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
+      { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
+      { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
     ];
   }
 
@@ -68,12 +70,13 @@ export class TaxonListComponent implements OnInit, OnDestroy {
       this.taxa = data.results;
       this.taxa.forEach(element => {
         if (element.administrativeStatuses) {
-          element.onEUList = element.administrativeStatuses.some(value => value === 'MX.euInvasiveSpeciesList');
-          element.onNationalList = element.administrativeStatuses.some(value => value === 'MX.nationallySignificantInvasiveSpecies');
+          element.onEUList = this.translate.instant(String(element.administrativeStatuses.some(value => value === 'MX.euInvasiveSpeciesList')));
+          element.onNationalList = this.translate.instant(String(element.administrativeStatuses.some(value => value === 'MX.nationallySignificantInvasiveSpecies')));
         } else {
-          element.onEUList = false;
-          element.onNationalList = false;
+          element.onEUList = this.translate.instant(String(false));
+          element.onNationalList = this.translate.instant(String(false));
         }
+        element.stableString = this.translate.instant(String(element.stableInFinland));
         this.taxonService
           .getTaxonMedia(element.id, 'fi').subscribe(data => {
             if (data.length > 0) {
@@ -85,15 +88,10 @@ export class TaxonListComponent implements OnInit, OnDestroy {
       });
       this.selected = this.taxa;
     });
-    this.myScroller();
   }
 
-  myScroller() {
-    setTimeout(function () {
-      var scroller = document.getElementById("autoscroll");
-      scroller.scrollTop = scroller.scrollHeight;
-      scroller.scrollIntoView();
-    }, 0);  
+  onSelect(event) {
+    this.router.navigate(['/taxon', event.selected.shift().id]);
   }
 
   ngOnDestroy() {

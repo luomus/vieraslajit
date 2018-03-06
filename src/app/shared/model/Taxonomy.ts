@@ -38,6 +38,9 @@ export interface Taxonomy {
     /* is taxon on national list */
     onNationalList?: boolean;
 
+    /* String for stableInFinland status. Used for translating */
+    stableString?: string;
+
     /**
      *  If lang parameter is 'multi' this will be a lang object instead of a string or an array of strings!
      */
