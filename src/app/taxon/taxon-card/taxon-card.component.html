@@ -4,33 +4,44 @@
       <img src="assets/images/logos/vieraslaji-logo-70x70.png" width="40" height="40" alt="">
     </span>
   </h1>
+
   <div class="row">
     <div class="col-sm-6">
-      <div class="card" *ngFor="let group of desc?.groups">
-        <div class="card-header" role="tab">
-          <strong>{{group.title}}</strong>
-        </div>
-        <div class="card-block" *ngFor="let variable of group.variables">
-          <h4 class="card-title">
-            {{variable.title}}
-          </h4>
-          <span class="card-text" [innerHTML]="variable.content"></span>
+      <div *ngIf="desc?.groups; else infoAndLajifiTemplate">
+        <div class="card" *ngFor="let group of desc?.groups">
+          <div class="card-header" role="tab">
+            <strong>{{group.title}}</strong>
+          </div>
+          <div class="card-block" *ngFor="let variable of group.variables">
+            <h4 class="card-title">
+              {{variable.title}}
+            </h4>
+            <span class="card-text" [innerHTML]="variable.content"></span>
+          </div>
         </div>
       </div>
     </div>
+
     <div class="col-sm-6">
-      <div class="card">
-        <div class="card-header">
-          <strong translate>taxon.pictures</strong>
+      <ng-container *ngIf="media != null && media.length > 0">
+        <div class="card">
+          <div class="card-header">
+            <strong translate>taxon.pictures</strong>
+          </div>
+          <div class="card-block">
+            <ng-container *ngFor="let image of media">
+              <a href="{{image.fullURL}}">
+                <img src="{{image.thumbnailURL}}" style="padding: 2px" />
+              </a>
+            </ng-container>
+          </div>
         </div>
-        <div class="card-block">
-          <ng-container *ngFor="let image of media">
-            <a href="{{image.fullURL}}">
-              <img src="{{image.thumbnailURL}}" style="padding: 2px" />
-            </a>
-          </ng-container>
-        </div>
-      </div>
+      </ng-container>
+
+      <div *ngIf="desc?.groups; then infoAndLajifiTemplate"> </div>
+    </div>
+
+    <ng-template #infoAndLajifiTemplate>
       <div class="card">
         <div class="card-header">
           <strong translate>taxon.card</strong>
@@ -78,6 +89,6 @@
           <a href="http://tun.fi/{{id}}" target="_blank">http://tun.fi/{{id}}</a>
         </div>
       </div>
-    </div>
+    </ng-template>
   </div>
 </div>
