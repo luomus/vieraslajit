@@ -2,21 +2,8 @@
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
-
+ 
 /** SelectGroup icons styling **/
-
-/* Species table */
-
-@media screen and (max-width: 800px) {
-    .mobile-hidden {
-        display: none;
-    }
-}
-@media screen and (min-width: 800px) {
-    .mobile-hidden {
-        display: initial;
-    }
-}
 
 #selectGroup-card-body {
     background-color: white;
