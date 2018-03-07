@@ -2,26 +2,17 @@
 
 .navbar-dark {
     background: $primary;
-    /*padding-top: 20px;
-    padding-bottom: 0px;
-    border-top-left-radius: $content-border-radius;
-    border-top-right-radius: $content-border-radius;*/
     color: $content-background;
 }
 
-/*.navbar-brand {
+.navbar-brand {
     color: $content-background;
-    background: $primary-light;
-    padding: 10px;
-    padding-bottom: 8px;
-    border-radius: 8px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
 
     &:hover {
+        background:$navbar-background-hover; 
         color: $content-background;
     }
-}*/
+}
 
 .nav-item {
     font-size: 16px;
@@ -41,4 +32,5 @@
 .dropdown-menu {
     background: $navbar-dropdown;
 }
+
 
