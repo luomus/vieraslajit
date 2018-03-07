@@ -8,6 +8,7 @@ import { Informal } from '../model/Informal';
 import { NewsElement } from '../model/NewsElement';
 import { Autocomplete } from '../model/Autocomplete';
 import { WarehouseQueryCount } from '../model/Warehouse';
+import { Information } from '../model/Information';
 
 @Injectable()
 export class ApiService {
@@ -15,23 +16,23 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   //Autocomplete
-  autocompleteFindByField(endpoint:LajiApi.Endpoints.autocomplete, field: string, query:LajiApi.AutocompleteQuery):Observable<Autocomplete>;
-  autocompleteFindByField(endpoint:LajiApi.Endpoints.autocomplete, field: string, query: object = {}):Observable<any>{
+  autocompleteFindByField(endpoint: LajiApi.Endpoints.autocomplete, field: string, query: LajiApi.AutocompleteQuery): Observable<Autocomplete>;
+  autocompleteFindByField(endpoint: LajiApi.Endpoints.autocomplete, field: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
-     url,
-       { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
-        );
+      url,
+      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+    );
   }
 
   //Warehouse query count
-  warehouseQueryCountGet(endpoint:LajiApi.Endpoints.warehousequerycount, count:string,query: LajiApi.warehousequerycountQuery):Observable<WarehouseQueryCount>;
-  warehouseQueryCountGet(endpoint:LajiApi.Endpoints.warehousequerycount, count:string,query: object = {}):Observable<any>{
+  warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: LajiApi.warehousequerycountQuery): Observable<WarehouseQueryCount>;
+  warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}${endpoint}`;
     return this.httpClient.get(
-     url,
+      url,
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
-      );
+    );
   }
 
   // InformalTaxonGroup
@@ -77,6 +78,16 @@ export class ApiService {
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
     );
   }
+
+  // Information
+  informationFindById(endpoint: LajiApi.Endpoints.information, id: string): Observable<Information>;
+  informationFindById(endpoint: LajiApi.Endpoints, id: string): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
+    return this.httpClient.get(
+      url,
+      { params: { 'access_token': environment.lajiApi.accessToken } }
+    );
+  }
 }
 
 export namespace LajiApi {
@@ -91,8 +102,9 @@ export namespace LajiApi {
     metadataRange = 'metadata/ranges/%range%',
     newsArray = 'news',
     newsElement = 'news/%id%',
-    autocomplete ='autocomplete/taxon',
-    warehousequerycount='warehouse/query/count'
+    autocomplete = 'autocomplete/taxon',
+    warehousequerycount = 'warehouse/query/count',
+    information = 'information/%id%'
   }
 
   export interface Query {
@@ -106,16 +118,16 @@ export namespace LajiApi {
     selectedFields?: string;
     langFallback?: boolean;
   }
-  export interface AutocompleteQuery{
-    q?:string;
-    includePayload?:boolean;
-    onlyInvasive?:boolean;
+  export interface AutocompleteQuery {
+    q?: string;
+    includePayload?: boolean;
+    onlyInvasive?: boolean;
   }
 
-  export interface warehousequerycountQuery{
-    cache?:boolean;
-    taxonId?:string;
-    individualCountMin?:number;
+  export interface warehousequerycountQuery {
+    cache?: boolean;
+    taxonId?: string;
+    individualCountMin?: number;
 
 
   }
