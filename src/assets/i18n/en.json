@@ -53,5 +53,6 @@
   "legal.h4":"EU catalog",
   "legal.h5":"EU permissions",
   "true": "Yes",
-  "false": "No"
+  "false": "No",
+  "navbar.search":"Search from the site"
 }
