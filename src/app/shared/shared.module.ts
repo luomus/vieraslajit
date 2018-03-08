@@ -14,6 +14,8 @@ import { LabelPipe } from './pipe/label.pipe';
 import { MetadataService } from './service/metadata.service';
 import { OmnisearchComponent } from './omnisearch/omnisearch.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { BsDropdownModule } from 'ngx-bootstrap';
+
 
 @NgModule({
   imports: [
@@ -21,7 +23,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     RouterModule,
     TranslateModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BsDropdownModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent,OmnisearchComponent, LabelPipe],

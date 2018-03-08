@@ -7,6 +7,7 @@ import { TaxonService } from './shared/service/taxon.service';
 import { ApiService } from './shared/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { BsDropdownModule, AccordionModule } from 'ngx-bootstrap';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -20,7 +21,9 @@ describe('AppComponent', () => {
         SharedModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        BsDropdownModule.forRoot(),
+        AccordionModule.forRoot()
       ],
       providers:[ ApiService, TaxonService ]
       
