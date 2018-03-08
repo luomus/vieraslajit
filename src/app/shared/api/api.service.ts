@@ -15,7 +15,7 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  //Autocomplete
+  // Autocomplete
   autocompleteFindByField(endpoint: LajiApi.Endpoints.autocomplete, field: string, query: LajiApi.AutocompleteQuery): Observable<Autocomplete>;
   autocompleteFindByField(endpoint: LajiApi.Endpoints.autocomplete, field: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
@@ -25,7 +25,7 @@ export class ApiService {
     );
   }
 
-  //Warehouse query count
+  // Warehouse query count
   warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: LajiApi.warehousequerycountQuery): Observable<WarehouseQueryCount>;
   warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}${endpoint}`;
@@ -35,8 +35,12 @@ export class ApiService {
     );
   }
 
-  // InformalTaxonGroup
+  /* Get root informal taxon groups */
   informalTaxonGroups(endpoint: LajiApi.Endpoints.informalRoots, query: LajiApi.Query): Observable<PagedResult<Informal>>;
+  /*
+  * @param endpoint,
+  * @param query
+  * */
   informalTaxonGroups(endpoint: LajiApi.Endpoints, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
@@ -45,8 +49,13 @@ export class ApiService {
     );
   }
 
-  // Metadata
+  /* Returns range that is of type select (alt) */
   fetchMetadata(endpoint: LajiApi.Endpoints.metadataRange, range: string, query: LajiApi.Query): Observable<Array<any>>;
+  /*
+  * @param endpoint
+  * @param range
+  * @param query
+  * */
   fetchMetadata(endpoint: LajiApi.Endpoints, range?: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%range%', range);
     return this.httpClient.get(
@@ -55,12 +64,21 @@ export class ApiService {
     );
   }
 
-  // Taxa
+  /* Return taxon data with the given query */
   taxonomyFindById(endpoint: LajiApi.Endpoints.taxon, id: string, query: LajiApi.Query): Observable<Taxonomy>;
+  /* Return media object of the given taxon */
   taxonomyFindById(endpoint: LajiApi.Endpoints.media, id: string, query: LajiApi.Query): Observable<Array<TaxonomyImage>>;
+  /* Return  description texts from Laji.fi taxonomy database */
   taxonomyFindById(endpoint: LajiApi.Endpoints.description, id: string, query: LajiApi.Query): Observable<Array<any>>;
-  taxonomyFindById(endpoint: LajiApi.Endpoints.taxonParents, id: string, query: LajiApi.Query): Observable<Array<Taxonomy>>;
+  /* Return species belonging to the given taxon */
   taxonomyFindById(endpoint: LajiApi.Endpoints.taxonSpecies, id: string, query: LajiApi.Query): Observable<PagedResult<Taxonomy>>;
+  /* Return taxons parents all the way up to biota */
+  taxonomyFindById(endpoint: LajiApi.Endpoints.taxonParents, id: string, query: LajiApi.Query): Observable<Array<Taxonomy>>;
+  /*
+  * @param endpoint
+  * @param id
+  * @param query
+  * */
   taxonomyFindById(endpoint: LajiApi.Endpoints, id: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.get(
@@ -69,8 +87,12 @@ export class ApiService {
     );
   }
 
-  // News
+  /* Return news */
   newsFindAll(endpoint: LajiApi.Endpoints.newsArray, query: LajiApi.Query): Observable<PagedResult<NewsElement>>;
+  /*
+  * @param endpoint
+  * @param query
+  * */
   newsFindAll(endpoint: LajiApi.Endpoints, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
@@ -79,8 +101,12 @@ export class ApiService {
     );
   }
 
-  // Information
+  /* Return information with the given id */
   informationFindById(endpoint: LajiApi.Endpoints.information, id: string): Observable<Information>;
+  /*
+  * @param endpoint
+  * @param id
+  * */
   informationFindById(endpoint: LajiApi.Endpoints, id: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.get(
@@ -91,6 +117,7 @@ export class ApiService {
 }
 
 export namespace LajiApi {
+  /* Endpoints in api.laji.fi */
   export enum Endpoints {
     informalRoots = 'informal-taxon-groups/roots',
     taxonParents = 'taxa/%id%/parents',
@@ -106,7 +133,7 @@ export namespace LajiApi {
     warehousequerycount = 'warehouse/query/count',
     information = 'information/%id%'
   }
-
+  /* Possible query parameters. */
   export interface Query {
     lang?: string;
     informalGroupFilters?: string;
@@ -117,6 +144,8 @@ export namespace LajiApi {
     blacklist?: string;
     selectedFields?: string;
     langFallback?: boolean;
+    hasMediaFilter?: boolean;
+    includeMedia?: boolean;
   }
   export interface AutocompleteQuery {
     q?: string;
