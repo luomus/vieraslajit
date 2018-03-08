@@ -32,7 +32,7 @@
 <br>
 <ng-container *ngIf="selectedGroup">
 
-  <ul class="nav nav-tabs container" id="autoscroll">
+  <ul class="nav nav-tabs container">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" (click)="changeView=false" translate>navigation.list</a>
     </li>
@@ -48,30 +48,24 @@
 
   <div class="tab-pane container" id="taxontable">
     <div *ngIf="!changeView">
-      <div class="table-responsive table-hover">
-        <table class="table table-sm" id="taxontable">
-          <thead>
-            <tr>
-              <th scope="col" translate>taxonomy.folkname</th>
-              <th scope="col" translate>taxonomy.scientificname</th>
-              <th scope="col" translate>taxonomy.onEuList</th>
-              <th scope="col" translate>taxonomy.finnishList</th>
-              <th scope="col" translate>taxonomy.established</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let species of selected">
-              <td>
-                <a [routerLink]="[species.id]">{{species.vernacularName || species.scientificName}}</a>
-              </td>
-              <td>{{species.scientificName}}</td>
-              <td translate>{{species?.administrativeStatuses?.includes('MX.euInvasiveSpeciesList') ? 'taxonomy.yes' : 'taxonomy.no'}}</td>
-              <td translate>{{species?.administrativeStatuses?.includes('MX.nationallySignificantInvasiveSpecies') ? 'taxonomy.yes' : 'taxonomy.no'}}</td>
-              <td translate>{{species?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <ngx-datatable *ngIf="page" class="material selection-cell"
+        [rows]="selected" 
+        [columnMode]="'flex'"
+        [columns]="columns" 
+        [headerHeight]="50"
+        [rowHeight]="50"
+        [reorderable]='false'
+        [selectionType]="'row'"
+        [externalPaging]="true"
+        [selected]="selected"
+        [count]="page?.total"
+        [offset]="page?.currentPage - 1"
+        [limit]="page?.pageSize"
+        [footerHeight]="50"
+        [sorts]="[{prop: 'stableString', dir: 'desc'}]"
+        (select)="onSelect($event)"
+        (page)="setPage($event)">
+      </ngx-datatable>
     </div>
   </div>
 

@@ -13,15 +13,16 @@
   "taxonomy.onEuList": "EU list",
   "taxonomy.finnishList": "Finnish list",
   "taxonomy.established": "Established",
+  "taxonomy.quarantinePlantPest": "Quarantine plant pest",
   "taxonomy.yes": "Yes",
   "taxonomy.no": "No",
   "taxon.card": "Species card",
   "taxon.name": "Vernacular name",
   "taxon.scientific": "Scientific name",
-  "taxon.moreInfo": "More info at laji.fi",
+  "taxon.lajiFi": "For more information, visit Laji.fi",
   "taxon.administrative": "Administrative status",
   "taxon.establishedFin": "Established in Finland",
-  "taxon.establishment": "Establishment",
+  "taxon.occurrence": "Establishment",
   "taxon.unknown": "Unknown",
   "navigation.news": "News",
   "omnisearch.information": "Information",
@@ -41,5 +42,7 @@
   "legal.h2": "Invasive species law",
   "legal.h3":"EU legislation",
   "legal.h4":"EU catalog",
-  "legal.h5":"EU permissions"
+  "legal.h5":"EU permissions",
+  "true": "Yes",
+  "false": "No"
 }
