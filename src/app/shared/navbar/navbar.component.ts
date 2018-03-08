@@ -8,7 +8,7 @@ import { UserService } from '../service/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  private loginUrl = '#';
+  loginUrl = '#';
 
   constructor() { }
 
