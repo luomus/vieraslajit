@@ -8,7 +8,7 @@ import { TaxonService } from '../../shared/service/taxon.service';
 import { Informal } from '../../shared/model/Informal';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
-import {OmnisearchComponent} from '../../shared/omnisearch/omnisearch.component'
+import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.component'
 
 
 @Component({
