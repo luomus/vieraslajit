@@ -144,6 +144,8 @@ export namespace LajiApi {
     blacklist?: string;
     selectedFields?: string;
     langFallback?: boolean;
+    hasMediaFilter?: boolean;
+    includeMedia?: boolean;
   }
   export interface AutocompleteQuery {
     q?: string;

@@ -13,10 +13,11 @@ export class TaxonService {
   constructor(private apiService: ApiService) { }
 
   // Get all species in the group.
-  getTaxonomy(taxonId: string, group?: string, lang?: string): Observable<PagedResult<Taxonomy>> {
+  getTaxonomy(taxonId: string, group?: string, lang?: string, includeMedia: boolean = false): Observable<PagedResult<Taxonomy>> {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
-        { invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: false, lang: lang, langFallback: false });
+        { invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: false, lang: lang, langFallback: false,
+          includeMedia: includeMedia });
   }
 
   // Get one taxon

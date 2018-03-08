@@ -7,7 +7,7 @@ import { TaxonService } from '../../shared/service/taxon.service';
 import { Informal } from '../../shared/model/Informal';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
-import {OmnisearchComponent} from '../../shared/omnisearch/omnisearch.component'
+import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.component'
 
 @Component({
   selector: 'vrs-taxon-list',
@@ -62,13 +62,13 @@ export class TaxonListComponent implements OnInit, OnDestroy {
       this.taxa = data.results;
       this.taxa.forEach(element => {
         this.taxonService
-        .getTaxonMedia(element.id, 'fi').subscribe(data => {
-          if (data.length > 0) {
-            element.thumbnail = data[0].thumbnailURL;
-          } else {
-            element.thumbnail = 'assets/images/logos/vieraslaji-logo-70x70.png';
-          }
-        });
+          .getTaxonMedia(element.id, 'fi').subscribe(data => {
+            if (data.length > 0) {
+              element.thumbnail = data[0].thumbnailURL;
+            } else {
+              element.thumbnail = 'assets/images/logos/vieraslaji-logo-70x70.png';
+            }
+          });
       });
       this.selected = this.taxa;
     });
@@ -76,11 +76,11 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   }
 
   myScroller() {
-    setTimeout(function() {
+    setTimeout(function () {
       var scroller = document.getElementById("autoscroll");
       scroller.scrollTop = scroller.scrollHeight;
       scroller.scrollIntoView();
-    }, 0);  
+    }, 0);
   }
 
   ngOnDestroy() {

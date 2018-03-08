@@ -118,6 +118,9 @@ export interface Taxonomy {
 
     occurrences?: Array<any>;
 
+    /* images */
+    multimedia?: Array<TaxonomyImage>;
+
     synonyms?: Array<Taxonomy>;
 
     children?: Array<Taxonomy>;
