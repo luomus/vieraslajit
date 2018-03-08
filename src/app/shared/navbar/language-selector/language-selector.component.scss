@@ -8,7 +8,7 @@
 
     /* Dropdown Button */
     .dropbtn {
-        background-color: $navbar-background;
+        background-color: $primary;
         color: white;
         padding: 4px;
         padding-right: 16px;
@@ -27,7 +27,7 @@
     .dropdown-content {
         display: none;
         position: absolute;
-        background-color: #333;
+        background-color:$navbar-dropdown;
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
@@ -43,7 +43,7 @@
     }
 
     /* Change color of dropdown links on hover */
-    .dropdown-content a:hover {background-color: #555}
+    .dropdown-content a:hover {background-color:$navbar-background-hover}
 
     /* Show the dropdown menu on hover */
     &:hover .dropdown-content {
@@ -51,8 +51,8 @@
     }
 
     /* Change the background color of the dropdown button when the dropdown content is shown */
-    &:hover .dropbtn {
-        background-color: #ddd;
+    /*&:hover .dropbtn {
+        background-color: $navbar-background-hover;
         color: black;
-    }
+    }*/
 }

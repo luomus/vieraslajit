@@ -1,20 +1,15 @@
 @import '../../../assets/styles/vars';
 
 .navbar-dark {
-    background: $navbar-background;
+    background: $primary;
     color: $content-background;
 }
 
 .navbar-brand {
     color: $content-background;
-    background: $primary-light;
-    padding: 10px;
-    padding-bottom: 8px;
-    border-radius: 8px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
 
     &:hover {
+        background:$navbar-background-hover; 
         color: $content-background;
     }
 }
@@ -34,7 +29,8 @@
     color: $content-background;
 }
 
-.breadcrumb-bar {
-    background: linear-gradient(-90deg, $primary, $primary-light);
-    height: 25px;
+.dropdown-menu {
+    background: $navbar-dropdown;
 }
+
+
