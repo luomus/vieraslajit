@@ -55,5 +55,6 @@
   "legal.h4":"Euroopan unionin luettelo",
   "legal.h5":"EU:n vieraslajiasetuksen mukaiset luvat",
   "true": "Kyllä",
-  "false": "Ei"
+  "false": "Ei",
+  "navbar.search":"Hae sivustolta"
 }
