@@ -9,11 +9,21 @@ import { NewsElement } from '../model/NewsElement';
 import { Autocomplete } from '../model/Autocomplete';
 import { WarehouseQueryCount } from '../model/Warehouse';
 import { Information } from '../model/Information';
+import { userProperty, UserService } from '../service/user.service';
 
 @Injectable()
 export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
+
+  // Auth-token
+
+  authToken(token: string) {
+    return this.httpClient.get(
+      `${environment.lajiApi.url}/token/` + token,
+      { params: {'access_token': environment.lajiApi.accessToken } }
+    );
+  }
 
   // Autocomplete
   autocompleteFindByField(endpoint: LajiApi.Endpoints.autocomplete, field: string, query: LajiApi.AutocompleteQuery): Observable<Autocomplete>;
