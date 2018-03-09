@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'vrs-navbar',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  loginUrl = '#';
+
   constructor() { }
 
   ngOnInit() {
+    this.loginUrl = UserService.getLoginUrl();
   }
 
 }
