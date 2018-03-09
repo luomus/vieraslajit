@@ -1,34 +1,36 @@
-<div id="omnisearch"><vrs-omnisearch></vrs-omnisearch></div>
+<div id="omnisearch">
+  <vrs-omnisearch></vrs-omnisearch>
+</div>
 
 <div id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="card">
-      <div class="card-header" role="tab" id="headingOne">
-        <h5 class="mb-0" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" translate>
-            taxonomy.taxongroup
-            <ng-container *ngIf="selectedGroup"> > {{selectedGroup.name}}</ng-container>
-          </a>
+  <accordion>
+    <accordion-group #group [(isOpen)]="showGroups">
+      <div accordion-heading>
+        <h5 class="mb-0" translate>
+          taxonomy.taxongroup
+          <ng-container *ngIf="selectedGroup"> > {{selectedGroup.name}}</ng-container>
         </h5>
       </div>
 
-      <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-          <div class="card-block">
-              <ng-container>
-                  <div class="card-group container">
-                    <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-12 col-sm-6 col-md-4 col-lg-3">
-                      <div class="card" id="selectGroup-card" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <img class="card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
-                        <div class="card-body" id="selectGroup-card-body">
-                          <p class="card-text" id="selectGroup-card-text">{{group.name}}</p>
-                        </div>
-                      </div>
-                    </div>
+      <div id="collapseOne" class="collapse show">
+        <div class="card-block">
+          <ng-container>
+            <div class="card-group container">
+              <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card" id="selectGroup-card" (click)="changeOpen()">
+                  <img class="card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
+                  <div class="card-body" id="selectGroup-card-body">
+                    <p class="card-text" id="selectGroup-card-text">{{group.name}}</p>
                   </div>
-                </ng-container>
-          </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
         </div>
       </div>
-
+    </accordion-group>
+  </accordion>
+</div>
 <br>
 <ng-container *ngIf="selectedGroup">
 
@@ -48,23 +50,10 @@
 
   <div class="tab-pane container" id="taxontable">
     <div *ngIf="!changeView">
-      <ngx-datatable *ngIf="page" class="material selection-cell"
-        [rows]="selected" 
-        [columnMode]="'flex'"
-        [columns]="columns" 
-        [headerHeight]="50"
-        [rowHeight]="50"
-        [reorderable]='false'
-        [selectionType]="'row'"
-        [externalPaging]="true"
-        [selected]="selected"
-        [count]="page?.total"
-        [offset]="page?.currentPage - 1"
-        [limit]="page?.pageSize"
-        [footerHeight]="50"
-        [sorts]="[{prop: 'stableString', dir: 'desc'}]"
-        (select)="onSelect($event)"
-        (page)="setPage($event)">
+      <ngx-datatable *ngIf="page" class="material selection-cell" [rows]="selected" [columnMode]="'flex'" [columns]="columns" [headerHeight]="50"
+        [rowHeight]="50" [reorderable]='false' [selectionType]="'row'" [externalPaging]="true" [selected]="selected" [count]="page?.total"
+        [offset]="page?.currentPage - 1" [limit]="page?.pageSize" [footerHeight]="50" [sorts]="[{prop: 'stableString', dir: 'desc'}]"
+        (select)="onSelect($event)" (page)="setPage($event)">
       </ngx-datatable>
     </div>
   </div>

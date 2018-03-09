@@ -3,51 +3,58 @@
         <a class="navbar-brand" routerLink="/home" translate>
             VIERASLAJIT.FI
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        
+
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" translate>
-                              navigation.taxonomy
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                              <a class="dropdown-item" routerLink="/taxon" translate>dropdown.taxonomy</a>
-                              <a class="dropdown-item" routerLink="#" translate>dropdown.speciesComparison</a>
-                            </div>
-                    </li>
+                <li class="nav-item dropdown" dropdown>
+                    <a class="nav-link dropdown-toggle" href dropdownToggle (click)="false" translate>
+                        navigation.taxonomy
+                    </a>
+                    <div class="dropdown-menu" *dropdownMenu>
+                        <a class="dropdown-item" routerLink="/taxon" translate>dropdown.taxonomy</a>
+                        <a class="dropdown-item" routerLink="#" translate>dropdown.speciesComparison</a>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/removal" translate>navigation.removal</a>
                 </li>
-                <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" translate>
-                          navigation.about
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                          <a class="dropdown-item" routerLink="#" translate>dropdown.info</a>
-                          <a class="dropdown-item" routerLink="/news" translate>dropdown.news</a>
-                          <a class="dropdown-item" routerLink="/legal" translate>dropdown.legal</a>
-                          <a class="dropdown-item" routerLink="#" translate>dropdown.projects</a>
-                          <a class="dropdown-item" routerLink="#" translate>dropdown.publication</a>
-                          <a class="dropdown-item" routerLink="#" translate>dropdown.guides</a>
-                        </div>
+                <li class="nav-item dropdown" dropdown>
+                    <a class="nav-link dropdown-toggle" href dropdownToggle (click)="false" translate>
+                        navigation.about
+                    </a>
+                    <div class="dropdown-menu" *dropdownMenu>
+                        <a class="dropdown-item" routerLink="#" translate>dropdown.info</a>
+                        <a class="dropdown-item" routerLink="/news" translate>dropdown.news</a>
+                        <a class="dropdown-item" routerLink="/legal" translate>dropdown.legal</a>
+                        <a class="dropdown-item" routerLink="#" translate>dropdown.projects</a>
+                        <a class="dropdown-item" routerLink="#" translate>dropdown.publication</a>
+                        <a class="dropdown-item" routerLink="#" translate>dropdown.guides</a>
+                    </div>
                 </li>
             </ul>
-            <form class="form-inline mr-3">
-                    <img src="assets/images/logos/vieraslaji-logo-70x70.png" width="30" height="30" class="d-inline-block align-top" alt="invasive species logo">
-                    <input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search">
-            </form>
-            
+            <a (click)="openModal(modalSearch)" data-toggle="modal" data-target="#modalSearch">
+                <span class="oi oi-magnifying-glass icon"></span>
+            </a>
+
         </div>
         <ul class="nav navbar-nav mr-auto">
             <li class="nav-item">
-                    <a class="nav-link" routerLink="#" translate>navigation.login</a>
+              <a href='{{loginUrl}}' class="nav-link" translate>navigation.login</a>
             </li>
         </ul>
         <vrs-language-selector></vrs-language-selector>
     </div>
 </nav>
+<ng-template #modalSearch class="modal fade" role="dialog">
+    <div class="modal-header">
+        <h4>Hae sivustolta</h4>
+        <button type="button" class="close" (click)="modalRef.hide()" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body">
+        <vrs-search></vrs-search>
+    </div>
+</ng-template>

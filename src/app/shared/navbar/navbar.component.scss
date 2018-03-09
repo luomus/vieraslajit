@@ -16,7 +16,7 @@
 
 .nav-item {
     font-size: 16px;
-
+    background-color: $primary;
     a {
         color: $content-background;
     }
@@ -33,4 +33,6 @@
     background: $navbar-dropdown;
 }
 
-
+.icon   {
+    color: $content-background;
+}
