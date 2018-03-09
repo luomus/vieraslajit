@@ -8,8 +8,6 @@
     </div>
 <div class="container-fluid">
 
-    
-
     <vrs-omnisearch></vrs-omnisearch>
   
     <div class="row justify-content-center" *ngFor="let alert of alerts">
@@ -17,15 +15,27 @@
         {{alert.title}}
         </div>
     </div>
-  <div class="row">
-    <div class="col-8">
-        <h1 translate>home.h1</h1>
+
+    <div>
+       <h1 translate>home.h1</h1>
         <p translate>home.description</p>
         
         <h3 translate>home.whatare.h</h3>
-        <p translate>home.whatare.p</p>
+        <p translate>home.whatare.p</p> 
     </div>
-    <div class="col-4 card">
+
+  <div class="row">
+    <div class="col-4 border">
+      <p>Boksit tähän</p>  
+    </div>
+    <div class="col-4 border">
+            <h1 translate>home.h1</h1>
+            <p translate>home.description</p>
+            
+            <h3 translate>home.whatare.h</h3>
+            <p translate>home.whatare.p</p>
+        </div>
+    <div class="col-4 border card">
         <div class="card-body">
             <h3 class="card-title">Ajankohtaista</h3>
             <div *ngFor="let n of news" class="border-top py-3">

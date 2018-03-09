@@ -1,11 +1,13 @@
 @import '../assets/styles/vars';
 
-.main-bg {
+
+body {
     background-color: $content-background;
     padding: 0px;
 }
 
 .vrs-content {
+    min-height: 300px;
     //padding: 50px;
     //padding-top: 20px;
     //padding-bottom: 20px;
