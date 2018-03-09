@@ -21,7 +21,7 @@ export class ApiService {
   authToken(token: string) {
     return this.httpClient.get(
       `${environment.lajiApi.url}/token/` + token,
-      { params: {'access_token': environment.lajiApi.accessToken } }
+      { params: { 'access_token': environment.lajiApi.accessToken } }
     );
   }
 
@@ -47,12 +47,14 @@ export class ApiService {
 
   /* Get root informal taxon groups */
   informalTaxonGroups(endpoint: LajiApi.Endpoints.informalRoots, query: LajiApi.Query): Observable<PagedResult<Informal>>;
+  /* Get children for the given group */
+  informalTaxonGroups(endpoint: LajiApi.Endpoints.informalChildren, query: LajiApi.Query, id: string): Observable<PagedResult<Informal>>;
   /*
   * @param endpoint,
   * @param query
   * */
-  informalTaxonGroups(endpoint: LajiApi.Endpoints, query: object = {}): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`;
+  informalTaxonGroups(endpoint: LajiApi.Endpoints, query: object = {}, id?: string): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.get(
       url,
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
@@ -130,6 +132,7 @@ export namespace LajiApi {
   /* Endpoints in api.laji.fi */
   export enum Endpoints {
     informalRoots = 'informal-taxon-groups/roots',
+    informalChildren = 'informal-taxon-groups/%id%/children',
     taxonParents = 'taxa/%id%/parents',
     taxon = 'taxa/%id%',
     taxonSpecies = 'taxa/%id%/species',

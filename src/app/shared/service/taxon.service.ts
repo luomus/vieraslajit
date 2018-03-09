@@ -13,11 +13,22 @@ export class TaxonService {
   constructor(private apiService: ApiService) { }
 
   // Get all species in the group.
-  getTaxonomy(taxonId: string, group?: string, lang?: string, pageNumber?: string, includeMedia: boolean = false): Observable<PagedResult<Taxonomy>> {
+  getTaxonomy(taxonId: string, group?: string, lang?: string, pageNumber: string = '1', includeMedia: boolean = false): Observable<PagedResult<Taxonomy>> {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
-        { invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: false,
-          lang: lang, langFallback: false, pageSize: '50', page: pageNumber, includeMedia: includeMedia });
+        {
+          invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: false,
+          lang: lang, langFallback: true, pageSize: '50', page: pageNumber, includeMedia: includeMedia
+        });
+  }
+
+  // Get all species in the group with media.
+  getComparisonTaxonomy(taxonId: string, group: string, lang?: string): Observable<PagedResult<Taxonomy>> {
+    return this.apiService
+      .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
+        {
+          informalGroupFilters: group, onlyFinnish: false, hasMediaFilter: true
+        });
   }
 
   // Get one taxon
@@ -30,6 +41,12 @@ export class TaxonService {
     return this.apiService
       .informalTaxonGroups(LajiApi.Endpoints.informalRoots, { lang: lang });
   }
+  // Get children of the group.
+  getGroupChildren(groupId: string, lang?: string): Observable<PagedResult<Informal>> {
+    return this.apiService
+      .informalTaxonGroups(LajiApi.Endpoints.informalChildren, { lang: lang }, groupId);
+  }
+
   // Get taxon description.
   getTaxonDescription(taxonId: string, lang: string): Observable<Array<any>> {
     return this.apiService
