@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   lajiApi: {
-    url: 'https://api.laji.fi/v0/',
-    accessToken: 'pAec01FKjdmHNajib8n6QAbt9dDDpEVYYeFfEj6baYL697FcosZDyrAkLsbWyAH9'
+    url: 'https://apitest.laji.fi/v0/',
+    accessToken: 'kFEdTHdoHEY2c98BokkdjhOLx8PUHdjbDTFeIkDLkWLwGwYcz8RwA3UxI1ybegzx'
   }
 };
