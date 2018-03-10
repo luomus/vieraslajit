@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand" routerLink="/home" translate>
             VIERASLAJIT.FI
         </a>
@@ -36,19 +36,25 @@
                     </div>
                 </li>
             </ul>
-            <a (click)="openModal(modalSearch)" data-toggle="modal" data-target="#modalSearch">
-                <span class="oi oi-magnifying-glass icon"></span>
-            </a>
-
-        </div>
-        <ul class="nav navbar-nav mr-auto">
-            <li class="nav-item">
-              <a href='{{loginUrl}}' class="nav-link" translate>navigation.login</a>
-            </li>
-        </ul>
-        <vrs-language-selector></vrs-language-selector>
+            
+            <div class= "ml-auto">
+               <ul class="nav navbar-nav">
+                  <li href="#modalSearch" data-toggle="modal" data-target="#modalSearch" class="nav-item" >
+                <span class="oi oi-magnifying-glass icon" ></span>
+                  </li>
+                  <li class="nav-item">
+                    <a href='{{loginUrl}}' class="nav-link" translate>navigation.login</a>
+                  </li> 
+                  <li class= "nav-item">
+                    <vrs-language-selector ></vrs-language-selector>  
+                  </li>
+               </ul>
+            </div>
+        </div> 
+        
     </div>
 </nav>
+
 <ng-template #modalSearch class="modal fade" role="dialog">
     <div class="modal-header">
         <h4>Hae sivustolta</h4>
@@ -58,3 +64,4 @@
         <vrs-search></vrs-search>
     </div>
 </ng-template>
+
