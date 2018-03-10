@@ -1,11 +1,40 @@
-.jumbotron-fluid {
+@import '../../assets/styles/vars';
+
+.jumbotron {
     background: url("../../assets/images/bgs/vieraslajit-home-bg.png") center;
-    background-size: 110%;
+    background-size: 100%;
     background-repeat: no-repeat;
+    height: 270px;
+    margin-bottom: 0px;
 }
 
-.col-4 {
-    background: #FFF8C6;
-    margin: 20px;
+.infobox {
+    background: $content-background-highlight;
+    height: 100%;
+    padding: 20px;
+}
+
+.whatAre {
+    color: $content-background-highlight-dark;
+    font-weight: bold;
+    line-height: 200%;
+    word-spacing: 150%;
+}
+
+#searchbar {
+    background: $content-background-highlight-dark;
+}
+
+#welcome {
+    color: $navbar-dropdown;
+    font-family: $font-headline-handwritten;
+    font-size: 20px;
+    margin: 50px;
+}
+
+#pagemap {
+    background: $primary;
+    color: $content-background;
+    margin-top: 30px;
 }
 

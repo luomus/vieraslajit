@@ -30,10 +30,7 @@
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
     "express": "^4.16.2",
-<<<<<<< HEAD
     "jquery": "^3.3.1",
-=======
->>>>>>> 909c256b966d9b5ccd89eee84eac836b321f6b70
     "ngx-bootstrap": "^2.0.2",
     "open-iconic": "^1.1.1",
     "rxjs": "^5.5.6",

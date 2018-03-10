@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
         if (d.tag.includes("technical")) {
           technical.push(d);
         }
-        if (d.tag.includes("vieraslajit.fi")&&this.news.length<6) {
+        if (d.tag.includes("vieraslajit.fi")&&this.news.length<5) {
             this.news.push(d);
           }  
       }
