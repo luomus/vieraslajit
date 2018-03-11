@@ -91,11 +91,11 @@
           <a href="http://tun.fi/{{id}}" target="_blank">http://tun.fi/{{id}}</a>
         </div>
       </div>
-      <button class="btn btn-primary" (click)="comparisonView()">Lajivertailu</button>
+      <button class="btn btn-primary" (click)="comparisonView()" translate>comparison.title</button>
     </ng-template>
   </div>
 </div>
-<div *ngIf="comparison">
-  <button class="btn btn-primary" (click)="comparisonView()">Lajikortti</button>
-  <vrs-taxon-comparison [taxon]="taxon"></vrs-taxon-comparison>
+<div *ngIf="comparison && taxon && media">
+  <button class="btn btn-primary" (click)="comparisonView()" translate>comparison.card</button>
+  <vrs-taxon-comparison [taxon]="taxon" [media]="media[0]"></vrs-taxon-comparison>
 </div>

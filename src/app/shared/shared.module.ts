@@ -14,7 +14,7 @@ import { LabelPipe } from './pipe/label.pipe';
 import { MetadataService } from './service/metadata.service';
 import { OmnisearchComponent } from './omnisearch/omnisearch.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, ModalModule } from 'ngx-bootstrap';
+import { BsDropdownModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
 
 
 @NgModule({
@@ -25,7 +25,8 @@ import { BsDropdownModule, ModalModule } from 'ngx-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     BsDropdownModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    CollapseModule.forRoot()
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

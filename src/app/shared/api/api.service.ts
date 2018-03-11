@@ -164,6 +164,7 @@ export namespace LajiApi {
     q?: string;
     includePayload?: boolean;
     onlyInvasive?: boolean;
+    lang?: string;
   }
 
   export interface warehousequerycountQuery {

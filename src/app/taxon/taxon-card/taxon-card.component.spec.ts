@@ -13,6 +13,8 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { CollapseModule } from 'ngx-bootstrap';
 import { TaxonComparisonComponent } from '../taxon-comparison/taxon-comparison.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { OmnisearchComponent } from '../../shared/omnisearch';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('TaxonCardComponent', () => {
   let component: TaxonCardComponent;
@@ -20,16 +22,10 @@ describe('TaxonCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TaxonCardComponent, LabelPipe, TaxonComparisonComponent],
-      imports: [HttpClientModule, TranslateModule.forRoot(), CollapseModule.forRoot(), RouterTestingModule ],
-      providers: [TaxonService, ApiService, TranslateService, MetadataService,
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            params: Observable.of({ id: 123 })
-          }
-        }
-      ]
+      declarations: [TaxonCardComponent, LabelPipe, TaxonComparisonComponent, OmnisearchComponent],
+      imports: [HttpClientModule, TranslateModule.forRoot(), CollapseModule.forRoot(),
+        RouterTestingModule, FormsModule, ReactiveFormsModule],
+      providers: [TaxonService, ApiService, TranslateService, MetadataService]
     })
       .compileComponents();
   }));

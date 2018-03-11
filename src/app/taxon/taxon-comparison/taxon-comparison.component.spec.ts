@@ -8,6 +8,8 @@ import { TaxonService } from '../../shared/service/taxon.service';
 import { ApiService } from '../../shared/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MetadataService } from '../../shared/service/metadata.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { OmnisearchComponent } from '../../shared/omnisearch';
 
 describe('TaxonComparisonComponent', () => {
   let component: TaxonComparisonComponent;
@@ -15,8 +17,9 @@ describe('TaxonComparisonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TaxonComparisonComponent, LabelPipe],
-      imports: [TranslateModule.forRoot(), RouterTestingModule, HttpClientModule],
+      declarations: [TaxonComparisonComponent, LabelPipe, OmnisearchComponent],
+      imports: [TranslateModule.forRoot(), RouterTestingModule, HttpClientModule,
+        FormsModule, ReactiveFormsModule],
       providers: [TaxonService, ApiService, MetadataService]
     })
       .compileComponents();

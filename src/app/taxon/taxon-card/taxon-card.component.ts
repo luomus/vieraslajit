@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class TaxonCardComponent implements OnInit, OnDestroy {
 
   private sub: any;
+  private querySub: Subscription;
   private subTrans: Subscription;
 
   id: string;
@@ -23,8 +24,8 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   desc: TaxonomyDescription;
   media: Array<TaxonomyImage>;
   family: Array<Taxonomy>;
-  quarantinePlantPest: boolean;  //Vaarallinen kasvintuhoaja
-  comparison = false;
+  quarantinePlantPest: boolean;  // Vaarallinen kasvintuhoaja
+  comparison: boolean;
   constructor(private route: ActivatedRoute, private router: Router,
     private taxonService: TaxonService, private translate: TranslateService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -34,6 +35,11 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.querySub = this.route.queryParams.subscribe(params => {
+      if (params) {
+        this.comparison = params.comparison;
+      }
+    });
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id']; // (+) converts string 'id' to a number
     });
@@ -44,7 +50,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   update() {
     this.taxonService.getTaxon(this.id, this.translate.currentLang).subscribe(data => {
       this.taxon = data;
-      this.quarantinePlantPest = this.taxon.administrativeStatuses.includes("MX.quarantinePlantPest");
+      this.quarantinePlantPest = this.taxon.administrativeStatuses.includes('MX.quarantinePlantPest');
     });
     this.taxonService.getTaxonDescription(this.id, this.translate.currentLang).subscribe(data => {
       this.desc = data[0];
@@ -73,5 +79,8 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.subTrans.unsubscribe();
+    if (this.querySub.closed) {
+      this.querySub.unsubscribe();
+    }
   }
 }

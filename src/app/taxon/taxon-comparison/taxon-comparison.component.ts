@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Taxonomy } from '../../shared/model/Taxonomy';
+import { Taxonomy, TaxonomyImage } from '../../shared/model/Taxonomy';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
@@ -12,6 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 export class TaxonComparisonComponent implements OnInit, OnDestroy {
 
   @Input() taxon: Taxonomy;
+  @Input() media: TaxonomyImage;
+  private subTrans: any;
 
   groups = [];
   taxonomy: Taxonomy[];
@@ -19,6 +21,11 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
   constructor(private taxonService: TaxonService, private translate: TranslateService) { }
 
   ngOnInit() {
+    this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.update();
+  }
+
+  update() {
     if (this.taxon) {
       this.taxon.informalTaxonGroups.forEach((elem, index, arr) => {
         this.taxonService.getGroupChildren(elem).subscribe((data) => {
@@ -33,9 +40,7 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
       });
     }
   }
-
   getTaxon() {
-    console.log(this.translate.currentLang);
     this.groups.forEach(elem => {
       this.taxonService.getComparisonTaxonomy('MX.37600', elem, this.translate.currentLang).subscribe(data => {
         this.taxonomy = data.results;

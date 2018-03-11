@@ -13,7 +13,8 @@ export class TaxonService {
   constructor(private apiService: ApiService) { }
 
   // Get all species in the group.
-  getTaxonomy(taxonId: string, group?: string, lang?: string, pageNumber: string = '1', includeMedia: boolean = false): Observable<PagedResult<Taxonomy>> {
+  getTaxonomy(taxonId: string, group?: string, lang?: string, pageNumber: string = '1',
+    includeMedia: boolean = false): Observable<PagedResult<Taxonomy>> {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
         {
@@ -64,13 +65,13 @@ export class TaxonService {
         { lang: lang, selectedFields: 'id, vernacularName, scientificName, taxonRank' });
   }
   // Get autocomplete for taxon search.
-  getAutocomplete(field: string, q: string): Observable<any> {
+  getAutocomplete(field: string, q: string, lang?: string): Observable<any> {
     return this.apiService
-      .autocompleteFindByField(LajiApi.Endpoints.autocomplete, field, { q, includePayload: true, onlyInvasive: true });
+      .autocompleteFindByField(LajiApi.Endpoints.autocomplete, field, { q, includePayload: true, onlyInvasive: true, lang: lang });
   }
   // Get warehouse query count for taxon search.
   getWareHouseQueryCount(count: string, lang: string, taxonId): Observable<any> {
     return this.apiService
-      .warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount, count, { cache: false, taxonId, individualCountMin: 1 });
+      .warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount, count, { cache: false, taxonId, individualCountMin: 1, });
   }
 }

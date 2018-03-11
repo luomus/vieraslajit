@@ -1,17 +1,20 @@
 <div class="container-fluid">
-  <h1>LAJIVERTAILU</h1>
+  <h1 translate>comparison.title</h1>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eleifend imperdiet leo nec dictum. Proin sem nibh, pharetra
     vitae nisl non, iaculis pulvinar lacus. Aliquam vehicula erat massa, in rhoncus libero egestas cursus. Duis finibus condimentum
     quam, ut tempor ante tincidunt et. Pellentesque ornare leo eu augue bibendum, et pulvinar lorem vulputate. Nulla eu pulvinar
     lectus. Duis tristique pretium quam, quis maximus sem bibendum vel. Morbi eget dolor sollicitudin, dignissim lorem vel,
     commodo metus.
   </p>
-
+  <vrs-omnisearch [comparisonView]="true"></vrs-omnisearch>
   <div class="row">
     <div class="col-md-6">
       <div class="card" *ngIf="taxon">
         <div class="card-header">
           <strong>{{taxon?.vernacularName}}</strong>
+        </div>
+        <div class="card-block">
+          <img src="{{media.thumbnailURL}}" style="padding: 2px" />
         </div>
         <div class="card-block">
           <div>
