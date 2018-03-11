@@ -1,10 +1,9 @@
-<div class="container-fluid">
+<div [collapse]="comparison" class="container-fluid">
   <h1>{{taxon?.vernacularName}}
     <span [class.cursive]="taxon?.cursiveName">({{taxon?.scientificName}})
       <img src="assets/images/logos/vieraslaji-logo-70x70.png" width="40" height="40" alt="">
     </span>
   </h1>
-
   <div class="row">
     <div class="col-sm-6">
       <div *ngIf="desc?.groups; else infoAndLajifiTemplate">
@@ -71,7 +70,8 @@
           </div>
           <div>
             <strong translate>taxon.occurrence</strong>
-            <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate }}</span>
+            <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate }}
+            </span>
           </div>
           <div>
             <strong translate>taxonomy.quarantinePlantPest</strong>
@@ -81,7 +81,9 @@
       </div>
       <div class="card">
         <div class="card-header">
-          <a href="https://laji.fi" target="_blank"><img src="https://laji.fi/static/images/icons/favicon.ico" alt="laji.fi"></a>
+          <a href="https://laji.fi" target="_blank">
+            <img src="https://laji.fi/static/images/icons/favicon.ico" alt="laji.fi">
+          </a>
           <strong translate>Laji.fi</strong>
         </div>
         <div class="card-block">
@@ -92,7 +94,8 @@
       <button class="btn btn-primary" (click)="comparisonView()">Lajivertailu</button>
     </ng-template>
   </div>
-  <div *ngIf="comparison">
-    <vrs-taxon-comparison [taxon]="taxon"></vrs-taxon-comparison>
-  </div>
+</div>
+<div *ngIf="comparison">
+  <button class="btn btn-primary" (click)="comparisonView()">Lajikortti</button>
+  <vrs-taxon-comparison [taxon]="taxon"></vrs-taxon-comparison>
 </div>

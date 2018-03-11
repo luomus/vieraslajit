@@ -10,6 +10,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LabelPipe } from '../../shared/pipe/label.pipe';
 import { MetadataService } from '../../shared/service/metadata.service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { CollapseModule } from 'ngx-bootstrap';
+import { TaxonComparisonComponent } from '../taxon-comparison/taxon-comparison.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TaxonCardComponent', () => {
   let component: TaxonCardComponent;
@@ -17,8 +20,8 @@ describe('TaxonCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TaxonCardComponent, LabelPipe],
-      imports: [HttpClientModule, TranslateModule.forRoot()],
+      declarations: [TaxonCardComponent, LabelPipe, TaxonComparisonComponent],
+      imports: [HttpClientModule, TranslateModule.forRoot(), CollapseModule.forRoot(), RouterTestingModule ],
       providers: [TaxonService, ApiService, TranslateService, MetadataService,
         {
           provide: ActivatedRoute,

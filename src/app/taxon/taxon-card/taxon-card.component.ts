@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { TaxonomyDescription, TaxonomyImage, Taxonomy } from '../../shared/model/Taxonomy';
 import { Observable } from 'rxjs/Observable';
@@ -25,14 +25,19 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   family: Array<Taxonomy>;
   quarantinePlantPest: boolean;  //Vaarallinen kasvintuhoaja
   comparison = false;
-  constructor(private route: ActivatedRoute, private taxonService: TaxonService, private translate: TranslateService) { }
+  constructor(private route: ActivatedRoute, private router: Router,
+    private taxonService: TaxonService, private translate: TranslateService) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
 
   ngOnInit() {
-
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id']; // (+) converts string 'id' to a number
     });
+    this.scrollTop();
     this.update();
   }
 
@@ -57,7 +62,12 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   }
 
   comparisonView() {
-    this.comparison = true;
+    this.comparison = !this.comparison;
+  }
+
+  scrollTop() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
 
   ngOnDestroy() {
