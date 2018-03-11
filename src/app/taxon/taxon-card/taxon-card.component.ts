@@ -24,6 +24,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   media: Array<TaxonomyImage>;
   family: Array<Taxonomy>;
   quarantinePlantPest: boolean;  //Vaarallinen kasvintuhoaja
+  comparison = false;
   constructor(private route: ActivatedRoute, private taxonService: TaxonService, private translate: TranslateService) { }
 
   ngOnInit() {
@@ -53,6 +54,10 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
         this.family = data.filter(value => value.taxonRank === 'MX.family');
       }
     });
+  }
+
+  comparisonView() {
+    this.comparison = true;
   }
 
   ngOnDestroy() {

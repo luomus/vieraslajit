@@ -89,6 +89,10 @@
           <a href="http://tun.fi/{{id}}" target="_blank">http://tun.fi/{{id}}</a>
         </div>
       </div>
+      <button class="btn btn-primary" (click)="comparisonView()">Lajivertailu</button>
     </ng-template>
+  </div>
+  <div *ngIf="comparison">
+    <vrs-taxon-comparison [taxon]="taxon"></vrs-taxon-comparison>
   </div>
 </div>

@@ -10,8 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TaxonComparisonComponent implements OnInit {
 
-  /*   @Input() taxa: Taxonomy;
-   */
+  @Input() taxon: Taxonomy;
 
   taxa = {
     informalTaxonGroups: [
@@ -20,6 +19,7 @@ export class TaxonComparisonComponent implements OnInit {
     ]
   };
   groups = [];
+  taxonomy: Taxonomy[];
 
   constructor(private taxonService: TaxonService, private translate: TranslateService) { }
 
@@ -42,7 +42,7 @@ export class TaxonComparisonComponent implements OnInit {
   getTaxon() {
     this.groups.forEach(elem => {
       this.taxonService.getComparisonTaxonomy('MX.37600', elem, this.translate.currentLang).subscribe(data => {
-        console.log(data.results);
+        this.taxonomy = data.results;
       });
     });
   }
