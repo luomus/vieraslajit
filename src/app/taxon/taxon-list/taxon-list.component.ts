@@ -31,6 +31,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   selectedGroup: Informal;
   media: Array<TaxonomyImage>;
   columns = [];
+  showGroups = true;
 
   constructor(private taxonService: TaxonService, private translate: TranslateService, private router: Router) { }
 
@@ -42,10 +43,12 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   update() {
     this.taxonService.getInformalGroups(this.translate.currentLang).subscribe((data) => {
       this.groups = data.results;
+    }, error => error, () => {
+      if (this.selectedGroup) {
+        this.selectedGroup = this.groups.filter(val => val.id === this.selectedGroup.id).pop();
+        this.onGroupSelect(this.selectedGroup);
+      }
     });
-    if (this.selectedGroup) {
-      this.onGroupSelect(this.selectedGroup);
-    }
     this.columns = [
       { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), canAutoResize: false, draggable: false, resizeable: false },
       { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: false, draggable: false, resizeable: false, width: 150 },
@@ -68,7 +71,6 @@ export class TaxonListComponent implements OnInit, OnDestroy {
 
   onGroupSelect(target, pageNumber: string = '1') {
     this.selectedGroup = target;
-    console.log(pageNumber);
     this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id, this.translate.currentLang, pageNumber).subscribe(data => {
       this.page = data;
       this.taxa = data.results;
@@ -104,7 +106,9 @@ export class TaxonListComponent implements OnInit, OnDestroy {
     this.onGroupSelect(this.selectedGroup, String(event.offset + 1));
   }
 
-
+  changeOpen() {
+    this.showGroups = !this.showGroups;
+  }
 
   ngOnDestroy() {
     this.subTrans.unsubscribe();
