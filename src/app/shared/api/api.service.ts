@@ -20,7 +20,7 @@ export class ApiService {
 
   authToken(token: string) {
     return this.httpClient.get(
-      `${environment.lajiApi.url}/token/` + token,
+      `${environment.lajiApi.url}person-token/` + token,
       { params: {'access_token': environment.lajiApi.accessToken } }
     );
   }

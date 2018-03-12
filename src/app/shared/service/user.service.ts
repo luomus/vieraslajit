@@ -4,7 +4,8 @@ import { ApiService } from '../api/api.service';
 import { Observable } from 'rxjs/Observable';
 
 export enum userProperty {
-  TOKEN = 'token'
+  TOKEN = 'token',
+  ID = 'personId'
 }
 
 @Injectable()
@@ -30,9 +31,8 @@ export class UserService {
   }
 
   verifyToken(token: string) {
-    this.apiService.authToken(this.userProperties[userProperty.TOKEN]).subscribe((data) =>
-    {
-      return data;
+    this.apiService.authToken(this.userProperties[userProperty.TOKEN]).subscribe((data) => { 
+      this.setUserProperty(userProperty.ID, data[userProperty.ID]);
     });
   }
 }
