@@ -14,11 +14,11 @@ export class LabelPipe implements PipeTransform {
   constructor(private metadataService: MetadataService, private translate: TranslateService) { }
 
   transform(value: string, range?: string): any {
-    return this.metadataService.getMetadataRange(range, this.translate.currentLang).map(data => {
+    return this.metadataService.getMetadataRange(range, 'multi').map(data => {
       this.rangeData = data.filter(e => e.id === value);
       this.value = this.rangeData
         .filter(val => val.id === value)
-        .map(val => val.value).toString();
+        .map(val => val.value[this.translate.currentLang]).toString();
       return this.value;
     }, (err) => {
       console.log(err);

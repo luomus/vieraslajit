@@ -56,5 +56,7 @@
   "legal.h5":"EU permissions",
   "true": "Yes",
   "false": "No",
-  "navbar.search":"Search from the site"
+  "navbar.search":"Search from the site",
+  "comparison.title": "Taxon comparison",
+  "comparison.card": "Taxon card"
 }
