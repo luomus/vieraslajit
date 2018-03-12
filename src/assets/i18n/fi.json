@@ -56,5 +56,7 @@
   "legal.h5":"EU:n vieraslajiasetuksen mukaiset luvat",
   "true": "Kyllä",
   "false": "Ei",
-  "navbar.search":"Hae sivustolta"
+  "navbar.search":"Hae sivustolta",
+  "comparison.title": "Lajivertailu",
+  "comparison.card": "Lajikortti"
 }

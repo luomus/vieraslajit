@@ -12,6 +12,8 @@ import { UserService } from '../service/user.service';
 export class NavbarComponent implements OnInit {
   modalRef: BsModalRef;
   loginUrl = '#';
+  isCollapsed = false;
+
   constructor(private modalService: BsModalService) { }
 
   ngOnInit() {
