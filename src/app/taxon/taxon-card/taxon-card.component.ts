@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { TaxonomyDescription, TaxonomyImage, Taxonomy } from '../../shared/model/Taxonomy';
 import { Observable } from 'rxjs/Observable';
@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class TaxonCardComponent implements OnInit, OnDestroy {
 
   private sub: any;
+  private querySub: Subscription;
   private subTrans: Subscription;
 
   id: string;
@@ -23,26 +24,36 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   desc: TaxonomyDescription;
   media: Array<TaxonomyImage>;
   family: Array<Taxonomy>;
-  quarantinePlantPest: boolean;  //Vaarallinen kasvintuhoaja
-  constructor(private route: ActivatedRoute, private taxonService: TaxonService, private translate: TranslateService) { }
+  quarantinePlantPest: boolean;  // Vaarallinen kasvintuhoaja
+  comparison: boolean;
+  constructor(private route: ActivatedRoute, private router: Router,
+    private taxonService: TaxonService, private translate: TranslateService) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
 
   ngOnInit() {
-
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.querySub = this.route.queryParams.subscribe(params => {
+      if (params) {
+        this.comparison = params.comparison;
+      }
+    });
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id']; // (+) converts string 'id' to a number
     });
+    this.scrollTop();
     this.update();
   }
 
   update() {
     this.taxonService.getTaxon(this.id, this.translate.currentLang).subscribe(data => {
       this.taxon = data;
-      this.quarantinePlantPest = this.taxon.administrativeStatuses.includes("MX.quarantinePlantPest");
+      this.quarantinePlantPest = this.taxon.administrativeStatuses.includes('MX.quarantinePlantPest');
     });
     this.taxonService.getTaxonDescription(this.id, this.translate.currentLang).subscribe(data => {
       this.desc = data[0];
-      console.log(data);
     });
     this.taxonService.getTaxonMedia(this.id, this.translate.currentLang).subscribe(data => {
       this.media = data;
@@ -56,8 +67,20 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     });
   }
 
+  comparisonView() {
+    this.comparison = !this.comparison;
+  }
+
+  scrollTop() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.subTrans.unsubscribe();
+    if (this.querySub.closed) {
+      this.querySub.unsubscribe();
+    }
   }
 }
