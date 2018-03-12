@@ -3,6 +3,7 @@ import { SearchComponent } from '../shared/googlesearch/search/search.component'
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
 import {OmnisearchComponent} from '../shared/omnisearch/omnisearch.component'
+import { NewsComponent } from '../news/news.component';
 
 @Component({
   selector: 'vrs-home',
@@ -27,12 +28,14 @@ export class HomeComponent implements OnInit {
             this.news.push(d);
           }  
       }
+
       let i:number = 0;
       for (let d of technical) {
         let date: Date = new Date(0);
         date.setUTCMilliseconds(Number(d.posted));
         let now: Date = new Date();
-        if (Math.ceil(Math.abs(now.getTime() - date.getTime()) / (1000 * 3600 * 24)) <= 3) {
+        // muuta tuotannossa että 3 viimeiseltä päivältä!
+        if (Math.ceil(Math.abs(now.getTime() - date.getTime()) / (1000 * 3600 * 24)) <= 20) {
           this.alerts[i] = d;
           i++;
         }

@@ -1,12 +1,34 @@
 @import '../../assets/styles/vars';
 
+
 .jumbotron {
     background: url("../../assets/images/bgs/vieraslajit-home-bg.png") center;
-    background-size: 100%;
+    background-size: 130%;
     background-repeat: no-repeat;
     height: 270px;
     margin-bottom: 0px;
 }
+
+@media (max-width: 575.98px) {
+    .jumbotron h1{font-size: 25px}
+    .jumbotron a{font-size: 8px}
+}
+
+@media (max-width: 767.98px) {
+    .jumbotron h1{font-size: 30px}
+    .jumbotron a{font-size: 12px}
+}
+
+@media (max-width: 991.98px) {
+    .jumbotron h1{font-size: 35px}
+    .jumbotron a{font-size: 16px}
+}
+
+@media (max-width: 1199.98px) {
+    .jumbotron h1{font-size: 40px;}
+}
+
+
 
 .infobox {
     background: $content-background-highlight;
