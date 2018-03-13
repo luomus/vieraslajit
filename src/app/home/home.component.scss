@@ -8,32 +8,14 @@
     margin-bottom: 0px;
 }
 
-@media (max-width: 575.98px) {
-    .jumbotron h1{font-size: 20px}
-    .jumbotron #jumbotron-button{font-size: 8px}
-    .jumbotron {height: 15vh}
-    .jumbotron {background-size: 160%}
+#jumbotron-info {
+    margin-top: 4vh;
+    margin-left: 2vh;
 }
 
-@media (max-width: 767.98px) {
-    .jumbotron h1{font-size: 25px}
-    .jumbotron #jumbotron-button{font-size: 12px}
-    .jumbotron {height: 30vh}
-}
-
-@media (max-width: 991.98px) {
-    .jumbotron h1{font-size: 35px}
-    .jumbotron #jumbotron-button{font-size: 16px}
-}
-
-@media (max-width: 1199.98px) {
-    .jumbotron h1{font-size: 40px;}
-}
-
-.infobox {
-    background: $content-background-highlight;
-    height: 100%;
-    padding: 20px;
+#jumbotron-h1 {
+    font-family: $font-montserrat;
+    font-weight: 700;
 }
 
 .whatAre {
@@ -79,16 +61,6 @@
     margin-bottom: 3vh; 
 }
 
-#jumbotron-info {
-    margin-top: 4vh;
-    margin-left: 2vh;
-}
-
-#jumbotron-h1 {
-    font-family: $font-montserrat;
-    font-weight: 700;
-}
-
 #cardlink1 {
     background-color: $content-background;
     margin: 1vh;
@@ -100,28 +72,58 @@
     margin: 0 auto;
 }
 
-#cardlinks {
+#adversecards {
     background-color: $content-background;
     margin: 1vh;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
-#cardlinks-img {
+#adversecards:hover {
+    border-color: $primary;
+    transition: 0.3s;
+}
+
+#adversecards-img {
     background-color: $content-background;
     width: 10vh;
     margin: 0 auto;
+}
+
+#adversetitle {
+    font-size: 1.5vh;
+    font-weight: 100;
+    
 }
 
 .card-deck {
     margin: 0;
 }
 
-.card-footer {
-    background-color: $content-background;
-    font-family: $font-montserrat;
-    color: $primary;
-    font-weight: 500;
-}
-
 #cardlinkcontainer {
     padding-top: 20px;
+}
+
+
+
+@media (max-width: 575.98px) {
+    .jumbotron h1{font-size: 20px}
+    .jumbotron #jumbotron-button{font-size: 8px}
+    .jumbotron {height: 15vh}
+    .jumbotron {background-size: 160%}
+}
+
+@media (max-width: 767.98px) {
+    .jumbotron h1{font-size: 25px}
+    .jumbotron #jumbotron-button{font-size: 12px}
+    .jumbotron {height: 30vh}
+}
+
+@media (max-width: 991.98px) {
+    .jumbotron h1{font-size: 35px}
+    .jumbotron #jumbotron-button{font-size: 16px}
+}
+
+@media (max-width: 1199.98px) {
+    .jumbotron h1{font-size: 40px;}
 }
