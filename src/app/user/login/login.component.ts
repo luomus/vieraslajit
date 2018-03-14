@@ -12,12 +12,16 @@ export class LoginComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    // save laji-auth token to userproperties
-    this.userService.setUserProperty(userProperty.TOKEN, this.activatedRoute.snapshot.queryParams['token']);
-    // update userproperties with laji api data
-    this.userService.updateUserProperties(this.activatedRoute.snapshot.queryParams['token'], this.router, this.userService, function(_router, _userService) {
-      // redirect to original location
-      _router.navigateByUrl(_userService.getUserProperties()["person-token"].next);
-    })
+    if (this.activatedRoute.snapshot.queryParams['token']) {
+      // save laji-auth token to userproperties
+      this.userService.setUserProperty(userProperty.TOKEN, this.activatedRoute.snapshot.queryParams['token']);
+      // update userproperties with laji api data
+      this.userService.updateUserProperties(this.activatedRoute.snapshot.queryParams['token'], this.router, this.userService, function(_router, _userService) {
+        // redirect to original location
+        _router.navigateByUrl(_userService.getUserProperties()["person-token"].next);
+      });
+    } else {
+      this.router.navigateByUrl("/home");
+    }
   }
 }
