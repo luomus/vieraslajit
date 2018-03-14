@@ -16,12 +16,26 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // Auth-token
+  // Person-token
+  personByToken(personToken: string) {
+    return this.httpClient.get(
+      `${environment.lajiApi.url}person/` + personToken,
+      { params: {'access_token': environment.lajiApi.accessToken } }
+    );
+  }
 
-  authToken(token: string) {
+  // Auth-token
+  personToken(token: string) {
     return this.httpClient.get(
       `${environment.lajiApi.url}person-token/` + token,
       { params: {'access_token': environment.lajiApi.accessToken } }
+    );
+  }
+
+  // Auth-token
+  authToken(token: string) {
+    return this.httpClient.get(
+      `${environment.lajiAuth.authUrl}token/` + token
     );
   }
 

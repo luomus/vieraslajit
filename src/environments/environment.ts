@@ -10,7 +10,7 @@ export const environment = {
     accessToken: 'kFEdTHdoHEY2c98BokkdjhOLx8PUHdjbDTFeIkDLkWLwGwYcz8RwA3UxI1ybegzx'
   },
   lajiAuth: {
-    loginUrl: 'https://fmnh-ws-test.it.helsinki.fi/laji-auth/login',
+    authUrl: 'https://fmnh-ws-test.it.helsinki.fi/laji-auth/',
     systemID: 'KE.741'
   }
 };

@@ -5,7 +5,9 @@ import { Observable } from 'rxjs/Observable';
 
 export enum userProperty {
   TOKEN = 'token',
-  ID = 'personId'
+  ID = 'personId',
+  PERSON = 'person',
+  PTOKEN = 'person-token'
 }
 
 @Injectable()
@@ -15,24 +17,28 @@ export class UserService {
 
   constructor(private apiService: ApiService) { }
 
-  public static getLoginUrl(next = 'home', lang = 'fi') {
-    return (environment.lajiAuth.loginUrl
+  public static getLoginUrl(next) {
+    return (environment.lajiAuth.authUrl + 'login'
     + '?target=' + environment.lajiAuth.systemID
     + '&redirectMethod=GET&locale=%lang%'
-    + '&next=' + next).replace('%lang%', lang);
+    + '&next=' + next).replace('%lang%', 'fi');
   }
   
   getUserProperties() {
     return this.userProperties;
   }
 
-  setUserProperty(key: userProperty, value: string) {
+  setUserProperty(key: userProperty, value: any) {
     this.userProperties[key] = value;
   }
 
-  verifyToken(token: string) {
-    this.apiService.authToken(this.userProperties[userProperty.TOKEN]).subscribe((data) => { 
-      this.setUserProperty(userProperty.ID, data[userProperty.ID]);
+  updateUserProperties(token:string, _router, _userService, callback) {
+    this.apiService.personToken(this.userProperties[userProperty.TOKEN]).subscribe((data) => { 
+      this.setUserProperty(userProperty.PTOKEN, data);
+      this.apiService.personByToken(this.getUserProperties()[userProperty.TOKEN]).subscribe((data) => {
+        this.setUserProperty(userProperty.PERSON, data);
+        callback(_router, _userService);
+      });
     });
   }
 }
