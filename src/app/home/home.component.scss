@@ -4,7 +4,7 @@
     background: url("../../assets/images/bgs/vieraslajit-home-bg.png") center;
     background-size: 105%;
     background-repeat: no-repeat;
-    height: 35vh;
+    height: 20rem;
     margin-bottom: 0px;
 }
 
@@ -70,12 +70,12 @@
     background-color: $content-background;
     width: 10vh;
     margin: 0 auto;
+    margin-top: 2vh;
 }
 
 #invasivetitle {
-    font-size: 1.5vh;
-    font-weight: 100;
-    
+    font-size: 1.3vh;
+    font-weight: 600;
 }
 
 .card-deck {
@@ -85,7 +85,6 @@
 @media (max-width: 575.98px) {
     .jumbotron h1{font-size: 20px}
     .jumbotron #jumbotron-button{font-size: 8px}
-    .jumbotron {height: 15vh}
     .jumbotron {background-size: 160%}
     #welcome-h1 {font-size: 30px}
     #welcome-text {font-size: 18px}
@@ -94,11 +93,11 @@
 @media (max-width: 767.98px) {
     .jumbotron h1{font-size: 35px}
     .jumbotron #jumbotron-button{font-size: 12px}
-    .jumbotron {height: 25vh}
+    .jumbotron {height: 13rem}
 }
 
 @media (max-width: 991.98px) {
-
+    #invasivecards-img {width: 6rem;}
 }
 
 @media (max-width: 1199.98px) {
