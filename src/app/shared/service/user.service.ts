@@ -25,18 +25,23 @@ export class UserService {
   }
   
   getUserProperties() {
-    return this.userProperties;
+    let res = {};
+    for(let u in userProperty) {
+      res[userProperty[u]] = JSON.parse(window.sessionStorage.getItem(userProperty[u]));
+    }
+    return res;
   }
 
   setUserProperty(key: userProperty, value: any) {
-    this.userProperties[key] = value;
+    window.sessionStorage.setItem(key, JSON.stringify(value));
   }
 
   updateUserProperties(token:string, _router, _userService, callback) {
-    this.apiService.personToken(this.userProperties[userProperty.TOKEN]).subscribe((data) => { 
+    this.apiService.personToken(this.getUserProperties()[userProperty.TOKEN]).subscribe((data) => { 
       this.setUserProperty(userProperty.PTOKEN, data);
       this.apiService.personByToken(this.getUserProperties()[userProperty.TOKEN]).subscribe((data) => {
         this.setUserProperty(userProperty.PERSON, data);
+        console.log(this.getUserProperties());
         callback(_router, _userService);
       });
     });
