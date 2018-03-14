@@ -61,36 +61,25 @@
     margin-bottom: 3vh; 
 }
 
-#cardlink1 {
-    background-color: $content-background;
-    margin: 1vh;
-}
-
-#cardlink1-img {
-    background-color: $content-background;
-    width: 14vh;
-    margin: 0 auto;
-}
-
-#adversecards {
+#invasivecards {
     background-color: $content-background;
     margin: 1vh;
     transition: 0.3s;
     cursor: pointer;
 }
 
-#adversecards:hover {
+#invasivecards:hover {
     border-color: $primary;
     transition: 0.3s;
 }
 
-#adversecards-img {
+#invasivecards-img {
     background-color: $content-background;
     width: 10vh;
     margin: 0 auto;
 }
 
-#adversetitle {
+#invasivetitle {
     font-size: 1.5vh;
     font-weight: 100;
     
@@ -99,12 +88,6 @@
 .card-deck {
     margin: 0;
 }
-
-#cardlinkcontainer {
-    padding-top: 20px;
-}
-
-
 
 @media (max-width: 575.98px) {
     .jumbotron h1{font-size: 20px}
