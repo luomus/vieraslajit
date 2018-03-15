@@ -8,6 +8,7 @@
 
 @media (max-width: 1199.98px) {
     #mainNav {font-size: 12px;}
+    #dropdown-menu-item {font-size: 12px;}
 }
 
 #mainNav .navbar-brand {
@@ -26,6 +27,7 @@
         color: $content-background;
     }
 }
+
 
 #mainNav .navbar-nav li.nav-item a.nav-link {
     color: $content-background;
@@ -46,13 +48,46 @@
     color: #e4c571;
 }
 
-#dropdown-menu1 {
+#dropdown-about {
     background: $primary;
     border: none;
+    color: $content-background;
+    &:hover {
+        background: $primary;
+        color: #e4c571;
+    }
+}
+
+#dropdown-toggle {
+    background: $primary;
+    cursor: pointer;
+    &:hover {
+        background: $primary;
+        color: #e4c571;
+    }
+}
+
+@media (min-width: 991.98px) {
+    #dropdown-about {
+        background: $primary;
+        border: none;
+        color: $content-background;
+        display: flex;         
+        align-items: center;
+    }  
+}
+
+#dropdown-menu {
+    background: $primary;
 }
 
 #dropdown-menu-item {
     background: $primary;
+    display: flex;         
+    align-items: center;     
+    color: $content-background;
+    font-family: $font-montserrat;
+    font-weight: 600;
 }
 
 #dropdown-menu-item:hover {
