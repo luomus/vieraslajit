@@ -1,8 +1,9 @@
 <div [collapse]="comparison" class="container-fluid">
-  <h1>{{taxon?.vernacularName}}
-    <span [class.cursive]="taxon?.cursiveName">({{taxon?.scientificName}})
-      <img src="assets/images/logos/vieraslaji-logo-70x70.png" width="40" height="40" alt="">
-    </span>
+  <h1>
+    {{taxon?.vernacularName}}
+    <span *ngIf="taxon?.vernacularName">&ndash;</span>
+    <span [class.cursive]="taxon?.cursiveName">{{taxon?.scientificName}}</span>
+    <img src="assets/images/logos/vieraslaji-logo-70x70.png" width="40" height="40" alt="">
   </h1>
   <div class="row">
     <div class="col-sm-6">
@@ -54,16 +55,6 @@
             <strong translate>taxon.scientific</strong>
             <em>{{taxon?.scientificName}}</em>
           </div>
-          <ng-container *ngIf="taxon?.administrativeStatuses">
-            <div>
-              <!-- <strong translate>taxon.administrative</strong> -->
-              <ul>
-                <li *ngFor="let status of taxon.administrativeStatuses">
-                  {{status | label: 'MX.adminStatusEnum' | async}}
-                </li>
-              </ul>
-            </div>
-          </ng-container>
           <div>
             <strong translate>taxon.establishedFin</strong>
             <span translate>{{taxon?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
@@ -77,12 +68,23 @@
             <strong translate>taxonomy.quarantinePlantPest</strong>
             <span translate>{{quarantinePlantPest == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
           </div>
+          <hr/>
+          <ng-container *ngIf="taxon?.administrativeStatuses">
+            <div>
+              <!-- <strong translate>taxon.administrative</strong> -->
+              <ul>
+                <li *ngFor="let status of taxon.administrativeStatuses">
+                  {{status | label: 'MX.adminStatusEnum' | async}}
+                </li>
+              </ul>
+            </div>
+          </ng-container>
         </div>
       </div>
       <div class="card">
         <div class="card-header">
-          <a href="https://laji.fi" target="_blank">
-            <img src="https://laji.fi/static/images/icons/favicon.ico" alt="laji.fi">
+          <a href="http://tun.fi/{{id}}" target="_blank">
+            <img src="https://laji.fi/static/images/icons/favicon.ico" style="margin-Top:-3px" alt="laji.fi">
           </a>
           <strong translate>Laji.fi</strong>
         </div>
