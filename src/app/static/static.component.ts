@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StaticComponent implements OnInit {
 
-  private scontent = "<p>toimii</p>";
+  scontent = "<p>toimii</p>";
 
   constructor() { }
 
