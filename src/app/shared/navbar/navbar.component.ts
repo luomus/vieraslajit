@@ -13,6 +13,8 @@ import {Router} from '@angular/router';
 export class NavbarComponent implements OnInit {
   modalRef: BsModalRef;
   loginUrl = '#';
+  isCollapsed = false;
+  
   constructor(private modalService: BsModalService, private router: Router) { 
     // subscribing to events is a suboptimal solution (a lot more updates than necessary), but couldn't figure out anything else
     router.events.subscribe((val) => {

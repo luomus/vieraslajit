@@ -1,6 +1,10 @@
 {
   "home.h1": "Information about invasive species in Finland",
   "home.description": "Here you can find help for identification and also report observations of invasive alien species. The pages contain information, images and distribution maps of invasive species in Finland. There are also instructions on how to safely dispose invasive species, if you happen to encounter any on your premises. All species of the national invasives check-list are not represented here yet, but information will be completed soon.",
+  "home.whatare.h": "What is an alien species?",
+  "home.whatare.p": "Alien species are organisms that have spread to a new area through human action, whether intentionally or unintentionally.",
+  "home.news": "News",
+  "home.readMore": "Read more",
   "navigation.home": "Home",
   "navigation.taxonomy": "Species",
   "navigation.removal": "Removal",
@@ -54,5 +58,7 @@
   "legal.h5":"EU permissions",
   "true": "Yes",
   "false": "No",
-  "navbar.search":"Search from the site"
+  "navbar.search":"Search from the site",
+  "comparison.title": "Taxon comparison",
+  "comparison.card": "Taxon card"
 }

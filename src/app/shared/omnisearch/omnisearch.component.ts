@@ -23,6 +23,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/combineLatest';
 import 'rxjs/add/observable/of';
+import { TranslateService } from '@ngx-translate/core';
 
 
 
@@ -40,6 +41,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   @Input() minLength = 3;
   @Input() visible = true;
   @Input() expand = '';
+  @Input() comparisonView: boolean;
   @Output() visibleTaxon = new EventEmitter<any>();
   public search = '';
   public searchControl = new FormControl();
@@ -62,6 +64,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     private apiService: ApiService,
     private taxonservice: TaxonService,
     private router: Router,
+    private translate: TranslateService,
     viewContainerRef: ViewContainerRef
   ) {
     this.el = viewContainerRef.element.nativeElement;
@@ -147,13 +150,13 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     this.loading = true;
-    this.subTaxa = this.taxonservice.getAutocomplete('taxon', this.search).subscribe(
+    this.subTaxa = this.taxonservice.getAutocomplete('taxon', this.search, this.translate.currentLang).subscribe(
 
       data => {
         this.taxa = data;
         this.loading = false;
         this.activate(0);
-        this.changeDetector.markForCheck()
+        this.changeDetector.markForCheck();
       }
     );
 
