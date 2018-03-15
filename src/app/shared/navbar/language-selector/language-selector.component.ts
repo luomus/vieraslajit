@@ -16,6 +16,7 @@ export class LanguageSelectorComponent implements OnInit {
 
   switchLanguage(language: string) {
     this.translate.use(language);
+    window.localStorage.setItem("vrs-lang", language);
   }
 
   ngOnInit() {
