@@ -2,6 +2,18 @@
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+@media screen and (max-width: 800px) {
+    .mobile-hidden {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .mobile-hidden {
+        display: block !important;
+    }
+}
  
 /** SelectGroup icons styling **/
 
