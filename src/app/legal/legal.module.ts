@@ -3,12 +3,15 @@ import { CommonModule } from '@angular/common';
 import { LegalComponent } from './legal.component';
 import { routing } from './legal.routing';
 import { SharedModule } from '../shared/shared.module';
+import { TabsModule } from 'ngx-bootstrap';
+
 
 @NgModule({
   imports: [
     CommonModule,
     routing,
-    SharedModule
+    SharedModule,
+    TabsModule
   ],
   declarations: [LegalComponent]
 })
