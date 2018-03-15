@@ -1,69 +1,87 @@
 <div class="jumbotron jumbotron-fluid col-12">
-        <div class="container-fluid">
-            <h1 class="display-4 text-white">VIERASLAJIT.FI</h1>
-            <p class="lead">
-                <a class="btn btn-alert btn-lg" href="#" role="button">Tutustu vieraslajeihin</a>
-            </p>
-        </div>
+    <div class="container-fluid" id="jumbotron-info">
+        <h1 class="display-4 text-white" id="jumbotron-h1">VIERASLAJIT.FI</h1>
+        <p class="lead">
+            <button type="button" class="btn btn-dark" href="#" role="button" id="jumbotron-button">Tutustu vieraslajeihin</button>
+        </p>
+    </div>
 </div>
 
-
 <div id="searchbar">
-    <div class ="offset-md-2 col-md-8">
+    <div class ="offset-md-2 offset-lg-3 col-md-8 col-lg-6">
         <vrs-omnisearch ></vrs-omnisearch>
     </div>
 </div>
 
-<div class = "container">
-
-    <div class= "row" id="welcome" >
+<div class="container">
+    <div class="row" id="welcome" >
         <div class="offset-md-2 col-md-8">
-            <h1 translate>home.h1</h1>
-            <p translate>home.description</p>
+            <h1 id="welcome-h1" translate>home.h1</h1>
+            <p id="welcome-text" translate>home.description</p>
         </div>
     </div> 
 
-
     <div class="row">
-  
-        <div class="col-md-6 col-lg-4">
-            <div class="card infobox">
-                <h3 translate>home.whatare.h</h3>
-                <p translate>home.whatare.p</p> 
-            </div> 
-         </div>
-
-        <div class="col-md-6 col-lg-4 ">
-                <div class="card infobox">
-                    <div>
-                    </div>
-        
+        <div class="col-md-6 col-lg-4" id="cardcol">
+            <div class="card" id="homecard">
+                <h4 class= "card-header" id="homecard-header" translate>home.whatare.h</h4>
+                <div class="card-body">
+                    <p translate>home.whatare.p</p>
+                    <button type="button" class="btn btn-outline-dark" href="#" role="button" translate>home.readMore</button>
                 </div>
+            </div> 
         </div>
 
-        <div class="col-md-6 col-lg-4">
-            <div class="card infobox">
+        <div class="col-md-6 col-lg-4" id="cardcol">
+            <div class="card" id="homecard">
+                <h4 class= "card-header" id="homecard-header" translate>home.invasivespecies</h4>
+                <div class="container">
+                    <br>
+                    <div class="card-deck">
+                        <div class="card" id="invasivecards">
+                            <img class="card-img-top" id="invasivecards-img" src="./../../../assets/images/logos/eu-blue-rnd.png" alt="no image">
+                            <div class="card-body">
+                                    <h5 class="card-title text-center" id="invasivetitle" translate>home.eulist</h5>
+                            </div>
+                        </div>
+                        <div class="card" id="invasivecards">
+                                <img class="card-img-top" id="invasivecards-img" src="./../../../assets/images/logos/finland-b2.png" alt="no image">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center" id="invasivetitle" translate>home.finnishlist</h5>
+                                </div>
+                        </div>   
+                    </div>       
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4" id="cardcol">
+            <div class="card" id="homecard">
+                <h4 class= "card-header" id="homecard-header" translate>home.news</h4>
+                <div class="card-body">
                     <div class="row justify-content-center" *ngFor="let alert of alerts">
                             <div class="alert alert-danger" role="alert">
                             {{alert.title}}
                             </div>
-                        </div>
+                    </div>
 
-            <div >
-                <h3 class= "card-title" translate>home.news</h3>
-                <div *ngFor="let n of news" class="py-1">
-                <h6 >{{n.title}} <br><a routerLink="/news" class="card-link" translate>home.readMore</a>
-                </h6>
+                    <div >
+                        <div *ngFor="let n of news" class="py-1">
+                        <h6 >{{n.title}} <br><a routerLink="/news" class="card-link" translate>home.readMore</a>
+                        </h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>    
-    
-  </div>
-<div class="row" id="pagemap">
+</div>
+
+<div class="container-fluid">
+    <div class="row" id="pagemap">
         <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
     </div>
+</div>
+    
 
 
 

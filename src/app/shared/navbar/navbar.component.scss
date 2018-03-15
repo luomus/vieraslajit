@@ -1,21 +1,25 @@
 @import '../../../assets/styles/vars';
 
-.navbar-dark {
+#mainNav {
+    font-weight: 700;
+    font-family: $font-montserrat;
     background: $primary;
-    color: $content-background;
 }
 
-.navbar-brand {
+@media (max-width: 1199.98px) {
+    #mainNav {font-size: 12px;}
+    #dropdown-menu-item {font-size: 12px;}
+}
+
+#mainNav .navbar-brand {
     color: $content-background;
 
     &:hover {
-        background:$navbar-background-hover; 
-        color: $content-background;
+        color: #e4c571;
     }
 }
 
-.nav-item {
-    font-size: 16px;
+#mainNav .nav-item {
     background: $primary;
     display: flex;         
     align-items: center;     
@@ -24,17 +28,83 @@
     }
 }
 
+
+#mainNav .navbar-nav li.nav-item a.nav-link {
+    color: $content-background;
+    background: $primary;
+}
+
+#mainNav .navbar-nav li.nav-item a.nav-link:hover {
+    color: #e4c571;
+}
+
+#mainNav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
+    color: #405155;
+}
+ 
 /*Hover state for top level links*/
 .navbar-nav li:hover a {
     background: $navbar-background-hover;
-    border-radius: 5px;
-    color: $content-background;
+    color: #e4c571;
 }
 
-.dropdown-menu {
-    background: $navbar-dropdown;
+#dropdown-about {
+    background: $primary;
+    border: none;
+    color: $content-background;
+    &:hover {
+        background: $primary;
+        color: #e4c571;
+    }
 }
 
-.icon   {
-    color: $content-background;
+#dropdown-toggle {
+    background: $primary;
+    cursor: pointer;
+    &:hover {
+        background: $primary;
+        color: #e4c571;
+    }
 }
+
+@media (min-width: 991.98px) {
+    #dropdown-about {
+        background: $primary;
+        border: none;
+        color: $content-background;
+        display: flex;         
+        align-items: center;
+    }  
+}
+
+#dropdown-menu {
+    background: $primary;
+}
+
+#dropdown-menu-item {
+    background: $primary;
+    display: flex;         
+    align-items: center;     
+    color: $content-background;
+    font-family: $font-montserrat;
+    font-weight: 600;
+}
+
+#dropdown-menu-item:hover {
+    background: $primary;
+    color: #e4c571;
+}
+
+#search-icon   {
+    color: $content-background;
+    cursor: pointer;
+}
+
+#search-icon:hover {
+    color: #e4c571;
+}
+
+#language-selector {
+    cursor: pointer;
+}
+
