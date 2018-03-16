@@ -1,2 +1,14 @@
 <h1>Eu-luettelo</h1>
 
+<div></div>
+
+<ng-container>
+    <div class="tab-pane container" id="taxontable">
+        <ngx-datatable class="material selection-cell" [rows]="eulist" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
+          [rowHeight]="50" [reorderable]='true' [selectionType]="'single'"  [footerHeight]="50"
+          [sorts]="[{prop: 'vernacularName', dir: 'asc'}]">
+        </ngx-datatable>
+    </div>    
+</ng-container>
+        
+

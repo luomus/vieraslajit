@@ -16,9 +16,12 @@ export class EulistComponent implements OnInit {
   eulist: Taxonomy[];
   columns = [];
 
-  constructor(private translate: TranslateService, private listService:ListService, private router: Router) { }
+  constructor( private listService: ListService, private translate: TranslateService, private router:Router) { }
+  ngOnInit() {
+    
+  }
 
-   ngOnInit() {
+   /* ngOnInit() {
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.update();
   }
@@ -40,7 +43,7 @@ export class EulistComponent implements OnInit {
 
   ngOnDestroy() {
     this.subTrans.unsubscribe();
-  }
+  } */
 
 }
 

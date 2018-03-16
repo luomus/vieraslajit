@@ -4,7 +4,8 @@ import { EulistComponent } from './eulist/eulist.component';
 import { FilistComponent } from './filist/filist.component';
 
 const routes: Routes = [
-  { path: '', component: FilistComponent }
+  { path: '', component: EulistComponent }
+
   
 ];
 

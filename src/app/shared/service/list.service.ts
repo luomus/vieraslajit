@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService, LajiApi } from '../api/api.service';
 import { Observable } from 'rxjs/Observable';
-import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../model/Taxonomy';
-import { PagedResult } from '../../shared/model/PagedResult';
+import { Taxonomy} from '../model/Taxonomy';
+
 
 
 @Injectable()
