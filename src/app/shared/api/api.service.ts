@@ -159,6 +159,9 @@ export namespace LajiApi {
     langFallback?: boolean;
     hasMediaFilter?: boolean;
     includeMedia?: boolean;
+    onEUList?: boolean;
+    onNationalList?:boolean;
+  
   }
   export interface AutocompleteQuery {
     q?: string;
