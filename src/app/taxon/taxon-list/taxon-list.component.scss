@@ -14,6 +14,13 @@
         display: block !important;
     }
 }
+
+/** Accordion-heading styling **/
+
+#accordion h5 {
+    cursor: pointer;
+}
+
  
 /** SelectGroup icons styling **/
 
@@ -28,6 +35,7 @@
     height: 80%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+    cursor: pointer;
 }
 
 #selectGroup-card:hover {
@@ -63,6 +71,12 @@
     background-color: white;
 }
 
+/** Species list styling **/
+
+ngx-datatable {
+    cursor: pointer;
+}
+
 /** Species grid styling **/
 
 #taxongrid {
@@ -82,6 +96,7 @@
     height: 90%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+    cursor: pointer;
 }
 
 #species-card:hover {
@@ -107,3 +122,4 @@
     background-color: white;
     height: 30%;
 }
+
