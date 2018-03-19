@@ -1,64 +1,20 @@
 @import '../../../../assets/styles/vars';
 
-
-/* The container <div> - needed to position the dropdown content */
 .language-selector {
-    position: relative;
-    display: inline-block;
-
-    /* Dropdown Button */
-    .dropbtn {
-        background-color: $primary;
-        color: white;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        font-family: $font-montserrat;
-        font-weight: 600;
-
-        .oi-globe {
-            position: relative;
-            top: 3px;
-        }
-        cursor: pointer;
-    }
-
-    /* Dropdown Content (Hidden by Default) */
-    .dropdown-content {
-      padding-left: 10px;
-      padding-top: 6px;
-      padding-bottom: 6px;
-      display: none;
-      position: absolute;
-      background-color: $primary;
-      min-width: 120px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-
-    /* Links inside the dropdown */
-    .dropdown-content a {
-        color: white;
-        text-decoration: none;
-        display: block;
-    }
-
-    /* Change color of dropdown links on hover */
-    .dropdown-content a:hover { color: #e4c571}
-
-    /* Show the dropdown menu on hover */
-    &:hover .dropdown-content {
-        display: block;
-    }
-
-    @media (max-width: 1199.98px) {
-        .dropbtn {font-size: 12px;}
-    }
-    /* Change the background color of the dropdown button when the dropdown content is shown */
-    /*&:hover .dropbtn {
-        background-color: $navbar-background-hover;
-        color: black;
-    }*/
+    background-color: $primary;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    font-family: $font-montserrat;
+    font-weight: 600;
 }
+
+.language-selector a{
+    color: white;
+}
+
+.language-selector a:hover {
+   color: #e4c571;
+ }
+ 
