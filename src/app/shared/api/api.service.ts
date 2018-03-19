@@ -175,6 +175,7 @@ export namespace LajiApi {
     includeMedia?: boolean;
     onEUList?: boolean;
     onNationalList?:boolean;
+    adminStatusFilters?:String;
   
   }
   export interface AutocompleteQuery {

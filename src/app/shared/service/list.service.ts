@@ -12,7 +12,7 @@ export class ListService {
   getEuList(taxonId: string,lang?: string): Observable<any> {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
-        {invasiveSpeciesFilter: true,onlyFinnish: false, lang: lang, langFallback: true, onEUList:true});
+        {invasiveSpeciesFilter: true,onlyFinnish: false, lang: lang, langFallback: true, adminStatusFilters:'MX.euInvasiveSpeciesList'});
   }
 
 }

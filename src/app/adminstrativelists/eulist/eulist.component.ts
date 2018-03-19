@@ -6,6 +6,7 @@ import { ListService } from '../../shared/service/list.service';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
 
+
 @Component({
   selector: 'vrs-eulist',
   templateUrl: './eulist.component.html',
@@ -13,6 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class EulistComponent implements OnInit {
   private subTrans: Subscription;
+  taxa: Taxonomy[];
   eulist: Taxonomy[];
   columns = [];
 
@@ -28,11 +30,19 @@ export class EulistComponent implements OnInit {
     this.columns = [
       { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), canAutoResize: false, draggable: false, resizeable: false },
       { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: false, draggable: false, resizeable: false, width: 150 },
-      { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
+      { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
+       {prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
     ];
+    
     this.listService.getEuList('MX.37600', this.translate.currentLang).subscribe(data => {
       this.eulist = data.results;
       this.eulist.forEach(element => {
+          if (!element.vernacularName) {
+            element.vernacularName = element.scientificName;
+          }
+          if (element.administrativeStatuses) {
+            element.onEUList = this.translate.instant(String(element.administrativeStatuses.some(value => value === 'MX.euInvasiveSpeciesList')));
+          }
         element.stableString = this.translate.instant(String(element.stableInFinland));
       
       });
@@ -42,6 +52,10 @@ export class EulistComponent implements OnInit {
   ngOnDestroy() {
     this.subTrans.unsubscribe();
   } 
+
+  onSelect(event) {
+    this.router.navigate(['/taxon', event.selected.shift().id]);
+  }
 
 }
 
