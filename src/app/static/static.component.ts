@@ -11,10 +11,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class StaticComponent implements OnInit {
 
-  scontent: Object;
+  public scontent: Object;
   id: String;
 
-  constructor(private informationService: InformationService, private route: ActivatedRoute, private router: Router) { }
+  constructor(public informationService: InformationService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -27,8 +27,6 @@ export class StaticComponent implements OnInit {
   getInformation(id) {
     this.informationService.getInformation(id).subscribe((data) => {
         this.scontent = data;
-        console.log(data);
-        console.log(this.scontent);
     });
   }
 }
