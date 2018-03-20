@@ -15,6 +15,7 @@ import { MetadataService } from './service/metadata.service';
 import { OmnisearchComponent } from './omnisearch/omnisearch.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
+import {ListService } from './service/list.service';
 
 
 @NgModule({
