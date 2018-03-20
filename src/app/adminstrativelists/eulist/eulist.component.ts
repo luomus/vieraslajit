@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { Taxonomy } from '../../shared/model/Taxonomy';
@@ -7,14 +7,17 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
 
 
+
 @Component({
   selector: 'vrs-eulist',
   templateUrl: './eulist.component.html',
-  styleUrls: ['./eulist.component.scss']
+  styleUrls: ['./eulist.component.scss'],
+  encapsulation: ViewEncapsulation.None
+  
+  
 })
 export class EulistComponent implements OnInit {
   private subTrans: Subscription;
-  taxa: Taxonomy[];
   eulist: Taxonomy[];
   columns = [];
 
@@ -30,8 +33,7 @@ export class EulistComponent implements OnInit {
     this.columns = [
       { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), canAutoResize: false, draggable: false, resizeable: false },
       { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: false, draggable: false, resizeable: false, width: 150 },
-      { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
-       {prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
+      { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
     ];
     
     this.listService.getEuList('MX.37600', this.translate.currentLang).subscribe(data => {
