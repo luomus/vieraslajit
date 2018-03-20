@@ -7,12 +7,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'vrs-static',
   templateUrl: './static.component.html',
-  styleUrls: ['./static.component.scss']
+  styleUrls: ['./static.component.scss'],
 })
 export class StaticComponent implements OnInit {
 
-  private scontent: Object;
-  private id: String;
+  scontent: Object;
+  id: String;
 
   constructor(private informationService: InformationService, private route: ActivatedRoute, private router: Router) { }
 
