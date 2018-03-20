@@ -63,5 +63,7 @@
   "false": "Ei",
   "navbar.search":"Hae sivustolta",
   "comparison.title": "Lajivertailu",
-  "comparison.card": "Lajikortti"
+  "comparison.card": "Lajikortti",
+  "filist.h1":"Kansallinen haitallisten vieraslajien luettelo",
+  "eulist.h1":"Eu:n haitallisten vieraslajien luettelo"
 }

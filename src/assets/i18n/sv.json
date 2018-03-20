@@ -48,5 +48,7 @@
   "omnisearch.showtree": "Visa trädet",
   "omnisearch.search": "Sök efter arter",
   "legal.h1":"Legislatur",
-  "navbar.search":"Sök på webbplatsen"
+  "navbar.search":"Sök på webbplatsen",
+  "filist.h1":"Den nationella listan över invasiva främmande arter",
+  "eulist.h1":"EU listan över invasiva främmande arter"
 }

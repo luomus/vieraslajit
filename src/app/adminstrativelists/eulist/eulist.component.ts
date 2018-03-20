@@ -42,9 +42,7 @@ export class EulistComponent implements OnInit {
           if (!element.vernacularName) {
             element.vernacularName = element.scientificName;
           }
-          if (element.administrativeStatuses) {
-            element.onEUList = this.translate.instant(String(element.administrativeStatuses.some(value => value === 'MX.euInvasiveSpeciesList')));
-          }
+      
         element.stableString = this.translate.instant(String(element.stableInFinland));
       
       });

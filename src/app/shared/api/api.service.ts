@@ -173,8 +173,6 @@ export namespace LajiApi {
     langFallback?: boolean;
     hasMediaFilter?: boolean;
     includeMedia?: boolean;
-    onEUList?: boolean;
-    onNationalList?:boolean;
     adminStatusFilters?:String;
   
   }
