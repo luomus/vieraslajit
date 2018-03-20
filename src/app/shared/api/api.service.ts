@@ -189,6 +189,8 @@ export namespace LajiApi {
     langFallback?: boolean;
     hasMediaFilter?: boolean;
     includeMedia?: boolean;
+    adminStatusFilters?:String;
+  
   }
   export interface AutocompleteQuery {
     q?: string;

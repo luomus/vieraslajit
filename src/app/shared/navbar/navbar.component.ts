@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { SearchComponent } from '../googlesearch/search/search.component';
-import { UserService } from '../service/user.service';
+import { UserService, Role } from '../service/user.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -14,16 +14,28 @@ export class NavbarComponent implements OnInit {
   modalRef: BsModalRef;
   loginUrl = '#';
   isCollapsed = false;
+  loggedIn = false;
   
   constructor(private modalService: BsModalService, private router: Router) { 
-    // subscribing to events is a suboptimal solution (a lot more updates than necessary), but couldn't figure out anything else
+    // temporary suboptimal solution (a lot more updates than necessary)
     router.events.subscribe((val) => {
       this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
+      this.loggedIn = UserService.loggedIn();
     });
   }
 
   ngOnInit() {
     
+  }
+
+  userPropertiesWrapper() {
+    if(this.loggedIn) {
+      return UserService.getUserProperties();
+    }
+  }
+
+  isCMSAdmin() {
+    return UserService.hasRole(Role.CMS_ADMIN);
   }
 
   openModal(template: TemplateRef<any>) {
