@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'legal', loadChildren: './legal/legal.module#LegalModule' },
   { path: 'legal/law', loadChildren: './legal/legal.module#LegalModule' },
   { path: 'static', loadChildren: './static/static.module#StaticModule' },
-  { path: 'user/login', loadChildren: './user/user.module#UserModule' }
+  { path: 'user/login', loadChildren: './user/user.module#UserModule' },
+  { path: 'form', loadChildren: './form/form.module#FormModule'}
 ];
 
 @NgModule({
