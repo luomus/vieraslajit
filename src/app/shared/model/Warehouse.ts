@@ -78,14 +78,59 @@ export interface WarehouseQueryCount{
     editorPersonToken:string;
     observerPersonToken:string;
     editorOrObserverPersonToken:string;
+}
 
-
-    
-    
-    
-
-
-    
-
-
+export interface WarehouseQueryList {
+  includeNonValidTaxa?: boolean;
+  taxonId?: Array<string>;
+  target?: Array<string>;
+  taxonRankId?: string;
+  informalTaxonGroupId?: Array<string>;
+  administrativeStatusId?: Array<string>;
+  redListStatusId?: Array<string>;
+  finnish?: boolean;
+  invasive?: boolean;
+  countryId?: Array<string>;
+  finnishMunicipalityId?: Array<string>;
+  biogeographicalProvinceId?: Array<string>;
+  area?: Array<string>;
+  time?: Array<string>;
+  dayOfYearBegin?: number;
+  dayOfYearEnd?: number;
+  keyword?: Array<string>;
+  collectionId?: Array<string>;
+  coordinateAccuracyMax?: number;
+  sourceId?: Array<string>;
+  superRecordBasis?: Array<string>;
+  recordBasis?: Array<string>;
+  lifeStage?: Array<string>;
+  taxonReliability?: Array<string>;
+  sex?: Array<string>;
+  documentId?: Array<string>;
+  unitId?: Array<string>;
+  individualId?: Array<string>;
+  individualCountMin?: number;
+  individualCountMax?: number;
+  loadedLaterThan?: Date;
+  coordinates?: Array<string>;
+  typeSpecimen?: boolean;
+  hasDocumentMedia?: boolean;
+  hasGatheringMedia?: boolean;
+  hasUnitMedia?: boolean;
+  hasMedia?: boolean;
+  secureReason?: Array<string>;
+  editorId?: Array<string>;
+  secured?: boolean;
+  ykj10km?: string;
+  ykj10kmCenter?: string;
+  unidentified?: boolean;
+  cache?: boolean;
+  reliable?: boolean;
+  observerPersonToken?: string;
+  editorPersonToken?: string;
+  editorOrObserverPersonToken?: string;
+  qualityIssues?: string;
+  annotationType?: Array<string>;
+  annotatedBefore?: Date;
+  annotatedLaterThan?: Date;
 }

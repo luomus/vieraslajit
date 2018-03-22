@@ -18,6 +18,8 @@ import { BsDropdownModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
 import { InformationService } from './service/information.service';
 import {ListService } from './service/list.service';
 import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
+import { ObservationService } from './service/observation.service';
+
 
 @NgModule({
   imports: [
@@ -46,7 +48,8 @@ export class SharedModule {
         TaxonService,
         NewsService,
         MetadataService,
-        InformationService
+        InformationService,
+        ObservationService
       ]
     };
   }
