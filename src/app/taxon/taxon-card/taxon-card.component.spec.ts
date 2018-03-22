@@ -10,13 +10,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { LabelPipe } from '../../shared/pipe/label.pipe';
 import { MetadataService } from '../../shared/service/metadata.service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
-import { CollapseModule } from 'ngx-bootstrap';
+import { CollapseModule, AccordionModule } from 'ngx-bootstrap';
 import { TaxonComparisonComponent } from '../taxon-comparison/taxon-comparison.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OmnisearchComponent } from '../../shared/omnisearch';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ObservationComponent } from '../../observation/observation.component';
 import { ObservationService } from '../../shared/service/observation.service';
+
 
 describe('TaxonCardComponent', () => {
   let component: TaxonCardComponent;
@@ -26,7 +27,7 @@ describe('TaxonCardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TaxonCardComponent, LabelPipe, TaxonComparisonComponent, OmnisearchComponent,ObservationComponent],
       imports: [HttpClientModule, TranslateModule.forRoot(), CollapseModule.forRoot(),
-        RouterTestingModule, FormsModule, ReactiveFormsModule],
+        RouterTestingModule, FormsModule, ReactiveFormsModule, AccordionModule],
       providers: [TaxonService, ApiService, TranslateService, MetadataService,ObservationService]
     })
       .compileComponents();

@@ -1,9 +1,35 @@
 .card {
     margin: 10px;
+        
     .card-block {
         padding: 10px;
+        border:  #2C3539;
     }
+
+    .card-header{
+        background-color: #2C3539 !important;
+        color: white;
+        border:  #2C3539;
+       
+     }
+     .panel-default{
+        border:  #2C3539 !important;
+    }
+    .panel-group{
+        background-color: #2C3539 !important;
+    }
+   
 }
+
+
+.cardAccordion{
+    background-color: #2C3539 !important;
+    color: white; 
+}
+
 .cursive {
     font-style: oblique;
+}
+.head{
+    padding: 10px !important;
 }
