@@ -39,8 +39,13 @@ export class NewsComponent implements OnInit {
     });
   }
 
-  /*setImageToDisplay(){
-    if (this.news.)
-  }*/
+  getImageToDisplay(newsElement: NewsElement){
+    if(newsElement.hasOwnProperty("featuredImage")){
+      this.imageToDisplay=newsElement.featuredImage;
+    } else {
+      this.imageToDisplay= "https://media.istockphoto.com/photos/sunrise-on-yosemite-valley-picture-id505872990?k=6&m=505872990&s=612x612&w=0&h=XcdHhkC9PF9-saYT6n_GQD-0Hf8dbI_Q4wfYlZZGpNk=";
+    } 
+    return this.imageToDisplay;
+  }
 
 }
