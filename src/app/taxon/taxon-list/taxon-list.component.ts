@@ -21,7 +21,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
 
   @Input() search = '';
   private subTrans: Subscription;
-
+  public loading = true;
   id: string;
   taxa: Taxonomy[];
   page: PagedResult<Taxonomy>;
@@ -45,6 +45,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   update() {
     this.taxonService.getInformalGroups(this.translate.currentLang).subscribe((data) => {
       this.groups = data.results;
+      this.loading = false;
     }, error => error, () => {
       if (this.selectedGroup) {
         this.selectedGroup = this.groups.filter(val => val.id === this.selectedGroup.id).pop();
@@ -57,13 +58,14 @@ export class TaxonListComponent implements OnInit, OnDestroy {
       { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
       { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
       { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
-    ];
+    ];  
   }
 
 
   onGroupSelect(target, pageNumber: string = '1') {
+    this.loading = true;
     this.selectedGroup = target;
-    this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id, this.translate.currentLang, pageNumber).subscribe(data => {
+    this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id, this.translate.currentLang, pageNumber, true).subscribe(data => {
       this.page = data;
       this.taxa = data.results;
       this.taxa.forEach(element => {
@@ -78,17 +80,20 @@ export class TaxonListComponent implements OnInit, OnDestroy {
           element.onNationalList = this.translate.instant(String(false));
         }
         element.stableString = this.translate.instant(String(element.stableInFinland));
-        this.taxonService
-          .getTaxonMedia(element.id, 'fi').subscribe(data => {
-            if (data.length > 0) {
-              element.thumbnail = data[0].thumbnailURL;
-            } else {
-              element.thumbnail = 'assets/images/logos/vieraslaji-logo-b.png';
-            }
-          });
+        if (element.multimedia.length > 0) {
+            element.thumbnail = element.multimedia[0].thumbnailURL; 
+        } else {
+            element.thumbnail = 'assets/images/logos/vieraslaji-logo-b.png';
+        }
       });
       this.pageData = this.taxa.slice(0, this.itemsPerPage);
-    });
+    },() => null, () => this.loader());
+  }
+  // if loading true => false, removes spinner
+  loader() {
+    if (this.loading) {
+      this.loading = false;
+    }
   }
 
   onSelect(event) {

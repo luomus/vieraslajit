@@ -50,7 +50,6 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     });
     this.scrollTop();
     this.update();
-    
   }
 
   update() {

@@ -1,3 +1,4 @@
+<laji-spinner [spinning]="loading" [overlay]="true">
 <div class="container">
   <div id="omnisearch">
     <vrs-omnisearch></vrs-omnisearch>
@@ -36,7 +37,7 @@
     </accordion>
   </div>
   <br>
-  <ng-container *ngIf="selectedGroup && taxa">
+  <ng-container *ngIf="selectedGroup && taxa && !loading">
     <tabset>
       <tab heading="{{'navigation.list' | translate}}">
         <div class="tab-pane container" id="taxontable">
@@ -65,3 +66,4 @@
     </tabset>
   </ng-container>
 </div>
+</laji-spinner>
