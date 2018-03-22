@@ -11,6 +11,7 @@ import { WarehouseQueryCount } from '../model/Warehouse';
 import { WarehouseQueryList } from '../model/Warehouse';
 import { Information } from '../model/Information';
 import { userProperty, UserService } from '../service/user.service';
+import { query } from '@angular/core/src/animation/dsl';
 
 @Injectable()
 export class ApiService {
@@ -21,7 +22,7 @@ export class ApiService {
   personByToken(personToken: string) {
     return this.httpClient.get(
       `${environment.lajiApi.url}person/` + personToken,
-      { params: {'access_token': environment.lajiApi.accessToken } }
+      { params: { 'access_token': environment.lajiApi.accessToken } }
     );
   }
 
@@ -29,7 +30,7 @@ export class ApiService {
   personToken(token: string) {
     return this.httpClient.get(
       `${environment.lajiApi.url}person-token/` + token,
-      { params: {'access_token': environment.lajiApi.accessToken } }
+      { params: { 'access_token': environment.lajiApi.accessToken } }
     );
   }
 
@@ -150,6 +151,20 @@ export class ApiService {
       { params: { 'access_token': environment.lajiApi.accessToken } }
     );
   }
+
+  /* Get form by id
+  * @param endpoint
+  * @param id
+  * @param lang
+  */
+  formById(endpoint: LajiApi.Endpoints.form, id: string, query: LajiApi.Query): Observable<any>;
+  formById(endpoint: LajiApi.Endpoints, id: string, query: object = {}): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
+    return this.httpClient.get(
+      url,
+      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+    );
+  }
 }
 
 export namespace LajiApi {
@@ -170,7 +185,7 @@ export namespace LajiApi {
     warehousequerycount = 'warehouse/query/count',
     warehousequerylist = 'warehouse/query/list',
     information = 'information/%id%'
-
+    form = 'forms/%id%'
   }
   /* Possible query parameters. */
   export interface Query {
