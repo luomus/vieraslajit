@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ObservationService } from '../shared/service/observation.service';
 import { WarehouseQueryList } from '../shared/model/Warehouse';
 import { PagedResult } from '../shared/model/PagedResult';
-import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -12,26 +11,23 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class ObservationComponent implements OnInit {
 
-  private subTrans: Subscription;
-  private data: PagedResult<WarehouseQueryList>;
+  @Input() id: string;
+  private idArray: Array<string> = [];
   private observations: Array<WarehouseQueryList> = [];
 
-
-  private testId: Array<string> = [];
-
-  constructor(private observationService: ObservationService, private translate: TranslateService) { }
+  constructor(private observationService: ObservationService) { }
 
   ngOnInit() {
-    this.testId.push("MX.52996");
+    this.idArray.push(this.id);
     this.update();
   }
 
   update() {
-    this.observationService.getObservationsById(this.testId).subscribe(data => {
-      this.data = data;
+    this.observationService.getObservationsById(this.idArray).subscribe(data => {
       this.observations= data.results;
     });  
-  } 
+  }
+
 
 
 }
