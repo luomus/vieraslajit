@@ -10,6 +10,8 @@ import { routing } from './taxon.routing';
 import { SharedModule } from '../shared/shared.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TaxonComparisonComponent } from './taxon-comparison/taxon-comparison.component';
+import { ObservationComponent } from '../observation/observation.component';
+
 
 
 @NgModule({
@@ -22,8 +24,9 @@ import { TaxonComparisonComponent } from './taxon-comparison/taxon-comparison.co
     AccordionModule,
     CollapseModule,
     PaginationModule,
-    TabsModule
+    TabsModule,
+ 
   ],
-  declarations: [TaxonListComponent, TaxonCardComponent, TaxonComparisonComponent]
+  declarations: [TaxonListComponent, TaxonCardComponent, TaxonComparisonComponent, ObservationComponent ]
 })
 export class TaxonModule { }
