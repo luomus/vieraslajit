@@ -9,8 +9,11 @@
         <div accordion-heading>
           <h5 class="mb-0" translate>
             taxonomy.taxongroup
-            <ng-container *ngIf="selectedGroup"> > {{selectedGroup.name}}</ng-container>
+            <ng-container *ngIf="selectedGroup">/ {{selectedGroup.name}}</ng-container>
+            <ng-container *ngIf="showGroups === false"><span class="oi oi-chevron-bottom float-right"></span></ng-container>
+            <ng-container *ngIf="selectedGroup && showGroups === true"><span class="oi oi-chevron-top float-right"></span></ng-container>
           </h5>
+         
         </div>
 
         <div id="collapseOne" class="collapse show">
@@ -43,12 +46,12 @@
           </ngx-datatable>
         </div>
       </tab>
-      <tab heading="{{'navigation.grid' | translate}}">
+      <tab heading="{{'navigation.grid' | translate}}"[active]="true">
         <div class="tab-pane container" id="cardcontainer">
           <div class="card-group" id="taxongrid">
             <div *ngFor="let species of pageData" class="col-12 col-sm-6 col-md-4 col-lg-3">
               <div class="card small text-center" id="species-card">
-                <img class="card-img-top img-responsive" [src]="species.thumbnail" id="species-img">
+                <img class="card-img-top img-responsive" [src]="species.thumbnail" id="species-img" [routerLink]="[species.id]">
                 <div class="card-body" id="species-card-body">
                   <a class="card-text" id="species-card-text" [routerLink]="[species.id]">{{species.vernacularName || species.scientificName}}</a>
                 </div>

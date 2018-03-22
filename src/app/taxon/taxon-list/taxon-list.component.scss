@@ -108,8 +108,17 @@ ngx-datatable {
 #species-img {
     width: 100%;
     height: 10vw;
-    object-fit: cover;
+    object-fit: contain;
 }
+
+@media screen and (max-width: 600px) {
+    #species-img {
+        width: 100%;
+        height: 80%;
+        object-fit:contain;   
+    }
+}
+
 
 #species-card-text {
     width: 100%;
