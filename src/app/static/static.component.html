@@ -1,4 +1,7 @@
-<h1>staattisen sivun otsikko</h1>
-<div [innerHTML]="scontent">
+<ng-container *ngIf="scontent">
+        <h1 [innerHTML]="scontent['menuTitle']"></h1>
+        <div [innerHTML]="scontent['content']">
 
-</div>
+        </div>
+</ng-container>
+
