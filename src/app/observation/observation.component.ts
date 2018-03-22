@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ObservationService } from '../shared/service/observation.service';
+import { WarehouseQueryList } from '../shared/model/Warehouse';
+import { PagedResult } from '../shared/model/PagedResult';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'vrs-observation',
@@ -7,9 +12,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ObservationComponent implements OnInit {
 
-  constructor() { }
+  private subTrans: Subscription;
+  private data: PagedResult<WarehouseQueryList>;
+  private observations: Array<WarehouseQueryList> = [];
+
+
+  private testId: Array<string> = [];
+
+  constructor(private observationService: ObservationService, private translate: TranslateService) { }
 
   ngOnInit() {
+    this.testId.push("MX.52995");
+    this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.update();
   }
+
+  update() {
+    this.observationService.getObservationsById(this.testId, this.translate.currentLang).subscribe(data => {
+      this.data = data;
+      this.observations= data.results;
+    });  
+  } 
+
 
 }

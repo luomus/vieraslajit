@@ -16,6 +16,7 @@ import { OmnisearchComponent } from './omnisearch/omnisearch.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
 import {ListService } from './service/list.service';
+import { ObservationService } from './service/observation.service';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ export class SharedModule {
         ApiService,
         TaxonService,
         NewsService,
-        MetadataService
+        MetadataService,
+        ObservationService
       ]
     };
   }
