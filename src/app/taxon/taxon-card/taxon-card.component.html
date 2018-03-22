@@ -1,25 +1,30 @@
 <laji-spinner [spinning]="loading" [overlay]="true">
   <ng-container *ngIf="taxon">
 <div [collapse]="comparison" class="container-fluid">
-  <h1>
-    {{taxon?.vernacularName}}
-    <span *ngIf="taxon?.vernacularName">&ndash;</span>
-    <span [class.cursive]="taxon?.cursiveName">{{taxon?.scientificName}}</span>
-    <img src="assets/images/logos/vieraslaji-logo-70x70.png" width="40" height="40" alt="">
-  </h1>
+  <div class="row head"> 
+    <h1>
+      {{taxon?.vernacularName}}
+      <span *ngIf="taxon?.vernacularName">&ndash;</span>
+      <span [class.cursive]="taxon?.cursiveName">{{taxon?.scientificName}}</span>
+      <img src="assets/images/logos/vieraslaji-logo-70x70.png" width="40" height="40" alt="">
+    </h1>
+    <button class="btn btn-dark btn-sm" (click)="comparisonView()" translate>comparison.title</button>
+  </div>
+ 
   <div class="row">
     <div class="col-sm-6">
       <div *ngIf="desc?.groups; else infoAndLajifiTemplate">
-        <div class="card" *ngFor="let group of desc?.groups">
-          <div class="card-header" role="tab">
-            <strong>{{group.title}}</strong>
-          </div>
-          <div class="card-block" *ngFor="let variable of group.variables">
-            <h4 class="card-title">
-              {{variable.title}}
-            </h4>
-            <span class="card-text" [innerHTML]="variable.content"></span>
-          </div>
+        <div class="card" *ngFor="let group of desc?.groups; let first = first">
+          <accordion>
+              <accordion-group  heading = {{group.title}} [panelClass]="cardAccordion" [isOpen]="first" >
+                <div class="card-block" *ngFor="let variable of group.variables">
+                  <h4 class="card-title">
+                    {{variable.title}}
+                  </h4>
+                  <span class="card-text" [innerHTML]="variable.content"></span>
+                </div>
+              </accordion-group>
+          </accordion>
         </div>
       </div>
     </div>
@@ -95,7 +100,7 @@
           <a href="http://tun.fi/{{id}}" target="_blank">http://tun.fi/{{id}}</a>
         </div>
       </div>
-      <button class="btn btn-primary" (click)="comparisonView()" translate>comparison.title</button>
+  
     </ng-template>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { TaxonomyDescription, TaxonomyImage, Taxonomy } from '../../shared/model/Taxonomy';
@@ -9,7 +9,8 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'vrs-taxon-card',
   templateUrl: './taxon-card.component.html',
-  styleUrls: ['./taxon-card.component.scss']
+  styleUrls: ['./taxon-card.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class TaxonCardComponent implements OnInit, OnDestroy {
@@ -26,14 +27,18 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   family: Array<Taxonomy>;
   quarantinePlantPest: boolean;  // Vaarallinen kasvintuhoaja
   comparison: boolean;
+  isFirstOpen:boolean;
+  customClass:string ;
   constructor(private route: ActivatedRoute, private router: Router,
-    private taxonService: TaxonService, private translate: TranslateService) {
+    private taxonService: TaxonService, private translate: TranslateService) {  
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
+   
   }
 
   ngOnInit() {
+    this.isFirstOpen = false;
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.querySub = this.route.queryParams.subscribe(params => {
       if (params) {
@@ -45,6 +50,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     });
     this.scrollTop();
     this.update();
+    
   }
 
   update() {
@@ -56,6 +62,8 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     });
     this.taxonService.getTaxonDescription(this.id, this.translate.currentLang).subscribe(data => {
       this.desc = data[0];
+      
+      
     });
     this.taxonService.getTaxonMedia(this.id, this.translate.currentLang).subscribe(data => {
       this.media = data;
@@ -92,4 +100,5 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       this.querySub.unsubscribe();
     }
   }
+  
 }
