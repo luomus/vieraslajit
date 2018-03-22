@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
   ngOnInit() {
-    this.newsService.getPage('1', '30', this.translate.currentLang).subscribe((data) => {
+    this.newsService.getPage('1', '30', this.translate.currentLang, "vieraslajit.fi").subscribe((data) => {
       let technical: Array<any> = [0];
       for(let d of data.results) {
         if (d.tag.includes("technical")) {
