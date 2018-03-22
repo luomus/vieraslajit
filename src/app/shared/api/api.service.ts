@@ -184,7 +184,7 @@ export namespace LajiApi {
     autocomplete = 'autocomplete/taxon',
     warehousequerycount = 'warehouse/query/count',
     warehousequerylist = 'warehouse/query/list',
-    information = 'information/%id%'
+    information = 'information/%id%',
     form = 'forms/%id%'
   }
   /* Possible query parameters. */
