@@ -22,13 +22,12 @@ export class ObservationComponent implements OnInit {
   constructor(private observationService: ObservationService, private translate: TranslateService) { }
 
   ngOnInit() {
-    this.testId.push("MX.52995");
-    this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.testId.push("MX.52996");
     this.update();
   }
 
   update() {
-    this.observationService.getObservationsById(this.testId, this.translate.currentLang).subscribe(data => {
+    this.observationService.getObservationsById(this.testId).subscribe(data => {
       this.data = data;
       this.observations= data.results;
     });  
