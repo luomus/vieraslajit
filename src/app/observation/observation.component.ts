@@ -13,7 +13,7 @@ export class ObservationComponent implements OnInit {
 
   @Input() id: string;
   private idArray: Array<string> = [];
-  private observations: Array<WarehouseQueryList> = [];
+  observations: Array<WarehouseQueryList> = [];
   private pageSize: string;
 
   constructor(private observationService: ObservationService) { }
