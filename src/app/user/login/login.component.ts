@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
       // update userproperties with laji api data
       this.userService.updateUserProperties(this.activatedRoute.snapshot.queryParams['token'], this.router, this.userService, function(_router, _userService) {
         // redirect to original location
-        _router.navigateByUrl(_userService.getUserProperties()["person-token"].next);
+        _router.navigateByUrl(UserService.getUserProperties()["person-token"].next);
       });
     } else {
       this.router.navigateByUrl("/home");
