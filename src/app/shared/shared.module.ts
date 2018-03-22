@@ -15,6 +15,7 @@ import { MetadataService } from './service/metadata.service';
 import { OmnisearchComponent } from './omnisearch/omnisearch.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
+import { InformationService } from './service/information.service';
 import {ListService } from './service/list.service';
 import { ObservationService } from './service/observation.service';
 
@@ -45,6 +46,7 @@ export class SharedModule {
         TaxonService,
         NewsService,
         MetadataService,
+        InformationService,
         ObservationService
       ]
     };
