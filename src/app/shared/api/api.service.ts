@@ -8,6 +8,7 @@ import { Informal } from '../model/Informal';
 import { NewsElement } from '../model/NewsElement';
 import { Autocomplete } from '../model/Autocomplete';
 import { WarehouseQueryCount } from '../model/Warehouse';
+import { WarehouseQueryList } from '../model/Warehouse';
 import { Information } from '../model/Information';
 import { userProperty, UserService } from '../service/user.service';
 import { query } from '@angular/core/src/animation/dsl';
@@ -53,6 +54,15 @@ export class ApiService {
   // Warehouse query count
   warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: LajiApi.warehousequerycountQuery): Observable<WarehouseQueryCount>;
   warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: object = {}): Observable<any> {
+    const url = `${environment.lajiApi.url}${endpoint}`;
+    return this.httpClient.get(
+      url,
+      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+    );
+  }
+
+  warehouseQueryListById(endpoint: LajiApi.Endpoints.warehousequerylist, query: LajiApi.WarehouseQueryListQuery): Observable<PagedResult<WarehouseQueryList>>;
+  warehouseQueryListById(endpoint: LajiApi.Endpoints.warehousequerylist, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}${endpoint}`;
     return this.httpClient.get(
       url,
@@ -173,6 +183,7 @@ export namespace LajiApi {
     newsElement = 'news/%id%',
     autocomplete = 'autocomplete/taxon',
     warehousequerycount = 'warehouse/query/count',
+    warehousequerylist = 'warehouse/query/list',
     information = 'information/%id%',
     form = 'forms/%id%'
   }
@@ -204,8 +215,11 @@ export namespace LajiApi {
     cache?: boolean;
     taxonId?: string;
     individualCountMin?: number;
+  }
 
-
+  export interface WarehouseQueryListQuery {
+    taxonId: Array<string>;
+    pageSize?: string;
   }
 
 }

@@ -101,8 +101,13 @@
   
     </ng-template>
   </div>
+
+ <vrs-observation [id]="id">
+ </vrs-observation>
 </div>
 <div *ngIf="comparison && taxon && media">
   <button class="btn btn-primary" (click)="comparisonView()" translate>comparison.card</button>
   <vrs-taxon-comparison [taxon]="taxon" [media]="media[0]"></vrs-taxon-comparison>
 </div>
+
+
