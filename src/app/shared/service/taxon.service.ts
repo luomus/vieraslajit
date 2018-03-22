@@ -13,22 +13,41 @@ export class TaxonService {
   constructor(private apiService: ApiService) { }
 
   // Get all species in the group.
-  getTaxonomy(taxonId: string, group?: string, lang?: string): Observable<PagedResult<Taxonomy>> {
+  getTaxonomy(taxonId: string, group?: string, lang?: string, pageNumber: string = '1',
+    includeMedia: boolean = false): Observable<PagedResult<Taxonomy>> {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
-        { invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: false, lang: lang, langFallback: false });
+        {
+          invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: false,
+          lang: lang, langFallback: true, pageSize: '1000', page: pageNumber, includeMedia: includeMedia
+        });
+  }
+
+  // Get all species in the group with media.
+  getComparisonTaxonomy(taxonId: string, group: string, lang?: string): Observable<PagedResult<Taxonomy>> {
+    return this.apiService
+      .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
+        {
+          informalGroupFilters: group, onlyFinnish: false, hasMediaFilter: true, lang: lang
+        });
   }
 
   // Get one taxon
   getTaxon(taxonId: string, lang?: string): Observable<Taxonomy> {
     return this.apiService
-      .taxonomyFindById(LajiApi.Endpoints.taxon, taxonId, { lang: lang , langFallback: false});
+      .taxonomyFindById(LajiApi.Endpoints.taxon, taxonId, { lang: lang, langFallback: false });
   }
   // Get root groups.
   getInformalGroups(lang: string): Observable<PagedResult<Informal>> {
     return this.apiService
       .informalTaxonGroups(LajiApi.Endpoints.informalRoots, { lang: lang });
   }
+  // Get children of the group.
+  getGroupChildren(groupId: string, lang?: string): Observable<PagedResult<Informal>> {
+    return this.apiService
+      .informalTaxonGroups(LajiApi.Endpoints.informalChildren, { lang: lang }, groupId);
+  }
+
   // Get taxon description.
   getTaxonDescription(taxonId: string, lang: string): Observable<Array<any>> {
     return this.apiService
@@ -46,13 +65,13 @@ export class TaxonService {
         { lang: lang, selectedFields: 'id, vernacularName, scientificName, taxonRank' });
   }
   // Get autocomplete for taxon search.
-  getAutocomplete(field: string, q: string): Observable<any> {
+  getAutocomplete(field: string, q: string, lang?: string): Observable<any> {
     return this.apiService
-      .autocompleteFindByField(LajiApi.Endpoints.autocomplete, field, { q, includePayload: true, onlyInvasive: true });
+      .autocompleteFindByField(LajiApi.Endpoints.autocomplete, field, { q, includePayload: true, onlyInvasive: true, lang: lang });
   }
   // Get warehouse query count for taxon search.
   getWareHouseQueryCount(count: string, lang: string, taxonId): Observable<any> {
     return this.apiService
-      .warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount, count, { cache: false, taxonId, individualCountMin: 1 });
+      .warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount, count, { cache: false, taxonId, individualCountMin: 1, });
   }
 }

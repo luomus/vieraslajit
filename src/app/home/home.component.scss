@@ -1,3 +1,105 @@
-#infobox{
-    padding-top: 5%;
+@import '../../assets/styles/vars';
+
+.jumbotron {
+    background: url("../../assets/images/bgs/vieraslajit-home-bg.png") center;
+    background-size: 105%;
+    background-repeat: no-repeat;
+    height: 20rem;
+    margin-bottom: 0px;
+}
+
+#jumbotron-info {
+    margin-top: 4vh;
+    margin-left: 2vh;
+}
+
+#jumbotron-h1 {
+    font-family: $font-montserrat;
+    font-weight: 700;
+}
+
+#searchbar {
+    background: $content-background-highlight-dark;
+}
+
+#welcome {
+    color: $primary;
+    font-family: $font-montserrat;
+    font-size: 20px;
+    margin-top: 7vh;
+    margin-bottom: 7vh;
+}
+
+#pagemap {
+    background: $primary;
+    color: $content-background;
+    margin-top: 30px;
+    position: center;
+}
+
+#homecard {
+    height: 100%;
+    background: $content-background-highlight;
+    padding-bottom: 20px;
+}
+
+#homecard-header {
+    background-color: $content-background-highlight-dark;
+    font-family: $font-montserrat;
+    font-weight: 500;
+    color: $content-background;
+}
+
+#cardcol {
+    margin-bottom: 3vh; 
+}
+
+#invasivecards {
+    background-color: $content-background;
+    margin: 1vh;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#invasivecards:hover {
+    border-color: $primary;
+    transition: 0.3s;
+}
+
+#invasivecards-img {
+    background-color: $content-background;
+    width: 10vh;
+    margin: 0 auto;
+    margin-top: 2vh;
+}
+
+#invasivetitle {
+    font-size: 1.3vh;
+    font-weight: 600;
+}
+
+.card-deck {
+    margin: 0;
+}
+
+@media (max-width: 575.98px) {
+    .jumbotron h1{font-size: 20px}
+    .jumbotron #jumbotron-button{font-size: 8px}
+    .jumbotron {background-size: 160%}
+    #welcome-h1 {font-size: 30px}
+    #welcome-text {font-size: 18px}
+}
+
+@media (max-width: 767.98px) {
+    .jumbotron h1{font-size: 35px}
+    .jumbotron #jumbotron-button{font-size: 12px}
+    .jumbotron {height: 13rem}
+}
+
+@media (max-width: 991.98px) {
+    #invasivecards-img {width: 6rem;}
+}
+
+@media (max-width: 1199.98px) {
+    
 }

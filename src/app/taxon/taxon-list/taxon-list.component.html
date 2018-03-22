@@ -1,75 +1,64 @@
-<ng-container>
-  <div class="card-group container">
-    <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card small text-center">
-        <img class="card-img-top img-responsive" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
-        <div class="card-body">
-            <p class="card-text">{{group.name}}</p>
+<div class="container">
+  <div id="omnisearch">
+    <vrs-omnisearch></vrs-omnisearch>
+  </div>
+
+  <div id="accordion" role="tablist" aria-multiselectable="true">
+    <accordion>
+      <accordion-group #group [(isOpen)]="showGroups">
+        <div accordion-heading>
+          <h5 class="mb-0" translate>
+            taxonomy.taxongroup
+            <ng-container *ngIf="selectedGroup"> > {{selectedGroup.name}}</ng-container>
+          </h5>
         </div>
-      </div>
-    </div>
-  </div>
-</ng-container>
-<br>
-<ng-container *ngIf="selectedGroup">
 
-    <ul class="nav nav-tabs container">
-      <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" (click)="changeView=false">List</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" (click)="changeView=true">Grid</a>
-      </li>
-      <form class="form-inline">
-          <input class="form-control mr-sm-2" [(ngModel)]="search" (ngModelChange)="onSearchChange($event)" [ngModelOptions]="{standalone: true}" type="text" class="form-control"
-            placeholder="Filter">
-      </form>
-    </ul>
-    <br>
-    
-<div class="tab-pane container" id="taxontable">
-  <div *ngIf="!changeView">
-    <table class="table" id="taxontable">
-      <thead>
-        <tr>
-          <th scope="col" translate>taxonomy.folkname</th>
-          <th scope="col" translate>taxonomy.scientificname</th>
-          <th scope="col" translate>taxonomy.onEuList</th>
-          <th scope="col" translate>taxonomy.finnishList</th>
-          <th scope="col" translate>taxonomy.established</th>
-          <th scope="col" translate>taxonomy.class</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let species of selected">
-          <td>
-            <a [routerLink]="[species.id]">{{species.vernacularName || species.scientificName}}</a>
-          </td>
-          <td>{{species.scientificName}}</td>
-          <td>placeholder</td>
-          <td>placeholder</td>
-          <td>{{species.occurenceInFinland}}</td>
-          <td>{{selectedGroup.name}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<div class="tab-pane container" id="taxongrid">
-    <div *ngIf="changeView">
-      <div class="card-group" id="taxongrid">
-        <div *ngFor="let species of selected" class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
-          <div class="card small text-center">
-            <img class="card-img-top img-responsive" src="assets/images/logos/vieraslaji-logo-70x70.png" alt="no image yet">
-            <div class="card-body">
-              <a class="card-text" [routerLink]="[species.id]">{{species.vernacularName || species.scientificName}}</a>
-            </div>
+        <div id="collapseOne" class="collapse show">
+          <div class="card-block">
+            <ng-container>
+              <div class="card-group container">
+                <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-12 col-sm-6 col-md-4 col-lg-3">
+                  <div class="card" id="selectGroup-card" (click)="changeOpen()">
+                    <img class="card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
+                    <div class="card-body" id="selectGroup-card-body">
+                      <p class="card-text" id="selectGroup-card-text">{{group.name}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
           </div>
         </div>
-      </div> 
-    </div>
+      </accordion-group>
+    </accordion>
   </div>
-
-
-</ng-container>
+  <br>
+  <ng-container *ngIf="selectedGroup && taxa">
+    <tabset>
+      <tab heading="{{'navigation.list' | translate}}">
+        <div class="tab-pane container" id="taxontable">
+          <ngx-datatable *ngIf="page" class="material selection-cell" [rows]="taxa" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
+            [rowHeight]="50" [reorderable]='true' [selectionType]="'single'" [count]="taxa.length" [limit]="50" [footerHeight]="50"
+            [sorts]="[{prop: 'vernacularName', dir: 'asc'}]" (select)="onSelect($event)">
+          </ngx-datatable>
+        </div>
+      </tab>
+      <tab heading="{{'navigation.grid' | translate}}">
+        <div class="tab-pane container" id="cardcontainer">
+          <div class="card-group" id="taxongrid">
+            <div *ngFor="let species of pageData" class="col-12 col-sm-6 col-md-4 col-lg-3">
+              <div class="card small text-center" id="species-card">
+                <img class="card-img-top img-responsive" [src]="species.thumbnail" id="species-img">
+                <div class="card-body" id="species-card-body">
+                  <a class="card-text" id="species-card-text" [routerLink]="[species.id]">{{species.vernacularName || species.scientificName}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <pagination [totalItems]="taxa.length" [(ngModel)]="currentPage" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
+        </div>
+      </tab>
+    </tabset>
+  </ng-container>
+</div>

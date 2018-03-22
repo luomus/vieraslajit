@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SearchComponent } from '../shared/googlesearch/search/search.component';
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
+import {OmnisearchComponent} from '../shared/omnisearch/omnisearch.component'
+import { NewsComponent } from '../news/news.component';
 
 @Component({
   selector: 'vrs-home',
@@ -11,23 +13,29 @@ import { TranslateService } from '@ngx-translate/core';
 export class HomeComponent implements OnInit {
 
   alerts: Array<any> = [];
+  news: Array<any>= [];
 
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
   ngOnInit() {
-    this.newsService.getNewsArray('1', '10', this.translate.currentLang).subscribe((data) => {
+    this.newsService.getPage('1', '30', this.translate.currentLang).subscribe((data) => {
       let technical: Array<any> = [0];
       for(let d of data.results) {
         if (d.tag.includes("technical")) {
           technical.push(d);
         }
+        if (d.tag.includes("vieraslajit.fi")&&this.news.length<5) {
+            this.news.push(d);
+          }  
       }
-      let i: number = 0;
+
+      let i:number = 0;
       for (let d of technical) {
         let date: Date = new Date(0);
         date.setUTCMilliseconds(Number(d.posted));
         let now: Date = new Date();
-        if (Math.ceil(Math.abs(now.getTime() - date.getTime()) / (1000 * 3600 * 24)) <= 3) {
+        // muuta tuotannossa että 3 viimeiseltä päivältä!
+        if (Math.ceil(Math.abs(now.getTime() - date.getTime()) / (1000 * 3600 * 24)) <= 20) {
           this.alerts[i] = d;
           i++;
         }

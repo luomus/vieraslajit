@@ -8,4 +8,8 @@ export class AppPage {
   getParagraphText() {
     return element(by.css('vrs-root h1')).getText();
   }
+
+  navigateToLegal() {
+    return browser.get('/legal');
+  }
 }

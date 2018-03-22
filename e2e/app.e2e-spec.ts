@@ -9,6 +9,11 @@ describe('vieraslajit App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Tervetuloa vieraslajiportaaliin!');
+    expect(page.getParagraphText()).toEqual('VIERASLAJIT.FI');
+  });
+
+  it('should display legal title when navigated to legal', () => {
+    page.navigateToLegal();
+    expect(page.getParagraphText()).toEqual('Lainsäädäntö');
   });
 });

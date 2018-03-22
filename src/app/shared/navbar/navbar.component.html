@@ -1,33 +1,82 @@
-<nav class="navbar navbar-expand-lg navbar-dark navbar-static-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">
-            Vieraslajit.fi
-            <img src="assets/images/logos/vieraslaji-logo-70x70.png" width="30" height="30" class="d-inline-block align-top" alt="">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary text-uppercase fixed-top" id="mainNav">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/home" translate>
+            VIERASLAJIT.FI
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler collapsed" id="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" id="navbar-toggler-icon"></span>
         </button>
-        
-        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+       <div class="collapse navbar-collapse" [collapse]="!isCollapsed" id="navbarCollapse">
             <ul class="nav navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/home" translate>navigation.home</a>
+                    <a class="nav-link" routerLink="/taxon" (click)="isCollapsed = !isCollapsed"
+                    aria-expanded="false" translate>navigation.taxonomy</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/taxon" translate>navigation.taxonomy</a>
+                    <a class="nav-link" routerLink="/removal" (click)="isCollapsed = !isCollapsed"
+                    aria-expanded="false" translate>navigation.removal</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/removal" translate>navigation.removal</a>
+                    <a class="nav-link" routerLink="/news" (click)="isCollapsed = !isCollapsed"
+                    aria-expanded="false" translate>navigation.news</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/news" translate>navigation.news</a>
-                </li>
+                
+                    <li class="dropdown" id="dropdown-about" dropdown>
+                        <a dropdownToggle class="dropdown-toggle" id="dropdown-toggle" translate>navigation.about <span class="caret"></span></a>
+                            <ul *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
+                                <li role="menuitem"><a class="dropdown-item" id="dropdown-menu-item" routerLink="#" translate>dropdown.info</a></li>
+                                <li role="menuitem"><a class="dropdown-item" id="dropdown-menu-item" routerLink="/legal" translate>dropdown.legal</a></li>
+                                <li role="menuitem"><a class="dropdown-item" id="dropdown-menu-item" routerLink="#" translate>dropdown.projects</a></li>
+                                <li role="menuitem"><a class="dropdown-item" id="dropdown-menu-item" routerLink="#" translate>dropdown.publication</a></li>
+                                <li role="menuitem"><a class="dropdown-item" id="dropdown-menu-item" routerLink="#" translate>dropdown.guides</a></li>
+                            </ul>
+                    </li>
+                
+
+                
             </ul>
-            <form class="form-inline mr-3">
-                <input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search">
-            </form>
-        </div>
-        <vrs-language-selector></vrs-language-selector>
+            
+            <div class= "ml-auto">
+               <ul class="nav navbar-nav">
+                  <li (click)="openModal(search)" href="#modalSearch" data-toggle="modal" data-target="#modalSearch" class="nav-item" >
+                <span class="oi oi-magnifying-glass icon" id="search-icon"></span>
+                  </li>
+                  <li class="nav-item">
+                    <div *ngIf="!loggedIn;then login_content else welcome_content"></div>
+                    <ng-template #login_content>
+                        <a href='{{loginUrl}}' class="nav-link" translate>navigation.login</a>
+                    </ng-template>
+                    <ng-template #welcome_content>
+                        welcome {{userPropertiesWrapper().person.fullName}}
+                        <ng-container *ngIf="isCMSAdmin()">
+                            <a href="https://cms.laji.fi">CMS linkki</a>
+                        </ng-container>
+                    </ng-template>
+                  </li>
+                  <li class="nav-item" id="language-selector">
+                    <vrs-language-selector ></vrs-language-selector>  
+                  </li>
+               </ul>
+            </div>
+        </div> 
+        
     </div>
 </nav>
-<nav class="breadcrumb-bar"></nav>
+
+<ng-template #search>
+<div id="modalSearch">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h4 translate>navbar.search</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <vrs-search></vrs-search>
+                </div>
+            </div>
+     
+        </div>
+     </div>
+</ng-template>

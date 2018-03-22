@@ -2,6 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { NavbarComponent } from './navbar.component';
 import { LanguageSelectorComponent } from './language-selector/language-selector.component';
+import { SearchComponent } from '../googlesearch/search/search.component';
+import { BsModalService, ModalModule, CollapseModule } from 'ngx-bootstrap';
+import { RouterTestingModule } from '@angular/router/testing';
+
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -9,9 +13,9 @@ describe('NavbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavbarComponent, LanguageSelectorComponent ],
-      imports: [TranslateModule.forRoot()],
-      providers: [TranslateService]
+      declarations: [ NavbarComponent, LanguageSelectorComponent, SearchComponent],
+      imports: [TranslateModule.forRoot(), ModalModule.forRoot(), CollapseModule.forRoot(), RouterTestingModule],
+      providers: [TranslateService, BsModalService]
     })
     .compileComponents();
   }));

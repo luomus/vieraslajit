@@ -13,13 +13,26 @@ $dark:          $gray-800;
 // orange: #f89525
 // dark-orange: #f78706
 
-$primary-light: #f7a951;
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin');
+@import url('https://fonts.googleapis.com/css?family=Oleo+Script');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+//$primary-light: #f7a951;
 $primary: #f89525;
 
 $navbar-background: #222;
-$navbar-background-hover: $primary;
+$navbar-background-hover:#F87217;
+$navbar-dropdown:#F87217; 
 
-$back-background: #eee;
+//$back-background: #eee;
 $content-background: #fefefe;
+$content-background-highlight: #f5f5f5fb;
+//$content-background-highlight-dark: #008080;
+$content-background-highlight-dark: #2C3539;
 
 $content-border-radius: 12px;
+
+$font-family-base: 'Libre Franklin';
+$font-accent: 'Sans serif';
+$font-headline-handwritten: 'Oleo Script';
+$font-montserrat: 'Montserrat';
