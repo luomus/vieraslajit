@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
 
-
 @Component({
   selector: 'vrs-taxon-card',
   templateUrl: './taxon-card.component.html',
@@ -18,6 +17,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   private sub: any;
   private querySub: Subscription;
   private subTrans: Subscription;
+  public loading = true; // spinner true on start
 
   id: string;
   taxon: Taxonomy;
@@ -50,7 +50,9 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   update() {
     this.taxonService.getTaxon(this.id, this.translate.currentLang).subscribe(data => {
       this.taxon = data;
-      this.quarantinePlantPest = this.taxon.administrativeStatuses.includes('MX.quarantinePlantPest');
+      if (this.taxon.administrativeStatuses) {
+        this.quarantinePlantPest = this.taxon.administrativeStatuses.includes('MX.quarantinePlantPest');
+      }
     });
     this.taxonService.getTaxonDescription(this.id, this.translate.currentLang).subscribe(data => {
       this.desc = data[0];
@@ -64,7 +66,14 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       } else {
         this.family = data.filter(value => value.taxonRank === 'MX.family');
       }
-    });
+    }, () => null, () => this.loader()); // spinner to false
+  }
+
+  // if loading true => false, removes spinner
+  loader() {
+    if (this.loading) {
+      this.loading = false;
+    }
   }
 
   comparisonView() {

@@ -16,7 +16,7 @@ import { OmnisearchComponent } from './omnisearch/omnisearch.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
 import {ListService } from './service/list.service';
-
+import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
 
 @NgModule({
   imports: [
@@ -26,6 +26,7 @@ import {ListService } from './service/list.service';
     FormsModule,
     ReactiveFormsModule,
     BsDropdownModule,
+    SpinnerModule,
     ModalModule.forRoot(),
     CollapseModule.forRoot()
   ],
@@ -33,7 +34,7 @@ import {ListService } from './service/list.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SpinnerModule, SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

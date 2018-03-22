@@ -11,7 +11,7 @@ import { Component, Input, OnInit } from '@angular/core';
   <div class="bounce3"></div>
 </div>
 <ng-content *ngIf="!hideContentWhileLoading || !spinning"></ng-content>`,
-  styleUrls: ['./spinner.component.css']
+  styleUrls: ['./spinner.component.scss']
 })
 export class SpinnerComponent implements OnInit {
 

@@ -1,3 +1,5 @@
+<laji-spinner [spinning]="loading" [overlay]="true">
+  <ng-container *ngIf="taxon">
 <div [collapse]="comparison" class="container-fluid">
   <h1>
     {{taxon?.vernacularName}}
@@ -101,3 +103,5 @@
   <button class="btn btn-primary" (click)="comparisonView()" translate>comparison.card</button>
   <vrs-taxon-comparison [taxon]="taxon" [media]="media[0]"></vrs-taxon-comparison>
 </div>
+</ng-container>
+</laji-spinner>
