@@ -14,16 +14,18 @@ export class ObservationComponent implements OnInit {
   @Input() id: string;
   private idArray: Array<string> = [];
   private observations: Array<WarehouseQueryList> = [];
+  private pageSize: string;
 
   constructor(private observationService: ObservationService) { }
 
   ngOnInit() {
     this.idArray.push(this.id);
+    this.pageSize= "10000";
     this.update();
   }
 
   update() {
-    this.observationService.getObservationsById(this.idArray).subscribe(data => {
+    this.observationService.getObservationsById(this.idArray, this.pageSize).subscribe(data => {
       this.observations= data.results;
     });  
   }
