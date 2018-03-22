@@ -83,7 +83,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
             if (data.length > 0) {
               element.thumbnail = data[0].thumbnailURL;
             } else {
-              element.thumbnail = 'assets/images/logos/vieraslaji-logo-70x70.png';
+              element.thumbnail = 'assets/images/logos/vieraslaji-logo-b.png';
             }
           });
       });
