@@ -23,6 +23,10 @@ export class UserService {
     + '&redirectMethod=GET&locale=%lang%'
     + '&next=' + next).replace('%lang%', 'fi');
   }
+
+  getToken(){
+    return window.sessionStorage.getItem(userProperty.ID);
+  }
   
   getUserProperties() {
     let res = {};

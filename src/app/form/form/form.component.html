@@ -1,1 +1,11 @@
-<div></div>
+<div class="container-fluid">
+    <br>
+    <div [ngClass]="{
+        'col-sm-8': formData?.logo,
+        'col-sm-12': !(formData?.logo)}">
+        <h3>{{formData?.title}}</h3>
+        <div [innerHtml]="formData?.description"></div>
+        <br>
+        <div #lajiform></div>
+    </div>
+</div>

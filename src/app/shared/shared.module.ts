@@ -16,6 +16,9 @@ import { OmnisearchComponent } from './omnisearch/omnisearch.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
 import { FormService } from './service/form.service';
+import { FormApiClient } from './api/FormApiClient';
+import { UserService } from './service/user.service';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import { FormService } from './service/form.service';
     ReactiveFormsModule,
     BsDropdownModule,
     ModalModule.forRoot(),
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    HttpModule
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -44,7 +48,9 @@ export class SharedModule {
         TaxonService,
         NewsService,
         MetadataService,
-        FormService
+        FormService,
+        FormApiClient,
+        UserService
       ]
     };
   }
