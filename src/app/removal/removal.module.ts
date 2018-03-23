@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 import { RemovalComponent } from './removal.component';
 import { OmnisearchComponent } from '../shared/omnisearch/omnisearch.component'
 
-import { routing } from './removal.routing';
+import { RemovalRoutingModule } from './removal-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    routing,
+    RemovalRoutingModule,
     SharedModule
   ],
   declarations: [RemovalComponent],

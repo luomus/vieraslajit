@@ -6,7 +6,7 @@ import { AccordionModule, CollapseModule, PaginationModule, TabsModule } from 'n
 import { TaxonListComponent } from './taxon-list/taxon-list.component';
 import { TaxonCardComponent } from './taxon-card/taxon-card.component';
 
-import { routing } from './taxon.routing';
+import { TaxonRoutingModule } from './taxon-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TaxonComparisonComponent } from './taxon-comparison/taxon-comparison.component';
@@ -17,7 +17,7 @@ import { ObservationComponent } from '../observation/observation.component';
 @NgModule({
   imports: [
     CommonModule,
-    routing,
+    TaxonRoutingModule,
     FormsModule,
     SharedModule,
     NgxDatatableModule,

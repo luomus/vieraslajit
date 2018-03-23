@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
-import { routing } from './user.routing';
+import { UserRoutingModule } from './user-routing.module';
 import { UserService } from '../shared/service/user.service';
 
 @NgModule({
   imports: [
     CommonModule,
-    routing
+    UserRoutingModule
   ],
   declarations: [LoginComponent],
   providers: [UserService]

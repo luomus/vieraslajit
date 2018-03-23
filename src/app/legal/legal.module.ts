@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LegalComponent } from './legal.component';
-import { routing } from './legal.routing';
+import { LegalRoutingModule } from './legal-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { TabsModule } from 'ngx-bootstrap';
 
@@ -9,7 +9,7 @@ import { TabsModule } from 'ngx-bootstrap';
 @NgModule({
   imports: [
     CommonModule,
-    routing,
+    LegalRoutingModule,
     SharedModule,
     TabsModule
   ],

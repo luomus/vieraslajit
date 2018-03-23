@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StaticComponent } from './static.component';
-import {routing} from './static.routing';
+import {StaticRoutingModule} from './static-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    routing
+    StaticRoutingModule
   ],
   declarations: [StaticComponent]
 })
