@@ -32,7 +32,6 @@ export class NewsComponent implements OnInit {
       this.news = data.results;
       this.data = data;
       this.pages = [];
-      console.log(data);
       for(let i = 0; i < data.lastPage; i++) {
         this.pages.push(i+1);
       }

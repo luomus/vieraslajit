@@ -18,13 +18,14 @@ export class HomeComponent implements OnInit {
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
   ngOnInit() {
-    this.newsService.getPage('1', '30', this.translate.currentLang, "vieraslajit.fi").subscribe((data) => {
+    this.newsService.getPage('1', '20', this.translate.currentLang, "vieraslajit.fi,technical")
+    .subscribe((data) => {
       let technical: Array<any> = [0];
       for(let d of data.results) {
         if (d.tag.includes("technical")) {
           technical.push(d);
         }
-        if (d.tag.includes("vieraslajit.fi")&&this.news.length<5) {
+        if (d.tag.includes("vieraslajit.fi")&&this.news.length<6) {
             this.news.push(d);
           }  
       }
