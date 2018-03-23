@@ -184,6 +184,7 @@ export interface Taxonomy {
     hasChildren?: boolean;
 
     latestRedListStatusFinland?: LatestRedListStatusFinland;
+    
 
     redListStatusesInFinland?: LatestRedListStatusFinland[];
 }

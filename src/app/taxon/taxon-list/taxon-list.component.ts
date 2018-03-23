@@ -79,11 +79,27 @@ export class TaxonListComponent implements OnInit, OnDestroy {
           element.onEUList = this.translate.instant(String(false));
           element.onNationalList = this.translate.instant(String(false));
         }
-        element.stableString = this.translate.instant(String(element.stableInFinland));
+        if(element.invasiveSpeciesEstablishment){ 
+          if(element.invasiveSpeciesEstablishment === 'MX.invasiveNotYetInFinland'){
+            element.stableString = this.translate.instant(String('stableString.notyet'));
+          }   
+          if(element.invasiveSpeciesEstablishment === 'MX.invasiveEstablishmentUnknown'){
+            element.stableString = this.translate.instant(String('stableString.unknown'));
+          }
+          if(element.invasiveSpeciesEstablishment === 'MX.invasiveEstablished'){
+            element.stableString = this.translate.instant(String('stableString.established'));
+          }
+          if(element.invasiveSpeciesEstablishment === 'MX.invasiveSporadic'){
+            element.stableString = this.translate.instant(String('stableString.sporadic'));
+          }
+          if(element.invasiveSpeciesEstablishment ==='MX.invasiveAccidental'){
+            element.stableString =this.translate.instant(String('stableString.accidental'));
+          }
+        } 
         if (element.multimedia.length > 0) {
-            element.thumbnail = element.multimedia[0].thumbnailURL; 
+          element.thumbnail = element.multimedia[0].thumbnailURL; 
         } else {
-            element.thumbnail = 'assets/images/logos/vieraslaji-logo-b.png';
+          element.thumbnail = 'assets/images/logos/vieraslaji-logo-b.png';
         }
       });
       this.pageData = this.taxa.slice(0, this.itemsPerPage);
