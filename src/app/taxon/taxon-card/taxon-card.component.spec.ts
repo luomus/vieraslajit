@@ -15,6 +15,8 @@ import { TaxonComparisonComponent } from '../taxon-comparison/taxon-comparison.c
 import { RouterTestingModule } from '@angular/router/testing';
 import { OmnisearchComponent } from '../../shared/omnisearch';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ObservationComponent } from '../../observation/observation.component';
+import { ObservationService } from '../../shared/service/observation.service';
 
 
 describe('TaxonCardComponent', () => {
@@ -23,10 +25,10 @@ describe('TaxonCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TaxonCardComponent, LabelPipe, TaxonComparisonComponent, OmnisearchComponent],
+      declarations: [TaxonCardComponent, LabelPipe, TaxonComparisonComponent, OmnisearchComponent,ObservationComponent],
       imports: [HttpClientModule, TranslateModule.forRoot(), CollapseModule.forRoot(),
         RouterTestingModule, FormsModule, ReactiveFormsModule, AccordionModule],
-      providers: [TaxonService, ApiService, TranslateService, MetadataService]
+      providers: [TaxonService, ApiService, TranslateService, MetadataService,ObservationService]
     })
       .compileComponents();
   }));
