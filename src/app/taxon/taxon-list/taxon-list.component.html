@@ -18,11 +18,11 @@
         </div>
 
         <div id="collapseOne" class="collapse show">
-          <div class="card-block">
+
             <ng-container>
-              <div class="card-group container">
-                <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-sm-6 col-md-4 col-lg-3">
-                  <div class="card card-responsive" id="selectGroup-card" (click)="changeOpen()">
+              <div class="card-deck container">
+                <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                  <div class="card" id="selectGroup-card" (click)="changeOpen()">
                     <img class="card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
                     <div class="card-body" id="selectGroup-card-body">
                       <p class="card-text" id="selectGroup-card-text">{{group.name}}</p>
@@ -31,7 +31,7 @@
                 </div>
               </div>
             </ng-container>
-          </div>
+          
         </div>
       </accordion-group>
     </accordion>
@@ -50,11 +50,11 @@
       <tab heading="{{'navigation.grid' | translate}}"[active]="true">
         <div class="tab-pane container" id="cardcontainer">
           <div class="card-group" id="taxongrid">
-            <div *ngFor="let species of pageData" class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="card" id="species-card">
-                <img class="card-img-top img-responsive" [src]="species.thumbnail" id="species-img" [routerLink]="[species.id]">
+            <div *ngFor="let species of pageData" class="col-12 col-sm-6 col-md-6 col-lg-3">
+              <div class="card" id="species-card" [routerLink]="[species.id]">
+                <img class="card-img-top img-responsive" [src]="species.thumbnail" id="species-img">
                 <div class="card-body" id="species-card-body">
-                  <a class="card-text" id="species-card-text" [routerLink]="[species.id]">{{species.vernacularName || species.scientificName}}</a>
+                  <a class="card-text" id="species-card-text">{{species.vernacularName || species.scientificName}}</a>
                 </div>
               </div>
             </div>
