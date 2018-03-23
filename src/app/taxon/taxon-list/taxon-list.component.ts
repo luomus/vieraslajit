@@ -77,7 +77,25 @@ export class TaxonListComponent implements OnInit, OnDestroy {
           element.onEUList = this.translate.instant(String(false));
           element.onNationalList = this.translate.instant(String(false));
         }
-        element.stableString = this.translate.instant(String(element.stableInFinland));
+        if(element.invasiveSpeciesEstablishment){ 
+          if(element.invasiveSpeciesEstablishment === 'MX.invasiveNotYetInFinland'){
+            element.stableString = this.translate.instant(String('stableString.notyet'));
+          }   
+          if(element.invasiveSpeciesEstablishment === 'MX.invasiveEstablishmentUnknown'){
+            element.stableString = this.translate.instant(String('stableString.unknown'));
+          }
+          if(element.invasiveSpeciesEstablishment === 'MX.invasiveEstablished'){
+            element.stableString = this.translate.instant(String('stableString.established'));
+          }
+          if(element.invasiveSpeciesEstablishment === 'MX.invasiveSporadic'){
+            element.stableString = this.translate.instant(String('stableString.sporadic'));
+          }
+          if(element.invasiveSpeciesEstablishment ==='MX.invasiveAccidental'){
+            element.stableString =this.translate.instant(String('stableString.accidental'));
+          }
+          
+        } 
+
         this.taxonService
           .getTaxonMedia(element.id, 'fi').subscribe(data => {
             if (data.length > 0) {

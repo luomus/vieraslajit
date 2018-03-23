@@ -50,5 +50,10 @@
   "legal.h1":"Legislatur",
   "navbar.search":"Sök på webbplatsen",
   "filist.h1":"Den nationella listan över invasiva främmande arter",
-  "eulist.h1":"EU listan över invasiva främmande arter"
+  "eulist.h1":"EU listan över invasiva främmande arter",
+  "stableString.notyet":"Ännu inte i Finland",
+  "stableString.unknown":"Okänd",
+  "stableString.established":"Etablerade",
+  "stableString.sporadic":"Sporadisk",
+  "stableString.accidental":"Tillfällig"
 }
