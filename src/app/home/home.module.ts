@@ -6,16 +6,16 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { SearchComponent } from '../shared/googlesearch/search/search.component';
 
+/**
+ * Loads the required modules for the 'home' or 'front' page
+ */
 
 @NgModule({
   imports: [
     HomeRoutingModule,
     CommonModule,
     SharedModule,
-  
-    
   ],
- 
   declarations: [HomeComponent]
 })
 
