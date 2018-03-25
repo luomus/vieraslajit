@@ -15,6 +15,7 @@ export class ObservationComponent implements OnInit {
   private idArray: Array<string> = [];
   observations: Array<WarehouseQueryList> = [];
   private pageSize: string;
+  private mapObservations;
 
   constructor(private observationService: ObservationService) { }
 
@@ -22,6 +23,15 @@ export class ObservationComponent implements OnInit {
     this.idArray.push(this.id);
     this.pageSize= "10000";
     this.update();
+    this.initializeMap();
+  }
+
+  initializeMap(){
+    const options = {
+      rootElem: document.getElementById("map")
+    }  
+    var LajiMap = require("laji-map").default;
+    this.mapObservations = new LajiMap(options);  
   }
 
   update() {
