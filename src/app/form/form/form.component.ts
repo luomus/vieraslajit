@@ -19,7 +19,7 @@ import { UserService } from '../../shared/service/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormComponent implements AfterViewInit, OnDestroy, OnChanges {
-  @ViewChild("lajiform") formElem: ElementRef;
+  @ViewChild('lajiform') formElem: ElementRef;
   @Output() onSubmit = new EventEmitter();
   @Output() onChange = new EventEmitter();
 
