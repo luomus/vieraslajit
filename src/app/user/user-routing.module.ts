@@ -3,7 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 
-// user.module is routed to /user/login, so that wildcard route can be set up
+/**
+ * Defines subroutes for the /user/ path
+ */
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent }
 ];
