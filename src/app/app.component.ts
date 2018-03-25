@@ -4,6 +4,9 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import {OmnisearchComponent} from './shared/omnisearch/omnisearch.component'
 
+/**
+ * Main component that acts as a container for navigation, content and footer.
+ */
 
 @Component({
   selector: 'vrs-root',
@@ -14,12 +17,24 @@ export class AppComponent {
   title = 'vrs';
   translate: TranslateService;
 
+  /**
+  * Initializes TranslateService
+  * 1. Use English if a particular translation element is not found
+  * 2. Use either the default language or language stored in localStorage
+  */
+
   constructor(translate: TranslateService) {
     this.translate = translate;
 
-    // oletuskieli jos käännöstä ei löydy halutulla kielellä
+    /** 
+    * Use English if translation is not found
+    */
     translate.setDefaultLang('en');
 
+    /**
+    * User's language choice is stored in localStorage, if language is not found
+    * then use Finnish
+    */
     if(window.localStorage.getItem("vrs-lang")) {
       translate.use(window.localStorage.getItem("vrs-lang"));
     } else  {
