@@ -7,7 +7,7 @@ import { NewsComponent } from '../news/news.component';
 import { environment } from '../../environments/environment';
 
 /**
- * Renders the home-/frontpage
+ * Renders the home-/frontpage ie. /home/ route
  * 
  * NewsService is used for loading news and alerts from laji.fi API
  */
