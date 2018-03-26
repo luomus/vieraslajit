@@ -13,12 +13,27 @@ import { Information } from '../model/Information';
 import { userProperty, UserService } from '../service/user.service';
 import { query } from '@angular/core/src/animation/dsl';
 
+/**
+ * Handles creation of API requests
+ */
+
 @Injectable()
 export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // Person-token
+  /**
+   * Returns person details from /person/ endpoint:
+   * {
+   *  "id": "string",
+   *  "fullName": "string",
+   *  "emailAddress",
+   *  "defaultLanguage": "string",
+   *  "role": ["string"]
+   * }
+   * 
+   * @param personToken person-token received from laji-auth on login
+   */
   personByToken(personToken: string) {
     return this.httpClient.get(
       `${environment.lajiApi.url}person/` + personToken,
@@ -26,18 +41,22 @@ export class ApiService {
     );
   }
 
-  // Auth-token
+  /**
+   * Returns login related information from /person-token/ endpoint
+   * {
+   *  "personId": "string",
+   *  "target": "string",
+   *  "next": "string"
+   * }
+   * 
+   * next = path that is used for redirection after login is complete
+   * 
+   * @param token person-token received from laji-auth on login
+   */
   personToken(token: string) {
     return this.httpClient.get(
       `${environment.lajiApi.url}person-token/` + token,
       { params: { 'access_token': environment.lajiApi.accessToken } }
-    );
-  }
-
-  // Auth-token
-  authToken(token: string) {
-    return this.httpClient.get(
-      `${environment.lajiAuth.authUrl}token/` + token
     );
   }
 

@@ -19,6 +19,9 @@ import { InformationService } from './service/information.service';
 import {ListService } from './service/list.service';
 import { ObservationService } from './service/observation.service';
 
+/**
+ * Provides common utilities for other modules
+ */
 
 @NgModule({
   imports: [
