@@ -4,6 +4,10 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { SearchComponent } from '../googlesearch/search/search.component';
 import { UserService, Role } from '../service/user.service';
 import {Router} from '@angular/router';
+import { InformationService } from '../service/information.service';
+
+// ID of the parent element of general static pages
+const PARENT_ID = "i-45";
 
 @Component({
   selector: 'vrs-navbar',
@@ -15,8 +19,8 @@ export class NavbarComponent implements OnInit {
   loginUrl = '#';
   isCollapsed = false;
   loggedIn = false;
-  
-  constructor(private modalService: BsModalService, private router: Router) { 
+
+  constructor(private modalService: BsModalService, private router: Router, private informationService: InformationService) { 
     // temporary suboptimal solution (a lot more updates than necessary)
     router.events.subscribe((val) => {
       this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
@@ -25,7 +29,9 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.informationService.getInformation(PARENT_ID).subscribe((data) => {
+      console.log(data);
+    });
   }
 
   userPropertiesWrapper() {
