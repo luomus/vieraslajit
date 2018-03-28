@@ -12,8 +12,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TaxonComparisonComponent } from './taxon-comparison/taxon-comparison.component';
 import { ObservationComponent } from '../observation/observation.component';
 
-
-
+/**
+ * Declares routes and components for browsing and viewing invasive species
+ */
 @NgModule({
   imports: [
     CommonModule,

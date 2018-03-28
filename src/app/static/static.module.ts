@@ -4,7 +4,7 @@ import { StaticComponent } from './static.component';
 import {StaticRoutingModule} from './static-routing.module';
 
 /**
- * Loads the required modules for the dynamic static page
+ * Declares component and routes for viewing static content
  */
 
 @NgModule({

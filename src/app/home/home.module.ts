@@ -7,7 +7,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { SearchComponent } from '../shared/googlesearch/search/search.component';
 
 /**
- * Loads the required modules for the 'home' or 'front' page
+ * Declares routes and component for rendering the home/front -page
  */
 
 @NgModule({

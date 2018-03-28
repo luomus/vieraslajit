@@ -7,6 +7,9 @@ import { OmnisearchComponent } from '../shared/omnisearch/omnisearch.component'
 import { RemovalRoutingModule } from './removal-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
+/**
+ * Declares routes and component concerning invasive species eradication instructions
+ */
 @NgModule({
   imports: [
     CommonModule,

@@ -8,9 +8,9 @@ import { AdminstrativelistsRoutingModule } from './adminstrativelists-routing.mo
 import { ApiService } from '../shared/api/api.service';
 import { ListService } from '../shared/service/list.service';
 
-
-
-
+/**
+ * Declares routes and components for European and Finnish lists of invasive alien species
+ */
 @NgModule({
   imports: [
     AdminstrativelistsRoutingModule,
