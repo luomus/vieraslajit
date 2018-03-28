@@ -146,7 +146,6 @@ export class ApiService {
   * */
   informationFindById(endpoint: LajiApi.Endpoints, id: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
-    console.log(url);
     return this.httpClient.get(
       url,
       { params: { 'access_token': environment.lajiApi.accessToken } }
