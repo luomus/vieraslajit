@@ -10,6 +10,7 @@ import { VrsRouterModule } from './vrs-router.module';
 import { AppComponent } from './app.component';
 import { SpinnerModule } from './shared-modules/spinner/spinner.module';
 import { SharedModule } from './shared/shared.module';
+import { UserService } from './shared/service/user.service';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -38,7 +39,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PaginationModule.forRoot(),
     SpinnerModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
