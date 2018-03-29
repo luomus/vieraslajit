@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../api/api.service';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 export enum userProperty {
-  TOKEN = 'token',
   ID = 'personId',
   PERSON = 'person',
   PTOKEN = 'person-token',
@@ -17,6 +17,8 @@ export enum Role {
 
 @Injectable()
 export class UserService {
+
+  loginStateChange: Subject<any> = new Subject<any>();
 
   constructor(private apiService: ApiService) { }
 
@@ -45,14 +47,22 @@ export class UserService {
     return UserService.getUserProperties()[userProperty.LOGIN];
   }
 
+  public static setToken(token: string) {
+    window.localStorage.setItem("token", token);
+  }
+
+  public static getToken() {
+    return window.localStorage.getItem("token");
+  }
+
   setUserProperty(key: userProperty, value: any) {
     window.sessionStorage.setItem(key, JSON.stringify(value));
   }
 
-  updateUserProperties(token:string, _router, _userService, callback) {
-    this.apiService.personToken(UserService.getUserProperties()[userProperty.TOKEN]).subscribe((data) => { 
+  updateUserProperties(token:string, _router?, _userService?, callback?) {
+    this.apiService.personToken(UserService.getToken()).subscribe((data) => { 
       this.setUserProperty(userProperty.PTOKEN, data);
-      this.apiService.personByToken(UserService.getUserProperties()[userProperty.TOKEN]).subscribe((data) => {
+      this.apiService.personByToken(UserService.getToken()).subscribe((data) => {
         // Admin role for testing purposes
         data['role'] = [Role.CMS_ADMIN];
 
@@ -62,7 +72,10 @@ export class UserService {
 
         console.log(UserService.getUserProperties());
         console.log(UserService.hasRole(Role.CMS_ADMIN));
-        callback(_router, _userService);
+        if (callback) {
+          callback(_router, _userService);
+        }
+        this.loginStateChange.next();
       });
     });
   }
