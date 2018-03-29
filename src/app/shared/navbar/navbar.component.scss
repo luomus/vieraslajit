@@ -11,7 +11,10 @@
 @media screen and (max-width: 989px) {
     #mainNav {font-size: 16px;}
     #dropdown-menu-item {font-size: 16px;}
-
+    #search-icon{padding-left:10px}
+    #mainNav .navbar-nav li.nav-item a.nav-link{padding-top: 5px;padding-bottom:5px;}
+    #mainNav .dropdown{padding-top:5px;padding-bottom: 5px;}
+    #mainNav .nav-item{padding-top:5px;padding-bottom: 5px;}
 }
 @media screen and (max-width: 1040px) {
     #mainNav {font-size: 12px;}
