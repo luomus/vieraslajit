@@ -12,8 +12,11 @@
       <div class= "card-block">
         <div class = "card" style= margin-bottom:30px>
             <img class="card-img-top img-fluid" src="{{this.getImageToDisplay(newsElement)}}" alt="News image">
-            <div class="card-header text-muted">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }} {{newsElement.author}}
-            (<span translate>news.modified</span> {{newsElement.modified | date: 'dd.MM.yyyy HH:MM'}})
+            <div class="card-header text-muted">
+                {{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }} {{newsElement.author}}
+                <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span> 
+                {{newsElement.modified | date: 'dd.MM.yyyy HH:MM'}}
+                <span *ngIf= "newsElement.modified">)</span>
           </div>
             <div class="card-body">
                 <h5 class="card-title">{{newsElement.title}}</h5>
