@@ -9,6 +9,7 @@ import { VrsRouterModule } from './vrs-router.module';
 
 import { AppComponent } from './app.component';
 import { SpinnerModule } from './shared-modules/spinner/spinner.module';
+import { EditcmsModule } from './shared-modules/editcms/editcms.module';
 import { SharedModule } from './shared/shared.module';
 import { UserService } from './shared/service/user.service';
 
@@ -37,7 +38,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AccordionModule.forRoot(),
     TabsModule.forRoot(),
     PaginationModule.forRoot(),
-    SpinnerModule
+    SpinnerModule,
+    EditcmsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
