@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
 import { InformationService } from './service/information.service';
 import {ListService } from './service/list.service';
+import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
 import { ObservationService } from './service/observation.service';
 
 
@@ -28,6 +29,7 @@ import { ObservationService } from './service/observation.service';
     FormsModule,
     ReactiveFormsModule,
     BsDropdownModule,
+    SpinnerModule,
     ModalModule.forRoot(),
     CollapseModule.forRoot()
   ],
@@ -35,7 +37,7 @@ import { ObservationService } from './service/observation.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SpinnerModule, SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

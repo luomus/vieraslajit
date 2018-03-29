@@ -66,5 +66,11 @@
   "comparison.card": "Lajikortti",
   "filist.h1":"Kansallinen haitallisten vieraslajien luettelo",
   "eulist.h1":"Eu:n haitallisten vieraslajien luettelo",
-  "news.modified": "Päivitetty"
+  "news.modified": "Päivitetty",
+  "stableString.notyet":"Ei vielä suomessa",
+  "stableString.unknown":"Tuntematon",
+  "stableString.established":"Vakiintunut",
+  "stableString.sporadic":"Harvinainen",
+  "stableString.accidental":"Tahaton"
+
 }
