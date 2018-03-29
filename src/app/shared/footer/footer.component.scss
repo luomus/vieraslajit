@@ -1,7 +1,14 @@
 @import '../../../assets/styles/vars';
 
-footer {
-    background: $content-background;
-    border-bottom-left-radius: $content-border-radius;
-    border-bottom-right-radius: $content-border-radius;
+.footer-content {
+    background: #ddd;
+    box-shadow: inset 0px 20px 20px -20px #000,
+                inset 0px -20px 20px -20px #000;
+
+    //color: #fefefe;
+}
+
+.affiliate-img {
+    height: 75px;
+    width: auto;
 }
