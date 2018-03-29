@@ -66,6 +66,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnChanges {
         console.log(data);
         this.ngZone.runOutsideAngular(() => {
           this.apiClient.lang = this.translate.currentLang;
+          this.initFormData();
           this.initSchemaContext();
           this.apiClient.personToken = this.userService.getToken();
           this.lajiFormWrapper = new LajiForm({
@@ -95,8 +96,12 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnChanges {
   private initSchemaContext() {
     this.formData.uiSchemaContext = {};
     this.formData.uiSchemaContext.formID = this.id;
+    this.formData.uiSchemaContext['creator'] = "MA.308";
     this.formData.uiSchemaContext.isAdmin = false; // placeholder, later check user role and assign properly.
+  }
 
+  private initFormData(){
+    if(!this.formData.formData) this.formData.formData = {gatheringEvent: {leg: ["MA.308"]}};
   }
 
   _onSettingsChange(settings: object) {
