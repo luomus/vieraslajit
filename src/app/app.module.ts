@@ -8,7 +8,7 @@ import { BsDropdownModule, AccordionModule, TabsModule, PaginationModule } from 
 import { VrsRouterModule } from './vrs-router.module';
 
 import { AppComponent } from './app.component';
-
+import { SpinnerModule } from './shared-modules/spinner/spinner.module';
 import { SharedModule } from './shared/shared.module';
 
 
@@ -39,7 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BsDropdownModule.forRoot(),
     AccordionModule.forRoot(),
     TabsModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    SpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
