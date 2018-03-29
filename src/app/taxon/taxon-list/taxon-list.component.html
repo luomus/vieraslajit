@@ -1,75 +1,69 @@
-<div id="omnisearch">
-  <vrs-omnisearch></vrs-omnisearch>
-</div>
+<laji-spinner [spinning]="loading" >
+<div class="container">
+  <div id="omnisearch">
+    <vrs-omnisearch></vrs-omnisearch>
+  </div>
 
-<div id="accordion" role="tablist" aria-multiselectable="true">
-  <accordion>
-    <accordion-group #group [(isOpen)]="showGroups">
-      <div accordion-heading>
-        <h5 class="mb-0" translate>
-          taxonomy.taxongroup
-          <ng-container *ngIf="selectedGroup"> > {{selectedGroup.name}}</ng-container>
-        </h5>
-      </div>
+  <div id="accordion" role="tablist" aria-multiselectable="true">
+    <accordion>
+      <accordion-group #group [(isOpen)]="showGroups">
+        <div accordion-heading>
+          <h5 class="mb-0" translate>
+            taxonomy.taxongroup
+            <ng-container *ngIf="selectedGroup">/ {{selectedGroup.name}}</ng-container>
+            <ng-container *ngIf="showGroups === false"><span class="oi oi-chevron-bottom float-right"></span></ng-container>
+            <ng-container *ngIf="selectedGroup && showGroups === true"><span class="oi oi-chevron-top float-right"></span></ng-container>
+          </h5>
+         
+        </div>
 
-      <div id="collapseOne" class="collapse show">
-        <div class="card-block">
-          <ng-container>
-            <div class="card-group container">
-              <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card" id="selectGroup-card" (click)="changeOpen()">
-                  <img class="card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
-                  <div class="card-body" id="selectGroup-card-body">
-                    <p class="card-text" id="selectGroup-card-text">{{group.name}}</p>
+        <div id="collapseOne" class="collapse show">
+
+            <ng-container>
+              <div class="card-deck container">
+                <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                  <div class="card" id="selectGroup-card" (click)="changeOpen()">
+                    <img class="card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
+                    <div class="card-body" id="selectGroup-card-body">
+                      <p class="card-text" id="selectGroup-card-text">{{group.name}}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </ng-container>
+            </ng-container>
+          
         </div>
-      </div>
-    </accordion-group>
-  </accordion>
-</div>
-<br>
-<ng-container *ngIf="selectedGroup">
-
-  <ul class="nav nav-tabs container">
-    <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" (click)="changeView=false" translate>navigation.list</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" (click)="changeView=true" translate>navigation.grid</a>
-    </li>
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" [(ngModel)]="search" (ngModelChange)="onSearchChange($event)" [ngModelOptions]="{standalone: true}"
-        type="text" class="form-control" placeholder="Filter">
-    </form>
-  </ul>
-  <br>
-
-  <div class="tab-pane container" id="taxontable">
-    <div *ngIf="!changeView">
-      <ngx-datatable *ngIf="page" class="material selection-cell" [rows]="selected" [columnMode]="'flex'" [columns]="columns" [headerHeight]="50"
-        [rowHeight]="50" [reorderable]='false' [selectionType]="'row'" [externalPaging]="true" [selected]="selected" [count]="page?.total"
-        [offset]="page?.currentPage - 1" [limit]="page?.pageSize" [footerHeight]="50" [sorts]="[{prop: 'stableString', dir: 'desc'}]"
-        (select)="onSelect($event)" (page)="setPage($event)">
-      </ngx-datatable>
-    </div>
+      </accordion-group>
+    </accordion>
   </div>
-
-  <div class="tab-pane container" id="cardcontainer">
-    <div *ngIf="changeView">
-      <div class="card-group" id="taxongrid">
-        <div *ngFor="let species of selected" class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card small text-center" id="species-card">
-            <img class="card-img-top img-responsive" [src]="species.thumbnail" id="species-img">
-            <div class="card-body" id="species-card-body">
-              <a class="card-text" id="species-card-text" [routerLink]="[species.id]">{{species.vernacularName || species.scientificName}}</a>
+  <br>
+  <ng-container *ngIf="selectedGroup && taxa && !loading">
+    <tabset>
+      <tab heading="{{'navigation.list' | translate}}">
+        <div class="tab-pane container" id="taxontable">
+          <ngx-datatable *ngIf="page" class="material selection-cell" [rows]="taxa" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
+            [rowHeight]="50" [reorderable]='true' [selectionType]="'single'" [count]="taxa.length" [limit]="50" [footerHeight]="50"
+            [sorts]="[{prop: 'vernacularName', dir: 'asc'}]" (select)="onSelect($event)">
+          </ngx-datatable>
+        </div>
+      </tab>
+      <tab heading="{{'navigation.grid' | translate}}"[active]="true">
+        <div class="tab-pane container" id="cardcontainer">
+          <div class="card-group" id="taxongrid">
+            <div *ngFor="let species of pageData" class="col-12 col-sm-6 col-md-6 col-lg-3">
+              <div class="card" id="species-card" [routerLink]="[species.id]">
+                <img class="card-img-top img-responsive" [src]="species.thumbnail" id="species-img">
+                <div class="card-body" id="species-card-body">
+                  <a class="card-text" id="species-card-text">{{species.vernacularName || species.scientificName}}</a>
+                </div>
+              </div>
             </div>
           </div>
+          <br>
+          <pagination [totalItems]="taxa.length" [(ngModel)]="currentPage" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
         </div>
-      </div>
-    </div>
-  </div>
-</ng-container>
+      </tab>
+    </tabset>
+  </ng-container>
+</div>
+</laji-spinner>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AccordionModule, CollapseModule } from 'ngx-bootstrap';
+import { AccordionModule, CollapseModule, PaginationModule, TabsModule } from 'ngx-bootstrap';
 
 import { TaxonListComponent } from './taxon-list/taxon-list.component';
 import { TaxonCardComponent } from './taxon-card/taxon-card.component';
@@ -10,6 +10,8 @@ import { routing } from './taxon.routing';
 import { SharedModule } from '../shared/shared.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TaxonComparisonComponent } from './taxon-comparison/taxon-comparison.component';
+import { ObservationComponent } from '../observation/observation.component';
+
 
 
 @NgModule({
@@ -20,8 +22,11 @@ import { TaxonComparisonComponent } from './taxon-comparison/taxon-comparison.co
     SharedModule,
     NgxDatatableModule,
     AccordionModule,
-    CollapseModule
+    CollapseModule,
+    PaginationModule,
+    TabsModule,
+ 
   ],
-  declarations: [TaxonListComponent, TaxonCardComponent, TaxonComparisonComponent]
+  declarations: [TaxonListComponent, TaxonCardComponent, TaxonComparisonComponent, ObservationComponent ]
 })
 export class TaxonModule { }

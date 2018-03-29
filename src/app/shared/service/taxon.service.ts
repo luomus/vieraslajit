@@ -19,7 +19,7 @@ export class TaxonService {
       .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
         {
           invasiveSpeciesFilter: true, informalGroupFilters: group, onlyFinnish: false,
-          lang: lang, langFallback: true, pageSize: '50', page: pageNumber, includeMedia: includeMedia
+          lang: lang, langFallback: true, pageSize: '1000', page: pageNumber, includeMedia: includeMedia
         });
   }
 

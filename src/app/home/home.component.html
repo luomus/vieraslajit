@@ -1,12 +1,11 @@
 <div class="jumbotron jumbotron-fluid col-12">
-        <div class="container-fluid" id="jumbotron-info">
-            <h1 class="display-4 text-white" id="jumbotron-h1">VIERASLAJIT.FI</h1>
-            <p class="lead">
-                <button type="button" class="btn btn-dark" href="#" role="button" id="jumbotron-button">Tutustu vieraslajeihin</button>
-            </p>
-        </div>
+    <div class="container-fluid" id="jumbotron-info">
+        <h1 class="display-4 text-white" id="jumbotron-h1">VIERASLAJIT.FI</h1>
+        <p class="lead">
+            <button type="button" class="btn btn-dark" href="#" role="button" id="jumbotron-button" translate>home.welcomeLink</button>
+        </p>
+    </div>
 </div>
-
 
 <div id="searchbar">
     <div class ="offset-md-2 offset-lg-3 col-md-8 col-lg-6">
@@ -17,8 +16,8 @@
 <div class="container">
     <div class="row" id="welcome" >
         <div class="offset-md-2 col-md-8">
-            <h1 translate>home.h1</h1>
-            <p translate>home.description</p>
+            <h1 id="welcome-h1" translate>home.h1</h1>
+            <p id="welcome-text" translate>home.description</p>
         </div>
     </div> 
 
@@ -31,40 +30,30 @@
                     <button type="button" class="btn btn-outline-dark" href="#" role="button" translate>home.readMore</button>
                 </div>
             </div> 
-         </div>
+        </div>
 
-         <div class="col-md-6 col-lg-4" id="cardcol">
+        <div class="col-md-6 col-lg-4" id="cardcol">
             <div class="card" id="homecard">
-                    <h4 class= "card-header" id="homecard-header" translate>Tutki vieraslajeja</h4>
-                    <div class="container" id="cardlinkcontainer">
-                    <div class="card" id="cardlink1">
-                        <img class="card-img-top" id="cardlink1-img" src="./../../../assets/images/logos/vieraslaji-logo-b.png" alt="no image">
-                        <a class="card-footer text-center" routerLink="/taxon" translate>
-                                <p>Vieraslajilista</p>
-                        </a>
-                    </div>
-                    </div>
-                    <div class="container">
+                <h4 class= "card-header" id="homecard-header" translate>home.invasivespecies</h4>
+                <div class="container">
+                    <br>
                     <div class="card-deck">
-                        <div class="card" id="cardlinks">
-                            <img class="card-img-top" id="cardlinks-img" src="./../../../assets/images/logos/eu-b.png" alt="no image">
-                            <a class="card-footer text-center" routerLink="/#" translate>
-                                <p>Eu-list</p>
-                            </a>
+                        <div class="card" id="invasivecards">
+                            <img class="card-img-top" id="invasivecards-img" src="./../../../assets/images/logos/eu-blue-rnd.png" alt="no image">
+                            <div class="card-body" routerLink='/adminstrativelists'>
+                                    <h5 class="card-title text-center" id="invasivetitle" translate>home.eulist</h5>
+                            </div>
                         </div>
-
-                        <div class="card" id="cardlinks">
-                                <img class="card-img-top" id="cardlinks-img" src="./../../../assets/images/logos/finland-b.png" alt="no image">
-                                <a class="card-footer text-center" routerLink="/#" translate>
-                                    <p>Finnish</p>
-                                </a>
+                        <div class="card" id="invasivecards">
+                                <img class="card-img-top" id="invasivecards-img" src="./../../../assets/images/logos/finland-b2.png" alt="no image">
+                                <div class="card-body" routerLink='/adminstrativelists/national'>
+                                    <h5 class="card-title text-center" id="invasivetitle" translate>home.finnishlist</h5>
+                                </div>
                         </div>   
                     </div>       
-                    </div>
                 </div>
-            
-         </div>
-
+            </div>
+        </div>
         <div class="col-md-6 col-lg-4" id="cardcol">
             <div class="card" id="homecard">
                 <h4 class= "card-header" id="homecard-header" translate>home.news</h4>
@@ -85,7 +74,7 @@
             </div>
         </div>
     </div>    
-  </div>
+</div>
 
 <div class="container-fluid">
     <div class="row" id="pagemap">

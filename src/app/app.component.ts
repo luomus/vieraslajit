@@ -18,10 +18,13 @@ export class AppComponent {
     this.translate = translate;
 
     // oletuskieli jos käännöstä ei löydy halutulla kielellä
-    translate.setDefaultLang('fi');
+    translate.setDefaultLang('en');
 
-    // oletuskieli jos haluttua kieltä ei ole saatavilla
-    translate.use('fi');
+    if(window.localStorage.getItem("vrs-lang")) {
+      translate.use(window.localStorage.getItem("vrs-lang"));
+    } else  {
+      translate.use('fi');
+    }
 
   }
 

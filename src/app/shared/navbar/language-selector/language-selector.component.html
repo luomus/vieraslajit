@@ -1,10 +1,19 @@
 <div class="language-selector">
-    <button class="dropbtn">
-        <span class="oi oi-globe"></span>
-        Language</button>
-    <div class="dropdown-content">
-        <a href="javascript:;" (click)="switchLanguage('fi')">Finnish</a>
-        <a href="javascript:;" (click)="switchLanguage('sv')">Swedish</a>
-        <a href="javascript:;" (click)="switchLanguage('en')">English</a>
-    </div>
-</div>
+	  <span class="oi oi-globe"></span>
+	  <span *ngIf="translate.currentLang == 'fi'">
+	    <a href="javascript:;" (click)="switchLanguage('en')">EN</a>
+	    |
+	    <a href="javascript:;" (click)="switchLanguage('sv')">SV</a>
+	  </span>
+	  <span *ngIf="translate.currentLang == 'en'">
+	    <a href="javascript:;" (click)="switchLanguage('fi')">FI</a>
+	    |
+	    <a href="javascript:;" (click)="switchLanguage('sv')">SV</a>
+	  </span>
+	  <span *ngIf="translate.currentLang == 'sv'">
+	    <a href="javascript:;" (click)="switchLanguage('fi')">FI</a>
+	    |
+	    <a href="javascript:;" (click)="switchLanguage('en')">EN</a>
+	  </span>
+	</div>
+  

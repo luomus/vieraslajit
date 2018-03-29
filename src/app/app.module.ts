@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient} from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { BsDropdownModule, AccordionModule, TabsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, AccordionModule, TabsModule, PaginationModule } from 'ngx-bootstrap';
 
 import { VrsRouterModule } from './vrs-router.module';
 
 import { AppComponent } from './app.component';
-
+import { SpinnerModule } from './shared-modules/spinner/spinner.module';
 import { SharedModule } from './shared/shared.module';
 
 
@@ -34,7 +34,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     SharedModule.forRoot(),
     BsDropdownModule.forRoot(),
     AccordionModule.forRoot(),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    PaginationModule.forRoot(),
+    SpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

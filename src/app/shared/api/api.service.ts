@@ -8,20 +8,36 @@ import { Informal } from '../model/Informal';
 import { NewsElement } from '../model/NewsElement';
 import { Autocomplete } from '../model/Autocomplete';
 import { WarehouseQueryCount } from '../model/Warehouse';
+import { WarehouseQueryList } from '../model/Warehouse';
 import { Information } from '../model/Information';
 import { userProperty, UserService } from '../service/user.service';
+import { query } from '@angular/core/src/animation/dsl';
 
 @Injectable()
 export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // Auth-token
+  // Person-token
+  personByToken(personToken: string) {
+    return this.httpClient.get(
+      `${environment.lajiApi.url}person/` + personToken,
+      { params: { 'access_token': environment.lajiApi.accessToken } }
+    );
+  }
 
+  // Auth-token
+  personToken(token: string) {
+    return this.httpClient.get(
+      `${environment.lajiApi.url}person-token/` + token,
+      { params: { 'access_token': environment.lajiApi.accessToken } }
+    );
+  }
+
+  // Auth-token
   authToken(token: string) {
     return this.httpClient.get(
-      `${environment.lajiApi.url}/token/` + token,
-      { params: { 'access_token': environment.lajiApi.accessToken } }
+      `${environment.lajiAuth.authUrl}token/` + token
     );
   }
 
@@ -38,6 +54,15 @@ export class ApiService {
   // Warehouse query count
   warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: LajiApi.warehousequerycountQuery): Observable<WarehouseQueryCount>;
   warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: object = {}): Observable<any> {
+    const url = `${environment.lajiApi.url}${endpoint}`;
+    return this.httpClient.get(
+      url,
+      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+    );
+  }
+
+  warehouseQueryListById(endpoint: LajiApi.Endpoints.warehousequerylist, query: LajiApi.WarehouseQueryListQuery): Observable<PagedResult<WarehouseQueryList>>;
+  warehouseQueryListById(endpoint: LajiApi.Endpoints.warehousequerylist, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}${endpoint}`;
     return this.httpClient.get(
       url,
@@ -126,6 +151,20 @@ export class ApiService {
       { params: { 'access_token': environment.lajiApi.accessToken } }
     );
   }
+
+  /* Get form by id
+  * @param endpoint
+  * @param id
+  * @param lang
+  */
+  formById(endpoint: LajiApi.Endpoints.form, id: string, query: LajiApi.Query): Observable<any>;
+  formById(endpoint: LajiApi.Endpoints, id: string, query: object = {}): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
+    return this.httpClient.get(
+      url,
+      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+    );
+  }
 }
 
 export namespace LajiApi {
@@ -144,7 +183,9 @@ export namespace LajiApi {
     newsElement = 'news/%id%',
     autocomplete = 'autocomplete/taxon',
     warehousequerycount = 'warehouse/query/count',
-    information = 'information/%id%'
+    warehousequerylist = 'warehouse/query/list',
+    information = 'information/%id%',
+    form = 'forms/%id%'
   }
   /* Possible query parameters. */
   export interface Query {
@@ -159,6 +200,8 @@ export namespace LajiApi {
     langFallback?: boolean;
     hasMediaFilter?: boolean;
     includeMedia?: boolean;
+    adminStatusFilters?:String;
+  
   }
   export interface AutocompleteQuery {
     q?: string;
@@ -171,8 +214,11 @@ export namespace LajiApi {
     cache?: boolean;
     taxonId?: string;
     individualCountMin?: number;
+  }
 
-
+  export interface WarehouseQueryListQuery {
+    taxonId: Array<string>;
+    pageSize?: string;
   }
 
 }

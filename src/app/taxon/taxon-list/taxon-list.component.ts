@@ -21,17 +21,19 @@ export class TaxonListComponent implements OnInit, OnDestroy {
 
   @Input() search = '';
   private subTrans: Subscription;
-
+  public loading = true;
   id: string;
-  selected = [];
   taxa: Taxonomy[];
   page: PagedResult<Taxonomy>;
-  changeView: false;
   groups: Informal[];
   selectedGroup: Informal;
   media: Array<TaxonomyImage>;
   columns = [];
   showGroups = true;
+  currentPage = 1;
+  pageData = [];
+  maxSize = 5;
+  itemsPerPage = 12;
 
   constructor(private taxonService: TaxonService, private translate: TranslateService, private router: Router) { }
 
@@ -43,6 +45,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   update() {
     this.taxonService.getInformalGroups(this.translate.currentLang).subscribe((data) => {
       this.groups = data.results;
+      this.loading = false;
     }, error => error, () => {
       if (this.selectedGroup) {
         this.selectedGroup = this.groups.filter(val => val.id === this.selectedGroup.id).pop();
@@ -50,31 +53,25 @@ export class TaxonListComponent implements OnInit, OnDestroy {
       }
     });
     this.columns = [
-      { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), canAutoResize: false, draggable: false, resizeable: false },
-      { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: false, draggable: false, resizeable: false, width: 150 },
+      { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 150 },
+      { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 150 },
       { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
       { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
       { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
-    ];
+    ];  
   }
 
-  onSearchChange(value) {
-    let _selected = [];
-    for (let t of this.taxa) {
-      if ((t.vernacularName && t.vernacularName.toUpperCase().includes(value.toUpperCase())) ||
-        (t.scientificName.toUpperCase().includes(value.toUpperCase()))) {
-        _selected.push(t);
-      }
-    }
-    this.selected = _selected;
-  }
 
   onGroupSelect(target, pageNumber: string = '1') {
+    this.loading = true;
     this.selectedGroup = target;
-    this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id, this.translate.currentLang, pageNumber).subscribe(data => {
+    this.taxonService.getTaxonomy('MX.37600', this.selectedGroup.id, this.translate.currentLang, pageNumber, true).subscribe(data => {
       this.page = data;
       this.taxa = data.results;
       this.taxa.forEach(element => {
+        if (!element.vernacularName) {
+          element.vernacularName = element.scientificName;
+        }
         if (element.administrativeStatuses) {
           element.onEUList = this.translate.instant(String(element.administrativeStatuses.some(value => value === 'MX.euInvasiveSpeciesList')));
           element.onNationalList = this.translate.instant(String(element.administrativeStatuses.some(value => value === 'MX.nationallySignificantInvasiveSpecies')));
@@ -82,18 +79,37 @@ export class TaxonListComponent implements OnInit, OnDestroy {
           element.onEUList = this.translate.instant(String(false));
           element.onNationalList = this.translate.instant(String(false));
         }
-        element.stableString = this.translate.instant(String(element.stableInFinland));
-        this.taxonService
-          .getTaxonMedia(element.id, 'fi').subscribe(data => {
-            if (data.length > 0) {
-              element.thumbnail = data[0].thumbnailURL;
-            } else {
-              element.thumbnail = 'assets/images/logos/vieraslaji-logo-70x70.png';
-            }
-          });
+        if(element.invasiveSpeciesEstablishment){ 
+          if(element.invasiveSpeciesEstablishment === 'MX.invasiveNotYetInFinland'){
+            element.stableString = this.translate.instant(String('stableString.notyet'));
+          }   
+          if(element.invasiveSpeciesEstablishment === 'MX.invasiveEstablishmentUnknown'){
+            element.stableString = this.translate.instant(String('stableString.unknown'));
+          }
+          if(element.invasiveSpeciesEstablishment === 'MX.invasiveEstablished'){
+            element.stableString = this.translate.instant(String('stableString.established'));
+          }
+          if(element.invasiveSpeciesEstablishment === 'MX.invasiveSporadic'){
+            element.stableString = this.translate.instant(String('stableString.sporadic'));
+          }
+          if(element.invasiveSpeciesEstablishment ==='MX.invasiveAccidental'){
+            element.stableString =this.translate.instant(String('stableString.accidental'));
+          }
+        } 
+        if (element.multimedia.length > 0) {
+          element.thumbnail = element.multimedia[0].thumbnailURL; 
+        } else {
+          element.thumbnail = 'assets/images/logos/vieraslaji-logo-b.png';
+        }
       });
-      this.selected = this.taxa;
-    });
+      this.pageData = this.taxa.slice(0, this.itemsPerPage);
+    },() => null, () => this.loader());
+  }
+  // if loading true => false, removes spinner
+  loader() {
+    if (this.loading) {
+      this.loading = false;
+    }
   }
 
   onSelect(event) {
@@ -103,11 +119,16 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   setPage(event) {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    this.onGroupSelect(this.selectedGroup, String(event.offset + 1));
   }
 
   changeOpen() {
     this.showGroups = !this.showGroups;
+  }
+
+  pageChanged(event) {
+    let start = (event.page - 1) * event.itemsPerPage;
+    let end = start + event.itemsPerPage;
+    this.pageData = this.taxa.slice(start, end);
   }
 
   ngOnDestroy() {
