@@ -26,7 +26,7 @@ export class AppComponent {
       translate.use('fi');
     }
 
-    if(UserService.getToken() && !UserService.getUserProperties()[userProperty.LOGIN]) {
+    if(UserService.getToken()) {
       userService.updateUserProperties(UserService.getToken());
     }
   }

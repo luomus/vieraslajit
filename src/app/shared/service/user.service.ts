@@ -73,7 +73,8 @@ export class UserService {
     window.sessionStorage.setItem(key, JSON.stringify(value));
   }
 
-  updateUserProperties(token:string, _router?, _userService?, callback?) {
+  updateUserProperties(token:string) {
+    let s: Subject<any> = new Subject<any>();
     this.apiService.personToken(UserService.getToken()).subscribe((data) => { 
       this.setUserProperty(userProperty.PTOKEN, data);
       this.apiService.personByToken(UserService.getToken()).subscribe((data) => {
@@ -83,12 +84,10 @@ export class UserService {
         this.setUserProperty(userProperty.PERSON, data);
 
         this.setUserProperty(userProperty.LOGIN, "true");
-        console.log(UserService.getUserProperties());
         this.loginStateChange.next();
-        if (callback) {
-          callback(_router, _userService);
-        }
+        s.next();
       });
     });
+    return s;
   }
 }

@@ -22,12 +22,10 @@ export class NavbarComponent implements OnInit {
      * Update user section of navbar whenever login state changes
      */
     this._subscription = userService.loginStateChange.subscribe(() => {
-      console.log("login event fired");
       if(UserService.loggedIn()) {
         this.setLoggedIn();
       }
       this.loggedIn = UserService.loggedIn();
-      console.log(UserService.getUserProperties());
     })
     /**
      * Update login url next parameter every time active route changes
