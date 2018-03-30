@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 export enum userProperty {
-  ID = 'personId',
   PERSON = 'person',
   PTOKEN = 'person-token',
   LOGIN = 'logged-in'
@@ -55,6 +54,21 @@ export class UserService {
     return window.localStorage.getItem("token");
   }
 
+  logout() {
+    UserService.clearUserProperties();
+    UserService.clearUserToken();
+    this.setUserProperty(userProperty.LOGIN, false);
+    this.loginStateChange.next();
+  }
+
+  private static clearUserProperties() {
+    window.sessionStorage.clear();
+  }
+
+  private static clearUserToken() {
+    window.localStorage.clear();
+  }
+
   setUserProperty(key: userProperty, value: any) {
     window.sessionStorage.setItem(key, JSON.stringify(value));
   }
@@ -70,12 +84,10 @@ export class UserService {
 
         this.setUserProperty(userProperty.LOGIN, "true");
 
-        console.log(UserService.getUserProperties());
-        console.log(UserService.hasRole(Role.CMS_ADMIN));
+        this.loginStateChange.next();
         if (callback) {
           callback(_router, _userService);
         }
-        this.loginStateChange.next();
       });
     });
   }
