@@ -17,7 +17,7 @@ export enum Role {
 @Injectable()
 export class UserService {
 
-  loginStateChange: Subject<any> = new Subject<any>();
+  public loginStateChange: Subject<any> = new Subject<any>();
 
   constructor(private apiService: ApiService) { }
 
@@ -83,7 +83,7 @@ export class UserService {
         this.setUserProperty(userProperty.PERSON, data);
 
         this.setUserProperty(userProperty.LOGIN, "true");
-
+        console.log(UserService.getUserProperties());
         this.loginStateChange.next();
         if (callback) {
           callback(_router, _userService);

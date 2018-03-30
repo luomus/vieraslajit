@@ -22,7 +22,8 @@ export class NavbarComponent implements OnInit {
      * Update user section of navbar whenever login state changes
      */
     this._subscription = userService.loginStateChange.subscribe(() => {
-      if(UserService.loggedIn) {
+      console.log("login event fired");
+      if(UserService.loggedIn()) {
         this.setLoggedIn();
       }
       this.loggedIn = UserService.loggedIn();
