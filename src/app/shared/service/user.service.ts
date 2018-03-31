@@ -24,18 +24,14 @@ export class UserService {
 
   public static getLoginUrl(next) {
     return (environment.lajiAuth.authUrl + 'login'
-    + '?target=' + environment.lajiAuth.systemID
-    + '&redirectMethod=GET&locale=%lang%'
-    + '&next=' + next).replace('%lang%', 'fi');
+      + '?target=' + environment.lajiAuth.systemID
+      + '&redirectMethod=GET&locale=%lang%'
+      + '&next=' + next).replace('%lang%', 'fi');
   }
 
-  getToken(){
-    return window.sessionStorage.getItem(userProperty.ID);
-  }
-  
   public static getUserProperties() {
     let res = {};
-    for(let u in userProperty) {
+    for (let u in userProperty) {
       res[userProperty[u]] = JSON.parse(window.sessionStorage.getItem(userProperty[u]));
     }
     return res;
@@ -59,12 +55,16 @@ export class UserService {
     return window.localStorage.getItem("token");
   }
 
+  public static getUserId() {
+    return UserService.getUserProperties()[userProperty.PERSON].id;
+  }
+
   setUserProperty(key: userProperty, value: any) {
     window.sessionStorage.setItem(key, JSON.stringify(value));
   }
 
-  updateUserProperties(token:string, _router?, _userService?, callback?) {
-    this.apiService.personToken(UserService.getToken()).subscribe((data) => { 
+  updateUserProperties(token: string, _router?, _userService?, callback?) {
+    this.apiService.personToken(UserService.getToken()).subscribe((data) => {
       this.setUserProperty(userProperty.PTOKEN, data);
       this.apiService.personByToken(UserService.getToken()).subscribe((data) => {
         // Admin role for testing purposes

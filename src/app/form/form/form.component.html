@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="loggedIn;else loginError">
     <br>
     <div>
         <h3>{{formData?.title}}</h3>
@@ -7,3 +7,8 @@
         <div #lajiform></div>
     </div>
 </div>
+
+<ng-template #loginError>
+    <br>
+    <p translate>form.login</p>
+</ng-template>

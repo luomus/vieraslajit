@@ -71,6 +71,7 @@
   "stableString.unknown":"Tuntematon",
   "stableString.established":"Vakiintunut",
   "stableString.sporadic":"Harvinainen",
-  "stableString.accidental":"Tahaton"
+  "stableString.accidental":"Tahaton",
+  "form.login": "Kirjaudu ensin sisään." 
 
 }

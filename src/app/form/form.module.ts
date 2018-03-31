@@ -10,7 +10,7 @@ import { FormService } from '../shared/service/form.service';
   imports: [
     CommonModule,
     routing,
-    SharedModule,
+    SharedModule
   ],
   declarations: [FormComponent]
 })

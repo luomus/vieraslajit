@@ -32,4 +32,9 @@ describe('FormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should tell user to login if not already logged in', () => {
+    const p = fixture.nativeElement.querySelector('p');
+    expect(p.textContent).toContain('form.login');
+  });
 });
