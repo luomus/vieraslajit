@@ -18,10 +18,9 @@ export class StaticComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = params['id']; // (+) converts string 'id' to a number
+      this.id = params['id'];
     });
-    this.getInformation("i-"+ this.id);
-    // update scontent   
+    this.getInformation(this.id);
   }
 
   getInformation(id) {

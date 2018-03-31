@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import { InformationService } from '../service/information.service';
 
 // ID of the parent element of general static pages
-const PARENT_ID = "i-45";
+const PARENT_ID = "i-2";
 
 @Component({
   selector: 'vrs-navbar',
@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   loginUrl = '#';
   isCollapsed = false;
   loggedIn = false;
+  menu: Array<any> = new Array();
 
   constructor(private modalService: BsModalService, private router: Router, private informationService: InformationService) { 
     // temporary suboptimal solution (a lot more updates than necessary)
@@ -30,7 +31,11 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.informationService.getInformation(PARENT_ID).subscribe((data) => {
-      console.log(data);
+      for(let c of data.children) {
+        this.informationService.getInformation(c.id).subscribe((data)=>{
+          this.menu.push(data);
+        })
+      }
     });
   }
 
