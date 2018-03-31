@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { InformationService } from '../shared/service/information.service';
 import { Information } from '../shared/model/Information';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -13,10 +14,18 @@ export class StaticComponent implements OnInit {
 
   public scontent: Object;
   id: String;
+  sub: Subscription;
 
   constructor(public informationService: InformationService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.loadContent();
+    this.sub = this.router.events.filter(e => e instanceof NavigationEnd).subscribe((data)=>{
+      this.loadContent();
+    });
+  }
+
+  loadContent() {
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });
@@ -27,5 +36,9 @@ export class StaticComponent implements OnInit {
     this.informationService.getInformation(id).subscribe((data) => {
         this.scontent = data;
     });
+  }
+  
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }
