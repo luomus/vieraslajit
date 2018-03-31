@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { TaxonomyDescription, TaxonomyImage, Taxonomy } from '../../shared/model/Taxonomy';
@@ -6,11 +6,14 @@ import { Observable } from 'rxjs/Observable';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
 
+import { ObservationComponent } from '../../observation/observation.component';
+
 
 @Component({
   selector: 'vrs-taxon-card',
   templateUrl: './taxon-card.component.html',
-  styleUrls: ['./taxon-card.component.scss']
+  styleUrls: ['./taxon-card.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class TaxonCardComponent implements OnInit, OnDestroy {
@@ -18,6 +21,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   private sub: any;
   private querySub: Subscription;
   private subTrans: Subscription;
+  public loading = true; // spinner true on start
 
   id: string;
   taxon: Taxonomy;
@@ -26,14 +30,18 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   family: Array<Taxonomy>;
   quarantinePlantPest: boolean;  // Vaarallinen kasvintuhoaja
   comparison: boolean;
+  isFirstOpen:boolean;
+  customClass:string ;
   constructor(private route: ActivatedRoute, private router: Router,
-    private taxonService: TaxonService, private translate: TranslateService) {
+    private taxonService: TaxonService, private translate: TranslateService) {  
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
+   
   }
 
   ngOnInit() {
+    this.isFirstOpen = false;
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.querySub = this.route.queryParams.subscribe(params => {
       if (params) {
@@ -50,10 +58,14 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   update() {
     this.taxonService.getTaxon(this.id, this.translate.currentLang).subscribe(data => {
       this.taxon = data;
-      this.quarantinePlantPest = this.taxon.administrativeStatuses.includes('MX.quarantinePlantPest');
+      if (this.taxon.administrativeStatuses) {
+        this.quarantinePlantPest = this.taxon.administrativeStatuses.includes('MX.quarantinePlantPest');
+      }
     });
     this.taxonService.getTaxonDescription(this.id, this.translate.currentLang).subscribe(data => {
       this.desc = data[0];
+      
+      
     });
     this.taxonService.getTaxonMedia(this.id, this.translate.currentLang).subscribe(data => {
       this.media = data;
@@ -64,7 +76,14 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       } else {
         this.family = data.filter(value => value.taxonRank === 'MX.family');
       }
-    });
+    }, () => null, () => this.loader()); // spinner to false
+  }
+
+  // if loading true => false, removes spinner
+  loader() {
+    if (this.loading) {
+      this.loading = false;
+    }
   }
 
   comparisonView() {
@@ -83,4 +102,5 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       this.querySub.unsubscribe();
     }
   }
+  
 }

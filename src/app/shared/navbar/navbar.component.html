@@ -33,19 +33,30 @@
                                 <li role="menuitem"><a class="dropdown-item" id="dropdown-menu-item" routerLink="#" translate>dropdown.guides</a></li>
                             </ul>
                     </li>
-                
-
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="#" (click)="isCollapsed = !isCollapsed"
+                        aria-expanded="false" translate>navigation.observations</a>
+                    </li>
                 
             </ul>
             
             <div class= "ml-auto">
                <ul class="nav navbar-nav">
                   <li (click)="openModal(search)" href="#modalSearch" data-toggle="modal" data-target="#modalSearch" class="nav-item" >
-                <span class="oi oi-magnifying-glass icon" id="search-icon"></span>
+                     <span class="oi oi-magnifying-glass icon" id="search-icon"></span>
                   </li>
                   <li class="nav-item">
-                    <a href='{{loginUrl}}' class="nav-link" translate>navigation.login</a>
-                  </li> 
+                    <div *ngIf="!loggedIn;then login_content else welcome_content"></div>
+                    <ng-template #login_content>
+                        <a href='{{loginUrl}}' class="nav-link" translate>navigation.login</a>
+                    </ng-template>
+                    <ng-template #welcome_content>
+                        welcome {{userPropertiesWrapper().person.fullName}}
+                        <ng-container *ngIf="isCMSAdmin()">
+                            <a href="https://cms.laji.fi">CMS linkki</a>
+                        </ng-container>
+                    </ng-template>
+                  </li>
                   <li class="nav-item" id="language-selector">
                     <vrs-language-selector ></vrs-language-selector>  
                   </li>

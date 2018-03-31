@@ -14,11 +14,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if (this.activatedRoute.snapshot.queryParams['token']) {
       // save laji-auth token to userproperties
-      this.userService.setUserProperty(userProperty.TOKEN, this.activatedRoute.snapshot.queryParams['token']);
+      UserService.setToken(this.activatedRoute.snapshot.queryParams['token']);
       // update userproperties with laji api data
-      this.userService.updateUserProperties(this.activatedRoute.snapshot.queryParams['token'], this.router, this.userService, function(_router, _userService) {
+      this.userService.updateUserProperties(UserService.getToken(), this.router, this.userService, function(_router, _userService) {
         // redirect to original location
-        _router.navigateByUrl(_userService.getUserProperties()["person-token"].next);
+        _router.navigateByUrl(UserService.getUserProperties()["person-token"].next);
       });
     } else {
       this.router.navigateByUrl("/home");

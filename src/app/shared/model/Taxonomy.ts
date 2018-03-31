@@ -2,6 +2,8 @@ export interface Taxonomy {
 
     id?: string;
 
+    adminStatusFilters?:string;
+
     distributionMapFinland?: string;
 
     sortOrder?: number;
@@ -182,6 +184,7 @@ export interface Taxonomy {
     hasChildren?: boolean;
 
     latestRedListStatusFinland?: LatestRedListStatusFinland;
+    
 
     redListStatusesInFinland?: LatestRedListStatusFinland[];
 }

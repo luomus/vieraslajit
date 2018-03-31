@@ -19,7 +19,11 @@ import { FormService } from './service/form.service';
 import { FormApiClient } from './api/FormApiClient';
 import { UserService } from './service/user.service';
 import { HttpModule } from '@angular/http';
-
+import { InformationService } from './service/information.service';
+import {ListService } from './service/list.service';
+import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
+import { ObservationService } from './service/observation.service';
+import {EditcmsModule} from './../shared-modules/editcms/editcms.module';
 
 @NgModule({
   imports: [
@@ -29,6 +33,8 @@ import { HttpModule } from '@angular/http';
     FormsModule,
     ReactiveFormsModule,
     BsDropdownModule,
+    SpinnerModule,
+    EditcmsModule,
     ModalModule.forRoot(),
     CollapseModule.forRoot(),
     HttpModule
@@ -37,7 +43,7 @@ import { HttpModule } from '@angular/http';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SpinnerModule, EditcmsModule, SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
@@ -50,7 +56,9 @@ export class SharedModule {
         MetadataService,
         FormService,
         FormApiClient,
-        UserService
+        UserService,
+        InformationService,
+        ObservationService
       ]
     };
   }

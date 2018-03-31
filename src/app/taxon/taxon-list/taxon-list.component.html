@@ -1,3 +1,4 @@
+<laji-spinner [spinning]="loading" >
 <div class="container">
   <div id="omnisearch">
     <vrs-omnisearch></vrs-omnisearch>
@@ -9,15 +10,18 @@
         <div accordion-heading>
           <h5 class="mb-0" translate>
             taxonomy.taxongroup
-            <ng-container *ngIf="selectedGroup"> > {{selectedGroup.name}}</ng-container>
+            <ng-container *ngIf="selectedGroup">/ {{selectedGroup.name}}</ng-container>
+            <ng-container *ngIf="showGroups === false"><span class="oi oi-chevron-bottom float-right"></span></ng-container>
+            <ng-container *ngIf="selectedGroup && showGroups === true"><span class="oi oi-chevron-top float-right"></span></ng-container>
           </h5>
+         
         </div>
 
         <div id="collapseOne" class="collapse show">
-          <div class="card-block">
+
             <ng-container>
-              <div class="card-group container">
-                <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-12 col-sm-6 col-md-4 col-lg-3">
+              <div class="card-deck container">
+                <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                   <div class="card" id="selectGroup-card" (click)="changeOpen()">
                     <img class="card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
                     <div class="card-body" id="selectGroup-card-body">
@@ -27,13 +31,13 @@
                 </div>
               </div>
             </ng-container>
-          </div>
+          
         </div>
       </accordion-group>
     </accordion>
   </div>
   <br>
-  <ng-container *ngIf="selectedGroup && taxa">
+  <ng-container *ngIf="selectedGroup && taxa && !loading">
     <tabset>
       <tab heading="{{'navigation.list' | translate}}">
         <div class="tab-pane container" id="taxontable">
@@ -43,14 +47,14 @@
           </ngx-datatable>
         </div>
       </tab>
-      <tab heading="{{'navigation.grid' | translate}}">
+      <tab heading="{{'navigation.grid' | translate}}"[active]="true">
         <div class="tab-pane container" id="cardcontainer">
           <div class="card-group" id="taxongrid">
-            <div *ngFor="let species of pageData" class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="card small text-center" id="species-card">
+            <div *ngFor="let species of pageData" class="col-12 col-sm-6 col-md-6 col-lg-3">
+              <div class="card" id="species-card" [routerLink]="[species.id]">
                 <img class="card-img-top img-responsive" [src]="species.thumbnail" id="species-img">
                 <div class="card-body" id="species-card-body">
-                  <a class="card-text" id="species-card-text" [routerLink]="[species.id]">{{species.vernacularName || species.scientificName}}</a>
+                  <a class="card-text" id="species-card-text">{{species.vernacularName || species.scientificName}}</a>
                 </div>
               </div>
             </div>
@@ -62,3 +66,4 @@
     </tabset>
   </ng-container>
 </div>
+</laji-spinner>
