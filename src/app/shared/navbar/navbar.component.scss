@@ -1,15 +1,28 @@
 @import '../../../assets/styles/vars';
 
 #mainNav {
+    font-size: 14px;
     font-weight: 700;
     font-family: $font-montserrat;
     background: $primary;
 }
 
-@media (max-width: 1199.98px) {
+
+@media screen and (max-width: 989px) {
+    #mainNav {font-size: 16px;}
+    #dropdown-menu-item {font-size: 16px;}
+    #search-icon{padding-left:10px}
+    #mainNav .navbar-nav li.nav-item a.nav-link{padding-top: 5px;padding-bottom:5px;}
+    #mainNav .dropdown{padding-top:5px;padding-bottom: 5px;}
+    #mainNav .nav-item{padding-top:5px;padding-bottom: 5px;}
+}
+@media screen and (max-width: 1040px) {
     #mainNav {font-size: 12px;}
     #dropdown-menu-item {font-size: 12px;}
+
 }
+
+
 
 #mainNav .navbar-brand {
     color: $content-background;
@@ -25,6 +38,7 @@
     align-items: center;     
     a {
         color: $content-background;
+     
     }
 }
 
@@ -32,6 +46,8 @@
 #mainNav .navbar-nav li.nav-item a.nav-link {
     color: $content-background;
     background: $primary;
+    padding-right:10px;
+    padding-left:10px;
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link:hover {
@@ -59,6 +75,8 @@
 }
 
 #dropdown-toggle {
+    padding-left:10px;
+    padding-right:10px;
     background: $primary;
     cursor: pointer;
     &:hover {
