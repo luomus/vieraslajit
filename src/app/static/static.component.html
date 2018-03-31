@@ -2,6 +2,7 @@
         <tabset>
                 <tab *ngFor="let child of child_pages" heading="{{child.menuTitle}}">
                         <ng-container *ngIf="child.data">
+                                <vrs-editcms id="{{child.id}}"></vrs-editcms>
                                 <div [innerHTML]="child.data.content"></div>
                         </ng-container>
                 </tab>
@@ -9,6 +10,7 @@
 </ng-container>
 
 <ng-container *ngIf="scontent && !child_pages">
+        <vrs-editcms id="{{id}}"></vrs-editcms>
         <h1 [innerHTML]="scontent['menuTitle']"></h1>
         <div [innerHTML]="scontent['content']">
 

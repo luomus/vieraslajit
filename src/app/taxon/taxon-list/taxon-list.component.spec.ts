@@ -7,7 +7,8 @@ import { TaxonService } from '../../shared/service/taxon.service';
 import { ApiService } from '../../shared/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { SharedModule } from '../../shared/shared.module';
+ 
 describe('TaxonListComponent', () => {
   let component: TaxonListComponent;
   let fixture: ComponentFixture<TaxonListComponent>;
@@ -15,7 +16,7 @@ describe('TaxonListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TaxonListComponent],
-      imports: [FormsModule, RouterTestingModule, HttpClientModule, TranslateModule.forRoot()],
+      imports: [FormsModule, RouterTestingModule, HttpClientModule, SharedModule, TranslateModule.forRoot()],
       providers: [TaxonService, ApiService]
     })
       .compileComponents();

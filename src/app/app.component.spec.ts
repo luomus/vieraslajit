@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, AccordionModule } from 'ngx-bootstrap';
 import { InformationService } from './shared/service/information.service';
+import { UserService } from './shared/service/user.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -26,8 +27,7 @@ describe('AppComponent', () => {
         BsDropdownModule.forRoot(),
         AccordionModule.forRoot()
       ],
-      providers:[ ApiService, TaxonService, InformationService ]
-      
+      providers:[ ApiService, TaxonService, InformationService, UserService ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {

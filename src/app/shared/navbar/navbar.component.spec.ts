@@ -5,8 +5,9 @@ import { LanguageSelectorComponent } from './language-selector/language-selector
 import { SearchComponent } from '../googlesearch/search/search.component';
 import { BsModalService, ModalModule, CollapseModule } from 'ngx-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ApiService } from '../api/api.service';
 import { InformationService } from '../service/information.service';
+import { UserService } from '../service/user.service';
+import { ApiService } from '../api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -18,7 +19,7 @@ describe('NavbarComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ NavbarComponent, LanguageSelectorComponent, SearchComponent],
       imports: [TranslateModule.forRoot(), ModalModule.forRoot(), CollapseModule.forRoot(), RouterTestingModule, HttpClientModule],
-      providers: [TranslateService, BsModalService, InformationService, ApiService]
+      providers: [TranslateService, BsModalService, InformationService, ApiService, UserService]
     })
     .compileComponents();
   }));

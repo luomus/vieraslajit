@@ -20,9 +20,14 @@ export class NavbarComponent implements OnInit {
   isCollapsed = false;
   loggedIn = false;
   menu: Array<any> = new Array();
+  _subscription: any;
+  
+  constructor(private modalService: BsModalService, private router: Router, private userService: UserService, private informationService: InformationService) {
 
-  constructor(private modalService: BsModalService, private router: Router, private informationService: InformationService) { 
     // temporary suboptimal solution (a lot more updates than necessary)
+    this._subscription = userService.loginStateChange.subscribe(() => {
+      this.setLoggedIn();
+    })
     router.events.subscribe((val) => {
       this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
       this.loggedIn = UserService.loggedIn();
@@ -37,6 +42,10 @@ export class NavbarComponent implements OnInit {
         })
       }
     });
+  }
+
+  setLoggedIn() {
+    this.loggedIn = UserService.loggedIn();
   }
 
   userPropertiesWrapper() {
