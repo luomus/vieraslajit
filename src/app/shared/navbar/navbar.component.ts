@@ -15,9 +15,13 @@ export class NavbarComponent implements OnInit {
   loginUrl = '#';
   isCollapsed = false;
   loggedIn = false;
+  _subscription: any;
   
-  constructor(private modalService: BsModalService, private router: Router) { 
+  constructor(private modalService: BsModalService, private router: Router, private userService: UserService) {
     // temporary suboptimal solution (a lot more updates than necessary)
+    this._subscription = userService.loginStateChange.subscribe(() => {
+      this.setLoggedIn();
+    })
     router.events.subscribe((val) => {
       this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
       this.loggedIn = UserService.loggedIn();
@@ -25,7 +29,11 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
+  }
+
+  setLoggedIn() {
+    this.loggedIn = UserService.loggedIn();
   }
 
   userPropertiesWrapper() {
