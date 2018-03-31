@@ -15,6 +15,7 @@ export class StaticComponent implements OnInit {
   public scontent: Object;
   id: String;
   sub: Subscription;
+  child_pages: Array<any>;
 
   constructor(public informationService: InformationService, private route: ActivatedRoute, private router: Router) { }
 
@@ -35,9 +36,17 @@ export class StaticComponent implements OnInit {
   getInformation(id) {
     this.informationService.getInformation(id).subscribe((data) => {
         this.scontent = data;
+        this.child_pages = data.children;
+        if(data.children) {
+          for(let c of this.child_pages) {
+            this.informationService.getInformation(c.id).subscribe((data) => {
+              c.data = data;
+            });
+          }
+        }
     });
   }
-  
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
