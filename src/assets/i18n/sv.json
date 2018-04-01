@@ -57,6 +57,5 @@
   "stableString.established":"Etablerade",
   "stableString.sporadic":"Sporadisk",
   "stableString.accidental":"Tillfällig",
-  "observations.myobservations":"Mina observationer",
-  "observations.infotext":"Här kan du utforska dina uppladdade observationer och redigera dem"
-}
+  "observations.myobservations":"Mina observationer"
+  }

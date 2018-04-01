@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ObservationlistComponent } from './observationlist.component';
+import {ObservationlistComponent } from './observationlist/observationlist.component';
 
 
 const routes: Routes = [
@@ -11,4 +11,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ObservationlistRoutingModule { }
+export class ObservationsRoutingModule { }

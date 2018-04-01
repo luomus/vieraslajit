@@ -1,10 +1,11 @@
 
 <div class="container-fluid">
   <h1 id="heading" translate>observations.myobservations</h1>
-  <p translate>observations.infotext</p>
-
+ 
   <button class="btn btn-primary"><span class="oi oi-plus"></span> Uusi havainto</button>
-  <div class="tablecontainer">
+
+
+  <div class="content">
       <ng-container>
         <div class="tab-pane container" id="observationlisttable">
             <ngx-datatable class="material selection-cell" [rows]="observations" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
@@ -14,4 +15,6 @@
         </div>    
     </ng-container>
   </div>
+
+
 </div>

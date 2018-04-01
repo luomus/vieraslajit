@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'static', loadChildren: './static/static.module#StaticModule' },
   { path: 'user/login', loadChildren: './user/user.module#UserModule' },
   { path: 'form', loadChildren: './form/form.module#FormModule'},
-  { path:'myobservations', loadChildren: './observationlist/observationlist.module#ObservationlistModule'}
+  { path:'observations', loadChildren: './observations/observations.module#ObservationsModule'}
   
 ];
 
