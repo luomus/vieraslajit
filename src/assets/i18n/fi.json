@@ -71,6 +71,8 @@
   "stableString.unknown":"Tuntematon",
   "stableString.established":"Vakiintunut",
   "stableString.sporadic":"Harvinainen",
-  "stableString.accidental":"Tahaton"
+  "stableString.accidental":"Tahaton",
+  "observations.myobservations":"Minun havaintoni",
+  "observations.infotext":"Täällä voit tutkia lähettämiäsi havaintoja ja muokata niitä"
 
 }
