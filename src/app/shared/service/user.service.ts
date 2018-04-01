@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 export enum userProperty {
-  ID = 'personId',
   PERSON = 'person',
   PTOKEN = 'person-token',
   LOGIN = 'logged-in'
@@ -18,7 +17,7 @@ export enum Role {
 @Injectable()
 export class UserService {
 
-  loginStateChange: Subject<any> = new Subject<any>();
+  public loginStateChange: Subject<any> = new Subject<any>();
 
   constructor(private apiService: ApiService) { }
 
@@ -58,13 +57,29 @@ export class UserService {
   public static getUserId() {
     return UserService.getUserProperties()[userProperty.PERSON].id;
   }
+  
+  logout() {
+    UserService.clearUserProperties();
+    UserService.clearUserToken();
+    this.setUserProperty(userProperty.LOGIN, false);
+    this.loginStateChange.next();
+  }
+
+  private static clearUserProperties() {
+    window.sessionStorage.clear();
+  }
+
+  private static clearUserToken() {
+    window.localStorage.clear();
+  }
 
   setUserProperty(key: userProperty, value: any) {
     window.sessionStorage.setItem(key, JSON.stringify(value));
   }
 
-  updateUserProperties(token: string, _router?, _userService?, callback?) {
-    this.apiService.personToken(UserService.getToken()).subscribe((data) => {
+  updateUserProperties(token:string) {
+    let s: Subject<any> = new Subject<any>();
+    this.apiService.personToken(UserService.getToken()).subscribe((data) => { 
       this.setUserProperty(userProperty.PTOKEN, data);
       this.apiService.personByToken(UserService.getToken()).subscribe((data) => {
         // Admin role for testing purposes
@@ -73,14 +88,10 @@ export class UserService {
         this.setUserProperty(userProperty.PERSON, data);
 
         this.setUserProperty(userProperty.LOGIN, "true");
-
-        console.log(UserService.getUserProperties());
-        console.log(UserService.hasRole(Role.CMS_ADMIN));
-        if (callback) {
-          callback(_router, _userService);
-        }
         this.loginStateChange.next();
+        s.next();
       });
     });
+    return s;
   }
 }
