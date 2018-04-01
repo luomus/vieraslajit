@@ -1,6 +1,9 @@
 # Vieraslajit
 [Course description (in Finnish)](https://courses.helsinki.fi/fi/TKT20007)
 
+This repository is the frontend for [vieraslajit.fi](https://vieraslajit.herokuapp.com/home).
+Api used and it's documentation can be found at [apitest.laji.fi](https://apitest.laji.fi/explorer/).
+
 ## Project links
 
 ### Code and product
