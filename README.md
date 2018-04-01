@@ -19,7 +19,7 @@ Api used and it's documentation can be found at [apitest.laji.fi](https://apites
 ### Documentation
 * [Definition of done](https://github.com/Vieraslajit/Vieraslajit/blob/master/dod.md)
 * [Installing](#installing)
-* [Running the tests](#runningthetests)
+* [Running the tests](#running-the-tests)
 * [License](#license)
 
 ### Communication
