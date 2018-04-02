@@ -1,10 +1,15 @@
 <div class="container-fluid" *ngIf="loggedIn;else loginError">
     <br>
     <div>
-        <h3>{{formData?.title}}</h3>
-        <div [innerHtml]="formData?.description"></div>
+        <h3 id="formName"></h3>
+        <span id="formDesc"></span>
         <br>
         <div #lajiform></div>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary" (click)="submit()">
+            Lähetä
+        </button>
     </div>
 </div>
 
