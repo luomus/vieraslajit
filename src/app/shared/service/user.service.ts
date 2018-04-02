@@ -23,14 +23,14 @@ export class UserService {
 
   public static getLoginUrl(next) {
     return (environment.lajiAuth.authUrl + 'login'
-    + '?target=' + environment.lajiAuth.systemID
-    + '&redirectMethod=GET&locale=%lang%'
-    + '&next=' + next).replace('%lang%', 'fi');
+      + '?target=' + environment.lajiAuth.systemID
+      + '&redirectMethod=GET&locale=%lang%'
+      + '&next=' + next).replace('%lang%', 'fi');
   }
-  
+
   public static getUserProperties() {
     let res = {};
-    for(let u in userProperty) {
+    for (let u in userProperty) {
       res[userProperty[u]] = JSON.parse(window.sessionStorage.getItem(userProperty[u]));
     }
     return res;
@@ -54,6 +54,10 @@ export class UserService {
     return window.localStorage.getItem("token");
   }
 
+  public static getUserId() {
+    return UserService.getUserProperties()[userProperty.PERSON].id;
+  }
+  
   logout() {
     UserService.clearUserProperties();
     UserService.clearUserToken();

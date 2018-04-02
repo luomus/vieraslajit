@@ -2,6 +2,7 @@
 @import './assets/styles/vars';
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import '../node_modules/open-iconic/font/css/open-iconic-bootstrap.css';
+@import '../node_modules/laji-form/dist/styles.css';
 
 html,body {
     width: 100%;
@@ -11,3 +12,16 @@ html,body {
     padding-top: 25px;
     overflow-x: hidden; 
 }
+
+.laji-map {
+    width: 100%;
+    height: 100%;
+  }
+
+.laji-form .laji-form-map-container, .laji-form .popover {
+    z-index: 0;
+  }
+  
+  .laji-form .blocking-loader {
+      z-index: 2;
+  }

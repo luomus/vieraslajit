@@ -16,4 +16,9 @@ describe('vieraslajit App', () => {
     page.navigateToLegal();
     expect(page.getParagraphText()).toEqual('Lainsäädäntö');
   });
+
+  it('should display login message when navigated to form and user is not logged in', () => {
+    page.navigateToForm();
+    expect(page.getText()).toEqual('Kirjaudu ensin sisään.');
+  });
 });
