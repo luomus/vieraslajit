@@ -28,11 +28,8 @@ export class FormComponent implements AfterViewInit, OnDestroy {
 
   formData: any;
   lajiFormWrapper: any;
-  reactElem: any;
-  renderElem: any;
   lang: string;
   loggedIn = false;
-
   private _block = false;
 
   constructor(@Inject(ElementRef) elementRef: ElementRef,
@@ -125,7 +122,6 @@ export class FormComponent implements AfterViewInit, OnDestroy {
 
   submit() {
     if (this.lajiFormWrapper) {
-      console.log('Lähetetään');
       this.formData.formData['formID'] = this.id;
       this.ngZone.runOutsideAngular(() => {
         this.lajiFormWrapper.submit();
@@ -140,6 +136,8 @@ export class FormComponent implements AfterViewInit, OnDestroy {
         (result) => {
           console.log('Result');
           console.log(result);
+          /* Onnistuneen lähetyksen jälkeen ohjaa käyttäjä havainnot sivulle
+          ja näytä onnistumisviesti (alert tms.) */
         },
         (error) => {
           console.log('Error');
@@ -148,7 +146,6 @@ export class FormComponent implements AfterViewInit, OnDestroy {
       );
     });
   }
-
 
   ngOnDestroy() {
     this.sub.unsubscribe();

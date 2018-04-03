@@ -12,10 +12,7 @@ import { SearchComponent } from '../shared/googlesearch/search/search.component'
     routing,
     CommonModule,
     SharedModule,
-  
-    
   ],
- 
   declarations: [HomeComponent]
 })
 
