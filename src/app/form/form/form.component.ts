@@ -1,7 +1,7 @@
 import {
   Component, OnDestroy, ElementRef, Inject, ViewEncapsulation,
   ViewChild, AfterViewInit, Output, NgZone, EventEmitter,
-  ChangeDetectorRef, ChangeDetectionStrategy
+  ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges
 } from '@angular/core';
 import { FormService } from '../../shared/service/form.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -10,6 +10,7 @@ import LajiForm from 'laji-form/lib/laji-form';
 import { FormApiClient } from '../../shared/api/FormApiClient';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService, Role } from '../../shared/service/user.service';
+import { DocumentService } from '../../shared/service/document.service';
 
 @Component({
   selector: 'vrs-form',
@@ -20,8 +21,6 @@ import { UserService, Role } from '../../shared/service/user.service';
 })
 export class FormComponent implements AfterViewInit, OnDestroy {
   @ViewChild('lajiform') formElem: ElementRef;
-  @Output() onSubmit = new EventEmitter();
-  @Output() onChange = new EventEmitter();
 
   private sub: Subscription;
   private subTrans: Subscription;
@@ -37,10 +36,10 @@ export class FormComponent implements AfterViewInit, OnDestroy {
   private _block = false;
 
   constructor(@Inject(ElementRef) elementRef: ElementRef,
-    private formService: FormService, private apiClient: FormApiClient,
+    private formService: FormService, private apiClient: FormApiClient, private docService: DocumentService,
     private route: ActivatedRoute, private translate: TranslateService, private userService: UserService,
-    private ngZone: NgZone, private cd: ChangeDetectorRef) {
-      this.loggedIn = UserService.loggedIn();
+    private ngZone: NgZone, private cd: ChangeDetectorRef, private el: ElementRef) {
+    this.loggedIn = UserService.loggedIn();
   }
 
   ngAfterViewInit() {
@@ -50,6 +49,7 @@ export class FormComponent implements AfterViewInit, OnDestroy {
       this.formService.getFormById(this.id, this.translate.currentLang).subscribe(data => {
         this.formData = data;
         console.log(data);
+        this.setFormDescription();
         this.ngZone.runOutsideAngular(() => {
           this.apiClient.lang = this.translate.currentLang;
           this.initFormData();
@@ -87,6 +87,7 @@ export class FormComponent implements AfterViewInit, OnDestroy {
         form['formData'] = this.formData.formData;
         this.lang = this.translate.currentLang;
         this.formData = form;
+        this.setFormDescription();
         this.lajiFormWrapper.setState({
           schema: this.formData.schema,
           uiSchema: this.formData.uiSchema,
@@ -109,16 +110,23 @@ export class FormComponent implements AfterViewInit, OnDestroy {
     }
   }
 
+  private setFormDescription() {
+    document.getElementById('formName').textContent = this.formData.title;
+    document.getElementById('formDesc').innerHTML = this.formData.description;
+  }
+
   _onSettingsChange(settings: object) {
     console.log(settings);
   }
 
   _onChange(formData) {
-    this.onChange.emit(formData);
+    this.formData.formData = formData;
   }
 
   submit() {
     if (this.lajiFormWrapper) {
+      console.log('Lähetetään');
+      this.formData.formData['formID'] = this.id;
       this.ngZone.runOutsideAngular(() => {
         this.lajiFormWrapper.submit();
       });
@@ -127,11 +135,17 @@ export class FormComponent implements AfterViewInit, OnDestroy {
 
   _onSubmit(data) {
     this.ngZone.run(() => {
-      this.onSubmit.emit({
-        data: data,
-        makeBlock: this.lajiFormWrapper.pushBlockingLoader,
-        clearBlock: this.lajiFormWrapper.popBlockingLoader
-      });
+      const doc$ = this.docService.createDocument(UserService.getToken(), this.formData.formData);
+      doc$.subscribe(
+        (result) => {
+          console.log('Result');
+          console.log(result);
+        },
+        (error) => {
+          console.log('Error');
+          console.log(error);
+        }
+      );
     });
   }
 
