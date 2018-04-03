@@ -15,7 +15,7 @@ cache:
 before_script:
 - npm install -g @angular/cli
 script: 
-- ng build --prod --aot
+- ng build --prod --aot -bh "https://vieraslajit.github.io/Vieraslajit"
 # Use Chromium instead of Chrome.
 - export CHROME_BIN=chromium-browser
 - xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeNoSandbox
@@ -23,8 +23,11 @@ script:
 branches:
   only:
   - master
+  - pages-test
 deploy:
-  provider: heroku
-  api_key:
-    secure: Yz1j8ud9KVz0BhASRQ4Nl/Vk/AxJABQ1QC6F95Mz2wpQg3MEyg9Ow4cDl2r8mXxlId+W7SY2tloyAboo82+WBJmH52oNtEEWKg2WvQIDGdmrvqvaH3jF4Bc1hk8mnO94hKjuMQvXxWygNPAj1G9kB5+qkIbFZLPD5AhkAp4o27YOb9CnIns5cRqucc+UBlge9t3CJmoQRheqVs/lrQzfgU97sK/GAu/TnZkgCsukDRlI0ngIZzoSJHPfN+iu4T4xtXgxCx64OFEb+YXiVx+NxqBxTF2iIZh0Tcrh0b1htoAeWuqQJBX2JefIH3FU3ANNBQqcBtYC9An3kCpp33sWtkJtEi+jkXO9i8PK+vhvuhh86psRnUv7WdLjT/42aPfpehyL3N1m+IeURC6hwM1XYMXd0x5nG/Du9TX388UmHbgosHdbzprbhZVIX+fmpkWcDU72ynOJ5JUCoMtMuT//VQitQpZD0Yy0OQU+bfcfxLYbbSqRmpJ/EoihmFAz6GlUAgD4Bp1dA05A06j8QThvWwJ/KIcLtnUxgHIiH7NKO4tqijfN/f3hVpv/qrxo++7kePZMih81kMuQ+oTRJw5cRhZ0e+XuWy+KfbmLa3f3+fvsglj2dGSb6dthc0VItYJKOkcLLXAm5T+ygq6P6uQIunIEW8vLKmVUYX7WV0brb/c=
-  app: vieraslajit
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  local_dir: dist
+  on:
+    branch: gh-pages
