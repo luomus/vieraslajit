@@ -15,7 +15,7 @@ cache:
 before_script:
 - npm install -g @angular/cli
 script: 
-- ng build --prod --aot -bh "https://vieraslajit.github.io/Vieraslajit"
+- ng build --prod --aot --base-href /Vieraslajit/
 # Use Chromium instead of Chrome.
 - export CHROME_BIN=chromium-browser
 - xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeNoSandbox
@@ -30,4 +30,4 @@ deploy:
   github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
   local_dir: dist
   on:
-    branch: gh-pages
+    branch: pages-test
