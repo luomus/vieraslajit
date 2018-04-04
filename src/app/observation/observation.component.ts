@@ -16,7 +16,7 @@ export class ObservationComponent implements OnInit {
   private idArray: Array<string>=[];
   private pageSize: string = "1000";
   private map
-  observations: Array<any> = [];
+  private observations: Array<any> = [];
   private mapData=[];
   private features = [];
 
@@ -39,16 +39,15 @@ export class ObservationComponent implements OnInit {
 
   setMapData() {
     let coordinates = [];
-    console.log(this.observations);
 
     this.observations
       .forEach((observationObject) => {
-        console.log(JSON.parse(JSON.stringify(observationObject)));
         coordinates = [
           observationObject.gathering.conversions.wgs84CenterPoint.lon,
           observationObject.gathering.conversions.wgs84CenterPoint.lat
         ]
         this.setFeatures(coordinates);
+
         const dataObject= this.returnFeatureCollection(this.features);
         this.mapData.push(dataObject);
       });

@@ -10,6 +10,7 @@ import { VrsRouterModule } from './vrs-router.module';
 import { AppComponent } from './app.component';
 import { SpinnerModule } from './shared-modules/spinner/spinner.module';
 import { SharedModule } from './shared/shared.module';
+import { TranslateService } from '@ngx-translate/core';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
