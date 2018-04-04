@@ -16,7 +16,7 @@ export class ObservationComponent implements OnInit {
   private idArray: Array<string>=[];
   private pageSize: string = "1000";
   map
-  private observations= [];
+  observations: Array<any> = [];
   private mapData;
   private features = [];
 
@@ -34,13 +34,13 @@ export class ObservationComponent implements OnInit {
   setObservations() {
     this.observationService.getObservationsById(this.idArray, this.pageSize).subscribe(data => {
       this.observations= data.results;
+      console.log(this.observations);
     });
-    
+    console.log(this.observations);
   }
 
   setMapData() {
     let coordinates = [];
-
     console.log(this.observations);
 
     this.observations
@@ -50,14 +50,33 @@ export class ObservationComponent implements OnInit {
           observationObject.gathering.conversions.wgs84CenterPoint.lon,
           observationObject.gathering.conversions.wgs84CenterPoint.lat
         ]
-        this.coordinatesToObject(coordinates);
+        this.setFeatures(coordinates);
         const dataObject= this.returnFeatureCollection(this.features);
-        observationsForMap.push(dataObject);
+        this.mapData.push(dataObject);
       });
-      let observationsForMap = [];
-      return observationsForMap.push(this.coordinatesToObject);  
-      
+  }
+
+  setFeatures (coordinates){
+    this.features.push(
+      {
+        'type': 'Feature',
+        "properties": {},
+        'geometry': {
+          'type': 'Point',
+          'coordinates': coordinates,
+          "radius": 7000
+        }
+    })
+  }
   
+  returnFeatureCollection(features){
+    const dataObject= {
+    featureCollection: {
+      'type': 'FeatureCollection',
+      'features': features
+    }
+    }
+    return dataObject;
   }
 
   initializeMap() {       
@@ -82,32 +101,6 @@ export class ObservationComponent implements OnInit {
       data: this.mapData
     };
     return options;
-  }
-
-  
-
-  coordinatesToObject (coordinates){
-    this.features.push(
-      {
-        'type': 'Feature',
-        "properties": {},
-        'geometry': {
-          'type': 'Point',
-          'coordinates': coordinates,
-          "radius": 70000
-        }
-    })
-    return this.returnFeatureCollection(this.features);
-  }
-  
-  returnFeatureCollection(features){
-    const dataObject= {
-    featureCollection: {
-      'type': 'FeatureCollection',
-      'features': features
-    }
-    }
-    return dataObject;
   }
 
      
