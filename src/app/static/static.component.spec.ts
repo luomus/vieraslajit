@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from '../shared/api/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { EditcmsModule } from './../shared-modules/editcms/editcms.module';
 
 describe('StaticComponent', () => {
   let component: StaticComponent;
@@ -14,7 +15,7 @@ describe('StaticComponent', () => {
  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule],
+      imports: [HttpClientModule, RouterTestingModule, EditcmsModule],
       declarations: [ StaticComponent ],
       providers: [InformationService, ApiService ]
     })

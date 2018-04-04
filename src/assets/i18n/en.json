@@ -17,6 +17,7 @@
   "navigation.about": "About",
   "navigation.login": "Login | Register",
   "navigation.news": "News",
+  "navigation.observations": "Observations",
   "dropdown.taxonomy": "Species list",
   "dropdown.speciesComparison": "Species comparison",
   "dropdown.info": "Invasive species information",
@@ -71,6 +72,7 @@
   "eulist.h1":"EU list of harmful invasive species",
   "stableString.notyet":"Not yet in Finland",
   "stableString.unknown":"Unknown",
-  "stableString.established":"Established"
+  "stableString.established":"Established",
+  "form.login": "Login first"
 
 }

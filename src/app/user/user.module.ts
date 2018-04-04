@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { routing } from './user.routing';
-import { UserService } from '../shared/service/user.service';
 
 @NgModule({
   imports: [
@@ -10,6 +9,6 @@ import { UserService } from '../shared/service/user.service';
     routing
   ],
   declarations: [LoginComponent],
-  providers: [UserService]
+  providers: []
 })
 export class UserModule { }
