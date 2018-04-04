@@ -15,13 +15,12 @@ cache:
 before_script:
 - npm install -g @angular/cli
 script: 
-- ng build --prod --aot --no-delete-output-path -bh "https://vieraslajit.github.io/"
 # Use Chromium instead of Chrome.
 - export CHROME_BIN=chromium-browser
 - xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeNoSandbox
 - xvfb-run -a npm run e2e -- --no-progress --config=protractor-ci.conf.js
 before_deploy:
-- ng build --prod --aot --no-delete-output-path --deploy-url=https://vieraslajit.github.io/ -bh "https://vieraslajit.github.io/"
+- ng build --prod --aot --no-delete-output-path -bh "https://vieraslajit.github.io/Vieraslajit/"
 branches:
   only:
   - master
@@ -29,7 +28,6 @@ branches:
 deploy:
   provider: pages
   skip-cleanup: true
-  fqdn: vieraslajit.github.io
   github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
   local_dir: dist
   on:
