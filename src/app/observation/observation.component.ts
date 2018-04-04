@@ -15,7 +15,10 @@ export class ObservationComponent implements OnInit {
   @Input() id: string;
   private idArray: Array<string>=[];
   private pageSize: string = "1000";
-  map;
+  map
+  private observations= [];
+  private mapData;
+  private features = [];
 
   constructor(
     private observationService: ObservationService,
@@ -23,7 +26,38 @@ export class ObservationComponent implements OnInit {
 
   ngOnInit() {
     this.idArray.push(this.id);
+    this.setObservations();
+    this.setMapData();
     this.initializeMap();
+  }
+
+  setObservations() {
+    this.observationService.getObservationsById(this.idArray, this.pageSize).subscribe(data => {
+      this.observations= data.results;
+    });
+    
+  }
+
+  setMapData() {
+    let coordinates = [];
+
+    console.log(this.observations);
+
+    this.observations
+      .forEach((observationObject) => {
+        console.log(JSON.parse(JSON.stringify(observationObject)));
+        coordinates = [
+          observationObject.gathering.conversions.wgs84CenterPoint.lon,
+          observationObject.gathering.conversions.wgs84CenterPoint.lat
+        ]
+        this.coordinatesToObject(coordinates);
+        const dataObject= this.returnFeatureCollection(this.features);
+        observationsForMap.push(dataObject);
+      });
+      let observationsForMap = [];
+      return observationsForMap.push(this.coordinatesToObject);  
+      
+  
   }
 
   initializeMap() {       
@@ -45,51 +79,28 @@ export class ObservationComponent implements OnInit {
       tileLayerName: "openStreetMap", 
       controls: {  
       },
-      data: this.getMapData()
+      data: this.mapData
     };
     return options;
   }
 
-  getMapData() {
-    const observations=this.queryObservations();
-    let coordinates = [];
+  
 
-    if (observations){
-      
-      //let coordinates = [];      
-      observations.map(observation => {
-        console.log(observation.gathering.conversions.wgs84CenterPoint.lon);
-        //coordinates.push(observation.gathering.conversions.wgs84CenterPoint.lon);
-        //coordinates.push(observation.gathering.conversions.wgs84CenterPoint.lat);
-        coordinates = [
-          observation.gathering.conversions.wgs84CenterPoint.lon,
-          observation.gathering.conversions.wgs84CenterPoint.lat
-        ]
-        
-      })
-      console.log(coordinates);
-      const dataObject= this.featuresToFeatureCollection(this.coordinatesToFeatures(coordinates));
-      //console.log(dataObject);
-      let dataArray = [];
-      dataArray.push(dataObject);
-      return dataArray;  
-    }
-  }
-
-  coordinatesToFeatures (coordinates){
-    const features = [];
-    features.push(
+  coordinatesToObject (coordinates){
+    this.features.push(
       {
         'type': 'Feature',
+        "properties": {},
         'geometry': {
           'type': 'Point',
-          'coordinates': coordinates
+          'coordinates': coordinates,
+          "radius": 70000
         }
     })
-    return features;
+    return this.returnFeatureCollection(this.features);
   }
   
-  featuresToFeatureCollection(features){
+  returnFeatureCollection(features){
     const dataObject= {
     featureCollection: {
       'type': 'FeatureCollection',
@@ -99,13 +110,7 @@ export class ObservationComponent implements OnInit {
     return dataObject;
   }
 
-  queryObservations() {
-    let observations=[];
-    this.observationService.getObservationsById(this.idArray, this.pageSize).subscribe(data => {
-      observations= data.results;
-    });
-    return observations;
-  }   
+     
   
 }
  
