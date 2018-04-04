@@ -15,9 +15,9 @@ export class ObservationComponent implements OnInit {
   @Input() id: string;
   private idArray: Array<string>=[];
   private pageSize: string = "1000";
-  map
+  private map
   observations: Array<any> = [];
-  private mapData;
+  private mapData=[];
   private features = [];
 
   constructor(
@@ -26,17 +26,15 @@ export class ObservationComponent implements OnInit {
 
   ngOnInit() {
     this.idArray.push(this.id);
-    this.setObservations();
-    this.setMapData();
-    this.initializeMap();
+    this.update();
   }
 
-  setObservations() {
+  update() {
     this.observationService.getObservationsById(this.idArray, this.pageSize).subscribe(data => {
       this.observations= data.results;
-      console.log(this.observations);
+      this.setMapData();
+      this.initializeMap();
     });
-    console.log(this.observations);
   }
 
   setMapData() {
@@ -64,7 +62,7 @@ export class ObservationComponent implements OnInit {
         'geometry': {
           'type': 'Point',
           'coordinates': coordinates,
-          "radius": 7000
+          "radius": 5000
         }
     })
   }
