@@ -72,5 +72,7 @@
   "stableString.established":"Vakiintunut",
   "stableString.sporadic":"Harvinainen",
   "stableString.accidental":"Tahaton",
-  "observations.myobservations":"Havaintoni"
+  "observations.myobservations":"Havaintoni",
+  "form.login": "Kirjaudu ensin sisään." 
+
 }

@@ -1,3 +1,14 @@
-<p>
-  form works!
-</p>
+<div class="container-fluid" *ngIf="loggedIn;else loginError">
+    <br>
+    <div>
+        <h3>{{formData?.title}}</h3>
+        <div [innerHtml]="formData?.description"></div>
+        <br>
+        <div #lajiform></div>
+    </div>
+</div>
+
+<ng-template #loginError>
+    <br>
+    <p translate>form.login</p>
+</ng-template>
