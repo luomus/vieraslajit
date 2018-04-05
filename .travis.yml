@@ -2,7 +2,7 @@ dist: trusty
 sudo: false
 language: node_js
 node_js:
-- '8'
+  - '8'
 addons:
   apt:
     sources:
@@ -13,16 +13,14 @@ cache:
   directories:
      - ./node_modules
 before_script:
-- npm install -g @angular/cli
+  - ls l
+  - npm install -g @angular/cli
 script: 
-# Use Chromium instead of Chrome.
-- export CHROME_BIN=chromium-browser
-- xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeNoSandbox
-- xvfb-run -a npm run e2e -- --no-progress --config=protractor-ci.conf.js
+  # Use Chromium instead of Chrome.
+  - export CHROME_BIN=chromium-browser
+  - xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeNoSandbox
+  - xvfb-run -a npm run e2e -- --no-progress --config=protractor-ci.conf.js
 before_deploy:
-  - cd dist
-  - dist ls l
-  - cd ..
   - ng build --prod --aot --no-delete-output-path -bh "https://vieraslajit.github.io/Vieraslajit/"
   - cd dist
   - ls l
