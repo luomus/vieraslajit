@@ -1,7 +1,7 @@
 <laji-spinner [spinning]="loading" [overlay]="true">
   <ng-container *ngIf=!loading>
 <div [collapse]="comparison" class="container-fluid">
-  <div class="row head"> 
+  <div class="row head">
     <h1>
       {{taxon?.vernacularName}}
       <span *ngIf="taxon?.vernacularName">&ndash;</span>
@@ -10,7 +10,7 @@
     </h1>
     <button class="btn btn-dark btn-sm" (click)="comparisonView()" translate>comparison.title</button>
   </div>
- 
+
   <div class="row">
     <div class="col-sm-6">
       <div *ngIf="desc?.groups; else infoAndLajifiTemplate">
@@ -44,6 +44,14 @@
           </div>
         </div>
       </ng-container>
+      <div class="card">
+        <div class="card-header">
+          <strong translate>mapOfObservations.header</strong>
+        </div>
+        <div class="card-block">
+          <vrs-observation [id]="id"></vrs-observation>
+        </div>
+      </div>
 
       <div *ngIf="desc?.groups; then infoAndLajifiTemplate"> </div>
     </div>
@@ -100,12 +108,11 @@
           <a href="http://tun.fi/{{id}}" target="_blank">http://tun.fi/{{id}}</a>
         </div>
       </div>
-  
+
     </ng-template>
   </div>
 
- <vrs-observation [id]="id">
- </vrs-observation>
+
 </div>
 <div *ngIf="comparison && taxon && media">
   <button class="btn btn-primary" (click)="comparisonView()" translate>comparison.card</button>
@@ -113,4 +120,3 @@
 </div>
 </ng-container>
 </laji-spinner>
-

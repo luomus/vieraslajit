@@ -55,8 +55,8 @@ export class NewsComponent implements OnInit {
       if (this.fetchedTimes==1){
       this.populateView(pageAPI);
       }
-      /* 
-      this.data = data;
+       
+      /*this.data = data;
       for(let i = 0; i < data.lastPage; i++) {
         this.pages.push(i+1); 
     }*/ 
