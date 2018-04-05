@@ -31,4 +31,6 @@ deploy:
   github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
   local_dir: dist
   on:
-    branch: pages-test
+    branch:
+      - pages-test
+      - master
