@@ -15,17 +15,36 @@ export class NavbarComponent implements OnInit {
   loginUrl = '#';
   isCollapsed = false;
   loggedIn = false;
+  _subscription: any;
   
-  constructor(private modalService: BsModalService, private router: Router) { 
-    // temporary suboptimal solution (a lot more updates than necessary)
+  constructor(private modalService: BsModalService, private router: Router, private userService: UserService) {
+    /**
+     * Update user section of navbar whenever login state changes
+     */
+    this._subscription = userService.loginStateChange.subscribe(() => {
+      if(UserService.loggedIn()) {
+        this.setLoggedIn();
+      }
+      this.loggedIn = UserService.loggedIn();
+    })
+    /**
+     * Update login url next parameter every time active route changes
+     */
     router.events.subscribe((val) => {
       this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
-      this.loggedIn = UserService.loggedIn();
     });
   }
 
   ngOnInit() {
-    
+
+  }
+
+  logout() {
+    this.userService.logout();
+  }
+
+  setLoggedIn() {
+    this.loggedIn = UserService.loggedIn();
   }
 
   userPropertiesWrapper() {

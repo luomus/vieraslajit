@@ -1,0 +1,24 @@
+@import '../../../assets/styles/vars';
+@import '../../../assets/styles/CustomBootstrap3/css/bootstrap.css';
+
+
+.bootstrap-switch-primary {
+    background-color: $primary !important;
+    color: black !important;
+}
+
+.rw-btn:hover {
+    color: $primary;
+}
+
+.btn:hover {
+    color: $primary;
+}
+
+.modal-title {
+    text-align: center;
+}
+
+#root_gatherings_0_localityDescription {
+    width: 40vw !important;
+}

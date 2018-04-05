@@ -27,7 +27,7 @@ export class NewsComponent implements OnInit {
   }
 
   getNews(page) {
-    this.newsService.getPage(page,this.pageSize.toString(), this.translate.currentLang, "vieraslajit.fi")
+    this.newsService.getPage(page,this.pageSize.toString(), this.translate.currentLang)
     .subscribe((data) => {
       this.news = data.results;
       this.data = data;

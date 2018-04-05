@@ -17,6 +17,7 @@
   "navigation.about": "About",
   "navigation.login": "Login | Register",
   "navigation.news": "News",
+  "navigation.observations": "Observations",
   "dropdown.taxonomy": "Species list",
   "dropdown.speciesComparison": "Species comparison",
   "dropdown.info": "Invasive species information",
@@ -43,6 +44,8 @@
   "taxon.establishedFin": "Established in Finland",
   "taxon.occurrence": "Establishment",
   "taxon.unknown": "Unknown",
+  "mapOfObservations.header": "Map of observations",
+  "mapOfObservations.link": "Click here to open a more detailed map.",
   "omnisearch.information": "Information",
   "omnisearch.observations": "Observations",
   "omnisearch.taxontree":"Taxonomy tree",
@@ -70,6 +73,7 @@
   "news.modified": "Modified",
   "stableString.notyet":"Not yet in Finland",
   "stableString.unknown":"Unknown",
-  "stableString.established":"Established"
+  "stableString.established":"Established",
+  "form.login": "Login first"
 
 }
