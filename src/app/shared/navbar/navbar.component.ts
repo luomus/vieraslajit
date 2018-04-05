@@ -25,12 +25,18 @@ export class NavbarComponent implements OnInit {
   constructor(private modalService: BsModalService, private router: Router, private userService: UserService, private informationService: InformationService) {
 
     // temporary suboptimal solution (a lot more updates than necessary)
+
     this._subscription = userService.loginStateChange.subscribe(() => {
-      this.setLoggedIn();
+      if(UserService.loggedIn()) {
+        this.setLoggedIn();
+      }
+      this.loggedIn = UserService.loggedIn();
     })
+    /**
+     * Update login url next parameter every time active route changes
+     */
     router.events.subscribe((val) => {
       this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
-      this.loggedIn = UserService.loggedIn();
     });
   }
 
@@ -42,6 +48,10 @@ export class NavbarComponent implements OnInit {
         })
       }
     });
+  }
+
+  logout() {
+    this.userService.logout();
   }
 
   setLoggedIn() {

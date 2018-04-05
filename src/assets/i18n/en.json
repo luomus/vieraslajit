@@ -44,6 +44,8 @@
   "taxon.establishedFin": "Established in Finland",
   "taxon.occurrence": "Establishment",
   "taxon.unknown": "Unknown",
+  "mapOfObservations.header": "Map of observations",
+  "mapOfObservations.link": "Click here to open a more detailed map.",
   "omnisearch.information": "Information",
   "omnisearch.observations": "Observations",
   "omnisearch.taxontree":"Taxonomy tree",
@@ -70,6 +72,7 @@
   "eulist.h1":"EU list of harmful invasive species",
   "stableString.notyet":"Not yet in Finland",
   "stableString.unknown":"Unknown",
-  "stableString.established":"Established"
+  "stableString.established":"Established",
+  "form.login": "Login first"
 
 }
