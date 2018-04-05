@@ -13,7 +13,6 @@ cache:
   directories:
      - ./node_modules
 before_script:
-  - ls l
   - npm install -g @angular/cli
 script: 
   # Use Chromium instead of Chrome.
