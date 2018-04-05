@@ -22,7 +22,7 @@ script:
 before_deploy:
   - ng build --prod --aot --no-delete-output-path -bh "https://vieraslajit.github.io/Vieraslajit/"
   - cd dist
-  - ls l
+  - ls -l
   - cd ..
 branches:
   only:
