@@ -194,6 +194,7 @@ export namespace LajiApi {
     invasiveSpeciesFilter?: boolean;
     pageSize?: string;
     page?: string;
+    tag?: string;
     onlyFinnish?: boolean;
     blacklist?: string;
     selectedFields?: string;
