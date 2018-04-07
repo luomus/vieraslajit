@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { FormService } from '../../shared/service/form.service';
 import { Subscription } from 'rxjs/Subscription';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import LajiForm from 'laji-form/lib/laji-form';
 import { FormApiClient } from '../../shared/api/FormApiClient';
 import { TranslateService } from '@ngx-translate/core';
@@ -34,8 +34,9 @@ export class FormComponent implements AfterViewInit, OnDestroy {
 
   constructor(@Inject(ElementRef) elementRef: ElementRef,
     private formService: FormService, private apiClient: FormApiClient, private docService: DocumentService,
-    private route: ActivatedRoute, private translate: TranslateService, private userService: UserService,
-    private ngZone: NgZone, private cd: ChangeDetectorRef, private el: ElementRef) {
+    private route: ActivatedRoute, private router: Router, private translate: TranslateService,
+    private userService: UserService, private ngZone: NgZone, private cd: ChangeDetectorRef,
+    private el: ElementRef) {
     this.loggedIn = UserService.loggedIn();
   }
 
@@ -138,7 +139,8 @@ export class FormComponent implements AfterViewInit, OnDestroy {
           console.log('Result');
           console.log(result);
           /* Onnistuneen lähetyksen jälkeen ohjaa käyttäjä havainnot sivulle
-          ja näytä onnistumisviesti (alert tms.) */
+          ja näytä onnistumisviesti (alert tms.). Tilapäisesti ohjaa etusivulle */
+          this.router.navigateByUrl('/home');
         },
         (error) => {
           console.log('Error');
@@ -149,8 +151,10 @@ export class FormComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
     this.subTrans.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
 }
