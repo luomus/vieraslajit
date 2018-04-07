@@ -75,6 +75,6 @@
   "stableString.established":"Vakiintunut",
   "stableString.sporadic":"Harvinainen",
   "stableString.accidental":"Tahaton",
-  "form.login": "Kirjaudu ensin sisään." 
-
+  "form.login": "Kirjaudu ensin sisään.",
+  "form.send": "Lähetä"
 }

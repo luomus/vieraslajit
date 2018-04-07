@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { UserService } from '../../shared/service/user.service';
+import { DocumentService } from '../../shared/service/document.service';
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -18,7 +19,7 @@ describe('FormComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, HttpModule, RouterTestingModule, TranslateModule.forRoot()],
       declarations: [FormComponent],
-      providers: [FormService, ApiService, FormApiClient, TranslateService, UserService]
+      providers: [FormService, ApiService, FormApiClient, TranslateService, UserService, DocumentService]
     })
       .compileComponents();
   }));

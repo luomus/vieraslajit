@@ -12,6 +12,7 @@ import { WarehouseQueryList } from '../model/Warehouse';
 import { Information } from '../model/Information';
 import { userProperty, UserService } from '../service/user.service';
 import { query } from '@angular/core/src/animation/dsl';
+import { Document } from '../model/Document';
 
 /**
  * Handles creation of API requests
@@ -216,6 +217,17 @@ export class ApiService {
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
     );
   }
+
+
+  documentApi(endpoint: LajiApi.Endpoints.createDocument, userToken: string, data: Document): Observable<Document>;
+  documentApi(endpoint: LajiApi.Endpoints, userToken: string, data: Document): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`;
+    return this.httpClient.post(
+      url,
+      JSON.stringify(data),
+      { params: { 'personToken': userToken, 'access_token': environment.lajiApi.accessToken } }
+    );
+  }
 }
 
 export namespace LajiApi {
@@ -236,7 +248,8 @@ export namespace LajiApi {
     warehousequerycount = 'warehouse/query/count',
     warehousequerylist = 'warehouse/query/list',
     information = 'information/%id%',
-    form = 'forms/%id%'
+    form = 'forms/%id%',
+    createDocument = 'documents'
   }
   /** Possible query parameters. */
   export interface Query {
@@ -252,8 +265,8 @@ export namespace LajiApi {
     langFallback?: boolean;
     hasMediaFilter?: boolean;
     includeMedia?: boolean;
-    adminStatusFilters?:String;
-  
+    adminStatusFilters?: String;
+
   }
   export interface AutocompleteQuery {
     q?: string;
