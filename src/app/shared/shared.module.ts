@@ -15,6 +15,10 @@ import { MetadataService } from './service/metadata.service';
 import { OmnisearchComponent } from './omnisearch/omnisearch.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
+import { FormService } from './service/form.service';
+import { FormApiClient } from './api/FormApiClient';
+import { UserService } from './service/user.service';
+import { HttpModule } from '@angular/http';
 import { InformationService } from './service/information.service';
 import {ListService } from './service/list.service';
 import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
@@ -36,7 +40,8 @@ import {EditcmsModule} from './../shared-modules/editcms/editcms.module';
     SpinnerModule,
     EditcmsModule,
     ModalModule.forRoot(),
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    HttpModule
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -53,6 +58,9 @@ export class SharedModule {
         TaxonService,
         NewsService,
         MetadataService,
+        FormService,
+        FormApiClient,
+        UserService,
         InformationService,
         ObservationService
       ]

@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import {OmnisearchComponent} from './shared/omnisearch/omnisearch.component'
-import { UserService } from './shared/service/user.service';
+import { UserService, userProperty } from './shared/service/user.service';
 
 /**
  * Main component that acts as a container for navigation, content and footer.
@@ -43,7 +43,6 @@ export class AppComponent {
 
     if(UserService.getToken()) {
       userService.updateUserProperties(UserService.getToken());
-      
     }
   }
 

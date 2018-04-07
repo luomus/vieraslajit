@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { StaticComponent } from './static.component';
 import {StaticRoutingModule} from './static-routing.module';
 import {routing} from './static.routing';
+import { TabsModule } from 'ngx-bootstrap';
 import {SharedModule} from '../shared/shared.module';
 
 /**
@@ -14,6 +15,7 @@ import {SharedModule} from '../shared/shared.module';
     CommonModule,
     StaticRoutingModule,
     routing,
+    TabsModule,
     SharedModule
   ],
   declarations: [StaticComponent]

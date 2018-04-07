@@ -15,6 +15,6 @@ import { UserService } from '../shared/service/user.service';
     UserRoutingModule
   ],
   declarations: [LoginComponent],
-  providers: [UserService]
+  providers: []
 })
 export class UserModule { }

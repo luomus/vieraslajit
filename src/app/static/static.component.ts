@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { InformationService } from '../shared/service/information.service';
 import { Information } from '../shared/model/Information';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 /**
  * Renders static page ie. /static/:id route
@@ -20,6 +21,8 @@ export class StaticComponent implements OnInit {
 
   public scontent: Object;
   id: String;
+  sub: Subscription;
+  child_pages: Array<any>;
 
   constructor(public informationService: InformationService, private route: ActivatedRoute, private router: Router) { }
 
@@ -28,11 +31,17 @@ export class StaticComponent implements OnInit {
    */
 
   ngOnInit() {
+    this.loadContent();
+    this.sub = this.router.events.filter(e => e instanceof NavigationEnd).subscribe((data)=>{
+      this.loadContent();
+    });
+  }
+
+  loadContent() {
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });
-    this.getInformation("i-"+ this.id);
-    // update scontent   
+    this.getInformation(this.id);
   }
 
   /**
@@ -43,6 +52,18 @@ export class StaticComponent implements OnInit {
   getInformation(id) {
     this.informationService.getInformation(id).subscribe((data) => {
         this.scontent = data;
+        this.child_pages = data.children;
+        if(data.children) {
+          for(let c of this.child_pages) {
+            this.informationService.getInformation(c.id).subscribe((data) => {
+              c.data = data;
+            });
+          }
+        }
     });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }
