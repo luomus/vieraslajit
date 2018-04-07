@@ -17,6 +17,7 @@
   "navigation.about": "Yleistä",
   "navigation.login": "Kirjaudu | Rekisteröidy",
   "navigation.news": "Ajankohtaista",
+  "navigation.observations": "Havainnot",
   "dropdown.taxonomy": "Lajilistaus",
   "dropdown.speciesComparison": "Lajivertailu",
   "dropdown.info": "Tietoa vieraslajeista",
@@ -42,7 +43,9 @@
   "taxon.administrative": "Hallinnolliset ominaisuudet",
   "taxon.establishedFin": "Vakiintunut Suomeen",
   "taxon.occurrence": "Esiintyminen",
-  "taxon.unknown": "Tuntematon", 
+  "taxon.unknown": "Tuntematon",
+  "mapOfObservations.header": "Havaintokartta",
+  "mapOfObservations.link": "Tästä linkistä aukeaa Laji.fi-sivuston monipuolisempi havaintokartta.",
   "omnisearch.information": "Lisätietoa",
   "omnisearch.observations": "Havainnot",
   "omnisearch.taxontree": "Taksonomiapuu",
@@ -66,10 +69,12 @@
   "comparison.card": "Lajikortti",
   "filist.h1":"Kansallinen haitallisten vieraslajien luettelo",
   "eulist.h1":"Eu:n haitallisten vieraslajien luettelo",
+  "news.modified": "Päivitetty",
   "stableString.notyet":"Ei vielä suomessa",
   "stableString.unknown":"Tuntematon",
   "stableString.established":"Vakiintunut",
   "stableString.sporadic":"Harvinainen",
-  "stableString.accidental":"Tahaton"
-
+  "stableString.accidental":"Tahaton",
+  "form.login": "Kirjaudu ensin sisään.",
+  "form.send": "Lähetä"
 }

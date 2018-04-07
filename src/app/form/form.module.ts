@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { FormRoutingModule } from './form-routing.module';
+import { routing } from './form.routing';
 import { FormComponent } from './form/form.component';
+import { SharedModule } from '../shared/shared.module';
+import LajiForm from 'laji-form/lib/laji-form';
+import { FormService } from '../shared/service/form.service';
 
+/**
+ * Declares routes and components for rendering laji-forms
+ */
 @NgModule({
   imports: [
     CommonModule,
-    FormRoutingModule
+    routing,
+    SharedModule
   ],
   declarations: [FormComponent]
 })

@@ -15,11 +15,20 @@ import { MetadataService } from './service/metadata.service';
 import { OmnisearchComponent } from './omnisearch/omnisearch.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
+import { FormService } from './service/form.service';
+import { FormApiClient } from './api/FormApiClient';
+import { UserService } from './service/user.service';
+import { HttpModule } from '@angular/http';
 import { InformationService } from './service/information.service';
 import {ListService } from './service/list.service';
 import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
 import { ObservationService } from './service/observation.service';
+import {EditcmsModule} from './../shared-modules/editcms/editcms.module';
+import { DocumentService } from './service/document.service';
 
+/**
+ * Provides common utilities for other modules
+ */
 
 @NgModule({
   imports: [
@@ -30,14 +39,16 @@ import { ObservationService } from './service/observation.service';
     ReactiveFormsModule,
     BsDropdownModule,
     SpinnerModule,
+    EditcmsModule,
     ModalModule.forRoot(),
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    HttpModule
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SpinnerModule, SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SpinnerModule, EditcmsModule, SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
@@ -48,8 +59,12 @@ export class SharedModule {
         TaxonService,
         NewsService,
         MetadataService,
+        FormService,
+        FormApiClient,
+        UserService,
         InformationService,
-        ObservationService
+        ObservationService,
+        DocumentService
       ]
     };
   }
