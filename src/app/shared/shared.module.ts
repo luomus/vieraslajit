@@ -26,6 +26,10 @@ import { ObservationService } from './service/observation.service';
 import {EditcmsModule} from './../shared-modules/editcms/editcms.module';
 import { DocumentService } from './service/document.service';
 
+/**
+ * Provides common utilities for other modules
+ */
+
 @NgModule({
   imports: [
     CommonModule,

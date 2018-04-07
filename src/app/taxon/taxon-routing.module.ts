@@ -1,4 +1,4 @@
-import { ModuleWithProviders } from '@angular/core';
+import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { TaxonListComponent } from './taxon-list/taxon-list.component';
@@ -11,4 +11,13 @@ const routes: Routes = [
   { path: ':id', component: TaxonCardComponent, data: { comparison: false} }
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forChild(routes);
+@NgModule({
+  imports: [
+    RouterModule.forChild(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+
+export class TaxonRoutingModule { }

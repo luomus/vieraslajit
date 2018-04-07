@@ -18,6 +18,10 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
+/**
+ * Top level module that loads all globally used modules
+ */
+
 @NgModule({
   declarations: [
     AppComponent

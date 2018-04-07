@@ -4,6 +4,13 @@ import { Information } from '../shared/model/Information';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
+/**
+ * Renders static page ie. /static/:id route
+ * 
+ * StaticComponent is dynamically populated from the CMS. The CMS is
+ * accessed via laji API using InformationService
+ * 
+ */
 
 @Component({
   selector: 'vrs-static',
@@ -19,6 +26,10 @@ export class StaticComponent implements OnInit {
 
   constructor(public informationService: InformationService, private route: ActivatedRoute, private router: Router) { }
 
+  /**
+   * Captures 'id' from url route and passes it to getInformation(id)
+   */
+
   ngOnInit() {
     this.loadContent();
     this.sub = this.router.events.filter(e => e instanceof NavigationEnd).subscribe((data)=>{
@@ -32,6 +43,11 @@ export class StaticComponent implements OnInit {
     });
     this.getInformation(this.id);
   }
+
+  /**
+   * Updates scontent with data from the CMS
+   * @param{string} id  id of the content that will be loaded into scontent
+   */
 
   getInformation(id) {
     this.informationService.getInformation(id).subscribe((data) => {
