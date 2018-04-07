@@ -25,6 +25,10 @@ import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
 import { ObservationService } from './service/observation.service';
 import {EditcmsModule} from './../shared-modules/editcms/editcms.module';
 
+/**
+ * Provides common utilities for other modules
+ */
+
 @NgModule({
   imports: [
     CommonModule,
