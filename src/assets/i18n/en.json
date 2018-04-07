@@ -71,6 +71,7 @@
   "stableString.notyet":"Not yet in Finland",
   "stableString.unknown":"Unknown",
   "stableString.established":"Established",
-  "form.login": "Login first"
+  "form.login": "Login first",
+  "form.send": "Send"
 
 }

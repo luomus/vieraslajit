@@ -41,41 +41,42 @@ export class FormComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.subTrans = this.translate.onLangChange.subscribe(() => this.onLangChange());
-    this.sub = this.route.params.subscribe(params => {
-      this.id = params['formId'];
-      this.formService.getFormById(this.id, this.translate.currentLang).subscribe(data => {
-        this.formData = data;
-        console.log(data);
-        this.setFormDescription();
-        this.ngZone.runOutsideAngular(() => {
-          this.apiClient.lang = this.translate.currentLang;
-          this.initFormData();
-          this.initSchemaContext();
-          this.apiClient.personToken = UserService.getToken();
-          this.lajiFormWrapper = new LajiForm({
-            staticImgPath: '/static/lajiForm/',
-            rootElem: this.formElem.nativeElement,
-            schema: this.formData.schema,
-            uiSchema: this.formData.uiSchema,
-            uiSchemaContext: this.formData.uiSchemaContext,
-            formData: this.formData.formData,
-            validators: this.formData.validators,
-            warnings: this.formData.warnings,
-            onSubmit: this._onSubmit.bind(this),
-            onChange: this._onChange.bind(this),
-            onSettingsChange: this._onSettingsChange.bind(this),
-            settings: undefined,
-            apiClient: this.apiClient,
-            lang: this.translate.currentLang,
-            renderSubmit: false,
-            topOffset: 50,
-            bottomOffset: 50
+    if (this.loggedIn) {
+      this.sub = this.route.params.subscribe(params => {
+        this.id = params['formId'];
+        this.formService.getFormById(this.id, this.translate.currentLang).subscribe(data => {
+          this.formData = data;
+          console.log(data);
+          this.setFormDescription();
+          this.ngZone.runOutsideAngular(() => {
+            this.apiClient.lang = this.translate.currentLang;
+            this.initFormData();
+            this.initSchemaContext();
+            this.apiClient.personToken = UserService.getToken();
+            this.lajiFormWrapper = new LajiForm({
+              staticImgPath: '/static/lajiForm/',
+              rootElem: this.formElem.nativeElement,
+              schema: this.formData.schema,
+              uiSchema: this.formData.uiSchema,
+              uiSchemaContext: this.formData.uiSchemaContext,
+              formData: this.formData.formData,
+              validators: this.formData.validators,
+              warnings: this.formData.warnings,
+              onSubmit: this._onSubmit.bind(this),
+              onChange: this._onChange.bind(this),
+              onSettingsChange: this._onSettingsChange.bind(this),
+              settings: undefined,
+              apiClient: this.apiClient,
+              lang: this.translate.currentLang,
+              renderSubmit: false,
+              topOffset: 50,
+              bottomOffset: 50
+            });
           });
         });
       });
-    });
+    }
   }
-
   onLangChange() {
     this.lajiFormWrapper.setState({ lang: this.translate.currentLang });
     this.formService
