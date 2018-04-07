@@ -1,12 +1,42 @@
 @import '../../../assets/styles/vars';
 
 .footer-content {
-    background: #333;
-    color: #ddd;
-    box-shadow: inset 0px 20px 20px -20px #000,
-                inset 0px -20px 20px -20px #000;
+    background: #f6f6f6;
+    color: #333;
+    border-top: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
+    //box-shadow: inset 0px 20px 20px -20px #000,
+    //            inset 0px -20px 20px -20px #000;
 
     //color: #fefefe;
+}
+
+.vrs-logo-img {
+    content:url(./../../../assets/images/logos/vieraslaji-logo-160x160.png);
+}
+
+.luomus-logo {
+    content:url(./../../../assets/images/logos/luomus_logo.gif);
+}
+
+.luke-logo {
+    content:url(./../../../assets/images/logos/luke_logo.png);
+}
+
+.ely-logo {
+    content:url(./../../../assets/images/logos/ELY_logo.jpg);
+}
+
+.mmm-logo {
+    content:url(./../../../assets/images/logos/mmm_logo.jpg);
+}
+
+.sll-logo {
+    content:url(./../../../assets/images/logos/sll_logo.png);
+}
+
+.syke-logo {
+    content:url(./../../../assets/images/logos/syke_logo.png);
 }
 
 .affiliate-img {
