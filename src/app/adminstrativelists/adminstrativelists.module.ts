@@ -4,16 +4,16 @@ import { CommonModule } from '@angular/common';
 import { EulistComponent } from './eulist/eulist.component';
 import { FilistComponent } from './filist/filist.component';
 import { SharedModule } from '../shared/shared.module';
-import {routing } from './adminstrativelists.routing';
+import { AdminstrativelistsRoutingModule } from './adminstrativelists-routing.module';
 import { ApiService } from '../shared/api/api.service';
 import { ListService } from '../shared/service/list.service';
 
-
-
-
+/**
+ * Declares routes and components for European and Finnish lists of invasive alien species
+ */
 @NgModule({
   imports: [
-    routing,
+    AdminstrativelistsRoutingModule,
     CommonModule,
     SharedModule,
     NgxDatatableModule

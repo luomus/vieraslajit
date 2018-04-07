@@ -6,6 +6,9 @@ import { SharedModule } from '../shared/shared.module';
 import LajiForm from 'laji-form/lib/laji-form';
 import { FormService } from '../shared/service/form.service';
 
+/**
+ * Declares routes and components for rendering laji-forms
+ */
 @NgModule({
   imports: [
     CommonModule,
