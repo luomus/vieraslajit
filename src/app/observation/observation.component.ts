@@ -14,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class ObservationComponent implements OnInit {
   @Input() id: string;
   private idArray: Array<string>=[];
-  private pageSize: string = "1000";
+  private pageSize: string = "200";
   private map
   private observations: Array<any> = [];
   private mapData=[];
@@ -30,7 +30,7 @@ export class ObservationComponent implements OnInit {
   }
 
   update() {
-    this.observationService.getObservationsById(this.idArray, this.pageSize).subscribe(data => {
+    this.observationService.getObservationsById(this.idArray, this.pageSize, "1").subscribe(data => {
       this.observations= data.results;
       this.setMapData();
       this.initializeMap();
@@ -86,12 +86,11 @@ export class ObservationComponent implements OnInit {
       rootElem: document.getElementById("map"),
       lang: this.translate.currentLang,
       popupOnHover: false,
-      /*center: {
+      center: {
         "lat": 65.5,
         "lng": 27
-      },*/
+      },
       zoom: 1,
-      zoomToData : true,
       tileLayerName: "openStreetMap", 
       controls: {  
       },
