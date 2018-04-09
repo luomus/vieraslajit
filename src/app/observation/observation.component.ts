@@ -15,10 +15,9 @@ export class ObservationComponent implements OnInit {
   @Input() id: string;
   private idArray: Array<string>=[];
   private pageSize: string = "200";
-  private map
   private observations: Array<any> = [];
   private mapData=[];
-  private features = [];
+
 
   constructor(
     private observationService: ObservationService,
@@ -35,10 +34,13 @@ export class ObservationComponent implements OnInit {
       this.setMapData();
       this.initializeMap();
     });
-  }
+  }  
 
   setMapData() {
+
     let coordinates = [];
+    let municipality= "";
+    let date= "";
 
     this.observations
       .forEach((observationObject) => {
@@ -46,15 +48,17 @@ export class ObservationComponent implements OnInit {
           observationObject.gathering.conversions.wgs84CenterPoint.lon,
           observationObject.gathering.conversions.wgs84CenterPoint.lat
         ]
-        this.setFeatures(coordinates);
+        municipality = observationObject.gathering.interpretations.municipalityDisplayname;
+        date = observationObject.gathering.displayDateTime;
 
-        const dataObject= this.returnFeatureCollection(this.features);
+        const dataObject= this.returnFeatureCollectionAndPopup(this.returnFeatures(coordinates),municipality,date);
         this.mapData.push(dataObject);
       });
   }
 
-  setFeatures (coordinates){
-    this.features.push(
+  returnFeatures (coordinates:Array<any>){
+    let features = [];
+    features.push(
       {
         'type': 'Feature',
         "properties": {},
@@ -64,21 +68,26 @@ export class ObservationComponent implements OnInit {
           "radius": 5000
         }
     })
+    return features;
   }
   
-  returnFeatureCollection(features){
+  returnFeatureCollectionAndPopup(features:Array<any>,municipality:string, date:string){
     const dataObject= {
-    featureCollection: {
-      'type': 'FeatureCollection',
-      'features': features
-    }
+      featureCollection: {
+        'type': 'FeatureCollection',
+        'features': features
+      },
+      getPopup(){
+        return "Kunta: " +municipality +"\n Ilmoitettu: "+date;
+      }
+
     }
     return dataObject;
   }
 
   initializeMap() {       
     var LajiMap = require("laji-map").default;
-    this.map = new LajiMap(this.mapOptions());
+    var map = new LajiMap(this.mapOptions());
   }
 
   mapOptions(){
