@@ -1,6 +1,6 @@
 @import '../../../assets/styles/vars';
 @import '../../../assets/styles/CustomBootstrap3/css/bootstrap.css';
-
+//@import url('https://cdn.laji.fi/bootstrap/3.3.7/css/bootstrap.css');
 
 .bootstrap-switch-primary {
     background-color: $primary !important;
@@ -11,14 +11,47 @@
     color: $primary;
 }
 
-.btn:hover {
-    color: $primary;
+.form-group .btn.btn-default{
+    background-color: $content-background;
+    color: $navbar-background;
+    border-color: $navbar-background;
+}
+
+.form-group .btn.btn-default:hover {
+    background-color: $content-background-highlight;
+    border-color: $primary;
 }
 
 .modal-title {
-    text-align: center;
+    margin: auto;
 }
 
 #root_gatherings_0_localityDescription {
     width: 40vw !important;
+}
+
+#formSend {
+    background-color: $content-background;
+    color: $navbar-background;
+    border-color: $navbar-background;
+    font-family: $font-montserrat;
+}
+
+#formSend:hover{
+    background-color: $navbar-background;
+    color: $content-background;
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 500px) {
+    .btn-group, .btn-group-vertical {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      padding: 5px;
+    }
+
+    h5 {
+        font-size: 14px;
+    }
 }
