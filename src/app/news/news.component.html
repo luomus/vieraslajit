@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container my-3">
 
   <!--
   <ul class="nav nav-pills">
@@ -7,6 +7,35 @@
     <li class="navpill"><a href="#"> Tekniset tiedotteet</a></li>
   </ul>-->
 
+  <div *ngFor="let newsElement of news" class="news-post my-3">
+    <div class="row news-header p-3">
+      <div class="col-4 text-center">
+        <img class="news-thumbnail rounded" src="{{this.getImageToDisplay(newsElement)}}">
+        <p class="news-caption text-muted my-0 p-1">13.03.2018 15:03 Esko Piirainen</p>
+      </div>
+      <div class="col-8 row align-items-center">
+        <div class="col">
+          <h1>{{newsElement.title}}</h1>
+          <div class="text-muted p-2">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }} {{newsElement.author}}</div>
+          <vrs-editcms class="float-right" id="{{newsElement.id}}"></vrs-editcms>
+        </div>
+     </div>
+    </div>
+    <div class="row news-content">
+      <div class="col-12">
+        <div class="p-5">
+          <p [innerHTML]="newsElement.content">Post content</p>
+        </div>
+        <div class="text-muted text-right news-modified">
+          <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span> 
+          {{newsElement.modified | date: 'dd.MM.yyyy HH:MM'}}
+          <span *ngIf= "newsElement.modified">)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--
   <div class="row card-deck">
     <div *ngFor="let newsElement of news" class= "col-sm-12 col-lg-8">
       <div class= "card-block">
@@ -27,7 +56,7 @@
     </div>
                                                       
   </div>
-
+-->
 
   <nav aria-label="Pagination">
     <ul class="pagination" *ngIf="pages.length <= 7">
