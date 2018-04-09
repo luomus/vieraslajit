@@ -26,7 +26,7 @@
         <div class="p-5">
           <p [innerHTML]="newsElement.content">Post content</p>
         </div>
-        <div class="text-muted text-right news-modified">
+        <div class="text-muted text-right news-modified p-2">
           <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span> 
           {{newsElement.modified | date: 'dd.MM.yyyy HH:MM'}}
           <span *ngIf= "newsElement.modified">)</span>
