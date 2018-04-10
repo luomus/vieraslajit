@@ -59,5 +59,8 @@
   "stableString.established":"Etablerade",
   "stableString.sporadic":"Sporadisk",
   "stableString.accidental":"Tillfällig",
-  "observations.myobservations":"Mina observationer"
+  "observations.myobservations":"Mina observationer",
+  "document.dayOfYearBegin":"Startdatum",
+  "document.dayOfYearEnd":"Slutdatum",
+  "document.reliability":"Tillförlitlighet"
   }

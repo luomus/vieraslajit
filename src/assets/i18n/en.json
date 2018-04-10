@@ -74,6 +74,9 @@
   "stableString.unknown":"Unknown",
   "stableString.established":"Established",
   "observations.myobservations":"My observations",
-  "form.login": "Login first"
+  "form.login": "Login first",
+  "document.dayOfYearBegin": "Starting date",
+  "document.dayOfYearEnd":"Endingdate",
+  "document.reliable":"Reliability"
 
 }

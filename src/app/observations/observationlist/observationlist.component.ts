@@ -41,6 +41,12 @@ export class ObservationlistComponent implements OnInit {
     
     this.observationService.getObservationsbyPersonToken(this.personToken, this.pageSize).subscribe(data => {
       this.observations= data.results;
+      console.log(this.observations);
+      this.observations.forEach(element =>{
+        this.taxonService.getTaxon(this.id, this.translate.currentLang).subscribe(data => {
+          this.taxon = data;
+        });
+      })
     });  
     
     this.columns = [

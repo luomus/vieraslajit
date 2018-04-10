@@ -75,6 +75,9 @@
   "stableString.sporadic":"Harvinainen",
   "stableString.accidental":"Tahaton",
   "observations.myobservations":"Havaintoni",
-  "form.login": "Kirjaudu ensin sisään." 
+  "form.login": "Kirjaudu ensin sisään." ,
+  "document.dayOfYearBegin":"Aloituspäivä",
+  "document.dayOfYearEnd":"Lopetuspäivä",
+  "document.reliable":"Luotettavuus"
 
 }
