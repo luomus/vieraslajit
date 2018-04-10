@@ -69,6 +69,7 @@
   "comparison.card": "Lajikortti",
   "filist.h1":"Kansallinen haitallisten vieraslajien luettelo",
   "eulist.h1":"Eu:n haitallisten vieraslajien luettelo",
+  "news.modified": "Päivitetty",
   "stableString.notyet":"Ei vielä suomessa",
   "stableString.unknown":"Tuntematon",
   "stableString.established":"Vakiintunut",
@@ -78,6 +79,7 @@
   "form.login": "Kirjaudu ensin sisään." ,
   "document.dayOfYearBegin":"Aloituspäivä",
   "document.dayOfYearEnd":"Lopetuspäivä",
-  "document.reliable":"Luotettavuus"
-
+  "document.reliable":"Luotettavuus",
+  "form.login": "Kirjaudu ensin sisään.",
+  "form.send": "Lähetä"
 }

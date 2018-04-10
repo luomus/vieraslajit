@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+/**
+ * Establishes top level routes in the app
+ */
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomeModule' },
@@ -11,10 +15,9 @@ const routes: Routes = [
   { path: 'legal/law', loadChildren: './legal/legal.module#LegalModule' },
   { path: 'adminstrativelists', loadChildren:'./adminstrativelists/adminstrativelists.module#AdminstrativelistsModule'},
   { path: 'static', loadChildren: './static/static.module#StaticModule' },
-  { path: 'user/login', loadChildren: './user/user.module#UserModule' },
+  { path: 'user', loadChildren: './user/user.module#UserModule' },
   { path: 'form', loadChildren: './form/form.module#FormModule'},
   { path:'observations', loadChildren: './observations/observations.module#ObservationsModule'}
-  
 ];
 
 @NgModule({

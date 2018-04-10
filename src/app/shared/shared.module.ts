@@ -24,6 +24,11 @@ import {ListService } from './service/list.service';
 import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
 import { ObservationService } from './service/observation.service';
 import {EditcmsModule} from './../shared-modules/editcms/editcms.module';
+import { DocumentService } from './service/document.service';
+
+/**
+ * Provides common utilities for other modules
+ */
 
 @NgModule({
   imports: [
@@ -58,7 +63,8 @@ export class SharedModule {
         FormApiClient,
         UserService,
         InformationService,
-        ObservationService
+        ObservationService,
+        DocumentService
       ]
     };
   }

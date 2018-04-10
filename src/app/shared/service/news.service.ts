@@ -10,9 +10,9 @@ export class NewsService {
   constructor(private apiService: ApiService) { }
 
   // Get some page of news posts
-  getPage(page: string, pageSize: string, lang: string):  Observable<PagedResult<NewsElement>> {
+  getPage(page: string, pageSize: string, lang: string, tag:string):  Observable<PagedResult<NewsElement>> {
     return this.apiService
-          .newsFindAll(LajiApi.Endpoints.newsArray, {pageSize: pageSize, page: page, lang: lang});
+          .newsFindAll(LajiApi.Endpoints.newsArray, {pageSize: pageSize, page: page, lang: lang, tag: tag});
   }
 
 }

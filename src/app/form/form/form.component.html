@@ -1,10 +1,17 @@
 <div class="container-fluid" *ngIf="loggedIn;else loginError">
     <br>
-    <div>
-        <h3>{{formData?.title}}</h3>
-        <div [innerHtml]="formData?.description"></div>
+    <div class="row">
+        <div class="col-lg-9">
+            <h3 id="formName"></h3>
+            <span id="formDesc"></span>
+        </div>
         <br>
-        <div #lajiform></div>
+        <div class="col-lg-12" #lajiform></div>
+    </div>
+    <div>
+        <button id="formSend" type="submit" class="btn btn-primary" (click)="submit()" translate>
+            form.send
+        </button>
     </div>
 </div>
 
