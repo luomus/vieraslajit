@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ObservationService } from '../shared/service/observation.service';
 import { WarehouseQueryList } from '../shared/model/Warehouse';
 import { PagedResult } from '../shared/model/PagedResult';
 import { Subscription } from 'rxjs/Subscription';
 import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'vrs-observation',
@@ -11,25 +12,25 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./observation.component.scss']
 })
 
-export class ObservationComponent implements OnInit {
+export class ObservationComponent implements OnInit, OnDestroy {
   @Input() id: string;
+  private subTrans: Subscription;
   private idArray: Array<string>=[];
   private pageSize: string = "200";
   private observations: Array<any> = [];
   private mapData=[];
 
 
-  constructor(
-    private observationService: ObservationService,
-    public translate: TranslateService) { }
+  constructor(private observationService: ObservationService,private translate: TranslateService) { }
 
   ngOnInit() {
     this.idArray.push(this.id);
+    this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.update();
   }
 
   update() {
-    this.observationService.getObservationsById(this.idArray, this.pageSize, "1").subscribe(data => {
+    this.observationService.getObservationsById(this.translate.currentLang,this.idArray, this.pageSize, "1").subscribe(data => {
       this.observations= data.results;
       this.setMapData();
       this.initializeMap();
@@ -78,15 +79,10 @@ export class ObservationComponent implements OnInit {
         'features': features
       },
       getPopup(){
-        var finnishTexts = ["Kunta: ", "Ilmoitettu: "];
-        var swedishTexts = ["Kommun: ", "Rapporterad: "];
-        var enTexts = ["Municipality: ", "Reported: "];
-        if (this.translate.currentLang="fi"){
-          return "Kunta: " +municipality +"\n Ilmoitettu: "+date;  
-        }
-        
+        /*return this.translate.instant('mapOfObservations.municipality'+municipality +"\n  mapOfObservations.reported: "+date);
+        Cannot read property 'instant' of undefined?*/
+        return municipality+ ", "+date;
       }
-
     }
     return dataObject;
   }
@@ -114,7 +110,9 @@ export class ObservationComponent implements OnInit {
     return options;
   }
 
-     
+  ngOnDestroy() {
+    this.subTrans.unsubscribe();
+  }  
   
 }
  

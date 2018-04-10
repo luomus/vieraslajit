@@ -45,6 +45,8 @@
   "taxon.unknown": "Okänd",
   "mapOfObservations.header": "Kartan av observationer",
   "mapOfObservations.link": "Klicka här för en mera detaljerad karta.",
+  "mapOfObservations.reported": "Rapporterad: ",
+  "mapOfObservations.municipality": "Kommun: ",
   "omnisearch.information": "Information",
   "omnisearch.observations": "Besökte",
   "omnisearch.taxontree": "Taxonomy tree",

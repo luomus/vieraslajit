@@ -46,6 +46,8 @@
   "taxon.unknown": "Unknown",
   "mapOfObservations.header": "Map of observations",
   "mapOfObservations.link": "Click here to open a more detailed map.",
+  "mapOfObservations.reported": "Reported: ",
+  "mapOfObservations.municipality": "Municipality: ",
   "omnisearch.information": "Information",
   "omnisearch.observations": "Observations",
   "omnisearch.taxontree":"Taxonomy tree",
