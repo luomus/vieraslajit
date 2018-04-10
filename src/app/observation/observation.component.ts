@@ -78,7 +78,13 @@ export class ObservationComponent implements OnInit {
         'features': features
       },
       getPopup(){
-        return "Kunta: " +municipality +"\n Ilmoitettu: "+date;
+        var finnishTexts = ["Kunta: ", "Ilmoitettu: "];
+        var swedishTexts = ["Kommun: ", "Rapporterad: "];
+        var enTexts = ["Municipality: ", "Reported: "];
+        if (this.translate.currentLang="fi"){
+          return "Kunta: " +municipality +"\n Ilmoitettu: "+date;  
+        }
+        
       }
 
     }
