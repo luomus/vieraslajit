@@ -61,7 +61,7 @@
   "stableString.sporadic":"Sporadisk",
   "stableString.accidental":"Tillfällig",
   "observations.myobservations":"Mina observationer",
+  "observations.intro":"Du hittar din egen observationer här",
   "document.dayOfYearBegin":"Startdatum",
-  "document.dayOfYearEnd":"Slutdatum",
-  "document.reliability":"Tillförlitlighet"
+  "document.dayOfYearEdited":"Redigerad"
   }

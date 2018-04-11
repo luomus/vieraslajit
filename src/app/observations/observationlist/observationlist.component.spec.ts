@@ -1,6 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ObservationlistComponent } from './observationlist.component';
+import { UserService } from '../../shared/service/user.service';
+import { ObservationService } from '../../shared/service/observation.service';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { ApiService } from '../../shared/api/api.service';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../../shared/shared.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ObservationlistComponent', () => {
   let component: ObservationlistComponent;
@@ -8,7 +15,9 @@ describe('ObservationlistComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ObservationlistComponent ]
+      declarations: [ ObservationlistComponent ],
+      imports:[HttpClientModule,SharedModule,TranslateModule.forRoot(),NgxDatatableModule,RouterTestingModule],
+      providers:[UserService,ObservationService,ApiService]
     })
     .compileComponents();
   }));

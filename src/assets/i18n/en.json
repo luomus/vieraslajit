@@ -77,8 +77,9 @@
   "observations.myobservations":"My observations",
   "form.login": "Login first",
   "document.dayOfYearBegin": "Starting date",
-  "document.dayOfYearEnd":"Endingdate",
-  "document.reliable":"Reliability",
+  "document.dayOfYearEdited":"Edited",
+  "document.location":"Location",
+  "observations.intro":"You can find your own observations here",
   "form.send": "Send"
 
 }

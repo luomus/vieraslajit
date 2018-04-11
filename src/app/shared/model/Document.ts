@@ -74,11 +74,7 @@ export interface Document {
 
     /**
      * Notes on the defects of the specimen (missing parts or such). Empty value means same as \\\"good\\\"
-<<<<<<< HEAD
      * or \\\"hyvä\\\" - that the specimen is in fine condition.
-=======
-     * or \\\"hyvÃ¤\\\" - that the specimen is in fine condition.
->>>>>>> 98a0811f05adf38c1e995c45e6e2f7ed42b2a9cb
      */
     condition?: string;
 

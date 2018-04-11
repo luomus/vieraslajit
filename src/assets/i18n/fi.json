@@ -78,8 +78,8 @@
   "observations.myobservations":"Havaintoni",
   "form.login": "Kirjaudu ensin sisään." ,
   "document.dayOfYearBegin":"Aloituspäivä",
-  "document.dayOfYearEnd":"Lopetuspäivä",
-  "document.reliable":"Luotettavuus",
-  "form.login": "Kirjaudu ensin sisään.",
+  "document.dayOfYearEdited":"Muokattu",
+  "document.location":"Paikka",
+  "observations.intro":"Löydät omat havaintosi täältä",
   "form.send": "Lähetä"
 }
