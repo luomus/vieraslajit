@@ -40,7 +40,7 @@
   <ng-container *ngIf="selectedGroup && taxa && !loading">
     <tabset>
       <tab heading="{{'navigation.list' | translate}}">
-        <div class="tab-pane container" id="taxontable">
+        <div class="tab-pane container " id="taxontable">
           <ngx-datatable *ngIf="page" class="material selection-cell" [rows]="taxa" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
             [rowHeight]="50" [reorderable]='true' [selectionType]="'single'" [count]="taxa.length" [limit]="50" [footerHeight]="50"
             [sorts]="[{prop: 'vernacularName', dir: 'asc'}]" (select)="onSelect($event)">
@@ -48,12 +48,12 @@
         </div>
       </tab>
       <tab heading="{{'navigation.grid' | translate}}"[active]="true">
-        <div class="tab-pane container" id="cardcontainer">
+        <div class="tab-pane container py-3" id="cardcontainer">
           <div class="card-group" id="taxongrid">
             <div *ngFor="let species of pageData" class="col-12 col-sm-6 col-md-6 col-lg-3">
               <div class="card" id="species-card" [routerLink]="[species.id]">
                 <img class="card-img-top img-responsive" [src]="species.thumbnail" id="species-img">
-                <div class="card-body" id="species-card-body">
+                <div class="card-body text-center" id="species-card-body">
                   <a class="card-text" id="species-card-text">{{species.vernacularName || species.scientificName}}</a>
                 </div>
               </div>
