@@ -51,7 +51,7 @@ describe('FormComponent', () => {
 
   it('should show the form if logged in', () => {
     component.loggedIn = true;
-    window.sessionStorage.setItem(userProperty.PERSON, JSON.stringify('MA.123'));
+    window.sessionStorage.setItem(userProperty.PERSON, JSON.stringify({ 'id': 'MA.000' }));
     fixture.detectChanges();
     activatedRoute.setParams({ formId: 999 });
     const title = fixture.nativeElement.querySelector('#formName').textContent;
