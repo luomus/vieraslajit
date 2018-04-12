@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TabsModule } from 'ngx-bootstrap';
 import { EditcmsModule } from './../shared-modules/editcms/editcms.module';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 describe('StaticComponent', () => {
   let component: StaticComponent;
@@ -17,7 +17,7 @@ describe('StaticComponent', () => {
  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule, TabsModule, EditcmsModule],
+      imports: [HttpClientModule, RouterTestingModule, TabsModule, EditcmsModule, TranslateModule.forRoot()],
       declarations: [ StaticComponent ],
       providers: [InformationService, ApiService, TranslateService ]
     })
