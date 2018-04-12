@@ -28,11 +28,7 @@ export class ObservationComponent implements OnInit{
   }
 
   update() {
-<<<<<<< HEAD
     this.observationService.getObservationsById(this.idArray, this.pageSize, "1").subscribe(data => {
-=======
-    this.observationService.getObservationsById(this.idArray, this.pageSize).subscribe(data => {
->>>>>>> 5ea0ae1cab48444efe75be061117f4411bc7294d
       this.observations= data.results;
       this.setMapData();
       this.initializeMap();
