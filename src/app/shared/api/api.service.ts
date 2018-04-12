@@ -282,7 +282,6 @@ export namespace LajiApi {
   }
 
   export interface WarehouseQueryListQuery {
-    lang: string;
     taxonId: Array<string>;
     pageSize?: string;
     page:string;

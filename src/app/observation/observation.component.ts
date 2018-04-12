@@ -3,7 +3,6 @@ import { ObservationService } from '../shared/service/observation.service';
 import { WarehouseQueryList } from '../shared/model/Warehouse';
 import { PagedResult } from '../shared/model/PagedResult';
 import { Subscription } from 'rxjs/Subscription';
-import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -12,25 +11,23 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./observation.component.scss']
 })
 
-export class ObservationComponent implements OnInit, OnDestroy {
+export class ObservationComponent implements OnInit{
   @Input() id: string;
-  private subTrans: Subscription;
+
   private idArray: Array<string>=[];
   private pageSize: string = "200";
   private observations: Array<any> = [];
   private mapData=[];
 
-
-  constructor(private observationService: ObservationService,private translate: TranslateService) { }
+  constructor(private observationService: ObservationService) { }
 
   ngOnInit() {
     this.idArray.push(this.id);
-    this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.update();
   }
 
   update() {
-    this.observationService.getObservationsById(this.translate.currentLang,this.idArray, this.pageSize, "1").subscribe(data => {
+    this.observationService.getObservationsById(this.idArray, this.pageSize, "1").subscribe(data => {
       this.observations= data.results;
       this.setMapData();
       this.initializeMap();
@@ -95,7 +92,6 @@ export class ObservationComponent implements OnInit, OnDestroy {
   mapOptions(){
     const options = {
       rootElem: document.getElementById("map"),
-      lang: this.translate.currentLang,
       popupOnHover: false,
       center: {
         "lat": 65.5,
@@ -110,9 +106,7 @@ export class ObservationComponent implements OnInit, OnDestroy {
     return options;
   }
 
-  ngOnDestroy() {
-    this.subTrans.unsubscribe();
-  }  
+  
   
 }
  

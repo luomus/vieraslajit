@@ -10,9 +10,9 @@ export class ObservationService {
   constructor(private apiService: ApiService) { }
 
   
-  getObservationsById(lang: string, taxonId: Array<string>, pageSize: string, page:string):  Observable<PagedResult<WarehouseQueryList>> {
+  getObservationsById(taxonId: Array<string>, pageSize: string, page:string):  Observable<PagedResult<WarehouseQueryList>> {
     return this.apiService
-          .warehouseQueryListById(LajiApi.Endpoints.warehousequerylist, {lang:lang, taxonId: taxonId, pageSize: pageSize, page: page});
+          .warehouseQueryListById(LajiApi.Endpoints.warehousequerylist, {taxonId: taxonId, pageSize: pageSize, page: page});
   }
 
 }
