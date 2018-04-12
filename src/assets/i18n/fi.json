@@ -46,6 +46,8 @@
   "taxon.unknown": "Tuntematon",
   "mapOfObservations.header": "Havaintokartta",
   "mapOfObservations.link": "Tästä linkistä aukeaa Laji.fi-sivuston monipuolisempi havaintokartta.",
+  "mapOfObservations.reported": "Ilmoitettu: ",
+  "mapOfObservations.municipality": "Kunta: ",
   "omnisearch.information": "Lisätietoa",
   "omnisearch.observations": "Havainnot",
   "omnisearch.taxontree": "Taksonomiapuu",
