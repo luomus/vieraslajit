@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TabsModule } from 'ngx-bootstrap';
 import { EditcmsModule } from './../shared-modules/editcms/editcms.module';
+import { TranslateService } from '@ngx-translate/core';
 
 describe('StaticComponent', () => {
   let component: StaticComponent;
@@ -18,7 +19,7 @@ describe('StaticComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, RouterTestingModule, TabsModule, EditcmsModule],
       declarations: [ StaticComponent ],
-      providers: [InformationService, ApiService ]
+      providers: [InformationService, ApiService, TranslateService ]
     })
     .compileComponents();
   }));
