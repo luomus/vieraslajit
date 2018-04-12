@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ObservationService } from '../shared/service/observation.service';
 import { WarehouseQueryList } from '../shared/model/Warehouse';
 import { PagedResult } from '../shared/model/PagedResult';
 import { Subscription } from 'rxjs/Subscription';
 import { TranslateService } from '@ngx-translate/core';
-
 
 @Component({
   selector: 'vrs-observation',
@@ -12,36 +11,34 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./observation.component.scss']
 })
 
-export class ObservationComponent implements OnInit, OnDestroy {
+export class ObservationComponent implements OnInit {
   @Input() id: string;
-  private subTrans: Subscription;
   private idArray: Array<string>=[];
-  private pageSize: string = "200";
+  private pageSize: string = "1000";
+  private map
   private observations: Array<any> = [];
   private mapData=[];
+  private features = [];
 
-
-  constructor(private observationService: ObservationService,private translate: TranslateService) { }
+  constructor(
+    private observationService: ObservationService,
+    public translate: TranslateService) { }
 
   ngOnInit() {
     this.idArray.push(this.id);
-    this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.update();
   }
 
   update() {
-    this.observationService.getObservationsById(this.translate.currentLang,this.idArray, this.pageSize, "1").subscribe(data => {
+    this.observationService.getObservationsById(this.idArray, this.pageSize).subscribe(data => {
       this.observations= data.results;
       this.setMapData();
       this.initializeMap();
     });
-  }  
+  }
 
   setMapData() {
-
     let coordinates = [];
-    let municipality= "";
-    let date= "";
 
     this.observations
       .forEach((observationObject) => {
@@ -49,17 +46,15 @@ export class ObservationComponent implements OnInit, OnDestroy {
           observationObject.gathering.conversions.wgs84CenterPoint.lon,
           observationObject.gathering.conversions.wgs84CenterPoint.lat
         ]
-        municipality = observationObject.gathering.interpretations.municipalityDisplayname;
-        date = observationObject.gathering.displayDateTime;
+        this.setFeatures(coordinates);
 
-        const dataObject= this.returnFeatureCollectionAndPopup(this.returnFeatures(coordinates),municipality,date);
+        const dataObject= this.returnFeatureCollection(this.features);
         this.mapData.push(dataObject);
       });
   }
 
-  returnFeatures (coordinates:Array<any>){
-    let features = [];
-    features.push(
+  setFeatures (coordinates){
+    this.features.push(
       {
         'type': 'Feature',
         "properties": {},
@@ -69,27 +64,21 @@ export class ObservationComponent implements OnInit, OnDestroy {
           "radius": 5000
         }
     })
-    return features;
   }
   
-  returnFeatureCollectionAndPopup(features:Array<any>,municipality:string, date:string){
+  returnFeatureCollection(features){
     const dataObject= {
-      featureCollection: {
-        'type': 'FeatureCollection',
-        'features': features
-      },
-      getPopup(){
-        /*return this.translate.instant('mapOfObservations.municipality'+municipality +"\n  mapOfObservations.reported: "+date);
-        Cannot read property 'instant' of undefined?*/
-        return municipality+ ", "+date;
-      }
+    featureCollection: {
+      'type': 'FeatureCollection',
+      'features': features
+    }
     }
     return dataObject;
   }
 
   initializeMap() {       
     var LajiMap = require("laji-map").default;
-    var map = new LajiMap(this.mapOptions());
+    this.map = new LajiMap(this.mapOptions());
   }
 
   mapOptions(){
@@ -97,11 +86,12 @@ export class ObservationComponent implements OnInit, OnDestroy {
       rootElem: document.getElementById("map"),
       lang: this.translate.currentLang,
       popupOnHover: false,
-      center: {
+      /*center: {
         "lat": 65.5,
         "lng": 27
-      },
+      },*/
       zoom: 1,
+      zoomToData : true,
       tileLayerName: "openStreetMap", 
       controls: {  
       },
@@ -110,9 +100,7 @@ export class ObservationComponent implements OnInit, OnDestroy {
     return options;
   }
 
-  ngOnDestroy() {
-    this.subTrans.unsubscribe();
-  }  
+     
   
 }
  
