@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
   menu: Array<any> = new Array();
   loginSub: Subscription;
   translateSub:Subscription;
-  parentId= "i-2";
+  parentId= "";
   
   constructor(private modalService: BsModalService, private router: Router, private userService: UserService,
      private informationService: InformationService, private translate:TranslateService) {
@@ -44,17 +44,14 @@ export class NavbarComponent implements OnInit {
     router.events.subscribe((val) => {
       this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
     });
+    
+  }
 
+  ngOnInit() {
     this.translate.onLangChange.subscribe((event) =>{
       this.setCMSRootId(event.lang);
       this.update();
     });
-
-  }
-
-  ngOnInit() {
-    this.translateSub = this.translate.onLangChange.subscribe(this.update.bind(this));
-    this.update();
   }
 
   /**
@@ -68,7 +65,6 @@ export class NavbarComponent implements OnInit {
         this.informationService.getInformation(c.id).subscribe((data)=>{
           this.menu.push(data);
         })
-        console.log(c);
       }
     })
   }
@@ -78,13 +74,13 @@ export class NavbarComponent implements OnInit {
    */
 
   setCMSRootId(lang: string) {
-    if (lang= "fi"){
+    if (lang== "fi"){
       this.parentId= "i-2";
     }
-    if (lang= "en"){
+    if (lang== "en"){
       this.parentId= "i-16";
     }
-    if (lang= "sv"){
+    if (lang== "sv"){
       this.parentId= "i-14";
     }
   }
