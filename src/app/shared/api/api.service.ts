@@ -217,6 +217,12 @@ export class ApiService {
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
     );
   }
+  documentsByPersonToken(endpoint: LajiApi.Endpoints.documents, query:LajiApi.Query ):Observable<any>;
+  documentsByPersonToken(endpoint: LajiApi.Endpoints.documents, query: object={}):Observable<any>{
+    const url = `${environment.lajiApi.url}${endpoint}`;
+    return this.httpClient.get(
+      url,
+      { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
 
 
   documentApi(endpoint: LajiApi.Endpoints.createDocument, userToken: string, data: Document): Observable<Document>;
@@ -238,7 +244,7 @@ export namespace LajiApi {
     taxonParents = 'taxa/%id%/parents',
     taxon = 'taxa/%id%',
     taxonSpecies = 'taxa/%id%/species',
-    document = 'document',
+    documents = 'documents',
     description = 'taxa/%id%/descriptions',
     media = 'taxa/%id%/media',
     metadataRange = 'metadata/ranges/%range%',
@@ -265,7 +271,9 @@ export namespace LajiApi {
     langFallback?: boolean;
     hasMediaFilter?: boolean;
     includeMedia?: boolean;
-    adminStatusFilters?: String;
+    adminStatusFilters?:String;
+    personToken?:String;
+  
 
   }
   export interface AutocompleteQuery {
