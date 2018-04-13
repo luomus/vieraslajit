@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { PagedResult } from '../model/PagedResult';
+import {Document} from '../model/Document';
 import { WarehouseQueryList } from '../model/Warehouse';
 import { ApiService, LajiApi } from '../api/api.service';
 
@@ -13,6 +14,10 @@ export class ObservationService {
   getObservationsById(taxonId: Array<string>, pageSize: string):  Observable<PagedResult<WarehouseQueryList>> {
     return this.apiService
           .warehouseQueryListById(LajiApi.Endpoints.warehousequerylist, {taxonId: taxonId, pageSize: pageSize});
+  }
+  getObservationsbyPersonToken(personToken: string, pageSize: string):  Observable<any> {
+    return this.apiService
+          .documentsByPersonToken(LajiApi.Endpoints.documents, {personToken: personToken, pageSize: pageSize});
   }
 
 }
