@@ -46,8 +46,6 @@
   "taxon.unknown": "Unknown",
   "mapOfObservations.header": "Map of observations",
   "mapOfObservations.link": "Click here to open a more detailed map.",
-  "mapOfObservations.reported": "Reported: ",
-  "mapOfObservations.municipality": "Municipality: ",
   "omnisearch.information": "Information",
   "omnisearch.observations": "Observations",
   "omnisearch.taxontree":"Taxonomy tree",
@@ -76,7 +74,12 @@
   "stableString.notyet":"Not yet in Finland",
   "stableString.unknown":"Unknown",
   "stableString.established":"Established",
+  "observations.myobservations":"My observations",
   "form.login": "Login first",
+  "document.dayOfYearBegin": "Starting date",
+  "document.dayOfYearEdited":"Edited",
+  "document.location":"Location",
+  "observations.intro":"You can find your own observations here",
   "form.send": "Send"
 
 }

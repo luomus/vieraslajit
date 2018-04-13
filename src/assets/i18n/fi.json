@@ -46,8 +46,6 @@
   "taxon.unknown": "Tuntematon",
   "mapOfObservations.header": "Havaintokartta",
   "mapOfObservations.link": "Tästä linkistä aukeaa Laji.fi-sivuston monipuolisempi havaintokartta.",
-  "mapOfObservations.reported": "Ilmoitettu: ",
-  "mapOfObservations.municipality": "Kunta: ",
   "omnisearch.information": "Lisätietoa",
   "omnisearch.observations": "Havainnot",
   "omnisearch.taxontree": "Taksonomiapuu",
@@ -77,6 +75,11 @@
   "stableString.established":"Vakiintunut",
   "stableString.sporadic":"Harvinainen",
   "stableString.accidental":"Tahaton",
-  "form.login": "Kirjaudu ensin sisään.",
+  "observations.myobservations":"Havaintoni",
+  "form.login": "Kirjaudu ensin sisään." ,
+  "document.dayOfYearBegin":"Aloituspäivä",
+  "document.dayOfYearEdited":"Muokattu",
+  "document.location":"Paikka",
+  "observations.intro":"Löydät omat havaintosi täältä",
   "form.send": "Lähetä"
 }

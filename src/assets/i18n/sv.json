@@ -44,9 +44,7 @@
   "taxon.establishment": "Vedertagenhet",
   "taxon.unknown": "Okänd",
   "mapOfObservations.header": "Kartan av observationer",
-  "mapOfObservations.link": "Klicka här för en mera detaljerad karta.",
-  "mapOfObservations.reported": "Rapporterad: ",
-  "mapOfObservations.municipality": "Kommun: ",
+  "mapOfObservations.link": "Klicka här för en mer detaljerad karta.",
   "omnisearch.information": "Information",
   "omnisearch.observations": "Besökte",
   "omnisearch.taxontree": "Taxonomy tree",
@@ -61,5 +59,9 @@
   "stableString.unknown":"Okänd",
   "stableString.established":"Etablerade",
   "stableString.sporadic":"Sporadisk",
-  "stableString.accidental":"Tillfällig"
-}
+  "stableString.accidental":"Tillfällig",
+  "observations.myobservations":"Mina observationer",
+  "observations.intro":"Du hittar din egen observationer här",
+  "document.dayOfYearBegin":"Startdatum",
+  "document.dayOfYearEdited":"Redigerad"
+  }

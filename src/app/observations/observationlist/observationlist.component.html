@@ -1,0 +1,20 @@
+<laji-spinner [spinning]="loading" >
+
+<div class="container-fluid"*ngIf="loggedIn;else notLoggedIn">
+  <h1 id="heading" translate>observations.myobservations</h1>
+  <div class="content">
+      <div id="intro" translate>observations.intro</div> 
+      <ng-container>
+        <div class="tab-pane container" id="observationlisttable">
+            <ngx-datatable class="material selection-cell" [rows]="observations" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
+            [rowHeight]="50" [reorderable]='true' [selectionType]="'single'"  [footerHeight]="50" (select)="onSelect($event)">
+            </ngx-datatable>
+        </div>    
+    </ng-container>
+  </div>
+</div>
+</laji-spinner>
+<ng-template #notLoggedIn>
+  <br>
+  <p translate>form.login</p>
+</ng-template>
