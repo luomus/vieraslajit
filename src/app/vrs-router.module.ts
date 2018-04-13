@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'adminstrativelists', loadChildren:'./adminstrativelists/adminstrativelists.module#AdminstrativelistsModule'},
   { path: 'static', loadChildren: './static/static.module#StaticModule' },
   { path: 'user', loadChildren: './user/user.module#UserModule' },
-  { path: 'form', loadChildren: './form/form.module#FormModule'}
+  { path: 'form', loadChildren: './form/form.module#FormModule'},
+  { path:'observations', loadChildren: './observations/observations.module#ObservationsModule'}
 ];
 
 @NgModule({

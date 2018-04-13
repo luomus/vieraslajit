@@ -59,5 +59,9 @@
   "stableString.unknown":"Okänd",
   "stableString.established":"Etablerade",
   "stableString.sporadic":"Sporadisk",
-  "stableString.accidental":"Tillfällig"
-}
+  "stableString.accidental":"Tillfällig",
+  "observations.myobservations":"Mina observationer",
+  "observations.intro":"Du hittar din egen observationer här",
+  "document.dayOfYearBegin":"Startdatum",
+  "document.dayOfYearEdited":"Redigerad"
+  }
