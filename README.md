@@ -1,7 +1,7 @@
 # Vieraslajit
 [Course description (in Finnish)](https://courses.helsinki.fi/fi/TKT20007)
 
-This repository is the frontend for [vieraslajit.fi](https://vieraslajit.herokuapp.com/home).
+This repository is the frontend for [vieraslajit.fi](https://vieraslajit.github.io/Vieraslajit/).
 Api used and it's documentation can be found at [apitest.laji.fi](https://apitest.laji.fi/explorer/).
 
 ## Project links
@@ -11,7 +11,7 @@ Api used and it's documentation can be found at [apitest.laji.fi](https://apites
 
 * [Github](https://github.com/Vieraslajit/Vieraslajit)
 
-* [Heroku](https://vieraslajit.herokuapp.com/)
+* [Pages](https://vieraslajit.github.io/Vieraslajit/)
 
 ### Progress
 * [Product Backlog](https://docs.google.com/spreadsheets/d/1J_Fyd4nz4NiaO80L46lcEIjyo2mbTOU2jSYKFGTQdM4)
@@ -47,6 +47,10 @@ Run `ng generate component component-name` to generate a new component. You can 
 ### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+### Generate documentation
+Run `npm run doc:build` to generate documentation and `npm run doc:serve` to serve it on `localhost:8080`.
+`npm run doc:buildandserve` both builds and then serves the documentation.
 
 ## Running the tests
 
