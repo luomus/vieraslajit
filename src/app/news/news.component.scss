@@ -1,0 +1,46 @@
+@import './../../assets/styles/vars.scss';
+
+.news-post {
+    /*
+    padding: 2em;
+    border: 1px solid $border-light;
+    background: $content-background;
+    border-radius: $content-border-radius;
+    */
+}
+
+.news-thumbnail {
+    object-fit: scale-down;
+    max-width: 100%;
+}
+
+.news-caption {
+    font-size: 14px;
+}
+
+.news-header {
+    background: whitesmoke;
+    border: 1px solid $border-light;
+    border-top-left-radius: $content-border-radius;
+    border-top-right-radius: $content-border-radius;
+}
+
+.news-content {
+    background: $content-background;
+    border-left: 1px solid $border-light;
+    border-bottom: 1px solid $border-light;
+    border-right: 1px solid $border-light;
+    border-bottom-left-radius: $content-border-radius;
+    border-bottom-right-radius: $content-border-radius;
+
+    /*
+    padding: 1em;
+    background: $content-background;
+    border: 1px solid $border-light;
+    border-radius: 8px;
+    */
+}
+
+.news-modified {
+    font-size: 14px;
+}
