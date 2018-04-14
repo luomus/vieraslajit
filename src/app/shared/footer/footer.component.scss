@@ -1,7 +1,41 @@
 @import '../../../assets/styles/vars';
 
-footer {
-    background: $content-background;
-    border-bottom-left-radius: $content-border-radius;
-    border-bottom-right-radius: $content-border-radius;
+.footer-content {
+    background: #f6f6f6;
+    color: #333;
+    border-top: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
+}
+
+.vrs-logo-img {
+    content:url(./../../../assets/images/logos/vieraslaji-logo-160x160.png);
+}
+
+.luomus-logo {
+    content:url(./../../../assets/images/logos/luomus_logo.gif);
+}
+
+.luke-logo {
+    content:url(./../../../assets/images/logos/luke_logo.png);
+}
+
+.ely-logo {
+    content:url(./../../../assets/images/logos/ELY_logo.jpg);
+}
+
+.mmm-logo {
+    content:url(./../../../assets/images/logos/mmm_logo.jpg);
+}
+
+.sll-logo {
+    content:url(./../../../assets/images/logos/sll_logo.png);
+}
+
+.syke-logo {
+    content:url(./../../../assets/images/logos/syke_logo.png);
+}
+
+.affiliate-img {
+    height: 75px;
+    width: auto;
 }
