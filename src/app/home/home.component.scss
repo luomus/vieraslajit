@@ -30,13 +30,6 @@
     margin-bottom: 7vh;
 }
 
-#pagemap {
-    background: $primary;
-    color: $content-background;
-    margin-top: 30px;
-    position: center;
-}
-
 #homecard {
     height: 100%;
     background: $content-background-highlight;
@@ -71,6 +64,14 @@
     width: 10vh;
     margin: 0 auto;
     margin-top: 2vh;
+}
+
+.eucard-img {
+    content:url(./../../assets/images/logos/eu-blue-rnd.png);
+}
+
+.ficard-img {
+    content:url(./../../assets/images/logos/finland-b2.png);
 }
 
 #invasivetitle {

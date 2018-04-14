@@ -6,6 +6,6 @@ export const environment = {
   },
   lajiAuth: {
     authUrl: 'https://fmnh-ws-test.it.helsinki.fi/laji-auth/',
-    systemID: 'KE.741'
+    systemID: 'KE.781'
   }
 };

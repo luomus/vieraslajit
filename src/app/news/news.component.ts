@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { NewsElement } from '../shared/model/NewsElement';
 import { PagedResult } from '../shared/model/PagedResult';
 
+
 @Component({
   selector: 'vrs-news',
   templateUrl: './news.component.html',
