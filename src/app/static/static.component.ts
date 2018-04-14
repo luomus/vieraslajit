@@ -3,6 +3,7 @@ import { InformationService } from '../shared/service/information.service';
 import { Information } from '../shared/model/Information';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Renders static page ie. /static/:id route
@@ -24,7 +25,8 @@ export class StaticComponent implements OnInit {
   sub: Subscription;
   child_pages: Array<any>;
 
-  constructor(public informationService: InformationService, private route: ActivatedRoute, private router: Router) { }
+  constructor(public informationService: InformationService, private route: ActivatedRoute, 
+    private router: Router, private translate: TranslateService) { }
 
   /**
    * Captures 'id' from url route and passes it to getInformation(id)
