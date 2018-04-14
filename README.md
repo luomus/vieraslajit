@@ -48,6 +48,10 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
+### Generate documentation
+Run `npm run doc:build` to generate documentation and `npm run doc:serve` to serve it on `localhost:8080`.
+`npm run doc:buildandserve` both builds and then serves the documentation.
+
 ## Running the tests
 
 ### Running unit tests
