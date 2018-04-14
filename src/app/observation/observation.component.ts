@@ -3,7 +3,6 @@ import { ObservationService } from '../shared/service/observation.service';
 import { WarehouseQueryList } from '../shared/model/Warehouse';
 import { PagedResult } from '../shared/model/PagedResult';
 import { Subscription } from 'rxjs/Subscription';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'vrs-observation',
@@ -11,18 +10,15 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./observation.component.scss']
 })
 
-export class ObservationComponent implements OnInit {
+export class ObservationComponent implements OnInit{
   @Input() id: string;
+
   private idArray: Array<string>=[];
-  private pageSize: string = "1000";
-  private map
+  private pageSize: string = "200";
   private observations: Array<any> = [];
   private mapData=[];
-  private features = [];
 
-  constructor(
-    private observationService: ObservationService,
-    public translate: TranslateService) { }
+  constructor(private observationService: ObservationService) { }
 
   ngOnInit() {
     this.idArray.push(this.id);
@@ -30,7 +26,7 @@ export class ObservationComponent implements OnInit {
   }
 
   update() {
-    this.observationService.getObservationsById(this.idArray, this.pageSize).subscribe(data => {
+    this.observationService.getObservationsById(this.idArray, this.pageSize, "1").subscribe(data => {
       this.observations= data.results;
       this.setMapData();
       this.initializeMap();
@@ -38,7 +34,10 @@ export class ObservationComponent implements OnInit {
   }
 
   setMapData() {
+
     let coordinates = [];
+    let municipality= "";
+    let date= "";
 
     this.observations
       .forEach((observationObject) => {
@@ -46,15 +45,17 @@ export class ObservationComponent implements OnInit {
           observationObject.gathering.conversions.wgs84CenterPoint.lon,
           observationObject.gathering.conversions.wgs84CenterPoint.lat
         ]
-        this.setFeatures(coordinates);
+        municipality = observationObject.gathering.interpretations.municipalityDisplayname;
+        date = observationObject.gathering.displayDateTime;
 
-        const dataObject= this.returnFeatureCollection(this.features);
+        const dataObject= this.returnFeatureCollectionAndPopup(this.returnFeatures(coordinates),municipality,date);
         this.mapData.push(dataObject);
       });
   }
 
-  setFeatures (coordinates){
-    this.features.push(
+  returnFeatures (coordinates:Array<any>){
+    let features = [];
+    features.push(
       {
         'type': 'Feature',
         "properties": {},
@@ -64,34 +65,37 @@ export class ObservationComponent implements OnInit {
           "radius": 5000
         }
     })
+    return features;
   }
   
-  returnFeatureCollection(features){
+  returnFeatureCollectionAndPopup(features:Array<any>,municipality:string, date:string){
     const dataObject= {
-    featureCollection: {
-      'type': 'FeatureCollection',
-      'features': features
-    }
+      featureCollection: {
+        'type': 'FeatureCollection',
+        'features': features
+      },
+      getPopup(){
+        return municipality+ ", "+date;
+      }
     }
     return dataObject;
   }
 
   initializeMap() {       
     var LajiMap = require("laji-map").default;
-    this.map = new LajiMap(this.mapOptions());
+    var map = new LajiMap(this.mapOptions());
   }
 
   mapOptions(){
     const options = {
       rootElem: document.getElementById("map"),
-      lang: this.translate.currentLang,
       popupOnHover: false,
-      /*center: {
+      center: {
         "lat": 65.5,
         "lng": 27
-      },*/
+      },
       zoom: 1,
-      zoomToData : true,
+      zoomToData : false,
       tileLayerName: "openStreetMap", 
       controls: {  
       },
@@ -100,7 +104,5 @@ export class ObservationComponent implements OnInit {
     return options;
   }
 
-     
-  
 }
  
