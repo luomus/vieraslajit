@@ -7,6 +7,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ApiService } from '../shared/api/api.service';
 import {ObservationService} from '../shared/service/observation.service'
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { AllobservationsComponent } from './allobservations/allobservations.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     NgxDatatableModule,
     TabsModule.forRoot()
   ],
-  declarations: [ObservationlistComponent],
+  declarations: [ObservationlistComponent, AllobservationsComponent],
   providers:[ApiService,ObservationService]
 })
 export class ObservationsModule { }

@@ -224,6 +224,14 @@ export class ApiService {
       url,
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
 
+  getAllObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query:LajiApi.Query ):Observable<any>;
+  getAllObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query: object={}):Observable<any>{
+        const url = `${environment.lajiApi.url}${endpoint}`;
+        return this.httpClient.get(
+          url,
+          { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
+    
+    
 
   documentApi(endpoint: LajiApi.Endpoints.createDocument, userToken: string, data: Document): Observable<Document>;
   documentApi(endpoint: LajiApi.Endpoints, userToken: string, data: Document): Observable<any> {

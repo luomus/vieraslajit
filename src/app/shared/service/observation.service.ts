@@ -20,4 +20,10 @@ export class ObservationService {
           .documentsByPersonToken(LajiApi.Endpoints.documents, {personToken: personToken, pageSize: pageSize});
   }
 
+  getAllObservations(pageSize: string):  Observable<any> {
+    return this.apiService
+          .documentsByPersonToken(LajiApi.Endpoints.documents, {pageSize: pageSize});
+  }
+
+
 }
