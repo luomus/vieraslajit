@@ -9,6 +9,7 @@ import { Informal } from '../../shared/model/Informal';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
 import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.component'
+import * as $ from 'jquery';
 
 
 @Component({
@@ -36,23 +37,19 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   maxSize = 5;
   itemsPerPage = 12;
 
-  constructor(private taxonService: TaxonService, private translate: TranslateService, private router: Router) {
-    this.navSub = this.router.events.subscribe((e: any) => {
-      if (e instanceof NavigationEnd) {
-        this.reload();
-      }
-    });
-  }
+  constructor(private taxonService: TaxonService, private translate: TranslateService, private router: Router) { }
 
   ngOnInit() {
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.navSub = this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        this.changeOpen();
+        this.selectedGroup = null;
+      }
+    })
     this.update();
   }
 
-  private reload() {
-    this.selectedGroup = null;
-    this.showGroups = true;
-  }
 
   update() {
     this.taxonService.getInformalGroups(this.translate.currentLang).subscribe((data) => {
@@ -129,18 +126,22 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   }
 
   setPage(event) {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    $('html, body').animate({ scrollTop: 0 }, 0);
   }
 
   changeOpen() {
     this.showGroups = !this.showGroups;
   }
 
+  onPageChange() {
+    $('html, body').animate({ scrollTop: 0 }, 0);
+  }
+
   pageChanged(event) {
     let start = (event.page - 1) * event.itemsPerPage;
     let end = start + event.itemsPerPage;
     this.pageData = this.taxa.slice(start, end);
+    this.onPageChange();
   }
 
   ngOnDestroy() {
