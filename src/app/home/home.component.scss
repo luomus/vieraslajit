@@ -23,7 +23,7 @@
 }
 
 #welcome {
-    color: $primary;
+    color: $content-background-highlight-dark;
     font-family: $font-montserrat;
     font-size: 20px;
     margin-top: 7vh;
@@ -43,6 +43,14 @@
     color: $content-background;
 }
 
+#news {
+    background-color: $content-background-highlight;
+}
+
+#newsh4 {
+    padding-top: 1em;
+}
+
 #cardcol {
     margin-bottom: 3vh; 
 }
@@ -50,13 +58,15 @@
 #invasivecards {
     width: 100%;
     height: 90%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    
     transition: 0.2s;
+    border-color: $content-background-highlight-dark;
     cursor: pointer;
 }
 
 #invasivecards:hover {
     box-shadow:  0 0 0 3px $primary;
+    border-color: $primary;
     #selectGroup-card-text {
         color:  $primary;
     }
@@ -65,7 +75,7 @@
 #invasivecards-text {
     width: 100%;
     color:  $navbar-background;
-    font-size: 1.5vh;
+    font-size: 1.3vh;
 }
 
 #invasivecards-img {

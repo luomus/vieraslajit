@@ -16,27 +16,28 @@
         <div class="offset-xl-1 col-xl-7 col-lg-8 col-md-6 col-12" id="cardcol">
             <div class="container">
                 <div class="row" id="welcome" >
-                        <div class="offset-md-2 col-md-10 col-lg-8">
+                        <div class="offset-md-1 offset-lg-2 col-md-10 col-lg-8">
                             <h1 id="welcome-h1" translate>home.h1</h1>
                             <p id="welcome-text" translate>home.description</p>
                         </div>
                     </div> 
                 <div class="row">
-                        <div class="col-md-12 col-lg-6 col-12" id="cardcol">
+                        <div class="offset-md-1 offset-lg-0 col-md-12 col-lg-6 col-12" id="cardcol">
                                 <div class="card" id="homecard">
                                     <h4 class= "card-header" id="homecard-header" translate>home.whatare.h</h4>
                                     <div class="card-body">
                                         <p translate>home.whatare.p</p>
-                                        <button type="button" class="btn btn-outline-dark" href="#" role="button" translate>home.readMore</button>
+                                        <button type="button" class="btn btn-dark" routerLink='/taxon' role="button" translate>home.findInvasive</button>
                                     </div>
                                 </div> 
                             </div>
                     
-                            <div class="col-md-12 col-lg-6 col-12" id="cardcol">
+                            <div class="offset-md-1 offset-lg-0 col-md-12 col-lg-6 col-12" id="cardcol">
                                 <div class="card" id="homecard">
                                     <h4 class= "card-header" id="homecard-header" translate>home.invasivespecies</h4>
                                     <div class="container">
-                                        <br>
+                                        <div class="card-body">
+                                        <p translate>home.invasiveinfo</p>
                                         <div class="card-deck">
                                             <div class="card" id="invasivecards" routerLink='/adminstrativelists'>
                                                 <img class="card-img-top img-responsive" id="invasivecards-img" src="./../../../assets/images/logos/eu-blue-rnd.png" alt="no image">
@@ -50,7 +51,8 @@
                                                         <h5 class="card-text text-center" id="invasivecards-text" translate>home.finnishlist</h5>
                                                     </div>
                                             </div>   
-                                        </div>       
+                                        </div>  
+                                    </div>     
                                     </div>
                                 </div>
                             </div>
@@ -62,12 +64,13 @@
                 <h4 id="newsh4" translate>home.news</h4>
                 <div class="card-body" id="newsbody">
                     <div class="alert alert-danger" role="alert">
-                            <div *ngFor="let n of alerts" class="py-1"> 
-                            <span>{{n.posted | date: 'dd.MM.yyyy HH:MM' }} - </span>
-                            <span *ngIf= "n.modified">(<span translate>news.modified</span> - </span> 
-                            {{n.modified | date: 'dd.MM.yyyy HH:MM'}}
-                            <span *ngIf= "n.modified">) -</span><span> {{n.author}} </span>
+                            <div *ngFor="let n of alerts" class="py-1">
                             <h5 >{{n.title}} </h5>
+                            <span>{{n.posted | date: 'dd.MM.yyyy HH:MM' }} - </span>
+                            <p><span *ngIf= "n.modified">(<span translate>news.modified</span> - </span> 
+                                {{n.modified | date: 'dd.MM.yyyy HH:MM'}}
+                                <span *ngIf= "n.modified">)</span>
+                                </p>                         
                                 <button type="button" class="btn btn-outline-dark" routerLink="/news" role="button" translate>home.readMore</button>
                                 <br>
                                 <br>
@@ -76,11 +79,12 @@
 
                     <div >
                         <div *ngFor="let n of news" class="py-1"> 
-                        <span>{{n.posted | date: 'dd.MM.yyyy HH:MM' }} - </span>
-                        <span *ngIf= "n.modified">(<span translate>news.modified</span> - </span> 
-                        {{n.modified | date: 'dd.MM.yyyy HH:MM'}}
-                        <span *ngIf= "n.modified">) -</span><span> {{n.author}} </span>
                         <h5 >{{n.title}} </h5>
+                        <span>{{n.posted | date: 'dd.MM.yyyy HH:MM' }} - {{n.author}} </span>
+                        <p><span *ngIf= "n.modified">(<span translate>news.modified</span> - </span> 
+                            {{n.modified | date: 'dd.MM.yyyy HH:MM'}}
+                            <span *ngIf= "n.modified">)</span>
+                            </p>
                         <p [innerHTML]="n.content | slice:0:100"></p>
                             <button type="button" class="btn btn-outline-dark" routerLink="/news" role="button" translate>home.readMore</button>
                             <br>
