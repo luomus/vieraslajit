@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { PagedResult } from '../../shared/model/PagedResult';
@@ -9,6 +9,7 @@ import { Informal } from '../../shared/model/Informal';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
 import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.component'
+import * as $ from 'jquery';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
 
   @Input() search = '';
   private subTrans: Subscription;
+  private navSub: Subscription;
   public loading = true;
   id: string;
   taxa: Taxonomy[];
@@ -39,8 +41,15 @@ export class TaxonListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.navSub = this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        this.showGroups = true;
+        this.selectedGroup = null;
+      }
+    })
     this.update();
   }
+
 
   update() {
     this.taxonService.getInformalGroups(this.translate.currentLang).subscribe((data) => {
@@ -58,7 +67,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
       { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
       { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
       { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
-    ];  
+    ];
   }
 
 
@@ -79,31 +88,31 @@ export class TaxonListComponent implements OnInit, OnDestroy {
           element.onEUList = this.translate.instant(String(false));
           element.onNationalList = this.translate.instant(String(false));
         }
-        if(element.invasiveSpeciesEstablishment){ 
-          if(element.invasiveSpeciesEstablishment === 'MX.invasiveNotYetInFinland'){
+        if (element.invasiveSpeciesEstablishment) {
+          if (element.invasiveSpeciesEstablishment === 'MX.invasiveNotYetInFinland') {
             element.stableString = this.translate.instant(String('stableString.notyet'));
-          }   
-          if(element.invasiveSpeciesEstablishment === 'MX.invasiveEstablishmentUnknown'){
+          }
+          if (element.invasiveSpeciesEstablishment === 'MX.invasiveEstablishmentUnknown') {
             element.stableString = this.translate.instant(String('stableString.unknown'));
           }
-          if(element.invasiveSpeciesEstablishment === 'MX.invasiveEstablished'){
+          if (element.invasiveSpeciesEstablishment === 'MX.invasiveEstablished') {
             element.stableString = this.translate.instant(String('stableString.established'));
           }
-          if(element.invasiveSpeciesEstablishment === 'MX.invasiveSporadic'){
+          if (element.invasiveSpeciesEstablishment === 'MX.invasiveSporadic') {
             element.stableString = this.translate.instant(String('stableString.sporadic'));
           }
-          if(element.invasiveSpeciesEstablishment ==='MX.invasiveAccidental'){
-            element.stableString =this.translate.instant(String('stableString.accidental'));
+          if (element.invasiveSpeciesEstablishment === 'MX.invasiveAccidental') {
+            element.stableString = this.translate.instant(String('stableString.accidental'));
           }
-        } 
+        }
         if (element.multimedia.length > 0) {
-          element.thumbnail = element.multimedia[0].thumbnailURL; 
+          element.thumbnail = element.multimedia[0].thumbnailURL;
         } else {
           element.thumbnail = 'assets/images/logos/vieraslaji-logo-b.png';
         }
       });
       this.pageData = this.taxa.slice(0, this.itemsPerPage);
-    },() => null, () => this.loader());
+    }, () => null, () => this.loader());
   }
   // if loading true => false, removes spinner
   loader() {
@@ -117,22 +126,29 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   }
 
   setPage(event) {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    $('html, body').animate({ scrollTop: 0 }, 0);
   }
 
   changeOpen() {
     this.showGroups = !this.showGroups;
   }
 
+  onPageChange() {
+    $('html, body').animate({ scrollTop: 0 }, 0);
+  }
+
   pageChanged(event) {
     let start = (event.page - 1) * event.itemsPerPage;
     let end = start + event.itemsPerPage;
     this.pageData = this.taxa.slice(start, end);
+    this.onPageChange();
   }
 
   ngOnDestroy() {
     this.subTrans.unsubscribe();
+    if (this.navSub) {
+      this.navSub.unsubscribe();
+    }
   }
 
 }
