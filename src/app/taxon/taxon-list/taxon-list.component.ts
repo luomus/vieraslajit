@@ -43,7 +43,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.navSub = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
-        this.changeOpen();
+        this.showGroups = true;
         this.selectedGroup = null;
       }
     })
