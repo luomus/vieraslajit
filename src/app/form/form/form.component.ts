@@ -11,6 +11,7 @@ import { FormApiClient } from '../../shared/api/FormApiClient';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService, Role } from '../../shared/service/user.service';
 import { DocumentService } from '../../shared/service/document.service';
+import { ObservationService } from '../../shared/service/observation.service';
 
 @Component({
   selector: 'vrs-form',
@@ -25,6 +26,8 @@ export class FormComponent implements AfterViewInit, OnDestroy {
   private sub: Subscription;
   private subTrans: Subscription;
   private id: string;
+  private documentId: string;
+  private personToken: string;
 
   formData: any;
   lajiFormWrapper: any;
@@ -43,41 +46,59 @@ export class FormComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.subTrans = this.translate.onLangChange.subscribe(() => this.onLangChange());
     if (this.loggedIn) {
+      this.personToken = UserService.getToken();
       this.sub = this.route.params.subscribe(params => {
         this.id = params['formId'];
-        this.formService.getFormById(this.id, this.translate.currentLang).subscribe(data => {
-          this.formData = data;
-          console.log(data);
-          this.setFormDescription();
-          this.ngZone.runOutsideAngular(() => {
-            this.apiClient.lang = this.translate.currentLang;
-            this.initFormData();
-            this.initSchemaContext();
-            this.apiClient.personToken = UserService.getToken();
-            this.lajiFormWrapper = new LajiForm({
-              staticImgPath: '/static/lajiForm/',
-              rootElem: this.formElem.nativeElement,
-              schema: this.formData.schema,
-              uiSchema: this.formData.uiSchema,
-              uiSchemaContext: this.formData.uiSchemaContext,
-              formData: this.formData.formData,
-              validators: this.formData.validators,
-              warnings: this.formData.warnings,
-              onSubmit: this._onSubmit.bind(this),
-              onChange: this._onChange.bind(this),
-              onSettingsChange: this._onSettingsChange.bind(this),
-              settings: undefined,
-              apiClient: this.apiClient,
-              lang: this.translate.currentLang,
-              renderSubmit: false,
-              topOffset: 50,
-              bottomOffset: 50
-            });
-          });
-        });
+        this.documentId = params['documentId'];
+        if (this.documentId) {
+          this.documentData();
+        } else {
+          this.initForm();
+        }
       });
     }
   }
+
+  initForm() {
+    this.formService.getFormById(this.id, this.translate.currentLang).subscribe(data => {
+      this.formData = data;
+      console.log(data);
+      this.setFormDescription();
+      this.ngZone.runOutsideAngular(() => {
+        this.apiClient.lang = this.translate.currentLang;
+        this.initFormData();
+        this.initSchemaContext();
+        this.apiClient.personToken = this.personToken;
+        this.lajiFormWrapper = new LajiForm({
+          staticImgPath: '/static/lajiForm/',
+          rootElem: this.formElem.nativeElement,
+          schema: this.formData.schema,
+          uiSchema: this.formData.uiSchema,
+          uiSchemaContext: this.formData.uiSchemaContext,
+          formData: this.formData.formData,
+          validators: this.formData.validators,
+          warnings: this.formData.warnings,
+          onSubmit: this._onSubmit.bind(this),
+          onChange: this._onChange.bind(this),
+          onSettingsChange: this._onSettingsChange.bind(this),
+          settings: undefined,
+          apiClient: this.apiClient,
+          lang: this.translate.currentLang,
+          renderSubmit: false,
+          topOffset: 50,
+          bottomOffset: 50
+        });
+      });
+    });
+  }
+
+  documentData() {
+    this.docService.getDocumentById(this.personToken, this.documentId).subscribe(data => {
+      this.formData = {};
+      this.formData.formData = data;
+    }, null, () => this.initForm());
+  }
+
   onLangChange() {
     this.lajiFormWrapper.setState({ lang: this.translate.currentLang });
     this.formService
@@ -139,8 +160,8 @@ export class FormComponent implements AfterViewInit, OnDestroy {
           console.log('Result');
           console.log(result);
           /* Onnistuneen lähetyksen jälkeen ohjaa käyttäjä havainnot sivulle
-          ja näytä onnistumisviesti (alert tms.). Tilapäisesti ohjaa etusivulle */
-          this.router.navigateByUrl('/home');
+          ja näytä onnistumisviesti (alert tms.).*/
+          this.router.navigate(['observations']);
         },
         (error) => {
           console.log('Error');

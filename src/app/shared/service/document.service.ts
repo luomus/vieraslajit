@@ -10,6 +10,10 @@ export class DocumentService {
 
 
   createDocument(userToken: string, data: Document): Observable<Document> {
-    return this.apiService.documentApi(LajiApi.Endpoints.createDocument, userToken, data);
+    return this.apiService.documentApiPost(LajiApi.Endpoints.createDocument, userToken, data);
+  }
+
+  getDocumentById(personToken: string, documentId: string): Observable<Document> {
+    return this.apiService.documentApiGet(LajiApi.Endpoints.getDocument, personToken, documentId);
   }
 }
