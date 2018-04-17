@@ -63,8 +63,8 @@
             <div class="container">
                 <h4 id="newsh4" translate>home.news</h4>
                 <div class="card-body" id="newsbody">
-                    <div class="alert alert-danger" role="alert">
-                            <div *ngFor="let n of alerts" class="py-1">
+                        <div *ngFor="let n of alerts" class="py-1">
+                            <div class="alert alert-danger" role="alert">
                             <h5 >{{n.title}} </h5>
                             <span>{{n.posted | date: 'dd.MM.yyyy HH:MM' }} - </span>
                             <p><span *ngIf= "n.modified">(<span translate>news.modified</span> - </span> 
