@@ -43,7 +43,7 @@
         <div class="tab-pane container " id="taxontable">
           <ngx-datatable *ngIf="page" class="material selection-cell" [rows]="taxa" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
             [rowHeight]="50" [reorderable]='true' [selectionType]="'single'" [count]="taxa.length" [limit]="50" [footerHeight]="50"
-            [sorts]="[{prop: 'vernacularName', dir: 'asc'}]" (select)="onSelect($event)">
+            [sorts]="[{prop: 'vernacularName', dir: 'asc'}]" (select)="onSelect($event)" (page)="onPageChange()">
           </ngx-datatable>
         </div>
       </tab>
