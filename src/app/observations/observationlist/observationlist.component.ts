@@ -6,6 +6,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { Document } from '../../shared/model/Document';
 import { ObservationService } from '../../shared/service/observation.service';
 import { element } from 'protractor';
+import { DatePipe } from '@angular/common';
+import localeFi from '@angular/common/locales/fi';
+
 
 @Component({
   selector: 'vrs-observationlist',
@@ -25,7 +28,8 @@ export class ObservationlistComponent implements OnInit {
   loggedIn = false;
 
 
-  constructor(private translate: TranslateService, private router: Router, private observationService: ObservationService, private userService: UserService) { }
+  constructor(private translate: TranslateService, private router: Router, private observationService: ObservationService, private userService: UserService,
+    private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.loggedIn = UserService.loggedIn();
@@ -45,6 +49,8 @@ export class ObservationlistComponent implements OnInit {
       this.observations = data.results;
       console.log(this.observations);
       this.observations.forEach(observationObject => {
+        observationObject.dateCreated = this.datePipe.transform(observationObject.dateCreated, 'dd.MM.yyyy HH:mm');
+        observationObject.dateEdited = this.datePipe.transform(observationObject.dateEdited, 'dd.MM.yyyy HH:mm');
         observationObject.municipality = observationObject.gatherings[0].municipality;
       });
       this.columns = [
