@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
   menu: Array<any> = new Array();
   loginSub: Subscription;
   translateSub: Subscription;
-  parentId: string = "";
+  rootId: string = "";
   currentId: string= "";
   
   constructor(private modalService: BsModalService, private router: Router, private userService: UserService,
@@ -49,29 +49,21 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.translate.onLangChange.subscribe((event) =>{
       this.setCMSRootId(event.lang);
-      this.updateMenu();
+      this.update();
+    });  
 
-      //let currentUrl = window.location.href;
-      //let newUrl = currentUrl.replace(/i-[0-9]+/,'i-155');
-      //window.location.href= newUrl;
-      
-  
-    });
   }
 
   /**
-   * Fetches new static content from API starting with root id, which returns children content array 
-   * and then loops through children and fetches their content
+   * Fetches static content from API with rootId to populate navbar menu
    */
-  updateMenu(){
-    this.informationService.getInformation(this.parentId).subscribe((data) => {
+  update(){
+    this.informationService.getInformation(this.rootId).subscribe((data) => {
       this.menu= [];
       for(let c of data.children) {
-        this.informationService.getInformation(c.id).subscribe((data)=>{
-          this.menu.push(data);
-        })
+          this.menu.push(c);
       }
-    })
+    });
   }
 
   /**
@@ -80,13 +72,13 @@ export class NavbarComponent implements OnInit {
 
   setCMSRootId(lang: string) {
     if (lang== "fi"){
-      this.parentId= "i-2";
+      this.rootId= "i-2";
     }
     if (lang== "en"){
-      this.parentId= "i-16";
+      this.rootId= "i-16";
     }
     if (lang== "sv"){
-      this.parentId= "i-14";
+      this.rootId= "i-14";
     }
   }
 

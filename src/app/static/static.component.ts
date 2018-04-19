@@ -23,6 +23,7 @@ export class StaticComponent implements OnInit {
   public scontent: Object;
   id: String;
   sub: Subscription;
+  private subTrans: Subscription
   child_pages: Array<any>;
 
   constructor(public informationService: InformationService, private route: ActivatedRoute, 
@@ -33,10 +34,12 @@ export class StaticComponent implements OnInit {
    */
 
   ngOnInit() {
+    this.subTrans = this.translate.onLangChange.subscribe(this.getInformation.bind(this));
     this.loadContent();
     this.sub = this.router.events.filter(e => e instanceof NavigationEnd).subscribe((data)=>{
       this.loadContent();
     });
+    
   }
 
   loadContent() {
