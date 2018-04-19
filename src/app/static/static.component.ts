@@ -20,7 +20,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class StaticComponent implements OnInit {
 
-
   public scontent: Object;
   @Input() id: string;
   sub: Subscription;
@@ -32,7 +31,7 @@ export class StaticComponent implements OnInit {
 
   /**
    * Captures 'id' from url route and passes it to getInformation(id)
-   */
+   */ 
 
   ngOnInit() {
     this.loadContent();
