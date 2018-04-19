@@ -199,12 +199,12 @@ export class ApiService {
   * @param id Id of the form
   * @param lang Language of the form
   */
-  formById(endpoint: LajiApi.Endpoints.form, id: string, query: LajiApi.Query): Observable<any>;
-  formById(endpoint: LajiApi.Endpoints, id: string, query: object = {}): Observable<any> {
+  formById(endpoint: LajiApi.Endpoints.form, id: string, lang: string): Observable<any>;
+  formById(endpoint: LajiApi.Endpoints, id: string, lang: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.get(
       url,
-      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+      { params: { lang: lang, 'access_token': environment.lajiApi.accessToken } }
     );
   }
   documentsByPersonToken(endpoint: LajiApi.Endpoints.documents, query: LajiApi.Query): Observable<any>;
@@ -216,7 +216,7 @@ export class ApiService {
   }
 
   /**
-   * Document API POST
+   * Document API for POST methods
    * @param endpoint Target API endpoint
    * @param userToken Persontoken received from laji-auth on login 
    * @param data Data to send
@@ -231,7 +231,7 @@ export class ApiService {
     );
   }
   /**
-   * Document API GET
+   * Document API for GET methods
    * @param endpoint Target API endpoint
    * @param userToken Persontoken received from laji-auth on login
    * @param documentId ID of the document

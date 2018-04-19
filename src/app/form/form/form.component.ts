@@ -30,6 +30,7 @@ export class FormComponent implements AfterViewInit, OnDestroy {
   private personToken: string;
 
   formData: any;
+  documentData: any;
   lajiFormWrapper: any;
   lang: string;
   loggedIn = false;
@@ -51,7 +52,7 @@ export class FormComponent implements AfterViewInit, OnDestroy {
         this.id = params['formId'];
         this.documentId = params['documentId'];
         if (this.documentId) {
-          this.documentData();
+          this.loadDocument();
         } else {
           this.initForm();
         }
@@ -92,11 +93,10 @@ export class FormComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  documentData() {
-    this.docService.getDocumentById(this.personToken, this.documentId).subscribe(data => {
-      this.formData = {};
-      this.formData.formData = data;
-    }, null, () => this.initForm());
+  loadDocument() {
+    this.formService.loadFormWithDocument(this.id, this.translate.currentLang, this.documentId, this.personToken).subscribe(() => {
+      this.initForm();
+    });
   }
 
   onLangChange() {
