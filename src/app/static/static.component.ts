@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { InformationService } from '../shared/service/information.service';
 import { Information } from '../shared/model/Information';
 import { ActivatedRoute, Router, NavigationEnd, RouterLink } from '@angular/router';
@@ -20,8 +20,9 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class StaticComponent implements OnInit {
 
+
   public scontent: Object;
-  id: String;
+  @Input() id: string;
   sub: Subscription;
   private subTrans: Subscription;
   child_pages: Array<any>;
@@ -43,9 +44,11 @@ export class StaticComponent implements OnInit {
   }
 
   loadContent() {
-    this.route.params.subscribe(params => {
+    if(!this.id){
+      this.route.params.subscribe(params => {
       this.id = params['id'];
-    });
+      });
+    }
     this.getInformation(this.id);
   }
   
