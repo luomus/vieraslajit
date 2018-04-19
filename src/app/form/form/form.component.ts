@@ -28,13 +28,13 @@ export class FormComponent implements AfterViewInit, OnDestroy {
   private id: string;
   private documentId: string;
   private personToken: string;
+  private edit = false;
 
   formData: any;
   documentData: any;
   lajiFormWrapper: any;
   lang: string;
   loggedIn = false;
-  private _block = false;
 
   constructor(@Inject(ElementRef) elementRef: ElementRef,
     private formService: FormService, private apiClient: FormApiClient, private docService: DocumentService,
@@ -52,7 +52,7 @@ export class FormComponent implements AfterViewInit, OnDestroy {
         this.id = params['formId'];
         this.documentId = params['documentId'];
         if (this.documentId) {
-          this.loadDocument();
+          this.initFormWithDocument();
         } else {
           this.initForm();
         }
@@ -93,8 +93,9 @@ export class FormComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  loadDocument() {
+  initFormWithDocument() {
     this.formService.loadFormWithDocument(this.id, this.translate.currentLang, this.documentId, this.personToken).subscribe(() => {
+      this.edit = true;
       this.initForm();
     });
   }
@@ -154,7 +155,9 @@ export class FormComponent implements AfterViewInit, OnDestroy {
 
   _onSubmit(data) {
     this.ngZone.run(() => {
-      const doc$ = this.docService.createDocument(UserService.getToken(), this.formData.formData);
+      const doc$ = this.edit ?
+        this.docService.updateDocument(this.documentId, this.formData.formData, this.personToken) :
+        this.docService.createDocument(this.personToken, this.formData.formData);
       doc$.subscribe(
         (result) => {
           console.log('Result');

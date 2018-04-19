@@ -25,7 +25,7 @@ export class FormService {
       this.apiService.formById(LajiApi.Endpoints.form, formId, lang)
         .do(result => this.formCache[formId] = result);
 
-    const data$ = this.apiService.documentApiGet(LajiApi.Endpoints.getDocument, personToken, documentId);
+    const data$ = this.apiService.documentGet(LajiApi.Endpoints.getDocument, personToken, documentId);
 
     return data$
       .switchMap(data => {

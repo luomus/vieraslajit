@@ -216,35 +216,43 @@ export class ApiService {
   }
 
   /**
-   * Document API for POST methods
+   * Document API for POST method
    * @param endpoint Target API endpoint
-   * @param userToken Persontoken received from laji-auth on login 
+   * @param personToken Persontoken received from laji-auth on login 
    * @param data Data to send
    */
-  documentApiPost(endpoint: LajiApi.Endpoints.createDocument, userToken: string, data: Document): Observable<Document>;
-  documentApiPost(endpoint: LajiApi.Endpoints, userToken: string, data?: Document, documentId?: string): Observable<any> {
+  documentPost(endpoint: LajiApi.Endpoints.createDocument, personToken: string, data: Document): Observable<Document>;
+  documentPost(endpoint: LajiApi.Endpoints, personToken: string, data?: Document, documentId?: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.post(
       url,
       JSON.stringify(data),
-      { params: { 'personToken': userToken, 'access_token': environment.lajiApi.accessToken } }
+      { params: { 'personToken': personToken, 'access_token': environment.lajiApi.accessToken } }
     );
   }
   /**
    * Document API for GET methods
    * @param endpoint Target API endpoint
-   * @param userToken Persontoken received from laji-auth on login
+   * @param personToken Persontoken received from laji-auth on login
    * @param documentId ID of the document
    */
-  documentApiGet(endpoint: LajiApi.Endpoints.getDocument, userToken: string, documentId: string): Observable<Document>;
-  documentApiGet(endpoint: LajiApi.Endpoints, userToken: string, documentId: string): Observable<any> {
+  documentGet(endpoint: LajiApi.Endpoints.getDocument, personToken: string, documentId: string): Observable<Document>;
+  documentGet(endpoint: LajiApi.Endpoints, personToken: string, documentId: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', documentId);
     return this.httpClient.get(
       url,
-      { params: { 'personToken': userToken, 'access_token': environment.lajiApi.accessToken } }
+      { params: { 'personToken': personToken, 'access_token': environment.lajiApi.accessToken } }
     );
   }
 
+  documentUpdate(endpoint: LajiApi.Endpoints.updateDocument, id: string, data: Document, personToken: string): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
+    return this.httpClient.put(
+      url,
+      JSON.stringify(data),
+      { params: { 'personToken': personToken, 'access_token': environment.lajiApi.accessToken } }
+    );
+  }
 }
 
 export namespace LajiApi {
@@ -267,7 +275,8 @@ export namespace LajiApi {
     information = 'information/%id%',
     form = 'forms/%id%',
     createDocument = 'documents',
-    getDocument = 'documents/%id%'
+    getDocument = 'documents/%id%',
+    updateDocument = 'documents/%id%'
   }
   /** Possible query parameters. */
   export interface Query {
