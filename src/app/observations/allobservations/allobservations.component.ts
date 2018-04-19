@@ -7,6 +7,9 @@ import { Warehouse, WarehouseQueryList } from '../../shared/model/Warehouse';
 import { ObservationService } from '../../shared/service/observation.service';
 import { element } from 'protractor';
 import { PagedResult } from '../../shared/model/PagedResult';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import * as $ from 'jquery';
+
 
 
 @Component({
@@ -26,8 +29,8 @@ export class AllobservationsComponent implements OnInit {
   personToken: string;
   currentPage = 1;
   pageData = [];
-  itemsPerPage=20;
-
+  maxSize = 5;
+  itemsPerPage = 20;
  
 
 
@@ -39,28 +42,32 @@ export class AllobservationsComponent implements OnInit {
     this.pageSize= "1000";
     this.update();
   }
-  update( pageNumber: string = '1'){
-    this.observationservice.getAllObservations(this.pageSize).subscribe(data =>{
+  update(){
+    this.columns = [
+      { prop: 'taxonVerbatim', name:this.translate.instant('taxon.name') , draggable: false},
+      { prop: 'scientificName', name:this.translate.instant('taxon.scientific') , draggable: false},
+      { prop: 'team', name:this.translate.instant('taxon.scientific') , draggable: false},
+      { prop: 'municipalityDisplayname', name:this.translate.instant('document.location') , draggable: false},
+      { prop: 'displayDateTime', name:this.translate.instant('observation.datetime')}
+    ];
+    this.getObservations();
+    
+    
+  }
+
+  getObservations(pageNumber: string = '1'){
+    this.observationservice.getAllObservations(this.pageSize,pageNumber).subscribe(data =>{
       this.page = data;
       this.observations= data.results;
-      console.log(this.observations);
       this.observations.forEach(observationObject=>{
         observationObject.taxonVerbatim = observationObject.unit.taxonVerbatim;
+        observationObject.team = observationObject.gathering.team;
         observationObject.scientificName = observationObject.unit.linkings.taxon.scientificName;
         observationObject.municipalityDisplayname = observationObject.gathering.interpretations.municipalityDisplayname;
         observationObject.displayDateTime = observationObject.gathering.displayDateTime;
        });
-      
-      this.pageData = this.observations.slice(0, this.itemsPerPage);
+      this.pageData = this.observations.slice(0,20);
       },() => null, () => this.loader());
-
-    this.columns = [
-      { prop: 'taxonVerbatim', name:this.translate.instant('taxon.name') , draggable: false},
-      { prop: 'scientificName', name:this.translate.instant('taxon.scientific') , draggable: false},
-      { prop: 'municipalityDisplayname', name:this.translate.instant('document.location') , draggable: false},
-      { prop: 'displayDateTime', name:this.translate.instant('observation.datetime')}
-    ];
-    
     
   }
   loader() {
@@ -73,10 +80,15 @@ export class AllobservationsComponent implements OnInit {
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
 
-  pageChanged(event) {
-    let start = (event.page - 1) * event.itemsPerPage;
-    let end = start + event.itemsPerPage;
-    this.pageData = this.observations.slice(start, end);
+  pageChanged(event): void {
+    let startItem = (event.page - 1) * event.itemsPerPage;
+    let endItem = event.page * event.itemsPerPage;
+    this.pageData = this.observations.slice(startItem, endItem);
+    this.onPageChange();
   }
+  onPageChange() {
+    $('html, body').animate({ scrollTop: 0 }, 0);
+  }
+
 
 }

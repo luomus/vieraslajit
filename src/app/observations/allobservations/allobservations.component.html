@@ -4,11 +4,10 @@
     <div class="content">
         <ng-container>
           <div class="tab-pane container" id="observationlisttable">
-              <ngx-datatable class="material selection-cell" [rows]="observations" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
-              [rowHeight]="50" [reorderable]='true' [selectionType]="'single'"  [footerHeight]="50" (select)="onSelect($event)">
+              <ngx-datatable *ngIf="page" class="material selection-cell" [rows]="observations" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
+              [rowHeight]="50" [sorts]="[{prop: 'vernacularName', dir: 'asc'}]"  [reorderable]='true' [selectionType]="'single'" limit="50" [footerHeight]="50"(page)="onPageChange()">
               </ngx-datatable>
-          </div>    
-          <pagination [totalItems]="observations.length" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+          </div>  
       </ng-container>
     </div>
   </div>

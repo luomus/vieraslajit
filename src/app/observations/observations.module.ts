@@ -7,8 +7,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ApiService } from '../shared/api/api.service';
 import {ObservationService} from '../shared/service/observation.service'
 import { AllobservationsComponent } from './allobservations/allobservations.component';
-import { AccordionModule, CollapseModule, PaginationModule, TabsModule } from 'ngx-bootstrap';
+import { AccordionModule, CollapseModule, TabsModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 @NgModule({

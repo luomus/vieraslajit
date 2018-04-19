@@ -4,6 +4,7 @@ import {ObservationlistComponent } from './observationlist/observationlist.compo
 import {AllobservationsComponent} from'./allobservations/allobservations.component';
 
 
+
 const routes: Routes = [
   { path: '', component: ObservationlistComponent },
   { path: 'all', component: AllobservationsComponent }

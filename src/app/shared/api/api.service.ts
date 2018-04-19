@@ -281,6 +281,7 @@ export namespace LajiApi {
     includeMedia?: boolean;
     adminStatusFilters?:String;
     personToken?:String;
+    invasive?:boolean;
   
 
   }
