@@ -26,7 +26,8 @@
                     <li class="dropdown" id="dropdown-about" dropdown>
                         <a dropdownToggle class="dropdown-toggle" id="dropdown-toggle" translate>navigation.about <span class="caret"></span></a>
                             <ul *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
-                                <li *ngFor="let e of menu" role="menuitem"><a class="dropdown-item" id="dropdown-menu-item" routerLink="static/{{e.id}}">{{e.title}}</a></li>
+                                <li *ngFor="let e of menu" role="menuitem"><a class="dropdown-item" id="dropdown-menu-item"
+                                     routerLink="static/{{e.id}}">{{e.title}}</a></li>
                             </ul>
                             <!--<ul *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
                                 <li role="menuitem"><a class="dropdown-item" id="dropdown-menu-item" routerLink="#" translate>dropdown.info</a></li>
