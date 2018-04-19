@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { UserService } from '../../shared/service/user.service';
@@ -8,6 +8,7 @@ import { ObservationService } from '../../shared/service/observation.service';
 import { element } from 'protractor';
 import { DatePipe } from '@angular/common';
 import localeFi from '@angular/common/locales/fi';
+import { AlertService } from '../../shared/service/alert.service';
 
 
 @Component({
@@ -17,23 +18,26 @@ import localeFi from '@angular/common/locales/fi';
   encapsulation: ViewEncapsulation.None
 
 })
-export class ObservationlistComponent implements OnInit {
+export class ObservationlistComponent implements OnInit, OnDestroy {
   @Input() id: string;
   public loading = true;
   private subTrans: Subscription;
+  private alertSub: Subscription;
   private pageSize: string;
   observations: Array<any> = [];
   columns = [];
   personToken: string;
   loggedIn = false;
+  showAlert: boolean;
 
 
   constructor(private translate: TranslateService, private router: Router, private observationService: ObservationService, private userService: UserService,
-    private datePipe: DatePipe) { }
+    private datePipe: DatePipe, private alertService: AlertService) { }
 
   ngOnInit() {
     this.loggedIn = UserService.loggedIn();
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.alertSub = this.alertService.getAlert().subscribe(alert => { this.showAlert = alert.alert; console.log(alert.alert) });
     this.pageSize = "20";
     if (this.loggedIn) {
       this.loading = true;
@@ -75,6 +79,16 @@ export class ObservationlistComponent implements OnInit {
     }
   }
 
+  alertClosed() {
+    this.showAlert = false;
+    console.log("Closed");
+    this.alertService.clearAlert();
+  }
 
-
+  ngOnDestroy() {
+    this.subTrans.unsubscribe();
+    if (this.alertSub) {
+      this.alertSub.unsubscribe();
+    }
+  }
 }

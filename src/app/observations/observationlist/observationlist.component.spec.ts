@@ -9,6 +9,8 @@ import { SharedModule } from '../../shared/shared.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DatePipe } from '@angular/common';
+import { AlertModule } from 'ngx-bootstrap';
+import { AlertService } from '../../shared/service/alert.service';
 
 describe('ObservationlistComponent', () => {
   let component: ObservationlistComponent;
@@ -17,8 +19,8 @@ describe('ObservationlistComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ObservationlistComponent],
-      imports: [HttpClientModule, SharedModule, TranslateModule.forRoot(), NgxDatatableModule, RouterTestingModule],
-      providers: [UserService, ObservationService, ApiService, DatePipe]
+      imports: [HttpClientModule, SharedModule, TranslateModule.forRoot(), NgxDatatableModule, RouterTestingModule, AlertModule],
+      providers: [UserService, ObservationService, ApiService, DatePipe, AlertService]
     })
       .compileComponents();
   }));

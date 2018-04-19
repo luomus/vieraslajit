@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserService, Role } from '../../shared/service/user.service';
 import { DocumentService } from '../../shared/service/document.service';
 import { ObservationService } from '../../shared/service/observation.service';
+import { AlertService } from '../../shared/service/alert.service';
 
 @Component({
   selector: 'vrs-form',
@@ -40,7 +41,7 @@ export class FormComponent implements AfterViewInit, OnDestroy {
     private formService: FormService, private apiClient: FormApiClient, private docService: DocumentService,
     private route: ActivatedRoute, private router: Router, private translate: TranslateService,
     private userService: UserService, private ngZone: NgZone, private cd: ChangeDetectorRef,
-    private el: ElementRef) {
+    private el: ElementRef, private alertService: AlertService) {
     this.loggedIn = UserService.loggedIn();
   }
 
@@ -160,10 +161,7 @@ export class FormComponent implements AfterViewInit, OnDestroy {
         this.docService.createDocument(this.personToken, this.formData.formData);
       doc$.subscribe(
         (result) => {
-          console.log('Result');
-          console.log(result);
-          /* Onnistuneen lähetyksen jälkeen ohjaa käyttäjä havainnot sivulle
-          ja näytä onnistumisviesti (alert tms.).*/
+          this.alertService.sendAlert(true);
           this.router.navigate(['observations']);
         },
         (error) => {

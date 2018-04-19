@@ -6,7 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ApiService } from '../shared/api/api.service';
 import { ObservationService } from '../shared/service/observation.service'
-import { TabsModule } from 'ngx-bootstrap/tabs';
+import { TabsModule, AlertModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -14,7 +14,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     ObservationsRoutingModule,
     SharedModule,
     NgxDatatableModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    AlertModule.forRoot()
   ],
   declarations: [ObservationlistComponent],
   providers: [ApiService, ObservationService, DatePipe]
