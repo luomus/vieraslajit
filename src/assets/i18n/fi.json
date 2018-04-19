@@ -81,5 +81,8 @@
   "document.dayOfYearEdited":"Muokattu",
   "document.location":"Paikka",
   "observations.intro":"Löydät omat havaintosi täältä",
+  "observations.all":"Kaikkien käyttäjien lähettämät havainnot",
+  "observation.team":"Havainnoija",
+  "observation.datetime":"Päivämäärä",
   "form.send": "Lähetä"
 }

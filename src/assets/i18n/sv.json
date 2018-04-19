@@ -63,5 +63,6 @@
   "observations.myobservations":"Mina observationer",
   "observations.intro":"Du hittar din egen observationer här",
   "document.dayOfYearBegin":"Startdatum",
-  "document.dayOfYearEdited":"Redigerad"
+  "document.dayOfYearEdited":"Redigerad",
+  "observations.all":"Alla observationer som skickas av användare"
   }

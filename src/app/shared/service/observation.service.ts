@@ -20,9 +20,9 @@ export class ObservationService {
           .documentsByPersonToken(LajiApi.Endpoints.documents, {personToken: personToken, pageSize: pageSize});
   }
 
-  getAllObservations(pageSize: string):  Observable<any> {
+  getAllObservations(pageSize: string):  Observable<PagedResult<WarehouseQueryList>> {
     return this.apiService
-          .documentsByPersonToken(LajiApi.Endpoints.documents, {pageSize: pageSize});
+          .getObservations(LajiApi.Endpoints.warehousequerylist, {pageSize: pageSize});
   }
 
 

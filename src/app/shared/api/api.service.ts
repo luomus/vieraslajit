@@ -224,8 +224,8 @@ export class ApiService {
       url,
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
 
-  getAllObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query:LajiApi.Query ):Observable<any>;
-  getAllObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query: object={}):Observable<any>{
+  getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query:LajiApi.Query ):Observable<any>;
+  getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query: object={}):Observable<any>{
         const url = `${environment.lajiApi.url}${endpoint}`;
         return this.httpClient.get(
           url,

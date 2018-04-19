@@ -6,8 +6,10 @@ import { SharedModule } from '../shared/shared.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ApiService } from '../shared/api/api.service';
 import {ObservationService} from '../shared/service/observation.service'
-import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AllobservationsComponent } from './allobservations/allobservations.component';
+import { AccordionModule, CollapseModule, PaginationModule, TabsModule } from 'ngx-bootstrap';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   imports: [
@@ -15,7 +17,12 @@ import { AllobservationsComponent } from './allobservations/allobservations.comp
     ObservationsRoutingModule,
     SharedModule,
     NgxDatatableModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    AccordionModule,
+    CollapseModule,
+    PaginationModule.forRoot(),
+    TabsModule,
+    FormsModule
   ],
   declarations: [ObservationlistComponent, AllobservationsComponent],
   providers:[ApiService,ObservationService]
