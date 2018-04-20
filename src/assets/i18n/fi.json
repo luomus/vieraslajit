@@ -86,5 +86,6 @@
   "document.dayOfYearEdited":"Muokattu",
   "document.location":"Paikka",
   "observations.intro":"Löydät omat havaintosi täältä",
-  "form.send": "Lähetä"
+  "form.send": "Lähetä",
+  "form.submitted": "Lähetys onnistui!"
 }
