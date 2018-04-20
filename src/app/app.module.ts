@@ -4,9 +4,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsDropdownModule, AccordionModule, TabsModule, PaginationModule } from 'ngx-bootstrap';
-
 import { VrsRouterModule } from './vrs-router.module';
-
 import { AppComponent } from './app.component';
 import { SpinnerModule } from './shared-modules/spinner/spinner.module';
 import { EditcmsModule } from './shared-modules/editcms/editcms.module';

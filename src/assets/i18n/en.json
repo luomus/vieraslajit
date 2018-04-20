@@ -77,7 +77,9 @@
   "document.dayOfYearBegin": "Starting date",
   "document.dayOfYearEdited":"Edited",
   "document.location":"Location",
-  "observations.intro":"You can find your own observations here"
-  
+  "observations.intro":"You can find your own observations here",
+  "form.send": "Send",
+  "form.submitted": "Form submitted!"
+
 
 }
