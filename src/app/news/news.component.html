@@ -1,11 +1,10 @@
 <div class="container my-3">
 
-  <!--
   <ul class="nav nav-pills">
-    <li class="navpill"><a href="#"> Kaikki </a></li>
     <li class="navpill" ><a href="#"> Uutiset </a></li>
     <li class="navpill"><a href="#"> Tekniset tiedotteet</a></li>
-  </ul>-->
+    <li class="navpill">Kaikki</li>
+  </ul>
 
   <div *ngFor="let newsElement of news" class="news-post my-3">
     <div class="row news-header p-3">
@@ -34,29 +33,6 @@
       </div>
     </div>
   </div>
-
-<!--
-  <div class="row card-deck">
-    <div *ngFor="let newsElement of news" class= "col-sm-12 col-lg-8">
-      <div class= "card-block">
-        <div class = "card" style= margin-bottom:30px>
-            <img class="card-img-top img-fluid" src="{{this.getImageToDisplay(newsElement)}}" alt="News image">
-            <div class="card-header text-muted">
-                {{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }} {{newsElement.author}}
-                <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span> 
-                {{newsElement.modified | date: 'dd.MM.yyyy HH:MM'}}
-                <span *ngIf= "newsElement.modified">)</span>
-          </div>
-            <div class="card-body">
-                <h5 class="card-title">{{newsElement.title}}</h5>
-                <p class = "card-text" [innerHTML]="newsElement.content"></p>
-            </div>  
-        </div>  
-      </div>
-    </div>
-                                                      
-  </div>
--->
 
   <nav aria-label="Pagination">
     <ul class="pagination" *ngIf="pages.length <= 7">

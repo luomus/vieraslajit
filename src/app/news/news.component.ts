@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -11,24 +11,24 @@ import { PagedResult } from '../shared/model/PagedResult';
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss']
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent implements OnInit, OnDestroy {
   
   private subTrans: Subscription;
   private data: PagedResult<NewsElement>;
   news: Array<NewsElement> = [];
   pages: Array<number> = [];
-  private pageSize = 5;
+  private pageSize: number = 5;
   private imageToDisplay: string;
 
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
   ngOnInit() {
     this.subTrans = this.translate.onLangChange.subscribe(this.getNews.bind(this));
-    this.getNews(1);
+    this.getNews("1","vieraslajit.fi");
   }
 
-  getNews(page) {
-    this.newsService.getPage(page,this.pageSize.toString(), this.translate.currentLang, "vieraslajit.fi")
+  getNews(page:string, tags:string) {
+    this.newsService.getPage(page,this.pageSize.toString(), this.translate.currentLang, tags)
     .subscribe((data) => {
       this.news = data.results;
       this.data = data;
@@ -45,8 +45,11 @@ export class NewsComponent implements OnInit {
     } else {
       this.imageToDisplay= "https://media.istockphoto.com/photos/sunrise-on-yosemite-valley-picture-id505872990?k=6&m=505872990&s=612x612&w=0&h=XcdHhkC9PF9-saYT6n_GQD-0Hf8dbI_Q4wfYlZZGpNk=";
     } 
-    console.log(newsElement);
     return this.imageToDisplay;
+  }
+
+  ngOnDestroy(){
+    this.subTrans.unsubscribe();
   }
 
 }
