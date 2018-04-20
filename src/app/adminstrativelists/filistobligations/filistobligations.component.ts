@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { StaticComponent } from '../../static/static.component';
 
 @Component({
   selector: 'vrs-filistobligations',
