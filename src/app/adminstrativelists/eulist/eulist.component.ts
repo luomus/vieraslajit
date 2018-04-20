@@ -31,7 +31,6 @@ export class EulistComponent implements OnInit {
     this.subTransList = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.subTransAdm= this.translate.onLangChange.subscribe((event) =>{
         this.setStaticId(event.lang);
-        this.update();
     });
     this.update();
   }
