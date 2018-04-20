@@ -1,5 +1,7 @@
 <laji-spinner [spinning]="loading" [overlay]="true">
-  <ng-container *ngIf=!loading>
+</laji-spinner>
+
+<ng-container *ngIf=!loading>
 <div [collapse]="comparison" class="container">
   <div class="row head">
     <h1 id="taxonh1">
@@ -156,5 +158,3 @@
   <vrs-taxon-comparison [taxon]="taxon" [media]="media[0]"></vrs-taxon-comparison>
 </div>
 </ng-container>
-<br>
-</laji-spinner>
