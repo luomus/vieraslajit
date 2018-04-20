@@ -18,16 +18,20 @@ export class NewsComponent implements OnInit, OnDestroy {
   news: Array<NewsElement> = [];
   pages: Array<number> = [];
   private pageSize: number = 5;
+  private currentTags: string;
   private imageToDisplay: string;
 
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
   ngOnInit() {
-    this.subTrans = this.translate.onLangChange.subscribe(this.getNews.bind(this));
+    this.subTrans= this.translate.onLangChange.subscribe((event) =>{
+      this.getNews("1",this.currentTags);
+  });
     this.getNews("1","vieraslajit.fi");
   }
 
   getNews(page:string, tags:string) {
+    this.currentTags=tags;
     this.newsService.getPage(page,this.pageSize.toString(), this.translate.currentLang, tags)
     .subscribe((data) => {
       this.news = data.results;
