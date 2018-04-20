@@ -91,6 +91,8 @@ export class UserService {
         this.loginStateChange.next();
         s.next();
       });
+    }, (error) => {
+      s.next(error);
     });
     return s;
   }
