@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { EulistobligationsComponent } from './eulistobligations.component';
 
 describe('EulistobligationsComponent', () => {
@@ -8,7 +8,8 @@ describe('EulistobligationsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EulistobligationsComponent ]
+      declarations: [ EulistobligationsComponent ],
+      imports: [TranslateModule.forRoot()]
     })
     .compileComponents();
   }));
