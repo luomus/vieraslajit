@@ -90,6 +90,8 @@ export class UserService {
         this.setUserProperty(userProperty.LOGIN, "true");
         this.loginStateChange.next();
         s.next();
+      }, (error) => {
+        s.next(error);
       });
     }, (error) => {
       s.next(error);

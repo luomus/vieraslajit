@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
       UserService.setToken(this.activatedRoute.snapshot.queryParams['token']);
       // update userproperties with laji api data
       this.userService.updateUserProperties(UserService.getToken()).subscribe((err)=>{
-        console.log(err);
         if(err) {
           alert("Login failed: Invalid person-token\nStatus: " + err.status + "\nDescription: " + err.statusText);
           this.router.navigateByUrl("/home");
