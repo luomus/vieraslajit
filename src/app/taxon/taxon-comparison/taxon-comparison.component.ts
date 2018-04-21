@@ -14,8 +14,8 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
   @Input() taxon: Taxonomy;
   @Input() media: TaxonomyImage;
   private subTrans: any;
-  private loading: boolean = true;
-
+  
+  loading: boolean = true;
   groups = [];
   taxonomy: Taxonomy[];
 
