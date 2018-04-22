@@ -38,6 +38,8 @@ export class ObservationComponent implements OnInit{
     let coordinates = [];
     let municipality= "";
     let date= "";
+    let isReliable: boolean = false;
+    let notes="";
 
     this.observations
       .forEach((observationObject) => {
@@ -48,8 +50,10 @@ export class ObservationComponent implements OnInit{
           ]
           municipality = observationObject.gathering.interpretations.municipalityDisplayname;
           date = observationObject.gathering.displayDateTime;
+          notes = observationObject.unit.notes || "";
+          isReliable = observationObject.unit.recordBasis !== "HUMAN_OBSERVATION_UNSPECIFIED";
 
-          const dataObject= this.returnFeatureCollectionAndPopup(this.returnFeatures(coordinates),municipality,date);
+          const dataObject= this.returnFeatureCollectionAndPopup(this.returnFeatures(coordinates), municipality, date, notes, isReliable);
           this.mapData.push(dataObject);
         }
       });
@@ -64,26 +68,54 @@ export class ObservationComponent implements OnInit{
         'geometry': {
           'type': 'Point',
           'coordinates': coordinates,
-          "radius": 5000
+          "radius": 50000
         }
     })
     return features;
   }
-  
-  returnFeatureCollectionAndPopup(features:Array<any>,municipality:string, date:string){
+
+  returnFeatureCollectionAndPopup(features:Array<any>,municipality:string, date:string, notes:string, isReliable:boolean){
     const dataObject= {
       featureCollection: {
         'type': 'FeatureCollection',
         'features': features
       },
+
+      getFeatureStyle() {
+        let color = "#f89525";
+        let opacity = 0.7;
+        let fillColor = "#f89525";
+        let fillOpacity = 0.3;
+
+        if (isReliable) {
+          color = "#41967b";
+          fillColor = "#41967b";
+        }
+        if (date.substring(0, 4) <= "2008"){
+          fillOpacity = 0.00;
+        }
+        if (date.substring(0, 4) == "2018"){
+          opacity = 0.8;
+          fillOpacity = 0.5;
+        }
+
+        return {
+                opacity: opacity,
+                fillOpacity: fillOpacity,
+                color: color,
+                fillColor: fillColor,
+                weight: 3
+        }
+      },
+
       getPopup(){
-        return municipality+ ", "+date;
+        return date.substring(8, 10) + "." + date.substring(5, 7) + "." + date.substring(0, 4) + " " + municipality + "<br>" + notes;
       }
     }
     return dataObject;
   }
 
-  initializeMap() {       
+  initializeMap() {
     var LajiMap = require("laji-map").default;
     var map = new LajiMap(this.mapOptions());
   }
@@ -93,13 +125,13 @@ export class ObservationComponent implements OnInit{
       rootElem: document.getElementById("map"),
       popupOnHover: false,
       center: {
-        "lat": 65.5,
+        "lat": 65.2,
         "lng": 27
       },
-      zoom: 1,
+      zoom: 1.4,
       zoomToData : false,
-      tileLayerName: "openStreetMap", 
-      controls: {  
+      tileLayerName: "openStreetMap",
+      controls: {
       },
       data: this.mapData
     };
@@ -107,4 +139,3 @@ export class ObservationComponent implements OnInit{
   }
 
 }
- 
