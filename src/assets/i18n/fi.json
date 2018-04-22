@@ -87,5 +87,6 @@
   "observations.all":"Kaikkien käyttäjien lähettämät havainnot",
   "observation.team":"Havainnoija",
   "observation.datetime":"Päivämäärä",
-  "form.send": "Lähetä"
+  "form.send": "Lähetä",
+  "observations.onmap":"Näytä kartalla"
 }

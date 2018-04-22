@@ -6,8 +6,8 @@ import {AllobservationsComponent} from'./allobservations/allobservations.compone
 
 
 const routes: Routes = [
-  { path: '', component: ObservationlistComponent },
-  { path: 'all', component: AllobservationsComponent }
+  { path: '', component: AllobservationsComponent },
+  { path: 'mine', component: AllobservationsComponent }
 ];
 
 @NgModule({

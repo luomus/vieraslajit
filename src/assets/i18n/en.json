@@ -83,6 +83,7 @@
   "observations.all":"All of the observations sent in by users",
   "observation.team":"Observer",
   "observation.datetime":"Date and time",
-  "form.send": "Send"
+  "form.send": "Send",
+  "observations.onmap":"Show on map"
 
 }

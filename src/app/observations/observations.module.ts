@@ -10,6 +10,8 @@ import { AllobservationsComponent } from './allobservations/allobservations.comp
 import { AccordionModule, CollapseModule, TabsModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ObservationmapComponent } from './observationmap/observationmap.component';
+import { ObservationModule } from '../observation/observation.module';
 
 
 @NgModule({
@@ -23,9 +25,10 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     CollapseModule,
     PaginationModule.forRoot(),
     TabsModule,
-    FormsModule
+    FormsModule,
+    ObservationModule
   ],
-  declarations: [ObservationlistComponent, AllobservationsComponent],
+  declarations: [ObservationlistComponent, AllobservationsComponent, ObservationmapComponent],
   providers:[ApiService,ObservationService]
 })
 export class ObservationsModule { }
