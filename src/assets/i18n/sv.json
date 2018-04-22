@@ -64,6 +64,8 @@
   "stableString.accidental":"Tillfällig",
   "observations.myobservations":"Mina observationer",
   "observations.intro":"Du hittar din egen observationer här",
+  "observations.form.sighting": "Rapportera en observation",
+  "observations.form.help": "Vilkan art?",
   "document.dayOfYearBegin":"Startdatum",
   "document.dayOfYearEdited":"Redigerad",
   "form.login": "Logga in först",
