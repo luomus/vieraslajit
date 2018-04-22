@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { Taxonomy } from '../../shared/model/Taxonomy';
 import { ListService } from '../../shared/service/list.service';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
-
-
+import { StaticComponent } from '../../static/static.component';
+import { StaticContent, findContentID } from './../../../assets/i18n/cms-content';
 
 @Component({
   selector: 'vrs-eulist',
@@ -17,15 +17,21 @@ import { Subscription } from 'rxjs/Subscription';
   
 })
 export class EulistComponent implements OnInit {
-  private subTrans: Subscription;
+  private subTransList: Subscription;
+  private subTransAdm: Subscription;
   eulist: Taxonomy[];
   columns = [];
+  staticId: string;
 
   constructor( private listService: ListService, private translate: TranslateService, private router:Router) { }
 
 
     ngOnInit() {
-    this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.setStaticId(this.translate.currentLang);
+    this.subTransList = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.subTransAdm= this.translate.onLangChange.subscribe((event) =>{
+        this.setStaticId(event.lang);
+    });
     this.update();
   }
 
@@ -49,9 +55,14 @@ export class EulistComponent implements OnInit {
     });
   }
 
+  setStaticId(lang: string){
+    this.staticId= findContentID(StaticContent.EUList, lang);
+  }
+
   ngOnDestroy() {
-    this.subTrans.unsubscribe();
-  } 
+    this.subTransList.unsubscribe();
+    this.subTransAdm.unsubscribe();
+  }
 
   onSelect(event) {
     this.router.navigate(['/taxon', event.selected.shift().id]);

@@ -7,6 +7,10 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminstrativelistsRoutingModule } from './adminstrativelists-routing.module';
 import { ApiService } from '../shared/api/api.service';
 import { ListService } from '../shared/service/list.service';
+import { TabsModule } from 'ngx-bootstrap';
+import { StaticModule } from '../static/static.module';
+import { EulistobligationsComponent } from './eulistobligations/eulistobligations.component';
+import { FilistobligationsComponent } from './filistobligations/filistobligations.component';
 
 /**
  * Declares routes and components for European and Finnish lists of invasive alien species
@@ -16,9 +20,12 @@ import { ListService } from '../shared/service/list.service';
     AdminstrativelistsRoutingModule,
     CommonModule,
     SharedModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    TabsModule,
+    StaticModule
+
   ],
-  declarations: [EulistComponent, FilistComponent],
+  declarations: [EulistComponent, FilistComponent, EulistobligationsComponent, FilistobligationsComponent],
   providers:[ApiService,ListService]
 })
 export class AdminstrativelistsModule { }
