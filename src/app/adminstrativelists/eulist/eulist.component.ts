@@ -6,7 +6,7 @@ import { ListService } from '../../shared/service/list.service';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
 import { StaticComponent } from '../../static/static.component';
-
+import { StaticContent, findContentID } from './../../../assets/i18n/cms-content';
 
 @Component({
   selector: 'vrs-eulist',
@@ -56,15 +56,7 @@ export class EulistComponent implements OnInit {
   }
 
   setStaticId(lang: string){
-    if (lang== "fi"){
-      this.staticId= "i-113";
-    }
-    if (lang== "en"){
-      this.staticId= "i-117";
-    }
-    if (lang== "sv"){
-      this.staticId= "i-121";
-    }
+    this.staticId= findContentID(StaticContent.EUList, lang);
   }
 
   ngOnDestroy() {
