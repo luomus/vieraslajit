@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
-import { UserService} from '../../shared/service/user.service';
+import { UserService } from '../../shared/service/user.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Warehouse, WarehouseQueryList } from '../../shared/model/Warehouse';
 import { ObservationService } from '../../shared/service/observation.service';
@@ -23,52 +23,52 @@ export class AllobservationsComponent implements OnInit {
   public loading = true;
   private subTrans: Subscription;
   private pageSize: string;
-  page:PagedResult<WarehouseQueryList>;
-  observations:Array<any> = [];
+  page: PagedResult<WarehouseQueryList>;
+  observations: Array<any> = [];
   columns = [];
   personToken: string;
   currentPage = 1;
   pageData = [];
   maxSize = 5;
   itemsPerPage = 20;
- 
 
 
-  constructor(private translate : TranslateService, private router : Router, private observationservice: ObservationService) { }
+
+  constructor(private translate: TranslateService, private router: Router, private observationservice: ObservationService) { }
 
   ngOnInit() {
-    this.loading=true;
-    this.subTrans =this.translate.onLangChange.subscribe(this.update.bind(this));
-    this.pageSize= "1000";
+    this.loading = true;
+    this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.pageSize = "1000";
     this.update();
   }
-  update(){
+  update() {
     this.columns = [
-      { prop: 'taxonVerbatim', name:this.translate.instant('taxon.name') , draggable: false},
-      { prop: 'scientificName', name:this.translate.instant('taxon.scientific') , draggable: false},
-      { prop: 'team', name:this.translate.instant('taxon.scientific') , draggable: false},
-      { prop: 'municipalityDisplayname', name:this.translate.instant('document.location') , draggable: false},
-      { prop: 'displayDateTime', name:this.translate.instant('observation.datetime')}
+      { prop: 'taxonVerbatim', name: this.translate.instant('taxon.name'), draggable: false },
+      { prop: 'scientificName', name: this.translate.instant('taxon.scientific'), draggable: false },
+      { prop: 'team', name: this.translate.instant('observation.team'), draggable: false },
+      { prop: 'municipalityDisplayname', name: this.translate.instant('document.location'), draggable: false },
+      { prop: 'displayDateTime', name: this.translate.instant('observation.datetime') }
     ];
     this.getObservations();
-    
-    
+
+
   }
 
-  getObservations(pageNumber: string = '1'){
-    this.observationservice.getAllObservations(this.pageSize,pageNumber).subscribe(data =>{
+  getObservations(pageNumber: string = '1') {
+    this.observationservice.getAllObservations(this.pageSize, pageNumber).subscribe(data => {
       this.page = data;
-      this.observations= data.results;
-      this.observations.forEach(observationObject=>{
+      this.observations = data.results;
+      this.observations.forEach(observationObject => {
         observationObject.taxonVerbatim = observationObject.unit.taxonVerbatim;
         observationObject.team = observationObject.gathering.team;
         observationObject.scientificName = observationObject.unit.linkings.taxon.scientificName;
         observationObject.municipalityDisplayname = observationObject.gathering.interpretations.municipalityDisplayname;
         observationObject.displayDateTime = observationObject.gathering.displayDateTime;
-       });
-      this.pageData = this.observations.slice(0,20);
-      },() => null, () => this.loader());
-    
+      });
+      this.pageData = this.observations.slice(0, 20);
+    }, () => null, () => this.loader());
+
   }
   loader() {
     if (this.loading) {
