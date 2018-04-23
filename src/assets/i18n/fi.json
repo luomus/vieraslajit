@@ -86,5 +86,7 @@
   "observation.datetime":"Päivämäärä",
   "form.send": "Lähetä",
   "observations.onmap":"Näytä kartalla",
+  "observations.list":"Näytä luettelona",
+  "observations.own":"Omat havainnot",
   "form.submitted": "Lähetys onnistui!"
 }

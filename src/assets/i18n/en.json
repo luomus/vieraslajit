@@ -85,6 +85,8 @@
   "observation.datetime":"Date and time",
   "form.send": "Send",
   "observations.onmap":"Show on map",
+  "observations.list":"List",
+  "observations.own":"My observations",
   "form.submitted": "Form submitted!"
 
 

@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ObservationmapComponent } from './observationmap.component';
+import { ObservationService } from '../../shared/service/observation.service';
+import { ApiService } from '../../shared/api/api.service';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../../shared/shared.module';
+
 
 describe('ObservationmapComponent', () => {
   let component: ObservationmapComponent;
@@ -8,7 +13,9 @@ describe('ObservationmapComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ObservationmapComponent ]
+      declarations: [ ObservationmapComponent ],
+      imports:[HttpClientModule,SharedModule],
+      providers:[ObservationService, ApiService]
     })
     .compileComponents();
   }));

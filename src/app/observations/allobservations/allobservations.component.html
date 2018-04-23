@@ -1,10 +1,10 @@
 <h1 id="heading" translate>observations.all</h1>
 <div>
     <tabset>
-      <tab heading= "Kartta" id="tab1">
+      <tab heading="{{'observations.onmap' | translate}}" id="tab1">
           <vrs-observationmap></vrs-observationmap>
       </tab>
-      <tab heading="Lista">
+      <tab heading="{{'observations.list' | translate}}">
         <laji-spinner [spinning]="loading" >
             <div class="container-fluid">
                 <div class="content">
@@ -19,7 +19,7 @@
               </div>
               </laji-spinner>
       </tab>
-      <tab heading="Omat">
+      <tab heading="{{'observations.own' | translate}}">
           <vrs-observationlist></vrs-observationlist>
       </tab>
     </tabset>

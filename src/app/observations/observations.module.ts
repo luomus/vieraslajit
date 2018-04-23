@@ -11,7 +11,7 @@ import { AccordionModule, CollapseModule, TabsModule,AlertModule } from 'ngx-boo
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ObservationmapComponent } from './observationmap/observationmap.component';
-import { ObservationModule } from '../observation/observation.module';
+
 
 
 @NgModule({
@@ -26,7 +26,6 @@ import { ObservationModule } from '../observation/observation.module';
     PaginationModule.forRoot(),
     TabsModule,
     FormsModule,
-    ObservationModule,
     AlertModule.forRoot()
   ],
   declarations: [ObservationlistComponent, AllobservationsComponent, ObservationmapComponent],

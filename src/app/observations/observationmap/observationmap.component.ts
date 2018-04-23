@@ -11,22 +11,42 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./observationmap.component.scss']
 })
 export class ObservationmapComponent implements OnInit {
-  @Input() id: string;
-
+  id: string;
   private pageSize: string = "500";
   private observations: Array<any> = [];
   private mapData=[];
-
+  
   constructor(private observationservice: ObservationService) { }
 
   ngOnInit() {
+    this.initializeMap();
     this.update();
   }
-  update(pageNumber:string="1"){
-    this.observationservice.getAllObservations(this.pageSize,pageNumber).subscribe(data => {
-      this.observations = data.results;
+
+  update(){
    
-    });
+  }
+
+  initializeMap() {       
+    var LajiMap = require("laji-map").default;
+    var map = new LajiMap(this.mapOptions());
+  }
+
+  mapOptions(){
+    const options = {
+      rootElem: document.getElementById("map"),
+      popupOnHover: false,
+      center: {
+        "lat": 65.5,
+        "lng": 27
+      },
+      zoom: 1,
+      zoomToData : false,
+      tileLayerName: "openStreetMap", 
+      controls: {  
+      }
+    };
+    return options;
   }
 
 
