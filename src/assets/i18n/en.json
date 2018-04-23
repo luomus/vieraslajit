@@ -41,6 +41,7 @@
   "taxon.reportText": "Report an observation",
   "taxon.identification": "Identification",
   "mapOfObservations.header": "Map of observations",
+  "mapOfObservations.info": "Green circles are verified observations and circles transparent in the middle are over 10 years old.",
   "mapOfObservations.link": "Click here to open a more detailed map.",
   "omnisearch.information": "Information",
   "omnisearch.observations": "Observations",
