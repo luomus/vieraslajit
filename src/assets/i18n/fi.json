@@ -81,6 +81,8 @@
   "document.dayOfYearEdited":"Muokattu",
   "document.location":"Paikka",
   "observations.intro":"Löydät omat havaintosi täältä",
+  "observations.form.sighting": "Uusi havainto",
+  "observations.form.help": "Mikä laji?",
   "form.send": "Lähetä",
   "form.submitted": "Lähetys onnistui!"
 }
