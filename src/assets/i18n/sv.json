@@ -43,6 +43,7 @@
   "taxon.reportText": "Anmäl dina fynd",
   "taxon.identification": "Identifiering",
   "mapOfObservations.header": "Kartan av observationer",
+  "mapOfObservations.info": "Gröna cirklar är verifierade observationer och genomskinliga cirklar är över 10 år gamla observationer.",
   "mapOfObservations.link": "Klicka här för en mer detaljerad karta.",
   "omnisearch.information": "Information",
   "omnisearch.observations": "Besökte",
