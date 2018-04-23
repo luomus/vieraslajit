@@ -1,0 +1,27 @@
+<h1 id="heading" translate>observations.all</h1>
+<div>
+    <tabset>
+      <tab heading="{{'observations.onmap' | translate}}" id="tab1">
+          <vrs-observationmap></vrs-observationmap>
+      </tab>
+      <tab heading="{{'observations.list' | translate}}">
+        <laji-spinner [spinning]="loading" >
+            <div class="container-fluid">
+                <div class="content">
+                    <ng-container>
+                      <div class="tab-pane container" id="observationlisttable">
+                          <ngx-datatable *ngIf="page" class="material selection-cell" [rows]="observations" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
+                          [rowHeight]="50" [sorts]="[{prop: 'vernacularName', dir: 'asc'}]"  [reorderable]='true' [selectionType]="'single'" limit="50" [footerHeight]="50"(page)="onPageChange()">
+                          </ngx-datatable>
+                      </div>  
+                  </ng-container>
+                </div>
+              </div>
+              </laji-spinner>
+      </tab>
+      <tab heading="{{'observations.own' | translate}}">
+          <vrs-observationlist></vrs-observationlist>
+      </tab>
+    </tabset>
+  </div>
+
