@@ -34,7 +34,7 @@
             </ul>
             <h5>Sopimukset ja lainsäädäntö</h5>
             <ul>
-              <li><a href="">Lemmikit</a></li>
+              <li><a routerLink="/static/i-229">Lemmikit</a></li>
               <li><a href="">Lainsäädäntö</a></li>
               <li><a href="">Vieraslajilaki</a></li>
               <li><a href="">EU:n lainsäädäntö</a></li>
@@ -67,7 +67,12 @@
           <li class="list-inline-item"><a href="">Facebook</a></li>
         </ul>
         <hr>
-        <a href="">Tietosuojaseloste</a>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="">Tietosuojaseloste</a></li>
+          <li *ngIf="isAdmin()" class="list-inline-item">
+            <a href="https://vieras-cms.laji.fi">Vieras-CMS</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
