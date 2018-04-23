@@ -84,6 +84,12 @@
   "document.dayOfYearEdited":"Edited",
   "document.location":"Location",
   "observations.intro":"You can find your own observations here",
+  "observations.all":"All of the observations sent in by users",
+  "observation.team":"Observer",
+  "observation.datetime":"Date and time",
+  "observations.onmap":"Show on map",
+  "observations.list":"List",
+  "observations.own":"My observations",
   "observations.form.sighting": "Report a sighting",
   "observations.form.help": "Which species?",
   "form.submitted": "Form submitted!"

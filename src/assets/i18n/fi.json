@@ -85,8 +85,14 @@
   "document.dayOfYearEdited":"Muokattu",
   "document.location":"Paikka",
   "observations.intro":"Löydät omat havaintosi täältä",
+  "observations.all":"Kaikkien käyttäjien lähettämät havainnot",
+  "observation.team":"Havainnoija",
+  "observation.datetime":"Päivämäärä",
   "observations.form.sighting": "Uusi havainto",
   "observations.form.help": "Mikä laji?",
   "form.send": "Lähetä",
+  "observations.onmap":"Näytä kartalla",
+  "observations.list":"Näytä luettelona",
+  "observations.own":"Omat havainnot",
   "form.submitted": "Lähetys onnistui!"
 }

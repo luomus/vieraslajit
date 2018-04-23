@@ -10,15 +10,14 @@
 @media screen and (max-width: 989px) {
     #mainNav {font-size: 16px;}
     #dropdown-menu-item {font-size: 16px;}
-    #search-icon{padding-left:10px}
+    #search-icon{padding-left:10px; padding-top: 30px;}
     #mainNav .navbar-nav li.nav-item a.nav-link{padding-top: 5px;padding-bottom:5px;}
     #mainNav .dropdown{padding-top:5px;padding-bottom: 5px;}
     #mainNav .nav-item{padding-top:5px;padding-bottom: 5px;}
 }
-@media screen and (max-width: 1040px) {
+@media screen and (max-width: 1100px) and (min-width: 989px) {
     #mainNav {font-size: 12px;}
     #dropdown-menu-item {font-size: 12px;}
-
 }
 
 #mainNav .navbar-brand {
@@ -37,7 +36,6 @@
     align-items: center;
     a {
         color: $content-background;
-
     }
 }
 
@@ -115,6 +113,7 @@
 #search-icon   {
     color: $content-background;
     cursor: pointer;
+    padding-right: 10px;
 }
 
 #search-icon:hover {
@@ -123,4 +122,5 @@
 
 #language-selector {
     cursor: pointer;
+    padding-left: 10px;
 }

@@ -74,6 +74,7 @@
   "observations.intro":"Du hittar dina egna observationer här",
   "document.dayOfYearBegin":"Startdatum",
   "document.dayOfYearEdited":"Redigerad",
+  "observations.all":"Alla observationer som skickas av användare",
   "form.login": "Logga in först",
   "form.send": "Skicka"
   }
