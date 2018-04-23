@@ -42,6 +42,7 @@
   "taxon.reportText": "Ilmoita havainnostasi",
   "taxon.identification": "Tunnistaminen",
   "mapOfObservations.header": "Havaintokartta",
+  "mapOfObservations.info": "Saat lisätietoa klikkaamalla havaintoa. Varmistetut havainnot ovat vihreitä, varmistamattomat oransseja ja yli 10 vuotta vanhat keskeltä läpinäkyviä.",
   "mapOfObservations.link": "Tästä linkistä aukeaa Laji.fi-sivuston monipuolisempi havaintokartta.",
   "omnisearch.information": "Lisätietoa",
   "omnisearch.observations": "Havainnot",
