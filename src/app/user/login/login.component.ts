@@ -22,7 +22,15 @@ import { UserService, userProperty } from '../../shared/service/user.service';
 })
 export class LoginComponent implements OnInit {
 
+  public loading = true;
+
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) { }
+
+  loader() {
+    if (this.loading) {
+      this.loading = false;
+    }
+  }
 
   ngOnInit() {
     if (this.activatedRoute.snapshot.queryParams['token']) {
@@ -38,6 +46,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl(UserService.getUserProperties()["person-token"].next);
       });
     } else {
+      this.loader();
       this.router.navigateByUrl("/home");
     }
   }
