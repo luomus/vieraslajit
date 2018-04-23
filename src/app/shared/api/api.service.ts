@@ -212,8 +212,14 @@ export class ApiService {
     const url = `${environment.lajiApi.url}${endpoint}`;
     return this.httpClient.get(
       url,
-      { params: { ...query, 'access_token': environment.lajiApi.accessToken } });
-  }
+      { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
+
+  getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query:LajiApi.Query ):Observable<any>;
+  getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query: object={}):Observable<any>{
+        const url = `${environment.lajiApi.url}${endpoint}`;
+        return this.httpClient.get(
+          url,
+          { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
 
   /**
    * Document API for POST method
@@ -292,9 +298,10 @@ export namespace LajiApi {
     langFallback?: boolean;
     hasMediaFilter?: boolean;
     includeMedia?: boolean;
-    adminStatusFilters?: String;
-    personToken?: String;
-
+    adminStatusFilters?:String;
+    personToken?:String;
+    invasive?:boolean;
+  
 
   }
   export interface AutocompleteQuery {
