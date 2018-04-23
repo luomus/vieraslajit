@@ -83,10 +83,11 @@
   "observations.all":"All of the observations sent in by users",
   "observation.team":"Observer",
   "observation.datetime":"Date and time",
-  "form.send": "Send",
   "observations.onmap":"Show on map",
   "observations.list":"List",
   "observations.own":"My observations",
+  "observations.form.sighting": "Report a sighting",
+  "observations.form.help": "Which species?",
   "form.submitted": "Form submitted!"
 
 

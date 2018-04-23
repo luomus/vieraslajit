@@ -65,6 +65,8 @@
   "stableString.sporadic":"Sporadisk",
   "stableString.accidental":"Tillfällig",
   "observations.myobservations":"Mina observationer",
+  "observations.form.sighting": "Rapportera en observation",
+  "observations.form.help": "Vilken art?",
   "observations.intro":"Du hittar dina egna observationer här",
   "document.dayOfYearBegin":"Startdatum",
   "document.dayOfYearEdited":"Redigerad",
