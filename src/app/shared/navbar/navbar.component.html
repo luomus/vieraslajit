@@ -22,7 +22,7 @@
                     <a class="nav-link" routerLink="/news" (click)="isCollapsed = !isCollapsed"
                     aria-expanded="false" translate>navigation.news</a>
                 </li>
-                
+
                     <li class="dropdown" id="dropdown-about" dropdown>
                         <a dropdownToggle class="dropdown-toggle" id="dropdown-toggle" translate>navigation.about <span class="caret"></span></a>
                             <ul *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
@@ -34,9 +34,9 @@
                         <a class="nav-link" routerLink="/observations" (click)="isCollapsed = !isCollapsed"
                         aria-expanded="false" translate>navigation.observations</a>
                     </li>
-                
+
             </ul>
-            
+
             <div class= "ml-auto">
                <ul class="nav navbar-nav">
                   <li (click)="openModal(search)" href="#modalSearch" data-toggle="modal" data-target="#modalSearch" class="nav-item" >
@@ -52,18 +52,18 @@
                             <button dropdownToggle class="btn btn-primary btn-sm oi oi-person icon dropdown-toggle" aria-controls="dropdown-basic" id="personbutton"></button>
                             <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
                               <li role="usermenuitem"><span class="dropdown-item" id="usermenuitem">{{userPropertiesWrapper().person.fullName}}</span></li>
-                              <li (click)="logout()" role="usermenuitem"><span class="dropdown-item" id="usermenuitem">Logout</span></li>
+                              <li (click)="logout()" role="usermenuitem"><span class="dropdown-item" id="usermenuitem" ><span translate>navigation.logout</span></span></li>
                             </ul>
                           </div>
                     </ng-template>
                   </li>
                   <li class="nav-item" id="language-selector">
-                    <vrs-language-selector ></vrs-language-selector>  
+                    <vrs-language-selector ></vrs-language-selector>
                   </li>
                </ul>
             </div>
-        </div> 
-        
+        </div>
+
     </div>
 </nav>
 
@@ -78,7 +78,7 @@
                     <vrs-search></vrs-search>
                 </div>
             </div>
-     
+
         </div>
      </div>
 </ng-template>

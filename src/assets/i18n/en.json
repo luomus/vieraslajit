@@ -18,6 +18,7 @@
   "navigation.grid": "Pictures",
   "navigation.about": "About",
   "navigation.login": "Login | Register",
+  "navigation.logout": "Logout",
   "navigation.news": "News",
   "navigation.observations": "Observations",
   "taxonomy.taxongroup": "Taxongroup",

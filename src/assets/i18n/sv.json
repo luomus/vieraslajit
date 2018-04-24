@@ -18,6 +18,7 @@
   "navigation.grid": "Bilder",
   "navigation.about": "Allmänt",
   "navigation.login": "Logga in | Registrera",
+  "navigation.logout": "Logga ut",
   "navigation.news": "Aktuellt",
   "navigation.observations": "Observationer",
   "taxonomy.taxongroup": "Taxongrupp",
