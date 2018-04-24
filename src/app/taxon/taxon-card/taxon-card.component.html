@@ -73,9 +73,9 @@
             <div class="card-header">
               <span translate>taxon.pictures</span>
             </div>
-            <div id="pictures" class="card-block">
+            <div class="card-block">
               <carousel id="image-carousel" [interval]="false">
-                <slide class="slide" *ngFor="let image of media">
+                <slide class="card-slide slide" *ngFor="let image of media">
                   <img class="img-fluid center-block" src="{{image.fullURL}}" (click)="openImage(imageModal, image)">
                 </slide>
               </carousel>
@@ -170,5 +170,5 @@
 </ng-container>
 
 <ng-template #imageModal>
-  <img class="img-fluid" [src]="selectedImage.fullURL || selectedImage.largeURL" />
+  <img class="img-fluid modal-image" [src]="selectedImage.fullURL || selectedImage.largeURL" />
 </ng-template>
