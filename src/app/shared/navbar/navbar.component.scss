@@ -126,9 +126,17 @@
 }
 
 #personbutton {
-    color: $content-background-highlight-dark;
+    color: $content-background;
 }
 
 #usermenuitem {
     cursor: pointer;
+}
+
+#usermenuitem:hover {
+    color: $primary;
+}
+
+#usermenuitem:active {
+    background-color: $content-background;
 }
