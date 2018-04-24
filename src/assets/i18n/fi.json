@@ -18,6 +18,7 @@
   "navigation.grid": "Kuvat",
   "navigation.about": "Yleistä",
   "navigation.login": "Kirjaudu | Rekisteröidy",
+  "navigation.logout": "Kirjaudu ulos",
   "navigation.news": "Ajankohtaista",
   "navigation.observations": "Havainnot",
   "taxonomy.taxongroup": "Lajiryhmät",
