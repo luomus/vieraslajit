@@ -35,7 +35,10 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl("/home");
           return;
         }
-        this.router.navigateByUrl(UserService.getUserProperties()["person-token"].next);
+        this.router.navigateByUrl(UserService.getUserProperties()["person-token"].next).catch((error) => {
+          console.log("Error: " + error);
+          this.router.navigateByUrl("/home");
+        });
       });
     } else {
       this.router.navigateByUrl("/home");
