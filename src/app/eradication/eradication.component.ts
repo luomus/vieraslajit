@@ -3,10 +3,10 @@ import { OmnisearchComponent } from '../shared/omnisearch/omnisearch.component'
 
 @Component({
   selector: 'vrs-removal',
-  templateUrl: './removal.component.html',
-  styleUrls: ['./removal.component.scss']
+  templateUrl: './eradication.component.html',
+  styleUrls: ['./eradication.component.scss']
 })
-export class RemovalComponent implements OnInit {
+export class EradicationComponent implements OnInit {
 
   constructor() { }
 
