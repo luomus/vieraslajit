@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { TaxonService } from '../shared/service/taxon.service';
 import { ApiService } from '../shared/api/api.service';
+import { StaticModule } from '../static/static.module';
 
 describe('EradicationComponent', () => {
   let component: EradicationComponent;
@@ -17,7 +18,7 @@ describe('EradicationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ EradicationComponent],
-      imports: [SharedModule, FormsModule, RouterTestingModule, HttpClientModule, TranslateModule.forRoot()],
+      imports: [SharedModule, FormsModule, RouterTestingModule, HttpClientModule, TranslateModule.forRoot(), StaticModule],
       providers: [TaxonService, ApiService]
     })
     .compileComponents();
