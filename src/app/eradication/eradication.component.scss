@@ -1,8 +1,7 @@
 @import '../../assets/styles/vars';
 
-h1 {
+h1.title{
     color: $content-background-highlight-dark;
-    font-family: $font-montserrat;
     margin-top: 2vh;
     margin-bottom: 2vh;
 }

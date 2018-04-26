@@ -1,11 +1,7 @@
 <div class="container">
+    <br>
     <div class="row">
-        <div>
-            <h1>Vieraslajien torjunta</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="card card-body">
+        <div class="card card-body" *ngIf="staticInfoID">
             <vrs-static [id]="staticInfoID"></vrs-static>
         </div>
     </div>
@@ -18,7 +14,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="card card-body static">
+        <div class="card card-body static" *ngIf="staticGuidesID">
             <vrs-static [id]="staticGuidesID"></vrs-static>
         </div>
     </div>
