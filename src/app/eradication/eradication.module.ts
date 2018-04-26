@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { RemovalComponent } from './removal.component';
+import { EradicationComponent } from './eradication.component';
 import { OmnisearchComponent } from '../shared/omnisearch/omnisearch.component'
 
-import { RemovalRoutingModule } from './removal-routing.module';
+import { EradicationRoutingModule } from './eradication-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { StaticModule } from '../static/static.module';
 
 /**
  * Declares routes and component concerning invasive species eradication instructions
@@ -13,9 +14,10 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
-    RemovalRoutingModule,
-    SharedModule
+    EradicationRoutingModule,
+    SharedModule,
+    StaticModule
   ],
-  declarations: [RemovalComponent],
+  declarations: [EradicationComponent],
 })
-export class RemovalModule { }
+export class EradicationModule { }

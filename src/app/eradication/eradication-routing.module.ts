@@ -1,10 +1,10 @@
 import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RemovalComponent } from './removal.component';
+import { EradicationComponent } from './eradication.component';
 
 const routes: Routes = [
-  { path: '', component: RemovalComponent }
+  { path: '', component: EradicationComponent }
 ];
 
 @NgModule({
@@ -16,4 +16,4 @@ const routes: Routes = [
   ]
 })
 
-export class RemovalRoutingModule { }
+export class EradicationRoutingModule { }
