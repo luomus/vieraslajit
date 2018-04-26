@@ -26,15 +26,15 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subTrans= this.translate.onLangChange.subscribe((event) =>{
-      this.getNews(this.currentTags);
-  });
-    this.getNews("vieraslajit.fi");
+      this.getNews(1,this.currentTags);
+    });
+    this.getNews(1,"vieraslajit.fi",);
   }
 
-  getNews(tags:string) {
+  getNews(page:number,tags:string, ) {
 
     this.currentTags=tags;
-    this.newsService.getPage('1',this.pageSize.toString(), this.translate.currentLang, tags)
+    this.newsService.getPage(page.toString(),this.pageSize.toString(), this.translate.currentLang, tags)
     .subscribe((data) => {
       this.news = data.results;
       this.data = data;
@@ -53,7 +53,7 @@ export class NewsComponent implements OnInit, OnDestroy {
     );
 
     document.getElementById(id).classList.add('active');
-    this.getNews(tags);
+    this.getNews(1,tags);
   }
 
   getImageToDisplay(newsElement: NewsElement){
