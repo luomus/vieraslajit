@@ -30,13 +30,13 @@
     margin-bottom: 7vh;
 }
 
-#homecard {
+.homecard {
     height: 100%;
     background: $content-background-highlight;
     padding-bottom: 20px;
 }
 
-#homecard-header {
+.homecard-header {
     background-color: $content-background-highlight-dark;
     font-family: $font-montserrat;
     font-weight: 500;
@@ -55,7 +55,7 @@
     margin-bottom: 3vh; 
 }
 
-#invasivecards {
+.invasivecards {
     width: 100%;
     height: 90%;
     
@@ -64,7 +64,7 @@
     cursor: pointer;
 }
 
-#invasivecards:hover {
+.invasivecards:hover {
     box-shadow:  0 0 0 3px $primary;
     border-color: $primary;
     #selectGroup-card-text {
@@ -72,13 +72,13 @@
     }
 }
 
-#invasivecards-text {
+.invasivecards-text {
     width: 100%;
     color:  $navbar-background;
     font-size: 1.3vh;
 }
 
-#invasivecards-img {
+.invasivecards-img {
     display: block;
     margin-left: auto;
     margin-right: auto;
