@@ -73,6 +73,11 @@
     }
 }
 
+.invasivecards:active {
+    outline: none!important;
+    box-shadow:none;
+}
+
 .invasivecards-text {
     width: 100%;
     color:  $navbar-background;
@@ -100,6 +105,7 @@
 
 .petscard-img {
     content: url(./../../assets/images/logos/pets.png);
+    
 }
 
 #news {
