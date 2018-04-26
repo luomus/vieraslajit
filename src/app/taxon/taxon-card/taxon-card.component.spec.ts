@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LabelPipe } from '../../shared/pipe/label.pipe';
 import { MetadataService } from '../../shared/service/metadata.service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
-import { CollapseModule, AccordionModule } from 'ngx-bootstrap';
+import { CollapseModule, AccordionModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
 import { TaxonComparisonComponent } from '../taxon-comparison/taxon-comparison.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OmnisearchComponent } from '../../shared/omnisearch';
@@ -18,8 +18,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ObservationComponent } from '../../observation/observation.component';
 import { ObservationService } from '../../shared/service/observation.service';
 import { SpinnerModule } from '../../shared-modules/spinner/spinner.module';
-import { CarouselModule } from 'ngx-bootstrap';
-
 
 describe('TaxonCardComponent', () => {
   let component: TaxonCardComponent;
@@ -27,10 +25,10 @@ describe('TaxonCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TaxonCardComponent, LabelPipe, TaxonComparisonComponent, OmnisearchComponent,ObservationComponent],
+      declarations: [TaxonCardComponent, LabelPipe, TaxonComparisonComponent, OmnisearchComponent, ObservationComponent],
       imports: [HttpClientModule, TranslateModule.forRoot(), CollapseModule.forRoot(),
-        RouterTestingModule, FormsModule, ReactiveFormsModule, AccordionModule, SpinnerModule, CarouselModule],
-      providers: [TaxonService, ApiService, TranslateService, MetadataService,ObservationService]
+        RouterTestingModule, FormsModule, ReactiveFormsModule, AccordionModule, SpinnerModule, CarouselModule, ModalModule.forRoot()],
+      providers: [TaxonService, ApiService, TranslateService, MetadataService, ObservationService]
     })
       .compileComponents();
   }));
