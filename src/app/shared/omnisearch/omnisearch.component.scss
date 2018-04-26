@@ -5,15 +5,16 @@
     position: relative;
     max-width: 80%;
   }
-  
+
   .omni-search-results {
-    position: relative;
+    position: absolute;
+    z-index: 1000;
     left: 0;
     right: 1px;
-    
+
     background-color: #ffffff;
     padding: 10px;
-   
+
     border-right: 1px solid #999;
     border-left: 1px solid #999;
     border-bottom: 1px solid #999;
@@ -32,17 +33,17 @@
       font-style: italic;
     }
   }
-  
+
   .taxon-match {
     padding-left: 65px;
   }
-  
-  
+
+
   .taxon-match, .observations, .taxonomy {
     color: rgb(43, 42, 42);
   }
-  
-  
+
+
   @media only screen and (min-width: 992px) {
     .omni-search-results {
       min-width: 727px;
@@ -51,14 +52,14 @@
       }
     }
   }
-  
+
   .omni {
     -webkit-transition: all .4s;
     -moz-transition: all .4s;
     transition: all .4s;
   }
-  
-  
+
+
   .omni {
     &.expandRight {
       float: right;
