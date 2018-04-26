@@ -30,6 +30,14 @@
     margin-bottom: 7vh;
 }
 
+#cardcol {
+    margin-bottom: 3vh; 
+}
+
+#icons {
+    margin-bottom: 3vh;
+}
+
 .homecard {
     height: 100%;
     background: $content-background-highlight;
@@ -43,16 +51,9 @@
     color: $content-background;
 }
 
-#news {
-    background-color: $content-background-highlight;
-}
-
-#newsh4 {
-    padding-top: 1em;
-}
-
-#cardcol {
-    margin-bottom: 3vh; 
+#linkcard {
+    max-height: 170px;
+    max-width: 200px;
 }
 
 .invasivecards {
@@ -85,19 +86,8 @@
     width: 80%;
 }
 
-#linkcards {
-    size:20px;
-    transition: 0.2s;
-    border-color: $content-background-highlight-dark;
-    cursor: pointer; 
-}
-
-#icons {
-    margin-bottom: 20px;
-}
-
-#pets-text {
-    font-size: 20px;
+.icons-text {
+    font-size: 17px;
 }
 
 .eucard-img {
@@ -110,7 +100,14 @@
 
 .petscard-img {
     content: url(./../../assets/images/logos/pets.png);
-    size: 40px;
+}
+
+#news {
+    background-color: $content-background-highlight;
+}
+
+#newsh4 {
+    padding-top: 1em;
 }
 
 @media (max-width: 575.98px) {
