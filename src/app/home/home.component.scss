@@ -51,11 +51,6 @@
     color: $content-background;
 }
 
-#linkcard {
-    max-height: 170px;
-    max-width: 200px;
-}
-
 .invasivecards {
     width: 100%;
     height: 90%;
@@ -106,6 +101,11 @@
 .petscard-img {
     content: url(./../../assets/images/logos/pets.png);
     
+}
+
+#iconcard {
+    max-height: 170px;
+    max-width: 200px;
 }
 
 #news {

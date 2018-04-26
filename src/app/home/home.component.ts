@@ -6,6 +6,7 @@ import {OmnisearchComponent} from '../shared/omnisearch/omnisearch.component'
 import { NewsComponent } from '../news/news.component';
 import { environment } from '../../environments/environment';
 import { Subscription } from 'rxjs/Subscription';
+import { findContentID, StaticContent } from '../../assets/i18n/cms-content';
 
 /**
  * Renders the home-/frontpage ie. /home/ route
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
   private subTrans: Subscription;
   alerts: Array<any> = [];
   news: Array<any>= [];
+  staticPetsID:string;
 
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
@@ -31,7 +33,11 @@ export class HomeComponent implements OnInit {
    * 3. Filter only alerts from past 3 days (20 in testing)
    */
   ngOnInit() {
-    this.subTrans = this.translate.onLangChange.subscribe(this.getNews.bind(this));
+    this.setStaticID(this.translate.currentLang);
+    this.subTrans = this.translate.onLangChange.subscribe((event) => {
+      this.setStaticID(event.lang);
+      this.getNews(1);
+    });
     this.getNews(1);
   }
 
@@ -51,6 +57,10 @@ export class HomeComponent implements OnInit {
       this.filterTechnicalNews(technical);
     });
     
+  }
+
+  private setStaticID(lang: string) {
+    this.staticPetsID = findContentID(StaticContent.Pets, lang);
   }
 
   filterTechnicalNews(technical: Array<any>){
