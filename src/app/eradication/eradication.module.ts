@@ -6,6 +6,7 @@ import { OmnisearchComponent } from '../shared/omnisearch/omnisearch.component'
 
 import { EradicationRoutingModule } from './eradication-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { StaticModule } from '../static/static.module';
 
 /**
  * Declares routes and component concerning invasive species eradication instructions
@@ -14,8 +15,9 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     EradicationRoutingModule,
-    SharedModule
+    SharedModule,
+    StaticModule
   ],
   declarations: [EradicationComponent],
 })
-export class RemovalModule { }
+export class EradicationModule { }
