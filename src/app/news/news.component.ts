@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -20,19 +20,21 @@ export class NewsComponent implements OnInit, OnDestroy {
   private pageSize: number = 5;
   private currentTags: string;
   private imageToDisplay: string;
+  private activeNavpill;
 
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
   ngOnInit() {
     this.subTrans= this.translate.onLangChange.subscribe((event) =>{
-      this.getNews("1",this.currentTags);
-  });
-    this.getNews("1","vieraslajit.fi");
+      this.getNews(1,this.currentTags);
+    });
+    this.getNews(1,"vieraslajit.fi",);
   }
 
-  getNews(page:string, tags:string) {
+  getNews(page:number,tags:string, ) {
+
     this.currentTags=tags;
-    this.newsService.getPage(page,this.pageSize.toString(), this.translate.currentLang, tags)
+    this.newsService.getPage(page.toString(),this.pageSize.toString(), this.translate.currentLang, tags)
     .subscribe((data) => {
       this.news = data.results;
       this.data = data;
@@ -41,6 +43,17 @@ export class NewsComponent implements OnInit, OnDestroy {
         this.pages.push(i+1);
       }
     });
+  }
+
+  onClick(tags:string, id){
+    Array.from(document.getElementsByClassName("active")).forEach(
+      function(element) {
+        element.classList.remove("active");
+      }
+    );
+
+    document.getElementById(id).classList.add('active');
+    this.getNews(1,tags);
   }
 
   getImageToDisplay(newsElement: NewsElement){
