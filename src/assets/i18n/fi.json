@@ -29,6 +29,7 @@
   "taxonomy.finnishList": "Kansallinen lista",
   "taxonomy.established": "Vakiintuneisuus",
   "taxonomy.quarantinePlantPest": "Vaarallinen kasvintuhooja: ",
+  "taxonomy.list.quarantinePlantPest": "Kasvintuhooja",
   "taxonomy.yes": "Kyllä",
   "taxonomy.no": "Ei",
   "taxon.card": "Tietokortti",

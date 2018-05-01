@@ -38,10 +38,13 @@ export interface Taxonomy {
     onEUList?: boolean;
 
     /* is taxon on national list */
-    onNationalList?: boolean;
+     onNationalList?: boolean;
 
-    /* String for stableInFinland status. Used for translating */
-    stableString?: string;
+     /* is taxon a quarantine plant pest */
+     isQuarantinePlantPest?: boolean;
+
+     /* String for stableInFinland status. Used for translating */
+     stableString?: string;
 
     /**
      *  If lang parameter is 'multi' this will be a lang object instead of a string or an array of strings!
@@ -184,7 +187,7 @@ export interface Taxonomy {
     hasChildren?: boolean;
 
     latestRedListStatusFinland?: LatestRedListStatusFinland;
-    
+
 
     redListStatusesInFinland?: LatestRedListStatusFinland[];
 }
