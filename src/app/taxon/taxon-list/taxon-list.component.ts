@@ -66,7 +66,8 @@ export class TaxonListComponent implements OnInit, OnDestroy {
       { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 150 },
       { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
       { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
-      { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
+      { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
+      { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
     ];
   }
 
@@ -84,9 +85,11 @@ export class TaxonListComponent implements OnInit, OnDestroy {
         if (element.administrativeStatuses) {
           element.onEUList = this.translate.instant(String(element.administrativeStatuses.some(value => value === 'MX.euInvasiveSpeciesList')));
           element.onNationalList = this.translate.instant(String(element.administrativeStatuses.some(value => value === 'MX.nationallySignificantInvasiveSpecies')));
+          element.isQuarantinePlantPest = this.translate.instant(String(element.administrativeStatuses.some(value => value === 'MX.quarantinePlantPest')));
         } else {
           element.onEUList = this.translate.instant(String(false));
           element.onNationalList = this.translate.instant(String(false));
+          element.isQuarantinePlantPest = this.translate.instant(String(false));
         }
         if (element.invasiveSpeciesEstablishment) {
           if (element.invasiveSpeciesEstablishment === 'MX.invasiveNotYetInFinland') {
