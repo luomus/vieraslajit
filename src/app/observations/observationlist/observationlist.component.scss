@@ -1,11 +1,17 @@
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import './../../../assets/styles/vars.scss';
 
 
 #heading{
     padding-top: 20px;
 }
+
+#navButtons {
+    padding-top: 23px;
+}
+
 .content{
     padding-top:20px;
 }
@@ -13,16 +19,33 @@
     padding-bottom:15px;
 }
 
-.vrs-form-list {
-    margin-bottom: 1em;
-    padding: 1em;
+.navButton {
+    display: inline-block;
+    min-width: 10px;
+    margin-top: 8px;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-color: $primary;
+    color: $primary;
+    line-height: 1;
+    white-space: nowrap;
+    text-align: center;
+    border-style: solid;
+    cursor: pointer;
+
+    :focus {
+        outline: 0;
+    }
+
+    :hover {
+        background-color: $primary;
+        color: $content-background;
+    }
+
+    :active {
+        background-color: $primary;
+        color: $content-background;
+    }  
 }
 
-.form-list-hr {
-    width: 50%;
-    margin-right: 0.5em;
-}
 
-.form-list-item {
-    padding: 0.5em;
-}
