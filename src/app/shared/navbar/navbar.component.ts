@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import { InformationService } from '../service/information.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
-
+import { StaticContent, findContentID } from './../../../assets/i18n/cms-content';
 
 
 @Component({
@@ -71,15 +71,7 @@ export class NavbarComponent implements OnInit {
    */
 
   setCMSRootId(lang: string) {
-    if (lang== "fi"){
-      this.rootId= "i-2";
-    }
-    if (lang== "en"){
-      this.rootId= "i-16";
-    }
-    if (lang== "sv"){
-      this.rootId= "i-14";
-    }
+    this.rootId = findContentID(StaticContent.Root, lang);
   }
 
   logout() {
