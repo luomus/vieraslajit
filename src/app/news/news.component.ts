@@ -32,7 +32,6 @@ export class NewsComponent implements OnInit, OnDestroy {
   }
 
   getNews(page:number,tags:string, ) {
-
     this.currentTags=tags;
     this.newsService.getPage(page.toString(),this.pageSize.toString(), this.translate.currentLang, tags)
     .subscribe((data) => {
@@ -43,6 +42,7 @@ export class NewsComponent implements OnInit, OnDestroy {
         this.pages.push(i+1);
       }
     });
+    window.scrollTo(0,0);
   }
 
   onClick(tags:string, id){
