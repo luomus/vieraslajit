@@ -21,10 +21,11 @@
                         <p id="welcome-text" translate>home.description</p>
                     </div>
                 </div>
+               
                 <div class="row">
                     <div class="offset-md-1 offset-lg-0 col-md-12 col-lg-6 col-12" id="cardcol">
-                        <div class="card" id="homecard">
-                            <h4 class="card-header" id="homecard-header" translate>home.whatare.h</h4>
+                        <div class="card homecard">
+                            <h4 class="card-header homecard-header" translate>home.whatare.h</h4>
                             <div class="card-body">
                                 <p translate>home.whatare.p</p>
                                 <button type="button" class="btn btn-dark" routerLink='/taxon' role="button" translate>home.findInvasive</button>
@@ -33,23 +34,39 @@
                     </div>
 
                     <div class="offset-md-1 offset-lg-0 col-md-12 col-lg-6 col-12" id="cardcol">
-                        <div class="card" id="homecard">
-                            <h4 class="card-header" id="homecard-header" translate>home.invasivespecies</h4>
+                        <div class="card homecard">
+                            <h4 class="card-header homecard-header" translate>home.invasivespecies</h4>
                             <div class="container">
                                 <div class="card-body">
                                     <p translate>home.invasiveinfo</p>
                                     <div class="card-deck">
-                                        <div class="card" id="invasivecards" routerLink='/adminstrativelists'>
-                                            <img class="card-img-top img-responsive eucard-img" id="invasivecards-img" alt="no image">
+                                        <div class="card invasivecards" routerLink='/adminstrativelists'>
+                                            <img class="card-img-top img-responsive eucard-img invasivecards-img" alt="no image">
                                             <div class="card-body">
-                                                <h5 class="card-text text-center" id="invasivecards-text" translate>home.eulist</h5>
+                                                <h5 class="card-text text-center invasivecards-text" translate>home.eulist</h5>
                                             </div>
                                         </div>
-                                        <div class="card" id="invasivecards" routerLink='/adminstrativelists/national'>
-                                            <img class="card-img-top img-responsive ficard-img" id="invasivecards-img" alt="no image">
+                                        <div class="card invasivecards" routerLink='/adminstrativelists/national'>
+                                            <img class="card-img-top img-responsive ficard-img invasivecards-img" alt="no image">
                                             <div class="card-body">
-                                                <h5 class="card-text text-center" id="invasivecards-text" translate>home.finnishlist</h5>
+                                                <h5 class="card-text text-center invasivecards-text" translate>home.finnishlist</h5>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col-md-12 col-lg-12" id= "icons">
+                        <div class="card homecard">
+                            <div class="card-body">
+                                <div class="card-deck">
+                                    <div class="card invasivecards" id= "iconcard" routerLink="/static/{{staticPetsID}}">
+                                        <div class="card-body">
+                                            <h5 class="card-text text-center icons-text" translate>home.pets</h5>
+                                            <img class="card-img-bottom invasivecards-img petscard-img"  alt="no image">
                                         </div>
                                     </div>
                                 </div>
