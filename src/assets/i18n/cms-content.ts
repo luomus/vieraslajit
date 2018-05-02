@@ -1,5 +1,5 @@
 export enum StaticContent {
-    EUList, FIList, EradicationInfo, EradicationGuides, Root
+    EUList, FIList, EradicationInfo, EradicationGuides, Root, Pets
 }
 
 export function findContentID(target: StaticContent, lang: string) {
@@ -30,6 +30,11 @@ export function findContentID(target: StaticContent, lang: string) {
             if (lang == "en") r = "i-255";
             if (lang == "sv") r = "i-252";
             break;
+        case StaticContent.Pets:
+        if (lang == "fi") r = "i-229";
+        if (lang == "en") r = "i-259";
+        if (lang == "sv") r = "i-256";
+        break;    
     }
     return r;
 }
