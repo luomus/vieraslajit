@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input, ViewEncapsulation, TemplateRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { TaxonomyDescription, TaxonomyImage, Taxonomy } from '../../shared/model/Taxonomy';
 import { Observable } from 'rxjs/Observable';
@@ -21,7 +21,6 @@ import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.componen
 export class TaxonCardComponent implements OnInit, OnDestroy {
 
   private sub: any;
-  private querySub: Subscription;
   private subTrans: Subscription;
   public loading = true; // spinner true on start
 
@@ -37,22 +36,15 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   selectedImage: TaxonomyImage;
   modalRef: BsModalRef;
 
-  constructor(private route: ActivatedRoute, private router: Router,
+  constructor(private route: ActivatedRoute,
     private taxonService: TaxonService, private translate: TranslateService, private modalService: BsModalService) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };
 
   }
 
   ngOnInit() {
     this.isFirstOpen = false;
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
-    this.querySub = this.route.queryParams.subscribe(params => {
-      if (params) {
-        this.comparison = params.comparison;
-      }
-    });
+    this.comparison = false;
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id']; // (+) converts string 'id' to a number
     });
@@ -103,9 +95,6 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.subTrans.unsubscribe();
-    if (this.querySub.closed) {
-      this.querySub.unsubscribe();
-    }
   }
 
   openImage(template: TemplateRef<any>, image: TaxonomyImage) {
