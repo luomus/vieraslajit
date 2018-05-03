@@ -108,7 +108,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
             element.stableString = this.translate.instant(String('stableString.accidental'));
           }
         }
-        if (element.multimedia.length > 0) {
+        if (element.multimedia) {
           element.thumbnail = element.multimedia[0].thumbnailURL;
         } else {
           element.thumbnail = 'assets/images/logos/vieraslaji-logo-b.png';
