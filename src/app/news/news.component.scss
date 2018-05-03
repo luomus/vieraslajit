@@ -1,13 +1,5 @@
 @import './../../assets/styles/vars.scss';
-
-/*.news-post {
-  
-    padding: 2em;
-    border: 1px solid $border-light;
-    background: $content-background;
-    border-radius: $content-border-radius;
-    
-}*/
+@import './../../../node_modules/bootstrap/scss/bootstrap-grid';
 
 .news-thumbnail {
     object-fit: scale-down;
@@ -21,6 +13,18 @@
     border-top-right-radius: $content-border-radius;
 }
 
+.news-header-text {
+    text-align: center;
+
+    @include media-breakpoint-up(sm) {
+        text-align: start;
+    }
+}
+
+.news-title {
+    
+}
+
 .news-content {
     background: $content-background;
     border-left: 1px solid $border-light;
@@ -28,13 +32,6 @@
     border-right: 1px solid $border-light;
     border-bottom-left-radius: $content-border-radius;
     border-bottom-right-radius: $content-border-radius;
-
-    /*
-    padding: 1em;
-    background: $content-background;
-    border: 1px solid $border-light;
-    border-radius: 8px;
-    */
 }
 
 .news-modified {
