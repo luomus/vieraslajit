@@ -3,10 +3,6 @@
   <div class="container-fluid" *ngIf="loggedIn;else notLoggedIn">
     <div class= "row">
        <h1 id="heading" class= "col-md-8" translate>observations.myobservations</h1>
-       <ul id="navButtons" class= "col-md-4" >
-        <li class="navButton m-1" routerLink="/form/JX.123757" translate>observations.form.sighting</li>
-        <li class="navButton m-1" routerLink="/form/MHL.9" translate>observations.form.help</li>
-      </ul>
     </div>
     <div id="intro" translate>observations.intro</div>  
     <alert *ngIf="showAlert" type="success" [dismissible]="true" (onClosed)="alertClosed()">

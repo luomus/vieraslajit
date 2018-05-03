@@ -7,15 +7,9 @@
     cursor: pointer;
 }
 
-#navButtons {
-    padding-top: 30px;
-}
-
 .navButton {
     display: inline-block;
     min-width: 10px;
-    margin-top: 8px;
-    padding: 8px 15px;
     font-size: 14px;
     border-color: $primary;
     color: $primary;
@@ -40,11 +34,11 @@
     }  
 }
 .container {
-    padding: 5%;
+    padding: 3%;
     padding-top:3%;
 }
 
 #heading {
-    padding-bottom: 2%;
+    font-size: $header-size;
 }
 
