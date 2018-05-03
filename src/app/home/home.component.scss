@@ -30,32 +30,28 @@
     margin-bottom: 7vh;
 }
 
-#homecard {
+#cardcol {
+    margin-bottom: 3vh; 
+}
+
+#icons {
+    margin-bottom: 3vh;
+}
+
+.homecard {
     height: 100%;
     background: $content-background-highlight;
     padding-bottom: 20px;
 }
 
-#homecard-header {
+.homecard-header {
     background-color: $content-background-highlight-dark;
     font-family: $font-montserrat;
     font-weight: 500;
     color: $content-background;
 }
 
-#news {
-    background-color: $content-background-highlight;
-}
-
-#newsh4 {
-    padding-top: 1em;
-}
-
-#cardcol {
-    margin-bottom: 3vh; 
-}
-
-#invasivecards {
+.invasivecards {
     width: 100%;
     height: 90%;
     
@@ -64,7 +60,7 @@
     cursor: pointer;
 }
 
-#invasivecards:hover {
+.invasivecards:hover {
     box-shadow:  0 0 0 3px $primary;
     border-color: $primary;
     #selectGroup-card-text {
@@ -72,17 +68,26 @@
     }
 }
 
-#invasivecards-text {
+.invasivecards:active {
+    outline: none!important;
+    box-shadow:none;
+}
+
+.invasivecards-text {
     width: 100%;
     color:  $navbar-background;
     font-size: 1.3vh;
 }
 
-#invasivecards-img {
+.invasivecards-img {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 80%;
+}
+
+.icons-text {
+    font-size: 17px;
 }
 
 .eucard-img {
@@ -91,6 +96,24 @@
 
 .ficard-img {
     content:url(./../../assets/images/logos/finland-b2.png);
+}
+
+.petscard-img {
+    content: url(./../../assets/images/logos/pets.png);
+    
+}
+
+#iconcard {
+    max-height: 170px;
+    max-width: 200px;
+}
+
+#news {
+    background-color: $content-background-highlight;
+}
+
+#newsh4 {
+    padding-top: 1em;
 }
 
 @media (max-width: 575.98px) {
