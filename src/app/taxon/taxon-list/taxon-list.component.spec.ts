@@ -8,7 +8,10 @@ import { ApiService } from '../../shared/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../../shared/shared.module';
- 
+import { AccordionModule, TabsModule, PaginationModule } from 'ngx-bootstrap';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { TaxonServiceMock } from '../../../testing/taxon/TaxonServiceMock';
+
 describe('TaxonListComponent', () => {
   let component: TaxonListComponent;
   let fixture: ComponentFixture<TaxonListComponent>;
@@ -16,8 +19,11 @@ describe('TaxonListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TaxonListComponent],
-      imports: [FormsModule, RouterTestingModule, HttpClientModule, SharedModule, TranslateModule.forRoot()],
-      providers: [TaxonService, ApiService]
+      imports: [
+        FormsModule, RouterTestingModule, HttpClientModule, SharedModule, TranslateModule.forRoot(), AccordionModule.forRoot(), TabsModule,
+        NgxDatatableModule, PaginationModule
+      ],
+      providers: [{provide: TaxonService, useClass: TaxonServiceMock}, ApiService]
     })
       .compileComponents();
   }));
@@ -27,6 +33,22 @@ describe('TaxonListComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  })
+
+  it('should show informal groups', () => {
+    const group = fixture.nativeElement.querySelector('#selectGroup-card-text');
+    expect(group.textContent).toEqual('Hyönteiset ja hämähäkkieläimet');
+  })
+
+  it('should show group species when group is selected', () => {
+    expect(component.selectedGroup).toBeUndefined();
+    component.onGroupSelect({id: 'MVL.1'}, '1');
+    expect(component.selectedGroup.id).toEqual('MVL.1');
+    
+  })
 
 
 });

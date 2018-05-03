@@ -27,29 +27,29 @@
           <div class="card-block">
             <div class="card-body">
               <div>
-                <strong translate>taxon.name</strong>
+                <strong>{{'taxon.name' | translate}}</strong>
                 {{taxon?.vernacularName}}
               </div>
               <div>
-                <strong translate>taxon.scientific</strong>
+                <strong>{{'taxon.scientific' | translate}}</strong>
                 <em>{{taxon?.scientificName}}</em>
               </div>
               <ng-container *ngIf="taxon?.administrativeStatuses">
                 <div>
                   <ul>
                     <li *ngFor="let status of taxon.administrativeStatuses">
-                      {{status | label: 'MX.adminStatusEnum' | async}}
+                      {{status | label: 'MX.adminStatusEnum':lang | async}}
                     </li>
                   </ul>
                 </div>
               </ng-container>
               <div>
-                <strong translate>taxon.establishedFin</strong>
+                <strong>{{'taxon.establishedFin' | translate}}</strong>
                 <span translate>{{taxon?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
               </div>
               <div>
-                <strong translate>taxon.occurrence</strong>
-                <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate
+                <strong>{{'taxon.occurrence' | translate}}</strong>
+                <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum':lang | async) || 'taxon.unknown' | translate
                   }}
                 </span>
               </div>
@@ -110,30 +110,30 @@
             </div>
             <div class="card-block">
               <div class="card-body">
-                <div *ngIf="selected?.vernacularName">
-                  <strong translate>taxon.name</strong>
+                <div>
+                  <strong>{{'taxon.name' | translate}}</strong>
                   {{selected?.vernacularName}}
                 </div>
                 <div>
-                  <strong translate>taxon.scientific</strong>
+                  <strong>{{'taxon.scientific' | translate}}</strong>
                   <em>{{selected?.scientificName}}</em>
                 </div>
-                <ng-container *ngIf="selected?.administrativeStatuses">
+                <ng-container *ngIf="taxon?.administrativeStatuses">
                   <div>
                     <ul>
-                      <li *ngFor="let status of selected?.administrativeStatuses">
-                        {{status | label: 'MX.adminStatusEnum' | async}}
+                      <li *ngFor="let status of taxon.administrativeStatuses">
+                        {{status | label: 'MX.adminStatusEnum':lang | async}}
                       </li>
                     </ul>
                   </div>
                 </ng-container>
                 <div>
-                  <strong translate>taxon.establishedFin</strong>
-                  <span translate>{{selected?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
+                  <strong>{{'taxon.establishedFin' | translate}}</strong>
+                  <span translate>{{taxon?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
                 </div>
                 <div>
-                  <strong translate>taxon.occurrence</strong>
-                  <span>{{(selected?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate
+                  <strong>{{'taxon.occurrence' | translate}}</strong>
+                  <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum':lang | async) || 'taxon.unknown' | translate
                     }}
                   </span>
                 </div>

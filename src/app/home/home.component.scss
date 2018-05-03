@@ -31,7 +31,7 @@
 }
 
 #cardcol {
-    margin-bottom: 3vh; 
+    margin-bottom: 3vh;
 }
 
 #icons {
@@ -54,7 +54,7 @@
 .invasivecards {
     width: 100%;
     height: 90%;
-    
+
     transition: 0.2s;
     border-color: $content-background-highlight-dark;
     cursor: pointer;
@@ -91,17 +91,33 @@
 }
 
 .eucard-img {
-    content:url(./../../assets/images/logos/eu-blue-rnd.png);
+  background: url("../../assets/images/logos/eu-blue-rnd.png") center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 9rem;
+  margin-bottom: 0px;
+  //  content:url(./../../assets/images/logos/eu-blue-rnd.png);
 }
 
 .ficard-img {
-    content:url(./../../assets/images/logos/finland-b2.png);
+  background: url("../../assets/images/logos/finland-b2.png") center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 9rem;
+  margin-bottom: 0px;
+    //content:url(./../../assets/images/logos/finland-b2.png);
 }
 
 .petscard-img {
-    content: url(./../../assets/images/logos/pets.png);
-    
+  background: url("../../assets/images/logos/pets.png") center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 9rem;
+  margin-bottom: 0px;
+  //  content: url(./../../assets/images/logos/pets.png);
+
 }
+
 
 #iconcard {
     max-height: 170px;
@@ -139,5 +155,5 @@
 }
 
 @media (max-width: 1199.98px) {
-    
+
 }
