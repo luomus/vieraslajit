@@ -7,8 +7,7 @@ import { TaxonComparisonComponent } from './taxon-comparison/taxon-comparison.co
 
 const routes: Routes = [
   { path: '', component: TaxonListComponent, runGuardsAndResolvers: 'always' },
-  { path: 'comparison', component: TaxonComparisonComponent },
-  { path: ':id', component: TaxonCardComponent, data: { comparison: false } }
+  { path: ':id', component: TaxonCardComponent }
 ];
 
 @NgModule({
