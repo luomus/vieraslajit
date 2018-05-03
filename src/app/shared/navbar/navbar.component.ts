@@ -29,13 +29,12 @@ export class NavbarComponent implements OnInit {
   constructor(private modalService: BsModalService, private router: Router, private userService: UserService,
      private informationService: InformationService, private translate:TranslateService) {
 
-    // temporary suboptimal solution (a lot more updates than necessary)
-
     this.loginSub = userService.loginStateChange.subscribe(() => {
-      if(UserService.loggedIn()) {
-        this.setLoggedIn();
-      }
       this.loggedIn = UserService.loggedIn();
+      if(this.loggedIn == false) {
+        // Use dummy parameter to force refresh (angular router doesn't refresh if target has the same route)
+        this.router.navigate(["reload/" + this.router.url]);
+      }
     })
     /**
      * Update login url next parameter every time active route changes
@@ -76,10 +75,6 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.userService.logout();
-  }
-
-  setLoggedIn() {
-    this.loggedIn = UserService.loggedIn();
   }
 
   userPropertiesWrapper() {
