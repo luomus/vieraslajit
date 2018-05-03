@@ -3,6 +3,7 @@ import { Taxonomy, TaxonomyImage } from '../../shared/model/Taxonomy';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'vrs-taxon-comparison',
@@ -12,13 +13,13 @@ import { ActivatedRoute } from '@angular/router';
 export class TaxonComparisonComponent implements OnInit, OnDestroy {
 
   @Input() taxon: Taxonomy;
-  @Input() media: TaxonomyImage;
-  private subTrans: any;
-  
+  @Input() media: TaxonomyImage[];
+  private subTrans: Subscription;
+
   loading: boolean = true;
   hasTaxonomy: boolean;
   groups = [];
-  taxonomy: Taxonomy[];
+  taxonomy: Taxonomy[] = [];
   multimedia: TaxonomyImage[];
   selected: Taxonomy;
   current = 0;
@@ -62,36 +63,36 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
     if (this.taxon) {
       this.taxon.informalTaxonGroups.forEach((elem, index, arr) => {
         this.taxonService.getGroupChildren(elem).subscribe((data) => {
-          if (data.results.length === 0) {
+          if (data.total === 0) {
             this.groups.push(elem);
+            this.getTaxon(elem);
           }
         }, err => err, () => {
           if (index === arr.length - 1) {
-            this.getTaxon();
             setInterval(() => {
               this.loading = false;
-            }, 2000); 
+            }, 2000);
           }
         });
       });
     }
   }
 
-  getTaxon() {
-    this.groups.forEach(elem => {
-      this.taxonService.getComparisonTaxonomy('MX.37600', elem, this.translate.currentLang).subscribe(data => {
-        this.taxonomy = data.results.filter(taxon => taxon.id!=this.taxon.id);
-        this.selected = data.results[this.current];
-        if (this.taxonomy.length > 0) {
-          this.hasTaxonomy = true;
-          this.loading = false;
-        } else {
-          this.hasTaxonomy = false;
-        }
-      });
+  getTaxon(elem) {
+    this.taxonService.getComparisonTaxonomy('MX.37600', elem, this.translate.currentLang).subscribe(data => {
+      this.taxonomy = this.taxonomy.concat(data.results.filter(taxon => taxon.id != this.taxon.id));
+      this.selected = this.taxonomy[this.current];
+      if (this.taxonomy.length > 0) {
+        this.hasTaxonomy = true;
+      } else {
+        this.hasTaxonomy = false;
+      }
+    }, err => err, () => {
+      this.loading = false;
     });
   }
 
   ngOnDestroy() {
+    this.subTrans.unsubscribe();
   }
 }
