@@ -35,6 +35,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   customClass: string;
   selectedImage: TaxonomyImage;
   modalRef: BsModalRef;
+  lang: string;
 
   constructor(private route: ActivatedRoute,
     private taxonService: TaxonService, private translate: TranslateService, private modalService: BsModalService) {
@@ -53,6 +54,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   }
 
   update() {
+    this.lang = this.translate.currentLang;
     this.taxonService.getTaxon(this.id, this.translate.currentLang).subscribe(data => {
       this.taxon = data;
       if (this.taxon.administrativeStatuses) {
