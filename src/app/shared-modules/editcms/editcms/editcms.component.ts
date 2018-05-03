@@ -5,10 +5,10 @@ import {UserService, Role} from './../../../shared/service/user.service';
   selector: 'vrs-editcms',
   template: `
   <ng-container *ngIf="cms_admin">
-    <a href="https://vieras-cms.laji.fi/wp-admin/post.php?post={{id}}&action=edit" class="btn btn-primary float-right m-4">Edit</a>
+    <a href="https://vieras-cms.laji.fi/wp-admin/post.php?post={{id}}&action=edit" class="btn btn-primary float-right m-4 editcms">Edit</a>
   </ng-container>
   `,
-  styleUrls: ['./editcms.component.scss']
+  styles: ['.editcms { color: white; }']
 })
 export class EditcmsComponent implements OnInit {
 
