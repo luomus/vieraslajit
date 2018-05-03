@@ -5,38 +5,27 @@
         <!-- Sitemap -->
         <div class="row">
           <div class="col-md-6 col-sm-12">
-            <h5>Dynamic</h5>
+            <h5 translate>footer.sitemap.heading1</h5>
             <ul>
-              <li><a href="">Tietoja vieraslajeista</a></li>
-              <li><a href="">Lajiluettelo</a></li>
-              <li><a href="">Torjunta</a></li>
-              <li><a href="">EU-haitalliset</a></li>
-              <li><a href="">FI-haitalliset</a></li>
+              <li><a routerLink="/removal" translate>footer.removal</a></li>
+              <li><a routerLink="/taxon" translate>footer.taxon</a></li>
+              <li><a routerLink="/observations" translate>footer.observations</a></li>
+              <li><a routerLink="/static/i-229" translate>footer.pets</a></li>
             </ul>
-            <h5>Sopimukset ja lainsäädäntö</h5>
+            <h5 translate>footer.sitemap.heading2</h5>
             <ul>
-              <li><a routerLink="/static/i-229">Lemmikit</a></li>
-              <li><a href="">Lainsäädäntö</a></li>
-              <li><a href="">Vieraslajilaki</a></li>
-              <li><a href="">EU:n lainsäädäntö</a></li>
-              <li><a href="">Euroopan unionin luettelo</a></li>
-              <li><a href="">EU:n vieraslajiasetuksen mukaiset luvat</a></li>
+              <li><a routerLink="/home" translate>footer.home</a></li>
+              <li><a routerLink="/news" translate>footer.news</a></li>
+              <li><a href="https://fmnh-ws-test.it.helsinki.fi/laji-auth/login?target=KE.741&redirectMethod=GET&locale=fi&next=/home" translate>footer.login</a></li>  
             </ul>
           </div>
           <div class="col-md-6 col-sm-12">
-            <h5>Static</h5>
+            <h5 translate>footer.sitemap.heading3</h5>
             <ul>
-              <li *ngFor=""><a></a></li>
-
+              <li *ngFor="let p of sPages"><a routerLink="/static/{{p.id}}">{{p.title}}</a></li>
+              <li><a routerLink="/administrativelists" translate>footer.eu.administrative</a></li>
+              <li><a routerLink="/administrativelists/national" translate>footer.fi.administrative</a></li>
             </ul>
-            <!--<ul>
-              <li><a href="">Sisäänkirjautuminen</a></li>
-              <li><a href="">Uutiset</a></li>
-              <li><a href="">Hankkeet</a></li>
-              <li><a href="">Julkaisut ja selvitykset</a></li>
-              <li><a href="">Ohjeet ja oppaat</a></li>
-              <li><a href="">Lomakkeet</a></li>
-            </ul>-->
           </div>
         </div>
       </div>
@@ -47,13 +36,13 @@
           Portaalin toiminnallisuuteen ja VISAKE-hankkeeseen liittyvä palaute: vieraslajiportaali@luke.fi
         </p>
         <ul class="list-inline">
-          <li class="list-inline-item"><a href="">Lajitietokeskus</a></li>
-          <li class="list-inline-item"><a href="">Palaute</a></li>
-          <li class="list-inline-item"><a href="">Facebook</a></li>
+          <li class="list-inline-item"><a href="https://laji.fi/" translate>footer.laji</a></li>
+          <li class="list-inline-item"><a href="mailto:helpdesk@laji.fi?subject=Vieraslajit.fi" translate>footer.feedback</a></li>
+          <li class="list-inline-item"><a href="https://www.facebook.com/vieraslajit/" translate>footer.facebook</a></li>
         </ul>
         <hr>
         <ul class="list-inline">
-          <li class="list-inline-item"><a href="">Tietosuojaseloste</a></li>
+          <li class="list-inline-item"><a href="https://www.luomus.fi/fi/tietosuojaseloste">Tietosuojaseloste</a></li>
           <li *ngIf="isAdmin()" class="list-inline-item">
             <a href="https://vieras-cms.laji.fi">Vieras-CMS</a>
           </li>
