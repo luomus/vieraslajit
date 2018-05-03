@@ -22,6 +22,7 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
   multimedia: TaxonomyImage[];
   selected: Taxonomy;
   current = 0;
+  lang: string;
   
 
   constructor(private taxonService: TaxonService, private translate: TranslateService) { }
@@ -57,6 +58,7 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
   }
 
   update() {
+    this.lang = this.translate.currentLang;
     if (this.taxon) {
       this.taxon.informalTaxonGroups.forEach((elem, index, arr) => {
         this.taxonService.getGroupChildren(elem).subscribe((data) => {

@@ -58,10 +58,10 @@
             <div class="col-sm-12 col-md-6">
               <div class="card-body">
                 <div class="card-text">
-                  <a routerLink="/form/JX.123757" id="report" class="btn btn-dark" translate>taxon.report</a>
+                  <a routerLink="/form/MHL.9" id="report" class="btn btn-dark" translate>taxon.help</a>
                   <br>
                   <br>
-                  <span translate>taxon.reportText</span>
+                  <span translate>taxon.helpText</span>
                 </div>
               </div>
             </div>
@@ -104,25 +104,25 @@
           <div class="card-block">
             <div class="card-body">
               <div>
-                <strong translate>taxon.name</strong>
+                <strong>{{'taxon.name' | translate}}</strong>
                 {{taxon?.vernacularName}}
               </div>
               <div>
-                <strong translate>taxon.scientific</strong>
+                <strong>{{'taxon.scientific' | translate}}</strong>
                 <em>{{taxon?.scientificName}}</em>
               </div>
               <div>
-                <strong translate>taxon.establishedFin</strong>
+                <strong>{{'taxon.establishedFin' | translate}}</strong>
                 <span translate>{{taxon?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
               </div>
               <div>
-                <strong translate>taxon.occurrence</strong>
-                <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate
+                <strong>{{'taxon.occurrence' | translate}}</strong>
+                <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum':lang | async) || 'taxon.unknown' | translate
                   }}
                 </span>
               </div>
               <div>
-                <strong translate>taxonomy.quarantinePlantPest</strong>
+                <strong>{{'taxonomy.quarantinePlantPest' | translate}}</strong>
                 <span translate>{{quarantinePlantPest == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
               </div>
               <hr/>
@@ -131,7 +131,7 @@
                   <!-- <strong translate>taxon.administrative</strong> -->
                   <ul>
                     <li *ngFor="let status of taxon.administrativeStatuses">
-                      {{status | label: 'MX.adminStatusEnum' | async}}
+                      {{status | label: 'MX.adminStatusEnum':lang | async}}
                     </li>
                   </ul>
                 </div>
