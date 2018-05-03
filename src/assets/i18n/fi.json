@@ -12,6 +12,7 @@
   "home.finnishlist": "Kansallinen luettelo",
   "home.findInvasive": "Selaa vieraslajeja",
   "home.pets": "Oletko ostamassa lemmikkiä?",
+  "home.report": "Ilmoita vieraslajihavainto",
   "navigation.home": "Koti",
   "navigation.taxonomy": "Lajit",
   "navigation.removal": "Torjunta",
@@ -97,5 +98,23 @@
   "observations.onmap":"Näytä kartalla",
   "observations.list":"Näytä luettelona",
   "observations.own":"Omat havainnot",
-  "form.submitted": "Lähetys onnistui!"
+  "form.submitted": "Lähetys onnistui!",
+
+  "footer.sitemap.heading1": "Vieraslajit",
+  "footer.sitemap.heading2": "Muuta",
+  "footer.sitemap.heading3": "Tietoa vieraslajeista",
+
+  "footer.removal": "Vieraslajien torjunta",
+  "footer.taxon": "Lajilistaus",
+  "footer.observations": "Lajihavainnot",
+  "footer.pets": "Vieraslaji lemmikkinä",
+  "footer.home": "Etusivu",
+  "footer.news": "Uutiset",
+  "footer.login": "Sisäänkirjautuminen",
+  "footer.eu.administrative": "EU vieraslajiluettelo",
+  "footer.fi.administrative": "Suomen vieraslajiluettelo",
+
+  "footer.laji": "Lajitietokeskus",
+  "footer.feedback": "Palaute",
+  "footer.facebook": "Facebook"
 }
