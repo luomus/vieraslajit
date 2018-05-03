@@ -1,13 +1,17 @@
 @import './../../assets/styles/vars.scss';
 
-/*.news-post {
+.news-post {
   
-    padding: 2em;
-    border: 1px solid $border-light;
-    background: $content-background;
-    border-radius: $content-border-radius;
+    padding-top:2%;
+    //border: 1px solid $border-light;
+    //background: $content-background;
+    //border-radius: $content-border-radius;
     
-}*/
+}
+
+.container {
+    padding:2%;
+}
 
 .news-thumbnail {
     object-fit: scale-down;
@@ -39,6 +43,11 @@
 
 .news-modified {
     font-size: 14px;
+}
+
+#navpills{
+    margin:0%;
+    padding:0%;
 }
 
 .navpill {
