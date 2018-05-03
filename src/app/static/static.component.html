@@ -1,9 +1,10 @@
+<div class= "container">
 <ng-container *ngIf="child_pages">
         <tabset>
                 <tab *ngFor="let child of child_pages" heading="{{child.title}}">
                         <ng-container *ngIf="child.data">
                                 <vrs-editcms id="{{child.id}}"></vrs-editcms>
-                                <div [innerHTML]="child.data.content"></div>
+                                <div [innerHTML]="child.data.content" class= "childContent"></div>
                         </ng-container>
                 </tab>
         </tabset>
@@ -15,4 +16,5 @@
         <div [innerHTML]="scontent['content']">
         </div>
 </ng-container>
+</div>
 
