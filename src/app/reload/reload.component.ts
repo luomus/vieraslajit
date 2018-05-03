@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 /**
- * Hack for reloading components. Redirects back to :path
+ * Hack for reloading components. Redirects back to the path given as parameter
  */
 
 @Component({

@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
     this.loginSub = userService.loginStateChange.subscribe(() => {
       this.loggedIn = UserService.loggedIn();
       if(this.loggedIn == false) {
-        // Use dummy parameter to force refresh (angular router doesn't refresh if target has the same route)
+        // Use reload hack to force re-render of the component
         this.router.navigate(["reload/" + this.router.url]);
       }
     })
