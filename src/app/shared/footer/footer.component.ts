@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService, Role } from './../service/user.service';
+import { InformationService } from '../service/information.service';
 
 @Component({
   selector: 'vrs-footer',
@@ -8,9 +9,14 @@ import { UserService, Role } from './../service/user.service';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  sPages: Array<any> = new Array();
+
+  constructor(private informationService: InformationService) { }
 
   ngOnInit() {
+    this.informationService.getInformation("i-2").subscribe((data) => {
+
+    });
   }
 
   isAdmin(): boolean {
