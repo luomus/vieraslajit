@@ -1,6 +1,19 @@
 @import './../../assets/styles/vars.scss';
 @import './../../../node_modules/bootstrap/scss/bootstrap-grid';
 
+.news-post {
+  
+    padding-top:2%;
+    //border: 1px solid $border-light;
+    //background: $content-background;
+    //border-radius: $content-border-radius;
+    
+}
+
+.container {
+    padding:2%;
+}
+
 .news-thumbnail {
     object-fit: scale-down;
     max-width: 100%;
@@ -36,6 +49,11 @@
 
 .news-modified {
     font-size: 14px;
+}
+
+#navpills{
+    margin:0%;
+    padding:0%;
 }
 
 .navpill {

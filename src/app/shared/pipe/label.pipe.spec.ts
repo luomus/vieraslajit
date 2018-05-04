@@ -14,8 +14,8 @@ describe('LabelPipe', () => {
     });
   });
 
-  it('create an instance', inject([MetadataService, TranslateService], (service: MetadataService, translate: TranslateService) => {
-    const pipe = new LabelPipe(service, translate);
+  it('create an instance', inject([MetadataService], (service: MetadataService) => {
+    const pipe = new LabelPipe(service);
     expect(pipe).toBeTruthy();
   })
   );

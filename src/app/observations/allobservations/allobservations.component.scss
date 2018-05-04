@@ -2,3 +2,43 @@
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+.selection-cell {
+    cursor: pointer;
+}
+
+.navButton {
+    display: inline-block;
+    min-width: 10px;
+    font-size: 14px;
+    border-color: $primary;
+    color: $primary;
+    line-height: 1;
+    white-space: nowrap;
+    text-align: center;
+    border-style: solid;
+    cursor: pointer;
+
+    :focus {
+        outline: 0;
+    }
+
+    :hover {
+        background-color: $primary;
+        color: $content-background;
+    }
+
+    :active {
+        background-color: $primary;
+        color: $content-background;
+    }  
+}
+.container {
+    padding: 3%;
+    padding-top:3%;
+}
+
+#heading {
+    font-size: $header-size;
+}
+
