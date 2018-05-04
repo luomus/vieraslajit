@@ -16,7 +16,7 @@
             <ng-container *ngIf="showGroups === false"><span class="oi oi-chevron-bottom float-right"></span></ng-container>
             <ng-container *ngIf="selectedGroup && showGroups === true"><span class="oi oi-chevron-top float-right"></span></ng-container>
           </h5>
-         
+
         </div>
 
         <div id="collapseOne" class="collapse show">
@@ -25,15 +25,15 @@
               <div class="card-deck container">
                 <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                   <div class="card" id="selectGroup-card" (click)="changeOpen()">
-                    <img class="card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
                     <div class="card-body" id="selectGroup-card-body">
-                      <p class="card-text" id="selectGroup-card-text">{{group.name}}</p>
+                       <img class="card-header bg-transparent card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">
+                       <p class="card-text" id="selectGroup-card-text">{{group.name}}</p>
                     </div>
                   </div>
                 </div>
               </div>
             </ng-container>
-          
+
         </div>
       </accordion-group>
     </accordion>

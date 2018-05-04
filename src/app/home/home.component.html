@@ -21,7 +21,7 @@
                         <p id="welcome-text" translate>home.description</p>
                     </div>
                 </div>
-               
+
                 <div class="row">
                     <div class="offset-md-1 offset-lg-0 col-md-12 col-lg-6 col-12" id="cardcol">
                         <div class="card homecard">
@@ -29,6 +29,7 @@
                             <div class="card-body">
                                 <p translate>home.whatare.p</p>
                                 <button type="button" class="btn btn-dark" routerLink='/taxon' role="button" translate>home.findInvasive</button>
+                                <button type="button" class="btn btn-dark" routerLink='/form/JX.123757' role="button" translate>home.report</button>
                             </div>
                         </div>
                     </div>
@@ -41,13 +42,13 @@
                                     <p translate>home.invasiveinfo</p>
                                     <div class="card-deck">
                                         <div class="card invasivecards" routerLink='/adminstrativelists'>
-                                            <img class="card-img-top img-responsive eucard-img invasivecards-img" alt="no image">
+                                            <img class="card-img-top img-responsive eucard-img invasivecards-img">
                                             <div class="card-body">
                                                 <h5 class="card-text text-center invasivecards-text" translate>home.eulist</h5>
                                             </div>
                                         </div>
                                         <div class="card invasivecards" routerLink='/adminstrativelists/national'>
-                                            <img class="card-img-top img-responsive ficard-img invasivecards-img" alt="no image">
+                                            <img class="card-img-top img-responsive ficard-img invasivecards-img">
                                             <div class="card-body">
                                                 <h5 class="card-text text-center invasivecards-text" translate>home.finnishlist</h5>
                                             </div>
@@ -66,7 +67,7 @@
                                     <div class="card invasivecards" id= "iconcard" routerLink="/static/{{staticPetsID}}">
                                         <div class="card-body">
                                             <h5 class="card-text text-center icons-text" translate>home.pets</h5>
-                                            <img class="card-img-bottom invasivecards-img petscard-img"  alt="no image">
+                                            <img class="card-img-bottom invasivecards-img petscard-img">
                                         </div>
                                     </div>
                                 </div>
