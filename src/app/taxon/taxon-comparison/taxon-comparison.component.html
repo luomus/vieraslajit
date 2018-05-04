@@ -118,10 +118,10 @@
                   <strong>{{'taxon.scientific' | translate}}</strong>
                   <em>{{selected?.scientificName}}</em>
                 </div>
-                <ng-container *ngIf="taxon?.administrativeStatuses">
+                <ng-container *ngIf="selected?.administrativeStatuses">
                   <div>
                     <ul>
-                      <li *ngFor="let status of taxon.administrativeStatuses">
+                      <li *ngFor="let status of selected?.administrativeStatuses">
                         {{status | label: 'MX.adminStatusEnum':lang | async}}
                       </li>
                     </ul>
@@ -129,11 +129,11 @@
                 </ng-container>
                 <div>
                   <strong>{{'taxon.establishedFin' | translate}}</strong>
-                  <span translate>{{taxon?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
+                  <span translate>{{selected?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
                 </div>
                 <div>
                   <strong>{{'taxon.occurrence' | translate}}</strong>
-                  <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum':lang | async) || 'taxon.unknown' | translate
+                  <span>{{(selected?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum':lang | async) || 'taxon.unknown' | translate
                     }}
                   </span>
                 </div>
