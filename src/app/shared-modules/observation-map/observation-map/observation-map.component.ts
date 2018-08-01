@@ -109,20 +109,13 @@ export class ObservationMapComponent implements OnInit{
 
       getFeatureStyle() {
         let color = "#f89525";
-        let opacity = 0.7;
+        let opacity = 0.2 * (1 / ((new Date()).getFullYear() - parseInt(date.substring(0, 4))));
         let fillColor = "#f89525";
-        let fillOpacity = 0.3;
+        let fillOpacity = opacity * 2;
 
         if (isReliable) {
           color = "#41967b";
           fillColor = "#41967b";
-        }
-        if (date.substring(0, 4) <= "2008"){
-          fillOpacity = 0.00;
-        }
-        if (date.substring(0, 4) == "2018"){
-          opacity = 0.8;
-          fillOpacity = 0.5;
         }
 
         return {
@@ -143,6 +136,7 @@ export class ObservationMapComponent implements OnInit{
 
   initializeMap() {
     this.map = new LajiMap(this.mapOptions());
+    console.log(this.map);
   }
 
   mapOptions(){
@@ -154,7 +148,7 @@ export class ObservationMapComponent implements OnInit{
         "lng": 27
       },
       zoom: 1.4,
-      zoomToData : true,
+      zoomToData : false,
       tileLayerName: "openStreetMap",
       controls: {
       },
