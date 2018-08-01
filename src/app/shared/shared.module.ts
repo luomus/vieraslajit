@@ -24,6 +24,7 @@ import {ListService } from './service/list.service';
 import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
 import { ObservationService } from './service/observation.service';
 import {EditcmsModule} from './../shared-modules/editcms/editcms.module';
+import {ObservationMapModule} from '../shared-modules/observation-map/observation-map.module';
 import { DocumentService } from './service/document.service';
 import { AlertService } from './service/alert.service';
 
@@ -41,6 +42,7 @@ import { AlertService } from './service/alert.service';
     BsDropdownModule,
     SpinnerModule,
     EditcmsModule,
+    ObservationMapModule,
     ModalModule.forRoot(),
     CollapseModule.forRoot(),
     HttpModule
@@ -49,7 +51,7 @@ import { AlertService } from './service/alert.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SpinnerModule, EditcmsModule, SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SpinnerModule, EditcmsModule, ObservationMapModule, SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ObservationComponent } from '../../observation/observation.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 
 import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.component';

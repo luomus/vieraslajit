@@ -1,16 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ObservationService } from '../shared/service/observation.service';
-import { WarehouseQueryList } from '../shared/model/Warehouse';
-import { PagedResult } from '../shared/model/PagedResult';
+import { ObservationService } from '../../../shared/service/observation.service';
+import { WarehouseQueryList } from '../../../shared/model/Warehouse';
+import { PagedResult } from '../../../shared/model/PagedResult';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'vrs-observation',
-  templateUrl: './observation.component.html',
-  styleUrls: ['./observation.component.scss']
+  selector: 'vrs-observation-map',
+  templateUrl: './observation-map.component.html',
+  styleUrls: ['./observation-map.component.scss']
 })
 
-export class ObservationComponent implements OnInit{
+export class ObservationMapComponent implements OnInit{
   @Input() id: string;
 
   private idArray: Array<string>=[];
