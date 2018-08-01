@@ -23,7 +23,12 @@ export class ObservationMapComponent implements OnInit{
   ngOnInit() {
     if(this.id)this.idArray.push(this.id);
     if (this.idArray.length > 0) {
-      this.populate(this.idArray, this.maxObservations,()=>{
+      this.populateObservationsById(this.idArray, this.maxObservations,()=>{
+        this.setMapData();
+        this.initializeMap();
+      });
+    } else if (true) {
+      this.populateObservationsByAll(this.maxObservations, ()=>{
         this.setMapData();
         this.initializeMap();
       });
@@ -33,7 +38,14 @@ export class ObservationMapComponent implements OnInit{
     }
   }
 
-  populate(idArray, max, callback) {
+  populateObservationsByAll(max, callback) {
+    this.observationService.getAllObservations(max, "1").subscribe(data => {
+      this.observations= data.results;
+      callback();
+    });
+  }
+
+  populateObservationsById(idArray, max, callback) {
     this.observationService.getObservationsById(idArray, max, "1").subscribe(data => {
       this.observations= data.results;
       callback();
