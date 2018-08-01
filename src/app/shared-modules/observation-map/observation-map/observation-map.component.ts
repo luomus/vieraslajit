@@ -4,6 +4,8 @@ import { WarehouseQueryList } from '../../../shared/model/Warehouse';
 import { PagedResult } from '../../../shared/model/PagedResult';
 import { Subscription } from 'rxjs/Subscription';
 
+var LajiMap = require("laji-map").default;
+
 @Component({
   selector: 'vrs-observation-map',
   templateUrl: './observation-map.component.html',
@@ -11,18 +13,23 @@ import { Subscription } from 'rxjs/Subscription';
 })
 
 export class ObservationMapComponent implements OnInit{
+
+  /* Used to populate the map with observations*/
   @Input() id: string;
 
   private idArray: Array<string>=[];
   private maxObservations: string = "200";
   private observations: Array<any> = [];
+
+  /* LajiMap */
+  private map;
   private mapData=[];
 
   constructor(private observationService: ObservationService) { }
 
   ngOnInit() {
-    if(this.id)this.idArray.push(this.id);
-    if (this.idArray.length > 0) {
+    this.idArray.push(this.id);
+    if (this.id) {
       this.populateObservationsById(this.idArray, this.maxObservations,()=>{
         this.setMapData();
         this.initializeMap();
@@ -32,10 +39,10 @@ export class ObservationMapComponent implements OnInit{
         this.setMapData();
         this.initializeMap();
       });
-    } else {
+    } /*else {
       this.setMapData();
       this.initializeMap();
-    }
+    }*/
   }
 
   populateObservationsByAll(max, callback) {
@@ -61,16 +68,16 @@ export class ObservationMapComponent implements OnInit{
     let notes="";
 
     this.observations
-      .forEach((observationObject) => {
-        if(observationObject.gathering.conversions) {
+      .forEach((observation) => {
+        if(observation.gathering.conversions) {
           coordinates = [
-            observationObject.gathering.conversions.wgs84CenterPoint.lon,
-            observationObject.gathering.conversions.wgs84CenterPoint.lat
+            observation.gathering.conversions.wgs84CenterPoint.lon,
+            observation.gathering.conversions.wgs84CenterPoint.lat
           ]
-          municipality = observationObject.gathering.interpretations.municipalityDisplayname;
-          date = observationObject.gathering.displayDateTime;
-          notes = observationObject.unit.notes || "";
-          isReliable = observationObject.unit.recordBasis !== "HUMAN_OBSERVATION_UNSPECIFIED";
+          municipality = observation.gathering.interpretations.municipalityDisplayname;
+          date = observation.gathering.displayDateTime;
+          notes = observation.unit.notes || "";
+          isReliable = observation.unit.recordBasis !== "HUMAN_OBSERVATION_UNSPECIFIED";
 
           const dataObject= this.returnFeatureCollectionAndPopup(this.returnFeatures(coordinates), municipality, date, notes, isReliable);
           this.mapData.push(dataObject);
@@ -135,8 +142,7 @@ export class ObservationMapComponent implements OnInit{
   }
 
   initializeMap() {
-    var LajiMap = require("laji-map").default;
-    var map = new LajiMap(this.mapOptions());
+    this.map = new LajiMap(this.mapOptions());
   }
 
   mapOptions(){
@@ -148,7 +154,7 @@ export class ObservationMapComponent implements OnInit{
         "lng": 27
       },
       zoom: 1.4,
-      zoomToData : false,
+      zoomToData : true,
       tileLayerName: "openStreetMap",
       controls: {
       },
