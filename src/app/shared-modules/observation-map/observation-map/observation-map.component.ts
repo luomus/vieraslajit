@@ -14,22 +14,29 @@ export class ObservationMapComponent implements OnInit{
   @Input() id: string;
 
   private idArray: Array<string>=[];
-  private pageSize: string = "200";
+  private maxObservations: string = "200";
   private observations: Array<any> = [];
   private mapData=[];
 
   constructor(private observationService: ObservationService) { }
 
   ngOnInit() {
-    this.idArray.push(this.id);
-    this.update();
-  }
-
-  update() {
-    this.observationService.getObservationsById(this.idArray, this.pageSize, "1").subscribe(data => {
-      this.observations= data.results;
+    if(this.id)this.idArray.push(this.id);
+    if (this.idArray.length > 0) {
+      this.populate(this.idArray, this.maxObservations,()=>{
+        this.setMapData();
+        this.initializeMap();
+      });
+    } else {
       this.setMapData();
       this.initializeMap();
+    }
+  }
+
+  populate(idArray, max, callback) {
+    this.observationService.getObservationsById(idArray, max, "1").subscribe(data => {
+      this.observations= data.results;
+      callback();
     });
   }
 
