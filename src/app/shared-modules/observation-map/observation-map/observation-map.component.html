@@ -1,0 +1,20 @@
+<div class="input-group mb-3">
+  <select id="select-municipality">
+    <option value="all">Municipality...</option>
+    <option *ngFor="let mun of municipalities" value="{{mun}}">{{mun}}</option>
+  </select>
+</div>
+<div *ngIf="isAdmin">
+  <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="adminCheck" [checked]="adminMode" (change)="adminMode = !adminMode">
+      <label class="form-check-label" for="adminCheck">
+        Admin mode
+      </label>
+    </div>
+</div>
+<button id="genMap">Generate map</button>
+<div id="map"> </div>
+<!--<p>
+  <span translate>mapOfObservations.info</span>
+  <a href="https://laji.fi/observation/map?target={{id}}" target="_blank">  <span translate>mapOfObservations.link</span></a>
+</p>-->
