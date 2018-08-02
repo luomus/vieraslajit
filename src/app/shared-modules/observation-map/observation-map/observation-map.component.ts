@@ -67,7 +67,6 @@ export class ObservationMapComponent implements OnInit{
       // temporarily declare filtered observations as all the observations in the muncipality that was chosen
       // in the future this will change with additional filters
       this.filteredObservations = this.observationsInSelectedMun;
-      console.log(this.adminMode);
     });
     $('#genMap').click(()=>{
       $("#map").children().remove();
@@ -111,8 +110,8 @@ export class ObservationMapComponent implements OnInit{
             // client side randomization of coordinates for privacy reasons (not safe! Todo: client side randomization)
             let accuracy = 0.01;
             coordinates = [
-              observation.gathering.conversions.wgs84CenterPoint.lon + Math.floor(Math.random() * (accuracy - (-accuracy)) ) + (-accuracy),
-              observation.gathering.conversions.wgs84CenterPoint.lat + Math.floor(Math.random() * (accuracy - (-accuracy)) ) + (-accuracy)
+              observation.gathering.conversions.wgs84CenterPoint.lon + (Math.random() * (accuracy - (-accuracy)) ) + (-accuracy),
+              observation.gathering.conversions.wgs84CenterPoint.lat + (Math.random() * (accuracy - (-accuracy)) ) + (-accuracy)
             ]
           }
           municipality = observation.gathering.interpretations.municipalityDisplayname;
