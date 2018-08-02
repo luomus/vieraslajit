@@ -3,6 +3,8 @@ import { ObservationService } from '../../../shared/service/observation.service'
 import { WarehouseQueryList } from '../../../shared/model/Warehouse';
 import { PagedResult } from '../../../shared/model/PagedResult';
 import { Subscription } from 'rxjs/Subscription';
+import { UserService, Role } from '../../../shared/service/user.service';
+
 import * as $ from 'jquery';
 
 var _municipalities = require('./municipalities.json');
@@ -32,6 +34,8 @@ export class ObservationMapComponent implements OnInit{
   /* Filters */
   private municipalities = _municipalities;
   private observationsInSelectedMun: Array<any> = [];
+  private adminMode = false;
+  private isAdmin = UserService.hasRole(Role.CMS_ADMIN);
 
   constructor(private observationService: ObservationService) { }
 
@@ -56,13 +60,14 @@ export class ObservationMapComponent implements OnInit{
     $('#select-municipality').change(() => {
       this.observationsInSelectedMun=[];
       this.observations.forEach((observation)=>{
-        if(observation.gathering.interpretations.municipalityDisplayname == $('#select-municipality').val()){
+        if(observation.gathering.interpretations.municipalityDisplayname == $('#select-municipality').val() || $('#select-municipality').val()=="all"){
           this.observationsInSelectedMun.push(observation);
         };
       });
       // temporarily declare filtered observations as all the observations in the muncipality that was chosen
       // in the future this will change with additional filters
       this.filteredObservations = this.observationsInSelectedMun;
+      console.log(this.adminMode);
     });
     $('#genMap').click(()=>{
       $("#map").children().remove();
@@ -86,6 +91,7 @@ export class ObservationMapComponent implements OnInit{
   }
 
   generateMapData() {
+    const _adminMode = this.adminMode;
     this.mapData=[];
     let coordinates = [];
     let municipality= "";
@@ -96,10 +102,19 @@ export class ObservationMapComponent implements OnInit{
     this.filteredObservations
       .forEach((observation) => {
         if(observation.gathering.conversions) {
-          coordinates = [
-            observation.gathering.conversions.wgs84CenterPoint.lon,
-            observation.gathering.conversions.wgs84CenterPoint.lat
-          ]
+          if(_adminMode) {
+            coordinates = [
+              observation.gathering.conversions.wgs84CenterPoint.lon,
+              observation.gathering.conversions.wgs84CenterPoint.lat
+            ]
+          } else {
+            // client side randomization of coordinates for privacy reasons (not safe! Todo: client side randomization)
+            let accuracy = 0.01;
+            coordinates = [
+              observation.gathering.conversions.wgs84CenterPoint.lon + Math.floor(Math.random() * (accuracy - (-accuracy)) ) + (-accuracy),
+              observation.gathering.conversions.wgs84CenterPoint.lat + Math.floor(Math.random() * (accuracy - (-accuracy)) ) + (-accuracy)
+            ]
+          }
           municipality = observation.gathering.interpretations.municipalityDisplayname;
           date = observation.gathering.displayDateTime;
           notes = observation.unit.notes || "";
@@ -113,6 +128,10 @@ export class ObservationMapComponent implements OnInit{
 
   returnFeatures (coordinates:Array<any>){
     let features = [];
+    let rad = 5000;
+    if(this.adminMode) {
+      rad = 10;
+    }
     features.push(
       {
         'type': 'Feature',
@@ -120,13 +139,14 @@ export class ObservationMapComponent implements OnInit{
         'geometry': {
           'type': 'Point',
           'coordinates': coordinates,
-          "radius": 30000
+          "radius": rad
         }
     })
     return features;
   }
 
   returnFeatureCollectionAndPopup(features:Array<any>,municipality:string, date:string, notes:string, isReliable:boolean){
+    const _adminMode = this.adminMode;
     const dataObject= {
       featureCollection: {
         'type': 'FeatureCollection',
@@ -138,11 +158,9 @@ export class ObservationMapComponent implements OnInit{
         let opacity = 0.1 * (1 / ((new Date()).getFullYear() - parseInt(date.substring(0, 4)) + 1));
         let fillColor = "#f89525";
         let fillOpacity = opacity * 0.9;
+        if(_adminMode) { opacity=1; fillOpacity=1; color="red"; fillColor="red"}
 
-        if (isReliable) {
-          color = "#41967b";
-          fillColor = "#41967b";
-        }
+        if (isReliable) { color = "#41967b"; fillColor = "#41967b"; }
 
         return {
                 opacity: opacity,
@@ -173,7 +191,7 @@ export class ObservationMapComponent implements OnInit{
         "lng": 27
       },
       zoom: 1.4,
-      zoomToData : false,
+      zoomToData : true,
       tileLayerName: "openStreetMap",
       controls: {
       },
