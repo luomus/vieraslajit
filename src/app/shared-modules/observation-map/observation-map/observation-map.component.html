@@ -1,3 +1,10 @@
+<div class="input-group mb-3">
+  <select id="select-municipality">
+    <option>Municipality...</option>
+    <option *ngFor="let mun of municipalities" value="{{mun}}">{{mun}}</option>
+  </select>
+</div>
+<button id="genMap">Generate map</button>
 <div id="map"> </div>
 <!--<p>
   <span translate>mapOfObservations.info</span>
