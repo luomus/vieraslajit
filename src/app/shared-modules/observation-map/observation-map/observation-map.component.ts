@@ -32,10 +32,10 @@ export class ObservationMapComponent implements OnInit{
   private mapData=[];
 
   /* Filters */
-  private municipalities = _municipalities;
   private observationsInSelectedMun: Array<any> = [];
   private adminMode = false;
-  private isAdmin = UserService.hasRole(Role.CMS_ADMIN);
+  municipalities = _municipalities;
+  isAdmin = UserService.hasRole(Role.CMS_ADMIN);
 
   constructor(private observationService: ObservationService) { }
 
