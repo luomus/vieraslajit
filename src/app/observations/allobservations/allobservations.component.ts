@@ -44,11 +44,11 @@ export class AllobservationsComponent implements OnInit {
   }
   update() {
     this.columns = [
-      { prop: 'taxonVerbatim', name: this.translate.instant('taxon.name'), draggable: false },
-      { prop: 'scientificName', name: this.translate.instant('taxon.scientific'), draggable: false },
-      { prop: 'team', name: this.translate.instant('observation.team'), draggable: false },
-      { prop: 'municipalityDisplayname', name: this.translate.instant('document.location'), draggable: false },
-      { prop: 'displayDateTime', name: this.translate.instant('observation.datetime') }
+      { prop: 'taxonVerbatim', name: this.translate.instant('taxon.name'), draggable: false, resizeable: false },
+      /*{ prop: 'scientificName', name: this.translate.instant('taxon.scientific'), draggable: false },
+      { prop: 'team', name: this.translate.instant('observation.team'), draggable: false },*/
+      { prop: 'municipalityDisplayname', name: this.translate.instant('document.location'), draggable: false, resizeable: false },
+      { prop: 'displayDateTime', name: this.translate.instant('observation.datetime'), draggable: false, resizeable: false }
     ];
     this.getObservations();
 

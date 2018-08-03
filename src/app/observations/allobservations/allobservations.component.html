@@ -1,4 +1,4 @@
-<div class = "container">
+<div class = "container-fluid">
     <div class= "row">
         <h1 id="heading" class= "col-md-8" translate>observations.all</h1>
         <ul id="navButtons" class= "col-md-4" >
@@ -8,7 +8,24 @@
     </div>
     <tabset>
       <tab heading="{{'observations.onmap' | translate}}" id="tab1">
-          <vrs-observation-map></vrs-observation-map>
+          <div class="row">
+                <div class="col-7">
+                    <vrs-observation-map></vrs-observation-map>
+                </div>
+                <div class="col-5">
+                    <ngx-datatable *ngIf="page" class="material mt-5" style="height: 400px;"
+                    [rows]="observations" 
+                    [columnMode]="'force'" 
+                    [columns]="columns" 
+                    [headerHeight]="50"
+                    [rowHeight]="50" 
+                    [reorderable]='true' 
+                    scrollbarV="true"
+                    [footerHeight]="50"
+                    (page)="onPageChange()">
+                    </ngx-datatable>
+                </div>
+            </div>
       </tab>
       <tab heading="{{'observations.list' | translate}}">
         <laji-spinner [spinning]="loading" >
