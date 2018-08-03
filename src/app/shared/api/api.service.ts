@@ -318,9 +318,10 @@ export namespace LajiApi {
   }
 
   export interface WarehouseQueryListQuery {
-    taxonId: Array<string>;
+    taxonId?: Array<string>;
     pageSize?: string;
-    page: string;
+    page?: string;
+    observerPersonToken?: string;
   }
 
 }

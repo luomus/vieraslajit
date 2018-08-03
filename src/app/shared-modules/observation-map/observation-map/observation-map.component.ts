@@ -20,7 +20,8 @@ var LajiMap = require("laji-map").default;
 export class ObservationMapComponent implements OnInit{
 
   /* Used to populate the map with observations*/
-  @Input() id: string;
+  @Input() id?: string;
+  @Input() personToken?: string;
 
   private idArray: Array<string>=[];
   private maxObservations: string = "200";
@@ -40,38 +41,42 @@ export class ObservationMapComponent implements OnInit{
   constructor(private observationService: ObservationService) { }
 
   ngOnInit() {
+    
+    /* Populate observations from API data */
+
     this.idArray.push(this.id);
     if (this.id) {
       this.populateObservationsById(this.idArray, this.maxObservations,()=>{
         this.filteredObservations = this.observations;
-        this.generateMapData();
-        this.initializeMap();
+        this.renderMap();
       });
-    } else if (true) {
+    } else if (this.personToken) {
+      this.populateObservationsByPerson(UserService.getToken(), this.maxObservations, ()=>{
+        this.filteredObservations = this.observations;
+        this.renderMap();
+      });
+    } else {
       this.populateObservationsByAll(this.maxObservations, ()=>{
         this.filteredObservations = this.observations;
-        this.generateMapData();
-        this.initializeMap();
+        this.renderMap();
       });
-    } /*else {
-      this.setMapData();
-      this.initializeMap();
-    }*/
+    }
+
+    /* jQuery */
     $('#select-municipality').change(() => {
       this.observationsInSelectedMun=[];
       this.observations.forEach((observation)=>{
-        if(observation.gathering.interpretations.municipalityDisplayname == $('#select-municipality').val() || $('#select-municipality').val()=="all"){
+        if((observation.gathering.interpretations && observation.gathering.interpretations.municipalityDisplayname == $('#select-municipality').val()) || $('#select-municipality').val()=="all"){
           this.observationsInSelectedMun.push(observation);
         };
       });
       // temporarily declare filtered observations as all the observations in the muncipality that was chosen
       // in the future this will change with additional filters
       this.filteredObservations = this.observationsInSelectedMun;
+      this.renderMap();
     });
     $('#genMap').click(()=>{
-      $("#map").children().remove();
-      this.generateMapData();
-      this.initializeMap();
+      this.renderMap();
     });
   }
 
@@ -84,6 +89,13 @@ export class ObservationMapComponent implements OnInit{
 
   populateObservationsById(idArray, max, callback) {
     this.observationService.getObservationsById(idArray, max, "1").subscribe(data => {
+      this.observations= data.results;
+      callback();
+    });
+  }
+
+  populateObservationsByPerson(token, max, callback) {
+    this.observationService.getObservationsbyPersonToken(token, max).subscribe(data => {
       this.observations= data.results;
       callback();
     });
@@ -154,8 +166,8 @@ export class ObservationMapComponent implements OnInit{
 
       getFeatureStyle() {
         let color = "#f89525";
-        let opacity = 0.1 * (1 / ((new Date()).getFullYear() - parseInt(date.substring(0, 4)) + 1));
-        let fillColor = "#f89525";
+        let opacity = Math.max(1 / ((new Date()).getFullYear() - parseInt(date.substring(0, 4)) + 2), 0.1);
+        let fillColor = color;
         let fillOpacity = opacity * 0.9;
         if(_adminMode) { opacity=1; fillOpacity=1; color="red"; fillColor="red"}
 
@@ -177,7 +189,9 @@ export class ObservationMapComponent implements OnInit{
     return dataObject;
   }
 
-  initializeMap() {
+  renderMap() {
+    this.generateMapData();
+    $("#map").children().remove();
     this.map = new LajiMap(this.mapOptions());
   }
 
