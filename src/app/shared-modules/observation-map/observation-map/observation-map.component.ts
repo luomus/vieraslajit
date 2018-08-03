@@ -20,7 +20,9 @@ var LajiMap = require("laji-map").default;
 export class ObservationMapComponent implements OnInit{
 
   /* Used to populate the map with observations*/
-  @Input() id: string;
+  @Input() id?: string;
+  @Input() all?: boolean;
+  @Input() personToken?: string;
 
   private idArray: Array<string>=[];
   private maxObservations: string = "200";
@@ -40,6 +42,9 @@ export class ObservationMapComponent implements OnInit{
   constructor(private observationService: ObservationService) { }
 
   ngOnInit() {
+    
+    /* Populate observations from API data */
+
     this.idArray.push(this.id);
     if (this.id) {
       this.populateObservationsById(this.idArray, this.maxObservations,()=>{
@@ -47,16 +52,21 @@ export class ObservationMapComponent implements OnInit{
         this.generateMapData();
         this.initializeMap();
       });
-    } else if (true) {
+    } else if (this.all) {
       this.populateObservationsByAll(this.maxObservations, ()=>{
         this.filteredObservations = this.observations;
         this.generateMapData();
         this.initializeMap();
       });
-    } /*else {
-      this.setMapData();
-      this.initializeMap();
-    }*/
+    } else if (this.personToken) {
+      this.populateObservationsByPerson(UserService.getToken(), this.maxObservations, ()=>{
+        this.filteredObservations = this.observations;
+        this.generateMapData();
+        this.initializeMap();
+      });
+    }
+
+    /* jQuery */
     $('#select-municipality').change(() => {
       this.observationsInSelectedMun=[];
       this.observations.forEach((observation)=>{
@@ -84,6 +94,13 @@ export class ObservationMapComponent implements OnInit{
 
   populateObservationsById(idArray, max, callback) {
     this.observationService.getObservationsById(idArray, max, "1").subscribe(data => {
+      this.observations= data.results;
+      callback();
+    });
+  }
+
+  populateObservationsByPerson(token, max, callback) {
+    this.observationService.getObservationsbyPersonToken(token, max).subscribe(data => {
       this.observations= data.results;
       callback();
     });

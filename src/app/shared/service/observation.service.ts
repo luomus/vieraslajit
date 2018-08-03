@@ -15,10 +15,17 @@ export class ObservationService {
     return this.apiService
           .warehouseQueryListById(LajiApi.Endpoints.warehousequerylist, {taxonId: taxonId, pageSize: pageSize, page: page});
   }
+  /*
   getObservationsbyPersonToken(personToken: string, pageSize: string):  Observable<any> {
     return this.apiService
           .documentsByPersonToken(LajiApi.Endpoints.documents, {personToken: personToken, pageSize: pageSize});
   }
+  */
+
+ getObservationsbyPersonToken(personToken: string, pageSize: string):  Observable<any> {
+  return this.apiService
+        .warehouseQueryListById(LajiApi.Endpoints.warehousequerylist, {observerPersonToken: personToken, pageSize: pageSize});
+}
 
   getAllObservations(pageSize: string, page:string):  Observable<PagedResult<WarehouseQueryList>> {
     return this.apiService

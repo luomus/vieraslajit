@@ -51,11 +51,10 @@ export class ObservationlistComponent implements OnInit, OnDestroy {
   update() {
     this.observationService.getObservationsbyPersonToken(this.personToken, this.pageSize).subscribe(data => {
       this.observations = data.results;
-      console.log(this.observations);
       this.observations.forEach(observationObject => {
         observationObject.dateCreated = this.datePipe.transform(observationObject.dateCreated, 'dd.MM.yyyy HH:mm');
         observationObject.dateEdited = this.datePipe.transform(observationObject.dateEdited, 'dd.MM.yyyy HH:mm');
-        observationObject.municipality = observationObject.gatherings[0].municipality;
+        if(observationObject.gatherings) observationObject.municipality = observationObject.gatherings[0].municipality;
       });
       this.columns = [
         { prop: 'dateCreated', name: this.translate.instant('document.dayOfYearBegin'), draggable: false },
