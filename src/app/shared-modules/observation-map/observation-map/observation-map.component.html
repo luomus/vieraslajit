@@ -13,7 +13,33 @@
     </div>
 </div>
 <button id="genMap">Generate map</button>
-<div id="map"> </div>
+<!-- Render list if list-mode enabled -->
+<ng-container *ngIf="list">
+<div class="row">
+    <div class="col-7">
+        <div id="map"></div>
+    </div>
+    <div class="col-5">
+      <ngx-datatable class="material" style="height: 400px;"
+      [rows]="filteredObservations" 
+      [columnMode]="'force'" 
+      [columns]="columns" 
+      [headerHeight]="50"
+      [rowHeight]="50" 
+      [reorderable]='false' 
+      scrollbarV="true"
+      [footerHeight]="50"
+      (activate)="onTableActivate($event)"
+      >
+      </ngx-datatable>
+    </div>
+</div>
+</ng-container>
+<ng-container *ngIf="!list">
+    <div id="map"></div>
+</ng-container>
+
+
 <!--<p>
   <span translate>mapOfObservations.info</span>
   <a href="https://laji.fi/observation/map?target={{id}}" target="_blank">  <span translate>mapOfObservations.link</span></a>

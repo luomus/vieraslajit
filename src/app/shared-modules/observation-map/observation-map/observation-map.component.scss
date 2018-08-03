@@ -1,7 +1,20 @@
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
 #map {
   height: 400px;
 }
 
 p {
     padding: 15px;
+}
+
+/deep/ .datatable-body-cell {
+  cursor: pointer;
+}
+
+/deep/ .ngx-datatable.material {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
 }
