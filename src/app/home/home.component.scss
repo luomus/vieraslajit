@@ -19,11 +19,11 @@
 }
 
 #searchbar {
-    background: $content-background-highlight-dark;
+    background: $background-light-highlight-dark;
 }
 
 #welcome {
-    color: $content-background-highlight-dark;
+    color: $background-light-highlight-dark;
     font-family: $font-montserrat;
     font-size: 20px;
     margin-top: 7vh;
@@ -40,15 +40,15 @@
 
 .homecard {
     height: 100%;
-    background: $content-background-highlight;
+    background: $background-light-highlight;
     padding-bottom: 20px;
 }
 
 .homecard-header {
-    background-color: $content-background-highlight-dark;
+    background-color: $background-light-highlight-dark;
     font-family: $font-montserrat;
     font-weight: 500;
-    color: $content-background;
+    color: $background-light;
 }
 
 .invasivecards {
@@ -56,7 +56,7 @@
     height: 90%;
 
     transition: 0.2s;
-    border-color: $content-background-highlight-dark;
+    border-color: $background-light-highlight-dark;
     cursor: pointer;
 }
 
@@ -75,7 +75,7 @@
 
 .invasivecards-text {
     width: 100%;
-    color:  $navbar-background;
+    color:  #222;
     font-size: 1.3vh;
 }
 
@@ -125,7 +125,7 @@
 }
 
 #news {
-    background-color: $content-background-highlight;
+    background-color: $background-light-highlight;
 }
 
 #newsh4 {

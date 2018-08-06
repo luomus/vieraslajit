@@ -1,132 +1,134 @@
 @import '../../../assets/styles/vars';
 
+$accent: $primary;
+
+$background: $background-light;
+$background-hover: $background;
+
+/* Background */
 #mainNav {
     font-size: 14px;
     font-weight: 700;
     font-family: $font-montserrat;
-    background: $primary;
+    background: $background;
+
+    border-bottom: 1px solid $accent;
+
+    box-shadow: 0px 0px 5px 0px $shadow;
 }
 
-@media screen and (max-width: 989px) {
-    #mainNav {font-size: 16px;}
-    #dropdown-menu-item {font-size: 16px;}
-    #search-icon{padding-left:10px; padding-top: 30px;}
-    #mainNav .navbar-nav li.nav-item a.nav-link{padding-top: 5px;padding-bottom:5px;}
-    #mainNav .dropdown{padding-top:5px;padding-bottom: 5px;}
-    #mainNav .nav-item{padding-top:5px;padding-bottom: 5px;}
-}
-@media screen and (max-width: 1100px) and (min-width: 989px) {
-    #mainNav {font-size: 12px;}
-    #dropdown-menu-item {font-size: 12px;}
+
+/* Brand */
+.vrs-logo {
+    height: 40px;
 }
 
 #mainNav .navbar-brand {
-    color: $content-background;
-    font-size: 20px;
+    color: $text-dark;
+    font-size: 22px;
     outline: none;
 
     &:hover {
-        color: $navbar-background-hover;
+        color: $text-hover;
     }
 }
 
+/* Items */
+
 #mainNav .nav-item {
-    background: $primary;
+    background: $background;
     display: flex;
     align-items: center;
     a {
-        color: $content-background;
+        color: $text-dark-lighter;
     }
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link {
-    color: $content-background;
-    background: $primary;
+    color: $text-dark-lighter;
+    background: $background;
     padding-right:10px;
     padding-left:10px;
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link:hover {
-    color: $navbar-background-hover;
+    color: $text-hover;
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
-    color: #ffdfba; //#405155;
+    color: $accent; //#405155;
     outline: none;
 }
 
-/*Hover state for top level links*/
 .navbar-nav li:hover a {
-    background: $primary;
-    color: $navbar-background-hover;
+    background: $background-hover;
+    color: $text-hover;
 }
 
+/* "About" Dropdown Menu */
 #dropdown-about {
-    background: $primary;
+    background: $background;
     border: none;
-    color: $content-background;
+    color: $text-dark-lighter;
     &:hover {
-        background: $primary;
-        color: $navbar-background-hover;
+        background: $background-hover;
+        color: $text-hover;
     }
 }
 
 #dropdown-toggle {
     padding-left:10px;
     padding-right:10px;
-    background: $primary;
     cursor: pointer;
     &:hover {
-        background: $primary;
-        color: $navbar-background-hover;
+        background: $background-hover;
+        color: $text-hover;
     }
-}
-
-@media (min-width: 991.98px) {
-    #dropdown-about {
-        background: $primary;
-        border: none;
-        color: $content-background;
-        display: flex;
-        align-items: center;
-    }
-}
-
-#dropdown-menu {
-    background: $primary;
 }
 
 #dropdown-menu-item {
-    background: $primary;
+    background: $background;
     display: flex;
     align-items: center;
-    color: $content-background;
-    font-family: $font-montserrat;
-    font-weight: 600;
+    color: $text-dark;
 }
 
 #dropdown-menu-item:hover {
-    background: $primary;
-    color: $navbar-background-hover;
+    background: $background-hover;
+    color: $text-hover;
 }
 
-#search-icon   {
-    color: $content-background;
+.dropdown-menu {
+    top: 90% !important;
+}
+
+/* Active state for top level links */
+
+.vrs-nav-active {
+    color: $accent !important;
+}
+
+ /* Search */
+
+ #search-icon   {
+    color: $text-dark-lighter;
     cursor: pointer;
     padding-right: 10px;
 }
 
 #search-icon:hover {
-    color: $navbar-background-hover;
+    color: $text-hover;
 }
 
-#language-selector {
-    cursor: pointer;
-    padding-left: 10px;
-}
+/* User Menu*/
 
 #personbutton {
-    color: $content-background;
+    background: $background;
+    color: $text-dark-lighter;
+}
+
+#personbutton:hover {
+    color:$accent;
 }
 
 #usermenuitem {
@@ -134,9 +136,35 @@
 }
 
 #usermenuitem:hover {
-    color: $primary;
+    color: $text-hover;
 }
 
-#usermenuitem:active {
-    background-color: $content-background;
+/* Language Selector */
+
+#language-selector {
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+/* Media */
+
+@media screen and (max-width: 989px) {
+    #mainNav {font-size: 16px;}
+    #dropdown-menu-item {font-size: 16px;}
+    #search-icon{padding-left:10px;}
+    #mainNav .dropdown{padding-top:5px;padding-bottom: 5px;}
+}
+@media screen and (max-width: 1100px) and (min-width: 989px) {
+    #mainNav {font-size: 12px;}
+    #dropdown-menu-item {font-size: 12px;}
+}
+
+@media (min-width: 991.98px) {
+    #dropdown-about {
+        background: $background;
+        border: none;
+        color: $text-dark-lighter;
+        display: flex;
+        align-items: center;
+    }
 }

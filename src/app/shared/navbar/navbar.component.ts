@@ -1,14 +1,15 @@
-import { Component, OnInit, TemplateRef} from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { SearchComponent } from '../googlesearch/search/search.component';
 import { UserService, Role } from '../service/user.service';
-import {Router} from '@angular/router';
+import {Router, RouterLinkActive} from '@angular/router';
 import { InformationService } from '../service/information.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Subscription } from 'rxjs/Subscription';
 import { StaticContent, findContentID } from './../../../assets/i18n/cms-content';
-
+import * as $ from 'jquery';
+import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';
 
 @Component({
   selector: 'vrs-navbar',
@@ -25,6 +26,9 @@ export class NavbarComponent implements OnInit {
   translateSub: Subscription;
   rootId: string = "";
   currentId: string= "";
+
+  @ViewChild(BsDropdownDirective)
+  d : BsDropdownDirective
   
   constructor(private modalService: BsModalService, private router: Router, private userService: UserService,
      private informationService: InformationService, private translate:TranslateService) {
@@ -51,6 +55,10 @@ export class NavbarComponent implements OnInit {
       this.update();
     });  
 
+    /* Dropdown toggle */
+    $(".dropdown").on("mouseenter mouseleave", ()=>{
+      this.d.toggle(true);
+    });
   }
 
   /**

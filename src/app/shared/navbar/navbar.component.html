@@ -1,7 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary text-uppercase fixed-top" id="mainNav">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container align-items-end">
         <a class="navbar-brand" routerLink="/home" translate>
-            VIERASLAJIT.FI
+            <span class="vrs-logo-img vrs-logo"></span>
+            Vieraslajit.fi
         </a>
         <button class="navbar-toggler collapsed" id="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -11,27 +12,27 @@
        <div class="collapse navbar-collapse" [collapse]="!isCollapsed" id="navbarCollapse">
             <ul class="nav navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/taxon" (click)="isCollapsed = !isCollapsed"
+                    <a class="nav-link" routerLink="/taxon" routerLinkActive="vrs-nav-active" (click)="isCollapsed = !isCollapsed"
                     aria-expanded="false" translate>navigation.taxonomy</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/eradication" (click)="isCollapsed = !isCollapsed"
+                    <a class="nav-link" routerLink="/eradication" routerLinkActive="vrs-nav-active" (click)="isCollapsed = !isCollapsed"
                     aria-expanded="false" translate>navigation.removal</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/news" (click)="isCollapsed = !isCollapsed"
+                    <a class="nav-link" routerLink="/news" routerLinkActive="vrs-nav-active" (click)="isCollapsed = !isCollapsed"
                     aria-expanded="false" translate>navigation.news</a>
                 </li>
 
                     <li class="dropdown" id="dropdown-about" dropdown>
-                        <a dropdownToggle class="dropdown-toggle" id="dropdown-toggle" translate>navigation.about <span class="caret"></span></a>
+                        <a  class="dropdown-toggle" id="dropdown-toggle" translate>navigation.about <span class="caret"></span></a>
                             <ul *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
                                 <li *ngFor="let child of menu" role="menuitem"><a class="dropdown-item" id="dropdown-menu-item"
                                      routerLink="static/{{child.id}}">{{child.title}}</a></li>
                             </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/observations" (click)="isCollapsed = !isCollapsed"
+                        <a class="nav-link" routerLink="/observations" routerLinkActive="vrs-nav-active" (click)="isCollapsed = !isCollapsed"
                         aria-expanded="false" translate>navigation.observations</a>
                     </li>
 
@@ -49,7 +50,7 @@
                     </ng-template>
                     <ng-template #welcome_content>
                         <div class="dropdown" id="userdropdown" dropdown>
-                            <button dropdownToggle class="btn btn-primary btn-sm oi oi-person icon dropdown-toggle" aria-controls="dropdown-basic" id="personbutton"></button>
+                            <button dropdownToggle class="btn btn-sm oi oi-person icon dropdown-toggle" aria-controls="dropdown-basic" id="personbutton"></button>
                             <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
                               <li role="usermenuitem"><span class="dropdown-item" id="usermenuitem">{{userPropertiesWrapper().person.fullName}}</span></li>
                               <li (click)="logout()" role="usermenuitem"><span class="dropdown-item" id="usermenuitem" ><span translate>navigation.logout</span></span></li>
