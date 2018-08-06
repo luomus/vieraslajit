@@ -24,7 +24,7 @@ export class ObservationMapComponent implements OnInit{
   @Input() id?: string;
   @Input() personToken?: string;
   @Input() list?: boolean = false;
-  @Input() map_height?: number = 400;
+  @Input() mapHeight?: number = 400;
 
   /* Used to populate the map with observations*/
   private idArray: Array<string>=[];

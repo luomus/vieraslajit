@@ -17,10 +17,10 @@
 <ng-container *ngIf="list">
 <div class="row">
     <div class="col-7">
-        <div id="map" [ngStyle]="{'height': map_height+'px'}"></div>
+        <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
     </div>
     <div class="col-5">
-      <ngx-datatable class="material" [ngStyle]="{'height': map_height+'px'}"
+      <ngx-datatable class="material" [ngStyle]="{'height': mapHeight+'px'}"
       [rows]="filteredObservations" 
       [columnMode]="'force'" 
       [columns]="columns" 
@@ -36,7 +36,7 @@
 </div>
 </ng-container>
 <ng-container *ngIf="!list">
-    <div id="map" [ngStyle]="{'height': map_height+'px'}"></div>
+    <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
 </ng-container>
 
 
