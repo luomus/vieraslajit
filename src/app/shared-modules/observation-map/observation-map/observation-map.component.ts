@@ -7,8 +7,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { UserService, Role } from '../../../shared/service/user.service';
 
 import * as $ from 'jquery';
-import { TranslateService } from '../../../../../node_modules/@ngx-translate/core';
-import { Subscriber } from '../../../../../node_modules/rxjs';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscriber } from 'rxjs';
 
 var _municipalities = require('./municipalities.json');
 
@@ -243,7 +243,6 @@ export class ObservationMapComponent implements OnInit{
 
   updateList() {
     this.filteredObservations.forEach(observationObject => {
-      console.log(observationObject);
       observationObject.taxonVerbatim = observationObject.unit.taxonVerbatim;
       observationObject.team = observationObject.gathering.team;
       observationObject.scientificName = observationObject.unit.linkings.taxon.scientificName;

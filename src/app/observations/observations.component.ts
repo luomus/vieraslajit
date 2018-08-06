@@ -1,24 +1,24 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
-import { UserService } from '../../shared/service/user.service';
+import { UserService } from '../shared/service/user.service';
 import { Subscription } from 'rxjs/Subscription';
-import { Warehouse, WarehouseQueryList } from '../../shared/model/Warehouse';
-import { ObservationService } from '../../shared/service/observation.service';
+import { Warehouse, WarehouseQueryList } from '../shared/model/Warehouse';
+import { ObservationService } from '../shared/service/observation.service';
 import { element } from 'protractor';
-import { PagedResult } from '../../shared/model/PagedResult';
+import { PagedResult } from '../shared/model/PagedResult';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import * as $ from 'jquery';
 
 
 
 @Component({
-  selector: 'vrs-allobservations',
-  templateUrl: './allobservations.component.html',
-  styleUrls: ['./allobservations.component.scss'],
+  selector: 'vrs-observations',
+  templateUrl: './observations.component.html',
+  styleUrls: ['./observations.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AllobservationsComponent implements OnInit {
+export class ObservationsComponent implements OnInit {
   @Input() id: string;
   public loading = true;
   private subTrans: Subscription;
