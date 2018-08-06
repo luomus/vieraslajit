@@ -22,7 +22,6 @@ var LajiMap = require("laji-map").default;
 
 export class ObservationMapComponent implements OnInit{
   @Input() id?: string;
-  @Input() personToken?: string;
   @Input() list?: boolean = false;
   @Input() mapHeight?: number = 400;
 
@@ -42,12 +41,15 @@ export class ObservationMapComponent implements OnInit{
 
   /* ListMode */
   columns = [];
+  selectedInfo;
 
   /* Filters */
   private observationsInSelectedMun: Array<any> = [];
   private adminMode = false;
+  private ownOnly = false;
   municipalities = _municipalities;
   isAdmin = UserService.hasRole(Role.CMS_ADMIN);
+  isLoggedIn = UserService.loggedIn();
 
   constructor(private observationService: ObservationService, private translate: TranslateService) {
     this.columns = [
@@ -69,23 +71,9 @@ export class ObservationMapComponent implements OnInit{
 
     this.idArray.push(this.id);
     if (this.id) {
-      this.populateObservationsById(this.idArray, this.maxObservations,()=>{
-        this.filteredObservations = this.observations;
-        if(this.list) this.updateList();
-        this.renderMap();
-      });
-    } else if (this.personToken) {
-      this.populateObservationsByPerson(UserService.getToken(), this.maxObservations, ()=>{
-        this.filteredObservations = this.observations;
-        if(this.list) this.updateList();
-        this.renderMap();
-      });
+      this.startIdMap();
     } else {
-      this.populateObservationsByAll(this.maxObservations, ()=>{
-        this.filteredObservations = this.observations;
-        if(this.list) this.updateList();
-        this.renderMap();
-      });
+      this.startAllMap();
     }
 
     /* jQuery */
@@ -109,7 +97,20 @@ export class ObservationMapComponent implements OnInit{
       this.zoom = 1.4;
       this.renderMap();
     });
-    $('#genMap').click(()=>{
+  }
+
+  startIdMap() {
+    this.populateObservationsById(this.idArray, this.maxObservations,()=>{
+      this.filteredObservations = this.observations;
+      if(this.list) this.updateList();
+      this.renderMap();
+    });
+  }
+
+  startAllMap() {
+    this.populateObservationsByAll(this.maxObservations, ()=>{
+      this.filteredObservations = this.observations;
+      if(this.list) this.updateList();
       this.renderMap();
     });
   }
@@ -122,7 +123,12 @@ export class ObservationMapComponent implements OnInit{
   }
 
   populateObservationsById(idArray, max, callback) {
-    this.observationService.getObservationsById(idArray, max, "1").subscribe(data => {
+    this.observations=[];
+    let token;
+    if(this.ownOnly) {
+      token = UserService.getToken();
+    }
+    this.observationService.getObservationsById(idArray, max, "1", token).subscribe(data => {
       this.observations= data.results;
       callback();
     });
@@ -259,6 +265,15 @@ export class ObservationMapComponent implements OnInit{
 
   onTableActivate(e) {
     if(e.type == "click"){
+      console.log(e);
+      this.selectedInfo = {
+        "taxonVerbatim": e.row.unit.taxonVerbatim,
+        "team": e.row.gathering.team,
+        "scientificName": e.row.unit.linkings.taxon.scientificName,
+        "municipalityDisplayname": e.row.gathering.interpretations.municipalityDisplayname,
+        "displayDateTime": e.row.gathering.displayDateTime
+      }
+
       this.mapCenter = {
         "lat": this.randomizeCoordinates(e.row.gathering.conversions.wgs84CenterPoint.lat),
         "lng": this.randomizeCoordinates(e.row.gathering.conversions.wgs84CenterPoint.lon) 
