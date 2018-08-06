@@ -16,7 +16,7 @@
   </div>
   <div *ngIf="isLoggedIn">
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="ownCheck" [checked]="ownOnly" (change)="ownOnly = !ownOnly; startIdMap()">
+        <input class="form-check-input" type="checkbox" value="" id="ownCheck" [checked]="ownOnly" (change)="ownOnly = !ownOnly; restartMap()">
         <label class="form-check-label" for="ownCheck">
           Omat havainnot
         </label>

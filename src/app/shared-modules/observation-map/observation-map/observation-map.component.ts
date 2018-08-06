@@ -67,14 +67,7 @@ export class ObservationMapComponent implements OnInit{
 
   ngOnInit() {
     
-    /* Populate observations from API data */
-
-    this.idArray.push(this.id);
-    if (this.id) {
-      this.startIdMap();
-    } else {
-      this.startAllMap();
-    }
+    this.restartMap();
 
     /* jQuery */
     $('#select-municipality').change(() => {
@@ -99,6 +92,17 @@ export class ObservationMapComponent implements OnInit{
     });
   }
 
+  restartMap() {
+    this.observations=[];
+    this.idArray.push(this.id);
+
+    if (this.id) {
+      this.startIdMap();
+    } else {
+      this.startAllMap();
+    }
+  }
+
   startIdMap() {
     this.populateObservationsById(this.idArray, this.maxObservations,()=>{
       this.filteredObservations = this.observations;
@@ -108,11 +112,19 @@ export class ObservationMapComponent implements OnInit{
   }
 
   startAllMap() {
+    if (this.ownOnly) {
+      this.populateObservationsByPerson(UserService.getToken(), this.maxObservations, ()=>{
+        this.filteredObservations = this.observations;
+        if(this.list) this.updateList();
+        this.renderMap();
+      });
+    } else {
     this.populateObservationsByAll(this.maxObservations, ()=>{
       this.filteredObservations = this.observations;
       if(this.list) this.updateList();
       this.renderMap();
     });
+    }
   }
 
   populateObservationsByAll(max, callback) {
@@ -123,7 +135,6 @@ export class ObservationMapComponent implements OnInit{
   }
 
   populateObservationsById(idArray, max, callback) {
-    this.observations=[];
     let token;
     if(this.ownOnly) {
       token = UserService.getToken();
@@ -135,7 +146,7 @@ export class ObservationMapComponent implements OnInit{
   }
 
   populateObservationsByPerson(token, max, callback) {
-    this.observationService.getObservationsbyPersonToken(token, max).subscribe(data => {
+    this.observationService.getObservationsbyPersonToken(max, "1", token).subscribe(data => {
       this.observations= data.results;
       callback();
     });
@@ -232,6 +243,7 @@ export class ObservationMapComponent implements OnInit{
 
   updateList() {
     this.filteredObservations.forEach(observationObject => {
+      console.log(observationObject);
       observationObject.taxonVerbatim = observationObject.unit.taxonVerbatim;
       observationObject.team = observationObject.gathering.team;
       observationObject.scientificName = observationObject.unit.linkings.taxon.scientificName;

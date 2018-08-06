@@ -49,7 +49,7 @@ export class ObservationlistComponent implements OnInit, OnDestroy {
   }
 
   update() {
-    this.observationService.getObservationsbyPersonToken(this.personToken, this.pageSize).subscribe(data => {
+    this.observationService.getObservationsbyPersonToken(this.pageSize, "1", this.personToken).subscribe(data => {
       this.observations = data.results;
       this.observations.forEach(observationObject => {
         observationObject.dateCreated = this.datePipe.transform(observationObject.dateCreated, 'dd.MM.yyyy HH:mm');
