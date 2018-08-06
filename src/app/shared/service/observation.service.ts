@@ -11,9 +11,11 @@ export class ObservationService {
   constructor(private apiService: ApiService) { }
 
   
-  getObservationsById(taxonId: Array<string>, pageSize: string, page:string):  Observable<PagedResult<WarehouseQueryList>> {
+  getObservationsById(taxonId: Array<string>, pageSize: string, page:string, observerPersonToken?:string):  Observable<PagedResult<WarehouseQueryList>> {
+    let query = {taxonId: taxonId, pageSize: pageSize, page: page, invasive:true}
+    if(observerPersonToken) query["observerPersonToken"] = observerPersonToken;
     return this.apiService
-          .warehouseQueryListById(LajiApi.Endpoints.warehousequerylist, {taxonId: taxonId, pageSize: pageSize, page: page});
+          .warehouseQueryListById(LajiApi.Endpoints.warehousequerylist, query);
   }
   /*
   getObservationsbyPersonToken(personToken: string, pageSize: string):  Observable<any> {
@@ -22,9 +24,9 @@ export class ObservationService {
   }
   */
 
- getObservationsbyPersonToken(personToken: string, pageSize: string):  Observable<any> {
+ getObservationsbyPersonToken(pageSize: string, page:string, personToken: string):  Observable<PagedResult<WarehouseQueryList>> {
   return this.apiService
-        .warehouseQueryListById(LajiApi.Endpoints.warehousequerylist, {observerPersonToken: personToken, pageSize: pageSize});
+        .getObservations(LajiApi.Endpoints.warehousequerylist, {pageSize: pageSize, invasive:true, page:page, observerPersonToken: personToken});
 }
 
   getAllObservations(pageSize: string, page:string):  Observable<PagedResult<WarehouseQueryList>> {

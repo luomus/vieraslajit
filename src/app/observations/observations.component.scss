@@ -1,11 +1,7 @@
-@import '../../../assets/styles/vars';
+@import '../../assets/styles/vars';
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
-
-.selection-cell {
-    cursor: pointer;
-}
 
 .navButton {
     display: inline-block;
@@ -32,10 +28,6 @@
         background-color: $primary;
         color: $content-background;
     }  
-}
-.container {
-    padding: 3%;
-    padding-top:3%;
 }
 
 #heading {
