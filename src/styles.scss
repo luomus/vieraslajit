@@ -8,6 +8,7 @@
 html {
     height: 100%;
     overflow-x: hidden;
+    font-family: $font-family-base;
 }
 
 body {
@@ -33,3 +34,7 @@ html,body {
   .laji-form .blocking-loader {
       z-index: 2;
   }
+
+.vrs-logo-img {
+    content:url(./assets/images/logos/vieraslaji-logo-160x160.png);
+}

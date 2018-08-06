@@ -12,13 +12,13 @@
 }
 
 .form-group .btn.btn-default{
-    background-color: $content-background;
-    color: $navbar-background;
-    border-color: $navbar-background;
+    background-color: $background-light;
+    color: #222;
+    border-color: #222;
 }
 
 .form-group .btn.btn-default:hover {
-    background-color: $content-background-highlight;
+    background-color: $background-light-highlight;
     border-color: $primary;
 }
 
@@ -31,15 +31,15 @@
 }
 
 #formSend {
-    background-color: $content-background;
-    color: $navbar-background;
-    border-color: $navbar-background;
+    background-color: $background-light;
+    color: #222;
+    border-color: #222;
     font-family: $font-montserrat;
 }
 
 #formSend:hover{
-    background-color: $navbar-background;
-    color: $content-background;
+    background-color: #222;
+    color: $background-light;
     transition: 0.3s;
 }
 

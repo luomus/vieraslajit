@@ -1,19 +1,21 @@
 @import '../../../../assets/styles/vars';
 
+$background: $background-light;
+$text: $text-dark;
+$highlight: $text-highlight;
+
 .language-selector {
-    background-color: $primary;
-    color: white;
-  //  font-size: 14px;
+    background-color: $background;
+    color: $text;
     border: none;
-    border-radius: 5px;
     font-family: $font-montserrat;
     font-weight: 600;
 }
 
 .language-selector a{
-    color: white;
+    color: $text;
 }
 
 .language-selector a:hover {
-   color: $navbar-background-hover;
+   color: $highlight;
  }
