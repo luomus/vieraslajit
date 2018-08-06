@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NgStyle } from '@angular/common';
 import { ObservationService } from '../../../shared/service/observation.service';
 import { WarehouseQueryList } from '../../../shared/model/Warehouse';
 import { PagedResult } from '../../../shared/model/PagedResult';
@@ -20,12 +21,12 @@ var LajiMap = require("laji-map").default;
 })
 
 export class ObservationMapComponent implements OnInit{
-
-  /* Used to populate the map with observations*/
   @Input() id?: string;
   @Input() personToken?: string;
-  @Input() list?: boolean = true;
+  @Input() list?: boolean = false;
+  @Input() map_height?: number = 400;
 
+  /* Used to populate the map with observations*/
   private idArray: Array<string>=[];
   private maxObservations: string = "200";
   private observations: Array<any> = [];
@@ -258,7 +259,6 @@ export class ObservationMapComponent implements OnInit{
 
   onTableActivate(e) {
     if(e.type == "click"){
-      console.log(e);
       this.mapCenter = {
         "lat": this.randomizeCoordinates(e.row.gathering.conversions.wgs84CenterPoint.lat),
         "lng": this.randomizeCoordinates(e.row.gathering.conversions.wgs84CenterPoint.lon) 
