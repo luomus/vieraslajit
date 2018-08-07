@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ObservationMapComponent } from './observation-map/observation-map.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { RouterModule } from '@angular/router';
+import { TaxonSearchComponent } from './observation-map/taxon-search/taxon-search.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   declarations: [
-    ObservationMapComponent
+    ObservationMapComponent,
+    TaxonSearchComponent
   ],
   exports: [
     ObservationMapComponent

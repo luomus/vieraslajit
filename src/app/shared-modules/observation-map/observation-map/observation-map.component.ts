@@ -159,7 +159,6 @@ export class ObservationMapComponent implements OnInit{
     let coordinates = [];
     let municipality= "";
     let date= "";
-    let isReliable: boolean = false;
     let notes="";
 
     this.filteredObservations
@@ -178,8 +177,7 @@ export class ObservationMapComponent implements OnInit{
           municipality = observation.gathering.interpretations.municipalityDisplayname || "N/A";
           date = observation.gathering.displayDateTime;
           notes = observation.unit.notes || "";
-          isReliable = observation.unit.recordBasis !== "HUMAN_OBSERVATION_UNSPECIFIED";
-          const dataObject= this.returnFeatureCollectionAndPopup(observation.taxonVerbatim, this.returnFeatures(coordinates), municipality, date, notes, isReliable);
+          const dataObject= this.returnFeatureCollectionAndPopup(observation.taxonVerbatim, this.returnFeatures(coordinates), municipality, date, notes);
           this.mapData.push(dataObject);
         }
       });
@@ -209,7 +207,7 @@ export class ObservationMapComponent implements OnInit{
     return features;
   }
 
-  returnFeatureCollectionAndPopup(name:string, features:Array<any>,municipality:string, date:string, notes:string, isReliable:boolean){
+  returnFeatureCollectionAndPopup(name:string, features:Array<any>,municipality:string, date:string, notes:string){
     const _adminMode = this.adminMode;
     const dataObject= {
       featureCollection: {
@@ -223,8 +221,6 @@ export class ObservationMapComponent implements OnInit{
         let fillColor = color;
         let fillOpacity = opacity * 0.9;
         if(_adminMode) { opacity=1; fillOpacity=1; color="red"; fillColor="red"}
-
-        if (isReliable) { color = "#41967b"; fillColor = "#41967b"; }
 
         return {
                 opacity: opacity,
@@ -299,10 +295,5 @@ export class ObservationMapComponent implements OnInit{
       }
       this.renderMap();
     }
-  }
-
-  submitId() {
-    this.id = $("#enter-id").val().toString();
-    this.restartMap();
   }
 }
