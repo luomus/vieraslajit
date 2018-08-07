@@ -6,6 +6,10 @@
       <option *ngFor="let mun of municipalities" value="{{mun}}">{{mun}}</option>
     </select>
   </div>
+  <div>
+    <input type="text" value="MX.26298" id="enter-id">
+    <input type="submit" value="Enter" id="submit-id" (click)="this.submitId()">
+  </div>
   <div *ngIf="isAdmin">
     <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="adminCheck" [checked]="adminMode" (change)="adminMode = !adminMode; renderMap()">
@@ -25,7 +29,11 @@
 </div> <!-- col-7 -->
 <div class="col-5">
   <ng-container *ngIf="selectedInfo">
-      <p>{{selectedInfo.taxonVerbatim}}, {{selectedInfo.team}}, {{selectedInfo.scientificName}}, {{selectedInfo.municipalityDisplayname}}, {{selectedInfo.displayDateTime}}</p>
+      <a [routerLink]="['/taxon/' + selectedInfo.id]">{{selectedInfo.taxonVerbatim}}</a>,
+      {{selectedInfo.team}},
+      {{selectedInfo.scientificName}},
+      {{selectedInfo.municipalityDisplayname}},
+      {{selectedInfo.displayDateTime}}
   </ng-container>
 </div> <!-- col-5 -->
 </div> <!-- row -->

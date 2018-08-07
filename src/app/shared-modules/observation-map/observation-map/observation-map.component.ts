@@ -94,6 +94,7 @@ export class ObservationMapComponent implements OnInit{
 
   restartMap() {
     this.observations=[];
+    this.idArray=[];
     this.idArray.push(this.id);
 
     if (this.id) {
@@ -174,7 +175,7 @@ export class ObservationMapComponent implements OnInit{
             let accuracy = 0.01;
             coordinates = [ this.randomizeCoordinates(observation.gathering.conversions.wgs84CenterPoint.lon), this.randomizeCoordinates(observation.gathering.conversions.wgs84CenterPoint.lat)];
           }
-          municipality = observation.gathering.interpretations.municipalityDisplayname;
+          municipality = observation.gathering.interpretations.municipalityDisplayname || "N/A";
           date = observation.gathering.displayDateTime;
           notes = observation.unit.notes || "";
           isReliable = observation.unit.recordBasis !== "HUMAN_OBSERVATION_UNSPECIFIED";
@@ -246,7 +247,7 @@ export class ObservationMapComponent implements OnInit{
       observationObject.taxonVerbatim = observationObject.unit.taxonVerbatim;
       observationObject.team = observationObject.gathering.team;
       observationObject.scientificName = observationObject.unit.linkings.taxon.scientificName;
-      observationObject.municipalityDisplayname = observationObject.gathering.interpretations.municipalityDisplayname;
+      observationObject.municipalityDisplayname = observationObject.gathering.interpretations ? observationObject.gathering.interpretations.municipalityDisplayname : "N/A";
       observationObject.displayDateTime = observationObject.gathering.displayDateTime;
     });
   }
@@ -281,8 +282,9 @@ export class ObservationMapComponent implements OnInit{
         "taxonVerbatim": e.row.unit.taxonVerbatim,
         "team": e.row.gathering.team,
         "scientificName": e.row.unit.linkings.taxon.scientificName,
-        "municipalityDisplayname": e.row.gathering.interpretations.municipalityDisplayname,
-        "displayDateTime": e.row.gathering.displayDateTime
+        "municipalityDisplayname": e.row.gathering.interpretations ? e.row.gathering.interpretations.municipalityDisplayname : "N/A",
+        "displayDateTime": e.row.gathering.displayDateTime,
+        "id": e.row.unit.linkings.taxon.qname.substring(14,e.row.unit.linkings.taxon.qname.length)
       }
 
       this.mapCenter = {
@@ -299,4 +301,8 @@ export class ObservationMapComponent implements OnInit{
     }
   }
 
+  submitId() {
+    this.id = $("#enter-id").val().toString();
+    this.restartMap();
+  }
 }
