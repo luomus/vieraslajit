@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../model/Taxonomy';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { PagedResult } from '../model/PagedResult';
 import { Informal } from '../model/Informal';
 import { NewsElement } from '../model/NewsElement';
@@ -11,7 +11,6 @@ import { WarehouseQueryCount } from '../model/Warehouse';
 import { WarehouseQueryList } from '../model/Warehouse';
 import { Information } from '../model/Information';
 import { userProperty, UserService } from '../service/user.service';
-import { query } from '@angular/core/src/animation/dsl';
 import { Document } from '../model/Document';
 
 /**

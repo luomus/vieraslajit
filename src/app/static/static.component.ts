@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { InformationService } from '../shared/service/information.service';
 import { Information } from '../shared/model/Information';
 import { ActivatedRoute, Router, NavigationEnd, RouterLink } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 /**

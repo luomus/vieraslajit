@@ -1,6 +1,5 @@
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ReplaySubject ,  Subject } from 'rxjs';
 import { convertToParamMap, ParamMap, Params } from '@angular/router';
-import { Subject } from 'rxjs/Subject';
 
 export class ActivatedRouteStub {
     private paramSubject = new Subject<Params>();

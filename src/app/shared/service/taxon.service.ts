@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService, LajiApi } from '../api/api.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { PagedResult } from '../model/PagedResult';
 import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../model/Taxonomy';
 import { Informal } from '../model/Informal';

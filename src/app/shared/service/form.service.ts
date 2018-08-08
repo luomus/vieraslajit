@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService, LajiApi } from '../api/api.service';
-import { Observable } from 'rxjs/Observable';
-import { combineLatest } from 'rxjs/observable/combineLatest';
-import { switchMap } from 'rxjs/operator/switchMap';
+import { Observable ,  combineLatest } from 'rxjs';
+
 
 @Injectable()
 export class FormService {

@@ -3,16 +3,17 @@ import { NgStyle } from '@angular/common';
 import { ObservationService } from '../../../shared/service/observation.service';
 import { WarehouseQueryList } from '../../../shared/model/Warehouse';
 import { PagedResult } from '../../../shared/model/PagedResult';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription ,  Subscriber } from 'rxjs';
 import { UserService, Role } from '../../../shared/service/user.service';
 
 import * as $ from 'jquery';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscriber } from 'rxjs';
+
+import LajiMap from 'laji-map';
+import {LajiMapOptions, TileLayerName} from 'laji-map/lib/map.d';
+import { LatLngExpression } from 'leaflet';
 
 var _municipalities = require('./municipalities.json');
-
-var LajiMap = require("laji-map").default;
 
 @Component({
   selector: 'vrs-observation-map',
@@ -35,7 +36,7 @@ export class ObservationMapComponent implements OnInit{
   private map;
   private mapData=[];
 
-  private mapCenter: object;
+  private mapCenter: LatLngExpression;
   private zoom: number;
   private zoomToData: boolean;
 
@@ -57,10 +58,10 @@ export class ObservationMapComponent implements OnInit{
       { prop: 'municipalityDisplayname', name: this.translate.instant('document.location'), draggable: false, resizeable: false },
       { prop: 'displayDateTime', name: this.translate.instant('observation.datetime'), draggable: false, resizeable: false }
     ];
-    this.mapCenter = {
-      "lat": 65.2,
-      "lng": 27
-    }
+    this.mapCenter = [
+      65.2,
+      27
+    ]
     this.zoom = 1.4;
     this.zoomToData = false;
   }
@@ -83,10 +84,10 @@ export class ObservationMapComponent implements OnInit{
       if(this.filteredObservations.length > 0) {this.zoomToData=true} else {
         this.zoomToData = false;
       }
-      this.mapCenter = {
-        "lat": 65.2,
-        "lng": 27
-      }
+      this.mapCenter = [
+        65.2,
+        27
+      ]
       this.zoom = 1.4;
       this.renderMap();
     });
@@ -254,18 +255,17 @@ export class ObservationMapComponent implements OnInit{
     this.generateMapData();
     $("#map").children().remove();
     this.map = new LajiMap(this.mapOptions());
+    
   }
 
-  mapOptions(){
-    const options = {
+  mapOptions(): LajiMapOptions{
+    const options: LajiMapOptions = {
       rootElem: document.getElementById("map"),
       popupOnHover: false,
       center: this.mapCenter,
       zoom: this.zoom,
       zoomToData : this.zoomToData,
-      tileLayerName: "openStreetMap",
-      controls: {
-      },
+      tileLayerName: <TileLayerName>"openStreetMap",
       data: this.mapData
     };
     return options;
@@ -283,10 +283,10 @@ export class ObservationMapComponent implements OnInit{
         "id": e.row.unit.linkings.taxon.qname.substring(14,e.row.unit.linkings.taxon.qname.length)
       }
 
-      this.mapCenter = {
-        "lat": this.randomizeCoordinates(e.row.gathering.conversions.wgs84CenterPoint.lat),
-        "lng": this.randomizeCoordinates(e.row.gathering.conversions.wgs84CenterPoint.lon) 
-      };
+      this.mapCenter = [
+        this.randomizeCoordinates(e.row.gathering.conversions.wgs84CenterPoint.lat),
+        this.randomizeCoordinates(e.row.gathering.conversions.wgs84CenterPoint.lon) 
+      ];
       /* Zoom more if viewing a specific municipality */
       if($('#select-municipality').val() != "all") {
         this.zoom = 10;

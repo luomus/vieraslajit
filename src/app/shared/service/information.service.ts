@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Information } from '../model/Information';
 import { ApiService, LajiApi } from '../api/api.service';
-import 'rxjs/add/operator/do';
+
 
 
 @Injectable()

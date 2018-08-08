@@ -6,7 +6,7 @@ import { UserService, Role } from '../service/user.service';
 import {Router, RouterLinkActive} from '@angular/router';
 import { InformationService } from '../service/information.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { StaticContent, findContentID } from './../../../assets/i18n/cms-content';
 import * as $ from 'jquery';
 import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';

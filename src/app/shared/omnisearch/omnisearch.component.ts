@@ -13,16 +13,15 @@ import {
 } from '@angular/core';
 import { Autocomplete } from '../../shared/model/Autocomplete';
 import { WarehouseQueryCount } from '../../shared/model/Warehouse'
-import { Subscription } from 'rxjs/Subscription'
-import { Observable } from 'rxjs/Observable'
+import { Subscription ,  Observable } from 'rxjs'
 import { FormControl } from '@angular/forms'
 import { TaxonService } from '../../shared/service/taxon.service'
 import { ApiService } from '../../shared/api/api.service';
 import { Router } from '@angular/router'
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/combineLatest';
-import 'rxjs/add/observable/of';
+
+
+
+
 import { TranslateService } from '@ngx-translate/core';
 
 

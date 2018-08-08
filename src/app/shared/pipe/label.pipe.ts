@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { MetadataService } from '../service/metadata.service';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+
 
 @Pipe({
   name: 'label'

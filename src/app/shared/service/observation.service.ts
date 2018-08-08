@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { PagedResult } from '../model/PagedResult';
 import {Document} from '../model/Document';
 import { WarehouseQueryList } from '../model/Warehouse';

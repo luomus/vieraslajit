@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { UserService } from '../shared/service/user.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { Warehouse, WarehouseQueryList } from '../shared/model/Warehouse';
 import { ObservationService } from '../shared/service/observation.service';
 import { element } from 'protractor';

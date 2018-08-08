@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { PagedResult } from '../model/PagedResult';
 import { NewsElement } from '../model/NewsElement';
 import { ApiService, LajiApi } from '../api/api.service';
