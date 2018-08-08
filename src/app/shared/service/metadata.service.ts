@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService, LajiApi } from '../api/api.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { tap } from '../../../../node_modules/rxjs/operators';
 
 @Injectable()
 export class MetadataService {
@@ -11,11 +12,12 @@ export class MetadataService {
 
   getMetadataRange(range: string, lang?: string): Observable<Array<any>> {
     if (this.metadataCache[range]) {
-      return Observable.of(this.metadataCache[range]);
+      return of(this.metadataCache[range]);
     }
     return this.apiService
-      .fetchMetadata(LajiApi.Endpoints.metadataRange, range, { lang: lang })
-      .do(result => this.metadataCache[range] = result);
+      .fetchMetadata(LajiApi.Endpoints.metadataRange, range, { lang: lang }).pipe(
+        tap(result => this.metadataCache[range] = result)
+      );
   }
 
 }

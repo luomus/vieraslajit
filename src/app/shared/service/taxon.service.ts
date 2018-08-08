@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { PagedResult } from '../model/PagedResult';
 import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../model/Taxonomy';
 import { Informal } from '../model/Informal';
-import { query } from '@angular/core/src/render3/instructions';
 import { Autocomplete } from '../model/Autocomplete';
 
 @Injectable()

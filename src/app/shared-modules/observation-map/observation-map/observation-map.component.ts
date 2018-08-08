@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { NgStyle } from '@angular/common';
 import { ObservationService } from '../../../shared/service/observation.service';
 import { WarehouseQueryList } from '../../../shared/model/Warehouse';
@@ -21,7 +21,7 @@ var _municipalities = require('./municipalities.json');
   styleUrls: ['./observation-map.component.scss']
 })
 
-export class ObservationMapComponent implements OnInit{
+export class ObservationMapComponent implements AfterViewInit{
   @Input() id?: string;
   @Input() list?: boolean = false;
   @Input() mapHeight?: number = 400;
@@ -66,7 +66,7 @@ export class ObservationMapComponent implements OnInit{
     this.zoomToData = false;
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     
     this.restartMap();
 
@@ -255,7 +255,6 @@ export class ObservationMapComponent implements OnInit{
     this.generateMapData();
     $("#map").children().remove();
     this.map = new LajiMap(this.mapOptions());
-    
   }
 
   mapOptions(): LajiMapOptions{
