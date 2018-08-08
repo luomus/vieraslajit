@@ -10,11 +10,11 @@ p {
     padding: 15px;
 }
 
-/deep/ .datatable-body-cell {
+:host ::ng-deep .datatable-body-cell {
   cursor: pointer;
 }
 
-/deep/ .ngx-datatable.material {
+:host ::ng-deep .ngx-datatable.material {
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
 }
