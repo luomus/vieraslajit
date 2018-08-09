@@ -4,6 +4,11 @@ import { ObservationMapComponent } from './observation-map/observation-map.compo
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { RouterModule } from '@angular/router';
 import { TaxonSearchComponent } from './observation-map/taxon-search/taxon-search.component';
+import { ObsMapList } from './observation-map/obs-map-list/obs-map-list';
+import { ObsMapObservations } from './observation-map/ObsMapObservations';
+import { ObsMapOptions } from './observation-map/ObsMapOptions';
+import { MapApiController } from './observation-map/MapApiController';
+import { MapController } from './observation-map/MapController';
 
 @NgModule({
   imports: [
@@ -13,7 +18,14 @@ import { TaxonSearchComponent } from './observation-map/taxon-search/taxon-searc
   ],
   declarations: [
     ObservationMapComponent,
-    TaxonSearchComponent
+    TaxonSearchComponent,
+    ObsMapList
+  ],
+  providers: [
+    ObsMapOptions,
+    ObsMapObservations,
+    MapController,
+    MapApiController
   ],
   exports: [
     ObservationMapComponent

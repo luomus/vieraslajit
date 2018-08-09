@@ -5,13 +5,18 @@ import { WarehouseQueryList } from '../../../shared/model/Warehouse';
 import { PagedResult } from '../../../shared/model/PagedResult';
 import { Subscription ,  Subscriber } from 'rxjs';
 import { UserService, Role } from '../../../shared/service/user.service';
+import * as G from 'geojson';
 
 import * as $ from 'jquery';
 import { TranslateService } from '@ngx-translate/core';
 
-import LajiMap from 'laji-map';
-import {LajiMapOptions, TileLayerName} from 'laji-map/lib/map.d';
-import { LatLngExpression } from 'leaflet';
+import * as LM from 'laji-map';
+import LajiMap, { LajiMapOptions, TileLayerName, DataOptions, Data } from 'laji-map/lib/map';
+import { LatLngExpression, PathOptions } from 'leaflet';
+import { ObsMapOptions, ObsMapOption } from './ObsMapOptions';
+import { ObsMapObservations } from './ObsMapObservations';
+import { MapApiController } from './MapApiController';
+import { MapController } from './MapController';
 
 var _municipalities = require('./municipalities.json');
 
@@ -33,9 +38,9 @@ export class ObservationMapComponent implements AfterViewInit{
   private filteredObservations: Array<any> = [];
 
   /* LajiMap */
-  private map;
-  private mapData=[];
+  private map:LajiMap;
 
+  /* Map options */
   private mapCenter: LatLngExpression;
   private zoom: number;
   private zoomToData: boolean;
@@ -52,25 +57,24 @@ export class ObservationMapComponent implements AfterViewInit{
   isAdmin = UserService.hasRole(Role.CMS_ADMIN);
   isLoggedIn = UserService.loggedIn();
 
-  constructor(private observationService: ObservationService, private translate: TranslateService) {
-    this.columns = [
-      { prop: 'taxonVerbatim', name: this.translate.instant('taxon.name'), draggable: false, resizeable: false },
-      { prop: 'municipalityDisplayname', name: this.translate.instant('document.location'), draggable: false, resizeable: false },
-      { prop: 'displayDateTime', name: this.translate.instant('observation.datetime'), draggable: false, resizeable: false }
-    ];
-    this.mapCenter = [
-      65.2,
-      27
-    ]
-    this.zoom = 1.4;
-    this.zoomToData = false;
+  constructor(private observationService: ObservationService, private translate: TranslateService, private obsMapOptions:ObsMapOptions,
+    private obsMapObservations:ObsMapObservations, private mapApiController:MapApiController, private mapController:MapController) {
+
+    /* Initialize MapOptions */
+    this.obsMapOptions.setOptions([
+      [<ObsMapOption>"id", this.id],
+      [<ObsMapOption>"list", this.list],
+      [<ObsMapOption>"mapHeight", this.mapHeight]
+    ]);
   }
 
   ngAfterViewInit() {
-    
-    this.restartMap();
+    this.mapApiController.initialize();
+    this.mapController.initializeMap(document.getElementById("map"));
 
-    /* jQuery */
+    /* this.restartMap();
+
+    // jQuery
     $('#select-municipality').change(() => {
       this.observationsInSelectedMun=[];
       this.observations.forEach((observation)=>{
@@ -90,10 +94,10 @@ export class ObservationMapComponent implements AfterViewInit{
       ]
       this.zoom = 1.4;
       this.renderMap();
-    });
+    }); */
   }
 
-  restartMap() {
+/*   restartMap() {
     this.observations=[];
     this.idArray=[];
     this.idArray.push(this.id);
@@ -103,8 +107,8 @@ export class ObservationMapComponent implements AfterViewInit{
     } else {
       this.startAllMap();
     }
-  }
-
+  } */
+/* 
   startIdMap() {
     this.populateObservationsById(this.idArray, this.maxObservations,()=>{
       this.filteredObservations = this.observations;
@@ -127,9 +131,9 @@ export class ObservationMapComponent implements AfterViewInit{
       this.renderMap();
     });
     }
-  }
+  } */
 
-  populateObservationsByAll(max, callback) {
+ /*  populateObservationsByAll(max, callback) {
     this.observationService.getAllObservations(max, "1").subscribe(data => {
       this.observations= data.results;
       callback();
@@ -154,90 +158,61 @@ export class ObservationMapComponent implements AfterViewInit{
     });
   }
 
-  generateMapData() {
-    const _adminMode = this.adminMode;
-    this.mapData=[];
-    let coordinates = [];
-    let municipality= "";
-    let date= "";
-    let notes="";
-
+  getMapData():Data[] {
+    let mapData=[];
+    // Add observations map data
     this.filteredObservations
       .forEach((observation) => {
+        // Use only data points with coordinates
         if(observation.gathering.conversions) {
-          if(_adminMode) {
-            coordinates = [
-              observation.gathering.conversions.wgs84CenterPoint.lon,
-              observation.gathering.conversions.wgs84CenterPoint.lat
-            ]
-          } else {
-            // client side randomization of coordinates for privacy reasons (not safe! Todo: client side randomization)
-            let accuracy = 0.01;
-            coordinates = [ this.randomizeCoordinates(observation.gathering.conversions.wgs84CenterPoint.lon), this.randomizeCoordinates(observation.gathering.conversions.wgs84CenterPoint.lat)];
+          let name = observation.taxonVerbatim;
+          let municipality = observation.gathering.interpretations.municipalityDisplayname || "N/A";
+          let date = observation.gathering.displayDateTime;
+          let notes = observation.unit.notes || "";
+          
+          let o: DataOptions = {
+            featureCollection: {
+              type: "FeatureCollection",
+              features: [
+                {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: this.adminMode?
+                    [observation.gathering.conversions.wgs84CenterPoint.lon,
+                      observation.gathering.conversions.wgs84CenterPoint.lat]:
+                    [this.randomizeCoordinates(observation.gathering.conversions.wgs84CenterPoint.lon),
+                      this.randomizeCoordinates(observation.gathering.conversions.wgs84CenterPoint.lat)],
+                    radius: this.adminMode?10:3000
+                  },
+                  properties: {}
+                }
+              ]
+            },
+            getFeatureStyle: ():PathOptions=>{
+              let opacity = Math.max(1 / ((new Date()).getFullYear() - parseInt(date.substring(0, 4)) + 2), 0.1);
+              return {
+                opacity: opacity,
+                fillOpacity: 0.9 * opacity,
+                color: "#f89525",
+                fillColor: "#f89525",
+                weight: 3
+              };
+            },
+            getPopup: ():string=>{
+              return name.charAt(0).toUpperCase() + name.substr(1) + " | " + date.substring(8, 10) + "." + date.substring(5, 7) + "." + date.substring(0, 4) + " | " + municipality + " <br> " + notes;
+            }
           }
-          municipality = observation.gathering.interpretations.municipalityDisplayname || "N/A";
-          date = observation.gathering.displayDateTime;
-          notes = observation.unit.notes || "";
-          const dataObject= this.returnFeatureCollectionAndPopup(observation.taxonVerbatim, this.returnFeatures(coordinates), municipality, date, notes);
-          this.mapData.push(dataObject);
+          mapData.push(o);
         }
       });
+      return mapData;
   }
 
   randomizeCoordinates(coord){
     let accuracy = 0.01;
     return coord + (Math.random() * (accuracy - (-accuracy)) ) + (-accuracy);
-  }
-
-  returnFeatures (coordinates:Array<any>){
-    let features = [];
-    let rad = 3000;
-    if(this.adminMode) {
-      rad = 10;
-    }
-    features.push(
-      {
-        'type': 'Feature',
-        "properties": {},
-        'geometry': {
-          'type': 'Point',
-          'coordinates': coordinates,
-          "radius": rad
-        }
-    })
-    return features;
-  }
-
-  returnFeatureCollectionAndPopup(name:string, features:Array<any>,municipality:string, date:string, notes:string){
-    const _adminMode = this.adminMode;
-    const dataObject= {
-      featureCollection: {
-        'type': 'FeatureCollection',
-        'features': features
-      },
-
-      getFeatureStyle() {
-        let color = "#f89525";
-        let opacity = Math.max(1 / ((new Date()).getFullYear() - parseInt(date.substring(0, 4)) + 2), 0.1);
-        let fillColor = color;
-        let fillOpacity = opacity * 0.9;
-        if(_adminMode) { opacity=1; fillOpacity=1; color="red"; fillColor="red"}
-
-        return {
-                opacity: opacity,
-                fillOpacity: fillOpacity,
-                color: color,
-                fillColor: fillColor,
-                weight: 3
-        }
-      },
-
-      getPopup(){
-        return name.charAt(0).toUpperCase() + name.substr(1) + " | " + date.substring(8, 10) + "." + date.substring(5, 7) + "." + date.substring(0, 4) + " | " + municipality + " <br> " + notes;
-      }
-    }
-    return dataObject;
-  }
+  } */
 
   updateList() {
     this.filteredObservations.forEach(observationObject => {
@@ -249,12 +224,9 @@ export class ObservationMapComponent implements AfterViewInit{
     });
   }
 
-  /*  Re-loads the entire map
-      Currently used for everything, since laji-map lacks support for updating the map */
-  renderMap() {
-    this.generateMapData();
+/*   renderMap() {
     $("#map").children().remove();
-    this.map = new LajiMap(this.mapOptions());
+    this.map = new LM.default(this.mapOptions());
   }
 
   mapOptions(): LajiMapOptions{
@@ -265,14 +237,13 @@ export class ObservationMapComponent implements AfterViewInit{
       zoom: this.zoom,
       zoomToData : this.zoomToData,
       tileLayerName: <TileLayerName>"openStreetMap",
-      data: this.mapData
+      data: this.getMapData()
     };
     return options;
-  }
+  } */
 
   onTableActivate(e) {
-    if(e.type == "click"){
-      console.log(e);
+    /* if(e.type == "click"){
       this.selectedInfo = {
         "taxonVerbatim": e.row.unit.taxonVerbatim,
         "team": e.row.gathering.team,
@@ -286,13 +257,23 @@ export class ObservationMapComponent implements AfterViewInit{
         this.randomizeCoordinates(e.row.gathering.conversions.wgs84CenterPoint.lat),
         this.randomizeCoordinates(e.row.gathering.conversions.wgs84CenterPoint.lon) 
       ];
-      /* Zoom more if viewing a specific municipality */
+      // Zoom more if viewing a specific municipality
       if($('#select-municipality').val() != "all") {
         this.zoom = 10;
       } else {
         this.zoom = 7;
       }
       this.renderMap();
-    }
+    } */
+  }
+
+  test() {
+    /* this.filteredObservations = [];
+    this.map.setData(this.getMapData()); */
+    this.map.setCenter([
+      65.2,
+      27
+    ])
+    this.map.zoom = 10;
   }
 }

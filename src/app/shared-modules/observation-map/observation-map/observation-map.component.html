@@ -23,6 +23,7 @@
         </label>
       </div>
   </div>
+  <input type="submit" id="test" (click)="test()" value="test">
 </div> <!-- col-7 -->
 <div class="col-5">
   <ng-container *ngIf="selectedInfo">
@@ -41,18 +42,7 @@
         <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
     </div>
     <div class="col-5">
-      <ngx-datatable class="material" [ngStyle]="{'height': mapHeight+'px'}"
-      [rows]="filteredObservations" 
-      [columnMode]="'force'" 
-      [columns]="columns" 
-      [headerHeight]="50"
-      [rowHeight]="50" 
-      [reorderable]='false' 
-      scrollbarV="true"
-      [footerHeight]="50"
-      (activate)="onTableActivate($event)"
-      >
-      </ngx-datatable>
+      <vrs-obs-map-list obsMapObservations="this.obsMapObservations"></vrs-obs-map-list>
     </div>
 </div>
 </ng-container>
