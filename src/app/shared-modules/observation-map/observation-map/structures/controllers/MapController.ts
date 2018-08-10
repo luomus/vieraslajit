@@ -1,18 +1,15 @@
 import * as LM from 'laji-map';
-import LajiMap, { TileLayerName, Data, DataOptions } from '../../../../../node_modules/laji-map/lib/map.d';
+import LajiMap, { TileLayerName, Data, DataOptions } from '../../../../../../../node_modules/laji-map/lib/map.d';
 
-import { ObsMapObservations } from "./ObsMapObservations";
-import { ObsMapOptions } from './ObsMapOptions';
-import { PathOptions } from '../../../../../node_modules/@types/leaflet';
-import { Injectable } from '../../../../../node_modules/@angular/core';
-import { ObservationMapModule } from '../observation-map.module';
-
+import { ObsMapObservations } from "../data/ObsMapObservations";
+import { ObsMapOptions } from '../data/ObsMapOptions';
+import { PathOptions } from '../../../../../../../node_modules/@types/leaflet';
+import { Injectable } from '../../../../../../../node_modules/@angular/core';
+import { ObservationMapModule } from '../../../observation-map.module';
 /* Listens to updates in obsMapObservations
     and updates the map accordingly */
 
-@Injectable({
-    providedIn: ObservationMapModule
-})
+@Injectable()
 
 export class MapController {
 
@@ -30,8 +27,13 @@ export class MapController {
             tileLayerName: <TileLayerName>"openStreetMap"
         });
         this.obsMapObservations.eventEmitter.addListener('change', ()=>{
-            this.map.setData(this.getMapData());
+          this.map.setData(this.getMapData());
         });
+    }
+
+    zoomAt(center:[number, number], zoomLevel:number) {
+      this.map.setCenter(center);
+      this.map.zoom = zoomLevel;
     }
 
     private getMapData():Data[] {
@@ -54,11 +56,9 @@ export class MapController {
                       type: "Feature",
                       geometry: {
                         type: "Point",
-                        coordinates: this.obsMapOptions.getOption("adminMode")?
+                        coordinates:
                         [observation.gathering.conversions.wgs84CenterPoint.lon,
-                          observation.gathering.conversions.wgs84CenterPoint.lat]:
-                        [this.randomizeCoordinates(observation.gathering.conversions.wgs84CenterPoint.lon),
-                          this.randomizeCoordinates(observation.gathering.conversions.wgs84CenterPoint.lat)],
+                          observation.gathering.conversions.wgs84CenterPoint.lat],
                         radius: this.obsMapOptions.getOption("adminMode")?10:3000
                       },
                       properties: {}
@@ -84,9 +84,4 @@ export class MapController {
           });
           return mapData;
       }
-
-    private randomizeCoordinates(coord){
-        let accuracy = 0.01;
-        return coord + (Math.random() * (accuracy - (-accuracy)) ) + (-accuracy);
-    }
 }

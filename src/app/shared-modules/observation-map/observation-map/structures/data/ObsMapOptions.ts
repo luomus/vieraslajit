@@ -1,17 +1,15 @@
 import { EventEmitter } from "events";
-import { Injectable } from "../../../../../node_modules/@angular/core";
-import { ObservationMapModule } from "../observation-map.module";
+import { Injectable } from "../../../../../../../node_modules/@angular/core";
+import { ObservationMapModule } from "../../../observation-map.module";
 
-export type ObsMapOption = "id" | "list" | "mapHeight" | "adminMode";
+export type ObsMapOption = "id" | "list" | "adminMode" | "municipality" | "personToken";
 
 // TODO: typechecking for Options
 type Options = {
     [i in ObsMapOption]?: any;
 }
 
-@Injectable({
-    providedIn: ObservationMapModule
-})
+@Injectable()
 
 export class ObsMapOptions {
 

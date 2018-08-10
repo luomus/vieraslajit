@@ -4,11 +4,11 @@ import { ObservationMapComponent } from './observation-map/observation-map.compo
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { RouterModule } from '@angular/router';
 import { TaxonSearchComponent } from './observation-map/taxon-search/taxon-search.component';
-import { ObsMapList } from './observation-map/obs-map-list/obs-map-list';
-import { ObsMapObservations } from './observation-map/ObsMapObservations';
-import { ObsMapOptions } from './observation-map/ObsMapOptions';
-import { MapApiController } from './observation-map/MapApiController';
-import { MapController } from './observation-map/MapController';
+import { ObsMapListComponent } from './observation-map/obs-map-list/obs-map-list';
+import { MapApiController } from './observation-map/structures/controllers/MapApiController';
+import { MapController } from './observation-map/structures/controllers/MapController';
+import { ObsMapOptions } from './observation-map/structures/data/ObsMapOptions';
+import { ObsMapObservations } from './observation-map/structures/data/ObsMapObservations';
 
 @NgModule({
   imports: [
@@ -19,13 +19,13 @@ import { MapController } from './observation-map/MapController';
   declarations: [
     ObservationMapComponent,
     TaxonSearchComponent,
-    ObsMapList
+    ObsMapListComponent
   ],
   providers: [
-    ObsMapOptions,
-    ObsMapObservations,
+    MapApiController,
     MapController,
-    MapApiController
+    ObsMapOptions,
+    ObsMapObservations
   ],
   exports: [
     ObservationMapComponent

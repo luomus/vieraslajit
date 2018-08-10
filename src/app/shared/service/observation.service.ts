@@ -34,7 +34,7 @@ export class ObservationService {
           .getObservations(LajiApi.Endpoints.warehousequerylist, {pageSize: pageSize, invasive:true, page:page});
   }
 
-  getObservations(query):  Observable<PagedResult<WarehouseQueryList>> {
+  getObservations(query):  Observable<PagedResult<any>> {
     return this.apiService
           .getObservations(LajiApi.Endpoints.warehousequerylist, query);
   }
