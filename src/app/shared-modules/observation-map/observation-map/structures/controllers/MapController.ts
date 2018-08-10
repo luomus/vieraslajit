@@ -33,7 +33,7 @@ export class MapController {
 
     zoomAt(center:[number, number], zoomLevel:number) {
       this.map.setCenter(center);
-      this.map.zoom = zoomLevel;
+      this.map.setNormalizedZoom(zoomLevel, {animate: false});
     }
 
     private getMapData():Data[] {
@@ -70,8 +70,8 @@ export class MapController {
                   return {
                     opacity: opacity,
                     fillOpacity: 0.9 * opacity,
-                    color: "#f89525",
-                    fillColor: "#f89525",
+                    color: this.obsMapOptions.getOption("adminMode")?"#ff0000":"#f89525",
+                    fillColor: this.obsMapOptions.getOption("adminMode")?"#ff0000":"#f89525",
                     weight: 3
                   };
                 },

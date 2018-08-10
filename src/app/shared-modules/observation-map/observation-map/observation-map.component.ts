@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 
 import { UserService, Role } from '../../../shared/service/user.service';
@@ -6,8 +6,7 @@ import { ObsMapOptions } from './structures/data/ObsMapOptions';
 import { MapApiController } from './structures/controllers/MapApiController';
 import { MapController } from './structures/controllers/MapController';
 import { ObsMapListComponent } from './obs-map-list/obs-map-list';
-
-let _municipalities = require('./municipalities.json');
+import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
 
 @Component({
   selector: 'vrs-observation-map',
@@ -15,17 +14,24 @@ let _municipalities = require('./municipalities.json');
   styleUrls: ['./observation-map.component.scss']
 })
 
-export class ObservationMapComponent implements AfterViewInit{
+export class ObservationMapComponent implements AfterViewInit, OnInit{
   @Input() id?: string;
-  @Input() list?: boolean = false;
+  @Input() listEnabled?: boolean = false;
   @Input() mapHeight?: number = 400;
+  @Input() taxonSearchEnabled?: boolean = false;
+  @Input() municipalitySelectEnabled?: boolean = false;
+  @Input() adminModeSelectorEnabled?: boolean = false;
+  @Input() ownModeSelectorEnabled?: boolean = false;
 
   @ViewChild(ObsMapListComponent)
-  mapTaxonList : ObsMapListComponent
+  mapTaxonList : ObsMapListComponent;
+
+  @ViewChild(TaxonSearchComponent)
+  taxonSearch : TaxonSearchComponent
 
   private selectedInfo;
 
-  private municipalities = _municipalities;
+  private municipalities:Array<any> = [];
 
   /* Filters */
   private adminMode = false;
@@ -35,22 +41,43 @@ export class ObservationMapComponent implements AfterViewInit{
 
   constructor(private obsMapOptions:ObsMapOptions, private mapApiController:MapApiController, private mapController:MapController) {}
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.mapApiController.initialize();
+    this.mapApiController.getAreas().subscribe((r)=>{
+      r.results.forEach(element => {
+        this.municipalities.push(element);
+      });
+      this.municipalities.sort((a, b)=>{
+        // Sort in alphabetical order
+        let nameA = a.name;
+        let nameB = b.name;
+        if(nameA > nameB) return 1;
+        if(nameA < nameB) return -1;
+        return 0;
+      });
+    });
+  }
+
+  ngAfterViewInit() {
     this.mapController.initializeMap(document.getElementById("map"));
     // Initialize mapOptions
     this.obsMapOptions.setOptions([
       ["id", this.id],
-      ["list", this.list]
+      ["list", this.listEnabled],
+      ["taxonSearch", this.taxonSearchEnabled]
     ]);
 
     this.mapTaxonList.eventEmitter.addListener("change", (e)=>{
       this.onTableActivate(e);
     });
 
+    // taxon search
+    this.taxonSearch.eventEmitter.addListener("change", (id)=>{
+      this.obsMapOptions.setOption("id", id);
+    })
+
     // select municipality
     $('#select-municipality').change(() => {
-      console.log($('#select-municipality').val());
       this.obsMapOptions.setOption("municipality", $('#select-municipality').val());
     });
   }
@@ -75,7 +102,7 @@ export class ObservationMapComponent implements AfterViewInit{
       }
       this.mapController.zoomAt(
         [e.row.gathering.conversions.wgs84CenterPoint.lat, e.row.gathering.conversions.wgs84CenterPoint.lon],
-        this.obsMapOptions.getOption("municipality") ? 10 : 7);
+        this.obsMapOptions.getOption("municipality") ? 7 : 5);
     }
   }
 }

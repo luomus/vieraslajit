@@ -1,13 +1,13 @@
 <div class="row">
 <div class="col-7">
-  <div class="input-group mb-3">
+  <div *ngIf="municipalitySelectEnabled" class="input-group mb-3">
     <select id="select-municipality">
       <option value="all">Municipality...</option>
-      <option *ngFor="let mun of municipalities" value="{{mun}}">{{mun}}</option>
+      <option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</option>
     </select>
   </div>
-  <vrs-taxon-search></vrs-taxon-search>
-  <div *ngIf="isAdmin">
+  <ng-container *ngIf="taxonSearchEnabled"><vrs-taxon-search></vrs-taxon-search></ng-container>
+  <div *ngIf="isAdmin && adminModeSelectorEnabled">
     <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="adminCheck" [checked]="adminMode" (change)="adminMode = !adminMode; adminModeChange()">
         <label class="form-check-label" for="adminCheck">
@@ -15,11 +15,11 @@
         </label>
       </div>
   </div>
-  <div *ngIf="isLoggedIn">
+  <div *ngIf="isLoggedIn && ownModeSelectorEnabled">
     <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="ownCheck" [checked]="ownMode" (change)="ownMode = !ownMode; ownModeChange()">
         <label class="form-check-label" for="ownCheck">
-          Omat havainnot
+          Vain omat havainnot
         </label>
       </div>
   </div>
@@ -35,7 +35,7 @@
 </div> <!-- col-5 -->
 </div> <!-- row -->
 <!-- Render list if list-mode enabled -->
-<ng-container *ngIf="list">
+<ng-container *ngIf="listEnabled">
 <div class="row">
     <div class="col-7">
         <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
@@ -45,12 +45,6 @@
     </div>
 </div>
 </ng-container>
-<ng-container *ngIf="!list">
+<ng-container *ngIf="!listEnabled">
     <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
 </ng-container>
-
-
-<!--<p>
-  <span translate>mapOfObservations.info</span>
-  <a href="https://laji.fi/observation/map?target={{id}}" target="_blank">  <span translate>mapOfObservations.link</span></a>
-</p>-->

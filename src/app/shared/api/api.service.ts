@@ -213,6 +213,12 @@ export class ApiService {
       url,
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
 
+  areas(endpoint: LajiApi.Endpoints.areas, query: object): Observable<any> {
+    const url = `${environment.lajiApi.url}${endpoint}`;
+    return this.httpClient.get(
+      url,
+      { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
+
   getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query:LajiApi.WarehouseQueryListQuery ):Observable<any>;
   getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query: object={}):Observable<any>{
         const url = `${environment.lajiApi.url}${endpoint}`;
@@ -281,7 +287,8 @@ export namespace LajiApi {
     form = 'forms/%id%',
     createDocument = 'documents',
     getDocument = 'documents/%id%',
-    updateDocument = 'documents/%id%'
+    updateDocument = 'documents/%id%',
+    areas = 'areas'
   }
   /** Possible query parameters. */
   export interface Query {
@@ -308,6 +315,8 @@ export namespace LajiApi {
     includePayload?: boolean;
     onlyInvasive?: boolean;
     lang?: string;
+    onlySpecies?: boolean;
+    onlyFinnish?: boolean;
   }
 
   export interface warehousequerycountQuery {
