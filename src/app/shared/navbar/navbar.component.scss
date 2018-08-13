@@ -10,7 +10,12 @@ $background-hover: $background;
     font-size: 14px;
     font-weight: 700;
     font-family: $font-montserrat;
-    background: $background;
+
+    /* Background gradient */
+    background: $background-light; /* Old browsers */
+    background: -moz-linear-gradient(top, $background-light 50%, #e8e8e8 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, $background-light 50%,#e8e8e8 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, $background-light 50%,#e8e8e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
     border-bottom: 1px solid $accent;
 
@@ -36,7 +41,6 @@ $background-hover: $background;
 /* Items */
 
 #mainNav .nav-item {
-    background: $background;
     display: flex;
     align-items: center;
     a {
@@ -46,7 +50,6 @@ $background-hover: $background;
 
 #mainNav .navbar-nav li.nav-item a.nav-link {
     color: $text-dark-lighter;
-    background: $background;
     padding-right:10px;
     padding-left:10px;
 }
@@ -61,13 +64,11 @@ $background-hover: $background;
 }
 
 .navbar-nav li:hover a {
-    background: $background-hover;
     color: $text-hover;
 }
 
 /* "About" Dropdown Menu */
 #dropdown-about {
-    background: $background;
     border: none;
     color: $text-dark-lighter;
     &:hover {
@@ -94,7 +95,6 @@ $background-hover: $background;
 }
 
 #dropdown-menu-item:hover {
-    background: $background-hover;
     color: $text-hover;
 }
 
@@ -123,7 +123,7 @@ $background-hover: $background;
 /* User Menu*/
 
 #personbutton {
-    background: $background;
+    background: none;
     color: $text-dark-lighter;
 }
 
@@ -161,7 +161,6 @@ $background-hover: $background;
 
 @media (min-width: 991.98px) {
     #dropdown-about {
-        background: $background;
         border: none;
         color: $text-dark-lighter;
         display: flex;
