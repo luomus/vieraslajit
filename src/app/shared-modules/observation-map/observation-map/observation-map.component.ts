@@ -69,12 +69,11 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     if(this.ownModeEnabled) options.push(["personToken", UserService.getToken()])
     this.obsMapOptions.setOptions(options);
 
-    this.mapTaxonList.eventEmitter.addListener("change", (e)=>{
+    if(this.mapTaxonList) this.mapTaxonList.eventEmitter.addListener("change", (e)=>{
       this.onTableActivate(e);
     });
 
-    // taxon search
-    this.taxonSearch.eventEmitter.addListener("change", (id)=>{
+    if(this.taxonSearch) this.taxonSearch.eventEmitter.addListener("change", (id)=>{
       this.obsMapOptions.setOption("id", id);
     })
 
