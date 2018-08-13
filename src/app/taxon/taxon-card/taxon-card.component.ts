@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, ViewEncapsulation, TemplateRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ViewEncapsulation, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { TaxonomyDescription, TaxonomyImage, Taxonomy } from '../../shared/model/Taxonomy';
@@ -17,6 +17,7 @@ import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.componen
 })
 
 export class TaxonCardComponent implements OnInit, OnDestroy {
+  @ViewChild(OmnisearchComponent) omnisearch:OmnisearchComponent;
 
   private sub: any;
   private subTrans: Subscription;
@@ -35,6 +36,8 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   modalRef: BsModalRef;
   lang: string;
 
+  private first=true;
+
   constructor(private route: ActivatedRoute,
     private taxonService: TaxonService, private translate: TranslateService, private modalService: BsModalService) {
 
@@ -45,7 +48,15 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.comparison = false;
     this.sub = this.route.params.subscribe(params => {
-      this.id = params['id']; // (+) converts string 'id' to a number
+      this.id = params['id'];
+      /* Don't run omnisearch.close on the first route change */
+      if(this.first) {
+        this.first = false;
+      } else {
+        this.omnisearch.close();
+      }
+      this.scrollTop();
+      this.update();
     });
     this.scrollTop();
     this.update();
