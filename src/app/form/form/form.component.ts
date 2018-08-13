@@ -4,7 +4,7 @@ import {
   ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges
 } from '@angular/core';
 import { FormService } from '../../shared/service/form.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import LajiForm from 'laji-form/lib/laji-form';
 import { FormApiClient } from '../../shared/api/FormApiClient';

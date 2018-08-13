@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { InformationService } from '../shared/service/information.service';
 import { Information } from '../shared/model/Information';
 import { ActivatedRoute, Router, NavigationEnd, RouterLink } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { filter } from '../../../node_modules/rxjs/operators';
 
 /**
  * Renders static page ie. /static/:id route
@@ -36,7 +37,7 @@ export class StaticComponent implements OnInit {
   ngOnInit() {
     this.loadContent();
     this.subTrans = this.translate.onLangChange.subscribe(this.loadHomePage.bind(this));
-    this.sub = this.router.events.filter(e => e instanceof NavigationEnd).subscribe((data)=>{
+    this.sub = this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe((data)=>{
       this.loadContent();
     });
     

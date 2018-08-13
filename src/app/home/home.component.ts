@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {OmnisearchComponent} from '../shared/omnisearch/omnisearch.component'
 import { NewsComponent } from '../news/news.component';
 import { environment } from '../../environments/environment';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { findContentID, StaticContent } from '../../assets/i18n/cms-content';
 
 /**

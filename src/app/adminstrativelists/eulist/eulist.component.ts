@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy, Input } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Taxonomy } from '../../shared/model/Taxonomy';
 import { ListService } from '../../shared/service/list.service';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
-import { Subscription } from 'rxjs/Subscription';
 import { StaticComponent } from '../../static/static.component';
 import { StaticContent, findContentID } from './../../../assets/i18n/cms-content';
 

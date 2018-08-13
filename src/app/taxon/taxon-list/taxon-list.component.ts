@@ -1,13 +1,12 @@
 import { Component, OnInit, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subscription } from 'rxjs';
 import { PagedResult } from '../../shared/model/PagedResult';
 import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../../shared/model/Taxonomy';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { Informal } from '../../shared/model/Informal';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
-import { Subscription } from 'rxjs/Subscription';
 import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.component'
 import * as $ from 'jquery';
 

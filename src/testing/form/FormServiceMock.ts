@@ -1,8 +1,8 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 
 export class FormServiceMock {
   getFormById(id, lang) {
-    return Observable.of({
+    return of({
       "id": "JX.123759",
       "name": "Visake testi",
       "language": "fi",

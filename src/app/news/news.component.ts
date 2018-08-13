@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { NewsElement } from '../shared/model/NewsElement';
 import { PagedResult } from '../shared/model/PagedResult';
 

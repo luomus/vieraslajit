@@ -5,8 +5,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { OmnisearchComponent } from './shared/omnisearch/omnisearch.component'
 import { UserService, userProperty } from './shared/service/user.service';
 import { Router, NavigationEnd } from '@angular/router';
-import { Subscriber } from 'rxjs/Subscriber';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscriber ,  Subscription } from 'rxjs';
 import * as $ from 'jquery';
 import { LocationStrategy } from '@angular/common';
 

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { PagedResult } from '../model/PagedResult';
-import {Document} from '../model/Document';
 import { WarehouseQueryList } from '../model/Warehouse';
 import { ApiService, LajiApi } from '../api/api.service';
 
@@ -34,5 +33,8 @@ export class ObservationService {
           .getObservations(LajiApi.Endpoints.warehousequerylist, {pageSize: pageSize, invasive:true, page:page});
   }
 
-
+  getObservations(query):  Observable<PagedResult<any>> {
+    return this.apiService
+          .getObservations(LajiApi.Endpoints.warehousequerylist, query);
+  }
 }

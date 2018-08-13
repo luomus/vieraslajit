@@ -27,6 +27,7 @@ import {EditcmsModule} from './../shared-modules/editcms/editcms.module';
 import {ObservationMapModule} from '../shared-modules/observation-map/observation-map.module';
 import { DocumentService } from './service/document.service';
 import { AlertService } from './service/alert.service';
+import { AreaService } from './service/area.service';
 
 /**
  * Provides common utilities for other modules
@@ -69,6 +70,7 @@ export class SharedModule {
         ObservationService,
         DocumentService,
         AlertService,
+        AreaService
       ]
     };
   }

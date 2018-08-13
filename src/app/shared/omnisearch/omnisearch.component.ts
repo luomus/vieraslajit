@@ -13,16 +13,16 @@ import {
 } from '@angular/core';
 import { Autocomplete } from '../../shared/model/Autocomplete';
 import { WarehouseQueryCount } from '../../shared/model/Warehouse'
-import { Subscription } from 'rxjs/Subscription'
-import { Observable } from 'rxjs/Observable'
+import { Subscription ,  Observable, of } from 'rxjs'
+import { tap, combineLatest } from 'rxjs/operators'
 import { FormControl } from '@angular/forms'
 import { TaxonService } from '../../shared/service/taxon.service'
 import { ApiService } from '../../shared/api/api.service';
 import { Router } from '@angular/router'
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/combineLatest';
-import 'rxjs/add/observable/of';
+
+
+
+
 import { TranslateService } from '@ngx-translate/core';
 
 
@@ -44,7 +44,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   @Input() comparisonView: boolean;
   @Output() visibleTaxon = new EventEmitter<any>();
   public search = '';
-  public searchControl = new FormControl();
+  public searchControl:FormControl = new FormControl();
   public active = 0;
   public taxa = [];
   public taxon: any;
@@ -71,14 +71,13 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
-    this.inputChange = this.searchControl.valueChanges
-      .do(value => this.search = value)
-      .subscribe(value => {
-        this.updateTaxa();
-
-      });
-
+    this.searchControl.valueChanges.pipe(tap(val=>{
+      this.search = val;
+    })).subscribe(()=>{
+      this.updateTaxa();
+    })
   }
+  
   ngOnChanges() {
     this.updateTaxa();
 
@@ -98,11 +97,13 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     if (this.taxa[index]) {
       this.active = index;
       this.taxon = this.taxa[index];
-      this.subCnt = Observable.of(this.taxon.key).combineLatest(
+      this.subCnt = of(this.taxon.key).pipe(
+      combineLatest(
         this.taxonservice.getWareHouseQueryCount('count', 'fi', this.taxon.key),
         (id, cnt) => {
           return { id: id, cnt: cnt.total };
-        }).subscribe(data => {
+        }))
+        .subscribe(data => {
           this.taxa.map(auto => {
             if (auto.key === data.id) {
               auto['count'] = data.cnt;

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ApiService, LajiApi } from '../api/api.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { PagedResult } from '../model/PagedResult';
 import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../model/Taxonomy';
 import { Informal } from '../model/Informal';
-import { query } from '@angular/core/src/render3/instructions';
 import { Autocomplete } from '../model/Autocomplete';
 
 @Injectable()
@@ -67,7 +66,7 @@ export class TaxonService {
   // Get autocomplete for taxon search.
   getAutocomplete(field: string, q: string, lang?: string): Observable<any> {
     return this.apiService
-      .autocompleteFindByField(LajiApi.Endpoints.autocomplete, field, { q, includePayload: true, onlyInvasive: true, lang: lang });
+      .autocompleteFindByField(LajiApi.Endpoints.autocomplete, field, { q, includePayload: true, onlyFinnish: true, onlySpecies: true, onlyInvasive: true, lang: lang });
   }
   // Get warehouse query count for taxon search.
   getWareHouseQueryCount(count: string, lang: string, taxonId): Observable<any> {

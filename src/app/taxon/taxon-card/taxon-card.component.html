@@ -89,7 +89,10 @@
             <span translate>mapOfObservations.header</span>
           </div>
           <div class="card-block">
-            <vrs-observation-map [id]="id" [mapHeight]="400"></vrs-observation-map>
+            <vrs-observation-map [id]="id" [mapHeight]="600"></vrs-observation-map>
+            <p>
+              <a href="https://laji.fi/observation/map?target={{id}}" target="_blank">  <span translate>mapOfObservations.link</span></a>
+            </p>
             <div class="col-sm-12 col-md-6">
                   <div class="card-text">
                     <a routerLink="/form/JX.123757" id="report" class="btn btn-dark" translate>taxon.report</a>

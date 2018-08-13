@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { MetadataService } from '../service/metadata.service';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+import { map } from '../../../../node_modules/rxjs/operators';
+
 
 @Pipe({
   name: 'label'
@@ -13,7 +14,7 @@ export class LabelPipe implements PipeTransform {
   constructor(private metadataService: MetadataService) { }
 
   transform(value: string, range: string, lang: string): any {
-    return this.metadataService.getMetadataRange(range, 'multi').map(data => {
+    return this.metadataService.getMetadataRange(range, 'multi').pipe(map(data => {
       this.rangeData = data.filter(e => e.id === value);
       this.value = this.rangeData
         .filter(val => val.id === value)
@@ -21,7 +22,7 @@ export class LabelPipe implements PipeTransform {
       return this.value;
     }, (err) => {
       console.log(err);
-    });
+    }));
 
   }
 

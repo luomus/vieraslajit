@@ -2,9 +2,8 @@ import { Component, OnInit, OnDestroy, Input, ViewEncapsulation, TemplateRef } f
 import { ActivatedRoute } from '@angular/router';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { TaxonomyDescription, TaxonomyImage, Taxonomy } from '../../shared/model/Taxonomy';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs/Subscription';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService, LajiApi } from '../api/api.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Taxonomy} from '../model/Taxonomy';
 
 
