@@ -29,15 +29,15 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   @ViewChild(TaxonSearchComponent)
   taxonSearch : TaxonSearchComponent
 
-  private selectedInfo;
+selectedInfo;
 
   private municipalities:Array<any> = [];
 
   /* Filters */
   private adminMode = false;
   private ownMode = false;
-  private isAdmin = UserService.hasRole(Role.CMS_ADMIN);
-  private isLoggedIn = UserService.loggedIn();
+  isAdmin = UserService.hasRole(Role.CMS_ADMIN);
+  isLoggedIn = UserService.loggedIn();
 
   constructor(private obsMapOptions:ObsMapOptions, private mapApiController:MapApiController, private mapController:MapController) {}
 

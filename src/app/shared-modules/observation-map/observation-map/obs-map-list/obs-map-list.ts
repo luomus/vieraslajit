@@ -20,8 +20,8 @@ import { EventEmitter } from "events";
 })
 export class ObsMapListComponent {
     @Input() height = 500;
-    private observations:Array<VrsObservation> = [];
-    private columns:Array<any>;
+    observations:Array<VrsObservation> = [];
+    columns:Array<any>;
     eventEmitter:EventEmitter = new EventEmitter();
     constructor(private translate:TranslateService, private obsMapObservations:ObsMapObservations) {
         this.columns = [
