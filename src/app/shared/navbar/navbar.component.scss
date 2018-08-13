@@ -72,7 +72,6 @@ $background-hover: $background;
     border: none;
     color: $text-dark-lighter;
     &:hover {
-        background: $background-hover;
         color: $text-hover;
     }
 }
@@ -82,7 +81,6 @@ $background-hover: $background;
     padding-right:10px;
     cursor: pointer;
     &:hover {
-        background: $background-hover;
         color: $text-hover;
     }
 }
@@ -96,6 +94,7 @@ $background-hover: $background;
 
 #dropdown-menu-item:hover {
     color: $text-hover;
+    background: $background-hover;
 }
 
 .dropdown-menu {
@@ -131,12 +130,13 @@ $background-hover: $background;
     color:$accent;
 }
 
-#usermenuitem {
+.usermenuitem {
     cursor: pointer;
 }
 
-#usermenuitem:hover {
+.usermenuitem:hover {
     color: $text-hover;
+    background: none;
 }
 
 /* Language Selector */

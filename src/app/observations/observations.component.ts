@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { UserService } from '../shared/service/user.service';
 import { Subscription } from 'rxjs';
@@ -31,12 +31,16 @@ export class ObservationsComponent implements OnInit {
   pageData = [];
   maxSize = 5;
   itemsPerPage = 20;
+  ownMode=false;
 
 
-
-  constructor(private translate: TranslateService, private router: Router, private observationservice: ObservationService) { }
+  constructor(private translate: TranslateService, private router: Router, private route: ActivatedRoute, private observationservice: ObservationService) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params=>{
+      if(params['mode'] == "user") this.ownMode = true;
+    })
+
     this.loading = true;
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.pageSize = "1000";

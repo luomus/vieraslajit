@@ -50,8 +50,8 @@
                         <div class="dropdown" id="dropdown-user" dropdown>
                             <button dropdownToggle class="btn btn-sm oi oi-person icon dropdown-toggle" aria-controls="dropdown-basic" id="personbutton"></button>
                             <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
-                              <li role="usermenuitem"><span class="dropdown-item" id="usermenuitem">{{userPropertiesWrapper().person.fullName}}</span></li>
-                              <li (click)="logout()" role="usermenuitem"><span class="dropdown-item" id="usermenuitem" ><span translate>navigation.logout</span></span></li>
+                              <li routerLink="/observations/user" role="usermenuitem"><span class="dropdown-item usermenuitem">{{userPropertiesWrapper().person.fullName}}</span></li>
+                              <li (click)="logout()" role="usermenuitem"><span class="dropdown-item usermenuitem"><span translate>navigation.logout</span></span></li>
                             </ul>
                           </div>
                     </ng-template>
