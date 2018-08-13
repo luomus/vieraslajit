@@ -17,7 +17,7 @@ before_script:
 script: 
   # Use Chromium instead of Chrome.
   - export CHROME_BIN=chromium-browser
-  - xvfb-run -a npm run test -- --watch=false --browsers=ChromeNoSandbox
+  - xvfb-run -a npm run test -- --watch=false --browsers=Chrome
   - xvfb-run -a npm run e2e -- --protractor-config=protractor-ci.conf.js
 before_deploy:
   - ng build --prod --aot --no-delete-output-path -bh "https://vieraslajit.github.io/Vieraslajit/"
