@@ -1,0 +1,14 @@
+<div class="container">
+<tabset #staticTabs>
+    <tab heading="eu" (select)="tabSelected($event)">
+        <vrs-static [id]="this.getEuId()"></vrs-static>
+        <a routerLink="obligations" translate>eulist.obligations</a>
+        <vrs-administrativelist [type]="eu"></vrs-administrativelist>
+    </tab>
+    <tab heading="fi" (select)="tabSelected($event)">
+        <vrs-static [id]="this.getFiId()"></vrs-static>
+        <a routerLink="obligations" translate>filist.obligations</a>
+        <vrs-administrativelist [type]="fi"></vrs-administrativelist>
+    </tab>
+</tabset>
+</div>

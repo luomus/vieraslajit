@@ -71,7 +71,6 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
-    console.log("omni");
     this.searchControl.valueChanges.pipe(tap(val=>{
       this.search = val;
     })).subscribe(()=>{
