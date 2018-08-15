@@ -12,7 +12,6 @@ import { StaticModule } from '../static/static.module';
 import { EulistobligationsComponent } from './eulistobligations/eulistobligations.component';
 import { FilistobligationsComponent } from './filistobligations/filistobligations.component';
 import { AdministrativelistsComponent } from './administrativelists.component';
-import { AdministrativelistComponent } from './administrativelist/administrativelist.component';
 
 /**
  * Declares routes and components for European and Finnish lists of invasive alien species
@@ -27,7 +26,7 @@ import { AdministrativelistComponent } from './administrativelist/administrative
     StaticModule
 
   ],
-  declarations: [EulistComponent, FilistComponent, EulistobligationsComponent, FilistobligationsComponent, AdministrativelistsComponent, AdministrativelistComponent],
+  declarations: [EulistComponent, FilistComponent, EulistobligationsComponent, FilistobligationsComponent, AdministrativelistsComponent],
   providers:[ApiService,ListService]
 })
 export class administrativelistsModule { }

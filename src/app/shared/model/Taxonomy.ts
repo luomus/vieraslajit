@@ -190,6 +190,8 @@ export interface Taxonomy {
 
 
     redListStatusesInFinland?: LatestRedListStatusFinland[];
+
+    descriptions?: TaxonomyDescription[];
 }
 
 export interface LatestRedListStatusFinland {
