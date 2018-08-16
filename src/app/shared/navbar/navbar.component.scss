@@ -11,15 +11,29 @@ $background-hover: $background;
     font-weight: 700;
     font-family: $font-montserrat;
 
-    /* Background gradient */
+    border-bottom: 1px solid $accent;
+
+    box-shadow: 0px 0px 5px 0px $shadow;
+}
+
+/* After element for transparent background */
+
+#mainNav::after {
+    content: ''; 
+	width: 100%; 
+    height: 100%;
+    
+	/* Background gradient */
     background: $background-light; /* Old browsers */
     background: -moz-linear-gradient(top, $background-light 50%, #e8e8e8 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, $background-light 50%,#e8e8e8 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, $background-light 50%,#e8e8e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
-    border-bottom: 1px solid $accent;
-
-    box-shadow: 0px 0px 5px 0px $shadow;
+	opacity: 0.9; 
+	position: absolute; 
+	top: 0; 
+	left: 0;
+	z-index: -1;
 }
 
 
