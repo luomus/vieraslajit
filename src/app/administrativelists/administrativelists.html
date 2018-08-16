@@ -3,12 +3,13 @@
     <tab heading="eu" (select)="tabSelected($event)">
         <vrs-static [id]="this.getEuId()"></vrs-static>
         <a routerLink="obligations" translate>eulist.obligations</a>
-        <vrs-taxoncard-grid [taxa]="euList"></vrs-taxoncard-grid>
+        <!-- <vrs-taxoncard-grid [taxa]="euList"></vrs-taxoncard-grid> -->
+        <vrs-taxon-browser [EuList]="true"></vrs-taxon-browser>
     </tab>
     <tab heading="fi" (select)="tabSelected($event)">
         <vrs-static [id]="this.getFiId()"></vrs-static>
         <a routerLink="obligations" translate>filist.obligations</a>
-        <vrs-taxoncard-grid [taxa]="fiList"></vrs-taxoncard-grid>
+        <!-- <vrs-taxoncard-grid [taxa]="fiList"></vrs-taxoncard-grid> -->
     </tab>
 </tabset>
 </div>

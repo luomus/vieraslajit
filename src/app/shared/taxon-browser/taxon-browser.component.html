@@ -1,0 +1,17 @@
+<tabset id='browser-tabset'>
+    <tab heading="{{'navigation.list' | translate}}">
+        <div class="tab-pane container " id="taxontable">
+        <ngx-datatable class="material" [rows]="taxa" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
+            [rowHeight]="50" [reorderable]='true' [count]="taxa.length" [limit]="50" [footerHeight]="50"
+            [sorts]="[{prop: 'vernacularName', dir: 'asc'}]" (select)="onDatatableSelect($event)" (page)="onDatatablePageChange()">
+        </ngx-datatable>
+        </div>
+    </tab>
+    <tab heading="{{'navigation.grid' | translate}}"[active]="true">
+        <div class="tab-pane container py-3" id="cardcontainer">
+        <vrs-taxoncard-grid [taxa]="pageData"></vrs-taxoncard-grid>
+        <br>
+        <pagination [totalItems]="taxa.length" [(ngModel)]="currentPage" [maxSize]="5" [itemsPerPage]="12" (pageChanged)="onGridPageChanged($event)"></pagination>
+        </div>
+    </tab>
+</tabset>
