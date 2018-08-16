@@ -1,8 +1,15 @@
 @import '../assets/styles/vars';
 
 body {
-    background-color: $background-light;
     padding: 0px;
+}
+
+.vrs-content {
+    background-color: $background-darker;
+}
+
+.container {
+    background-color: $background-light;
 }
 
 .vrs-content {
