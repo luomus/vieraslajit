@@ -2,9 +2,10 @@
 <tabset #staticTabs>
     <tab heading="eu" (select)="tabSelected($event)">
         <vrs-static [id]="this.getEuId()"></vrs-static>
-        <a routerLink="obligations" translate>eulist.obligations</a>
+            <a routerLink="obligations" translate>eulist.obligations</a>
         <!-- <vrs-taxoncard-grid [taxa]="euList"></vrs-taxoncard-grid> -->
         <vrs-taxon-browser [EuList]="true"></vrs-taxon-browser>
+        <br>
     </tab>
     <tab heading="fi" (select)="tabSelected($event)">
         <vrs-static [id]="this.getFiId()"></vrs-static>

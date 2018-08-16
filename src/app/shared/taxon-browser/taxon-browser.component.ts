@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "../../../../node_modules/@angular/core";
+import { Component, Input, OnInit, ViewEncapsulation } from "../../../../node_modules/@angular/core";
 import { TranslateService, TranslatePipe } from "../../../../node_modules/@ngx-translate/core";
 import { NgModel } from "../../../../node_modules/@angular/forms";
 import { Informal, Taxonomy } from "../model";
@@ -11,7 +11,8 @@ import * as $ from 'jquery';
     selector: "vrs-taxon-browser",
     styleUrls: ["taxon-browser.component.scss"],
     templateUrl: "taxon-browser.component.html",
-    providers: [TaxonBrowserApiService, TaxonBrowserApiSettingsService]
+    providers: [TaxonBrowserApiService, TaxonBrowserApiSettingsService],
+    encapsulation: ViewEncapsulation.None
 })
 export class TaxonBrowserComponent implements OnInit{
     @Input() EuList?:boolean;

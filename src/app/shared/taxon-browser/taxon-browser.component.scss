@@ -3,15 +3,15 @@
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
-:host ::ng-deep .datatable-body-cell {
+.datatable-body-cell {
   cursor: pointer;
 }
 
-:host ::ng-deep .ngx-datatable.material {
+.ngx-datatable.material {
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
 }
-:host ::ng-deep .tab-content {
+.tab-content {
     background: #fff;
     padding-left: 1.5em;
     padding-right: 1.5em;
@@ -22,7 +22,7 @@
     border-bottom-right-radius: 10px;
 }
 
-:host ::ng-deep ul.nav.nav-tabs {
+ul.nav.nav-tabs {
     padding-left: 1.5em;
     padding-top: 1em;
     background: whitesmoke;
@@ -31,17 +31,17 @@
     border-top-right-radius: 10px;
 }
 
-:host ::ng-deep .nav-tabs li.nav-item a.nav-link {
+.nav-tabs li.nav-item a.nav-link {
     background: whitesmoke;
     border-bottom: 1px solid #dee2e6;
 }
 
-:host ::ng-deep .nav-tabs li.nav-item a.nav-link.active {
+.nav-tabs li.nav-item a.nav-link.active {
     background: white;
     border-bottom-color: white;
 }
 
-:host ::ng-deep .ngx-datatable.material {
+.ngx-datatable.material {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
@@ -54,6 +54,6 @@
  */
 /** List and grid tabs **/
 
-:host ::ng-deep .nav-item .active {
+.nav-item .active {
     background-color: whitesmoke;
 }
