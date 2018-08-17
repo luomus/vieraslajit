@@ -40,7 +40,8 @@
   </div>
   <br>
   <ng-container *ngIf="selectedGroup && taxa && !loading">
-    <tabset>
+    <vrs-taxon-browser [informalTaxonGroup]='selectedGroup'></vrs-taxon-browser>
+    <!-- <tabset>
       <tab heading="{{'navigation.list' | translate}}">
         <div class="tab-pane container " id="taxontable">
           <ngx-datatable *ngIf="page" class="material selection-cell" [rows]="taxa" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
@@ -56,7 +57,7 @@
           <pagination [totalItems]="taxa.length" [(ngModel)]="currentPage" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
         </div>
       </tab>
-    </tabset>
+    </tabset> -->
   </ng-container>
   <br>
 </div>

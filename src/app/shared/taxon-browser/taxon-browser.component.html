@@ -1,10 +1,7 @@
 <tabset id='browser-tabset'>
     <tab heading="{{'navigation.list' | translate}}">
         <div class="tab-pane container " id="taxontable">
-        <ngx-datatable class="material" [rows]="taxa" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
-            [rowHeight]="50" [reorderable]='true' [count]="taxa.length" [limit]="50" [footerHeight]="50"
-            [sorts]="[{prop: 'vernacularName', dir: 'asc'}]" (select)="onDatatableSelect($event)" (page)="onDatatablePageChange()">
-        </ngx-datatable>
+            <vrs-taxon-browser-list [taxa]='taxa'></vrs-taxon-browser-list>
         </div>
     </tab>
     <tab heading="{{'navigation.grid' | translate}}"[active]="true">

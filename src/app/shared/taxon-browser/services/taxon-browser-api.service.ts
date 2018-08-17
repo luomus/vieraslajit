@@ -16,7 +16,7 @@ export class TaxonBrowserApiService {
 
     constructor(private settingsService:TaxonBrowserApiSettingsService, private apiService:ApiService, private translate:TranslateService) {
         this.query = {
-            invasiveSpeciesFilter: true,onlyFinnish: false, lang: this.translate.currentLang, adminStatusFilters:'MX.euInvasiveSpeciesList',
+            invasiveSpeciesFilter: true,onlyFinnish: false, lang: this.translate.currentLang,
             includeMedia: true, includeDescriptions: true
         };
     }
@@ -32,13 +32,14 @@ export class TaxonBrowserApiService {
         console.log(this.settingsService.apiSettings);
         this.settingsService.apiSettings.EuList ? this.query.adminStatusFilters = 'MX.euInvasiveSpeciesList' : null;
         this.settingsService.apiSettings.FiList ? this.query.adminStatusFilters = 'MX.fiInvasiveSpeciesList' : null;
-        this.settingsService.apiSettings.informalTaxonGroup ? this.query.informalGroupFilters = this.settingsService.apiSettings.informalTaxonGroup : null;
+        this.settingsService.apiSettings.informalTaxonGroup ? this.query.informalGroupFilters = this.settingsService.apiSettings.informalTaxonGroup.id : null;
     }
 
     updateTaxa() {
         this.apiService.taxonomyFindById(LajiApi.Endpoints.taxonSpecies, 'MX.37600', this.query).subscribe((r)=>{
             this.taxa = r.results;
             this.eventEmitter.emit('change');
+            console.log(r);
         })
     }
 }

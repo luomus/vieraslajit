@@ -15,8 +15,10 @@ import * as $ from 'jquery';
     encapsulation: ViewEncapsulation.None
 })
 export class TaxonBrowserComponent implements OnInit{
-    @Input() EuList?:boolean;
-    @Input() FiList?:boolean;
+    @Input() EuList?:boolean = false;
+    @Input() FiList?:boolean = false;
+    @Input() informalTaxonGroup?:Informal;
+
     @Input() EuListSelector?:boolean;
     @Input() FiListSelector?:boolean;
 
@@ -27,25 +29,16 @@ export class TaxonBrowserComponent implements OnInit{
 
     itemsPerPage:number = 12;
 
-    /* List */
-    columns: Array<any> = [];
-
     constructor(private settingsService:TaxonBrowserApiSettingsService, private apiService: TaxonBrowserApiService, private translate: TranslateService) {
-        this.columns = [
-            { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 150 },
-            { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 150 },
-            { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
-            { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
-            { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
-            { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
-        ];
+        
     }
 
     ngOnInit() {
         this.apiService.initialize();
         let settings:TaxonBrowserApiSettings = {
             EuList: this.EuList,
-            FiList: this.FiList
+            FiList: this.FiList,
+            informalTaxonGroup: this.informalTaxonGroup
         }
         this.settingsService.apiSettings = settings;
 
@@ -53,14 +46,6 @@ export class TaxonBrowserComponent implements OnInit{
             this.taxa = this.apiService.taxa;
             this.loadGridPage(1);
         });
-    }
-
-    onDatatableSelect(e) {
-        
-    }
-
-    onDatatablePageChange() {
-
     }
 
     onGridPageChanged(event) {

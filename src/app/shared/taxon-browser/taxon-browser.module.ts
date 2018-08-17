@@ -7,10 +7,11 @@ import { RouterModule } from '../../../../node_modules/@angular/router';
 import { CommonModule } from '../../../../node_modules/@angular/common';
 import { TranslateModule } from '../../../../node_modules/@ngx-translate/core';
 import { FormsModule } from '../../../../node_modules/@angular/forms';
+import { TaxonBrowserListComponent } from './taxon-browser-list/taxon-browser-list.component';
 
 @NgModule({
     imports: [PaginationModule, TabsModule, NgxDatatableModule, RouterModule, CommonModule, TranslateModule, FormsModule],
-    declarations: [TaxonCardGridComponent, TaxonBrowserComponent],
+    declarations: [TaxonCardGridComponent, TaxonBrowserComponent, TaxonBrowserListComponent],
     exports: [TaxonBrowserComponent]
 })
 export class TaxonBrowserModule {}
