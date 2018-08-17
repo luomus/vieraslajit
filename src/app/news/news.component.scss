@@ -3,7 +3,7 @@
 
 .news-post {
   
-    padding-top:2%;
+    padding-bottom:1em;
     //border: 1px solid $border-light;
     //background: $background-light;
     //border-radius: $content-border-radius;
@@ -58,16 +58,18 @@
 
 .navpill {
     display: inline-block;
-    min-width: 10px;
-    margin-top: 8px;
-    padding: 8px 15px;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-right: 0.5em;
     font-size: 14px;
     border-color: $primary;
+    border-width: 2px;
     color: $primary;
-    line-height: 1;
     white-space: nowrap;
     text-align: center;
-    border-radius: 14px;
+    border-radius: $content-border-radius;
     border-style: solid;
     cursor: pointer;
 }

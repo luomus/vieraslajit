@@ -14,11 +14,11 @@ import { PagedResult } from '../shared/model/PagedResult';
 export class NewsComponent implements OnInit, OnDestroy {
   
   private subTrans: Subscription;
-  private data: PagedResult<NewsElement>;
+  data: PagedResult<NewsElement>;
   news: Array<NewsElement> = [];
   pages: Array<number> = [];
   private pageSize: number = 5;
-  private currentTags: string;
+  currentTags: string;
   private imageToDisplay: string;
   private activeNavpill;
 
