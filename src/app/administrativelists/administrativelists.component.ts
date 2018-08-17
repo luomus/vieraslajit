@@ -45,11 +45,11 @@ export class AdministrativelistsComponent implements OnInit {
           });
     }
 
-    private getEuId(){
+    getEuId(){
         return this.getStaticId(StaticContent.EUList, "fi");
     }
 
-    private getFiId(){
+    getFiId(){
         return this.getStaticId(StaticContent.FIList, "fi");
     }
 
@@ -57,7 +57,7 @@ export class AdministrativelistsComponent implements OnInit {
         return findContentID(list, lang);
     }
 
-    private tabSelected(e:TabDirective) {
+    tabSelected(e:TabDirective) {
         if(e.heading) this.location.go('administrativelists/' + e.heading);
     }
 }
