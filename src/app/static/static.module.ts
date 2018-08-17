@@ -4,6 +4,7 @@ import { StaticComponent } from './static.component';
 import {StaticRoutingModule} from './static-routing.module';
 import { TabsModule } from 'ngx-bootstrap';
 import {SharedModule} from '../shared/shared.module';
+import { StaticWrapperComponent } from './static-wrapper.component';
 
 /**
  * Declares component and routes for viewing static content
@@ -16,7 +17,7 @@ import {SharedModule} from '../shared/shared.module';
     TabsModule,
     SharedModule
   ],
-  declarations: [StaticComponent],
+  declarations: [StaticComponent, StaticWrapperComponent],
   exports: [StaticComponent]
 })
 export class StaticModule { }

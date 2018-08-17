@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { StaticComponent } from './static.component';
+import { StaticWrapperComponent } from './static-wrapper.component';
 
 /**
  * Defines subroutes for the /static/ route
@@ -10,7 +10,7 @@ import { StaticComponent } from './static.component';
  */
 
 const routes: Routes = [
-  { path: ':id', component: StaticComponent }
+  { path: ':id', component: StaticWrapperComponent }
 ];
 
 @NgModule({

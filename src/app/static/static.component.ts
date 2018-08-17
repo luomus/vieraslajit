@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, OnChanges } from '@angular/core';
 import { InformationService } from '../shared/service/information.service';
 import { Information } from '../shared/model/Information';
 import { ActivatedRoute, Router, NavigationEnd, RouterLink } from '@angular/router';
@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { filter } from '../../../node_modules/rxjs/operators';
 
 /**
- * Renders static page ie. /static/:id route
+ * Renders content from CMS.
  * 
  * StaticComponent is dynamically populated from the CMS. The CMS is
  * accessed via laji API using InformationService
@@ -19,15 +19,14 @@ import { filter } from '../../../node_modules/rxjs/operators';
   templateUrl: './static.component.html',
   styleUrls: ['./static.component.scss'],
 })
-export class StaticComponent implements OnInit {
+export class StaticComponent implements OnInit, OnChanges {
 
   public scontent: Object;
   @Input() id: string;
-  sub: Subscription;
   private subTrans: Subscription;
   child_pages: Array<any>;
 
-  constructor(public informationService: InformationService, private route: ActivatedRoute, 
+  constructor(public informationService: InformationService, 
     private router: Router, private translate: TranslateService) { }
 
   /**
@@ -35,20 +34,10 @@ export class StaticComponent implements OnInit {
    */ 
 
   ngOnInit() {
-    this.loadContent();
     this.subTrans = this.translate.onLangChange.subscribe(this.loadHomePage.bind(this));
-    this.sub = this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe((data)=>{
-      this.loadContent();
-    });
-    
   }
 
-  loadContent() {
-    if(!this.id){
-      this.route.params.subscribe(params => {
-      this.id = params['id'];
-      });
-    }
+  ngOnChanges() {
     this.getInformation(this.id);
   }
   
@@ -76,7 +65,6 @@ export class StaticComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
     this.subTrans.unsubscribe();
   }
 }

@@ -1,4 +1,3 @@
-<div class= "container">
 <ng-container *ngIf="child_pages">
         <tabset>
                 <tab *ngFor="let child of child_pages" heading="{{child.title}}">
@@ -13,8 +12,5 @@
 <ng-container *ngIf="scontent && !child_pages">
         <vrs-editcms [id]="id.substring(2, id.length)"></vrs-editcms>
         <h1 [innerHTML]="scontent['title']"></h1>
-        <div [innerHTML]="scontent['content']">
-        </div>
+        <div [innerHTML]="scontent['content']"></div>
 </ng-container>
-</div>
-
