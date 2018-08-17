@@ -21,7 +21,7 @@ import { ApiService } from '../../shared/api/api.service';
 import { Router } from '@angular/router'
 
 
-
+import * as $ from 'jquery';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -89,6 +89,8 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
 
   }
   close() {
+    console.log("close");
+    this.searchControl.setValue('');
     this.search = '';
     this.taxa = [];
 

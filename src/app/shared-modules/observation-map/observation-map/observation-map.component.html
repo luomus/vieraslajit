@@ -17,7 +17,7 @@
   </div>
   <div *ngIf="isLoggedIn && ownModeSelectorEnabled">
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="ownCheck" [checked]="ownMode" (change)="ownMode = !ownMode; ownModeChange()">
+        <input class="form-check-input" type="checkbox" value="" id="ownCheck" [checked]="ownModeEnabled" (change)="ownModeEnabled = !ownModeEnabled; ownModeChange()">
         <label class="form-check-label" for="ownCheck">
           Vain omat havainnot
         </label>

@@ -5,11 +5,19 @@
     color: #333;
     border-top: 2px solid #ddd;
     border-bottom: 2px solid #ddd;
-    margin-top: 2%;
+}
+
+.vrs-affiliates {
+    /* Background gradient */
+    background: $background-light; /* Old browsers */
+    background: -moz-linear-gradient(bottom, $background-light 50%, #e8e8e8 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(bottom, $background-light 50%,#e8e8e8 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to top, $background-light 50%,#e8e8e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
 }
 
 .luomus-logo {
-    content:url(./../../../assets/images/logos/luomus_logo.gif);
+    content:url(./../../../assets/images/logos/luomus_logo.png);
 }
 
 .luke-logo {
@@ -21,7 +29,7 @@
 }
 
 .mmm-logo {
-    content:url(./../../../assets/images/logos/mmm_logo.jpg);
+    content:url(./../../../assets/images/logos/mmmlogo_fi.png);
 }
 
 .sll-logo {
@@ -33,6 +41,9 @@
 }
 
 .affiliate-img {
-    height: 75px;
+    max-height: 75px;
     width: auto;
+
+    padding-right: 1vw;
+    padding-left: 1vw;
 }

@@ -2,7 +2,7 @@ import { Component, Input, AfterViewInit, ViewChild, OnInit } from '@angular/cor
 import * as $ from 'jquery';
 
 import { UserService, Role } from '../../../shared/service/user.service';
-import { ObsMapOptions } from './structures/data/ObsMapOptions';
+import { ObsMapOptions, ObsMapOption } from './structures/data/ObsMapOptions';
 import { MapApiController } from './structures/controllers/MapApiController';
 import { MapController } from './structures/controllers/MapController';
 import { ObsMapListComponent } from './obs-map-list/obs-map-list';
@@ -22,6 +22,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   @Input() municipalitySelectEnabled?: boolean = false;
   @Input() adminModeSelectorEnabled?: boolean = false;
   @Input() ownModeSelectorEnabled?: boolean = false;
+  @Input() ownModeEnabled?: boolean = false;
 
   @ViewChild(ObsMapListComponent)
   mapTaxonList : ObsMapListComponent;
@@ -29,13 +30,12 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   @ViewChild(TaxonSearchComponent)
   taxonSearch : TaxonSearchComponent
 
-selectedInfo;
+  selectedInfo;
 
   private municipalities:Array<any> = [];
 
   /* Filters */
   private adminMode = false;
-  private ownMode = false;
   isAdmin = UserService.hasRole(Role.CMS_ADMIN);
   isLoggedIn = UserService.loggedIn();
 
@@ -61,18 +61,19 @@ selectedInfo;
   ngAfterViewInit() {
     this.mapController.initializeMap(document.getElementById("map"));
     // Initialize mapOptions
-    this.obsMapOptions.setOptions([
+    let options: Array<[ObsMapOption, any]> = [
       ["id", this.id],
       ["list", this.listEnabled],
       ["taxonSearch", this.taxonSearchEnabled]
-    ]);
+    ]
+    if(this.ownModeEnabled) options.push(["personToken", UserService.getToken()])
+    this.obsMapOptions.setOptions(options);
 
-    this.mapTaxonList.eventEmitter.addListener("change", (e)=>{
+    if(this.mapTaxonList) this.mapTaxonList.eventEmitter.addListener("change", (e)=>{
       this.onTableActivate(e);
     });
 
-    // taxon search
-    this.taxonSearch.eventEmitter.addListener("change", (id)=>{
+    if(this.taxonSearch) this.taxonSearch.eventEmitter.addListener("change", (id)=>{
       this.obsMapOptions.setOption("id", id);
     })
 
@@ -87,7 +88,7 @@ selectedInfo;
   }
 
   ownModeChange() {
-    this.ownMode ? this.obsMapOptions.setOption("personToken", UserService.getToken()) : this.obsMapOptions.setOption("personToken", null);
+    this.ownModeEnabled ? this.obsMapOptions.setOption("personToken", UserService.getToken()) : this.obsMapOptions.setOption("personToken", null);
   }
 
   onTableActivate(e) {

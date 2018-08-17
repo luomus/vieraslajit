@@ -28,7 +28,7 @@ import {ObservationMapModule} from '../shared-modules/observation-map/observatio
 import { DocumentService } from './service/document.service';
 import { AlertService } from './service/alert.service';
 import { AreaService } from './service/area.service';
-
+import { TaxonBrowserModule } from './taxon-browser/taxon-browser.module';
 /**
  * Provides common utilities for other modules
  */
@@ -46,13 +46,15 @@ import { AreaService } from './service/area.service';
     ObservationMapModule,
     ModalModule.forRoot(),
     CollapseModule.forRoot(),
-    HttpModule
+    HttpModule,
+    TaxonBrowserModule
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe],
+  declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe ],
   providers: [],
-  exports: [NavbarComponent, RouterModule, FooterComponent, SpinnerModule, EditcmsModule, ObservationMapModule, SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe]
+  exports: [NavbarComponent, RouterModule, FooterComponent, SpinnerModule, EditcmsModule, ObservationMapModule,
+    SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, TaxonBrowserModule]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
