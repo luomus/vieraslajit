@@ -57,7 +57,9 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
       });
     });
     this.mapController.eventEmitter.addListener('onPopup', (o)=>{
-      this.updateSelectedInfoByObservation(o);
+      if(this.obsMapOptions.getOption("list")) {
+        this.updateSelectedInfoByObservation(o);
+      }
     });
   }
 
