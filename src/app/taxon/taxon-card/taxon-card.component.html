@@ -19,7 +19,7 @@
         <div *ngIf="desc?.groups; else infoAndLajifiTemplate">
           <div class="card" id="taxoncard" *ngFor="let group of desc?.groups; let first = first">
             <accordion>
-              <accordion-group [panelClass]="cardAccordion" [isOpen]="first">
+              <accordion-group [panelClass]="cardAccordion" [isOpen]="true">
                 <div accordion-heading id="accordion">
                   {{group.title}}
                   <ng-container *ngIf="first === false">
