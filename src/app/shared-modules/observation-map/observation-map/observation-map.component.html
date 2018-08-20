@@ -1,27 +1,26 @@
 <div class="row">
 <div class="col-7">
-  <div *ngIf="municipalitySelectEnabled" class="input-group mb-3">
-    <select id="select-municipality">
-      <option value="all">Municipality...</option>
-      <option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</option>
-    </select>
+  <div class="row">
+    <div class="col-4" *ngIf="municipalitySelectEnabled"><div class="input-group mb-3">
+        <select id="select-municipality" class="custom-select">
+          <option value="all">Kunta...</option>
+          <option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</option>
+        </select>
+      </div></div>
+    <div class="col-8" *ngIf="taxonSearchEnabled"><vrs-taxon-search></vrs-taxon-search></div>
   </div>
-  <ng-container *ngIf="taxonSearchEnabled"><vrs-taxon-search></vrs-taxon-search></ng-container>
-  <div *ngIf="isAdmin && adminModeSelectorEnabled">
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="adminCheck" [checked]="adminMode" (change)="adminMode = !adminMode; adminModeChange()">
-        <label class="form-check-label" for="adminCheck">
-          Admin mode
-        </label>
-      </div>
+  
+  <div class="form-check vrs-map-checkbox" *ngIf="isAdmin && adminModeSelectorEnabled">
+    <input class="form-check-input" type="checkbox" value="" id="adminCheck" [checked]="adminMode" (change)="adminMode = !adminMode; adminModeChange()">
+    <label class="form-check-label" for="adminCheck">
+      Admin mode
+    </label>
   </div>
-  <div *ngIf="isLoggedIn && ownModeSelectorEnabled">
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="ownCheck" [checked]="ownModeEnabled" (change)="ownModeEnabled = !ownModeEnabled; ownModeChange()">
-        <label class="form-check-label" for="ownCheck">
-          Vain omat havainnot
-        </label>
-      </div>
+  <div class="form-check vrs-map-checkbox" *ngIf="isLoggedIn && ownModeSelectorEnabled">
+    <input class="form-check-input" type="checkbox" value="" id="ownCheck" [checked]="ownModeEnabled" (change)="ownModeEnabled = !ownModeEnabled; ownModeChange()">
+    <label class="form-check-label" for="ownCheck">
+      Vain omat havainnot
+    </label>
   </div>
 </div> <!-- col-7 -->
 <div class="col-5">
