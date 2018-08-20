@@ -36,7 +36,6 @@ export class MapApiController {
                 observations.push(element);
             });
             this.obsMapObservations.addObservations(observations);
-            console.log(observations);
         });
     }
 
