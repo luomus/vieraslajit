@@ -12,9 +12,9 @@
     <div class="omni-search-results" [class.right]="expand === 'right'">
       <div class="row">
         <div class="col-md-3 matches">
-          <h5 class="match" *ngFor="let taxon of taxa; let i=index" [ngClass]="{active: i === active, link: i !== active}" (click)="activate(i)">
+          <span class="match" *ngFor="let taxon of taxa; let i=index" [ngClass]="{active: i === active, link: i !== active}" (click)="activate(i)">
             {{taxon.value}}
-          </h5>
+          </span>
         </div>
         <hr class="hidden-md hidden-lg">
         <div class="col-md-5 first-col">
@@ -39,16 +39,8 @@
           <div translate>omnisearch.observations</div>
           <div class="row">
             <div class="col-md-offset-1 col-md-11 observations" *ngIf="taxon">
-              <a [routerLink]="['/observation']" queryParams="{target: (taxon.key), reset: true }" (click)="close()">
+              <a [routerLink]="['/observations/taxon/' + taxon.key]"(click)="close()">
                 {{taxon.count}}
-              </a>
-            </div>
-          </div>
-          <div translate>omnisearch.taxontree</div>
-          <div class="row">
-            <div class="col-md-offset-1 col-md-11 taxonomy" *ngIf="taxon">
-              <a [routerLink]="['/taxon/taxonomy/' + taxon.key]" (click)="close()" translate>
-                omnisearch.showtree
               </a>
             </div>
           </div>

@@ -10,8 +10,6 @@ import { PagedResult } from '../shared/model/PagedResult';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import * as $ from 'jquery';
 
-
-
 @Component({
   selector: 'vrs-observations',
   templateUrl: './observations.component.html',
@@ -19,15 +17,16 @@ import * as $ from 'jquery';
   encapsulation: ViewEncapsulation.None
 })
 export class ObservationsComponent implements OnInit {
-  @Input() id: string;
   page: PagedResult<WarehouseQueryList>;
   ownMode=false;
+  id:string;
 
   constructor(private translate: TranslateService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params=>{
       if(params['mode'] == "user") this.ownMode = true;
+      if(params['id']) this.id = params['id'];
     })
   }
 

@@ -6,6 +6,7 @@ import { ObsMapOptions } from '../data/ObsMapOptions';
 import { PathOptions } from '../../../../../../../node_modules/@types/leaflet';
 import { Injectable } from '../../../../../../../node_modules/@angular/core';
 import { ObservationMapModule } from '../../../observation-map.module';
+import { EventEmitter } from 'events';
 /* Listens to updates in obsMapObservations
     and updates the map accordingly */
 
@@ -14,6 +15,8 @@ import { ObservationMapModule } from '../../../observation-map.module';
 export class MapController {
 
     private map:LajiMap;
+
+    eventEmitter:EventEmitter = new EventEmitter();
 
     constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapObservations) {}
 
@@ -37,51 +40,63 @@ export class MapController {
     }
 
     private getMapData():Data[] {
-        let mapData=[];
-        /* Add observations map data */
-        this.obsMapObservations.getObservations()
-          .forEach((observation) => {
-            /* Use only data points with coordinates */
-            if(observation.gathering.conversions) {
-              let name = observation.unit.taxonVerbatim;
-              let municipality = observation.gathering.interpretations.municipalityDisplayname || "N/A";
-              let date = observation.gathering.displayDateTime;
-              let notes = observation.unit.notes || "";
-              
-              let o: DataOptions = {
-                featureCollection: {
-                  type: "FeatureCollection",
-                  features: [
-                    {
-                      type: "Feature",
-                      geometry: {
-                        type: "Point",
-                        coordinates:
-                        [observation.gathering.conversions.wgs84CenterPoint.lon,
-                          observation.gathering.conversions.wgs84CenterPoint.lat],
-                        radius: this.obsMapOptions.getOption("adminMode")?10:3000
-                      },
-                      properties: {}
-                    }
-                  ]
-                },
-                getFeatureStyle: ():PathOptions=>{
-                  let opacity = Math.max(1 / ((new Date()).getFullYear() - parseInt(date.substring(0, 4)) + 2), 0.1);
-                  return {
-                    opacity: opacity,
-                    fillOpacity: 0.9 * opacity,
-                    color: this.obsMapOptions.getOption("adminMode")?"#ff0000":"#f89525",
-                    fillColor: this.obsMapOptions.getOption("adminMode")?"#ff0000":"#f89525",
-                    weight: 3
-                  };
-                },
-                getPopup: ():string=>{
-                  return name.charAt(0).toUpperCase() + name.substr(1) + " | " + date.substring(8, 10) + "." + date.substring(5, 7) + "." + date.substring(0, 4) + " | " + municipality + " <br> " + notes;
-                }
-              }
-              mapData.push(o);
-            }
-          });
-          return mapData;
+      let mapData=[];
+        
+      let obs = this.obsMapObservations.getObservations();
+      let features = [];
+      obs.forEach((o)=>{
+        if(o.gathering.conversions) {  
+          let f = {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates:
+              [o.gathering.conversions.wgs84CenterPoint.lon,
+                o.gathering.conversions.wgs84CenterPoint.lat]
+            },
+            properties: {}
+          };
+          features.push(f);
+        }
+      });
+
+      let dataOptions: DataOptions = {
+        featureCollection: {
+          type: "FeatureCollection",
+          features: features
+        },
+        cluster: {
+          spiderfyOnMaxZoom: true,
+          showCoverageOnHover: true,
+          singleMarkerMode: true,
+          maxClusterRadius: 20
+        },
+        getFeatureStyle: ():PathOptions=>{
+          let p:PathOptions = {
+            color: this.obsMapOptions.getOption("adminMode")?"#ff0000":"#f89525",
+            fillColor: this.obsMapOptions.getOption("adminMode")?"#ff0000":"#f89525",
+          }
+          return p;
+        },
+        getPopup: (data):string=>{
+          let name = obs[data].unit.taxonVerbatim;
+          let municipality = obs[data].gathering.interpretations.municipalityDisplayname || "N/A";
+          let date = obs[data].gathering.displayDateTime;
+          let notes = obs[data].unit.notes || "";
+
+          this.eventEmitter.emit('onPopup', obs[data]);
+
+          return name.charAt(0).toUpperCase()
+          + name.substr(1)+ " | "
+          + date.substring(8, 10) + "."
+          + date.substring(5, 7) + "."
+          + date.substring(0, 4) + " | "
+          + municipality + " <br> "
+          + notes;
+        }
       }
+
+      mapData.push(dataOptions);
+      return mapData;
+    }
 }

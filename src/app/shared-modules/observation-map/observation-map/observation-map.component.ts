@@ -56,6 +56,11 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
         return 0;
       });
     });
+    this.mapController.eventEmitter.addListener('onPopup', (o)=>{
+      if(this.obsMapOptions.getOption("list")) {
+        this.updateSelectedInfoByObservation(o);
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -66,6 +71,9 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
       ["list", this.listEnabled],
       ["taxonSearch", this.taxonSearchEnabled]
     ]
+    if(this.id && this.taxonSearchEnabled) {
+      this.taxonSearch.fillValue('', this.id);
+    }
     if(this.ownModeEnabled) options.push(["personToken", UserService.getToken()])
     this.obsMapOptions.setOptions(options);
 
@@ -93,17 +101,21 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
 
   onTableActivate(e) {
     if(e.type == "click"){
-      this.selectedInfo = {
-        "taxonVerbatim": e.row.unit.taxonVerbatim,
-        "team": e.row.gathering.team,
-        "scientificName": e.row.unit.linkings.taxon.scientificName,
-        "municipalityDisplayname": e.row.gathering.interpretations ? e.row.gathering.interpretations.municipalityDisplayname : "N/A",
-        "displayDateTime": e.row.gathering.displayDateTime,
-        "id": e.row.unit.linkings.taxon.qname.substring(14,e.row.unit.linkings.taxon.qname.length)
-      }
+      this.updateSelectedInfoByObservation(e.row);
       this.mapController.zoomAt(
         [e.row.gathering.conversions.wgs84CenterPoint.lat, e.row.gathering.conversions.wgs84CenterPoint.lon],
         this.obsMapOptions.getOption("municipality") ? 7 : 5);
+    }
+  }
+
+  updateSelectedInfoByObservation(o) {
+    this.selectedInfo = {
+      "taxonVerbatim": o.unit.taxonVerbatim,
+      "team": o.gathering.team,
+      "scientificName": o.unit.linkings.taxon.scientificName,
+      "municipalityDisplayname": o.gathering.interpretations ? o.gathering.interpretations.municipalityDisplayname : "N/A",
+      "displayDateTime": o.gathering.displayDateTime,
+      "id": o.unit.linkings.taxon.qname.substring(14,o.unit.linkings.taxon.qname.length)
     }
   }
 }

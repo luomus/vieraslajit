@@ -17,7 +17,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   data: PagedResult<NewsElement>;
   news: Array<NewsElement> = [];
   pages: Array<number> = [];
-  private pageSize: number = 5;
+  private pageSize: number = 4;
   currentTags: string;
   private imageToDisplay: string;
   private activeNavpill;
@@ -41,6 +41,7 @@ export class NewsComponent implements OnInit, OnDestroy {
       for(let i = 0; i < data.lastPage; i++) {
         this.pages.push(i+1);
       }
+      console.log(this.news);
     });
     window.scrollTo(0,0);
   }
