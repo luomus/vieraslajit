@@ -110,7 +110,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
 
   openImage(template: TemplateRef<any>, image: TaxonomyImage) {
     this.selectedImage = image;
-    this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
+    this.modalRef = this.modalService.show(template, { class: 'modal-lg', animated:false });
   }
 
 }
