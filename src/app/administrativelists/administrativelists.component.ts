@@ -18,10 +18,11 @@ export enum tabId {
     styleUrls: ['./administrativelists.scss']
 })
 export class AdministrativelistsComponent implements OnInit {
-    @ViewChild('staticTabs') staticTabs: TabsetComponent;
- 
+
     private euList: Array<Taxonomy> = [];
     private fiList: Array<Taxonomy> = [];
+
+    mode:tabId=0;
 
     constructor(private route: ActivatedRoute, private location: Location, private listService:ListService, private translate:TranslateService) {
 
@@ -29,19 +30,25 @@ export class AdministrativelistsComponent implements OnInit {
 
     ngOnInit() {
         this.route.data.subscribe(d=>{
-            this.selectTab(parseInt(tabId[d.tab]));
+            if(d.tab == "fi") {
+                this.mode=1;
+                this.updateFiList();
+            } else {
+                this.mode=0;
+                this.updateEuList();
+            }
         });
-        this.updateEuList();
-    }
-
-    selectTab(tab_id: number) {
-      this.staticTabs.tabs[tab_id].active = true;
     }
 
     private updateEuList() {
         this.listService.getEuList('MX.37600', this.translate.currentLang).subscribe(data => {
             this.euList = data.results;
-            console.log(this.euList);
+          });
+    }
+
+    private updateFiList() {
+        this.listService.getNationalList('MX.37600', this.translate.currentLang).subscribe(data => {
+            this.euList = data.results;
           });
     }
 
@@ -55,9 +62,5 @@ export class AdministrativelistsComponent implements OnInit {
 
     private getStaticId(list: StaticContent, lang: string){
         return findContentID(list, lang);
-    }
-
-    tabSelected(e:TabDirective) {
-        if(e.heading) this.location.go('administrativelists/' + e.heading);
     }
 }

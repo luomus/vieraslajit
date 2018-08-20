@@ -29,7 +29,6 @@ export class TaxonBrowserApiService {
     }
 
     updateQuery() {
-        console.log(this.settingsService.apiSettings);
         this.settingsService.apiSettings.EuList ? this.query.adminStatusFilters = 'MX.euInvasiveSpeciesList' : null;
         this.settingsService.apiSettings.FiList ? this.query.adminStatusFilters = 'MX.fiInvasiveSpeciesList' : null;
         this.settingsService.apiSettings.informalTaxonGroup ? this.query.informalGroupFilters = this.settingsService.apiSettings.informalTaxonGroup.id : null;
@@ -39,7 +38,6 @@ export class TaxonBrowserApiService {
         this.apiService.taxonomyFindById(LajiApi.Endpoints.taxonSpecies, 'MX.37600', this.query).subscribe((r)=>{
             this.taxa = r.results;
             this.eventEmitter.emit('change');
-            console.log(r);
         })
     }
 }

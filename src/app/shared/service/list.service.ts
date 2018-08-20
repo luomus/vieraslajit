@@ -21,7 +21,8 @@ export class ListService {
   getNationalList(taxonId: string,lang?: string): Observable<any> {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
-        {invasiveSpeciesFilter: true,onlyFinnish: false, lang: lang, langFallback: true, adminStatusFilters:'MX.nationallySignificantInvasiveSpecies'});
+        {invasiveSpeciesFilter: true,onlyFinnish: false, lang: lang, langFallback: true, adminStatusFilters:'MX.nationallySignificantInvasiveSpecies',
+        includeMedia: true, includeDescriptions: true});
   }
 
 }
