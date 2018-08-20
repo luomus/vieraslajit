@@ -25,11 +25,9 @@
 </div> <!-- col-7 -->
 <div class="col-5">
   <ng-container *ngIf="selectedInfo">
-      <a [routerLink]="['/taxon/' + selectedInfo.id]">{{selectedInfo.taxonVerbatim}}</a>,
-      {{selectedInfo.team}},
-      {{selectedInfo.scientificName}},
-      {{selectedInfo.municipalityDisplayname}},
-      {{selectedInfo.displayDateTime}}
+      <a [routerLink]="['/taxon/' + selectedInfo.id]">{{selectedInfo.taxonVerbatim.charAt(0).toUpperCase() + selectedInfo.taxonVerbatim.substr(1)}} (<i>{{selectedInfo.scientificName}}</i>)</a>
+      <br>
+      {{selectedInfo.team}}, {{selectedInfo.municipalityDisplayname}}, {{selectedInfo.displayDateTime}}
   </ng-container>
 </div> <!-- col-5 -->
 </div> <!-- row -->
