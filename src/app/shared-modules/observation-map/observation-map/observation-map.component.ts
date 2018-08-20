@@ -71,6 +71,9 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
       ["list", this.listEnabled],
       ["taxonSearch", this.taxonSearchEnabled]
     ]
+    if(this.id && this.taxonSearchEnabled) {
+      this.taxonSearch.fillValue('', this.id);
+    }
     if(this.ownModeEnabled) options.push(["personToken", UserService.getToken()])
     this.obsMapOptions.setOptions(options);
 

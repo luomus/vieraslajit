@@ -6,7 +6,8 @@ import { ObservationsComponent } from './observations.component';
 
 const routes: Routes = [
   { path: '', component: ObservationsComponent },
-  { path: ':mode', component: ObservationsComponent }
+  { path: ':mode', component: ObservationsComponent },
+  { path: 'taxon/:id', component: ObservationsComponent }
 ];
 
 @NgModule({
