@@ -36,6 +36,7 @@ export class MapApiController {
                 observations.push(element);
             });
             this.obsMapObservations.addObservations(observations);
+            console.log(observations);
         });
     }
 
@@ -43,7 +44,11 @@ export class MapApiController {
         let query = {
             invasive: true,
             page: 1,
-            pageSize: 200
+            pageSize: 200,
+            selected: [
+                "unit.taxonVerbatim", "unit.linkings.taxon.scientificName", "unit.linkings.taxon.qname", "gathering.conversions.wgs84CenterPoint.lat", "gathering.conversions.wgs84CenterPoint.lon",
+                "gathering.displayDateTime", "gathering.interpretations.municipalityDisplayname", "gathering.team"
+            ]
         };
         if(this.obsMapOptions.getOption("id")) query["taxonId"] = this.obsMapOptions.getOption("id")
         if(this.obsMapOptions.getOption("personToken")) query["observerPersonToken"] = this.obsMapOptions.getOption("personToken");
