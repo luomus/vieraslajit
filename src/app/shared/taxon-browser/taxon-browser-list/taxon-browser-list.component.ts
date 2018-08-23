@@ -1,5 +1,6 @@
 import { Component, Input } from "../../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../../node_modules/@ngx-translate/core";
+import { Taxonomy } from "../../model";
 
 @Component({
     selector: 'vrs-taxon-browser-list',
@@ -9,7 +10,7 @@ import { TranslateService } from "../../../../../node_modules/@ngx-translate/cor
                 </ngx-datatable>`
 })
 export class TaxonBrowserListComponent {
-    @Input() taxa;
+    private _taxa: Array<Taxonomy>;
 
     columns:any[] = [];
 
@@ -22,6 +23,54 @@ export class TaxonBrowserListComponent {
             { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
             { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
         ];
+    }
+
+    get taxa():Array<Taxonomy> {
+        return this._taxa;
+    }
+
+    @Input()
+    set taxa(taxa:Array<Taxonomy>) {
+        this.updateRows(taxa);
+        this._taxa = taxa;
+    }
+
+    updateRows(taxa) {
+        taxa.forEach((taxon)=>{
+            taxon.onEUList = false;
+            taxon.onNationalList = false;
+            taxon.isQuarantinePlantPest = false;
+            if(taxon.administrativeStatuses){
+                taxon.onEUList = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.euInvasiveSpeciesList')));
+                taxon.onNationalList = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.nationalInvasiveSpeciesStrategy')));
+                taxon.isQuarantinePlantPest = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.quarantinePlantPest')));
+            }
+            switch(taxon.invasiveSpeciesEstablishment) {
+                case 'MX.invasiveNotYetInFinland':
+                    taxon.stableString = this.translate.instant(String('stableString.notyet'));
+                    break;
+
+                case 'MX.invasiveEstablishmentUnknown':
+                    taxon.stableString = this.translate.instant(String('stableString.unknown'));
+                    break;
+
+                case 'MX.invasiveEstablished':
+                    taxon.stableString = this.translate.instant(String('stableString.established'));
+                    break;
+
+                case 'MX.invasiveSporadic':
+                    taxon.stableString = this.translate.instant(String('stableString.sporadic'));
+                    break;
+
+                case 'MX.invasiveAccidental':
+                    taxon.stableString = this.translate.instant(String('stableString.accidental'));
+                    break;
+
+                default:
+                    taxon.stableString = "N/A";
+                    break;
+            }
+        });
     }
 
     onDatatableSelect(e) {
