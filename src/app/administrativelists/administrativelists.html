@@ -3,13 +3,13 @@
         <div class="card-body">
             <div *ngIf="mode==0">
                 <vrs-static [id]="this.getEuId()"></vrs-static>
-                <a routerLink="obligations" translate>eulist.obligations</a>
+                <a [routerLink]="['/static/', this.getEuObligationsId()]" translate>eulist.obligations</a>
                 <br>
                 <a routerLink="../fi">Katso myös suomen haitallisten vieraslajien luettelo</a>
             </div>
             <div *ngIf="mode==1">
                     <vrs-static [id]="this.getFiId()"></vrs-static>
-                    <a routerLink="obligations" translate>filist.obligations</a>
+                    <a [routerLink]="['/static/', this.getFiObligationsId()]" translate>filist.obligations</a>
                     <br>
                     <a routerLink="../eu">Katso myös euroopan haitallisten vieraslajien luettelo</a>
                 </div>

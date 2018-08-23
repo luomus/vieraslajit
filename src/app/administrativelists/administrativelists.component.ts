@@ -6,6 +6,7 @@ import { findContentID, StaticContent } from "../../assets/i18n/cms-content";
 import { ListService } from "../shared/service/list.service";
 import { TranslateService } from "../../../node_modules/@ngx-translate/core";
 import { Taxonomy } from "../shared/model";
+import { Subscription } from "rxjs";
 
 export enum tabId {
     eu = 0,
@@ -25,7 +26,7 @@ export class AdministrativelistsComponent implements OnInit {
     mode:tabId=0;
 
     constructor(private route: ActivatedRoute, private location: Location, private listService:ListService, private translate:TranslateService) {
-
+        
     }
 
     ngOnInit() {
@@ -53,14 +54,22 @@ export class AdministrativelistsComponent implements OnInit {
     }
 
     getEuId(){
-        return this.getStaticId(StaticContent.EUList, "fi");
+        return this.getStaticId(StaticContent.EUList, this.translate.currentLang);
     }
 
     getFiId(){
-        return this.getStaticId(StaticContent.FIList, "fi");
+        return this.getStaticId(StaticContent.FIList, this.translate.currentLang);
+    }
+    
+    getEuObligationsId(){
+        return this.getStaticId(StaticContent.EuListObligations, this.translate.currentLang);
     }
 
-    private getStaticId(list: StaticContent, lang: string){
-        return findContentID(list, lang);
+    getFiObligationsId(){
+        return this.getStaticId(StaticContent.FIListObligations, this.translate.currentLang);
+    }
+
+    private getStaticId(content: StaticContent, lang: string){
+        return findContentID(content, lang);
     }
 }
