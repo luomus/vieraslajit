@@ -80,7 +80,7 @@ export class MapController {
         },
         getPopup: (data):string=>{
           let name = obs[data].unit.taxonVerbatim;
-          let municipality = obs[data].gathering.interpretations.municipalityDisplayname || "N/A";
+          let municipality = obs[data].gathering.interpretations.municipalityDisplayname || "";
           let date = obs[data].gathering.displayDateTime;
           let notes = obs[data].unit.notes || "";
 

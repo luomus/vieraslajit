@@ -69,7 +69,7 @@ export class TaxonBrowserListComponent {
                     break;
 
                 default:
-                    taxon.stableString = "N/A";
+                    taxon.stableString = "";
                     break;
             }
         });
