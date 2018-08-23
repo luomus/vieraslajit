@@ -18,4 +18,5 @@ $highlight: $text-highlight;
 
 .language-selector a:hover {
    color: $highlight;
+   cursor:pointer;
  }
