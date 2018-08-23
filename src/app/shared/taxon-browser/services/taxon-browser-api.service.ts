@@ -17,7 +17,7 @@ export class TaxonBrowserApiService {
     constructor(private settingsService:TaxonBrowserApiSettingsService, private apiService:ApiService, private translate:TranslateService) {
         this.query = {
             invasiveSpeciesFilter: true,onlyFinnish: false, lang: this.translate.currentLang,
-            includeMedia: true, includeDescriptions: true , selectedFields: [ 'vernacularName', 'scientificName', 'invasiveSpeciesEstablishment', 'administrativeStatuses' ]
+            includeMedia: true, includeDescriptions: true , selectedFields: [ 'vernacularName', 'scientificName', 'invasiveSpeciesEstablishment', 'administrativeStatuses', 'id' ]
         };
     }
 
