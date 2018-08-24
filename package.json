@@ -36,6 +36,7 @@
     "laji-form": "^0.0.484",
     "laji-map": "^1.0.397",
     "ngx-bootstrap": "^3.0.1",
+    "ngx-pagination": "^3.2.0",
     "npm": "^6.3.0",
     "open-iconic": "^1.1.1",
     "rxjs": "^6.2.2",
