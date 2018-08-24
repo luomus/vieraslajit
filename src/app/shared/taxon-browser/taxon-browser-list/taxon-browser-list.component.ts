@@ -3,6 +3,7 @@ import { TranslateService } from "../../../../../node_modules/@ngx-translate/cor
 import { Taxonomy } from "../../model";
 import { Router } from "@angular/router";
 import * as $ from 'jquery';
+import { Observable } from "rxjs";
 
 @Component({
     selector: 'vrs-taxon-browser-list',
@@ -12,7 +13,7 @@ import * as $ from 'jquery';
                 </ngx-datatable>`
 })
 export class TaxonBrowserListComponent {
-    private _taxa: Array<Taxonomy>;
+    private taxa: Array<Taxonomy> = [];
 
     columns:any[] = [];
 
@@ -27,14 +28,12 @@ export class TaxonBrowserListComponent {
         ];
     }
 
-    get taxa():Array<Taxonomy> {
-        return this._taxa;
-    }
-
     @Input()
-    set taxa(taxa:Array<Taxonomy>) {
-        this.updateRows(taxa);
-        this._taxa = taxa;
+    set asyncTaxa(t:Array<Taxonomy>) {
+        if(t) {
+            this.taxa = t;
+            this.updateRows(this.taxa);
+        }
     }
 
     updateRows(taxa) {
