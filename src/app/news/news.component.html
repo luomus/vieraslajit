@@ -18,7 +18,7 @@
         <!-- Feature image header -->
         <div *ngIf='newsElement.featuredImage' class="row news-header p-3">
           <div class="col-auto">
-            <img class="news-thumbnail rounded" src="{{this.getImageToDisplay(newsElement)}}">
+            <img class="news-thumbnail rounded" src="{{newsElement.featuredImage}}">
           </div>
           <div class="col row align-items-center">
             <div class="col news-header-text">

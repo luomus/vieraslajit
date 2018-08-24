@@ -56,15 +56,6 @@ export class NewsComponent implements OnInit, OnDestroy {
     this.getNews(1,tags);
   }
 
-  getImageToDisplay(newsElement: NewsElement){
-    if(newsElement.hasOwnProperty("featuredImage")){
-      this.imageToDisplay=newsElement.featuredImage;
-    } else {
-      this.imageToDisplay= "";
-    } 
-    return this.imageToDisplay;
-  }
-
   ngOnDestroy(){
     this.subTrans.unsubscribe();
   }
