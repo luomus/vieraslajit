@@ -26,6 +26,19 @@
     color: $primary;
 }
 
+.panel-default .panel-heading {
+    border-bottom: none;
+}
+
+.panel-default .card-header {
+    border-top-left-radius: $content-border-radius;
+    border-top-right-radius: $content-border-radius;
+}
+
+.panel-body {
+    border-top: 1px solid $border-light;
+}
+
 /** SelectGroup icons styling **/
 
 #selectGroup-card {
