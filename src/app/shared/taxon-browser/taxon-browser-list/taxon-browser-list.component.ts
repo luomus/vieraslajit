@@ -13,7 +13,7 @@ import { Observable } from "rxjs";
                 </ngx-datatable>`
 })
 export class TaxonBrowserListComponent {
-    private taxa: Array<Taxonomy> = [];
+    taxa: Array<Taxonomy> = [];
 
     columns:any[] = [];
 

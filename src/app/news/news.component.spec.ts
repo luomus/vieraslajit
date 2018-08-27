@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxPaginationModule } from 'ngx-pagination'
 
 import { ApiService } from '../shared/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,7 +15,7 @@ describe('NewsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ NewsComponent],
-      imports: [HttpClientModule, TranslateModule.forRoot(),EditcmsModule],
+      imports: [HttpClientModule, TranslateModule.forRoot(),EditcmsModule, NgxPaginationModule],
       providers: [ApiService, NewsService]
     })
     .compileComponents();

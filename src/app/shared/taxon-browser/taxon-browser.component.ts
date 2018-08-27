@@ -55,4 +55,8 @@ export class TaxonBrowserComponent implements OnInit{
         this.settingsService.apiSettings = settings;
         this.currentPage = page;
     }
+
+    getTotalItems() {
+        return this.settingsService.apiSettings.total;
+    }
 }

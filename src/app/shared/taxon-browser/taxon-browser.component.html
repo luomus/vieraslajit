@@ -7,7 +7,7 @@
     <tab heading="{{'navigation.grid' | translate}}"[active]="true">
         <div class="tab-pane container py-3" id="cardcontainer">
             <vrs-taxoncard-grid [taxa]="asyncTaxa | async | paginate:
-            {id: 'server', itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: this.settingsService.apiSettings.total}"></vrs-taxoncard-grid>
+            {id: 'server', itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: getTotalItems()}"></vrs-taxoncard-grid>
         </div>
     </tab>
     <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
