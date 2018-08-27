@@ -14,7 +14,8 @@ script:
   - xvfb-run -a npm run test -- --watch=false --browsers=ChromeNoSandbox
   - xvfb-run -a npm run e2e -- --protractor-config=protractor-ci.conf.js
 before_deploy:
-  - ng build --prod --aot --no-delete-output-path -bh "https://vieraslajit.github.io/Vieraslajit/"
+  - ng build --prod --aot --delete-output-path=false --base-href "https://vieraslajit.github.io/Vieraslajit/"
+
 branches:
   only:
   - master

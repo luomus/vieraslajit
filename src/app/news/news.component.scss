@@ -14,9 +14,6 @@
 
 .card {
     padding-bottom:1em;
-    background: $background-light;
-    border: 1px solid $border-light;
-    border-radius: $content-border-radius;
 }
 
 .container {
@@ -87,12 +84,4 @@
 .active {
     background-color: $primary;
     color: $background-light;    
-}
-
-/* ngx-pagination */
-
-:host ::ng-deep .ngx-pagination {
-    .current {
-        background: $primary;
-    }
 }

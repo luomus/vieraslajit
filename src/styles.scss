@@ -5,6 +5,9 @@
 @import '../node_modules/open-iconic/font/css/open-iconic-bootstrap.css';
 @import '../node_modules/laji-form/dist/styles.css';
 
+@import './assets/styles/card';
+@import './assets/styles/tabset.scss';
+
 html {
     min-height: 100%;
     overflow-x: hidden;
@@ -36,4 +39,12 @@ html,body {
 
 .vrs-logo-img {
     content:url(./assets/images/logos/vieraslaji-logo-160x160.png);
+}
+
+/* ngx-pagination */
+
+.ngx-pagination {
+    li.current {
+        background: $primary;
+    }
 }

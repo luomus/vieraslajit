@@ -1,0 +1,51 @@
+@import './vars';
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+.datatable-body-cell {
+  cursor: pointer;
+}
+
+.ngx-datatable.material {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+.tab-content {
+    background: #fff;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    border-right: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+ul.nav.nav-tabs {
+    padding-left: 1.5em;
+    padding-top: 1em;
+    background: whitesmoke;
+    border: 1px solid #dee2e6;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.nav-tabs li.nav-item a.nav-link {
+    background: whitesmoke;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.nav-tabs li.nav-item a.nav-link.active {
+    background: white;
+    border-bottom-color: white;
+}
+
+.ngx-datatable.material {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.nav-tabs > .nav-item .active {
+    background-color: whitesmoke;
+}
