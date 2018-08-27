@@ -1,16 +1,20 @@
 <div class="container">
-<tabset #staticTabs>
-    <tab heading="eu" (select)="tabSelected($event)">
-        <vrs-static [id]="this.getEuId()"></vrs-static>
-            <a routerLink="obligations" translate>eulist.obligations</a>
-        <!-- <vrs-taxoncard-grid [taxa]="euList"></vrs-taxoncard-grid> -->
-        <vrs-taxon-browser [EuList]="true"></vrs-taxon-browser>
-        <br>
-    </tab>
-    <tab heading="fi" (select)="tabSelected($event)">
-        <vrs-static [id]="this.getFiId()"></vrs-static>
-        <a routerLink="obligations" translate>filist.obligations</a>
-        <!-- <vrs-taxoncard-grid [taxa]="fiList"></vrs-taxoncard-grid> -->
-    </tab>
-</tabset>
+    <div class="card info-card m-3">
+        <div class="card-body">
+            <div *ngIf="mode==0">
+                <vrs-static [id]="this.getEuId()"></vrs-static>
+                <a [routerLink]="['/static/', this.getEuObligationsId()]" translate>eulist.obligations</a>
+                <br>
+                <a routerLink="../fi">Katso myös suomen haitallisten vieraslajien luettelo</a>
+            </div>
+            <div *ngIf="mode==1">
+                    <vrs-static [id]="this.getFiId()"></vrs-static>
+                    <a [routerLink]="['/static/', this.getFiObligationsId()]" translate>filist.obligations</a>
+                    <br>
+                    <a routerLink="../eu">Katso myös euroopan haitallisten vieraslajien luettelo</a>
+                </div>
+        </div>
+    </div>
+    <vrs-taxon-browser [EuList]="true"></vrs-taxon-browser>
+    <br>
 </div>

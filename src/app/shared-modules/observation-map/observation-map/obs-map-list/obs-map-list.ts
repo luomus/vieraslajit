@@ -13,7 +13,6 @@ import { EventEmitter } from "events";
     [rowHeight]="50" 
     [reorderable]='false' 
     scrollbarV="true"
-    [footerHeight]="50"
     (activate)="onTableActivate($event)"
     >
     </ngx-datatable>`

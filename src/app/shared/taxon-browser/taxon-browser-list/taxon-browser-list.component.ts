@@ -1,19 +1,23 @@
 import { Component, Input } from "../../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../../node_modules/@ngx-translate/core";
+import { Taxonomy } from "../../model";
+import { Router } from "@angular/router";
+import * as $ from 'jquery';
+import { Observable } from "rxjs";
 
 @Component({
     selector: 'vrs-taxon-browser-list',
     template: `<ngx-datatable class="material" [rows]="taxa" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
-                [rowHeight]="50" [reorderable]='true' [count]="taxa.length" [limit]="50" [footerHeight]="50"
-                [sorts]="[{prop: 'vernacularName', dir: 'asc'}]" (select)="onDatatableSelect($event)" (page)="onDatatablePageChange()">
+                [rowHeight]="50" [reorderable]='true' [count]="taxa.length" [limit]="20" [footerHeight]="50"
+                [sorts]="[{prop: 'vernacularName', dir: 'asc'}]" (activate)="onDatatableActivate($event)" (page)="onDatatablePageChange()">
                 </ngx-datatable>`
 })
 export class TaxonBrowserListComponent {
-    @Input() taxa;
+    taxa: Array<Taxonomy> = [];
 
     columns:any[] = [];
 
-    constructor(private translate:TranslateService) {
+    constructor(private translate:TranslateService, private router: Router) {
         this.columns = [
             { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 150 },
             { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 150 },
@@ -24,11 +28,59 @@ export class TaxonBrowserListComponent {
         ];
     }
 
-    onDatatableSelect(e) {
-        
+    @Input()
+    set asyncTaxa(t:Array<Taxonomy>) {
+        if(t) {
+            this.taxa = t;
+            this.updateRows(this.taxa);
+        }
+    }
+
+    updateRows(taxa) {
+        taxa.forEach((taxon)=>{
+            taxon.onEUList = false;
+            taxon.onNationalList = false;
+            taxon.isQuarantinePlantPest = false;
+            if(taxon.administrativeStatuses){
+                taxon.onEUList = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.euInvasiveSpeciesList')));
+                taxon.onNationalList = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.nationalInvasiveSpeciesStrategy')));
+                taxon.isQuarantinePlantPest = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.quarantinePlantPest')));
+            }
+            switch(taxon.invasiveSpeciesEstablishment) {
+                case 'MX.invasiveNotYetInFinland':
+                    taxon.stableString = this.translate.instant(String('stableString.notyet'));
+                    break;
+
+                case 'MX.invasiveEstablishmentUnknown':
+                    taxon.stableString = this.translate.instant(String('stableString.unknown'));
+                    break;
+
+                case 'MX.invasiveEstablished':
+                    taxon.stableString = this.translate.instant(String('stableString.established'));
+                    break;
+
+                case 'MX.invasiveSporadic':
+                    taxon.stableString = this.translate.instant(String('stableString.sporadic'));
+                    break;
+
+                case 'MX.invasiveAccidental':
+                    taxon.stableString = this.translate.instant(String('stableString.accidental'));
+                    break;
+
+                default:
+                    taxon.stableString = "";
+                    break;
+            }
+        });
+    }
+
+    onDatatableActivate(e) {
+        if(e.type=="click") {
+            this.router.navigate(['/taxon', e.row.id]);
+        }
     }
 
     onDatatablePageChange() {
-
+        $('html, body').animate({ scrollTop: ($('ngx-datatable').offset().top - 80) });
     }
 }

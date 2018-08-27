@@ -6,16 +6,17 @@ $highlight: $text-highlight;
 
 .language-selector {
     background: none;
-    color: $text;
+    color: $text-dark-lighter;
     border: none;
     font-family: $font-montserrat;
     font-weight: 600;
 }
 
 .language-selector a{
-    color: $text;
+    color: $text-dark-lighter;
 }
 
 .language-selector a:hover {
    color: $highlight;
+   cursor:pointer;
  }

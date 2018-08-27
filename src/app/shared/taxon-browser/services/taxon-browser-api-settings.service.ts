@@ -7,11 +7,14 @@ export interface TaxonBrowserApiSettings {
     FiList?:boolean;
 
     informalTaxonGroup?:Informal;
+
+    page?:number;
+    total?:number;
 }
 
 @Injectable()
 export class TaxonBrowserApiSettingsService {
-    private _apiSettings:TaxonBrowserApiSettings = {};
+    private _apiSettings:TaxonBrowserApiSettings = {page: 1, total: 0};
 
     eventEmitter:EventEmitter = new EventEmitter();
 
@@ -20,7 +23,10 @@ export class TaxonBrowserApiSettingsService {
         return this._apiSettings;
     }
     set apiSettings(s:TaxonBrowserApiSettings){
-        this._apiSettings = s;
+        /* this._apiSettings = s; */
+        Object.keys(s).forEach((key)=>{
+            this._apiSettings[key] = s[key];
+        })
         this.eventEmitter.emit('change');
     }
 }

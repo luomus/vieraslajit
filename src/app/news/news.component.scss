@@ -88,3 +88,11 @@
     background-color: $primary;
     color: $background-light;    
 }
+
+/* ngx-pagination */
+
+:host ::ng-deep .ngx-pagination {
+    .current {
+        background: $primary;
+    }
+}

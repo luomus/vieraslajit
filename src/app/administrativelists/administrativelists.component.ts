@@ -6,6 +6,7 @@ import { findContentID, StaticContent } from "../../assets/i18n/cms-content";
 import { ListService } from "../shared/service/list.service";
 import { TranslateService } from "../../../node_modules/@ngx-translate/core";
 import { Taxonomy } from "../shared/model";
+import { Subscription } from "rxjs";
 
 export enum tabId {
     eu = 0,
@@ -18,46 +19,57 @@ export enum tabId {
     styleUrls: ['./administrativelists.scss']
 })
 export class AdministrativelistsComponent implements OnInit {
-    @ViewChild('staticTabs') staticTabs: TabsetComponent;
- 
+
     private euList: Array<Taxonomy> = [];
     private fiList: Array<Taxonomy> = [];
 
-    constructor(private route: ActivatedRoute, private location: Location, private listService:ListService, private translate:TranslateService) {
+    mode:tabId=0;
 
+    constructor(private route: ActivatedRoute, private location: Location, private listService:ListService, private translate:TranslateService) {
+        
     }
 
     ngOnInit() {
         this.route.data.subscribe(d=>{
-            this.selectTab(parseInt(tabId[d.tab]));
+            if(d.tab == "fi") {
+                this.mode=1;
+                this.updateFiList();
+            } else {
+                this.mode=0;
+                this.updateEuList();
+            }
         });
-        this.updateEuList();
-    }
-
-    selectTab(tab_id: number) {
-      this.staticTabs.tabs[tab_id].active = true;
     }
 
     private updateEuList() {
         this.listService.getEuList('MX.37600', this.translate.currentLang).subscribe(data => {
             this.euList = data.results;
-            console.log(this.euList);
+          });
+    }
+
+    private updateFiList() {
+        this.listService.getNationalList('MX.37600', this.translate.currentLang).subscribe(data => {
+            this.euList = data.results;
           });
     }
 
     getEuId(){
-        return this.getStaticId(StaticContent.EUList, "fi");
+        return this.getStaticId(StaticContent.EUList, this.translate.currentLang);
     }
 
     getFiId(){
-        return this.getStaticId(StaticContent.FIList, "fi");
+        return this.getStaticId(StaticContent.FIList, this.translate.currentLang);
+    }
+    
+    getEuObligationsId(){
+        return this.getStaticId(StaticContent.EuListObligations, this.translate.currentLang);
     }
 
-    private getStaticId(list: StaticContent, lang: string){
-        return findContentID(list, lang);
+    getFiObligationsId(){
+        return this.getStaticId(StaticContent.FIListObligations, this.translate.currentLang);
     }
 
-    tabSelected(e:TabDirective) {
-        if(e.heading) this.location.go('administrativelists/' + e.heading);
+    private getStaticId(content: StaticContent, lang: string){
+        return findContentID(content, lang);
     }
 }

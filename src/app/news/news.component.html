@@ -10,7 +10,7 @@
 
   <div class="row">
     <div class="col-8">
-      <div *ngFor="let newsElement of news" class="news-post my-3">
+      <div *ngFor="let newsElement of asyncNews | async | paginate: { id: 'server', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems }" class="news-post my-3">
         
         <!-- Margin -->
         <div class="m-3">
@@ -18,7 +18,7 @@
         <!-- Feature image header -->
         <div *ngIf='newsElement.featuredImage' class="row news-header p-3">
           <div class="col-auto">
-            <img class="news-thumbnail rounded" src="{{this.getImageToDisplay(newsElement)}}">
+            <img class="news-thumbnail rounded" src="{{newsElement.featuredImage}}">
           </div>
           <div class="col row align-items-center">
             <div class="col news-header-text">
@@ -60,7 +60,11 @@
         </div>
 
         </div> <!-- / margin -->
-     </div> <!-- / news-post -->
+      </div> <!-- / news-post -->
+    
+      <div class="card card-body">
+          <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
+      </div>
     </div> <!-- / col -->
 
     <div class="col-4">
@@ -95,44 +99,4 @@
 
     </div> <!-- / col-4 -->
   </div> <!-- / row -->
-
-  <nav aria-label="Pagination">
-    <ul class="pagination" *ngIf="pages.length <= 7">
-      <li class="page-item" *ngFor="let page of pages"><a class="page-link" (click)="getNews(page,currentTags)">{{page}}</a></li>
-    </ul>
-
-    <ul class="pagination" *ngIf="pages.length > 7">
-      
-      <ng-container *ngIf="data.currentPage < 5">
-        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(1,currentTags)">1</a></li>
-        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(2,currentTags)">2</a></li>
-        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(3,currentTags)">3</a></li>
-        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(4,currentTags)">4</a></li>
-        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(5,currentTags)">5</a></li>
-        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link">...</a></li>
-        <li class="page-item" *ngIf="data.currentPage < 5"><a class="page-link" (click)="getNews(data.lastPage,currentTags)">{{data.lastPage}}</a></li>    
-      </ng-container>
-
-      <ng-container *ngIf="data.currentPage >= 5 && data.currentPage <= data.lastPage - 4">
-        <li class="page-item"><a class="page-link" (click)="getNews(1,currentTags)">1</a></li>
-        <li class="page-item"><a class="page-link">...</a></li>
-        <li class="page-item"><a class="page-link" (click)="getNews(data.currentPage - 1,currentTags)">{{data.currentPage - 1}}</a></li>
-        <li class="page-item"><a class="page-link" (click)="getNews(data.currentPage,currentTags)">{{data.currentPage}}</a></li>
-        <li class="page-item"><a class="page-link" (click)="getNews(data.currentPage + 1,currentTags)">{{data.currentPage + 1}}</a></li>
-        <li class="page-item"><a class="page-link">...</a></li>
-        <li class="page-item"><a class="page-link" (click)="getNews(data.lastPage,currentTags)">{{data.lastPage}}</a></li>    
-      </ng-container>
-
-      <ng-container *ngIf="data.currentPage > data.lastPage - 4">
-        <li class="page-item"><a class="page-link" (click)="getNews(1,currentTags)">1</a></li>
-        <li class="page-item"><a class="page-link">...</a></li>
-        <li class="page-item"><a class="page-link" (click)="getNews(data.lastPage - 4,currentTags)">{{data.lastPage - 4}}</a></li>
-        <li class="page-item"><a class="page-link" (click)="getNews(data.lastPage - 3,currentTags)">{{data.lastPage - 3}}</a></li>
-        <li class="page-item"><a class="page-link" (click)="getNews(data.lastPage - 2,currentTags)">{{data.lastPage - 2}}</a></li>
-        <li class="page-item"><a class="page-link" (click)="getNews(data.lastPage - 1,currentTags)">{{data.lastPage - 1}}</a></li>
-        <li class="page-item"><a class="page-link" (click)="getNews(data.lastPage,currentTags)">{{data.lastPage}}</a></li>    
-      </ng-container>
-   </ul>
-  </nav>
-
-</div>
+</div> <!-- /container-->

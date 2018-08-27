@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CommonModule } from '@angular/common';
-import { EulistComponent } from './eulist/eulist.component';
-import { FilistComponent } from './filist/filist.component';
 import { SharedModule } from '../shared/shared.module';
 import { administrativelistsRoutingModule } from './administrativelists-routing.module';
 import { ApiService } from '../shared/api/api.service';
 import { ListService } from '../shared/service/list.service';
 import { TabsModule } from 'ngx-bootstrap';
 import { StaticModule } from '../static/static.module';
-import { EulistobligationsComponent } from './eulistobligations/eulistobligations.component';
-import { FilistobligationsComponent } from './filistobligations/filistobligations.component';
 import { AdministrativelistsComponent } from './administrativelists.component';
 
 /**
@@ -26,7 +22,7 @@ import { AdministrativelistsComponent } from './administrativelists.component';
     StaticModule
 
   ],
-  declarations: [EulistComponent, FilistComponent, EulistobligationsComponent, FilistobligationsComponent, AdministrativelistsComponent],
+  declarations: [AdministrativelistsComponent],
   providers:[ApiService,ListService]
 })
 export class administrativelistsModule { }

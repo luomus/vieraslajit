@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { NewsElement } from '../shared/model/NewsElement';
 import { PagedResult } from '../shared/model/PagedResult';
+import { tap, map } from 'rxjs/operators';
 
+import * as $ from 'jquery';
 
 @Component({
   selector: 'vrs-news',
@@ -13,37 +15,33 @@ import { PagedResult } from '../shared/model/PagedResult';
 })
 export class NewsComponent implements OnInit, OnDestroy {
   
+  /* ngx pagination */
+  currentPage:number=1;
+  totalItems:number=0;
+  asyncNews:any;
+
+  pageSize: number = 4;
+  
+  currentTags: string = "vieraslajit.fi";
+
+  // Translate
   private subTrans: Subscription;
-  data: PagedResult<NewsElement>;
-  news: Array<NewsElement> = [];
-  pages: Array<number> = [];
-  private pageSize: number = 4;
-  currentTags: string;
-  private imageToDisplay: string;
-  private activeNavpill;
 
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
   ngOnInit() {
     this.subTrans= this.translate.onLangChange.subscribe((event) =>{
-      this.getNews(1,this.currentTags);
+      this.getPage(this.currentPage);
     });
-    this.getNews(1,"vieraslajit.fi",);
+    this.getPage(1);
   }
 
-  getNews(page:number,tags:string, ) {
-    this.currentTags=tags;
-    this.newsService.getPage(page.toString(),this.pageSize.toString(), this.translate.currentLang, tags)
-    .subscribe((data) => {
-      this.news = data.results;
-      this.data = data;
-      this.pages = [];
-      for(let i = 0; i < data.lastPage; i++) {
-        this.pages.push(i+1);
-      }
-      console.log(this.news);
-    });
-    window.scrollTo(0,0);
+  getPage(page:number) {
+    this.asyncNews = this.newsService.getPage(page.toString(),this.pageSize.toString(), this.translate.currentLang, this.currentTags)
+    .pipe(tap(res=>{this.totalItems = res.total;
+                    this.currentPage = page }),
+          map(res=>res.results));
+    $('html, body').animate({ scrollTop: 0 }, 500);
   }
 
   onClick(tags:string, id){
@@ -54,16 +52,8 @@ export class NewsComponent implements OnInit, OnDestroy {
     );
 
     document.getElementById(id).classList.add('active');
-    this.getNews(1,tags);
-  }
-
-  getImageToDisplay(newsElement: NewsElement){
-    if(newsElement.hasOwnProperty("featuredImage")){
-      this.imageToDisplay=newsElement.featuredImage;
-    } else {
-      this.imageToDisplay= "https://media.istockphoto.com/photos/sunrise-on-yosemite-valley-picture-id505872990?k=6&m=505872990&s=612x612&w=0&h=XcdHhkC9PF9-saYT6n_GQD-0Hf8dbI_Q4wfYlZZGpNk=";
-    } 
-    return this.imageToDisplay;
+    this.currentTags = tags;
+    this.getPage(1);
   }
 
   ngOnDestroy(){

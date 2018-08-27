@@ -1,0 +1,8 @@
+@import './../../assets/styles/vars';
+
+.info-card {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: $content-border-radius;
+    border-bottom-right-radius: $content-border-radius;
+}
