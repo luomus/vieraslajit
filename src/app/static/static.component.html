@@ -1,4 +1,5 @@
 <ng-container *ngIf="child_pages">
+        <h1 class="p-2" [innerHTML]="scontent['title']"></h1>
         <tabset>
                 <tab *ngFor="let child of child_pages" heading="{{child.title}}">
                         <ng-container *ngIf="child.data">
