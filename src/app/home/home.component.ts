@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
         date.setUTCMilliseconds(Number(d.posted));
         let now: Date = new Date();
         // TODO: muuta tuotannossa että 3 viimeiseltä päivältä!
-        let cutoff = 3;
+        let cutoff = 30;
         if (environment.production) cutoff = 20;
         if (Math.ceil(Math.abs(now.getTime() - date.getTime()) / (1000 * 3600 * 24)) <= cutoff) {
           this.alerts[i] = d;

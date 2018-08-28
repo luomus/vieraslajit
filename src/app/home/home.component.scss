@@ -1,5 +1,73 @@
 @import '../../assets/styles/vars';
 
+.news-list {
+    padding-top: 1em;
+    text-align: center;
+    color: #999;
+}
+
+.news-list {
+    :hover {
+        cursor:pointer;
+        color: #666;
+        text-decoration: underline;
+    }
+}
+
+.home-content {
+    box-shadow: $container-shadow;
+}
+
+.header-container {
+}
+.home-header-img {
+    height: 300px;
+    width: 100%;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 20%, rgba(50, 50, 50, .0)), url('../../assets/images/bgs/iibis_cropped2.png');
+    background-position: left top;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+.portal-description-parent {
+    height: 300px;
+    display: table;
+}
+.portal-heading {
+    color: $text-light;
+    font-size: 32px;
+}
+.portal-description {
+    display: table-cell;
+    padding: 2em;
+    font-family: $font-montserrat;
+    font-weight: 400;
+    font-size: 20px;
+    color: $text-light-muted;
+    vertical-align: middle;
+}
+
+.first-segment {
+    min-height: 500px;
+    background: $background-light;
+}
+
+.quick-links-list {
+    text-align: center;
+}
+
+.exotic-pets {
+    height: 300px;
+    width: 400px;
+    margin-left: 1em;
+    border-radius: $content-border-radius;
+    background-image: url('../../assets/images/bgs/piisami_cropped.png');
+    background-position: left top;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+
+
+
 .jumbotron {
     background: url("../../assets/images/bgs/vieraslajit-home-bg.png") center;
     background-size: 105%;
