@@ -92,7 +92,7 @@
 .carousel-control-next-icon:before {
     @extend %glyphicon;
     @extend %glyphicon-chevron-right:before;
-    color: $primary;
+    color: rgba(255,255,255,0.5);
 }
 
 .carousel-control-prev-icon {
@@ -101,7 +101,7 @@
 .carousel-control-prev-icon:before {
     @extend %glyphicon;
     @extend %glyphicon-chevron-left:before;
-    color: $primary;
+    color: rgba(255,255,255,0.5);
 }
 
 /* Glyphicons */
