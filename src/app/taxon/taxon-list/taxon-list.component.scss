@@ -15,6 +15,11 @@
     }
 }
 
+.main-container {
+    background: $background-light;
+    box-shadow: $container-shadow;
+}
+
 
 /** Accordion-heading styling **/
 
@@ -35,8 +40,22 @@
     border-top-right-radius: $content-border-radius;
 }
 
+.card {
+    background: $background-darker-accent;
+}
+
+.panel-body.card-block.card-body {
+    background: $background-light;
+    border: 1px solid $border-light;
+    border-bottom-left-radius: $content-border-radius;
+    border-bottom-right-radius: $content-border-radius;
+}
+
 .panel-body {
-    border-top: 1px solid $border-light;
+}
+
+.card-header {
+    background: none;    
 }
 
 /** SelectGroup icons styling **/

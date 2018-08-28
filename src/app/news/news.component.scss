@@ -2,22 +2,21 @@
 @import './../../../node_modules/bootstrap/scss/bootstrap-grid';
 
 .news-post {
-  
-    padding-bottom:1em;
-    //border: 1px solid $border-light;
+/*     padding-bottom:1em;
     background: $background-light;
     border: 1px solid $border-light;
-    border-radius: $content-border-radius;
-    //border-radius: $content-border-radius;
-    
+    border-radius: $content-border-radius; */
 }
 
 .card {
     padding-bottom:1em;
+    background: $background-darker-accent;
 }
 
 .container {
     padding:2%;
+    background: $background-light;
+    box-shadow: $container-shadow;
 }
 
 .news-thumbnail {
@@ -53,8 +52,6 @@
 }
 
 #navpills{
-    margin:0%;
-    padding:0%;
 }
 
 .navpill {

@@ -4,7 +4,7 @@ import { ActivatedRoute } from "../../../node_modules/@angular/router";
 @Component({
     selector: 'vrs-static-wrapper',
     template:   `<div class="container">
-                    <div class="card card-body">
+                    <div class="">
                         <vrs-static [id]='id'></vrs-static>
                     </div>
                 <div>`,
