@@ -7,7 +7,6 @@ $background-hover: $background;
 
 /* Background */
 #mainNav {
-    font-size: 14px;
     font-family: $font-montserrat;
 
     border-bottom: 1px solid $accent;
@@ -102,7 +101,9 @@ $background-hover: $background;
     background: $background;
     display: flex;
     align-items: center;
-    color: $text-dark;
+    color: $text-dark-lighter;
+    font-family: $font-montserrat;
+    font-weight: 400;
 }
 
 #dropdown-menu-item:hover {
