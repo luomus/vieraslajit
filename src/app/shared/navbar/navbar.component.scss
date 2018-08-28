@@ -126,7 +126,8 @@ $background-hover: $background;
  #search-icon   {
     color: $text-dark-lighter;
     cursor: pointer;
-    padding-right: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
 }
 
 #search-icon:hover {
@@ -138,6 +139,7 @@ $background-hover: $background;
 #personbutton {
     background: none;
     color: $text-dark-lighter;
+    margin-bottom: 5px;
 }
 
 #personbutton:hover {
@@ -146,6 +148,8 @@ $background-hover: $background;
 
 .usermenuitem {
     cursor: pointer;
+    font-family: $font-montserrat;
+    font-weight: 400;
 }
 
 .usermenuitem:hover {
@@ -165,12 +169,14 @@ $background-hover: $background;
 @media screen and (max-width: 989px) {
     #mainNav {font-size: 16px;}
     #dropdown-menu-item {font-size: 16px;}
+    #usermenu-item {font-size: 16px;}
     #search-icon{padding-left:10px;}
     #mainNav .dropdown{padding-top:5px;padding-bottom: 5px;}
 }
 @media screen and (max-width: 1100px) and (min-width: 989px) {
     #mainNav {font-size: 12px;}
     #dropdown-menu-item {font-size: 12px;}
+    #usermenu-item {font-size: 12px;}
 }
 
 @media (min-width: 991.98px) {
