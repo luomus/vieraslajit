@@ -20,7 +20,7 @@
     color: white; 
 }
 
-#accordion:hover {
+#accordion .panel-heading:hover {
     color: $primary;
     cursor: pointer;
 }
