@@ -23,10 +23,13 @@ export class TaxonBrowserApiSettingsService {
         return this._apiSettings;
     }
     set apiSettings(s:TaxonBrowserApiSettings){
-        /* this._apiSettings = s; */
         Object.keys(s).forEach((key)=>{
             this._apiSettings[key] = s[key];
         })
+        this.eventEmitter.emit('change');
+    }
+    set informalTaxonGroup(s:Informal) {
+        this._apiSettings.informalTaxonGroup = s;
         this.eventEmitter.emit('change');
     }
 }

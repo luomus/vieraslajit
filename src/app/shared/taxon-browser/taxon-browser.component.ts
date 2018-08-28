@@ -18,10 +18,21 @@ import { Observable } from "rxjs";
 export class TaxonBrowserComponent implements OnInit{
     @Input() EuList?:boolean = false;
     @Input() FiList?:boolean = false;
-    @Input() informalTaxonGroup?:Informal;
 
     @Input() EuListSelector?:boolean;
     @Input() FiListSelector?:boolean;
+
+    /* Dirty hack that makes sure settings service isn't accessed until ngOnInit has been executed */
+    afterInit:boolean = false;
+    tempInformal:Informal;
+    @Input() set informalTaxonGroup(i:Informal) {
+        if(this.afterInit) {
+            this.settingsService.informalTaxonGroup = i;
+        } else {
+            this.tempInformal = i;
+        }
+    }
+    get informalTaxonGroup():Informal {return this.settingsService.apiSettings.informalTaxonGroup}
 
     asyncTaxa:Observable<Taxonomy[]>;
 
@@ -45,9 +56,11 @@ export class TaxonBrowserComponent implements OnInit{
         let settings:TaxonBrowserApiSettings = {
             EuList: this.EuList,
             FiList: this.FiList,
-            informalTaxonGroup: this.informalTaxonGroup
+            informalTaxonGroup: this.tempInformal
         }
         this.settingsService.apiSettings = settings;
+
+        this.afterInit = true;
     }
 
     getPage(page:number) {

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, OnInit, Input, OnDestroy, ViewEncapsulation, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 import { Observable ,  Subscription } from 'rxjs';
 import { PagedResult } from '../../shared/model/PagedResult';
@@ -36,16 +36,26 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   maxSize = 5;
   itemsPerPage = 12;
 
-  constructor(private taxonService: TaxonService, private translate: TranslateService, private router: Router) { }
+  private paramsSub:Subscription;
+
+  constructor(private route:ActivatedRoute, private taxonService: TaxonService,
+    private translate: TranslateService, private router: Router) { }
 
   ngOnInit() {
+    this.paramsSub = this.route.params.subscribe(params => {
+      if(params['group']) {
+        this.selectedGroup = {id: params['group']};
+        this.showGroups=false;
+      }
+    });
+
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
-    this.navSub = this.router.events.subscribe((e: any) => {
+    /* this.navSub = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         this.showGroups = true;
         this.selectedGroup = null;
       }
-    })
+    }) */
     this.update();
   }
 
@@ -151,6 +161,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
     if (this.navSub) {
       this.navSub.unsubscribe();
     }
+    this.paramsSub.unsubscribe();
   }
 
 }

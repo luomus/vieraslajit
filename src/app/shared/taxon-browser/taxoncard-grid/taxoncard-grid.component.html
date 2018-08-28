@@ -1,7 +1,7 @@
 <div class="card-group" id="taxongrid">
     <div *ngFor="let taxon of taxa" class="col-12 col-sm-6 col-md-6 col-lg-3">
         <div class="card" id="species-card" [routerLink]="'/taxon/' + taxon.id">
-            <img class="card-img-top" src="{{taxon.multimedia[0].thumbnailURL}}" id="species-img">
+            <img class="card-img-top" *ngIf="taxon.multimedia" src="{{taxon.multimedia[0].thumbnailURL}}" id="species-img">
             <div class="card-body text-center" id="species-card-body">
                 <a class="card-text" id="species-card-text">{{taxon.vernacularName ||taxon.scientificName}}</a>
             </div>
