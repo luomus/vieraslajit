@@ -28,6 +28,7 @@ $background-hover: $background;
     
 	/* Background gradient */
     background: $desaturated-blue;
+    background: linear-gradient(to top left, $desaturated-blue-darker-2 0%, $desaturated-blue 100%);
 
 	opacity: 0.9; 
 	position: absolute; 

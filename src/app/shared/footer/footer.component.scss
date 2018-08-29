@@ -2,9 +2,11 @@
 
 .footer-content {
     background: $footer-background;
+    background: linear-gradient(to bottom right, $desaturated-blue-darker 0%, $desaturated-blue 100%);
     color: $text-light;
-    border-top: 2px solid #ddd;
-    border-bottom: 2px solid #ddd;
+    border-top: 2px solid $desaturated-blue-darker;
+    border-bottom: 2px solid $desaturated-blue-darker;
+    box-shadow: 0px 0px 5px 0px #666;
 }
 
 .vrs-affiliates {
