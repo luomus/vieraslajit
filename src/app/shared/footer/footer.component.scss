@@ -2,7 +2,7 @@
 
 .footer-content {
     background: $footer-background;
-    background: linear-gradient(to bottom right, $desaturated-blue-darker 0%, $desaturated-blue 100%);
+    background: linear-gradient(to bottom right, $desaturated-blue 0%, $desaturated-blue-lighter 100%);
     color: $text-light;
     border-top: 2px solid $desaturated-blue-darker;
     border-bottom: 2px solid $desaturated-blue-darker;

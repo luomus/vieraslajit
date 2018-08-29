@@ -5,7 +5,7 @@
 }
 
 :host ::ng-deep .ngx-datatable .datatable-header {
-    background: $desaturated-blue;
+    background: $desaturated-blue-lighter;
     .datatable-header-cell-label {
         color: $text-light;
     }
@@ -15,5 +15,5 @@
 }
 
 :host ::ng-deep .ngx-datatable datatable-body.datatable-body {
-    background: $desaturated-blue-lighter;
+    background: $desaturated-blue-light;
 }
