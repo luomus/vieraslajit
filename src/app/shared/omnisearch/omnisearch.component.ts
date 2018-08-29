@@ -9,7 +9,8 @@ import {
   Output,
   ViewContainerRef,
   OnChanges,
-  OnDestroy
+  OnDestroy,
+  AfterViewInit
 } from '@angular/core';
 import { Autocomplete } from '../../shared/model/Autocomplete';
 import { WarehouseQueryCount } from '../../shared/model/Warehouse'
@@ -33,7 +34,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./omnisearch.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
+export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
 
   @Input() placeholder: string;
   @Input() limit: 10;
@@ -76,6 +77,16 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     })).subscribe(()=>{
       this.updateTaxa();
     })
+  }
+
+  ngAfterViewInit() {
+    console.log($('.omni-search').position().left - $('.omni-search').width());
+    console.log($('.omni-search').width());
+    if(($('.omni-search').position().left - $('.omni-search').width()) > ($(window).width() / 2)) {
+      console.log("right side");
+    } else {
+      console.log("left side");
+    }
   }
   
   ngOnChanges() {
@@ -160,6 +171,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
         this.loading = false;
         this.activate(0);
         this.changeDetector.markForCheck();
+        console.log(this.taxa);
       }
     );
 

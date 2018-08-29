@@ -1,3 +1,5 @@
+@import '../../../assets/styles/vars';
+
 .omni-search {
   margin-bottom: 0;
   margin-top: 5;
@@ -79,4 +81,8 @@
 .match {
   cursor: pointer;
   display: block;
+}
+
+.match:hover {
+  color: $primary;
 }
