@@ -55,6 +55,44 @@
     text-align: center;
 }
 
+.quick-links {
+    padding: 1em;
+    margin-top: 1em;
+    padding-right: 0em;
+    list-style: none;
+    font-size: $font-size-regular;
+}
+
+.quick-links-btn {
+    padding: 0.5em;
+    margin: 0.5em;
+    margin-bottom: 0.75em;
+    margin-right: 0em;
+    border: 1px solid $desaturated-blue-darker;
+}
+
+.invasive-description {
+    padding: 2em;
+    font-size: $font-size-regular;
+}
+
+.first-segment hr {
+    width: 80%;
+}
+
+.admin-list-container {
+    background: #ccc;
+    height: 100%;
+    width: 100%;
+    padding: 1em;
+    border-radius: $content-border-radius;
+}
+
+.exotic-pet-container {
+    margin: 1em;
+    padding: 1em;
+}
+
 .exotic-pets {
     height: 300px;
     width: 400px;
