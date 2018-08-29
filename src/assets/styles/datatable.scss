@@ -1,0 +1,19 @@
+@import './vars';
+
+:host ::ng-deep .ngx-datatable {
+    border-radius: $content-border-radius;
+}
+
+:host ::ng-deep .ngx-datatable .datatable-header {
+    background: $desaturated-blue;
+    .datatable-header-cell-label {
+        color: $text-light;
+    }
+    .sort-btn {
+        color: $text-light;
+    }
+}
+
+:host ::ng-deep .ngx-datatable datatable-body.datatable-body {
+    background: $desaturated-blue-lighter;
+}

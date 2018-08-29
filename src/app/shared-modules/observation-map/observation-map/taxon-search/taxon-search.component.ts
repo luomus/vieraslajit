@@ -6,7 +6,7 @@ import { TranslateService } from "../../../../../../node_modules/@ngx-translate/
 
 @Component({
     selector: "vrs-taxon-search",
-    template: `<div class='autocomplete'><input type='text' id='vrs-taxon-search-textarea' class='form-control' placeholder="Lajihaku..."></div>
+    template: `<div class='autocomplete'><input type='text' id='vrs-taxon-search-textarea' class='form-control' placeholder="Valitse laji"></div>
     <span id='selectedTaxon'></span>
     <a id='removeSelected' class='oi oi-x icon' (click)="removeSelected()"></a>`,
     styleUrls: ["./taxon-search.component.scss"]

@@ -5,6 +5,11 @@ $accent: $primary;
 $background: $background-light;
 $background-hover: $background;
 
+.container.container-navbar {
+    padding: 0;
+    max-width: 1400px;
+}
+
 /* Background */
 #mainNav {
     font-family: $font-montserrat;
@@ -22,10 +27,7 @@ $background-hover: $background;
     height: 100%;
     
 	/* Background gradient */
-    background: $background-light; /* Old browsers */
-    background: -moz-linear-gradient(top, $background-light 50%, #e8e8e8 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, $background-light 50%,#e8e8e8 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, $background-light 50%,#e8e8e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: $desaturated-blue;
 
 	opacity: 0.9; 
 	position: absolute; 
@@ -41,7 +43,7 @@ $background-hover: $background;
 }
 
 #mainNav .navbar-brand {
-    color: $text-dark;
+    color: $text-light;
     font-size: 22px;
     outline: none;
 
@@ -56,12 +58,12 @@ $background-hover: $background;
     display: flex;
     align-items: center;
     a {
-        color: $text-dark-lighter;
+        color: $text-light;
     }
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link {
-    color: $text-dark-lighter;
+    color: $text-light;
     padding-right:10px;
     padding-left:10px;
 }
@@ -82,7 +84,7 @@ $background-hover: $background;
 /* "About" Dropdown Menu */
 #dropdown-about {
     border: none;
-    color: $text-dark-lighter;
+    color: $text-light;
     &:hover {
         color: $text-hover;
     }
@@ -124,7 +126,7 @@ $background-hover: $background;
  /* Search */
 
  #search-icon   {
-    color: $text-dark-lighter;
+    color: $text-light;
     cursor: pointer;
     margin-right: 10px;
     margin-bottom: 5px;
@@ -134,11 +136,17 @@ $background-hover: $background;
     color: $text-hover;
 }
 
+:host ::ng-deep .nav-omni .omni-search {
+    margin: 0;
+    padding: 0;
+}
+
+
 /* User Menu*/
 
 #personbutton {
     background: none;
-    color: $text-dark-lighter;
+    color: $text-light;
     margin-bottom: 5px;
 }
 
@@ -182,7 +190,6 @@ $background-hover: $background;
 @media (min-width: 991.98px) {
     #dropdown-about {
         border: none;
-        color: $text-dark-lighter;
         display: flex;
         align-items: center;
     }

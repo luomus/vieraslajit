@@ -1,6 +1,7 @@
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import '../../../../assets/styles/datatable';
 
 #map {
   height: 400px;
@@ -23,4 +24,9 @@ p {
   display: inline-block;
   padding: 0.5em;
   margin-left: 1em;
+}
+
+.selected-observation-left {
+  border-right: 1px solid #ccc;
+  color: $text-dark-muted;
 }

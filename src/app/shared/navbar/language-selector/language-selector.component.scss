@@ -1,19 +1,17 @@
 @import '../../../../assets/styles/vars';
 
-$background: $background-light;
-$text: $text-dark;
 $highlight: $text-highlight;
 
 .language-selector {
     background: none;
-    color: $text-dark-lighter;
+    color: $text-light;
     border: none;
     font-family: $font-montserrat;
     font-weight: 400;
 }
 
 .language-selector a{
-    color: $text-dark-lighter;
+    color: $text-light;
 }
 
 .language-selector a:hover {

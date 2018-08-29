@@ -22,6 +22,9 @@ $primary: #f89525;
 $complementary: #2588f8;
 $secondary: #3498db;
 
+$desaturated-blue: rgb(90, 103, 128);
+$desaturated-blue-lighter: rgb(222, 228, 240);
+
 $background-light: #fefefe;
 $background-light-highlight: #f5f5f5fb;
 $background-light-highlight-dark: #2C3539;
@@ -30,6 +33,7 @@ $background-darker-accent: #fafafa;
 
 $text-dark: #444;
 $text-dark-lighter: #666;
+$text-dark-muted: #999;
 $text-highlight: $primary;
 $text-light: $background-light;
 $text-light-muted: #ccc;
@@ -37,13 +41,15 @@ $text-hover: $text-highlight;
 
 $shadow: $text-dark;
 
-$footer-background: $background-darker-accent;
+$footer-background: $desaturated-blue;
 
 $border-light: #dee2e6;
 
 $content-border-radius: 12px;
 
 $container-shadow: 0px 2px 2px 2px #ccc;
+
+$navbar-height: 76px;
 
 $font-family-base: 'Libre Franklin';
 $font-accent: 'Sans serif';
