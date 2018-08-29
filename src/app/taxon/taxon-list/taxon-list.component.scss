@@ -16,6 +16,8 @@
 }
 
 .main-container {
+    margin-top: $navbar-height + 12px;
+    margin-bottom: 2em;
     background: $background-light;
     box-shadow: $container-shadow;
 }
@@ -40,8 +42,13 @@
     border-top-right-radius: $content-border-radius;
 }
 
-.card {
-    background: $background-darker-accent;
+.card.panel-default {
+    background: $desaturated-blue-lighter;
+    color: $text-light;
+}
+
+.card-body {
+    color: $text-dark;
 }
 
 .panel-body.card-block.card-body {
