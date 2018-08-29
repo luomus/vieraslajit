@@ -71,6 +71,12 @@
     border: 1px solid $desaturated-blue-darker;
 }
 
+.quick-links-btn:hover {
+    cursor:pointer;
+    background: $primary;
+    color: $text-light;
+}
+
 .invasive-description {
     padding: 2em;
     font-size: $font-size-regular;
