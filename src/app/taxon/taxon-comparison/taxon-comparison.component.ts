@@ -3,7 +3,7 @@ import { Taxonomy, TaxonomyImage } from '../../shared/model/Taxonomy';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'vrs-taxon-comparison',
@@ -12,10 +12,11 @@ import { Subscription } from 'rxjs';
 })
 export class TaxonComparisonComponent implements OnInit, OnDestroy {
 
-  @Input() taxon: Taxonomy;
-  @Input() media: TaxonomyImage[];
+  taxon: Taxonomy;
+  media: TaxonomyImage[];
   private subTrans: Subscription;
 
+  taxonId;
   loading: boolean = true;
   hasTaxonomy: boolean;
   groups = [];
@@ -26,11 +27,16 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
   lang: string;
   
 
-  constructor(private taxonService: TaxonService, private translate: TranslateService) { }
+  constructor(private route: ActivatedRoute, private taxonService: TaxonService, private translate: TranslateService) { }
 
   ngOnInit() {
+    this.route.params.subscribe((params)=>{
+      this.taxonId = params['id'];
+      this.getTaxon(this.taxonId).subscribe({complete: ()=>{
+        this.update();
+      }});
+    });
     this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
-    this.update();
   }
 
   next() {
@@ -65,7 +71,7 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
         this.taxonService.getGroupChildren(elem).subscribe((data) => {
           if (data.total === 0) {
             this.groups.push(elem);
-            this.getTaxon(elem);
+            this.getComparisonTaxon(elem);
           }
         }, err => err, () => {
           if (index === arr.length - 1) {
@@ -78,7 +84,7 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
     }
   }
 
-  getTaxon(elem) {
+  getComparisonTaxon(elem) {
     this.taxonService.getComparisonTaxonomy('MX.37600', elem, this.translate.currentLang).subscribe(data => {
       this.taxonomy = this.taxonomy.concat(data.results.filter(taxon => taxon.id != this.taxon.id));
       this.selected = this.taxonomy[this.current];
@@ -89,6 +95,22 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
       }
     }, err => err, () => {
       this.loading = false;
+    });
+  }
+
+  getTaxon(id){
+    return new Observable(observer=>{
+      let i = 0;
+      this.taxonService.getTaxon(id, this.translate.currentLang).subscribe((res)=>{
+        this.taxon = res;
+        i++;
+        if(i>1) observer.complete();
+      });
+      this.taxonService.getTaxonMedia(id, this.translate.currentLang).subscribe((res)=>{
+        this.media = res;
+        i++;
+        if(i>1) observer.complete();
+      });
     });
   }
 

@@ -45,7 +45,7 @@
             <div class="col-sm-12 col-md-6">
               <div class="card-body">
                 <div class="card-text">
-                  <button id="comparison" class="btn btn-primary" (click)="comparisonView()" translate>comparison.title</button>
+                  <button id="comparison" class="btn btn-primary" routerLink='/taxon/{{id}}/comparison' translate>comparison.title</button>
                   <br>
                   <br>
                   <span translate>comparison.text</span>
@@ -164,16 +164,6 @@
     </div>
     <br>
     <br>
-  </div>
-  <div *ngIf="comparison && taxon && media">
-    <div class="container">
-      <br>
-      <div class="float-right">
-        <button class="btn btn-secondary btn-sm" (click)="comparisonView()" translate>
-          <span class="oi oi-action-undo"></span> comparison.return</button>
-      </div>
-      <vrs-taxon-comparison [taxon]="taxon" [media]="media"></vrs-taxon-comparison>
-    </div>
   </div>
 </ng-container>
 

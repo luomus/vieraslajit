@@ -81,11 +81,6 @@
     background-color: $primary;
 }
 
-.modal-image {
-    width: 100%;
-    height: 100%;
-}
-
 .carousel-control-next-icon {
     background-image: none;
 }
@@ -102,6 +97,11 @@
     @extend %glyphicon;
     @extend %glyphicon-chevron-left:before;
     color: rgba(255,255,255,0.5);
+}
+
+.modal-image {
+    width: 100%;
+    height: 100%;
 }
 
 /* Glyphicons */
