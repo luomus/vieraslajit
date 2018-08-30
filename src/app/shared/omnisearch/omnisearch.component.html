@@ -20,7 +20,10 @@
         <div class="col-md-5 first-col">
           <div translate>omnisearch.information</div>
           <div class="row">
-            <div class="col-md-12 taxon-match" *ngIf="!comparisonView;else comparisonTemplate">
+            <div class="col-2">
+              <img [src]="'assets/images/taxon-groups/'+groupId+'.svg'">
+            </div>
+            <div class="col-md-10 taxon-match" *ngIf="!comparisonView;else comparisonTemplate">
               <a [routerLink]="['/taxon/' + taxon.key]">
                 <span class="vernacularName">{{taxon.payload.vernacularName}}</span>
               </a>

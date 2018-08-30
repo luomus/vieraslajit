@@ -60,6 +60,9 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
 
   private resultsDirection = 'right';
 
+  // Informal Taxon Group ID of currently selected taxon
+  private groupId = 'MVL.1';
+
   @ViewChild('omniElement') omniElement: ElementRef;
 
 
@@ -84,13 +87,9 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   }
 
   ngAfterViewInit() {
-    console.log($(this.omniElement.nativeElement).position().left - $('.omni-search').width());
-    console.log($(this.omniElement.nativeElement).width());
     if(($(this.omniElement.nativeElement).position().left - $(this.omniElement.nativeElement).width()) > ($(window).width() / 2)) {
-      console.log("right side");
       this.resultsDirection = 'left';
     } else {
-      console.log("left side");
       this.resultsDirection = 'right';
     }
   }
@@ -106,7 +105,6 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
 
   }
   close() {
-    console.log("close");
     this.searchControl.setValue('');
     this.search = '';
     this.taxa = [];
@@ -114,6 +112,18 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   }
   activate(index: number): void {
     if (this.taxa[index]) {
+
+      // show the right informal group image
+      let compatibleTaxonGroups = ['MVL.1', 'MVL.2', 'MVL.21', 'MVL.22', 'MVL.26', 'MVL.27', 'MVL.28',
+                                   'MVL.37', 'MVL.39', 'MVL.40', 'MVL.41', 'MVL.232', 'MVL.233'];
+      compatibleTaxonGroups.forEach(g => {
+        this.taxa[index].payload.informalTaxonGroups.forEach(t => {
+          if(t.id == g) {
+            this.groupId = g;
+          }
+        });
+      });
+
       this.active = index;
       this.taxon = this.taxa[index];
       this.subCnt = of(this.taxon.key).pipe(
