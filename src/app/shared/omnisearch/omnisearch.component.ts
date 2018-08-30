@@ -10,7 +10,9 @@ import {
   ViewContainerRef,
   OnChanges,
   OnDestroy,
-  AfterViewInit
+  AfterViewInit,
+  ElementRef,
+  ViewChild
 } from '@angular/core';
 import { Autocomplete } from '../../shared/model/Autocomplete';
 import { WarehouseQueryCount } from '../../shared/model/Warehouse'
@@ -56,7 +58,9 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   private inputChange: Subscription;
   private el: Element;
 
+  private resultsDirection = 'right';
 
+  @ViewChild('omniElement') omniElement: ElementRef;
 
 
   constructor(
@@ -80,12 +84,14 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   }
 
   ngAfterViewInit() {
-    console.log($('.omni-search').position().left - $('.omni-search').width());
-    console.log($('.omni-search').width());
-    if(($('.omni-search').position().left - $('.omni-search').width()) > ($(window).width() / 2)) {
+    console.log($(this.omniElement.nativeElement).position().left - $('.omni-search').width());
+    console.log($(this.omniElement.nativeElement).width());
+    if(($(this.omniElement.nativeElement).position().left - $(this.omniElement.nativeElement).width()) > ($(window).width() / 2)) {
       console.log("right side");
+      this.resultsDirection = 'left';
     } else {
       console.log("left side");
+      this.resultsDirection = 'right';
     }
   }
   
@@ -171,7 +177,6 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
         this.loading = false;
         this.activate(0);
         this.changeDetector.markForCheck();
-        console.log(this.taxa);
       }
     );
 
