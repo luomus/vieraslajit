@@ -1,7 +1,54 @@
 @import './vars';
 
+// Card
+
 .card {
     background: $background-light;
     border: 1px solid $border-light;
     border-radius: $content-border-radius;
+}
+
+.card .card-header {
+    background: $desaturated-blue-lighter;
+    color: $text-light;
+    border-radius: $content-border-radius;
+    border-bottom-left-radius: 0em;
+    border-bottom-right-radius: 0em;
+}
+
+.card .card-body {
+    background: $background-light;
+    color: $text-dark;
+    border-bottom-left-radius: $content-border-radius;
+    border-bottom-right-radius: $content-border-radius;
+}
+
+// Accordion
+
+accordion .panel-heading.card-header {
+    border-radius: $content-border-radius;
+}
+
+accordion .card.panel-default {
+    background: $desaturated-blue-lighter;
+    color: $text-light;
+}
+
+:host ::ng-deep accordion .panel-body.card-block.card-body {
+    background: $background-light;
+    border: 1px solid $border-light;
+    border-bottom-left-radius: $content-border-radius;
+    border-bottom-right-radius: $content-border-radius;
+}
+
+accordion .panel-heading {
+    cursor: pointer;
+
+    &:hover {
+        color: $primary;
+    }
+}
+
+accordion .panel-default .panel-heading {
+    border-bottom: none;
 }
