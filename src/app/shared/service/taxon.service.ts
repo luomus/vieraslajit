@@ -66,7 +66,7 @@ export class TaxonService {
   // Get autocomplete for taxon search.
   getAutocomplete(field: string, q: string, lang?: string): Observable<any> {
     return this.apiService
-      .autocompleteFindByField(LajiApi.Endpoints.autocomplete, field, { q, includePayload: true, onlyFinnish: true, onlySpecies: true, onlyInvasive: true, lang: lang });
+      .autocompleteFindByField(LajiApi.Endpoints.autocomplete, field, { q, includePayload: true, onlyFinnish: false, onlySpecies: true, onlyInvasive: true, lang: lang });
   }
   // Get warehouse query count for taxon search.
   getWareHouseQueryCount(count: string, lang: string, taxonId): Observable<any> {
