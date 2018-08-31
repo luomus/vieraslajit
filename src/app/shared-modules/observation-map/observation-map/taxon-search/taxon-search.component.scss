@@ -1,3 +1,5 @@
+@import '../../../../../assets/styles/vars';
+
 .autocomplete {
     position: relative;
     display: inline-block;
@@ -13,11 +15,15 @@
     left: 0;
     right: 0;
 
-    div {
+    .autocomplete-item {
         padding: 10px;
         cursor: pointer;
         background-color: #fff; 
-        border-bottom: 1px solid #d4d4d4; 
+        border-bottom: 1px solid #d4d4d4;
+
+        &.vrs-taxon-search-active {
+            color: $primary;
+        }
     }
     
     div:hover {
