@@ -1,21 +1,19 @@
-import { Component, OnInit, Input, OnDestroy, ViewEncapsulation, NgZone, ChangeDetectorRef } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { Observable ,  Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { PagedResult } from '../../shared/model/PagedResult';
-import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../../shared/model/Taxonomy';
+import { Taxonomy, TaxonomyImage } from '../../shared/model/Taxonomy';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { Informal } from '../../shared/model/Informal';
-import { TranslateService, TranslatePipe } from '@ngx-translate/core';
-import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.component'
+import { TranslateService } from '@ngx-translate/core';
 import * as $ from 'jquery';
 
 
 @Component({
   selector: 'vrs-taxon-list',
   templateUrl: './taxon-list.component.html',
-  styleUrls: ['./taxon-list.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./taxon-list.component.scss']
 })
 export class TaxonListComponent implements OnInit, OnDestroy {
 

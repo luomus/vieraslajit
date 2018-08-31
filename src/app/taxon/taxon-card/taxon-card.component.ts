@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, Input, ViewEncapsulation, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { TaxonomyDescription, TaxonomyImage, Taxonomy } from '../../shared/model/Taxonomy';
-import { Observable ,  Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
@@ -12,8 +12,7 @@ import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.componen
 @Component({
   selector: 'vrs-taxon-card',
   templateUrl: './taxon-card.component.html',
-  styleUrls: ['./taxon-card.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./taxon-card.component.scss']
 })
 
 export class TaxonCardComponent implements OnInit, OnDestroy {
