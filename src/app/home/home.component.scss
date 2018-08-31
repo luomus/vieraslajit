@@ -1,20 +1,21 @@
 @import '../../assets/styles/vars';
 
-.news-list {
-    padding-top: 1em;
+.news-items {
+    background: $desaturated-blue-light;
     text-align: center;
-    color: #999;
+    padding: 1em;
+    padding-top: 2em;
+    margin-bottom: 1em;
+    box-shadow: 1px 3px 5px -3px #333;
 }
 
-.news-list {
-    :hover {
-        cursor:pointer;
-        color: #666;
-        text-decoration: underline;
-    }
+.news-item {
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .home-content {
+    margin-top: $navbar-height + 20px;
     box-shadow: $container-shadow;
 }
 
