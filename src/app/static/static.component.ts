@@ -1,10 +1,6 @@
-import { Component, OnInit, OnDestroy, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { InformationService } from '../shared/service/information.service';
-import { Information } from '../shared/model/Information';
-import { ActivatedRoute, Router, NavigationEnd, RouterLink } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
-import { filter } from '../../../node_modules/rxjs/operators';
+import { Router } from '@angular/router';
 
 /**
  * Renders content from CMS.

@@ -19,8 +19,8 @@ import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.componen
 export class TaxonCardComponent implements OnInit, OnDestroy {
   @ViewChild(OmnisearchComponent) omnisearch:OmnisearchComponent;
 
-  private sub: any;
-  private subTrans: Subscription;
+  private sub: Subscription;
+  private onLangChange: Subscription;
   public loading = true; // spinner true on start
 
   id: string;
@@ -45,7 +45,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isFirstOpen = false;
-    this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.onLangChange = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.comparison = false;
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -105,7 +105,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.subTrans.unsubscribe();
+    this.onLangChange.unsubscribe();
   }
 
   openImage(template: TemplateRef<any>, image: TaxonomyImage) {

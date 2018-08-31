@@ -102,7 +102,12 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
     if (this.inputChange) {
       this.inputChange.unsubscribe();
     }
-
+    if (this.subCnt) {
+      this.subCnt.unsubscribe();
+    }
+    if (this.subTaxa) {
+      this.subTaxa.unsubscribe();
+    }
   }
   close() {
     this.searchControl.setValue('');

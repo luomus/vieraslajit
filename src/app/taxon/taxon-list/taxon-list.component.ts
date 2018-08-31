@@ -20,8 +20,7 @@ import * as $ from 'jquery';
 export class TaxonListComponent implements OnInit, OnDestroy {
 
   @Input() search = '';
-  private subTrans: Subscription;
-  private navSub: Subscription;
+  private onLangChange: Subscription;
   public loading = true;
   id: string;
   taxa: Taxonomy[];
@@ -49,13 +48,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
-    /* this.navSub = this.router.events.subscribe((e: any) => {
-      if (e instanceof NavigationEnd) {
-        this.showGroups = true;
-        this.selectedGroup = null;
-      }
-    }) */
+    this.onLangChange = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.update();
   }
 
@@ -149,18 +142,8 @@ export class TaxonListComponent implements OnInit, OnDestroy {
     $('html, body').animate({ scrollTop: 0 }, 0);
   }
 
-  pageChanged(event) {
-    let start = (event.page - 1) * event.itemsPerPage;
-    let end = start + event.itemsPerPage;
-    this.pageData = this.taxa.slice(start, end);
-    this.onPageChange();
-  }
-
   ngOnDestroy() {
-    this.subTrans.unsubscribe();
-    if (this.navSub) {
-      this.navSub.unsubscribe();
-    }
+    this.onLangChange.unsubscribe();
     this.paramsSub.unsubscribe();
   }
 

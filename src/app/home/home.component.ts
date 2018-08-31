@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SearchComponent } from '../shared/googlesearch/search/search.component';
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,8 +19,8 @@ import { findContentID, StaticContent } from '../../assets/i18n/cms-content';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-  private subTrans: Subscription;
+export class HomeComponent implements OnInit, OnDestroy {
+  private onLangChange: Subscription;
   alerts: Array<any> = [];
   news: Array<any>= [];
   staticPetsID:string;
@@ -34,11 +34,15 @@ export class HomeComponent implements OnInit {
    */
   ngOnInit() {
     this.setStaticID(this.translate.currentLang);
-    this.subTrans = this.translate.onLangChange.subscribe((event) => {
+    this.onLangChange = this.translate.onLangChange.subscribe((event) => {
       this.setStaticID(event.lang);
       this.getNews(1);
     });
     this.getNews(1);
+  }
+
+  ngOnDestroy() {
+    this.onLangChange.unsubscribe();
   }
 
   getNews(page){

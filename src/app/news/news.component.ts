@@ -25,12 +25,12 @@ export class NewsComponent implements OnInit, OnDestroy {
   currentTags: string = "vieraslajit.fi";
 
   // Translate
-  private subTrans: Subscription;
+  private onLangChange: Subscription;
 
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
   ngOnInit() {
-    this.subTrans= this.translate.onLangChange.subscribe((event) =>{
+    this.onLangChange= this.translate.onLangChange.subscribe((event) =>{
       this.getPage(this.currentPage);
     });
     this.getPage(1);
@@ -57,7 +57,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.subTrans.unsubscribe();
+    this.onLangChange.unsubscribe();
   }
 
 }

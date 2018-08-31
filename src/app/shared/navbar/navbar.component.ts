@@ -111,6 +111,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
 
   ngOnDestroy(){
     this.loginSub.unsubscribe();
+    this.translateSub.unsubscribe();
   }
 
 }
