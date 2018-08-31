@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.onLangChange.unsubscribe();
+    this.onLangChange ? this.onLangChange.unsubscribe() : null;
   }
 
   getNews(page){

@@ -115,6 +115,6 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.onLangChange.unsubscribe();
+    this.onLangChange ? this.onLangChange.unsubscribe() : null;
   }
 }

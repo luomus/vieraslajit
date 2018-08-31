@@ -103,8 +103,8 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
-    this.onLangChange.unsubscribe();
+    this.sub ? this.sub.unsubscribe() : null;
+    this.onLangChange ? this.onLangChange.unsubscribe() : null;
   }
 
   openImage(template: TemplateRef<any>, image: TaxonomyImage) {

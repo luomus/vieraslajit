@@ -173,10 +173,8 @@ export class FormComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.onLangChange.unsubscribe();
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
+    this.onLangChange ? this.onLangChange.unsubscribe() : null;
+    this.sub ? this.sub.unsubscribe() : null;
   }
 
 }

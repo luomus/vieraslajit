@@ -27,7 +27,7 @@ export class StaticWrapperComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.onLangChange.unsubscribe();
+        this.onLangChange ? this.onLangChange.unsubscribe() : null;
     }
 
     loadHomePage(){

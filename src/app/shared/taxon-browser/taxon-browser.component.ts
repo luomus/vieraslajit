@@ -68,7 +68,7 @@ export class TaxonBrowserComponent implements OnInit{
     }
 
     ngOnDestroy() {
-        this.onLangChange.unsubscribe();
+        this.onLangChange ? this.onLangChange.unsubscribe() : null;
     }
 
     getPage(page:number) {

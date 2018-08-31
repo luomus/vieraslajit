@@ -141,8 +141,8 @@ export class TaxonListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.onLangChange.unsubscribe();
-    this.paramsSub.unsubscribe();
+    this.onLangChange ? this.onLangChange.unsubscribe() : null;
+    this.paramsSub ? this.paramsSub.unsubscribe() : null;
   }
 
 }

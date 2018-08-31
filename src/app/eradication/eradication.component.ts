@@ -30,9 +30,7 @@ export class EradicationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.onLangChange) {
-      this.onLangChange.unsubscribe();
-    }
+    this.onLangChange ? this.onLangChange.unsubscribe() : null;
   }
 
 }
