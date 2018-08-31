@@ -6,22 +6,9 @@
 .navButton {
     display: inline-block;
     font-size: 14px;
-    border-color: $desaturated-blue-light;
-    border-width: 2px;
-    border-radius: $content-border-radius;
     padding: 0.8em;
     margin-left: 1em;
-    color: $text-light;
-    background: $desaturated-blue-lighter;
     white-space: nowrap;
-    text-align: center;
-    border-style: solid;
-    cursor: pointer;
-    box-shadow: 0px 0px 5px 0px #999;
-}
-
-.navButton:hover {
-    background: $primary;
 }
 
 #heading {

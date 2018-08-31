@@ -68,18 +68,6 @@
     margin: 0.5em;
     margin-bottom: 0.75em;
     margin-right: 0em;
-    background: $desaturated-blue-lighter;
-    color: $text-light;
-    border-radius: $content-border-radius;
-    text-align: center;
-    border: 2px solid $border-light;
-    box-shadow: 0px 0px 5px 0px #999;
-}
-
-.quick-links-btn:hover {
-    cursor:pointer;
-    background: $primary;
-    color: $text-light;
 }
 
 .invasive-description {
@@ -99,15 +87,9 @@
 }
 
 .admin-list-container {
-    background: $desaturated-blue-lighter;
-    color: $text-light;
     height: 100%;
     width: 100%;
     padding: 1em;
-    border-radius: $content-border-radius;
-    text-align: center;
-    border: 2px solid $border-light;
-    box-shadow: 0px 0px 5px 0px #999;
 
     cursor: pointer;
     &:hover{

@@ -1,0 +1,16 @@
+.vrs-button {
+    background: $desaturated-blue-lighter;
+    color: $text-light;
+    border-radius: $content-border-radius;
+    text-align: center;
+    border: 2px solid $border-light;
+    box-shadow: 0px 0px 5px 0px #999;
+    text-align:center;
+
+    &:hover {
+        cursor:pointer;
+        background: $primary;
+        color: $text-light;
+    }
+}
+
