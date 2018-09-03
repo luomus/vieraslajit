@@ -39,6 +39,7 @@
 .home-content {
     margin-top: $navbar-height + 20px;
     box-shadow: $container-shadow;
+    border-radius: $content-border-radius;
 }
 
 .header-container {
@@ -50,6 +51,8 @@
     background-position: left top;
     background-size: auto 100%;
     background-repeat: no-repeat;
+    border-top-left-radius: $content-border-radius;
+    border-top-right-radius: $content-border-radius;
 }
 .portal-description-parent {
     height: 300px;
@@ -72,6 +75,8 @@
 .first-segment {
     min-height: 500px;
     background: $background-light;
+    border-bottom-left-radius: $content-border-radius;
+    border-bottom-right-radius: $content-border-radius;
 }
 
 .alert-bar {
