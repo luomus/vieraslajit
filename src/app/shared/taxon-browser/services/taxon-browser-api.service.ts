@@ -19,7 +19,7 @@ export class TaxonBrowserApiService {
 
     constructor(private settingsService:TaxonBrowserApiSettingsService, private apiService:ApiService, private translate:TranslateService) {
         this.query = { page: 1, pageSize: 12,
-            invasiveSpeciesFilter: true,onlyFinnish: false, lang: this.translate.currentLang,
+            invasiveSpeciesFilter: true,onlyFinnish: false, lang: this.settingsService.apiSettings.lang,
             includeMedia: true, includeDescriptions: true , selectedFields: [ 'vernacularName', 'scientificName', 'invasiveSpeciesEstablishment', 'administrativeStatuses', 'id' ]
         };
     }
@@ -36,6 +36,7 @@ export class TaxonBrowserApiService {
         this.settingsService.apiSettings.FiList ? this.query.adminStatusFilters = 'MX.fiInvasiveSpeciesList' : null;
         this.settingsService.apiSettings.informalTaxonGroup ? this.query.informalGroupFilters = this.settingsService.apiSettings.informalTaxonGroup.id : null;
         this.settingsService.apiSettings.page? this.query.page = this.settingsService.apiSettings.page : null;
+        this.settingsService.apiSettings.lang? this.query.lang = this.settingsService.apiSettings.lang : null;
     }
 
     updateTaxa() {

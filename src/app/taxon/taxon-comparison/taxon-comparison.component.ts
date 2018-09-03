@@ -14,7 +14,7 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
 
   taxon: Taxonomy;
   media: TaxonomyImage[];
-  private subTrans: Subscription;
+  private onLangChange: Subscription;
 
   taxonId;
   loading: boolean = true;
@@ -36,7 +36,7 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
         this.update();
       }});
     });
-    this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
+    this.onLangChange = this.translate.onLangChange.subscribe(this.update.bind(this));
   }
 
   next() {
@@ -115,6 +115,6 @@ export class TaxonComparisonComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subTrans.unsubscribe();
+    this.onLangChange ? this.onLangChange.unsubscribe() : null;
   }
 }

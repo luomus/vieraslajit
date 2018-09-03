@@ -1,6 +1,7 @@
 @import '../../assets/styles/vars';
 
 .container {
+    margin-top: $navbar-height + 20px;
     padding: 2em;
     background: $background-light;
     box-shadow: $container-shadow;

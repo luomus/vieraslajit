@@ -6,7 +6,7 @@ import { TranslateService } from "../../../../../../node_modules/@ngx-translate/
 
 @Component({
     selector: "vrs-taxon-search",
-    template: `<div class='autocomplete'><input type='text' id='vrs-taxon-search-textarea' class='form-control' placeholder="Valitse laji"></div>
+    template: `<div class='autocomplete' (keyup)="keyEvent($event)"><input type='text' id='vrs-taxon-search-textarea' class='form-control' placeholder="Valitse laji"></div>
     <span id='selectedTaxon'></span>
     <a id='removeSelected' class='oi oi-x icon' (click)="removeSelected()"></a>`,
     styleUrls: ["./taxon-search.component.scss"]
@@ -34,6 +34,7 @@ export class TaxonSearchComponent implements OnInit {
                 if(r.length > 0) {
                     r.forEach(element => {
                         let b = document.createElement("div");
+                        $(b).addClass("autocomplete-item");
                         $('.autocomplete-items').append(b);
                         b.innerHTML = element.payload.matchingName;
                         b.onclick = ()=>{
@@ -65,4 +66,33 @@ export class TaxonSearchComponent implements OnInit {
         $('#removeSelected').hide();
         this.eventEmitter.emit("change", null);
     }
+
+    keyEvent(e) {
+        // up key
+        if (e.keyCode === 38) {
+            let current = $('.vrs-taxon-search-active');
+            if(current.prev().length) {
+                current.prev().addClass('vrs-taxon-search-active');
+                current.removeClass('vrs-taxon-search-active');
+            }
+        }
+        //down key
+        if (e.keyCode === 40) {
+            let current = $('.vrs-taxon-search-active');
+            if(!current.length) {
+                $($('.autocomplete-items').children()[0]).addClass("vrs-taxon-search-active");
+            }
+            if(current.next().length) {
+                current.next().addClass('vrs-taxon-search-active');
+                current.removeClass('vrs-taxon-search-active');
+            }
+        }
+        //Enter
+        if (e.keyCode === 13) {
+            let current = $('.vrs-taxon-search-active');
+            current.click();
+            current.removeClass('vrs-taxon-search-active');
+        }
+    
+      }
 }

@@ -25,7 +25,7 @@ export class FormComponent implements AfterViewInit, OnDestroy {
   @ViewChild('lajiform') formElem: ElementRef;
 
   private sub: Subscription;
-  private subTrans: Subscription;
+  private onLangChange: Subscription;
   private id: string;
   private documentId: string;
   private personToken: string;
@@ -46,7 +46,7 @@ export class FormComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.subTrans = this.translate.onLangChange.subscribe(() => this.onLangChange());
+    this.onLangChange = this.translate.onLangChange.subscribe(() => this.langChange());
     if (this.loggedIn) {
       this.personToken = UserService.getToken();
       this.sub = this.route.params.subscribe(params => {
@@ -101,7 +101,7 @@ export class FormComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  onLangChange() {
+  langChange() {
     this.lajiFormWrapper.setState({ lang: this.translate.currentLang });
     this.formService
       .getFormById(this.id, this.translate.currentLang)
@@ -173,10 +173,8 @@ export class FormComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subTrans.unsubscribe();
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
+    this.onLangChange ? this.onLangChange.unsubscribe() : null;
+    this.sub ? this.sub.unsubscribe() : null;
   }
 
 }

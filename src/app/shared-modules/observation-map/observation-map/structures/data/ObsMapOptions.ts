@@ -2,7 +2,7 @@ import { EventEmitter } from "events";
 import { Injectable } from "../../../../../../../node_modules/@angular/core";
 import { ObservationMapModule } from "../../../observation-map.module";
 
-export type ObsMapOption = "id" | "list" | "adminMode" | "municipality" | "personToken" | "taxonSearch";
+export type ObsMapOption = "id" | "list" | "municipality" | "personToken" | "taxonSearch";
 
 // TODO: typechecking for Options
 type Options = {

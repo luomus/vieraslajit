@@ -1,19 +1,16 @@
-import { Component, Input, OnInit, ViewEncapsulation } from "../../../../node_modules/@angular/core";
-import { TranslateService, TranslatePipe } from "../../../../node_modules/@ngx-translate/core";
-import { NgModel } from "../../../../node_modules/@angular/forms";
+import { Component, Input, OnInit } from "../../../../node_modules/@angular/core";
+import { TranslateService } from "../../../../node_modules/@ngx-translate/core";
+import { Observable, Subscription } from "rxjs";
+
 import { Informal, Taxonomy } from "../model";
 import { TaxonBrowserApiService } from "./services/taxon-browser-api.service";
 import { TaxonBrowserApiSettingsService, TaxonBrowserApiSettings } from "./services/taxon-browser-api-settings.service";
-
-import * as $ from 'jquery';
-import { Observable } from "rxjs";
 
 @Component({
     selector: "vrs-taxon-browser",
     styleUrls: ["taxon-browser.component.scss"],
     templateUrl: "taxon-browser.component.html",
-    providers: [TaxonBrowserApiService, TaxonBrowserApiSettingsService],
-    encapsulation: ViewEncapsulation.None
+    providers: [TaxonBrowserApiService, TaxonBrowserApiSettingsService]
 })
 export class TaxonBrowserComponent implements OnInit{
     @Input() EuList?:boolean = false;
@@ -42,6 +39,8 @@ export class TaxonBrowserComponent implements OnInit{
 
     itemsPerPage:number = 12;
 
+    private onLangChange:Subscription;
+
     constructor(private settingsService:TaxonBrowserApiSettingsService, private apiService: TaxonBrowserApiService, private translate: TranslateService) {
         
     }
@@ -56,11 +55,20 @@ export class TaxonBrowserComponent implements OnInit{
         let settings:TaxonBrowserApiSettings = {
             EuList: this.EuList,
             FiList: this.FiList,
-            informalTaxonGroup: this.tempInformal
+            informalTaxonGroup: this.tempInformal,
+            lang: this.translate.currentLang
         }
         this.settingsService.apiSettings = settings;
 
+        this.onLangChange = this.translate.onLangChange.subscribe((lang)=> {
+            this.settingsService.apiSettings.lang = lang;
+        })
+
         this.afterInit = true;
+    }
+
+    ngOnDestroy() {
+        this.onLangChange ? this.onLangChange.unsubscribe() : null;
     }
 
     getPage(page:number) {

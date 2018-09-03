@@ -10,6 +10,8 @@ export interface TaxonBrowserApiSettings {
 
     page?:number;
     total?:number;
+
+    lang?:string;
 }
 
 @Injectable()
@@ -30,6 +32,10 @@ export class TaxonBrowserApiSettingsService {
     }
     set informalTaxonGroup(s:Informal) {
         this._apiSettings.informalTaxonGroup = s;
+        this.eventEmitter.emit('change');
+    }
+    set lang(s:string) {
+        this._apiSettings.lang = s;
         this.eventEmitter.emit('change');
     }
 }

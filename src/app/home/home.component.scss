@@ -1,20 +1,21 @@
 @import '../../assets/styles/vars';
 
-.news-list {
-    padding-top: 1em;
+.news-items {
+    background: $desaturated-blue-light;
     text-align: center;
-    color: #999;
+    padding: 1em;
+    padding-top: 2em;
+    margin-bottom: 1em;
+    box-shadow: 1px 3px 5px -3px #333;
 }
 
-.news-list {
-    :hover {
-        cursor:pointer;
-        color: #666;
-        text-decoration: underline;
-    }
+.news-item {
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .home-content {
+    margin-top: $navbar-height + 20px;
     box-shadow: $container-shadow;
 }
 
@@ -68,18 +69,6 @@
     margin: 0.5em;
     margin-bottom: 0.75em;
     margin-right: 0em;
-    background: $desaturated-blue-lighter;
-    color: $text-light;
-    border-radius: $content-border-radius;
-    text-align: center;
-    border: 2px solid $border-light;
-    box-shadow: 0px 0px 5px 0px #999;
-}
-
-.quick-links-btn:hover {
-    cursor:pointer;
-    background: $primary;
-    color: $text-light;
 }
 
 .invasive-description {
@@ -99,15 +88,9 @@
 }
 
 .admin-list-container {
-    background: $desaturated-blue-lighter;
-    color: $text-light;
     height: 100%;
     width: 100%;
     padding: 1em;
-    border-radius: $content-border-radius;
-    text-align: center;
-    border: 2px solid $border-light;
-    box-shadow: 0px 0px 5px 0px #999;
 
     cursor: pointer;
     &:hover{

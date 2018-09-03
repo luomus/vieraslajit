@@ -67,3 +67,7 @@
 .match:hover {
   color: $primary;
 }
+
+.match.active {
+  cursor: default;
+}

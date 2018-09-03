@@ -1,10 +1,6 @@
-import { Component, OnInit, OnDestroy, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { InformationService } from '../shared/service/information.service';
-import { Information } from '../shared/model/Information';
-import { ActivatedRoute, Router, NavigationEnd, RouterLink } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
-import { filter } from '../../../node_modules/rxjs/operators';
+import { Router } from '@angular/router';
 
 /**
  * Renders content from CMS.
@@ -23,26 +19,17 @@ export class StaticComponent implements OnInit, OnChanges {
 
   public scontent: Object;
   @Input() id: string;
-  private subTrans: Subscription;
   child_pages: Array<any>;
 
   constructor(public informationService: InformationService, 
-    private router: Router, private translate: TranslateService) { }
-
-  /**
-   * Captures 'id' from url route and passes it to getInformation(id)
-   */ 
+    private router: Router) { }
 
   ngOnInit() {
-    this.subTrans = this.translate.onLangChange.subscribe(this.loadHomePage.bind(this));
+
   }
 
   ngOnChanges() {
     this.getInformation(this.id);
-  }
-  
-  loadHomePage(){
-      this.router.navigate(['./home']);
   }
 
   /**
@@ -64,7 +51,4 @@ export class StaticComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnDestroy() {
-    this.subTrans.unsubscribe();
-  }
 }

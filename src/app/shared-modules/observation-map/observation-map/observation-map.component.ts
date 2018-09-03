@@ -1,7 +1,7 @@
 import { Component, Input, AfterViewInit, ViewChild, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 
-import { UserService, Role } from '../../../shared/service/user.service';
+import { UserService } from '../../../shared/service/user.service';
 import { ObsMapOptions, ObsMapOption } from './structures/data/ObsMapOptions';
 import { MapApiController } from './structures/controllers/MapApiController';
 import { MapController } from './structures/controllers/MapController';
@@ -20,7 +20,6 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   @Input() mapHeight?: number = 400;
   @Input() taxonSearchEnabled?: boolean = false;
   @Input() municipalitySelectEnabled?: boolean = false;
-  @Input() adminModeSelectorEnabled?: boolean = false;
   @Input() ownModeSelectorEnabled?: boolean = false;
   @Input() ownModeEnabled?: boolean = false;
 
@@ -35,8 +34,6 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   private municipalities:Array<any> = [];
 
   /* Filters */
-  private adminMode = false;
-  isAdmin = UserService.hasRole(Role.CMS_ADMIN);
   isLoggedIn = UserService.loggedIn();
 
   constructor(private obsMapOptions:ObsMapOptions, private mapApiController:MapApiController, private mapController:MapController) {}
@@ -89,10 +86,6 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     $('#select-municipality').change(() => {
       this.obsMapOptions.setOption("municipality", $('#select-municipality').val());
     });
-  }
-
-  adminModeChange() {
-    this.obsMapOptions.setOption("adminMode", this.adminMode);
   }
 
   ownModeChange() {

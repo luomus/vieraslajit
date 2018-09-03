@@ -73,8 +73,8 @@ export class MapController {
         },
         getFeatureStyle: ():PathOptions=>{
           let p:PathOptions = {
-            color: this.obsMapOptions.getOption("adminMode")?"#ff0000":"#f89525",
-            fillColor: this.obsMapOptions.getOption("adminMode")?"#ff0000":"#f89525",
+            color: "#f89525",
+            fillColor: "#f89525",
           }
           return p;
         },

@@ -1,27 +1,24 @@
-import { Component, OnInit, Input, OnDestroy, ViewEncapsulation, NgZone, ChangeDetectorRef } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { Observable ,  Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { PagedResult } from '../../shared/model/PagedResult';
-import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../../shared/model/Taxonomy';
+import { Taxonomy, TaxonomyImage } from '../../shared/model/Taxonomy';
 import { TaxonService } from '../../shared/service/taxon.service';
 import { Informal } from '../../shared/model/Informal';
-import { TranslateService, TranslatePipe } from '@ngx-translate/core';
-import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.component'
+import { TranslateService } from '@ngx-translate/core';
 import * as $ from 'jquery';
 
 
 @Component({
   selector: 'vrs-taxon-list',
   templateUrl: './taxon-list.component.html',
-  styleUrls: ['./taxon-list.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./taxon-list.component.scss']
 })
 export class TaxonListComponent implements OnInit, OnDestroy {
 
   @Input() search = '';
-  private subTrans: Subscription;
-  private navSub: Subscription;
+  private onLangChange: Subscription;
   public loading = true;
   id: string;
   taxa: Taxonomy[];
@@ -49,13 +46,7 @@ export class TaxonListComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.subTrans = this.translate.onLangChange.subscribe(this.update.bind(this));
-    /* this.navSub = this.router.events.subscribe((e: any) => {
-      if (e instanceof NavigationEnd) {
-        this.showGroups = true;
-        this.selectedGroup = null;
-      }
-    }) */
+    this.onLangChange = this.translate.onLangChange.subscribe(this.update.bind(this));
     this.update();
   }
 
@@ -149,19 +140,9 @@ export class TaxonListComponent implements OnInit, OnDestroy {
     $('html, body').animate({ scrollTop: 0 }, 0);
   }
 
-  pageChanged(event) {
-    let start = (event.page - 1) * event.itemsPerPage;
-    let end = start + event.itemsPerPage;
-    this.pageData = this.taxa.slice(start, end);
-    this.onPageChange();
-  }
-
   ngOnDestroy() {
-    this.subTrans.unsubscribe();
-    if (this.navSub) {
-      this.navSub.unsubscribe();
-    }
-    this.paramsSub.unsubscribe();
+    this.onLangChange ? this.onLangChange.unsubscribe() : null;
+    this.paramsSub ? this.paramsSub.unsubscribe() : null;
   }
 
 }
