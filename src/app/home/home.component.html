@@ -7,23 +7,20 @@
         </div></div>
     </div></div>
     <div class="first-segment">
-        <!-- <ul class="list-inline quick-links-list">
-            <li class="list-inline-item">Ilmoita vieraslajihavainto</li>
-            <li class="list-inline-item">|</li>
-            <li class="list-inline-item">Apua lajitunnistukseen</li>
-            <li class="list-inline-item">|</li>
-            <li class="list-inline-item">Selaa vieraslajeja</li>
-        </ul> -->
+        <div class="row" *ngFor="let n of alerts"><div class="container-fluid"><div class="col-12 alert-bar">
+            {{n.title}}
+        </div></div></div>
         <div class="container">
             <div class="row news-items">
                 <div class="col-4 news-item" *ngFor="let n of news; last as l">
-                    {{n.title}}
+                    <span routerLink="/news" class="news-title">{{(n.title.length > 80)? (n.title | slice:0:80)+'..':(n.title)}}</span>
                     <hr>
+                    <span class='news-date'>{{n.posted | date: 'dd.MM.yyyy HH:MM' }}</span>
                 </div>
             </div>
 
 
-            <div class="row">
+            <div class="row invasive-description-row">
                 <div class="col-4">
                     <ul class="quick-links">
                         <li class="quick-links-btn vrs-button" [routerLink]="['/form/JX.123757']">Ilmoita vieraslajihavainto</li>

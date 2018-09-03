@@ -3,8 +3,7 @@
 .news-items {
     background: $desaturated-blue-light;
     text-align: center;
-    padding: 1em;
-    padding-top: 2em;
+
     margin-bottom: 1em;
     box-shadow: 1px 3px 5px -3px #333;
 }
@@ -12,6 +11,29 @@
 .news-item {
     padding-top: 1em;
     padding-bottom: 1em;
+    color: $desaturated-blue;
+
+    cursor:pointer;
+    
+    .news-title {
+        display:block;
+        height: 2.5em;
+    }
+    
+    .news-date {
+        color: $text-dark-muted;
+    }
+
+    &:hover {
+        background: $desaturated-blue-lighter;
+        color: $primary;
+        hr {
+            border-color: $primary;
+        }
+        .news-date {
+            color: $primary;
+        }
+    }
 }
 
 .home-content {
@@ -52,6 +74,12 @@
     background: $background-light;
 }
 
+.alert-bar {
+    text-align: center;
+    background: $alert;
+    border: 1px solid $alert-dark;
+}
+
 .quick-links-list {
     text-align: center;
 }
@@ -76,14 +104,19 @@
     font-size: $font-size-regular;
 }
 
+.invasive-description-row {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
 .first-segment hr {
     width: 80%;
 }
 
 .exotic-pets-bg {
     color: $text-dark;
-    padding-top: 2em;
-    padding-bottom: 2em;
+    padding-top: 3em;
+    padding-bottom: 3em;
     padding-right: 1em;
 }
 
