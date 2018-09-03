@@ -26,12 +26,12 @@
 
     &:hover {
         background: $desaturated-blue-lighter;
-        color: $primary;
+        color: $text-light;
         hr {
-            border-color: $primary;
+            border-color: $text-light-muted;
         }
         .news-date {
-            color: $primary;
+            color: $text-light-muted;
         }
     }
 }
