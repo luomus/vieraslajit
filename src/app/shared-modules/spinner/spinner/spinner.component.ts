@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'laji-spinner',
   template: `
-  <div id="loader-wrapper"
+  <div [ngClass]="{'loader-wrapper': fullViewport}"
   *ngIf="spinning"
   [ngClass]="{'overlay-spinner': overlay, 'light': light}">
   <div id="loader"></div>
@@ -17,6 +17,7 @@ export class SpinnerComponent implements OnInit {
   @Input() overlay = false;
   @Input() light = false;
   @Input() hideContentWhileLoading = false;
+  @Input() fullViewport = true;
 
   constructor() { }
 
