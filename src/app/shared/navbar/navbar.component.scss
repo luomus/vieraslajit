@@ -2,8 +2,7 @@
 
 $accent: $primary;
 
-$background: $background-light;
-$background-hover: $background;
+$background: $desaturated-blue;
 
 .container.container-navbar {
     padding: 0;
@@ -100,18 +99,22 @@ $background-hover: $background;
     }
 }
 
-#dropdown-menu-item {
+#dropdown-menu.dropdown-menu.show {
     background: $background;
+    opacity: 0.9;
+}
+
+#dropdown-menu-item {
     display: flex;
     align-items: center;
-    color: $text-dark-lighter;
+    color: $text-light;
     font-family: $font-montserrat;
     font-weight: 400;
 }
 
 #dropdown-menu-item:hover {
     color: $text-hover;
-    background: $background-hover;
+    background: $background-light;
 }
 
 .dropdown-menu {
@@ -155,15 +158,22 @@ $background-hover: $background;
     color:$accent;
 }
 
+#dropdown-user ul#dropdown-basic.dropdown-menu-right.show {
+    background: $background;
+    opacity: 0.9;
+    color: $text-light;
+    .dropdown-item {
+        color: $text-light;
+        &:hover {
+            color: $text-hover;
+        }
+    }
+}
+
 .usermenuitem {
     cursor: pointer;
     font-family: $font-montserrat;
     font-weight: 400;
-}
-
-.usermenuitem:hover {
-    color: $text-hover;
-    background: none;
 }
 
 /* Language Selector */
