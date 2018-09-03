@@ -41,7 +41,7 @@ export class NewsComponent implements OnInit, OnDestroy {
     .pipe(tap(res=>{this.totalItems = res.total;
                     this.currentPage = page }),
           map(res=>res.results));
-    $('html, body').animate({ scrollTop: 0 }, 500);
+    $('html, body').animate({ scrollTop: 0 }, 200);
   }
 
   onClick(tags:string, id){

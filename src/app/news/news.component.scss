@@ -1,6 +1,14 @@
 @import './../../assets/styles/vars.scss';
 @import './../../../node_modules/bootstrap/scss/bootstrap-grid';
 
+:host ::ng-deep .top-pagination {
+    ul.ngx-pagination {
+        margin: 0em;
+        margin-top: 6px;
+        float: right;
+    }
+}
+
 .news-post {
     padding: 1em;
 }
