@@ -26,6 +26,7 @@ export class TaxonBrowserApiService {
 
     initialize() {
         this.settingsService.eventEmitter.addListener("change", ()=>{
+            console.log("change in settings");
             this.updateQuery();
             this.updateTaxa();
         });
@@ -41,15 +42,10 @@ export class TaxonBrowserApiService {
 
     updateTaxa() {
         this.asyncTaxa = this.apiService.taxonomyFindById(LajiApi.Endpoints.taxonSpecies, 'MX.37600', this.query).pipe(
-            tap((res)=>{this.settingsService.apiSettings.total = res.total}),
+            tap((res)=>{this.settingsService.apiSettings.total = res.total;
+                        this.eventEmitter.emit('done');}),
             map(res=>res.results)
         );
         this.eventEmitter.emit('change');
-    }
-
-    updatePage():Observable<Taxonomy[]> {
-        return this.apiService.taxonomyFindById(LajiApi.Endpoints.taxonSpecies, 'MX.37600', this.query).pipe(
-            map(res=>res.results)
-        );
     }
 }

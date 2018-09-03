@@ -41,7 +41,12 @@ export class TaxonBrowserComponent implements OnInit{
 
     private onLangChange:Subscription;
 
-    constructor(private settingsService:TaxonBrowserApiSettingsService, private apiService: TaxonBrowserApiService, private translate: TranslateService) {
+    // Spinner
+    loading = true;
+
+    constructor(private settingsService:TaxonBrowserApiSettingsService,
+        private apiService: TaxonBrowserApiService,
+        private translate: TranslateService) {
         
     }
 
@@ -50,6 +55,11 @@ export class TaxonBrowserComponent implements OnInit{
 
         this.apiService.eventEmitter.addListener('change', ()=>{
             this.asyncTaxa = this.apiService.asyncTaxa;
+        });
+
+        this.apiService.eventEmitter.addListener('done', ()=>{
+            console.log("hi");
+            this.loading=false;
         });
 
         let settings:TaxonBrowserApiSettings = {
@@ -72,6 +82,7 @@ export class TaxonBrowserComponent implements OnInit{
     }
 
     getPage(page:number) {
+        this.loading=true;
         let settings:TaxonBrowserApiSettings = {page: page};
         this.settingsService.apiSettings = settings;
         this.currentPage = page;

@@ -1,13 +1,17 @@
 <tabset id='browser-tabset'>
     <tab heading="{{'navigation.list' | translate}}">
+        <laji-spinner [fullViewport]='false' [spinning]="loading" [hideContentWhileLoading]='true'>
         <div class="tab-pane container " id="taxontable">
             <vrs-taxon-browser-list [asyncTaxa]='asyncTaxa | async'></vrs-taxon-browser-list>
         </div>
+        </laji-spinner>
     </tab>
     <tab heading="{{'navigation.grid' | translate}}"[active]="true">
         <div class="tab-pane container py-3" id="cardcontainer">
+            <laji-spinner [fullViewport]='false' [spinning]="loading" [hideContentWhileLoading]='true'>
             <vrs-taxoncard-grid [taxa]="asyncTaxa | async | paginate:
             {id: 'server', itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: getTotalItems()}"></vrs-taxoncard-grid>
+            </laji-spinner>
         </div>
     </tab>
     <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
