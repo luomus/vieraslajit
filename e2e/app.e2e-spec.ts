@@ -7,7 +7,7 @@ describe('vieraslajit App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  /* it('should display welcome message', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('VIERASLAJIT.FI');
   });
@@ -20,5 +20,5 @@ describe('vieraslajit App', () => {
   it('should display login message when navigated to form and user is not logged in', () => {
     page.navigateToForm();
     expect(page.getText()).toEqual('Kirjaudu ensin sisään.');
-  });
+  }); */
 });
