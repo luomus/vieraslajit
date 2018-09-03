@@ -2,6 +2,7 @@
 
 body {
     padding: 0px;
+    color: $text-dark;
 }
 
 .vrs-content {
@@ -14,5 +15,5 @@ body {
 
 .vrs-content {
     min-height: 600px;
-    margin-top: 76px;
+    margin-top: $navbar-height;
 }

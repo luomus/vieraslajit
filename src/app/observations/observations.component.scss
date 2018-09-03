@@ -2,36 +2,13 @@
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
-@import '../../assets/styles/card';
 
 .navButton {
     display: inline-block;
     font-size: 14px;
-    border-color: $primary;
-    border-width: 2px;
-    border-radius: $content-border-radius;
     padding: 0.8em;
     margin-left: 1em;
-    color: $primary;
-    background: $background-light;
     white-space: nowrap;
-    text-align: center;
-    border-style: solid;
-    cursor: pointer;
-
-    :focus {
-        outline: 0;
-    }
-
-    :hover {
-        background-color: $primary;
-        color: $background-light;
-    }
-
-    :active {
-        background-color: $primary;
-        color: $background-light;
-    }  
 }
 
 #heading {

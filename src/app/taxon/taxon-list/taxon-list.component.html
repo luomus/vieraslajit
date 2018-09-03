@@ -1,10 +1,6 @@
 <laji-spinner [spinning]="loading"></laji-spinner>
 
-<div class="container">
-  <br>
-  <div id="omnisearch">
-    <vrs-omnisearch></vrs-omnisearch>
-  </div>
+<div class="container main-container">
   <br>
   <div id="accordion" role="tablist" aria-multiselectable="true">
     <accordion>
@@ -23,7 +19,7 @@
 
             <ng-container>
               <div class="card-deck container">
-                <div *ngFor="let group of groups" (click)="onGroupSelect(group)" class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                <div *ngFor="let group of groups" (click)="this.router.navigate(['/taxon/informal', group.id]);" class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                   <div class="card" id="selectGroup-card" (click)="changeOpen()">
                     <div class="card-body" id="selectGroup-card-body">
                        <img class="card-header bg-transparent card-img-top img-responsive" id="selectGroup-img" src="assets/images/taxon-groups/{{group.id}}.svg" alt="loading..">

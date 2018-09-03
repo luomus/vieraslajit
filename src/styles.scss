@@ -7,6 +7,8 @@
 
 @import './assets/styles/card';
 @import './assets/styles/tabset.scss';
+@import './assets/styles/buttons.scss';
+
 
 html {
     min-height: 100%;
@@ -16,6 +18,7 @@ html {
 
 body {
     min-height: 100%;
+    background: $background-darker;
 }
 
 html,body {
@@ -38,7 +41,7 @@ html,body {
   }
 
 .vrs-logo-img {
-    content:url(./assets/images/logos/vieraslaji-logo-160x160.png);
+    content:url(./assets/images/logos/vieraslaji-logo-160x160_cleaned.png);
 }
 
 /* ngx-pagination */

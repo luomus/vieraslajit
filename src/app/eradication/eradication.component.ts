@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class EradicationComponent implements OnInit, OnDestroy {
 
-  private subTrans: Subscription;
+  private onLangChange: Subscription;
   staticInfoID: string;
   staticGuidesID: string;
 
@@ -19,7 +19,7 @@ export class EradicationComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.setStaticID(this.translate.currentLang);
-    this.subTrans = this.translate.onLangChange.subscribe((event) => {
+    this.onLangChange = this.translate.onLangChange.subscribe((event) => {
       this.setStaticID(event.lang);
     });
   }
@@ -30,9 +30,7 @@ export class EradicationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.subTrans) {
-      this.subTrans.unsubscribe();
-    }
+    this.onLangChange ? this.onLangChange.unsubscribe() : null;
   }
 
 }

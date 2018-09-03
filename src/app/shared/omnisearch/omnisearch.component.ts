@@ -9,7 +9,10 @@ import {
   Output,
   ViewContainerRef,
   OnChanges,
-  OnDestroy
+  OnDestroy,
+  AfterViewInit,
+  ElementRef,
+  ViewChild
 } from '@angular/core';
 import { Autocomplete } from '../../shared/model/Autocomplete';
 import { WarehouseQueryCount } from '../../shared/model/Warehouse'
@@ -33,7 +36,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./omnisearch.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
+export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
 
   @Input() placeholder: string;
   @Input() limit: 10;
@@ -55,7 +58,12 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   private inputChange: Subscription;
   private el: Element;
 
+  private resultsDirection = 'right';
 
+  // Informal Taxon Group ID of currently selected taxon
+  private groupId = 'MVL.1';
+
+  @ViewChild('omniElement') omniElement: ElementRef;
 
 
   constructor(
@@ -77,6 +85,14 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
       this.updateTaxa();
     })
   }
+
+  ngAfterViewInit() {
+    if(($(this.omniElement.nativeElement).position().left - $(this.omniElement.nativeElement).width()) > ($(window).width() / 2)) {
+      this.resultsDirection = 'left';
+    } else {
+      this.resultsDirection = 'right';
+    }
+  }
   
   ngOnChanges() {
     this.updateTaxa();
@@ -86,10 +102,14 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
     if (this.inputChange) {
       this.inputChange.unsubscribe();
     }
-
+    if (this.subCnt) {
+      this.subCnt.unsubscribe();
+    }
+    if (this.subTaxa) {
+      this.subTaxa.unsubscribe();
+    }
   }
   close() {
-    console.log("close");
     this.searchControl.setValue('');
     this.search = '';
     this.taxa = [];
@@ -97,6 +117,18 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy {
   }
   activate(index: number): void {
     if (this.taxa[index]) {
+
+      // show the right informal group image
+      let compatibleTaxonGroups = ['MVL.1', 'MVL.2', 'MVL.21', 'MVL.22', 'MVL.26', 'MVL.27', 'MVL.28',
+                                   'MVL.37', 'MVL.39', 'MVL.40', 'MVL.41', 'MVL.232', 'MVL.233'];
+      compatibleTaxonGroups.forEach(g => {
+        this.taxa[index].payload.informalTaxonGroups.forEach(t => {
+          if(t.id == g) {
+            this.groupId = g;
+          }
+        });
+      });
+
       this.active = index;
       this.taxon = this.taxa[index];
       this.subCnt = of(this.taxon.key).pipe(

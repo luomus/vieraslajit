@@ -15,15 +15,6 @@
     margin-top: 10px;
 }
 
-.cardAccordion{
-    background-color: #2C3539 !important;
-    color: white; 
-}
-
-#accordion:hover {
-    color: $primary;
-    cursor: pointer;
-}
 .cursive {
     font-style: oblique;
 }
@@ -81,18 +72,13 @@
     background-color: $primary;
 }
 
-.modal-image {
-    width: 100%;
-    height: 100%;
-}
-
 .carousel-control-next-icon {
     background-image: none;
 }
 .carousel-control-next-icon:before {
     @extend %glyphicon;
     @extend %glyphicon-chevron-right:before;
-    color: $primary;
+    color: rgba(255,255,255,0.5);
 }
 
 .carousel-control-prev-icon {
@@ -101,7 +87,12 @@
 .carousel-control-prev-icon:before {
     @extend %glyphicon;
     @extend %glyphicon-chevron-left:before;
-    color: $primary;
+    color: rgba(255,255,255,0.5);
+}
+
+.modal-image {
+    width: 100%;
+    height: 100%;
 }
 
 /* Glyphicons */

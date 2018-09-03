@@ -3,13 +3,13 @@
     <div class= "row justify-content-between">
         <h1 id="heading" translate>observations.all</h1>
         <ul id="navButtons">
-            <a class="navButton" routerLink="/form/JX.123757" translate>observations.form.sighting</a>
-            <a class="navButton" routerLink="/form/MHL.9" translate>observations.form.help</a>
+            <span class="navButton vrs-button" routerLink="/form/JX.123757" translate>observations.form.sighting</span>
+            <span class="navButton vrs-button" routerLink="/form/MHL.9" translate>observations.form.help</span>
         </ul>
     </div>
     </div>
     <div class="p-4 card card-body">
-            <vrs-observation-map [listEnabled]="true" [adminModeSelectorEnabled]=true [ownModeSelectorEnabled]=true [ownModeEnabled]=ownMode [municipalitySelectEnabled]=true
+            <vrs-observation-map [listEnabled]="true" [ownModeSelectorEnabled]=true [ownModeEnabled]=ownMode [municipalitySelectEnabled]=true
             [taxonSearchEnabled]="true" [mapHeight]="600" [id]="id"></vrs-observation-map>
     </div>
 </div>

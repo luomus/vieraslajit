@@ -1,5 +1,165 @@
 @import '../../assets/styles/vars';
 
+.news-items {
+    background: $desaturated-blue-light;
+    text-align: center;
+
+    margin-bottom: 1em;
+    box-shadow: 1px 3px 5px -3px #333;
+}
+
+.news-item {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: $desaturated-blue;
+
+    cursor:pointer;
+    
+    .news-title {
+        display:block;
+        height: 2.5em;
+    }
+    
+    .news-date {
+        color: $text-dark-muted;
+    }
+
+    &:hover {
+        background: $desaturated-blue-lighter;
+        color: $primary;
+        hr {
+            border-color: $primary;
+        }
+        .news-date {
+            color: $primary;
+        }
+    }
+}
+
+.home-content {
+    margin-top: $navbar-height + 20px;
+    box-shadow: $container-shadow;
+}
+
+.header-container {
+}
+.home-header-img {
+    height: 300px;
+    width: 100%;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 20%, rgba(50, 50, 50, .0)), url('../../assets/images/bgs/iibis_cropped2.png');
+    background-position: left top;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+.portal-description-parent {
+    height: 300px;
+    display: table;
+}
+.portal-heading {
+    color: $text-light;
+    font-size: 32px;
+}
+.portal-description {
+    display: table-cell;
+    padding: 2em;
+    font-family: $font-montserrat;
+    font-weight: 400;
+    font-size: 20px;
+    color: $text-light-muted;
+    vertical-align: middle;
+}
+
+.first-segment {
+    min-height: 500px;
+    background: $background-light;
+}
+
+.alert-bar {
+    text-align: center;
+    background: $alert;
+    border: 1px solid $alert-dark;
+}
+
+.quick-links-list {
+    text-align: center;
+}
+
+.quick-links {
+    padding: 1em;
+    margin-top: 1em;
+    padding-right: 0em;
+    list-style: none;
+    font-size: $font-size-regular;
+}
+
+.quick-links-btn {
+    padding: 0.5em;
+    margin: 0.5em;
+    margin-bottom: 0.75em;
+    margin-right: 0em;
+}
+
+.invasive-description {
+    padding: 2em;
+    font-size: $font-size-regular;
+}
+
+.invasive-description-row {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.first-segment hr {
+    width: 80%;
+}
+
+.exotic-pets-bg {
+    color: $text-dark;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    padding-right: 1em;
+}
+
+.admin-list-container {
+    height: 100%;
+    width: 100%;
+    padding: 1em;
+
+    cursor: pointer;
+    &:hover{
+        background: $primary;
+    }
+}
+
+.eu-list-img {
+    height: 100px;
+    width: 100px;
+}
+
+.fi-list-img {
+    height: 100px;
+    width: 100px;
+}
+
+
+.exotic-pet-container {
+    margin: 1em;
+    padding: 1em;
+}
+
+.exotic-pets {
+    height: 300px;
+    width: 400px;
+    margin-left: 1em;
+    border-radius: $content-border-radius;
+    background-image: url('../../assets/images/bgs/piisami_cropped.png');
+    background-position: left top;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+
+
+
 .jumbotron {
     background: url("../../assets/images/bgs/vieraslajit-home-bg.png") center;
     background-size: 105%;

@@ -12,12 +12,12 @@
   -webkit-box-shadow: none !important;
 }
 .tab-content {
-    background: #fff;
+    background: $background-light;
     padding-left: 1.5em;
     padding-right: 1.5em;
-    border-right: 1px solid #dee2e6;
-    border-left: 1px solid #dee2e6;
-    border-bottom: 1px solid #dee2e6;
+    border-right: 1px solid $border-light;
+    border-left: 1px solid $border-light;
+    border-bottom: 1px solid $border-light;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -25,20 +25,27 @@
 ul.nav.nav-tabs {
     padding-left: 1.5em;
     padding-top: 1em;
-    background: whitesmoke;
-    border: 1px solid #dee2e6;
+    background: $desaturated-blue-lighter;
+    border: 1px solid $border-light;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
 .nav-tabs li.nav-item a.nav-link {
-    background: whitesmoke;
-    border-bottom: 1px solid #dee2e6;
+    background: $desaturated-blue-lighter;
+    color: $text-light;
+    border-bottom: 1px solid $border-light;
+    &:hover {
+        color: $primary;
+        border-color: $desaturated-blue-lighter;
+        border-bottom-color: $background-light;
+    }
 }
 
 .nav-tabs li.nav-item a.nav-link.active {
-    background: white;
-    border-bottom-color: white;
+    background: $background-light;
+    border-bottom-color: $background-light;
+    color: $primary;
 }
 
 .ngx-datatable.material {
@@ -47,5 +54,5 @@ ul.nav.nav-tabs {
 }
 
 .nav-tabs > .nav-item .active {
-    background-color: whitesmoke;
+    background-color: $background-darker-accent;
 }

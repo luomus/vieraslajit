@@ -1,108 +1,31 @@
-<laji-spinner [spinning]="loading"></laji-spinner>
+<div class="container">
+  <br>
+  <div class="float-right">
+    <button class="btn btn-secondary btn-sm" routerLink='/taxon/{{taxonId}}' translate>
+      <span class="oi oi-action-undo"></span> comparison.return</button>
+  </div>
 
-<ng-container *ngIf=!loading>
-  <div class="container">
-    <div>
-      <h1 translate>comparison.title</h1>
-      <p translate>comparison.info
-      </p>
-    </div>
+  <laji-spinner [spinning]="loading"></laji-spinner>
 
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card" *ngIf="taxon">
-          <div class="card-header">
-            <span *ngIf="taxon?.vernacularName">{{taxon?.vernacularName}}</span>
-            <span *ngIf="!taxon?.vernacularName">{{taxon?.scientificName}}</span>
-          </div>
-          <div class="card-block">
-            <carousel [interval]="false">
-              <slide class="card-slide slide" *ngFor="let image of media">
-                <img class="img-fluid center-block" src="{{image.fullURL}}" id="multimedia" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                </div>
-              </slide>
-            </carousel>
-          </div>
-          <div class="card-block">
-            <div class="card-body">
-              <div>
-                <strong>{{'taxon.name' | translate}}</strong>
-                {{taxon?.vernacularName}}
-              </div>
-              <div>
-                <strong>{{'taxon.scientific' | translate}}</strong>
-                <em>{{taxon?.scientificName}}</em>
-              </div>
-              <ng-container *ngIf="taxon?.administrativeStatuses">
-                <div>
-                  <ul>
-                    <li *ngFor="let status of taxon.administrativeStatuses">
-                      {{status | label: 'MX.adminStatusEnum':lang | async}}
-                    </li>
-                  </ul>
-                </div>
-              </ng-container>
-              <div>
-                <strong>{{'taxon.establishedFin' | translate}}</strong>
-                <span translate>{{taxon?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
-              </div>
-              <div>
-                <strong>{{'taxon.occurrence' | translate}}</strong>
-                <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum':lang | async) || 'taxon.unknown' | translate
-                  }}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+  <ng-container *ngIf=!loading>
+    <div class="container">
+      <div>
+        <h1 translate>comparison.title</h1>
+        <p translate>comparison.info
+        </p>
       </div>
-      <ng-container *ngIf="!hasTaxonomys()">
+
+      <div class="row">
         <div class="col-md-6">
-          <br>
-          <h3 translate>
-            comparison.nocomparison
-          </h3>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="hasTaxonomys()">
-        <div class="col-md-6">
-          <div class="card">
+          <div class="card" *ngIf="taxon">
             <div class="card-header">
-              <div class="row">
-                <div class="col-6">
-                  <div class="dropdown" id="carouseldropdown" dropdown>
-                    <a dropdownToggle class="dropdown-toggle" aria-controls="dropdown-basic">
-                      {{selected?.vernacularName || selected?.scientificName}}
-                      <span class="caret"></span>
-                    </a>
-                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu">
-                      <li *ngFor="let taxon of taxonomy; let i = index" (click)="changeSelected(i)" role="menuitem">
-                        <a *ngIf="taxon?.vernacularName" class="dropdown-item" id="carouselmenuitem">{{taxon?.vernacularName}}</a>
-                        <a *ngIf="!taxon?.vernacularName" class="dropdown-item" id="carouselmenuitem">{{taxon?.scientificName}}</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="row">
-                    <div class="col-3">
-                      <button (click)="prev()" class="btn btn-primary btn-sm oi oi-caret-left icon float-left" id="caret-left"></button>
-                    </div>
-                    <div class="col-6 text-center" id="currentindex">
-                      {{current + 1}} / {{taxonomy?.length}}
-                    </div>
-                    <div class="col-3">
-                      <button (click)="next()" class="btn btn-primary btn-sm oi oi-caret-right icon float-right" id="caret-right"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <span *ngIf="taxon?.vernacularName">{{taxon?.vernacularName}}</span>
+              <span *ngIf="!taxon?.vernacularName">{{taxon?.scientificName}}</span>
             </div>
             <div class="card-block">
               <carousel [interval]="false">
-                <slide class="card-slide slide" *ngFor="let media of selected?.multimedia">
-                  <img class="img-fluid center-block" src="{{media.fullURL}}" id="multimedia" alt="First slide">
+                <slide class="card-slide slide" *ngFor="let image of media">
+                  <img class="img-fluid center-block" src="{{image.fullURL}}" id="multimedia" alt="First slide">
                   <div class="carousel-caption d-none d-md-block">
                   </div>
                 </slide>
@@ -112,16 +35,16 @@
               <div class="card-body">
                 <div>
                   <strong>{{'taxon.name' | translate}}</strong>
-                  {{selected?.vernacularName}}
+                  {{taxon?.vernacularName}}
                 </div>
                 <div>
                   <strong>{{'taxon.scientific' | translate}}</strong>
-                  <em>{{selected?.scientificName}}</em>
+                  <em>{{taxon?.scientificName}}</em>
                 </div>
-                <ng-container *ngIf="selected?.administrativeStatuses">
+                <ng-container *ngIf="taxon?.administrativeStatuses">
                   <div>
                     <ul>
-                      <li *ngFor="let status of selected?.administrativeStatuses">
+                      <li *ngFor="let status of taxon.administrativeStatuses">
                         {{status | label: 'MX.adminStatusEnum':lang | async}}
                       </li>
                     </ul>
@@ -129,11 +52,11 @@
                 </ng-container>
                 <div>
                   <strong>{{'taxon.establishedFin' | translate}}</strong>
-                  <span translate>{{selected?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
+                  <span translate>{{taxon?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
                 </div>
                 <div>
                   <strong>{{'taxon.occurrence' | translate}}</strong>
-                  <span>{{(selected?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum':lang | async) || 'taxon.unknown' | translate
+                  <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum':lang | async) || 'taxon.unknown' | translate
                     }}
                   </span>
                 </div>
@@ -141,9 +64,94 @@
             </div>
           </div>
         </div>
-      </ng-container>
+        <ng-container *ngIf="!hasTaxonomys()">
+          <div class="col-md-6">
+            <br>
+            <h3 translate>
+              comparison.nocomparison
+            </h3>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="hasTaxonomys()">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="dropdown" id="carouseldropdown" dropdown>
+                      <a dropdownToggle class="dropdown-toggle" aria-controls="dropdown-basic">
+                        {{selected?.vernacularName || selected?.scientificName}}
+                        <span class="caret"></span>
+                      </a>
+                      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu">
+                        <li *ngFor="let taxon of taxonomy; let i = index" (click)="changeSelected(i)" role="menuitem">
+                          <a *ngIf="taxon?.vernacularName" class="dropdown-item" id="carouselmenuitem">{{taxon?.vernacularName}}</a>
+                          <a *ngIf="!taxon?.vernacularName" class="dropdown-item" id="carouselmenuitem">{{taxon?.scientificName}}</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="row">
+                      <div class="col-3">
+                        <button (click)="prev()" class="btn btn-primary btn-sm oi oi-caret-left icon float-left" id="caret-left"></button>
+                      </div>
+                      <div class="col-6 text-center" id="currentindex">
+                        {{current + 1}} / {{taxonomy?.length}}
+                      </div>
+                      <div class="col-3">
+                        <button (click)="next()" class="btn btn-primary btn-sm oi oi-caret-right icon float-right" id="caret-right"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-block">
+                <carousel [interval]="false">
+                  <slide class="card-slide slide" *ngFor="let media of selected?.multimedia">
+                    <img class="img-fluid center-block" src="{{media.fullURL}}" id="multimedia" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                    </div>
+                  </slide>
+                </carousel>
+              </div>
+              <div class="card-block">
+                <div class="card-body">
+                  <div>
+                    <strong>{{'taxon.name' | translate}}</strong>
+                    {{selected?.vernacularName}}
+                  </div>
+                  <div>
+                    <strong>{{'taxon.scientific' | translate}}</strong>
+                    <em>{{selected?.scientificName}}</em>
+                  </div>
+                  <ng-container *ngIf="selected?.administrativeStatuses">
+                    <div>
+                      <ul>
+                        <li *ngFor="let status of selected?.administrativeStatuses">
+                          {{status | label: 'MX.adminStatusEnum':lang | async}}
+                        </li>
+                      </ul>
+                    </div>
+                  </ng-container>
+                  <div>
+                    <strong>{{'taxon.establishedFin' | translate}}</strong>
+                    <span translate>{{selected?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
+                  </div>
+                  <div>
+                    <strong>{{'taxon.occurrence' | translate}}</strong>
+                    <span>{{(selected?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum':lang | async) || 'taxon.unknown' | translate
+                      }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <br>
+      <br>
     </div>
-    <br>
-    <br>
-  </div>
 </ng-container>
+</div>

@@ -1,18 +1,18 @@
 <div class="language-selector">
 	  <!-- <span class="oi oi-globe"></span> -->
-  <span *ngIf="translate.currentLang == 'fi'">
+  <ng-container *ngIf="translate.currentLang == 'fi'">
     <a (click)="switchLanguage('en')">EN</a>
 	    |
 	  <a (click)="switchLanguage('sv')">SV</a>
-  </span>
-  <span *ngIf="translate.currentLang == 'en'">
+  </ng-container>
+  <ng-container *ngIf="translate.currentLang == 'en'">
     <a (click)="switchLanguage('fi')">FI</a>
 	    |
     <a (click)="switchLanguage('sv')">SV</a>
-  </span>
-  <span *ngIf="translate.currentLang == 'sv'">
+  </ng-container>
+  <ng-container *ngIf="translate.currentLang == 'sv'">
     <a (click)="switchLanguage('fi')">FI</a>
 	    |
     <a (click)="switchLanguage('en')">EN</a>
-  </span>
+  </ng-container>
 </div>

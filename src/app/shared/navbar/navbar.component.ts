@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   loggedIn = false;
   menu: Array<any> = new Array();
   loginSub: Subscription;
-  translateSub: Subscription;
+  private onLangChange: Subscription;
   rootId: string = "";
   currentId: string= "";
   private dropdown_user_bound = false;
@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   }
 
   ngOnInit() {
-    this.translate.onLangChange.subscribe((event) =>{
+    this.onLangChange = this.translate.onLangChange.subscribe((event) =>{
       this.setCMSRootId(event.lang);
       this.update();
     });  
@@ -110,7 +110,8 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   }
 
   ngOnDestroy(){
-    this.loginSub.unsubscribe();
+    this.loginSub ? this.loginSub.unsubscribe() : null;
+    this.onLangChange ? this.onLangChange.unsubscribe() : null;
   }
 
 }

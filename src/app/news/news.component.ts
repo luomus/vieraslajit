@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, Observable } from 'rxjs';
@@ -25,12 +25,12 @@ export class NewsComponent implements OnInit, OnDestroy {
   currentTags: string = "vieraslajit.fi";
 
   // Translate
-  private subTrans: Subscription;
+  private onLangChange: Subscription;
 
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
   ngOnInit() {
-    this.subTrans= this.translate.onLangChange.subscribe((event) =>{
+    this.onLangChange= this.translate.onLangChange.subscribe((event) =>{
       this.getPage(this.currentPage);
     });
     this.getPage(1);
@@ -57,7 +57,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.subTrans.unsubscribe();
+    this.onLangChange ? this.onLangChange.unsubscribe() : null;
   }
 
 }

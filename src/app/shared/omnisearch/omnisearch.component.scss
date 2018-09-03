@@ -1,3 +1,5 @@
+@import '../../../assets/styles/vars';
+
 .omni-search {
   margin-bottom: 0;
   margin-top: 5;
@@ -7,10 +9,18 @@
 }
 
 .omni-search-results {
+  // omnisearch on left side of page (open right)
+  &.right{
+    left: 0px;
+    right: auto;
+  }
+  // omnisearch on right side of page (open left)
+  &.left{
+    left: auto;
+    right: 0px;
+  }
   position: absolute;
   z-index: 1000;
-  left: 0;
-  right: 1px;
 
   background-color: #ffffff;
   padding: 10px;
@@ -21,11 +31,7 @@
   color: rgb(43, 42, 42);
   border-radius: 10px;
   min-width: 250px;
-  &.right {
-    right: 0;
-    left: auto;
-  }
-  .matches .active {
+ .matches .active {
     color:#fa7d09;
     font-weight: bold;
   }
@@ -53,30 +59,15 @@
   }
 }
 
-.omni {
-  -webkit-transition: all .4s;
-  -moz-transition: all .4s;
-  transition: all .4s;
-}
-
-
-.omni {
-  &.expandRight {
-    float: right;
-    padding-right: 20px;
-  }
-  &.expand {
-    width: 90px;
-    border-color: rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    &.open, &:focus {
-      width: 100%;
-      background-color: #fff;
-    }
-  }
-}
-
 .match {
   cursor: pointer;
   display: block;
+}
+
+.match:hover {
+  color: $primary;
+}
+
+.match.active {
+  cursor: default;
 }

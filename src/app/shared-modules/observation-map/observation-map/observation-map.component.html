@@ -10,12 +10,6 @@
     <div class="col-8" *ngIf="taxonSearchEnabled"><vrs-taxon-search></vrs-taxon-search></div>
   </div>
   
-  <div class="form-check vrs-map-checkbox" *ngIf="isAdmin && adminModeSelectorEnabled">
-    <input class="form-check-input" type="checkbox" value="" id="adminCheck" [checked]="adminMode" (change)="adminMode = !adminMode; adminModeChange()">
-    <label class="form-check-label" for="adminCheck">
-      Admin mode
-    </label>
-  </div>
   <div class="form-check vrs-map-checkbox" *ngIf="isLoggedIn && ownModeSelectorEnabled">
     <input class="form-check-input" type="checkbox" value="" id="ownCheck" [checked]="ownModeEnabled" (change)="ownModeEnabled = !ownModeEnabled; ownModeChange()">
     <label class="form-check-label" for="ownCheck">
@@ -23,12 +17,17 @@
     </label>
   </div>
 </div> <!-- col-7 -->
-<div class="col-5">
-  <ng-container *ngIf="selectedInfo">
+<div *ngIf="selectedInfo" class="col-5">
+  <div class="row">
+    <div class="col-3 selected-observation-left">
+      Havainto
+    </div>
+    <div class="col-9">
       <a [routerLink]="['/taxon/' + selectedInfo.id]">{{selectedInfo.taxonVerbatim.charAt(0).toUpperCase() + selectedInfo.taxonVerbatim.substr(1)}} (<i>{{selectedInfo.scientificName}}</i>)</a>
       <br>
       {{selectedInfo.team}}, {{selectedInfo.municipalityDisplayname}}, {{selectedInfo.displayDateTime}}
-  </ng-container>
+    </div>
+  </div>
 </div> <!-- col-5 -->
 </div> <!-- row -->
 <!-- Render list if list-mode enabled -->

@@ -29,10 +29,6 @@ export class MapApiController {
             this.obsMapObservations.removeAll();
             let observations = [];
             r.results.forEach(element => {
-                if(this.obsMapOptions.getOption("adminMode"!)) {
-                    element.gathering.conversions.wgs84CenterPoint.lon = this.randomizeCoordinates(element.gathering.conversions.wgs84CenterPoint.lon);
-                    element.gathering.conversions.wgs84CenterPoint.lat = this.randomizeCoordinates(element.gathering.conversions.wgs84CenterPoint.lat);
-                }
                 observations.push(element);
             });
             this.obsMapObservations.addObservations(observations);
