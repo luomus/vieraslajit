@@ -9,8 +9,8 @@
 }
 
 .news-item {
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
     color: $desaturated-blue;
 
     cursor:pointer;
@@ -25,13 +25,10 @@
     }
 
     &:hover {
-        background: $desaturated-blue-lighter;
+        background: $primary;
         color: $text-light;
-        hr {
-            border-color: $text-light-muted;
-        }
         .news-date {
-            color: $text-light-muted;
+            color: $text-light;
         }
     }
 }

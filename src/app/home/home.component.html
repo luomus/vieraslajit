@@ -14,7 +14,7 @@
             <div class="row news-items">
                 <div class="col-4 news-item" *ngFor="let n of news; last as l">
                     <span routerLink="/news" class="news-title">{{(n.title.length > 80)? (n.title | slice:0:80)+'..':(n.title)}}</span>
-                    <hr>
+                    <br>
                     <span class='news-date'>{{n.posted | date: 'dd.MM.yyyy HH:MM' }}</span>
                 </div>
             </div>
