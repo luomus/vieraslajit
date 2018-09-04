@@ -32,6 +32,7 @@ export class MapApiController {
                 observations.push(element);
             });
             this.obsMapObservations.addObservations(observations);
+            this.obsMapOptions.loadState=false;
         });
     }
 
@@ -49,11 +50,8 @@ export class MapApiController {
         if(this.obsMapOptions.getOption("personToken")) query["observerPersonToken"] = this.obsMapOptions.getOption("personToken");
         if(this.obsMapOptions.getOption("municipality")) query["finnishMunicipalityId"] = this.obsMapOptions.getOption("municipality");
 
+        this.obsMapOptions.loadState = true;
+        this.obsMapObservations.removeAll();
         return this.observationService.getObservations(query);
-    }
-
-    private randomizeCoordinates(coord){
-        let accuracy = 0.01;
-        return coord + (Math.random() * (accuracy - (-accuracy)) ) + (-accuracy);
     }
 }

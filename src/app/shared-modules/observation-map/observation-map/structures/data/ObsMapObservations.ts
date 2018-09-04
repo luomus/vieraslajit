@@ -5,7 +5,7 @@ import { ObservationMapModule } from "../../../observation-map.module";
 export interface VrsObservation {
     document?:any;
     gathering?: {
-        conversions?:Array<any>;
+        conversions?:{wgs84CenterPoint: {lat:number, lon:number}},
         displayDateTime?:string;
         gatheringId?:string;
         interpretations?:{
@@ -20,7 +20,8 @@ export interface VrsObservation {
         linkings?:any,
         recordBasis?:string,
         taxonVerbatim?:string,
-        unitId?:string
+        unitId?:string,
+        notes?:string
     };
 }
 
@@ -35,7 +36,7 @@ export class ObsMapObservations {
         this.observations = [];
     }
 
-    getObservations() {
+    getObservations():VrsObservation[] {
         return this.observations;
     }
 
@@ -57,5 +58,6 @@ export class ObsMapObservations {
 
     removeAll() {
         this.observations = [];
+        this.eventEmitter.emit('change');
     }
 }

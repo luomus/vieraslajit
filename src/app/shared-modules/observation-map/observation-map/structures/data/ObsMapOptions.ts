@@ -14,10 +14,21 @@ type Options = {
 export class ObsMapOptions {
 
     private options:Options;
+    
+    private _loadState:boolean = false;
     eventEmitter:EventEmitter = new EventEmitter();
 
     constructor() {
         this.options = {};
+    }
+
+    get loadState() {
+        return this._loadState;
+    }
+
+    set loadState(b:boolean) {
+        this._loadState = b;
+        this.eventEmitter.emit('stateChange');
     }
 
     getOption(option:ObsMapOption){

@@ -9,12 +9,14 @@ import { MapApiController } from './observation-map/structures/controllers/MapAp
 import { MapController } from './observation-map/structures/controllers/MapController';
 import { ObsMapOptions } from './observation-map/structures/data/ObsMapOptions';
 import { ObsMapObservations } from './observation-map/structures/data/ObsMapObservations';
+import { SpinnerModule } from '../spinner/spinner.module';
 
 @NgModule({
   imports: [
     CommonModule,
     NgxDatatableModule,
-    RouterModule
+    RouterModule,
+    SpinnerModule
   ],
   declarations: [
     ObservationMapComponent,
