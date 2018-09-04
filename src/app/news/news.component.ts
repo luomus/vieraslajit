@@ -28,7 +28,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   private onLangChange: Subscription;
 
   // Spinner
-  private newsLoading:boolean = true;
+  newsLoading:boolean = true;
 
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
