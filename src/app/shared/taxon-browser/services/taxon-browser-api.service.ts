@@ -12,7 +12,6 @@ import { map, tap } from "rxjs/operators";
 export class TaxonBrowserApiService {
 
     taxa:Array<Taxonomy> = [];
-    asyncTaxa:Observable<Array<Taxonomy>>;
     private query;
 
     eventEmitter:EventEmitter = new EventEmitter();
@@ -26,7 +25,6 @@ export class TaxonBrowserApiService {
 
     initialize() {
         this.settingsService.eventEmitter.addListener("change", ()=>{
-            console.log("change in settings");
             this.updateQuery();
             this.updateTaxa();
         });
@@ -41,11 +39,13 @@ export class TaxonBrowserApiService {
     }
 
     updateTaxa() {
-        this.asyncTaxa = this.apiService.taxonomyFindById(LajiApi.Endpoints.taxonSpecies, 'MX.37600', this.query).pipe(
-            tap((res)=>{this.settingsService.apiSettings.total = res.total;
-                        this.eventEmitter.emit('done');}),
+        this.apiService.taxonomyFindById(LajiApi.Endpoints.taxonSpecies, 'MX.37600', this.query).pipe(
+            tap((res)=>{this.settingsService.apiSettings.total = res.total}),
             map(res=>res.results)
-        );
+        ).subscribe(res=>{
+            this.taxa = res;
+            this.eventEmitter.emit('done');
+        });
         this.eventEmitter.emit('change');
     }
 }

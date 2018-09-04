@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from "../../../../node_modules/@angular/core
 import { TranslateService } from "../../../../node_modules/@ngx-translate/core";
 import { Observable, Subscription } from "rxjs";
 
+import * as $ from 'jquery';
+
 import { Informal, Taxonomy } from "../model";
 import { TaxonBrowserApiService } from "./services/taxon-browser-api.service";
 import { TaxonBrowserApiSettingsService, TaxonBrowserApiSettings } from "./services/taxon-browser-api-settings.service";
@@ -31,7 +33,7 @@ export class TaxonBrowserComponent implements OnInit{
     }
     get informalTaxonGroup():Informal {return this.settingsService.apiSettings.informalTaxonGroup}
 
-    asyncTaxa:Observable<Taxonomy[]>;
+    taxa:Taxonomy[];
 
     currentPage:number = 1;
     pageData:Array<Taxonomy> = [];
@@ -54,11 +56,11 @@ export class TaxonBrowserComponent implements OnInit{
         this.apiService.initialize();
 
         this.apiService.eventEmitter.addListener('change', ()=>{
-            this.asyncTaxa = this.apiService.asyncTaxa;
+            this.loading=true;
         });
 
         this.apiService.eventEmitter.addListener('done', ()=>{
-            console.log("hi");
+            this.taxa = this.apiService.taxa;
             this.loading=false;
         });
 
@@ -82,10 +84,10 @@ export class TaxonBrowserComponent implements OnInit{
     }
 
     getPage(page:number) {
-        this.loading=true;
         let settings:TaxonBrowserApiSettings = {page: page};
         this.settingsService.apiSettings = settings;
         this.currentPage = page;
+        $('html, body').animate({ scrollTop: 0 }, 0);
     }
 
     getTotalItems() {
