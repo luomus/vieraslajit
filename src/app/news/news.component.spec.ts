@@ -7,6 +7,7 @@ import { NewsService } from '../shared/service/news.service';
 import { NewsComponent } from './news.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { EditcmsModule } from '../shared-modules/editcms/editcms.module';
+import { SpinnerModule } from '../shared-modules/spinner/spinner.module';
 
 describe('NewsComponent', () => {
   let component: NewsComponent;
@@ -15,7 +16,8 @@ describe('NewsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ NewsComponent],
-      imports: [HttpClientModule, TranslateModule.forRoot(),EditcmsModule, NgxPaginationModule],
+      imports: [HttpClientModule, TranslateModule.forRoot(),EditcmsModule, NgxPaginationModule,
+                SpinnerModule],
       providers: [ApiService, NewsService]
     })
     .compileComponents();

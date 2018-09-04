@@ -1,11 +1,14 @@
-import { Component, Input } from "../../../../../../node_modules/@angular/core";
+import { Component, Input, OnInit } from "../../../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../../../node_modules/@ngx-translate/core";
 import { ObsMapObservations, VrsObservation } from "../structures/data/ObsMapObservations";
 import { EventEmitter } from "events";
+import { ObsMapOptions } from "../structures/data/ObsMapOptions";
 
 @Component({
     selector: 'vrs-obs-map-list',
-    template: `<ngx-datatable class="material" [ngStyle]="{'height': height+'px'}"
+    template: `
+    <laji-spinner [ngClass]="{'list-spinner': loading}" [spinning]="loading" [fullViewport]="false"></laji-spinner>
+    <ngx-datatable class="material" [ngStyle]="{'height': height+'px'}"
     [rows]="observations" 
     [columnMode]="'force'" 
     [columns]="columns" 
@@ -15,14 +18,27 @@ import { EventEmitter } from "events";
     scrollbarV="true"
     (activate)="onTableActivate($event)"
     >
-    </ngx-datatable>`
+    </ngx-datatable>`,
+    styles: [`
+        .list-spinner {
+            position:absolute;
+            height:100%;
+            width:100%;
+            top: 300px;
+            z-index: 10000;
+        }
+    `]
 })
-export class ObsMapListComponent {
+export class ObsMapListComponent implements OnInit {
     @Input() height = 500;
     observations:Array<VrsObservation> = [];
     columns:Array<any>;
     eventEmitter:EventEmitter = new EventEmitter();
-    constructor(private translate:TranslateService, private obsMapObservations:ObsMapObservations) {
+
+    loading:boolean = true;
+
+    constructor(private translate:TranslateService, private obsMapObservations:ObsMapObservations,
+                private obsMapOptions:ObsMapOptions) {
         this.columns = [
             { prop: 'unit.taxonVerbatim', name: this.translate.instant('taxon.name'), draggable: false, resizeable: false },
             { prop: 'gathering.interpretations.municipalityDisplayname', name: this.translate.instant('document.location'), draggable: false, resizeable: false },
@@ -32,6 +48,13 @@ export class ObsMapListComponent {
             this.observations = this.obsMapObservations.getObservations();
         });
     }
+
+    ngOnInit() {
+        this.obsMapOptions.eventEmitter.addListener('stateChange',()=>{
+            this.loading = this.obsMapOptions.loadState;
+        })
+    }
+
     onTableActivate(e) {
         this.eventEmitter.emit("change", e);
     }

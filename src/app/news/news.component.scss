@@ -1,11 +1,23 @@
 @import './../../assets/styles/vars.scss';
 @import './../../../node_modules/bootstrap/scss/bootstrap-grid';
 
+:host ::ng-deep .top-pagination {
+    ul.ngx-pagination {
+        margin: 0em;
+        margin-top: 6px;
+        float: right;
+    }
+}
+
+.news-spinner {
+    display: block;
+    margin-top: 5em;
+    margin-bottom: 20em;
+    padding: 5em;
+}
+
 .news-post {
-/*     padding-bottom:1em;
-    background: $background-light;
-    border: 1px solid $border-light;
-    border-radius: $content-border-radius; */
+    padding: 1em;
 }
 
 .card {
@@ -19,6 +31,7 @@
     padding:2%;
     background: $background-light;
     box-shadow: $container-shadow;
+    border-radius: $content-border-radius;
 }
 
 .news-thumbnail {

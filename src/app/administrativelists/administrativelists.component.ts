@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Input, AfterViewInit } from "../../../node_modules/@angular/core";
+import { Component, ViewChild, OnInit, OnDestroy, Input, AfterViewInit } from "../../../node_modules/@angular/core";
 import { Location } from '@angular/common';
 import { TabsetComponent, TabDirective } from "../../../node_modules/ngx-bootstrap";
 import { ActivatedRoute } from "../../../node_modules/@angular/router";
@@ -18,19 +18,21 @@ export enum tabId {
     templateUrl: './administrativelists.html',
     styleUrls: ['./administrativelists.scss']
 })
-export class AdministrativelistsComponent implements OnInit {
+export class AdministrativelistsComponent implements OnInit, OnDestroy {
 
     private euList: Array<Taxonomy> = [];
     private fiList: Array<Taxonomy> = [];
 
     mode:tabId=0;
 
+    private routeSubscription: Subscription;
+
     constructor(private route: ActivatedRoute, private location: Location, private listService:ListService, private translate:TranslateService) {
         
     }
 
     ngOnInit() {
-        this.route.data.subscribe(d=>{
+        this.routeSubscription = this.route.data.subscribe(d=>{
             if(d.tab == "fi") {
                 this.mode=1;
                 this.updateFiList();
@@ -71,5 +73,9 @@ export class AdministrativelistsComponent implements OnInit {
 
     private getStaticId(content: StaticContent, lang: string){
         return findContentID(content, lang);
+    }
+
+    ngOnDestroy() {
+        this.routeSubscription.unsubscribe();
     }
 }

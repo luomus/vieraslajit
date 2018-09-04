@@ -27,6 +27,9 @@ export class NewsComponent implements OnInit, OnDestroy {
   // Translate
   private onLangChange: Subscription;
 
+  // Spinner
+  newsLoading:boolean = true;
+
   constructor(private newsService: NewsService, private translate: TranslateService) { }
 
   ngOnInit() {
@@ -37,11 +40,13 @@ export class NewsComponent implements OnInit, OnDestroy {
   }
 
   getPage(page:number) {
+    this.newsLoading = true;
     this.asyncNews = this.newsService.getPage(page.toString(),this.pageSize.toString(), this.translate.currentLang, this.currentTags)
     .pipe(tap(res=>{this.totalItems = res.total;
-                    this.currentPage = page }),
+                    this.currentPage = page;
+                    this.newsLoading = false; }),
           map(res=>res.results));
-    $('html, body').animate({ scrollTop: 0 }, 500);
+    $('html, body').animate({ scrollTop: 0 }, 200);
   }
 
   onClick(tags:string, id){

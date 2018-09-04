@@ -9,9 +9,11 @@ import { TranslateModule } from '../../../../node_modules/@ngx-translate/core';
 import { FormsModule } from '../../../../node_modules/@angular/forms';
 import { TaxonBrowserListComponent } from './taxon-browser-list/taxon-browser-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SpinnerModule } from '../../shared-modules/spinner/spinner.module';
 
 @NgModule({
-    imports: [NgxPaginationModule, TabsModule, NgxDatatableModule, RouterModule, CommonModule, TranslateModule, FormsModule],
+    imports: [NgxPaginationModule, TabsModule, NgxDatatableModule, RouterModule,
+        CommonModule, TranslateModule, FormsModule, SpinnerModule],
     declarations: [TaxonCardGridComponent, TaxonBrowserComponent, TaxonBrowserListComponent],
     exports: [TaxonBrowserComponent]
 })

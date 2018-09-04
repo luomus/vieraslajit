@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container container-navbar align-items-end">
-        <a class="navbar-brand" routerLink="/home" translate>
+        <a class="navbar-brand" routerLink="/home" routerLinkActive="vrs-nav-active" translate>
             <span class="vrs-logo-img vrs-logo"></span>
             Vieraslajit.fi
         </a>
@@ -51,7 +51,7 @@
                         <div class="dropdown" id="dropdown-user" dropdown>
                             <button class="btn btn-sm oi oi-person icon dropdown-toggle" aria-controls="dropdown-basic" id="personbutton"></button>
                             <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
-                              <li routerLink="/observations/user" role="usermenuitem"><span class="dropdown-item usermenuitem">{{userPropertiesWrapper().person.fullName}}</span></li>
+                              <li routerLink="/observations" [queryParams]="{user: true}" role="usermenuitem"><span class="dropdown-item usermenuitem">{{userPropertiesWrapper().person.fullName}}</span></li>
                               <li (click)="logout()" role="usermenuitem"><span class="dropdown-item usermenuitem"><span translate>navigation.logout</span></span></li>
                             </ul>
                           </div>

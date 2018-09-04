@@ -4,8 +4,14 @@
     background: $footer-background;
     background: linear-gradient(to bottom right, $desaturated-blue 0%, $desaturated-blue-lighter 100%);
     color: $text-light;
-    border-top: 2px solid $desaturated-blue-darker;
+    border-top: 1px solid $primary;
     box-shadow: 0px 0px 5px 0px #666;
+    a {
+        color: $text-light-muted;
+        &:hover {
+            color: $primary;
+        }
+    }
 }
 
 .vrs-affiliates {

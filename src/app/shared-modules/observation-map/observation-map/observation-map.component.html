@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-4" *ngIf="municipalitySelectEnabled"><div class="input-group">
         <select id="select-municipality" class="custom-select">
-          <option value="all">Kunta...</option>
+          <option value="">Kunta...</option>
           <option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</option>
         </select>
       </div></div>

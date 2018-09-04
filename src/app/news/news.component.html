@@ -2,12 +2,18 @@
   <div class="row">
     <div class="col-8">
       <div class= "row">
-        <ul id="navpills">
-          <li class="navpill active" id="navpillNews" (click)="onClick('vieraslajit.fi', 'navpillNews')" translate>news.news</li>
-          <li class="navpill" id="navpillTechnical" (click)="onClick('technical', 'navpillTechnical')" translate>news.technical</li>
-          <li class="navpill" id="navpillAll" (click)="onClick('vieraslajit.fi,technical', 'navpillAll')" translate>news.all</li>
-        </ul>
+        <div class="col-7">
+          <ul id="navpills">
+              <li class="navpill active" id="navpillNews" (click)="onClick('vieraslajit.fi', 'navpillNews')" translate>news.news</li>
+              <li class="navpill" id="navpillTechnical" (click)="onClick('technical', 'navpillTechnical')" translate>news.technical</li>
+              <li class="navpill" id="navpillAll" (click)="onClick('vieraslajit.fi,technical', 'navpillAll')" translate>news.all</li>
+            </ul>
+        </div>
+        <div class="col-5">
+          <pagination-controls class="top-pagination" (pageChange)="getPage($event)" id="server" maxSize='0'></pagination-controls>
+        </div>
       </div>
+      <laji-spinner [ngClass]="{'news-spinner': newsLoading}" [spinning]="newsLoading" [hideContentWhileLoading]='true' [fullViewport]='false'>
       <div *ngFor="let newsElement of asyncNews | async | paginate: { id: 'server', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems }" class="news-post my-3">
         
         <!-- Margin -->
@@ -60,7 +66,8 @@
         </div> <!-- / margin -->
         <hr>
       </div> <!-- / news-post -->
-    
+      </laji-spinner>
+
       <div class="">
           <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
       </div>

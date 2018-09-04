@@ -9,8 +9,8 @@
 }
 
 .news-item {
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
     color: $desaturated-blue;
 
     cursor:pointer;
@@ -25,13 +25,10 @@
     }
 
     &:hover {
-        background: $desaturated-blue-lighter;
-        color: $primary;
-        hr {
-            border-color: $primary;
-        }
+        background: $primary;
+        color: $text-light;
         .news-date {
-            color: $primary;
+            color: $text-light;
         }
     }
 }
@@ -39,6 +36,7 @@
 .home-content {
     margin-top: $navbar-height + 20px;
     box-shadow: $container-shadow;
+    border-radius: $content-border-radius;
 }
 
 .header-container {
@@ -50,6 +48,8 @@
     background-position: left top;
     background-size: auto 100%;
     background-repeat: no-repeat;
+    border-top-left-radius: $content-border-radius;
+    border-top-right-radius: $content-border-radius;
 }
 .portal-description-parent {
     height: 300px;
@@ -72,6 +72,8 @@
 .first-segment {
     min-height: 500px;
     background: $background-light;
+    border-bottom-left-radius: $content-border-radius;
+    border-bottom-right-radius: $content-border-radius;
 }
 
 .alert-bar {

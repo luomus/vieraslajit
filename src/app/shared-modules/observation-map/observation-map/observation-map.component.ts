@@ -31,9 +31,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
 
   selectedInfo;
 
-  private municipalities:Array<any> = [];
-
-  /* Filters */
+  municipalities:Array<any> = [];
   isLoggedIn = UserService.loggedIn();
 
   constructor(private obsMapOptions:ObsMapOptions, private mapApiController:MapApiController, private mapController:MapController) {}
