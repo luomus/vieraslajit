@@ -114,6 +114,7 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
 #dropdown-menu.dropdown-menu.show {
     background: $background;
     opacity: 0.9;
+    position:absolute;
 }
 
 #dropdown-menu-item {
@@ -191,6 +192,13 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
     background: $background;
     opacity: 0.9;
     color: $text-light;
+    position:absolute;
+
+    @include media-breakpoint-down(md) {
+        left: 0px !important;
+        right: auto !important;
+    }
+
     .dropdown-item {
         color: $text-light;
         &:hover {
