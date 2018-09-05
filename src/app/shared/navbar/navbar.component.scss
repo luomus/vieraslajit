@@ -1,4 +1,5 @@
 @import '../../../assets/styles/vars';
+@import '~bootstrap/scss/bootstrap-grid';
 
 $accent: $primary;
 
@@ -153,8 +154,17 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
 :host ::ng-deep .nav-omni .omni-search {
     margin: 0;
     padding: 0;
-    width: 12vw;
     max-width: 100%;
+
+    input {
+        width: 12vw;
+    }
+
+    @include media-breakpoint-down(md) {
+        margin-left: 7px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 }
 
 
