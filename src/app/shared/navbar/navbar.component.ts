@@ -54,7 +54,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
 
   ngAfterViewInit() {
     /* Dropdown toggle */
-    $("#dropdown-about").on("mouseenter mouseleave", ()=>{
+    $("#dropdown-hover-area").on("mouseenter mouseleave", ()=>{
       this.d.first.toggle(true);
     });
   }
