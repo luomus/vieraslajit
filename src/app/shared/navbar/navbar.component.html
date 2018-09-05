@@ -42,7 +42,7 @@
                   <li class="nav-item">
                     <div *ngIf="!loggedIn;then login_content else welcome_content"></div>
                     <ng-template #login_content>
-                        <a href='{{loginUrl}}' class="nav-link" translate>navigation.login</a>
+                        <a href='{{loginUrl}}' class="btn btn-sm oi oi-account-login icon" translate></a>
                     </ng-template>
                     <ng-template #welcome_content>
                         <div class="dropdown" id="dropdown-user" dropdown>
