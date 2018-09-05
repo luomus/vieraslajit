@@ -1,4 +1,77 @@
 @import '../../assets/styles/vars';
+@import '~bootstrap/scss/bootstrap-grid';
+
+.home-content {
+    /* COMPONENT BASE FONT SIZE */
+    font-size: 1rem;
+
+    margin-top: $navbar-height + 20px;
+    margin-bottom: 1em;
+
+    box-shadow: $container-shadow;
+    border-radius: $content-border-radius;
+
+    @include media-breakpoint-down(xs) { 
+        margin-top: $navbar-height;
+        margin-bottom: 0em;
+        border-radius: 0px;
+    }
+}
+
+/* HEADER IMAGE */
+
+.home-header-img {
+    height: auto;
+    width: 100%;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 20%, rgba(50, 50, 50, .0)), url('../../assets/images/bgs/iibis_cropped2.png');
+    background-position: left top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-top-left-radius: $content-border-radius;
+    border-top-right-radius: $content-border-radius;
+    @include media-breakpoint-down(xs) { 
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+}
+.portal-description-parent {
+    display: table;
+}
+.portal-heading {
+    color: $text-light;
+    font-size: 1.5em;
+}
+.portal-description {
+    display: table-cell;
+    padding: 2em;
+    font-family: $font-montserrat;
+    font-weight: 400;
+    font-size: 1.25em;
+    color: $text-light-muted;
+    vertical-align: middle;
+}
+
+/* CONTENT */
+
+.first-segment {
+    background: $background-light;
+    border-bottom-left-radius: $content-border-radius;
+    border-bottom-right-radius: $content-border-radius;
+    @include media-breakpoint-down(xs) { 
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+}
+
+/* ALERTS */
+
+.alert-bar {
+    text-align: center;
+    background: $alert;
+    border: 1px solid $alert-dark;
+}
+
+/* NEWS */
 
 .news-items {
     background: $desaturated-blue-light;
@@ -9,19 +82,23 @@
 }
 
 .news-item {
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
     color: $desaturated-blue;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     cursor:pointer;
     
     .news-title {
         display:block;
-        height: 2.5em;
     }
     
     .news-date {
         color: $text-dark-muted;
+        font-size:0.8em;
     }
 
     &:hover {
@@ -33,54 +110,7 @@
     }
 }
 
-.home-content {
-    margin-top: $navbar-height + 20px;
-    box-shadow: $container-shadow;
-    border-radius: $content-border-radius;
-}
-
-.header-container {
-}
-.home-header-img {
-    height: 300px;
-    width: 100%;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 20%, rgba(50, 50, 50, .0)), url('../../assets/images/bgs/iibis_cropped2.png');
-    background-position: left top;
-    background-size: auto 100%;
-    background-repeat: no-repeat;
-    border-top-left-radius: $content-border-radius;
-    border-top-right-radius: $content-border-radius;
-}
-.portal-description-parent {
-    height: 300px;
-    display: table;
-}
-.portal-heading {
-    color: $text-light;
-    font-size: 32px;
-}
-.portal-description {
-    display: table-cell;
-    padding: 2em;
-    font-family: $font-montserrat;
-    font-weight: 400;
-    font-size: 20px;
-    color: $text-light-muted;
-    vertical-align: middle;
-}
-
-.first-segment {
-    min-height: 500px;
-    background: $background-light;
-    border-bottom-left-radius: $content-border-radius;
-    border-bottom-right-radius: $content-border-radius;
-}
-
-.alert-bar {
-    text-align: center;
-    background: $alert;
-    border: 1px solid $alert-dark;
-}
+/* QUICK LINKS */
 
 .quick-links-list {
     text-align: center;
@@ -91,7 +121,13 @@
     margin-top: 1em;
     padding-right: 0em;
     list-style: none;
-    font-size: $font-size-regular;
+    font-size: 1em;
+
+    @include media-breakpoint-down(sm) {
+        padding-top: 0em;
+        padding-bottom: 0em;
+        margin-top: 2em;
+    }
 }
 
 .quick-links-btn {
@@ -101,26 +137,62 @@
     margin-right: 0em;
 }
 
+/* INVASIVE DESCRIPTION */
+
 .invasive-description {
     padding: 2em;
-    font-size: $font-size-regular;
+    font-size: 1em;
 }
 
 .invasive-description-row {
     padding-top: 2em;
     padding-bottom: 2em;
+
+    @include media-breakpoint-down(sm) {
+        padding-top: 0em;
+        padding-bottom: 0em;
+    }
 }
 
+/* DIVIDER */
 .first-segment hr {
     width: 80%;
 }
+
+/* EXOTIC PETS */
 
 .exotic-pets-bg {
     color: $text-dark;
     padding-top: 3em;
     padding-bottom: 3em;
     padding-right: 1em;
+
+    @include media-breakpoint-down(sm) {
+        padding-top: 1em;
+        padding-bottom: 2em;
+    }
 }
+
+.exotic-pet-container {
+    margin: 1em;
+
+    @include media-breakpoint-down(sm) {
+        padding-bottom: 1em;
+    }
+}
+
+.exotic-pets {
+    height: 300px;
+    width: 400px;
+    margin-left: 1em;
+    border-radius: $content-border-radius;
+    background-image: url('../../assets/images/bgs/piisami_cropped.png');
+    background-position: left top;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+
+/* ADMINISTRATIVE LISTS */
 
 .admin-list-container {
     height: 100%;
@@ -141,181 +213,4 @@
 .fi-list-img {
     height: 100px;
     width: 100px;
-}
-
-
-.exotic-pet-container {
-    margin: 1em;
-    padding: 1em;
-}
-
-.exotic-pets {
-    height: 300px;
-    width: 400px;
-    margin-left: 1em;
-    border-radius: $content-border-radius;
-    background-image: url('../../assets/images/bgs/piisami_cropped.png');
-    background-position: left top;
-    background-size: auto 100%;
-    background-repeat: no-repeat;
-}
-
-
-
-.jumbotron {
-    background: url("../../assets/images/bgs/vieraslajit-home-bg.png") center;
-    background-size: 105%;
-    background-repeat: no-repeat;
-    height: 20rem;
-    margin-bottom: 0px;
-}
-
-#jumbotron-info {
-    margin-top: 4vh;
-    margin-left: 2vh;
-}
-
-#jumbotron-h1 {
-    font-family: $font-montserrat;
-    font-weight: 700;
-}
-
-#searchbar {
-    background: $background-light-highlight-dark;
-}
-
-#welcome {
-    color: $background-light-highlight-dark;
-    font-family: $font-montserrat;
-    font-size: 20px;
-    margin-top: 7vh;
-    margin-bottom: 7vh;
-}
-
-#cardcol {
-    margin-bottom: 3vh;
-}
-
-#icons {
-    margin-bottom: 3vh;
-}
-
-.homecard {
-    height: 100%;
-    background: $background-light-highlight;
-    padding-bottom: 20px;
-}
-
-.homecard-header {
-    background-color: $background-light-highlight-dark;
-    font-family: $font-montserrat;
-    font-weight: 500;
-    color: $background-light;
-}
-
-.invasivecards {
-    width: 100%;
-    height: 90%;
-
-    transition: 0.2s;
-    border-color: $background-light-highlight-dark;
-    cursor: pointer;
-}
-
-.invasivecards:hover {
-    box-shadow:  0 0 0 3px $primary;
-    border-color: $primary;
-    #selectGroup-card-text {
-        color:  $primary;
-    }
-}
-
-.invasivecards:active {
-    outline: none!important;
-    box-shadow:none;
-}
-
-.invasivecards-text {
-    width: 100%;
-    color:  #222;
-    font-size: 1.3vh;
-}
-
-.invasivecards-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-}
-
-.icons-text {
-    font-size: 17px;
-}
-
-.eucard-img {
-  background-image: url("../../assets/images/logos/eu-blue-rnd.png") center;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  height: 9rem;
-  margin-bottom: 0px;
-  //  content:url(./../../assets/images/logos/eu-blue-rnd.png);
-}
-
-.ficard-img {
-  background-image: url("../../assets/images/logos/finland-b2.png") center;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  height: 9rem;
-  margin-bottom: 0px;
-    //content:url(./../../assets/images/logos/finland-b2.png);
-}
-
-.petscard-img {
-  background-image: url("../../assets/images/logos/pets.png") center;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  height: 9rem;
-  margin-bottom: 0px;
-  //  content: url(./../../assets/images/logos/pets.png);
-
-}
-
-
-#iconcard {
-    max-height: 170px;
-    max-width: 200px;
-}
-
-#news {
-    background-color: $background-light-highlight;
-}
-
-#newsh4 {
-    padding-top: 1em;
-}
-
-.btn {
-    margin:2%;
-}
-
-@media (max-width: 575.98px) {
-    .jumbotron h1{font-size: 20px}
-    .jumbotron #jumbotron-button{font-size: 8px}
-    .jumbotron {background-size: 160%}
-    #welcome-h1 {font-size: 30px}
-    #welcome-text {font-size: 18px}
-}
-
-@media (max-width: 767.98px) {
-    .jumbotron h1{font-size: 35px}
-    .jumbotron #jumbotron-button{font-size: 12px}
-    .jumbotron {height: 13rem}
-}
-
-@media (max-width: 991.98px) {
-    #invasivecards-img {width: 6rem;}
-}
-
-@media (max-width: 1199.98px) {
-
 }

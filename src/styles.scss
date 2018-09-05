@@ -22,7 +22,7 @@ html, body {
     font-size: 16px;
 
     @include media-breakpoint-up(xs) { 
-        font-size: 15px;
+        font-size: 16px;
     }
     @include media-breakpoint-up(sm) { 
         font-size: 16px;
