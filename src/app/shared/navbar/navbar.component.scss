@@ -159,6 +159,9 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
 
     input {
         width: 12vw;
+        @include media-breakpoint-down(md) {
+            width: 15em;
+        }
     }
 
     @include media-breakpoint-down(md) {
@@ -217,4 +220,7 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
 
 #language-selector {
     cursor: pointer;
+    @include media-breakpoint-down(md) {
+        margin-left:8px;
+    }
 }
