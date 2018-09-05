@@ -4,7 +4,7 @@
       <div class="col-md-8 col-sm-12">
         <!-- Sitemap -->
         <div class="row">
-          <div class="col-md-6 col-sm-12">
+          <div class="col-sm-6 col-12">
             <h5 translate>footer.sitemap.heading1</h5>
             <ul>
               <li><a routerLink="/removal" translate>footer.removal</a></li>
@@ -19,7 +19,7 @@
               <li><a href="https://fmnh-ws-test.it.helsinki.fi/laji-auth/login?target=KE.741&redirectMethod=GET&locale=fi&next=/home" translate>footer.login</a></li>  
             </ul>
           </div>
-          <div class="col-md-6 col-sm-12">
+          <div class="col-sm-6 col-12">
             <h5 translate>footer.sitemap.heading3</h5>
             <ul>
               <li *ngFor="let p of sPages"><a routerLink="/static/{{p.id}}">{{p.title}}</a></li>
