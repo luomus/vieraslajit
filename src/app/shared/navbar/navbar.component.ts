@@ -1,7 +1,5 @@
-import { Component, OnInit, TemplateRef, ViewChild, AfterViewChecked, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { SearchComponent } from '../googlesearch/search/search.component';
 import { UserService, Role } from '../service/user.service';
 import {Router, RouterLinkActive} from '@angular/router';
 import { InformationService } from '../service/information.service';
@@ -17,7 +15,6 @@ import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit {
-  modalRef: BsModalRef;
   loginUrl = '#';
   isCollapsed = false;
   loggedIn = false;
@@ -103,10 +100,6 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
     if(this.loggedIn) {
       return UserService.getUserProperties();
     }
-  }
-
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
   }
 
   ngOnDestroy(){
