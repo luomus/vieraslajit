@@ -1,4 +1,5 @@
 @import '../../../assets/styles/vars';
+@import '~bootstrap/scss/bootstrap-grid';
 
 $accent: $primary;
 
@@ -10,7 +11,11 @@ $background: $desaturated-blue;
 }
 
 /* Background */
-#mainNav {
+nav {
+
+    /* COMPONENT BASE FONT SIZE */
+    font-size: 1rem;
+
     font-family: $font-montserrat;
 
     border-bottom: 1px solid $accent;
@@ -20,7 +25,7 @@ $background: $desaturated-blue;
 
 /* After element for transparent background */
 
-#mainNav::after {
+nav::after {
     content: ''; 
 	width: 100%; 
     height: 100%;
@@ -36,13 +41,17 @@ $background: $desaturated-blue;
 	z-index: -1;
 }
 
+/* Navbar toggler */
+.navbar-toggler {
+    color: $text-light;
+}
 
 /* Brand */
 .vrs-logo {
     height: 40px;
 }
 
-#mainNav .navbar-brand {
+nav .navbar-brand {
     color: $text-light;
     font-size: 22px;
     outline: none;
@@ -54,7 +63,7 @@ $background: $desaturated-blue;
 
 /* Items */
 
-#mainNav .nav-item {
+nav .nav-item {
     display: flex;
     align-items: center;
     a {
@@ -62,17 +71,17 @@ $background: $desaturated-blue;
     }
 }
 
-#mainNav .navbar-nav li.nav-item a.nav-link {
+nav .navbar-nav li.nav-item a.nav-link {
     color: $text-light;
     padding-right:10px;
     padding-left:10px;
 }
 
-#mainNav .navbar-nav li.nav-item a.nav-link:hover {
+nav .navbar-nav li.nav-item a.nav-link:hover {
     color: $text-hover;
 }
 
-#mainNav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
+nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
     color: $accent; //#405155;
     outline: none;
 }
@@ -85,6 +94,9 @@ $background: $desaturated-blue;
 #dropdown-about {
     border: none;
     color: $text-light;
+    display: flex;
+    align-items: center;
+
     &:hover {
         color: $text-hover;
     }
@@ -102,6 +114,7 @@ $background: $desaturated-blue;
 #dropdown-menu.dropdown-menu.show {
     background: $background;
     opacity: 0.9;
+    position:absolute;
 }
 
 #dropdown-menu-item {
@@ -118,7 +131,7 @@ $background: $desaturated-blue;
 }
 
 .dropdown-menu {
-    top: 90% !important;
+    top: 80% !important;
 }
 
 /* Active state for top level links */
@@ -132,7 +145,6 @@ $background: $desaturated-blue;
  #search-icon   {
     color: $text-light;
     cursor: pointer;
-    margin-right: 10px;
     margin-bottom: 5px;
 }
 
@@ -143,15 +155,36 @@ $background: $desaturated-blue;
 :host ::ng-deep .nav-omni .omni-search {
     margin: 0;
     padding: 0;
+    max-width: 100%;
+
+    input {
+        width: 12vw;
+        @include media-breakpoint-down(md) {
+            width: 15em;
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        margin-left: 7px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 }
 
 
 /* User Menu*/
 
+.oi-account-login {
+    margin-right: 1vw;
+    margin-left: 1vw;
+}
+
 #personbutton {
     background: none;
     color: $text-light;
     margin-bottom: 5px;
+    margin-right: 0.3vw;
+    margin-left: 0.3vw;
 }
 
 #personbutton:hover {
@@ -162,6 +195,13 @@ $background: $desaturated-blue;
     background: $background;
     opacity: 0.9;
     color: $text-light;
+    position:absolute;
+
+    @include media-breakpoint-down(md) {
+        left: 0px !important;
+        right: auto !important;
+    }
+
     .dropdown-item {
         color: $text-light;
         &:hover {
@@ -180,28 +220,7 @@ $background: $desaturated-blue;
 
 #language-selector {
     cursor: pointer;
-    padding-left: 10px;
-}
-
-/* Media */
-
-@media screen and (max-width: 989px) {
-    #mainNav {font-size: 16px;}
-    #dropdown-menu-item {font-size: 16px;}
-    #usermenu-item {font-size: 16px;}
-    #search-icon{padding-left:10px;}
-    #mainNav .dropdown{padding-top:5px;padding-bottom: 5px;}
-}
-@media screen and (max-width: 1100px) and (min-width: 989px) {
-    #mainNav {font-size: 12px;}
-    #dropdown-menu-item {font-size: 12px;}
-    #usermenu-item {font-size: 12px;}
-}
-
-@media (min-width: 991.98px) {
-    #dropdown-about {
-        border: none;
-        display: flex;
-        align-items: center;
+    @include media-breakpoint-down(md) {
+        margin-left:8px;
     }
 }

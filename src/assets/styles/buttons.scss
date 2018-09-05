@@ -12,5 +12,13 @@
         background: $primary;
         color: $text-light;
     }
+
+    &.vrs-button-primary {
+        background: $primary;
+        &:hover{
+            cursor:pointer;
+            background:darken($primary, 10);
+        }
+    }
 }
 

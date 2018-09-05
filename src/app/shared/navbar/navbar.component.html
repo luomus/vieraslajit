@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
     <div class="container container-navbar align-items-end">
         <a class="navbar-brand" routerLink="/home" routerLinkActive="vrs-nav-active" translate>
             <span class="vrs-logo-img vrs-logo"></span>
@@ -28,24 +28,23 @@
                     aria-expanded="false" translate>navigation.observations</a>
                 </li>
                 <li class="dropdown" id="dropdown-about" dropdown>
-                    <a  class="dropdown-toggle py-2" id="dropdown-toggle" translate>navigation.about <span class="caret"></span></a>
-                    <ul *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
-                        <li *ngFor="let child of menu" role="menuitem"><a class="dropdown-item" id="dropdown-menu-item"
-                                routerLink="static/{{child.id}}">{{child.title}}</a></li>
-                    </ul>
+                    <div id="dropdown-hover-area">
+                        <a  class="dropdown-toggle py-2" id="dropdown-toggle" translate>navigation.about <span class="caret"></span></a>
+                        <ul *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
+                            <li *ngFor="let child of menu" role="menuitem"><a class="dropdown-item" id="dropdown-menu-item"
+                                    routerLink="static/{{child.id}}">{{child.title}}</a></li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
 
             <div class= "ml-auto">
                <ul class="nav navbar-nav">
-                  <!-- <li (click)="openModal(search)" href="#modalSearch" data-toggle="modal" data-target="#modalSearch" class="nav-item" >
-                     <span class="oi oi-magnifying-glass icon" id="search-icon"></span>
-                  </li> -->
                   <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
                   <li class="nav-item">
                     <div *ngIf="!loggedIn;then login_content else welcome_content"></div>
                     <ng-template #login_content>
-                        <a href='{{loginUrl}}' class="nav-link" translate>navigation.login</a>
+                        <a href='{{loginUrl}}' class="btn btn-sm oi oi-account-login icon" translate></a>
                     </ng-template>
                     <ng-template #welcome_content>
                         <div class="dropdown" id="dropdown-user" dropdown>
@@ -66,15 +65,3 @@
 
     </div>
 </nav>
-
-<ng-template #search>
-  <div class="modal-header">
-    <h4 translate>navbar.search</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <vrs-search></vrs-search>
-  </div>
-</ng-template>
