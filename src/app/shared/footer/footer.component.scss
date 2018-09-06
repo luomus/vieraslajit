@@ -1,10 +1,10 @@
 @import '../../../assets/styles/vars';
 
 .footer-content {
+    font-size: 1rem;
     background: $footer-background;
     background: linear-gradient(to bottom right, darken($desaturated-blue, 10) 0%, $desaturated-blue-lighter 100%);
     color: $text-light;
-    border-top: 1px solid $primary;
     box-shadow: 0px 0px 5px 0px #666;
     a {
         color: rgba($text-light, 0.8);
@@ -14,9 +14,26 @@
     }
 }
 
+.sitemap {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    h5 {
+        font-size: 1em;
+        font-weight: 600;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+}
+
 .vrs-logo-img {
-    filter: grayscale(100%);
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
     opacity: 0.8;
+}
+
+.vrs-contact {
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .vrs-affiliates {

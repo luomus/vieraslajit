@@ -5,16 +5,29 @@
     /* COMPONENT BASE FONT SIZE */
     font-size: 1rem;
 
-    margin-top: $navbar-height + 20px;
-    margin-bottom: 1em;
+    margin-top: $navbar-height;
+    padding-top: 2em;
+    padding-bottom: 2em;
 
-    box-shadow: $container-shadow;
-    border-radius: $content-border-radius;
+    background: $background-light;
 
     @include media-breakpoint-down(xs) { 
-        margin-top: $navbar-height;
+        padding-top: 0em;
         margin-bottom: 0em;
         border-radius: 0px;
+    }
+}
+
+/* HEADER V2 */
+
+.header-v2 {
+    padding-top: 4em;
+    padding-bottom: 4em;
+    h1 {
+        font-size: 2em;
+    }
+    p {
+        color: lighten($text-dark, 20);
     }
 }
 
@@ -27,8 +40,7 @@
     background-position: left top;
     background-size: cover;
     background-repeat: no-repeat;
-    border-top-left-radius: $content-border-radius;
-    border-top-right-radius: $content-border-radius;
+    border-radius: $content-border-radius;
     @include media-breakpoint-down(xs) { 
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
@@ -43,6 +55,9 @@
     font-weight: 600;
 }
 .portal-description {
+    background: rgba(0, 0, 0, 0.2);
+    border-top-left-radius: $content-border-radius;
+    border-bottom-left-radius: $content-border-radius;
     display: table-cell;
     padding: 2em;
     padding-top: 4em;
@@ -157,12 +172,17 @@
 .invasive-description {
     padding: 2em;
     h2 {
-        font-size:1.2em;
+        font-size:1em;
         font-weight: 600;
     }
     p {
         color: $text-dark-lighter;
     }
+}
+
+.description-container {
+    border-left: 6px solid rgb(95, 97, 207);
+    padding-left: 1em;
 }
 
 /* DIVIDER */
@@ -187,9 +207,12 @@
 
 .exotic-pet-container {
     margin: 1em;
+    border-right: 6px solid rgb(241, 56, 56);
+    padding-right: 1em;
+    text-align: right;
 
     h2 {
-        font-size: 1.2em;
+        font-size: 1em;
         font-weight: 600;
     }
     p {
