@@ -33,10 +33,10 @@
 <!-- Render list if list-mode enabled -->
 <ng-container *ngIf="listEnabled">
 <div class="row">
-    <div class="col-7">
+    <div class="col-7 col-map">
         <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
     </div>
-    <div class="col-5">
+    <div class="col-5 col-list">
       <vrs-obs-map-list height="{{mapHeight}}"></vrs-obs-map-list>
     </div>
 </div>

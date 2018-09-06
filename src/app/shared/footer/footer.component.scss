@@ -2,16 +2,21 @@
 
 .footer-content {
     background: $footer-background;
-    background: linear-gradient(to bottom right, $desaturated-blue 0%, $desaturated-blue-lighter 100%);
+    background: linear-gradient(to bottom right, darken($desaturated-blue, 10) 0%, $desaturated-blue-lighter 100%);
     color: $text-light;
     border-top: 1px solid $primary;
     box-shadow: 0px 0px 5px 0px #666;
     a {
-        color: $text-light-muted;
+        color: rgba($text-light, 0.8);
         &:hover {
             color: $primary;
         }
     }
+}
+
+.vrs-logo-img {
+    filter: grayscale(100%);
+    opacity: 0.8;
 }
 
 .vrs-affiliates {

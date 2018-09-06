@@ -39,11 +39,14 @@
 }
 .portal-heading {
     color: $text-light;
-    font-size: 1.5em;
+    font-size: 1.2em;
+    font-weight: 600;
 }
 .portal-description {
     display: table-cell;
     padding: 2em;
+    padding-top: 4em;
+    padding-bottom: 4em;
     font-family: $font-montserrat;
     font-weight: 400;
     font-size: 1.25em;
@@ -84,7 +87,7 @@
 .news-item {
     padding-top: 1em;
     padding-bottom: 1em;
-    color: $desaturated-blue;
+    color: darken($desaturated-blue, 5);
 
     display:flex;
     flex-direction: column;
@@ -97,8 +100,7 @@
     }
     
     .news-date {
-        color: $text-dark-muted;
-        font-size:0.8em;
+        color: rgba($desaturated-blue, 0.5);
     }
 
     &:hover {
@@ -107,6 +109,18 @@
         .news-date {
             color: $text-light;
         }
+    }
+}
+
+/* INVASIVE DESCRIPTION AND QUICK LINKS */
+
+.invasive-description-row {
+    padding-top: 5em;
+    padding-bottom: 5em;
+
+    @include media-breakpoint-down(sm) {
+        padding-top: 0em;
+        padding-bottom: 0em;
     }
 }
 
@@ -119,6 +133,7 @@
 .quick-links {
     padding: 1em;
     margin-top: 1em;
+    padding-top: 0.25em;
     padding-right: 0em;
     list-style: none;
     font-size: 1em;
@@ -141,16 +156,12 @@
 
 .invasive-description {
     padding: 2em;
-    font-size: 1em;
-}
-
-.invasive-description-row {
-    padding-top: 2em;
-    padding-bottom: 2em;
-
-    @include media-breakpoint-down(sm) {
-        padding-top: 0em;
-        padding-bottom: 0em;
+    h2 {
+        font-size:1.2em;
+        font-weight: 600;
+    }
+    p {
+        color: $text-dark-lighter;
     }
 }
 
@@ -163,9 +174,10 @@
 
 .exotic-pets-bg {
     color: $text-dark;
-    padding-top: 3em;
-    padding-bottom: 3em;
-    padding-right: 1em;
+    padding-top: 5em;
+    padding-bottom: 5em;
+    padding-right: 2em;
+    padding-left: 2em;
 
     @include media-breakpoint-down(sm) {
         padding-top: 1em;
@@ -175,6 +187,14 @@
 
 .exotic-pet-container {
     margin: 1em;
+
+    h2 {
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+    p {
+        color: $text-dark-lighter;
+    }
 
     @include media-breakpoint-down(sm) {
         padding-bottom: 1em;

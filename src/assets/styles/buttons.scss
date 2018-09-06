@@ -3,8 +3,8 @@
     color: $text-light;
     border-radius: $content-border-radius;
     text-align: center;
-    border: 2px solid $border-light;
-    box-shadow: 0px 0px 5px 0px #999;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: $container-shadow;
     text-align:center;
 
     &:hover {
@@ -18,6 +18,17 @@
         &:hover{
             cursor:pointer;
             background:darken($primary, 10);
+        }
+    }
+
+    &.secondary {
+        background: transparent;
+        color: rgba($text-dark, 0.8);
+        border-color: lighten($desaturated-blue-lighter, 10);
+
+        &:hover {
+            background: $primary;
+            color: $text-light;
         }
     }
 }

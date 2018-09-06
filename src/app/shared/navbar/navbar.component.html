@@ -48,12 +48,14 @@
                     </ng-template>
                     <ng-template #welcome_content>
                         <div class="dropdown" id="dropdown-user" dropdown>
-                            <button class="btn btn-sm oi oi-person icon dropdown-toggle" aria-controls="dropdown-basic" id="personbutton"></button>
-                            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
-                              <li routerLink="/observations" [queryParams]="{user: true}" role="usermenuitem"><span class="dropdown-item usermenuitem">{{userPropertiesWrapper().person.fullName}}</span></li>
-                              <li (click)="logout()" role="usermenuitem"><span class="dropdown-item usermenuitem"><span translate>navigation.logout</span></span></li>
-                            </ul>
-                          </div>
+                            <div class="person-button-hover-area">
+                                <button class="btn btn-sm oi oi-person icon dropdown-toggle" aria-controls="dropdown-basic" id="personbutton"></button>
+                                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+                                <li routerLink="/observations" [queryParams]="{user: true}" role="usermenuitem"><span class="dropdown-item usermenuitem">{{userPropertiesWrapper().person.fullName}}</span></li>
+                                <li (click)="logout()" role="usermenuitem"><span class="dropdown-item usermenuitem"><span translate>navigation.logout</span></span></li>
+                                </ul>
+                            </div>
+                        </div>
                     </ng-template>
                   </li>
                   <li class="nav-item" id="language-selector">
