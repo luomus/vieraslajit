@@ -1,5 +1,4 @@
 <div class="form-group omni-search" #omniElement *ngIf="visible" (keyup)="keyEvent($event)">
-  <label class="sr-only" for="search-box">{{placeholder}}</label>
   <input type="text" class="form-control input-sm omni" id="search-box"
     [formControl]="searchControl" placeholder="{{'omnisearch.search' | translate}}"
     autoComplete="off" />

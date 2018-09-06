@@ -14,7 +14,7 @@ $background: $desaturated-blue;
 nav {
 
     /* COMPONENT BASE FONT SIZE */
-    font-size: 1rem;
+    font-size: 0.9rem;
 
     font-family: $font-montserrat;
 
@@ -51,7 +51,7 @@ nav::after {
 
 nav .navbar-brand {
     color: $text-light;
-    font-size: 22px;
+    font-size: 1.2em;
     outline: none;
 
     &:hover {
@@ -151,6 +151,11 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
     color: $text-hover;
 }
 
+:host ::ng-deep .nav-omni {
+    display:flex;
+    align-items:center;
+}
+
 :host ::ng-deep .nav-omni .omni-search {
     margin: 0;
     padding: 0;
@@ -162,6 +167,12 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
         width: 12vw;
         @include media-breakpoint-down(md) {
             width: 15em;
+        }
+        &.form-control {
+            border: none;
+            height: 80%;
+            font-size: 0.9em;
+            padding: 0.3em 0.5em;
         }
     }
 

@@ -38,7 +38,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
 
-  @Input() placeholder: string;
   @Input() limit: 10;
   @Input() selectTo = '/taxon';
   @Input() minLength = 3;
