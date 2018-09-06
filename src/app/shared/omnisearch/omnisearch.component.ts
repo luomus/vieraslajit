@@ -61,7 +61,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   resultsDirection = 'right';
 
   // Informal Taxon Group ID of currently selected taxon
-  private groupId = 'MVL.1';
+  groupId = 'MVL.1';
 
   @ViewChild('omniElement') omniElement: ElementRef;
 

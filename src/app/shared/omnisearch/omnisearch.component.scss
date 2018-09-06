@@ -1,4 +1,5 @@
 @import '../../../assets/styles/vars';
+@import '~bootstrap/scss/bootstrap-grid';
 
 .omni-search {
   margin-bottom: 0;
@@ -30,10 +31,23 @@
   border-bottom: 1px solid #999;
   color: rgb(43, 42, 42);
   border-radius: 10px;
+
+  box-shadow: 2px 2px 2px 0px #999;
+
   min-width: 250px;
+  .matches {
+    @include media-breakpoint-down(sm) {
+      padding-bottom: 1em;
+    }
+  }
  .matches .active {
     color:#fa7d09;
     font-weight: bold;
+  }
+  .first-col {
+    @include media-breakpoint-down(sm) {
+      padding-bottom: 1em;
+    }
   }
   .scientificName.cursive {
     font-style: italic;
