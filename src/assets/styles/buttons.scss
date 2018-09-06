@@ -6,11 +6,17 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: $container-shadow;
     text-align:center;
+    outline: none;
 
     &:hover {
         cursor:pointer;
         background: $primary;
         color: $text-light;
+    }
+    
+    &:active {
+        transform: translateY(2px);
+        box-shadow: 0px 0px 2px 0px #ccc;
     }
 
     &.vrs-button-primary {
