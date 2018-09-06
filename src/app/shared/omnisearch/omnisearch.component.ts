@@ -58,7 +58,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   private inputChange: Subscription;
   private el: Element;
 
-  private resultsDirection = 'right';
+  resultsDirection = 'right';
 
   // Informal Taxon Group ID of currently selected taxon
   private groupId = 'MVL.1';
