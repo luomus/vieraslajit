@@ -1,5 +1,12 @@
+<div class="obs-map">
 <div class="row pb-2">
-<div class="col-7">
+<div class="col-7 pl-4">
+  <div class="form-check vrs-map-checkbox" *ngIf="isLoggedIn && ownModeSelectorEnabled">
+    <input class="form-check-input" type="checkbox" value="" id="ownCheck" [checked]="ownModeEnabled" (change)="ownModeEnabled = !ownModeEnabled; ownModeChange()">
+    <label class="form-check-label" for="ownCheck">
+      Vain omat havainnot
+    </label>
+  </div>
   <div class="row">
     <div class="col-4" *ngIf="municipalitySelectEnabled"><div class="input-group">
         <select id="select-municipality" class="custom-select">
@@ -8,13 +15,6 @@
         </select>
       </div></div>
     <div class="col-8" *ngIf="taxonSearchEnabled"><vrs-taxon-search></vrs-taxon-search></div>
-  </div>
-  
-  <div class="form-check vrs-map-checkbox" *ngIf="isLoggedIn && ownModeSelectorEnabled">
-    <input class="form-check-input" type="checkbox" value="" id="ownCheck" [checked]="ownModeEnabled" (change)="ownModeEnabled = !ownModeEnabled; ownModeChange()">
-    <label class="form-check-label" for="ownCheck">
-      Vain omat havainnot
-    </label>
   </div>
 </div> <!-- col-7 -->
 <div *ngIf="selectedInfo" class="col-5">
@@ -30,6 +30,7 @@
   </div>
 </div> <!-- col-5 -->
 </div> <!-- row -->
+<div class="p-1"></div>
 <!-- Render list if list-mode enabled -->
 <ng-container *ngIf="listEnabled">
 <div class="row">
@@ -44,3 +45,4 @@
 <ng-container *ngIf="!listEnabled">
     <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
 </ng-container>
+</div>

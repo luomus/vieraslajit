@@ -3,6 +3,12 @@
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 @import '../../../../assets/styles/datatable';
 
+.obs-map {
+  padding-top: 1em;
+  padding-bottom: 2em;
+  background: $background-light;
+}
+
 #map {
   height: 400px;
 }
@@ -24,8 +30,7 @@ p {
 }
 
 :host ::ng-deep .col-list .ngx-datatable {
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
+  border-radius: 0px;
   font-size: 1rem;
 }
 
