@@ -1,3 +1,4 @@
+<laji-spinner [ngClass]="{'static-spinner': loading}" [spinning]="loading" [hideContentWhileLoading]='true' [fullViewport]='false' >
 <ng-container *ngIf="child_pages">
         <h1 class="p-2" [innerHTML]="scontent['title']"></h1>
         <tabset>
@@ -15,3 +16,4 @@
         <h1 [innerHTML]="scontent['title']"></h1>
         <div [innerHTML]="scontent['content']"></div>
 </ng-container>
+</laji-spinner>

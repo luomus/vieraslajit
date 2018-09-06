@@ -20,6 +20,7 @@ export class StaticComponent implements OnInit, OnChanges {
   public scontent: Object;
   @Input() id: string;
   child_pages: Array<any>;
+  loading = true;
 
   constructor(public informationService: InformationService, 
     private router: Router) { }
@@ -45,8 +46,11 @@ export class StaticComponent implements OnInit, OnChanges {
           for(let c of this.child_pages) {
             this.informationService.getInformation(c.id).subscribe((data) => {
               c.data = data;
+              this.loading=false;
             });
           }
+        } else {
+          this.loading = false;
         }
     });
   }
