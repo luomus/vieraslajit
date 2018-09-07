@@ -1,57 +1,28 @@
+<div class="news-component">
 <div class="container">
-    <div class= "row">
-      <div class="col-7">
+    <div class= "row justify-content-between">
+      <div class="col">
         <ul id="navpills">
             <li class="navpill active" id="navpillNews" (click)="onClick('vieraslajit.fi', 'navpillNews')" translate>news.news</li>
             <li class="navpill" id="navpillTechnical" (click)="onClick('technical', 'navpillTechnical')" translate>news.technical</li>
             <li class="navpill" id="navpillAll" (click)="onClick('vieraslajit.fi,technical', 'navpillAll')" translate>news.all</li>
           </ul>
       </div>
-      <div class="col-5">
-        <pagination-controls class="top-pagination" (pageChange)="getPage($event)" id="server" maxSize='0'></pagination-controls>
+      <div class="col">
+        <pagination-controls class="top-pagination" (pageChange)="getPage($event)" id="pagination-controls" maxSize='0'></pagination-controls>
       </div>
     </div>
   
       <laji-spinner [ngClass]="{'news-spinner': newsLoading}" [spinning]="newsLoading" [hideContentWhileLoading]='true' [fullViewport]='false'>
-      <div *ngFor="let newsElement of asyncNews | async | paginate: { id: 'server', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems }" class="news-post">
+      <div *ngFor="let newsElement of (asyncNews | async | paginate: { id: 'pagination-controls', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems })" class="news-post">
         
         <!-- Margin -->
         <div class="mx-3">
 
-        <!-- Feature image header -->
-        <div *ngIf='newsElement.featuredImage' class="row news-header">
-          <div class="col-auto">
-            <img class="news-thumbnail rounded" src="{{newsElement.featuredImage}}">
-          </div>
-          <div class="col row align-items-center">
-            <div class="col news-header-text">
-              <h2 class="news-title py-2 py-sm-0">{{newsElement.title}}</h2>
-              <div class="news-posted p-0 p-sm-2">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }} {{newsElement.author}}</div>
-            </div>
-          </div>
-          <div class="col-1">
-            <span class="news-tag float-right">{{newsElement.tag}}</span>
-            <vrs-editcms class="float-right" id="{{newsElement.id}}"></vrs-editcms>
-          </div>
-        </div>
-        <!-- / header -->
-
-        <!-- No feature image header -->
-        <div *ngIf='!newsElement.featuredImage' class="row news-header justify-content-between">
-          <div class="col-8">
-            <h2 class="news-title">{{newsElement.title}}</h2>
-            <div class="news-posted">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }} {{newsElement.author}}</div>
-          </div>
-          <div class="col-2"></div>
-          <div class="col-2">
-            <span class="news-tag float-right">{{newsElement.tag}}</span>
-            <vrs-editcms class="float-right" id="{{newsElement.id}}"></vrs-editcms>
-          </div>
-        </div>
-        <!-- / header -->
+        <vrs-news-header [newsElement]="newsElement"></vrs-news-header>
         
         <div class="row justify-content-center news-content">
-          <div class="col-10">
+          <div class="col-12 col-lg-11 col-xl-10">
             <div class="pl-3">
               <p [innerHTML]="newsElement.content">Post content</p>
             </div>
@@ -60,15 +31,16 @@
               {{newsElement.modified | date: 'dd.MM.yyyy HH:MM'}}
               <span *ngIf= "newsElement.modified">)</span>
             </div>
-            <hr>
           </div>
         </div>
 
         </div> <!-- / margin -->
       </div> <!-- / news-post -->
-      </laji-spinner>
-
-      
-
-  <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
-</div> <!-- /container-->
+    </laji-spinner>
+    <div class="text-right">
+    <div class="pagination-controls">
+     <pagination-controls (pageChange)="getPage($event)" id="pagination-controls"></pagination-controls>
+    </div>
+  </div>
+  </div> <!-- /container-->
+</div>

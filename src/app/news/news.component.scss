@@ -1,15 +1,32 @@
 @import './../../assets/styles/vars.scss';
 @import './../../../node_modules/bootstrap/scss/bootstrap-grid';
 
-.container {
+.news-component {
     font-size: 1.1rem;
+
+    @include media-breakpoint-down(xs) {
+        font-size: 1rem;
+    }
+
+    margin-top: $navbar-height;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    background: $background-light;
+}
+
+.container {
+    @include media-breakpoint-down(sm) {
+        margin: 0em;
+        padding: 0em;
+        max-width: none;
+    }
 }
 
 :host ::ng-deep .top-pagination {
+    float: right;
     ul.ngx-pagination {
         margin: 0em;
         margin-top: 6px;
-        float: right;
     }
 }
 
@@ -22,52 +39,20 @@
 
 .news-post {
     padding: 1em;
-}
-
-.card {
-    padding-bottom:1em;
-    background: $background-darker-accent;
-}
-
-.container {
-    margin-top: $navbar-height + 20px;
-    margin-bottom: 2em;
-    padding:2%;
-    background: $background-light;
-    box-shadow: $container-shadow;
-    border-radius: $content-border-radius;
-}
-
-.news-thumbnail {
-    object-fit: scale-down;
-    max-height: 100px;
-}
-
-.news-header {
-    padding: 2em 2em 2em 2em;
-}
-
-.news-header-text {
-
-}
-
-.news-title {
-    font-size: 1.2em;
-    font-weight: 600;
+    @include media-breakpoint-down(md) {
+        padding-left: 0em;
+        padding-right: 1em;
+    }
 }
 
 .news-content {
-    padding-top: 3em;
+    padding-top: 1em;
     padding-bottom: 3em;
 }
 
-.news-modified, .news-tag {
+.news-modified {
     color: $text-dark-muted;
     font-style:italic;
-}
-
-.news-posted {
-    color: $text-dark-muted;
 }
 
 .navpill {
@@ -77,15 +62,15 @@
     padding-right: 1em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+    border: 1px solid #ccc;
+    margin: 0.2em 0em;
     margin-right: 0.5em;
-    border-color: $primary;
-    border-width: 2px;
+
     color: $primary;
     background: $background-light;
     white-space: nowrap;
     text-align: center;
     border-radius: $content-border-radius;
-    border-style: solid;
     box-shadow: $container-shadow;
     cursor: pointer;
 }
@@ -97,9 +82,19 @@
 
 .active {
     background-color: $primary;
-    color: $background-light;    
+    color: $background-light;
+    transform: translateY(2px);
+    box-shadow: 0px 0px 2px 0px #ccc;
 }
 
 :host ::ng-deep .ngx-pagination a {
     outline: none;
+}
+
+:host ::ng-deep .ngx-pagination {
+    display: inline-block;
+}
+
+.pagination-controls {
+    display: inline-block;
 }
