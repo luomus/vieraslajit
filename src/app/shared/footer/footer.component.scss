@@ -3,7 +3,7 @@
 .footer-content {
     font-size: 1rem;
     background: $footer-background;
-    background: linear-gradient(to bottom right, darken($secondary, 10) 0%, lighten($secondary, 20) 100%);
+    background: linear-gradient(to bottom right, $secondary 0%, darken($secondary, 20) 100%);
     color: $text-light;
     box-shadow: 0px 0px 5px 0px #666;
     a {
