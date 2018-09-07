@@ -16,7 +16,7 @@
         <div *ngIf="desc?.groups; else infoAndLajifiTemplate">
           <div class="card" id="taxoncard" *ngFor="let group of desc?.groups; let first = first">
             <accordion>
-              <accordion-group [panelClass]="cardAccordion" [isOpen]="true">
+              <accordion-group [isOpen]="true">
                 <div accordion-heading id="accordion">
                   {{group.title}}
                   <ng-container *ngIf="first === false">
@@ -36,6 +36,22 @@
       </div>
 
       <div class="col-sm-12 col-md-6">
+
+        <ng-container *ngIf="media != null && media.length > 0">
+          <div class="card" id="taxoncard-right">
+            <div class="card-header">
+              <span translate>taxon.pictures</span>
+            </div>
+            <div class="card-block">
+              <carousel id="image-carousel" [interval]="false">
+                <slide class="card-slide slide" *ngFor="let image of media">
+                  <img class="img-fluid center-block" src="{{image.fullURL}}" (click)="openImage(imageModal, image)">
+                </slide>
+              </carousel>
+            </div>
+          </div>
+        </ng-container>
+
         <div class="card" id="taxoncard-right">
           <div class="card-header">
             <span translate>taxon.identification</span>
@@ -67,20 +83,6 @@
 
         </div>
 
-        <ng-container *ngIf="media != null && media.length > 0">
-          <div class="card" id="taxoncard-right">
-            <div class="card-header">
-              <span translate>taxon.pictures</span>
-            </div>
-            <div class="card-block">
-              <carousel id="image-carousel" [interval]="false">
-                <slide class="card-slide slide" *ngFor="let image of media">
-                  <img class="img-fluid center-block" src="{{image.fullURL}}" (click)="openImage(imageModal, image)">
-                </slide>
-              </carousel>
-            </div>
-          </div>
-        </ng-container>
         <div class="card" id="taxoncard-right">
           <div class="card-header">
             <span translate>mapOfObservations.header</span>

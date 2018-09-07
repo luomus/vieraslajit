@@ -4,14 +4,14 @@ $highlight: $text-highlight;
 
 .language-selector {
     background: none;
-    color: $text-light;
+    color: rgba($text-light, 0.5);
     border: none;
     font-family: $font-montserrat;
     font-weight: 400;
 }
 
 .language-selector a{
-    color: $text-light;
+    color: rgba($text-light, 0.5);
 }
 
 .language-selector a:hover {

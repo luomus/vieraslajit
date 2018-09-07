@@ -2,12 +2,14 @@
 
 :host ::ng-deep .ngx-datatable {
     border-radius: $content-border-radius;
+    font-size: 1rem;
 }
 
 :host ::ng-deep .ngx-datatable .datatable-header {
-    background: $desaturated-blue-lighter;
+    background: darken($background-light, 3);
     .datatable-header-cell-label {
-        color: $text-light;
+        color: lighten($text-dark, 15);
+        font-size: 0.8rem;
     }
     .sort-btn {
         color: $text-light;
@@ -15,5 +17,8 @@
 }
 
 :host ::ng-deep .ngx-datatable datatable-body.datatable-body {
-    background: $desaturated-blue-light;
+    background: darken($background-light, 1);
+    .datatable-body-cell-label {
+        font-size: 0.8rem;
+    }
 }

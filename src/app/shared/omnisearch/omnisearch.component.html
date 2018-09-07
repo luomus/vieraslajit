@@ -1,29 +1,25 @@
 <div class="form-group omni-search" #omniElement *ngIf="visible" (keyup)="keyEvent($event)">
-  <label class="sr-only" for="search-box">{{placeholder}}</label>
   <input type="text" class="form-control input-sm omni" id="search-box"
     [formControl]="searchControl" placeholder="{{'omnisearch.search' | translate}}"
     autoComplete="off" />
 
   <div style="clear: both"></div>
-  <!-- <div id="gcse" *ngIf="taxa.length === 0 && search.length > 3">
-    GOOGLEHAKUTULOKSIIN 
-</div>    -->
-  <div class="col-sm-12" *ngIf="taxa.length > 0 && search.length > 2">
+  <div class="col-12" *ngIf="taxa.length > 0 && search.length > 2">
     <div class="omni-search-results" [ngClass]='resultsDirection'>
       <div class="row">
-        <div class="col-md-3 matches">
+        <div class="col-12 col-md-3 matches">
           <span class="match" *ngFor="let taxon of taxa; let i=index" [ngClass]="{active: i === active, link: i !== active}" (click)="activate(i)">
             {{taxon.value}}
           </span>
         </div>
         <hr class="hidden-md hidden-lg">
-        <div class="col-md-5 first-col">
+        <div class="col-12 col-md-5 first-col">
           <div translate>omnisearch.information</div>
           <div class="row">
             <div class="col-2">
               <img [src]="'assets/images/taxon-groups/'+groupId+'.svg'">
             </div>
-            <div class="col-md-10 taxon-match" *ngIf="!comparisonView;else comparisonTemplate">
+            <div class="col-10 taxon-match" *ngIf="!comparisonView;else comparisonTemplate">
               <a [routerLink]="['/taxon/' + taxon.key]">
                 <span class="vernacularName">{{taxon.payload.vernacularName}}</span>
               </a>
@@ -38,7 +34,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 second-col">
+        <div class="col-12 col-md-3 second-col">
           <div translate>omnisearch.observations</div>
           <div class="row">
             <div class="col-md-offset-1 col-md-11 observations" *ngIf="taxon">

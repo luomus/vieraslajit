@@ -1,5 +1,9 @@
 @import '../../assets/styles/vars';
 
+.card {
+    box-shadow: $container-shadow;
+}
+
 h1.title{
     color: $background-light-highlight-dark;
     margin-top: 2vh;
@@ -25,8 +29,4 @@ h1.title{
     height: 100%;
     background: $background-light;
     padding-bottom: 20px;
-}
-
-@media (max-width: 575.98px) {
-    h1 {font-size: 30px}
 }

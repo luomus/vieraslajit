@@ -38,7 +38,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
 
-  @Input() placeholder: string;
   @Input() limit: 10;
   @Input() selectTo = '/taxon';
   @Input() minLength = 3;
@@ -58,10 +57,10 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   private inputChange: Subscription;
   private el: Element;
 
-  private resultsDirection = 'right';
+  resultsDirection = 'right';
 
   // Informal Taxon Group ID of currently selected taxon
-  private groupId = 'MVL.1';
+  groupId = 'MVL.1';
 
   @ViewChild('omniElement') omniElement: ElementRef;
 

@@ -14,11 +14,9 @@ $background: $desaturated-blue;
 nav {
 
     /* COMPONENT BASE FONT SIZE */
-    font-size: 1rem;
+    font-size: 0.9rem;
 
     font-family: $font-montserrat;
-
-    border-bottom: 1px solid $accent;
 
     box-shadow: 0px 0px 5px 0px $shadow;
 }
@@ -32,7 +30,7 @@ nav::after {
     
 	/* Background gradient */
     background: $desaturated-blue;
-    background: linear-gradient(to top left, $desaturated-blue-darker-2 0%, $desaturated-blue 100%);
+    background: linear-gradient(to top left, darken($desaturated-blue, 20) 0%, lighten($desaturated-blue, 10) 100%);
 
 	opacity: 0.9; 
 	position: absolute; 
@@ -53,7 +51,7 @@ nav::after {
 
 nav .navbar-brand {
     color: $text-light;
-    font-size: 22px;
+    font-size: 1.2em;
     outline: none;
 
     &:hover {
@@ -115,6 +113,7 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
     background: $background;
     opacity: 0.9;
     position:absolute;
+    box-shadow: 2px 2px 5px 0 rgba(#333, 0.5);
 }
 
 #dropdown-menu-item {
@@ -137,7 +136,7 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
 /* Active state for top level links */
 
 .vrs-nav-active {
-    color: $accent !important;
+    color: rgba($text-light, 0.5) !important;
 }
 
  /* Search */
@@ -152,15 +151,28 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
     color: $text-hover;
 }
 
+:host ::ng-deep .nav-omni {
+    display:flex;
+    align-items:center;
+}
+
 :host ::ng-deep .nav-omni .omni-search {
     margin: 0;
     padding: 0;
     max-width: 100%;
 
     input {
+        box-shadow: $inset-box-shadow;
+
         width: 12vw;
         @include media-breakpoint-down(md) {
             width: 15em;
+        }
+        &.form-control {
+            border: none;
+            height: 80%;
+            font-size: 0.9em;
+            padding: 0.3em 0.5em;
         }
     }
 
@@ -187,8 +199,11 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
     margin-left: 0.3vw;
 }
 
-#personbutton:hover {
+.person-button-hover-area:hover {
     color:$accent;
+    #personbutton {
+        color:$accent;
+    }
 }
 
 #dropdown-user ul#dropdown-basic.dropdown-menu-right.show {
@@ -196,6 +211,7 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
     opacity: 0.9;
     color: $text-light;
     position:absolute;
+    box-shadow: 2px 2px 5px 0 rgba(#333, 0.5);
 
     @include media-breakpoint-down(md) {
         left: 0px !important;
@@ -219,7 +235,6 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
 /* Language Selector */
 
 #language-selector {
-    cursor: pointer;
     @include media-breakpoint-down(md) {
         margin-left:8px;
     }

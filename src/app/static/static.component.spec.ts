@@ -9,6 +9,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TabsModule } from 'ngx-bootstrap';
 import { EditcmsModule } from './../shared-modules/editcms/editcms.module';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { SpinnerModule } from '../shared-modules/spinner/spinner.module';
 
 describe('StaticComponent', () => {
   let component: StaticComponent;
@@ -17,7 +18,7 @@ describe('StaticComponent', () => {
  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule, TabsModule, EditcmsModule, TranslateModule.forRoot()],
+      imports: [HttpClientModule, RouterTestingModule, TabsModule, EditcmsModule, TranslateModule.forRoot(), SpinnerModule],
       declarations: [ StaticComponent ],
       providers: [InformationService, ApiService, TranslateService ]
     })
