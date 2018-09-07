@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { UserService, Role } from '../service/user.service';
-import {Router, RouterLinkActive} from '@angular/router';
+import {Router, NavigationEnd} from '@angular/router';
 import { InformationService } from '../service/information.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   @ViewChildren(BsDropdownDirective) d : QueryList<BsDropdownDirective>;
   
   constructor(private modalService: BsModalService, private router: Router, private userService: UserService,
-     private informationService: InformationService, private translate:TranslateService) {
+     private informationService: InformationService, private translate:TranslateService ) {
       this.loginSub = userService.loginStateChange.subscribe(() => {
         this.loggedIn = UserService.loggedIn();
       if(this.loggedIn == false) {
@@ -50,14 +50,22 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
       this.setCMSRootId(event.lang);
       this.update();
     });
-    $(window).on('scroll', ()=>{
-      console.log($(window).scrollTop());
-      if($(window).scrollTop() < 200) {
-        $('nav').addClass("transparent");
-      } else {
-        $('nav').removeClass('transparent');
+    this.router.events.subscribe((e)=>{
+      if(e instanceof NavigationEnd) {
+        this.updateNavbarTransparency();
       }
+    })
+    $(window).on('scroll', ()=>{
+      this.updateNavbarTransparency();
     });
+  }
+
+  private updateNavbarTransparency() {
+    if((this.router.url === '/home' || this.router.url === '/') && $(window).scrollTop() < 200) {
+      $('nav').addClass("transparent");
+    } else {
+      $('nav').removeClass('transparent');
+    }
   }
 
   ngAfterViewInit() {
