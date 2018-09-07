@@ -25,19 +25,19 @@
 ul.nav.nav-tabs {
     padding-left: 1.5em;
     padding-top: 1em;
-    background: $desaturated-blue-lighter;
+    background: lighten($secondary, 10);
     border: 1px solid $border-light;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
 .nav-tabs li.nav-item a.nav-link {
-    background: $desaturated-blue-lighter;
+    background: lighten($secondary, 10);
     color: $text-light;
     border-bottom: 1px solid $border-light;
     &:hover {
         color: $primary;
-        border-color: $desaturated-blue-lighter;
+        border-color: lighten($secondary, 10);
         border-bottom-color: $background-light;
     }
 }

@@ -1,6 +1,10 @@
 @import './../../assets/styles/vars.scss';
 @import './../../../node_modules/bootstrap/scss/bootstrap-grid';
 
+.container {
+    font-size: 1.1rem;
+}
+
 :host ::ng-deep .top-pagination {
     ul.ngx-pagination {
         margin: 0em;
@@ -40,9 +44,7 @@
 }
 
 .news-header {
-/*     border: 1px solid $border-light;
-    border-top-left-radius: $content-border-radius;
-    border-top-right-radius: $content-border-radius; */
+    padding: 2em 2em 2em 2em;
 }
 
 .news-header-text {
@@ -50,33 +52,32 @@
 }
 
 .news-title {
-    
+    font-size: 1.2em;
+    font-weight: 600;
 }
 
 .news-content {
-/*     background: $background-light;
-    border-left: 1px solid $border-light;
-    border-bottom: 1px solid $border-light;
-    border-right: 1px solid $border-light;
-    border-bottom-left-radius: $content-border-radius;
-    border-bottom-right-radius: $content-border-radius; */
+    padding-top: 3em;
+    padding-bottom: 3em;
 }
 
-.news-modified {
-    font-size: 14px;
+.news-modified, .news-tag {
+    color: $text-dark-muted;
+    font-style:italic;
 }
 
-#navpills{
+.news-posted {
+    color: $text-dark-muted;
 }
 
 .navpill {
     display: inline-block;
+    font-size: 0.8em;
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-right: 0.5em;
-    font-size: 14px;
     border-color: $primary;
     border-width: 2px;
     color: $primary;
@@ -85,6 +86,7 @@
     text-align: center;
     border-radius: $content-border-radius;
     border-style: solid;
+    box-shadow: $container-shadow;
     cursor: pointer;
 }
 
@@ -96,4 +98,8 @@
 .active {
     background-color: $primary;
     color: $background-light;    
+}
+
+:host ::ng-deep .ngx-pagination a {
+    outline: none;
 }
