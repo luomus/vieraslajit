@@ -49,7 +49,15 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
     this.onLangChange = this.translate.onLangChange.subscribe((event) =>{
       this.setCMSRootId(event.lang);
       this.update();
-    });  
+    });
+    $(window).on('scroll', ()=>{
+      console.log($(window).scrollTop());
+      if($(window).scrollTop() < 200) {
+        $('nav').addClass("transparent");
+      } else {
+        $('nav').removeClass('transparent');
+      }
+    });
   }
 
   ngAfterViewInit() {
