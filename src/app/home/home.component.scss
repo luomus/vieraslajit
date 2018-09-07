@@ -6,7 +6,6 @@
     font-size: 1rem;
 
     margin-top: $navbar-height;
-    padding-top: 2em;
     padding-bottom: 2em;
 
     background: $background-light;
@@ -21,13 +20,18 @@
 /* HEADER V2 */
 
 .header-v2 {
-    padding-top: 4em;
-    padding-bottom: 4em;
+    margin-top: -$navbar-height;
+    background: linear-gradient(to top right, darken($secondary, 20), $secondary);
+    color: rgba(255, 255, 255, 0.8);
+    padding-top: 35vh;
+    padding-bottom: 35vh;
+    clip-path: polygon(0 0, 0 100%, 100% 90%, 100% 0);
     h1 {
         font-size: 2em;
     }
     p {
-        color: lighten($text-dark, 20);
+        font-size: 1.5em;
+        color: rgba(255, 255, 255, 0.5);
     }
 }
 

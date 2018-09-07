@@ -139,7 +139,7 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
 /* Active state for top level links */
 
 .vrs-nav-active {
-    color: rgba($text-light, 0.5) !important;
+    color: $primary !important;
 }
 
  /* Search */
