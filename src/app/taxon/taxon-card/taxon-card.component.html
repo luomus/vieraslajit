@@ -61,7 +61,7 @@
             <div class="col-sm-12 col-md-6">
               <div class="card-body">
                 <div class="card-text">
-                  <button id="comparison" class="btn vrs-button vrs-button-primary" routerLink='/taxon/{{id}}/comparison' translate>comparison.title</button>
+                  <button class="btn vrs-button" routerLink='/taxon/{{id}}/comparison' translate>comparison.title</button>
                   <br>
                   <br>
                   <span translate>comparison.text</span>
@@ -71,7 +71,7 @@
             <div class="col-sm-12 col-md-6">
               <div class="card-body">
                 <div class="card-text">
-                  <a routerLink="/form/MHL.9" id="report" class="btn vrs-button" translate>taxon.help</a>
+                  <a routerLink="/form/MHL.9" class="btn vrs-button secondary" translate>taxon.help</a>
                   <br>
                   <br>
                   <span translate>taxon.helpText</span>
@@ -90,14 +90,17 @@
           <div class="card-block">
             <vrs-observation-map [id]="id" [mapHeight]="600"></vrs-observation-map>
             <p>
-              <a href="https://laji.fi/observation/map?target={{id}}" target="_blank">  <span translate>mapOfObservations.link</span></a>
+              Tarkastele havaintoja <a href="https://laji.fi/observation/map?target={{id}}" target="_blank">laji.fi:n havaintokartalta</a>
             </p>
-            <div class="col-sm-12 col-md-6">
-                  <div class="card-text">
-                    <a routerLink="/form/JX.123757" id="report" class="btn vrs-button" translate>taxon.report</a>
-                  </div>
-                  <br>
+            <div class="row">
+              <div class="col-6">
+                  <button [routerLink]="['/observations']" [queryParams]="{id: id}" class="btn vrs-button">Havaintokarttanäkymään</button>
               </div>
+              <div class="col-6">
+                  <button routerLink="/form/JX.123757" id="report" class="btn vrs-button secondary" translate>taxon.report</button>
+              </div>
+            </div>
+            <br>
           </div>
         </div>
 
