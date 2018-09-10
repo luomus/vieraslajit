@@ -61,9 +61,15 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   }
 
   private updateNavbarTransparency() {
-    if((this.router.url === '/home' || this.router.url === '/') && $(window).scrollTop() < 200) {
-      $('nav').addClass("transparent");
+    if(this.router.url === '/home' || this.router.url === '/') {
+      $('nav').removeClass('notransition');
+      if($(window).scrollTop() < 200) {
+        $('nav').addClass('transparent');
+      } else {
+        $('nav').removeClass('transparent');
+      }
     } else {
+      $('nav').addClass('notransition');
       $('nav').removeClass('transparent');
     }
   }
