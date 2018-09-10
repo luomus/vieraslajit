@@ -8,6 +8,18 @@
     }
 }
 
+.oi-magnifying-glass {
+    color: #999;
+    position: absolute;
+    top:0.6em;
+    left: 0.6em;
+}
+
+input {
+    padding-left: 2em;
+    width: 100%;
+}
+
 :host ::ng-deep .autocomplete-items {
     position: absolute;
     border: 1px solid #d4d4d4;
@@ -26,6 +38,7 @@
 
         &.vrs-taxon-search-active {
             color: $primary;
+            background-color: #eee;
         }
     }
     
