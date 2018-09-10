@@ -8,6 +8,7 @@ import { NewsComponent } from './news.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { EditcmsModule } from '../shared-modules/editcms/editcms.module';
 import { SpinnerModule } from '../shared-modules/spinner/spinner.module';
+import { NewsHeaderComponent } from './news-header/news-header.component';
 
 describe('NewsComponent', () => {
   let component: NewsComponent;
@@ -15,7 +16,7 @@ describe('NewsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewsComponent],
+      declarations: [ NewsComponent, NewsHeaderComponent],
       imports: [HttpClientModule, TranslateModule.forRoot(),EditcmsModule, NgxPaginationModule,
                 SpinnerModule],
       providers: [ApiService, NewsService]

@@ -1,0 +1,65 @@
+@import '../../../assets/styles/vars.scss';
+@import '~bootstrap/scss/bootstrap-grid';
+
+
+.news-header {
+    background: darken($background-light, 2);
+    border-left: 6px solid red;
+    padding: 2em 2em 2em 0.5em;
+
+    margin-left: 3em;
+    @include media-breakpoint-down(lg) {
+        margin-left: 2em;
+    }
+    @include media-breakpoint-down(md) {
+        margin-left: 0em;
+    }
+
+    &.c0{
+        border-color: red;
+    }
+    &.c1 {
+        border-color: purple;
+    }
+    &.c2 {
+        border-color: yellow;
+    }
+    &.c3 {
+        border-color: green;
+    }
+    &.c4 {
+        border-color: blue;
+    }
+    &.c5 {
+        border-color: fuchsia;
+    }
+    &.c6 {
+        border-color: lime;
+    }
+}
+
+.news-header-text {
+
+}
+
+.news-title {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.news-tag {
+    color: $text-dark-muted;
+    font-style:italic;
+    @include media-breakpoint-down(xs) {
+        display: none;
+    }
+}
+
+.news-posted {
+    color: $text-dark-muted;
+}
+
+.news-thumbnail {
+    object-fit: scale-down;
+    max-height: 100px;
+}

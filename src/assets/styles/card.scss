@@ -9,7 +9,7 @@
 }
 
 .card .card-header {
-    background: $desaturated-blue-lighter;
+    background: lighten($secondary, 10);
     color: $text-light;
     border-radius: $content-border-radius;
     border-bottom-left-radius: 0em;
@@ -30,7 +30,7 @@ accordion .panel-heading.card-header {
 }
 
 accordion .card.panel-default {
-    background: $desaturated-blue-lighter;
+    background: lighten($secondary, 10);
     color: $text-light;
 }
 

@@ -3,8 +3,6 @@
 
 $accent: $primary;
 
-$background: $desaturated-blue;
-
 .container.container-navbar {
     padding: 0;
     max-width: 1400px;
@@ -14,11 +12,12 @@ $background: $desaturated-blue;
 nav {
 
     /* COMPONENT BASE FONT SIZE */
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 
     font-family: $font-montserrat;
 
-    box-shadow: 0px 0px 5px 0px $shadow;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 /* After element for transparent background */
@@ -29,14 +28,25 @@ nav::after {
     height: 100%;
     
 	/* Background gradient */
-    background: $desaturated-blue;
-    background: linear-gradient(to top left, darken($desaturated-blue, 20) 0%, lighten($desaturated-blue, 10) 100%);
+    background: $secondary;
+    background: linear-gradient(to top left, darken($secondary, 20) 0%, lighten($secondary, 10) 100%);
 
-	opacity: 0.9; 
+    box-shadow: 0px 0px 5px 0px $shadow;
+
+    opacity: 0.9; 
+    transition: 500ms;
 	position: absolute; 
 	top: 0; 
 	left: 0;
 	z-index: -1;
+}
+
+nav.transparent::after {
+    @include media-breakpoint-up(lg) {
+        box-shadow: none;
+        opacity: 0;
+        transition: 500ms;
+    }
 }
 
 /* Navbar toggler */
@@ -71,8 +81,8 @@ nav .nav-item {
 
 nav .navbar-nav li.nav-item a.nav-link {
     color: $text-light;
-    padding-right:10px;
-    padding-left:10px;
+    padding-right:1.5vw;
+    padding-left:1.5vw;
 }
 
 nav .navbar-nav li.nav-item a.nav-link:hover {
@@ -101,8 +111,8 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
 }
 
 #dropdown-toggle {
-    padding-left:10px;
-    padding-right:10px;
+    padding-left:1.5vw;
+    padding-right:1.5vw;
     cursor: pointer;
     &:hover {
         color: $text-hover;
@@ -110,7 +120,7 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
 }
 
 #dropdown-menu.dropdown-menu.show {
-    background: $background;
+    background: $background-light;
     opacity: 0.9;
     position:absolute;
     box-shadow: 2px 2px 5px 0 rgba(#333, 0.5);
@@ -119,14 +129,13 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
 #dropdown-menu-item {
     display: flex;
     align-items: center;
-    color: $text-light;
+    color: $text-dark;
     font-family: $font-montserrat;
     font-weight: 400;
 }
 
 #dropdown-menu-item:hover {
     color: $text-hover;
-    background: $background-light;
 }
 
 .dropdown-menu {
@@ -136,7 +145,7 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
 /* Active state for top level links */
 
 .vrs-nav-active {
-    color: rgba($text-light, 0.5) !important;
+    color: $primary !important;
 }
 
  /* Search */
@@ -207,9 +216,9 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
 }
 
 #dropdown-user ul#dropdown-basic.dropdown-menu-right.show {
-    background: $background;
+    background: $background-light;
     opacity: 0.9;
-    color: $text-light;
+    color: $text-dark;
     position:absolute;
     box-shadow: 2px 2px 5px 0 rgba(#333, 0.5);
 
@@ -219,7 +228,7 @@ nav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item 
     }
 
     .dropdown-item {
-        color: $text-light;
+        color: $text-dark;
         &:hover {
             color: $text-hover;
         }

@@ -1,5 +1,5 @@
 .vrs-button {
-    background: $desaturated-blue-lighter;
+    background: lighten($secondary, 10);
     color: $text-light;
     border-radius: $content-border-radius;
     text-align: center;
@@ -30,7 +30,7 @@
     &.secondary {
         background: transparent;
         color: rgba($text-dark, 0.8);
-        border-color: lighten($desaturated-blue-lighter, 10);
+        border-color: lighten($secondary, 20);
 
         &:hover {
             background: $primary;

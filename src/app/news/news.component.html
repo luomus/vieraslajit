@@ -1,61 +1,32 @@
+<div class="news-component">
 <div class="container">
-  <div class="row">
-    <div class="col-8">
-      <div class= "row">
-        <div class="col-7">
-          <ul id="navpills">
-              <li class="navpill active" id="navpillNews" (click)="onClick('vieraslajit.fi', 'navpillNews')" translate>news.news</li>
-              <li class="navpill" id="navpillTechnical" (click)="onClick('technical', 'navpillTechnical')" translate>news.technical</li>
-              <li class="navpill" id="navpillAll" (click)="onClick('vieraslajit.fi,technical', 'navpillAll')" translate>news.all</li>
-            </ul>
-        </div>
-        <div class="col-5">
-          <pagination-controls class="top-pagination" (pageChange)="getPage($event)" id="server" maxSize='0'></pagination-controls>
-        </div>
+    <div class= "row justify-content-between">
+      <div class="col">
+        <ul id="navpills">
+            <li class="navpill active" id="navpillNews" (click)="onClick('vieraslajit.fi', 'navpillNews')" translate>news.news</li>
+            <li class="navpill" id="navpillTechnical" (click)="onClick('technical', 'navpillTechnical')" translate>news.technical</li>
+            <li class="navpill" id="navpillAll" (click)="onClick('vieraslajit.fi,technical', 'navpillAll')" translate>news.all</li>
+          </ul>
       </div>
+      <div class="col">
+        <pagination-controls class="top-pagination" (pageChange)="getPage($event)" id="pagination-controls" maxSize='0'></pagination-controls>
+      </div>
+    </div>
+  
       <laji-spinner [ngClass]="{'news-spinner': newsLoading}" [spinning]="newsLoading" [hideContentWhileLoading]='true' [fullViewport]='false'>
-      <div *ngFor="let newsElement of asyncNews | async | paginate: { id: 'server', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems }" class="news-post my-3">
+      <div *ngFor="let newsElement of (asyncNews | async | paginate: { id: 'pagination-controls', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems })" class="news-post">
         
         <!-- Margin -->
-        <div class="m-3">
+        <div class="mx-3">
 
-        <!-- Feature image header -->
-        <div *ngIf='newsElement.featuredImage' class="row news-header p-3">
-          <div class="col-auto">
-            <img class="news-thumbnail rounded" src="{{newsElement.featuredImage}}">
-          </div>
-          <div class="col row align-items-center">
-            <div class="col news-header-text">
-              <h2 class="news-title py-2 py-sm-0">{{newsElement.title}}</h2>
-              <div class="text-muted p-0 p-sm-2">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }} {{newsElement.author}}</div>
-            </div>
-          </div>
-          <div class="col-1">
-            <span class="text-muted float-right">{{newsElement.tag}}</span>
-            <vrs-editcms class="float-right" id="{{newsElement.id}}"></vrs-editcms>
-          </div>
-        </div>
-        <!-- / header -->
-
-        <!-- No feature image header -->
-        <div *ngIf='!newsElement.featuredImage' class="row news-header p-3 justify-content-between">
-          <div class="col-10">
-            <h2 class="news-title">{{newsElement.title}}</h2>
-            <div class="text-muted">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }} {{newsElement.author}}</div>
-          </div>
-          <div class="col-2">
-            <span class="text-muted float-right">{{newsElement.tag}}</span>
-            <vrs-editcms class="float-right" id="{{newsElement.id}}"></vrs-editcms>
-          </div>
-        </div>
-        <!-- / header -->
+        <vrs-news-header [newsElement]="newsElement"></vrs-news-header>
         
-        <div class="row news-content">
-          <div class="col-12">
+        <div class="row justify-content-center news-content">
+          <div class="col-12 col-lg-11 col-xl-10">
             <div class="pl-3">
               <p [innerHTML]="newsElement.content">Post content</p>
             </div>
-            <div class="text-muted text-right news-modified p-2">
+            <div class="text-right news-modified p-2">
               <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span> 
               {{newsElement.modified | date: 'dd.MM.yyyy HH:MM'}}
               <span *ngIf= "newsElement.modified">)</span>
@@ -64,45 +35,12 @@
         </div>
 
         </div> <!-- / margin -->
-        <hr>
       </div> <!-- / news-post -->
-      </laji-spinner>
-
-      <div class="">
-          <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
-      </div>
-    </div> <!-- / col -->
-
-    <div class="col-4">
-      <div class="card my-3 p-3">
-        <h3>Ajankohtaiset lajit</h3>
-        <div class="row my-1"> <!-- Item -->
-          <div class="col-auto">
-            <img src="https://via.placeholder.com/100x100">
-          </div>
-          <div class="col">
-            Laji 1
-          </div>
-        </div> <!-- / item -->
-        <div class="row"> <!-- Item -->
-          <div class="col-auto">
-            <img src="https://via.placeholder.com/100x100">
-          </div>
-          <div class="col">
-            Laji 2
-          </div>
-        </div> <!-- / item -->
-      </div> <!-- / topical species -->
-
-      <div class="card my-3 p-3">
-        <h3>Uudet havainnot (lähelläsi?)</h3>
-        <ul>
-          <li>Havainto 1</li>
-          <li>Havainto 2</li>
-          <li>Havainto 3</li>
-        </ul>
-      </div> <!-- / new observations -->
-
-    </div> <!-- / col-4 -->
-  </div> <!-- / row -->
-</div> <!-- /container-->
+    </laji-spinner>
+    <div class="text-right">
+    <div class="pagination-controls">
+     <pagination-controls (pageChange)="getPage($event)" id="pagination-controls"></pagination-controls>
+    </div>
+  </div>
+  </div> <!-- /container-->
+</div>

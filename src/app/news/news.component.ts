@@ -64,5 +64,4 @@ export class NewsComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.onLangChange ? this.onLangChange.unsubscribe() : null;
   }
-
 }
