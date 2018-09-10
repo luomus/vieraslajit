@@ -2,6 +2,7 @@
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 @import '../../../../assets/styles/datatable';
+@import '~bootstrap/scss/bootstrap-grid';
 
 .obs-map {
   padding-top: 1em;
@@ -18,11 +19,15 @@
 }
 
 .col-map {
-  padding-right: 0px;
+  @include media-breakpoint-up (sm) {
+    padding-right: 0px;
+  }
 }
 
 .col-list {
-  padding-left: 0px;
+  @include media-breakpoint-up (sm) {
+    padding-left: 0px;
+  }
 }
 
 p {
@@ -52,4 +57,7 @@ p {
 .selected-observation-left {
   border-right: 1px solid #ccc;
   color: $text-dark-muted;
+  @include media-breakpoint-down(xs) {
+    display:none;
+  }
 }

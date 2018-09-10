@@ -2,6 +2,7 @@
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import '~bootstrap/scss/bootstrap-grid';
 
 .navButton {
     display: inline-block;
@@ -13,6 +14,21 @@
 #heading {
     font-size: $header-size;
     line-height: 2.1;
+    @include media-breakpoint-down(xs) {
+        display:none;
+    }
+}
+
+:host ::ng-deep .input-group {
+    padding: 0.5em 0em;
+}
+
+:host ::ng-deep .autocomplete {
+    padding: 0.5em 0em;
+    
+    .oi-magnifying-glass {
+        top: 21px;
+    }
 }
 
 .card {
