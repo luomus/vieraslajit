@@ -4,17 +4,3 @@
 .eradication {
     background: $background-light;
 }
-
-:host ::ng-deep .eradication .static-content {
-    padding-left: 2em;
-    margin-left: 3em;
-    border-left: 2px dashed #ddd;
-    margin-bottom: 2em;
-
-    @include media-breakpoint-down(xs){
-        padding-right: 1em;
-        padding-left: 1em;
-        margin-right: 0em;
-        margin-left: 2em;
-    }
-}
