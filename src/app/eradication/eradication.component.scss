@@ -1,32 +1,6 @@
 @import '../../assets/styles/vars';
+@import '~bootstrap/scss/bootstrap-grid';
 
-.card {
-    box-shadow: $container-shadow;
-}
-
-h1.title{
-    color: $background-light-highlight-dark;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-}
-
-.buttondiv {
-    padding-top: 1vh;
-}
-
-.button-and-search {
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-}
-
-.taxonbutton {
-    width: 100%;
-    color: white;
-}
-
-
-.card-body.static {
-    height: 100%;
+.eradication {
     background: $background-light;
-    padding-bottom: 20px;
 }

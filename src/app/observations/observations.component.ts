@@ -15,6 +15,8 @@ export class ObservationsComponent implements OnInit, OnDestroy {
   id:string;
   queryParams: Subscription;
 
+  mapHeight = 600;
+
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -22,6 +24,11 @@ export class ObservationsComponent implements OnInit, OnDestroy {
       if(params['user'] == true) this.ownMode = true;
       if(params['id']) this.id = params['id'];
     });
+
+    let height = window.innerHeight - ((window.innerHeight / 100)*30);
+    if (height < 600) {
+      this.mapHeight = height;
+    }
   }
 
   ngOnDestroy() {

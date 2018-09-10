@@ -2,11 +2,43 @@
 @import '~bootstrap/scss/bootstrap-grid';
 
 .omni-search {
+
+  font-size: 0.8rem;
+  font-weight: 400;
+
   margin-bottom: 0;
   margin-top: 5;
   padding:10px;
   position: relative;
   max-width: 80%;
+}
+
+.oi-magnifying-glass {
+  color: #999;
+  position: absolute;
+  top:0.5em;
+  left: 0.5em;
+}
+
+input {
+  box-shadow: $inset-box-shadow;
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  width: 12vw;
+  
+  @include media-breakpoint-down(md) {
+      width: 15em;
+  }
+  &.form-control {
+      border: none;
+      height: 80%;
+      font-size: 0.9em;
+      padding: 0.5em 0.8em;
+      padding-left: 2.1em;
+  }
 }
 
 .omni-search-results {

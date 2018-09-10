@@ -1,7 +1,10 @@
 <div class="form-group omni-search" #omniElement *ngIf="visible" (keyup)="keyEvent($event)">
-  <input type="text" class="form-control input-sm omni" id="search-box"
-    [formControl]="searchControl" placeholder="{{'omnisearch.search' | translate}}"
-    autoComplete="off" />
+  <div>
+    <span class="oi oi-magnifying-glass"></span>
+    <input type="text" class="form-control input-sm omni" id="search-box"
+      [formControl]="searchControl" placeholder="{{'omnisearch.search' | translate}}"
+      autoComplete="off" />
+  </div>
 
   <div style="clear: both"></div>
   <div class="col-12" *ngIf="taxa.length > 0 && search.length > 2">

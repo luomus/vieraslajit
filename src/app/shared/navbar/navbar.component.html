@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark navbar-expand-lg fixed-top transparent">
     <div class="container container-navbar align-items-end">
-        <a class="navbar-brand" routerLink="/home" routerLinkActive="vrs-nav-active" translate>
+        <a class="navbar-brand" routerLink="/home" routerLinkActive="vrs-nav-active" (click)="isCollapsed = false" translate>
             <span class="vrs-logo-img vrs-logo"></span>
             Vieraslajit.fi
         </a>
@@ -29,7 +29,7 @@
                 </li>
                 <li class="dropdown" id="dropdown-about" dropdown>
                     <div id="dropdown-hover-area">
-                        <a  class="dropdown-toggle py-2" id="dropdown-toggle" translate>navigation.about <span class="caret"></span></a>
+                        <a  class="dropdown-toggle py-2" id="dropdown-toggle" translate>navigation.about<span class="caret"></span></a>
                         <ul *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
                             <li *ngFor="let child of menu" role="menuitem"><a class="dropdown-item" id="dropdown-menu-item"
                                     routerLink="static/{{child.id}}">{{child.title}}</a></li>
