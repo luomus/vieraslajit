@@ -172,21 +172,6 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     padding: 0;
     max-width: 100%;
 
-    input {
-        box-shadow: $inset-box-shadow;
-
-        width: 12vw;
-        @include media-breakpoint-down(md) {
-            width: 15em;
-        }
-        &.form-control {
-            border: none;
-            height: 80%;
-            font-size: 0.9em;
-            padding: 0.5em 0.8em;
-        }
-    }
-
     @include media-breakpoint-down(md) {
         margin-left: 7px;
         margin-top: 5px;
