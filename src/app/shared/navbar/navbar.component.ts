@@ -45,6 +45,10 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
     
   }
 
+  getCurrentLang() {
+    return this.translate.currentLang;
+  }
+
   ngOnInit() {
     this.onLangChange = this.translate.onLangChange.subscribe((event) =>{
       this.setCMSRootId(event.lang);
