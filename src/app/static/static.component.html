@@ -1,6 +1,6 @@
 <laji-spinner [ngClass]="{'static-spinner': loading}" [spinning]="loading" [hideContentWhileLoading]='true' [fullViewport]='false' >
 <ng-container *ngIf="child_pages">
-        <h1 class="p-2" [innerHTML]="scontent['title']"></h1>
+        <h1 class="" [innerHTML]="scontent['title']"></h1>
         <tabset>
                 <tab *ngFor="let child of child_pages" heading="{{child.title}}">
                         <ng-container *ngIf="child.data">
@@ -14,6 +14,6 @@
 <ng-container *ngIf="scontent && !child_pages">
         <vrs-editcms [id]="id.substring(2, id.length)"></vrs-editcms>
         <h1 [innerHTML]="scontent['title']"></h1>
-        <div [innerHTML]="scontent['content']"></div>
+        <div class="static-content" [innerHTML]="scontent['content']"></div>
 </ng-container>
 </laji-spinner>

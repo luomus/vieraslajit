@@ -6,8 +6,16 @@
 }
 
 h1 {
-    font-size: 1.2em;
+    font-size: 0.8em;
     font-weight: 600;
+    text-transform: uppercase;
+    color: lighten($text-dark, 10);
+    padding: 2em;
+}
+
+.static-content {
+    margin: 0em 2em;
+    padding: 1em 3em;
 }
 
 .static-spinner {
