@@ -24,3 +24,10 @@ h1 {
     margin-bottom: 10em;
     padding: 5em;
 }
+
+/* Wordpress styles */
+
+:host ::ng-deep .alignright {
+    float:right;
+    margin: 5px 0px 5px 20px;
+}
