@@ -1,46 +1,52 @@
 <div class="news-component">
-<div class="container">
+<div class="navpill-bg">
+  <div class="container">
     <div class= "row justify-content-between">
-      <div class="col">
+      <div class="col-12 col-md-auto">
         <ul id="navpills">
             <li class="navpill active" id="navpillNews" (click)="onClick('vieraslajit.fi', 'navpillNews')" translate>news.news</li>
             <li class="navpill" id="navpillTechnical" (click)="onClick('technical', 'navpillTechnical')" translate>news.technical</li>
             <li class="navpill" id="navpillAll" (click)="onClick('vieraslajit.fi,technical', 'navpillAll')" translate>news.all</li>
           </ul>
       </div>
-      <div class="col">
+      <div class="col-12 col-sm-auto">
         <pagination-controls class="top-pagination" (pageChange)="getPage($event)" id="pagination-controls" maxSize='0'></pagination-controls>
       </div>
     </div>
-  
-      <laji-spinner [ngClass]="{'news-spinner': newsLoading}" [spinning]="newsLoading" [hideContentWhileLoading]='true' [fullViewport]='false'>
-      <div *ngFor="let newsElement of (asyncNews | async | paginate: { id: 'pagination-controls', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems })" class="news-post">
-        
-        <!-- Margin -->
-        <div class="mx-3">
-
-        <vrs-news-header [newsElement]="newsElement"></vrs-news-header>
-        
-        <div class="row justify-content-center news-content">
-          <div class="col-12 col-lg-11 col-xl-10">
-            <div class="pl-3">
-              <p [innerHTML]="newsElement.content">Post content</p>
-            </div>
-            <div class="text-right news-modified p-2">
-              <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span> 
-              {{newsElement.modified | date: 'dd.MM.yyyy HH:MM'}}
-              <span *ngIf= "newsElement.modified">)</span>
-            </div>
-          </div>
-        </div>
-
-        </div> <!-- / margin -->
-      </div> <!-- / news-post -->
-    </laji-spinner>
-    <div class="text-right">
-    <div class="pagination-controls">
-     <pagination-controls (pageChange)="getPage($event)" id="pagination-controls"></pagination-controls>
-    </div>
   </div>
-  </div> <!-- /container-->
+</div>
+<div class="news-container">
+<div class="container">
+  <laji-spinner [ngClass]="{'news-spinner': newsLoading}" [spinning]="newsLoading" [hideContentWhileLoading]='true' [fullViewport]='false'>
+  <div *ngFor="let newsElement of (asyncNews | async | paginate: { id: 'pagination-controls', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems })" class="news-post">
+    
+    <vrs-news-header [newsElement]="newsElement"></vrs-news-header>
+    
+    <div class="row justify-content-center news-content">
+      <div class="col-12 col-lg-11 col-xl-10">
+        <div class="pl-3">
+          <p [innerHTML]="newsElement.content">Post content</p>
+        </div>
+        <div class="text-right news-modified p-2">
+          <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span> 
+          {{newsElement.modified | date: 'dd.MM.yyyy HH:MM'}}
+          <span *ngIf= "newsElement.modified">)</span>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- / news-post -->
+  </laji-spinner>
+</div> <!-- /container-->
+</div>
+<div class="pagination-controls-container">
+  <div class="container">
+    <div class="text-right">
+        <div class="pagination-controls">
+          <pagination-controls (pageChange)="getPage($event)" id="pagination-controls"></pagination-controls>
+        </div>
+      </div>
+  </div>
+</div>
+
 </div>
