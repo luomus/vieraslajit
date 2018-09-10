@@ -39,6 +39,14 @@
     color: $text-dark;
 }
 
+.footer-divider {
+    margin-left:auto;
+    margin-right:auto;
+    width: 80%;
+    border-top: 1px solid #ddd;
+    padding-bottom:2em;
+}
+
 .vrs-affiliates {
     background: $background-light;
 
