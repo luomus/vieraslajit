@@ -1,32 +1,20 @@
 @import '../../assets/styles/vars';
+@import '~bootstrap/scss/bootstrap-grid';
 
-.card {
-    box-shadow: $container-shadow;
-}
-
-h1.title{
-    color: $background-light-highlight-dark;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-}
-
-.buttondiv {
-    padding-top: 1vh;
-}
-
-.button-and-search {
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-}
-
-.taxonbutton {
-    width: 100%;
-    color: white;
-}
-
-
-.card-body.static {
-    height: 100%;
+.eradication {
     background: $background-light;
-    padding-bottom: 20px;
+}
+
+:host ::ng-deep .eradication .static-content {
+    padding-left: 2em;
+    margin-left: 3em;
+    border-left: 2px dashed #ddd;
+    margin-bottom: 2em;
+
+    @include media-breakpoint-down(xs){
+        padding-right: 1em;
+        padding-left: 1em;
+        margin-right: 0em;
+        margin-left: 2em;
+    }
 }
