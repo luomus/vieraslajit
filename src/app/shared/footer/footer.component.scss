@@ -36,7 +36,6 @@
 }
 
 .vrs-contact {
-    color: $text-dark;
 }
 
 .footer-divider {
@@ -49,6 +48,10 @@
 
 .vrs-affiliates {
     background: $background-light;
+
+    ul {
+        text-align: center;
+    }
 
     @include media-breakpoint-down(xs) {
         padding-left: 2em;
