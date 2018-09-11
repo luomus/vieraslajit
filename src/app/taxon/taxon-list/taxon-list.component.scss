@@ -20,6 +20,17 @@
     margin-bottom: 2em;
 }
 
+#accordion {
+    box-shadow: 0px 0px 50px 10px #ddd;
+    border-radius: $content-border-radius;
+}
+
+:host ::ng-deep vrs-taxon-browser .tab-container {
+    box-shadow: 0px 0px 50px 10px #ddd;
+    display: block;
+    border-radius: $content-border-radius;
+}
+
 /** SelectGroup icons styling **/
 
 #selectGroup-card {

@@ -20,19 +20,31 @@
 /* HEADER V2 */
 
 .header-v2 {
+    position:relative;
     margin-top: -$navbar-height;
-    background: linear-gradient(to top right, darken($secondary, 20), $secondary);
     color: rgba(255, 255, 255, 0.8);
-    padding-top: 35vh;
-    padding-bottom: 35vh;
-    clip-path: polygon(0 0, 0 100%, 100% 90%, 100% 0);
+    padding-top: 32vh;
+    padding-bottom: 32vh;
+    clip-path: polygon(0 0, 0 100%, 100% calc(100% - 4vw), 100% 0);
     h1 {
         font-size: 2em;
     }
     p {
         font-size: 1.5em;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.7);
     }
+}
+
+.header-v2::before {
+    position:absolute;
+    top:0;
+    left:0;
+    content: '';
+    height:100%;
+    width:100%;
+    background: linear-gradient(to top left, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.4) 100%), url('../../assets/images/bgs/espanjansiruetana_cropped.jpg') no-repeat;
+    background-size: cover;
+    z-index: -1;
 }
 
 /* HEADER IMAGE */
@@ -190,8 +202,11 @@
 }
 
 /* DIVIDER */
-.first-segment hr {
-    width: 80%;
+.divider {
+    padding-top: 8em;
+    padding-bottom: 8em;
+    background: linear-gradient(to bottom, $secondary 0%, lighten($secondary, 5) 50%, $secondary 100%);
+    clip-path: polygon(0 0, 0 calc(100% - 6vw), 100% 100%, 100% calc(0% + 1vw));
 }
 
 /* EXOTIC PETS */

@@ -9,8 +9,8 @@
 }
 
 .card .card-header {
-    background: lighten($secondary, 10);
-    color: $text-light;
+    background: darken($background-light, 5);
+    color: lighten($text-dark, 20);
     border-radius: $content-border-radius;
     border-bottom-left-radius: 0em;
     border-bottom-right-radius: 0em;
@@ -30,7 +30,7 @@ accordion .panel-heading.card-header {
 }
 
 accordion .card.panel-default {
-    background: lighten($secondary, 10);
+    background: darken($background-light, 5);
     color: $text-light;
 }
 
