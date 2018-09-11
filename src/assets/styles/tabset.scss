@@ -25,15 +25,15 @@
 ul.nav.nav-tabs {
     padding-left: 1.5em;
     padding-top: 1em;
-    background: lighten($secondary, 10);
+    background: darken($background-light, 5);
     border: 1px solid $border-light;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
 .nav-tabs li.nav-item a.nav-link {
-    background: lighten($secondary, 10);
-    color: $text-light;
+    background: darken($background-light, 5);
+    color: lighten($text-dark, 20);
     border-bottom: 1px solid $border-light;
     &:hover {
         color: $primary;
