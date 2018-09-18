@@ -3,6 +3,8 @@
 //@import url('https://cdn.laji.fi/bootstrap/3.3.7/css/bootstrap.css');
 
 :host ::ng-deep .laji-form {
+    font-size: 1rem;
+
     .bootstrap-switch-primary {
         background-color: $primary !important;
         color: black !important;
@@ -53,7 +55,7 @@
         }
 
         h5 {
-            font-size: 14px;
+            font-size: 1em;
         }
     }
 
