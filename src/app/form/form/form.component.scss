@@ -1,61 +1,63 @@
 @import '../../../assets/styles/vars';
-@import '../../../assets/styles/CustomBootstrap3/css/bootstrap.css';
+//@import '../../../assets/styles/CustomBootstrap3/css/bootstrap.css';
 //@import url('https://cdn.laji.fi/bootstrap/3.3.7/css/bootstrap.css');
 
-.bootstrap-switch-primary {
-    background-color: $primary !important;
-    color: black !important;
-}
-
-.rw-btn:hover {
-    color: $primary;
-}
-
-.form-group .btn.btn-default{
-    background-color: $background-light;
-    color: #222;
-    border-color: #222;
-}
-
-.form-group .btn.btn-default:hover {
-    background-color: $background-light-highlight;
-    border-color: $primary;
-}
-
-.modal-title {
-    margin: auto;
-}
-
-#root_gatherings_0_localityDescription {
-    width: 40vw !important;
-}
-
-#formSend {
-    background-color: $background-light;
-    color: #222;
-    border-color: #222;
-    font-family: $font-montserrat;
-}
-
-#formSend:hover{
-    background-color: #222;
-    color: $background-light;
-    transition: 0.3s;
-}
-
-@media screen and (max-width: 500px) {
-    .btn-group, .btn-group-vertical {
-      position: relative;
-      display: inline-block;
-      vertical-align: middle;
-      padding: 5px;
+.vrs-laji-form {
+    .bootstrap-switch-primary {
+        background-color: $primary !important;
+        color: black !important;
     }
 
-    h5 {
-        font-size: 14px;
+    .rw-btn:hover {
+        color: $primary;
     }
-}
 
-.form-group-padding-bottom {
-    max-height: 600px;
+    .form-group .btn.btn-default{
+        background-color: $background-light;
+        color: #222;
+        border-color: #222;
+    }
+
+    .form-group .btn.btn-default:hover {
+        background-color: $background-light-highlight;
+        border-color: $primary;
+    }
+
+    .modal-title {
+        margin: auto;
+    }
+
+    #root_gatherings_0_localityDescription {
+        width: 40vw !important;
+    }
+
+    #formSend {
+        background-color: $background-light;
+        color: #222;
+        border-color: #222;
+        font-family: $font-montserrat;
+    }
+
+    #formSend:hover{
+        background-color: #222;
+        color: $background-light;
+        transition: 0.3s;
+    }
+
+    @media screen and (max-width: 500px) {
+        .btn-group, .btn-group-vertical {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        padding: 5px;
+        }
+
+        h5 {
+            font-size: 14px;
+        }
+    }
+
+    .form-group-padding-bottom {
+        max-height: 600px;
+    }
 }

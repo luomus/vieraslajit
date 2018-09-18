@@ -18,7 +18,6 @@ import { AlertService } from '../../shared/service/alert.service';
   selector: 'vrs-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormComponent implements AfterViewInit, OnDestroy {
