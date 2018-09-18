@@ -2,7 +2,7 @@
 //@import '../../../assets/styles/CustomBootstrap3/css/bootstrap.css';
 //@import url('https://cdn.laji.fi/bootstrap/3.3.7/css/bootstrap.css');
 
-.vrs-laji-form {
+:host ::ng-deep .laji-form {
     .bootstrap-switch-primary {
         background-color: $primary !important;
         color: black !important;
