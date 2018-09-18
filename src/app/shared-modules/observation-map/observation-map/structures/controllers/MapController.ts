@@ -1,5 +1,6 @@
 import * as LM from 'laji-map';
-import LajiMap, { TileLayerName, Data, DataOptions } from '~laji-map/lib/map.d';
+import LajiMap from '../../../../../../../node_modules/laji-map/lib/map.d';
+import { TileLayerName, Data, DataOptions } from '../../../../../../../node_modules/laji-map/lib/map.defs';
 
 import { ObsMapObservations } from "../data/ObsMapObservations";
 import { ObsMapOptions } from '../data/ObsMapOptions';
