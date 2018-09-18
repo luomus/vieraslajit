@@ -206,7 +206,7 @@
     padding-top: 8em;
     padding-bottom: 8em;
     background: linear-gradient(to bottom, $secondary 0%, lighten($secondary, 5) 50%, $secondary 100%);
-    clip-path: polygon(0 0, 0 calc(100% - 6vw), 100% 100%, 100% calc(0% + 1vw));
+    clip-path: polygon(0 0, 0 calc(100% - 6vw), 100% 100%, 100% 1vw);
 }
 
 /* EXOTIC PETS */
