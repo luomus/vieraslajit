@@ -28,7 +28,7 @@ $alert-dark: rgb(204, 118, 118);
 $background-light: #fefefe;
 $background-light-highlight: #f5f5f5;
 $background-light-highlight-dark: #2C3539;
-$background-darker: #efefef;
+$background-darker: darken($background-light, 3);
 $background-darker-accent: #fafafa;
 
 $text-dark: #444;

@@ -57,8 +57,6 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       this.scrollTop();
       this.update();
     });
-    this.scrollTop();
-    this.update();
   }
 
   update() {
@@ -68,11 +66,11 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       if (this.taxon.administrativeStatuses) {
         this.quarantinePlantPest = this.taxon.administrativeStatuses.includes('MX.quarantinePlantPest');
       }
+      console.log(this.taxon);
     });
     this.taxonService.getTaxonDescription(this.id, this.translate.currentLang).subscribe(data => {
       this.desc = data[0];
-
-
+      console.log(this.desc);
     });
     this.taxonService.getTaxonMedia(this.id, this.translate.currentLang).subscribe(data => {
       this.media = data;
