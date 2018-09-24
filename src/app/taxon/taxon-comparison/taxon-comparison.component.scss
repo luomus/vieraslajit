@@ -4,3 +4,20 @@
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
 @import '../../../assets/styles/carousel';
+
+:host ::ng-deep carousel .card-slide.slide.carousel-item {
+    background-color: black;
+}
+
+.card {
+    box-shadow: 0px 0px 50px 10px #ddd;
+
+    .selected-taxon-header {
+        background: black;
+        color: $text-light;
+    }
+    .comparison-taxon-header {
+        background: black;
+        color: $text-light;
+    }
+}
