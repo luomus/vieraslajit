@@ -63,7 +63,7 @@ nav.notransition:after {
 }
 
 nav .navbar-brand {
-    color: rgba(#eee, 0.8);
+    color: rgba($text-light, 0.9);
     font-size: 1.2em;
     font-weight: 600;
     outline: none;
@@ -84,7 +84,7 @@ nav .nav-item {
 }
 
 nav .navbar-nav li.nav-item a.nav-link {
-    color: rgba(#eee, 0.8);
+    color: rgba($text-light, 0.9);
     padding-right:1vw;
     padding-left:1vw;
 }
@@ -100,7 +100,7 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 /* "About" Dropdown Menu */
 #dropdown-about {
     border: none;
-    color: rgba(#eee, 0.8);
+    color: rgba($text-light, 0.9);
     display: flex;
     align-items: center;
 
@@ -130,7 +130,6 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     align-items: center;
     color: $text-dark;
     font-family: $font-montserrat;
-    font-weight: 400;
 }
 
 #dropdown-menu-item:hover {
@@ -139,6 +138,7 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 
 .dropdown-menu {
     top: 80% !important;
+    font-size: 0.8rem !important;
 }
 
 /* Active state for top level links */
@@ -219,10 +219,12 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     }
 }
 
+.dropdown-item:active {
+    background-color: $background-light !important;
+}
+
 .usermenuitem {
     cursor: pointer;
-    font-family: $font-montserrat;
-    font-weight: 400;
 }
 
 /* Language Selector */
