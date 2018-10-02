@@ -15,7 +15,7 @@ nav {
     font-size: 0.8rem;
 
     font-family: $font-montserrat;
-    font-weight: 600;
+    font-weight: 500;
 
     padding-top: 1em;
     padding-bottom: 1em;
@@ -28,11 +28,7 @@ nav::after {
 	width: 100%; 
     height: 100%;
     
-	/* Background gradient */
     background: $secondary;
-    background: linear-gradient(to top left, darken($secondary, 20) 0%, lighten($secondary, 10) 100%);
-
-    box-shadow: 0px 0px 5px 0px $shadow;
 
     opacity: 0.9; 
     transition: 500ms;
@@ -43,17 +39,17 @@ nav::after {
 }
 
 nav.transparent::after {
-    @include media-breakpoint-up(lg) {
+    /* @include media-breakpoint-up(lg) {
         box-shadow: none;
         opacity: 0;
         transition: 500ms;
-    }
+    } */
 }
 
 nav.notransition:after {
-    @include media-breakpoint-up(lg) {
+    /* @include media-breakpoint-up(lg) {
         transition: none !important;
-    }
+    } */
 }
 
 /* Navbar toggler */
@@ -67,8 +63,9 @@ nav.notransition:after {
 }
 
 nav .navbar-brand {
-    color: rgba($text-light, 0.6);
+    color: rgba($text-light, 0.9);
     font-size: 1.2em;
+    font-weight: 600;
     outline: none;
 
     &:hover {
@@ -87,9 +84,9 @@ nav .nav-item {
 }
 
 nav .navbar-nav li.nav-item a.nav-link {
-    color: rgba($text-light, 0.6);
-    padding-right:1.5vw;
-    padding-left:1.5vw;
+    color: rgba($text-light, 0.9);
+    padding-right:1vw;
+    padding-left:1vw;
 }
 
 nav .navbar-nav li.nav-item a.nav-link:hover {
@@ -103,7 +100,7 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 /* "About" Dropdown Menu */
 #dropdown-about {
     border: none;
-    color: rgba($text-light, 0.6);
+    color: rgba($text-light, 0.9);
     display: flex;
     align-items: center;
 
@@ -133,7 +130,6 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     align-items: center;
     color: $text-dark;
     font-family: $font-montserrat;
-    font-weight: 400;
 }
 
 #dropdown-menu-item:hover {
@@ -142,12 +138,13 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 
 .dropdown-menu {
     top: 80% !important;
+    font-size: 0.8rem !important;
 }
 
 /* Active state for top level links */
 
 .vrs-nav-active {
-    color: $text-light !important;
+    color: $primary !important;
 }
 
  /* Search */
@@ -222,10 +219,12 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     }
 }
 
+.dropdown-item:active {
+    background-color: $background-light !important;
+}
+
 .usermenuitem {
     cursor: pointer;
-    font-family: $font-montserrat;
-    font-weight: 400;
 }
 
 /* Language Selector */

@@ -37,7 +37,7 @@ ul.nav.nav-tabs {
     border-bottom: 1px solid $border-light;
     &:hover {
         color: $primary;
-        border-color: lighten($secondary, 10);
+        border-color: lighten($primary, 20);
         border-bottom-color: $background-light;
     }
 }

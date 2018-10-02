@@ -3,12 +3,12 @@
 
 .footer-content {
     font-size: 1rem;
-    background: darken($background-light, 0);
-    color: rgba($text-dark, 0.8);
+    background: lighten($secondary, 0);
+    color: rgba($text-light, 0.8);
     border-top: 6px solid $primary;
     box-shadow: 0px 0px 5px 0px #666;
     a {
-        color: rgba($text-dark, 0.5);
+        color: rgba($text-light, 0.5);
         &:hover {
             color: $primary;
         }
@@ -36,6 +36,7 @@
 }
 
 .vrs-contact {
+    color: rgba($text-light, 0.8);
 }
 
 .footer-divider {

@@ -1,36 +1,33 @@
 <laji-spinner [spinning]="loading" [overlay]="true"></laji-spinner>
 
 <ng-container *ngIf=!loading>
-  <div [collapse]="comparison" class="container">
-    <div class="row head">
-      <h1 id="taxonh1">
-        {{taxon?.vernacularName}}
-        <span *ngIf="taxon?.vernacularName">&ndash;</span>
-        <span [class.cursive]="taxon?.cursiveName">{{taxon?.scientificName}}</span>
-        <img src="assets/images/logos/vieraslaji-logo-70x70.png" width="40" height="40" alt="">
-      </h1>
+  <div class="container">
+    <div class="head">
+      <div class="row justify-content-between">
+        <div class="col-auto">
+          <h1 *ngIf="taxon?.vernacularName">
+            {{ taxon.vernacularName[0].toUpperCase() + taxon.vernacularName.substr(1, taxon.vernacularName.length) }}
+            <img src="assets/images/logos/vieraslaji-logo-70x70.png" width="40" height="40" alt="">
+          </h1>
+        </div>
+        <div class="col-auto">
+          <button class="btn vrs-button" routerLink='/taxon/{{id}}/comparison' translate>comparison.title</button>
+          <button routerLink="/form/MHL.9" class="btn vrs-button secondary" translate>Tunnistusapu</button>
+        </div>
+      </div>
+      <h5 [class.cursive]="taxon?.cursiveName">{{taxon?.scientificName}}</h5>
     </div>
 
     <div class="row">
       <div class="col-sm-12 col-md-6">
         <div *ngIf="desc?.groups; else infoAndLajifiTemplate">
-          <div class="card" id="taxoncard" *ngFor="let group of desc?.groups; let first = first">
-            <accordion>
-              <accordion-group [isOpen]="true">
-                <div accordion-heading id="accordion">
-                  {{group.title}}
-                  <ng-container *ngIf="first === false">
-                    <span class="oi oi-chevron-bottom float-right"></span>
-                  </ng-container>
-                </div>
-                <div class="card-block" *ngFor="let variable of group.variables">
-                  <h4 class="card-title">
+          <div id="taxoncard" *ngFor="let group of desc?.groups; let first = first">
+                <div *ngFor="let variable of group.variables">
+                  <h4>
                     {{variable.title}}
                   </h4>
-                  <span class="card-text" [innerHTML]="variable.content"></span>
+                  <span [innerHTML]="variable.content"></span>
                 </div>
-              </accordion-group>
-            </accordion>
           </div>
         </div>
       </div>
@@ -38,10 +35,7 @@
       <div class="col-sm-12 col-md-6">
 
         <ng-container *ngIf="media != null && media.length > 0">
-          <div class="card" id="taxoncard-right">
-            <div class="card-header">
-              <span translate>taxon.pictures</span>
-            </div>
+          <div class="card taxon-info-card" id="taxoncard-right">
             <div class="card-block">
               <carousel id="image-carousel" [interval]="false">
                 <slide class="card-slide slide" *ngFor="let image of media">
@@ -49,71 +43,7 @@
                 </slide>
               </carousel>
             </div>
-          </div>
-        </ng-container>
-
-        <div class="card" id="taxoncard-right">
-          <div class="card-header">
-            <span translate>taxon.identification</span>
-          </div>
-          <div class="row">
-
-            <div class="col-sm-12 col-md-6">
-              <div class="card-body">
-                <div class="card-text">
-                  <button class="btn vrs-button" routerLink='/taxon/{{id}}/comparison' translate>comparison.title</button>
-                  <br>
-                  <br>
-                  <span translate>comparison.text</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6">
-              <div class="card-body">
-                <div class="card-text">
-                  <a routerLink="/form/MHL.9" class="btn vrs-button secondary" translate>taxon.help</a>
-                  <br>
-                  <br>
-                  <span translate>taxon.helpText</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="card" id="taxoncard-right">
-          <div class="card-header">
-            <span translate>mapOfObservations.header</span>
-          </div>
-          <div class="card-block">
-            <vrs-observation-map [id]="id" [mapHeight]="600"></vrs-observation-map>
-            <p>
-              Tarkastele havaintoja <a href="https://laji.fi/observation/map?target={{id}}" target="_blank">laji.fi:n havaintokartalta</a>
-            </p>
-            <div class="row">
-              <div class="col-6">
-                  <button [routerLink]="['/observations']" [queryParams]="{id: id}" class="btn vrs-button">Havaintokarttanäkymään</button>
-              </div>
-              <div class="col-6">
-                  <button routerLink="/form/JX.123757" id="report" class="btn vrs-button secondary" translate>taxon.report</button>
-              </div>
-            </div>
-            <br>
-          </div>
-        </div>
-
-        <div *ngIf="desc?.groups; then infoAndLajifiTemplate"> </div>
-      </div>
-
-      <ng-template #infoAndLajifiTemplate>
-        <div class="card" id="taxoncard-right">
-          <div class="card-header">
-            <span translate>taxon.card</span>
-          </div>
-          <div class="card-block">
-            <div class="card-body">
+            <div class="taxon-info">
               <div>
                 <strong>{{'taxon.name' | translate}}</strong>
                 {{taxon?.vernacularName}}
@@ -148,9 +78,103 @@
                 </div>
               </ng-container>
             </div>
+          </div> <!-- /card -->
+        </ng-container>
+        
+        <!-- <div class="card" id="taxoncard-right">
+          <div class="card-header">
+            <span translate>taxon.identification</span>
+          </div>
+          <div class="row">
+
+            <div class="col-sm-12 col-md-6">
+              <div class="card-body">
+                <div class="card-text">
+                  <button class="btn vrs-button" routerLink='/taxon/{{id}}/comparison' translate>comparison.title</button>
+                  <br>
+                  <br>
+                  <span translate>comparison.text</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="card-body">
+                <div class="card-text">
+                  <a routerLink="/form/MHL.9" class="btn vrs-button secondary" translate>Tunnistusapu</a>
+                  <br>
+                  <br>
+                  <span translate>taxon.helpText</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div> -->
+
+        <div class="taxon-card-map">
+          <div class="">
+            <h5>Havaintokartta</h5>
+            <vrs-observation-map [id]="id" [mapHeight]="600"></vrs-observation-map>
+            <div class="row">
+              <div class="col-6">
+                  <button [routerLink]="['/observations']" [queryParams]="{id: id}" class="btn vrs-button">Havaintokarttanäkymään</button>
+              </div>
+              <div class="col-6">
+                  <button routerLink="/form/JX.123757" id="report" class="btn vrs-button secondary" translate>taxon.report</button>
+              </div>
+            </div>
+            <br>
           </div>
         </div>
-        <div class="card" id="taxoncard-right">
+
+        <div *ngIf="desc?.groups; then infoAndLajifiTemplate"> </div>
+      </div>
+
+      <ng-template #infoAndLajifiTemplate>
+        <!-- <div class="card" id="taxoncard-right">
+          <div class="card-header">
+            <span translate>taxon.card</span>
+          </div>
+          <div class="card-block">
+            <div class="card-body">
+              <div>
+                <strong>{{'taxon.name' | translate}}</strong>
+                {{taxon?.vernacularName}}
+              </div>
+              <div>
+                <strong>{{'taxon.scientific' | translate}}</strong>
+                <em>{{taxon?.scientificName}}</em>
+              </div>
+              <div>
+                <strong>{{'taxon.establishedFin' | translate}}</strong>
+                <span translate>{{taxon?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
+              </div>
+              <div>
+                <strong>{{'taxon.occurrence' | translate}}</strong>
+                <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum':lang | async) || 'taxon.unknown' | translate
+                  }}
+                </span>
+              </div>
+              <div>
+                <strong>{{'taxonomy.quarantinePlantPest' | translate}}</strong>
+                <span translate>{{quarantinePlantPest == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
+              </div>
+              <hr/>
+              <ng-container *ngIf="taxon?.administrativeStatuses">
+                <div>
+                  <strong translate>taxon.administrative</strong>
+                  <ul>
+                    <li *ngFor="let status of taxon.administrativeStatuses">
+                      {{status | label: 'MX.adminStatusEnum':lang | async}}
+                    </li>
+                  </ul>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div> -->
+        <!-- <div class="card" id="taxoncard-right">
           <div class="card-header">
             <a href="http://tun.fi/{{id}}" target="_blank">
               <img src="https://laji.fi/static/images/icons/favicon.ico" style="margin-Top:-3px" alt="laji.fi">
@@ -163,8 +187,12 @@
               <a href="http://tun.fi/{{id}}" target="_blank">http://tun.fi/{{id}}</a>
             </div>
           </div>
-        </div>
+        </div> -->
 
+        <hr>
+        <div class="text-center">
+          <a class='laji-fi-link' href='http://tun.fi/{{id}}'>Tarkastele lajia laji.fi sivustolla</a>
+        </div>
       </ng-template>
     </div>
     <br>

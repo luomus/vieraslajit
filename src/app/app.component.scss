@@ -6,16 +6,12 @@ body {
     color: $text-dark;
 }
 
-.vrs-content {
-    
-}
-
 .container {
     background-color: $background-light;
 }
 
 .vrs-content {
-    min-height: 600px;
+    min-height: 80vh;
     margin-top: $navbar-height;
     @include media-breakpoint-down(xs) {
         margin-top: 76px;

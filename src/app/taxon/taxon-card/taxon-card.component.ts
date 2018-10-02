@@ -57,8 +57,6 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       this.scrollTop();
       this.update();
     });
-    this.scrollTop();
-    this.update();
   }
 
   update() {
@@ -71,8 +69,6 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     });
     this.taxonService.getTaxonDescription(this.id, this.translate.currentLang).subscribe(data => {
       this.desc = data[0];
-
-
     });
     this.taxonService.getTaxonMedia(this.id, this.translate.currentLang).subscribe(data => {
       this.media = data;

@@ -1,31 +1,49 @@
 @import '../../../assets/styles/vars';
-@import '~@swimlane/ngx-datatable/release/index.css';
-@import '~@swimlane/ngx-datatable/release/themes/material.css';
-@import '~@swimlane/ngx-datatable/release/assets/icons.css';
-
 @import '../../../assets/styles/carousel';
 
-#taxonh1 {
-    padding: 25px;
-}
-#taxoncard {
-    margin-top: 10px;
-    border: none;
-}
+.head {
+    padding-top: 1em;
+    padding-bottom: 1em;
 
-#taxoncard-right {
-    margin-top: 10px;
+    h1 {
+        font-size: 2em;
+    }
+    button {
+        height: 50px;
+        margin-top: 0.5em;
+        margin-left: 1em;
+    }
+    h5 {
+        font-size: 1.2em;
+        color: $text-dark-muted;
+    }
 }
 
 .cursive {
     font-style: oblique;
 }
 
-#comparison {
-    width: 100%;
-    color: white;
+:host ::ng-deep carousel .card-slide.slide.carousel-item {
+    background-color: black;
+    border-top-right-radius: $content-border-radius;
+    border-top-left-radius: $content-border-radius;
 }
 
-#report {
-    width: 100%;
+.taxon-info-card {
+    box-shadow: 0px 0px 50px 10px #ddd;
+}
+
+.taxon-info {
+    padding: 1em;
+}
+
+.taxon-card-map {
+    padding-top: 2em;
+    button {
+        margin-top: 1em;
+    }
+}
+
+.laji-fi-link {
+    color: $text-dark-muted;
 }
