@@ -5,6 +5,12 @@
 
 @import '../../../assets/styles/carousel';
 
+h1 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
 :host ::ng-deep carousel .card-slide.slide.carousel-item {
     background-color: black;
 }
