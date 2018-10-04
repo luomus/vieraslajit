@@ -15,7 +15,7 @@ export class ObservationsComponent implements OnInit, OnDestroy {
   id:string;
   queryParams: Subscription;
 
-  mapHeight = 800;
+  mapHeight = window.innerHeight / 1.5;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -29,6 +29,10 @@ export class ObservationsComponent implements OnInit, OnDestroy {
     if (height < this.mapHeight) {
       this.mapHeight = height;
     }
+
+    window.addEventListener("resize", (event)=> {
+      this.mapHeight = window.innerHeight / 1.5;
+    });
   }
 
   ngOnDestroy() {

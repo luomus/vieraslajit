@@ -25,20 +25,27 @@
     color: rgba(255, 255, 255, 0.8);
     padding-top: 10vh;
     padding-bottom: 15vh;
-    clip-path: polygon(0 0, 0 100%, 100% calc(100% - 4vw), 100% 0);
+    border-bottom: 6px solid $primary;
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
     .heading-container {
         padding: 2em;
-        background: rgba(#000, 0.8);
-        border-radius: $content-border-radius;
+        background: rgba($background-light, 0.8);
         text-align: center;
+        color: $text-dark;
     }
     h1 {
         font-size: 1.5em;
         font-weight:600;
+        margin: 0;
     }
     p {
         font-size: 1em;
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(#000, 0.7);
+    }
+    hr {
+        border-top: 2px solid #444;
+        width: 80%;
+        margin-top: 0.2em;
     }
 }
 
@@ -153,12 +160,15 @@
 /* INVASIVE DESCRIPTION AND QUICK LINKS */
 
 .invasive-description-row {
-    padding-top: 5em;
-    padding-bottom: 5em;
+    padding-top: 10em;
+    padding-bottom: 10em;
 
     @include media-breakpoint-down(sm) {
         padding-top: 0em;
         padding-bottom: 0em;
+    }
+    img{
+        border-radius: $content-border-radius;
     }
 }
 
@@ -210,18 +220,40 @@
 
 /* DIVIDER */
 .divider {
-    padding-top: 8em;
-    padding-bottom: 8em;
-    background: linear-gradient(to bottom, $secondary 0%, lighten($secondary, 5) 50%, $secondary 100%);
-    clip-path: polygon(0 0, 0 calc(100% - 6vw), 100% 100%, 100% 1vw);
+    padding-top: 5em;
+    padding-bottom: 10em;
+    background: linear-gradient(to bottom right, darken(white, 10) 0%, darken(white, 1) 90%);
+    clip-path: polygon(0 0, 0 calc(100% - 4vw), 100% 100%, 100% 0);
+    .flex-parent{
+        display: flex;
+        justify-content: center;
+        .flex-child {
+            width: 300px;
+            border-radius: $content-border-radius;
+            text-align: center;
+            background: $background-light;
+            padding: 0;
+            margin: 1em;
+            box-shadow: 0px 0px 25px 0px #ddd;
+            img {
+                border-top-left-radius: $content-border-radius;
+                border-top-right-radius: $content-border-radius;
+                border-bottom: 4px solid $primary;
+            }
+            p {
+                padding: 1em 1em;
+                margin: 0;
+            }
+        }
+    }
 }
 
 /* EXOTIC PETS */
 
 .exotic-pets-bg {
     color: $text-dark;
-    padding-top: 5em;
-    padding-bottom: 5em;
+    padding-top: 10em;
+    padding-bottom: 10em;
     padding-right: 2em;
     padding-left: 2em;
 
