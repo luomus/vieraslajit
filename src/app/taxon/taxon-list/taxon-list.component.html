@@ -2,7 +2,7 @@
 
 <div class="container main-container">
   <br>
-  <div id="accordion" role="tablist" aria-multiselectable="true">
+  <div id="accordion" [ngClass]="{'no-shadow': taxa}" role="tablist" aria-multiselectable="true">
     <accordion>
       <accordion-group #group [(isOpen)]="showGroups">
         <div accordion-heading>
