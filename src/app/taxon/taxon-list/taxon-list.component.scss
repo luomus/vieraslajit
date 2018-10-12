@@ -16,13 +16,18 @@
 }
 
 .main-container {
-    margin-top: $navbar-height + 12px;
-    margin-bottom: 2em;
+    margin-top: $navbar-height;
+    padding: 3em 0em;
 }
 
 #accordion {
     box-shadow: 0px 0px 50px 10px #ccc;
     border-radius: $content-border-radius;
+    margin: 1em 1em;
+}
+
+.no-shadow {
+    box-shadow: 0px 0px 25px 0px #ddd !important;
 }
 
 :host ::ng-deep vrs-taxon-browser .tab-container {

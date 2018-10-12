@@ -5,7 +5,7 @@
     /* COMPONENT BASE FONT SIZE */
     font-size: 1rem;
 
-    margin-top: $navbar-height;
+    margin-top: -$navbar-height;
     padding-bottom: 2em;
 
     background: $background-light;
@@ -21,31 +21,36 @@
 
 .header-v2 {
     position:relative;
+    height: 100vh;
     /* margin-top: -$navbar-height; */
     color: rgba(255, 255, 255, 0.8);
-    padding-top: 10vh;
-    padding-bottom: 15vh;
-    border-bottom: 6px solid $primary;
-    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+    padding-top: 14em;
     .heading-container {
-        padding: 2em;
-        background: rgba($background-light, 0.8);
-        text-align: center;
-        color: $text-dark;
+        color: $text-light;
     }
     h1 {
-        font-size: 1.5em;
-        font-weight:600;
+        font-size: 2em;
+        padding: 1em;
+        padding-left: 0em;
         margin: 0;
+        font-weight: 600;
     }
     p {
         font-size: 1em;
-        color: rgba(#000, 0.7);
+        color: rgba($text-light, 0.8);
     }
     hr {
         border-top: 2px solid #444;
         width: 80%;
         margin-top: 0.2em;
+    }
+    .cta-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        button {
+            box-shadow: 0 0 50px -10px #000;
+        }
     }
 }
 
@@ -56,9 +61,12 @@
     content: '';
     height:100%;
     width:100%;
-    background: url('http://fotod.org/servlets/showPictureServletBig?id=10993&size=17&user=1&place=50070007') no-repeat;
+    background: linear-gradient(to right, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 100%), url('http://fotod.org/servlets/showPictureServletBig?id=10993&size=17&user=1&place=50070007');
+    background-repeat: no-repeat;
+    filter: blur(10px);
+    transform: scale(1.1);
+    //background: #666;
     background-size: cover;
-    z-index: -1;
 }
 
 /* HEADER IMAGE */
@@ -105,9 +113,17 @@
     background: $background-light;
     border-bottom-left-radius: $content-border-radius;
     border-bottom-right-radius: $content-border-radius;
+    position: relative;
     @include media-breakpoint-down(xs) { 
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
+    }
+    .oi-chevron-bottom {
+        position: absolute;
+        top: -60px;
+        left: 48.5vw;
+        font-size: 2em;
+        color: rgba(white, 0.5);
     }
 }
 
@@ -227,6 +243,7 @@
     .flex-parent{
         display: flex;
         justify-content: center;
+        padding: 2em;
         .flex-child {
             width: 300px;
             border-radius: $content-border-radius;
@@ -245,6 +262,30 @@
                 margin: 0;
             }
         }
+    }
+    .description {
+        text-align:center;
+        padding: 2em;
+        h2 {
+            padding: 1em;
+        }
+    }
+}
+
+.small-divider {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+    .left, .right {
+        height: 1px;
+        flex: 1;
+        background: rgba(0, 0, 0, 0.1);
+    }
+    .oi {
+        padding: 1em;
+        font-size: 1.5em;
+        color: rgba(0, 0, 0, 0.2);
     }
 }
 
