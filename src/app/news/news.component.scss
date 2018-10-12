@@ -89,6 +89,10 @@
     border-radius: $content-border-radius;
     box-shadow: $container-shadow;
     cursor: pointer;
+
+    .oi {
+        padding-right: 0.5em;
+    }
 }
 
 .navpill:hover {
