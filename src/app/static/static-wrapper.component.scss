@@ -3,4 +3,7 @@
 .container {
     margin-top: $navbar-height + 20px;
     margin-bottom: 8em;
+
+    display: flex;
+    justify-content: center;
 }
