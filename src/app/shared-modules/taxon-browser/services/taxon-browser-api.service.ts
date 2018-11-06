@@ -2,11 +2,11 @@ import { Injectable } from "../../../../../node_modules/@angular/core";
 import { EventEmitter } from "events";
 
 import { TaxonBrowserApiSettingsService } from "./taxon-browser-api-settings.service";
-import { Taxonomy } from "../../model";
-import { ApiService, LajiApi } from "../../api/api.service";
 import { TranslateService } from "../../../../../node_modules/@ngx-translate/core";
 import { Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
+import { Taxonomy } from "../../../shared/model";
+import { ApiService, LajiApi } from "../../../shared/api/api.service";
 
 @Injectable()
 export class TaxonBrowserApiService {
@@ -44,6 +44,7 @@ export class TaxonBrowserApiService {
             map(res=>res.results)
         ).subscribe(res=>{
             this.taxa = res;
+            console.log(this.taxa);
             this.eventEmitter.emit('done');
         });
         this.eventEmitter.emit('change');
