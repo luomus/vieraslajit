@@ -6,7 +6,7 @@ export interface TaxonBrowserApiSettings {
     EuList?:boolean;
     FiList?:boolean;
 
-    informalTaxonGroup?:Informal;
+    informalTaxonGroups?:Informal[];
 
     page?:number;
     total?:number;
@@ -30,8 +30,8 @@ export class TaxonBrowserApiSettingsService {
         })
         this.eventEmitter.emit('change');
     }
-    set informalTaxonGroup(s:Informal) {
-        this._apiSettings.informalTaxonGroup = s;
+    set informalTaxonGroups(s:Informal[]) {
+        this._apiSettings.informalTaxonGroups = s;
         this.eventEmitter.emit('change');
     }
     set lang(s:string) {

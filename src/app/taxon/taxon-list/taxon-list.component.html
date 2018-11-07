@@ -1,7 +1,5 @@
-<laji-spinner [spinning]="loading" [hideContentWhileLoading]='true'>
-
-<div class="container main-container">
-  <br>
+<!-- <laji-spinner [spinning]="loading" [hideContentWhileLoading]='true'> -->
+<!--   <br>
   <div id="accordion" [ngClass]="{'no-shadow': taxa}" role="tablist" aria-multiselectable="true">
     <accordion>
       <accordion-group #group [(isOpen)]="showGroups">
@@ -34,10 +32,8 @@
       </accordion-group>
     </accordion>
   </div>
-  <br>
-  <ng-container *ngIf="selectedGroup && taxa && !loading">
-    <vrs-taxon-browser [informalTaxonGroup]='selectedGroup'></vrs-taxon-browser>
+  <br> -->
+  <ng-container>
+    <vrs-taxon-browser></vrs-taxon-browser>
   </ng-container>
-  <br>
-</div>
-</laji-spinner>
+<!-- </laji-spinner> -->

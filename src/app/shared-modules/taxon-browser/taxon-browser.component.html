@@ -1,16 +1,13 @@
 <div class="taxon-browser">
     <div class="tabset-top">
-        <div class="radio">
-            <input type="radio" id="all" checked>
-            <label for="all">Kaikki</label>
-        </div>
-        <div class="radio">
-            <input type="radio" id="finnishList">
+        <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid>
+        <div class="checkbox">
+            <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
             <label for="finnishList">Kansallinen luettelo</label>
             <vrs-help>Tässä on löpinää kansallisesta luettelosta</vrs-help>
         </div>
-        <div class="radio">
-            <input type="radio" id="euList">
+        <div class="checkbox">
+            <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList">
             <label for="euList">Euroopan luettelo</label>
             <vrs-help>Tässä on löpinää eu:n luettelosta</vrs-help>
         </div>
@@ -31,6 +28,7 @@
                 </laji-spinner>
             </div>
         </tab>
-        <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
+        <div class="container"><pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls></div>
+        <br>
     </tabset>
 </div>

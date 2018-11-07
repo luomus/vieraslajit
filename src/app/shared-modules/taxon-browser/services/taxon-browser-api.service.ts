@@ -19,22 +19,36 @@ export class TaxonBrowserApiService {
     constructor(private settingsService:TaxonBrowserApiSettingsService, private apiService:ApiService, private translate:TranslateService) {
         this.query = { page: 1, pageSize: 12,
             invasiveSpeciesFilter: true,onlyFinnish: false, lang: this.settingsService.apiSettings.lang,
-            includeMedia: true, includeDescriptions: true , selectedFields: [ 'vernacularName', 'scientificName', 'invasiveSpeciesEstablishment', 'administrativeStatuses', 'id' ]
+            includeMedia: true, includeDescriptions: true , selectedFields: [ 'vernacularName', 'scientificName', 'invasiveSpeciesEstablishment', 'administrativeStatuses', 'id' ],
+            sortOrder: 'finnish_name'
         };
     }
 
     initialize() {
         this.settingsService.eventEmitter.addListener("change", ()=>{
+            console.log('change!!!');
             this.updateQuery();
+            console.log(this.query);
             this.updateTaxa();
         });
     }
 
     updateQuery() {
-        this.settingsService.apiSettings.EuList ? this.query.adminStatusFilters = 'MX.euInvasiveSpeciesList' : null;
-        this.settingsService.apiSettings.FiList ? this.query.adminStatusFilters = 'MX.fiInvasiveSpeciesList' : null;
-        this.settingsService.apiSettings.informalTaxonGroup ? this.query.informalGroupFilters = this.settingsService.apiSettings.informalTaxonGroup.id : null;
+        let tempAdminStatusFilters:string[] = [];
+        if (this.settingsService.apiSettings.EuList) {
+            tempAdminStatusFilters.push('MX.euInvasiveSpeciesList');
+        }
+        if (this.settingsService.apiSettings.FiList) {
+            tempAdminStatusFilters.push('MX.nationalInvasiveSpeciesStrategy');
+        }
+        this.query.adminStatusFilters = tempAdminStatusFilters.toString();
+
+        if (this.settingsService.apiSettings.informalTaxonGroups) {
+            this.query.informalGroupFilters = this.settingsService.apiSettings.informalTaxonGroups.toString();
+        }
+
         this.settingsService.apiSettings.page? this.query.page = this.settingsService.apiSettings.page : null;
+
         this.settingsService.apiSettings.lang? this.query.lang = this.settingsService.apiSettings.lang : null;
     }
 
@@ -44,7 +58,6 @@ export class TaxonBrowserApiService {
             map(res=>res.results)
         ).subscribe(res=>{
             this.taxa = res;
-            console.log(this.taxa);
             this.eventEmitter.emit('done');
         });
         this.eventEmitter.emit('change');
