@@ -1,6 +1,6 @@
-import { Informal } from "../../model";
 import { Injectable } from "../../../../../node_modules/@angular/core";
 import { EventEmitter } from "events";
+import { Informal } from "../../../shared/model";
 
 export interface TaxonBrowserApiSettings {
     EuList?:boolean;

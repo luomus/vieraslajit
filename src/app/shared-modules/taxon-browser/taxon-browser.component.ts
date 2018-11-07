@@ -4,9 +4,9 @@ import { Observable, Subscription } from "rxjs";
 
 import * as $ from 'jquery';
 
-import { Informal, Taxonomy } from "../model";
 import { TaxonBrowserApiService } from "./services/taxon-browser-api.service";
 import { TaxonBrowserApiSettingsService, TaxonBrowserApiSettings } from "./services/taxon-browser-api-settings.service";
+import { Informal, Taxonomy } from "../../shared/model";
 
 @Component({
     selector: "vrs-taxon-browser",

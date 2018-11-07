@@ -1,0 +1,36 @@
+<div class="taxon-browser">
+    <div class="tabset-top">
+        <div class="radio">
+            <input type="radio" id="all" checked>
+            <label for="all">Kaikki</label>
+        </div>
+        <div class="radio">
+            <input type="radio" id="finnishList">
+            <label for="finnishList">Kansallinen luettelo</label>
+            <vrs-help>Tässä on löpinää kansallisesta luettelosta</vrs-help>
+        </div>
+        <div class="radio">
+            <input type="radio" id="euList">
+            <label for="euList">Euroopan luettelo</label>
+            <vrs-help>Tässä on löpinää eu:n luettelosta</vrs-help>
+        </div>
+    </div>
+    <tabset id='browser-tabset'>
+        <tab heading="{{'navigation.list' | translate}}">
+            <laji-spinner [ngClass]="{'browser-spinner': loading}" [fullViewport]='false' [spinning]="loading" [hideContentWhileLoading]='true'>
+            <div class="tab-pane container " id="taxontable">
+                <vrs-taxon-browser-list [asyncTaxa]='taxa'></vrs-taxon-browser-list>
+            </div>
+            </laji-spinner>
+        </tab>
+        <tab heading="{{'navigation.grid' | translate}}"[active]="true">
+            <div class="tab-pane container py-3" id="cardcontainer">
+                <laji-spinner [ngClass]="{'browser-spinner': loading}"  [fullViewport]='false' [spinning]="loading" [hideContentWhileLoading]='true'>
+                <vrs-taxoncard-grid [taxa]="taxa | paginate:
+                {id: 'server', itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: getTotalItems()}"></vrs-taxoncard-grid>
+                </laji-spinner>
+            </div>
+        </tab>
+        <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
+    </tabset>
+</div>

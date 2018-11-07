@@ -1,0 +1,45 @@
+@import './../../../assets/styles/vars';
+
+#browser-tabset .card-body {
+    background:none;
+}
+
+.browser-spinner {
+    display: block;
+    margin-top: 5em;
+    margin-bottom: 5em;
+    padding: 5em;
+}
+
+.taxon-browser {
+    box-shadow: 0px 0px 50px 10px #ddd;
+    border-radius: $content-border-radius;
+}
+
+:host ::ng-deep ul.nav.nav-tabs {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+}
+
+.tabset-top {
+    background: #eaeaea;
+    border-top-left-radius: $content-border-radius;
+    border-top-right-radius: $content-border-radius;
+    padding: 2em;
+    padding-bottom: 0em;
+    border: 1px solid $border-light;
+    border-bottom: none;
+}
+
+.radio {
+    display: inline-block;
+    margin-right: 1em;
+    padding: 0.5em;
+    font-size: 0.9em;
+    color: #666;
+    label {
+        margin-left: 0.5em;
+        margin-bottom: 0;
+    }
+}

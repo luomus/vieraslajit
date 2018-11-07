@@ -1,9 +1,9 @@
 import { Component, Input } from "../../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../../node_modules/@ngx-translate/core";
-import { Taxonomy } from "../../model";
 import { Router } from "@angular/router";
 import * as $ from 'jquery';
 import { Observable } from "rxjs";
+import { Taxonomy } from "../../../shared/model";
 
 @Component({
     selector: 'vrs-taxon-browser-list',
