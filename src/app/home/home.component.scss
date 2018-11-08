@@ -37,20 +37,16 @@
     }
     p {
         font-size: 1em;
-        color: rgba($text-light, 0.8);
+        color: darken($text-light, 15);
     }
     hr {
         border-top: 2px solid #444;
         width: 80%;
         margin-top: 0.2em;
     }
-    .cta-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        button {
-            box-shadow: 0 0 50px -10px #000;
-        }
+    button {
+        margin: 1em;
+        box-shadow: 0 0 50px -5px #000;
     }
 }
 
@@ -61,9 +57,8 @@
     content: '';
     height:100%;
     width:100%;
-    background: linear-gradient(to right, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 100%), url('http://fotod.org/servlets/showPictureServletBig?id=10993&size=17&user=1&place=50070007');
+    background: linear-gradient(to right, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%), url('http://fotod.org/servlets/showPictureServletBig?id=10993&size=17&user=1&place=50070007');
     background-repeat: no-repeat;
-    filter: blur(10px);
     transform: scale(1.1);
     //background: #666;
     background-size: cover;
@@ -268,6 +263,11 @@
         padding: 2em;
         h2 {
             padding: 1em;
+        }
+        p {
+            max-width: 50em;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
 }

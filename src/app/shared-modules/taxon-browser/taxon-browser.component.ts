@@ -4,9 +4,9 @@ import { Observable, Subscription } from "rxjs";
 
 import * as $ from 'jquery';
 
-import { Informal, Taxonomy } from "../model";
 import { TaxonBrowserApiService } from "./services/taxon-browser-api.service";
 import { TaxonBrowserApiSettingsService, TaxonBrowserApiSettings } from "./services/taxon-browser-api-settings.service";
+import { Informal, Taxonomy } from "../../shared/model";
 
 @Component({
     selector: "vrs-taxon-browser",
@@ -23,15 +23,15 @@ export class TaxonBrowserComponent implements OnInit{
 
     /* Dirty hack that makes sure settings service isn't accessed until ngOnInit has been executed */
     afterInit:boolean = false;
-    tempInformal:Informal;
-    @Input() set informalTaxonGroup(i:Informal) {
+    tempInformal:Informal[];
+    @Input() set informalTaxonGroups(i:Informal[]) {
         if(this.afterInit) {
-            this.settingsService.informalTaxonGroup = i;
+            this.settingsService.informalTaxonGroups = i;
         } else {
             this.tempInformal = i;
         }
     }
-    get informalTaxonGroup():Informal {return this.settingsService.apiSettings.informalTaxonGroup}
+    get informalTaxonGroups():Informal[] {return this.settingsService.apiSettings.informalTaxonGroups}
 
     taxa:Taxonomy[];
 
@@ -67,7 +67,7 @@ export class TaxonBrowserComponent implements OnInit{
         let settings:TaxonBrowserApiSettings = {
             EuList: this.EuList,
             FiList: this.FiList,
-            informalTaxonGroup: this.tempInformal,
+            informalTaxonGroups: this.tempInformal,
             lang: this.translate.currentLang
         }
         this.settingsService.apiSettings = settings;
@@ -92,5 +92,17 @@ export class TaxonBrowserComponent implements OnInit{
 
     getTotalItems() {
         return this.settingsService.apiSettings.total;
+    }
+
+    onInformalGroupSelection(event) {
+        this.settingsService.informalTaxonGroups = event;
+    }
+
+    onFiListCheckbox(event) {
+        this.settingsService.apiSettings = {FiList: event.target.checked}
+    }
+
+    onEuListCheckbox(event) {
+        this.settingsService.apiSettings = {EuList: event.target.checked}
     }
 }

@@ -47,6 +47,7 @@
   "taxon.help": "Ask for help",
   "taxon.helpText": "Ask for help identifying species",
   "taxon.identification": "Identification",
+  "taxoncard.nonspecies": "(not finnish)",
   "mapOfObservations.header": "Observations",
   "mapOfObservations.info": "Green circles are verified observations and circles transparent in the middle are over 10 years old.",
   "mapOfObservations.link": "Click here to open a more detailed map.",

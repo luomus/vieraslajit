@@ -10,11 +10,14 @@ import { FormsModule } from '../../../../node_modules/@angular/forms';
 import { TaxonBrowserListComponent } from './taxon-browser-list/taxon-browser-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SpinnerModule } from '../../shared-modules/spinner/spinner.module';
+import { SharedModule } from '../../shared/shared.module';
+import { InformalGroupComponent } from './informal-group/informal-group.component';
+import { InformalGroupGridComponent } from './informal-group/informal-group-grid.component';
 
 @NgModule({
     imports: [NgxPaginationModule, TabsModule, NgxDatatableModule, RouterModule,
-        CommonModule, TranslateModule, FormsModule, SpinnerModule],
-    declarations: [TaxonCardGridComponent, TaxonBrowserComponent, TaxonBrowserListComponent],
+        CommonModule, TranslateModule, FormsModule, SpinnerModule, SharedModule],
+    declarations: [TaxonCardGridComponent, TaxonBrowserComponent, TaxonBrowserListComponent, InformalGroupComponent, InformalGroupGridComponent ],
     exports: [TaxonBrowserComponent]
 })
 export class TaxonBrowserModule {}

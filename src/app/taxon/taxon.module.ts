@@ -10,6 +10,7 @@ import { TaxonRoutingModule } from './taxon-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TaxonComparisonComponent } from './taxon-comparison/taxon-comparison.component';
+import { TaxonBrowserModule } from '../shared-modules/taxon-browser/taxon-browser.module';
 
 /**
  * Declares routes and components for browsing and viewing invasive species
@@ -27,6 +28,7 @@ import { TaxonComparisonComponent } from './taxon-comparison/taxon-comparison.co
     TabsModule,
     CarouselModule,
     BsDropdownModule,
+    TaxonBrowserModule
   ],
   declarations: [TaxonListComponent, TaxonCardComponent, TaxonComparisonComponent ]
 })

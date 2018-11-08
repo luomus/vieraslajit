@@ -11,6 +11,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { AccordionModule, TabsModule, PaginationModule } from 'ngx-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TaxonServiceMock } from '../../../testing/taxon/TaxonServiceMock';
+import { TaxonBrowserModule } from '../../shared-modules/taxon-browser/taxon-browser.module';
 
 describe('TaxonListComponent', () => {
   let component: TaxonListComponent;
@@ -20,8 +21,8 @@ describe('TaxonListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TaxonListComponent],
       imports: [
-        FormsModule, RouterTestingModule, HttpClientModule, SharedModule, TranslateModule.forRoot(), AccordionModule.forRoot(), TabsModule,
-        NgxDatatableModule, PaginationModule
+        FormsModule, RouterTestingModule, HttpClientModule, SharedModule, TranslateModule.forRoot(), AccordionModule.forRoot(), TabsModule.forRoot(),
+        NgxDatatableModule, PaginationModule, TaxonBrowserModule
       ],
       providers: [{provide: TaxonService, useClass: TaxonServiceMock}, ApiService]
     })
@@ -36,11 +37,6 @@ describe('TaxonListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  })
-
-  it('should show informal groups', () => {
-    const group = fixture.nativeElement.querySelector('#selectGroup-card-text');
-    expect(group.textContent).toEqual('Hyönteiset ja hämähäkkieläimet');
   })
 
   it('should show group species when group is selected', () => {

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList, NgZone } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { UserService, Role } from '../service/user.service';
 import {Router, NavigationEnd} from '@angular/router';
@@ -27,8 +27,9 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
 
   @ViewChildren(BsDropdownDirective) d : QueryList<BsDropdownDirective>;
   
-  constructor(private modalService: BsModalService, private router: Router, private userService: UserService,
-     private informationService: InformationService, private translate:TranslateService ) {
+  constructor(private router: Router, private userService: UserService,
+     private informationService: InformationService, private translate:TranslateService,
+     private zone: NgZone ) {
       this.loginSub = userService.loginStateChange.subscribe(() => {
         this.loggedIn = UserService.loggedIn();
       if(this.loggedIn == false) {
@@ -59,8 +60,10 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
         this.updateNavbarTransparency();
       }
     })
-    $(window).on('scroll', ()=>{
-      this.updateNavbarTransparency();
+    this.zone.runOutsideAngular(() => {
+      $(window).on('scroll', ()=>{
+        this.updateNavbarTransparency();
+      });
     });
   }
 

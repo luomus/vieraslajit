@@ -1,0 +1,10 @@
+@import '../../../../assets/styles/vars';
+
+:host {
+    position:absolute;
+    background: #fefefe;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    z-index: 1000;
+}

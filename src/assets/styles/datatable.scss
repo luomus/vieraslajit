@@ -3,22 +3,26 @@
 :host ::ng-deep .ngx-datatable {
     border-radius: $content-border-radius;
     font-size: 1rem;
-}
-
-:host ::ng-deep .ngx-datatable .datatable-header {
-    background: darken($background-light, 3);
-    .datatable-header-cell-label {
-        color: lighten($text-dark, 15);
-        font-size: 0.8rem;
+    
+    .datatable-header {
+        background: $background-light;
+        .datatable-header-cell-label {
+            color: lighten($text-dark, 15);
+            font-size: 0.8rem;
+        }
+        .sort-btn {
+            color: $text-light;
+        }
     }
-    .sort-btn {
-        color: $text-light;
-    }
-}
 
-:host ::ng-deep .ngx-datatable datatable-body.datatable-body {
-    background: darken($background-light, 1);
-    .datatable-body-cell-label {
-        font-size: 0.8rem;
+    .datatable-footer {
+        background: $background-light;
+    }
+    
+    datatable-body.datatable-body {
+        background: darken($background-light, 2);
+        .datatable-body-cell-label {
+            font-size: 0.8rem;
+        }
     }
 }

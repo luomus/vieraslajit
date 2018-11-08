@@ -10,8 +10,6 @@
 
     margin-top: $navbar-height;
     padding-bottom:2em;
-
-    background: darken($background-light, 2);
 }
 
 .navpill-bg {
@@ -89,6 +87,10 @@
     border-radius: $content-border-radius;
     box-shadow: $container-shadow;
     cursor: pointer;
+
+    .oi {
+        padding-right: 0.5em;
+    }
 }
 
 .navpill:hover {

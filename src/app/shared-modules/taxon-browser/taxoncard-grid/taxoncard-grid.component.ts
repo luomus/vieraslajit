@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "../../../../../node_modules/@angular/core";
-import { Taxonomy } from "../../model";
+import { Taxonomy } from "../../../shared/model";
 
 /** 
  *  Takes Array<Taxonomy> as input and renders a group of mini taxon-cards in a grid
