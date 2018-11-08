@@ -19,16 +19,14 @@ export class TaxonBrowserApiService {
     constructor(private settingsService:TaxonBrowserApiSettingsService, private apiService:ApiService, private translate:TranslateService) {
         this.query = { page: 1, pageSize: 12,
             invasiveSpeciesFilter: true,onlyFinnish: false, lang: this.settingsService.apiSettings.lang,
-            includeMedia: true, includeDescriptions: true , selectedFields: [ 'vernacularName', 'scientificName', 'invasiveSpeciesEstablishment', 'administrativeStatuses', 'id' ],
+            includeMedia: true, includeDescriptions: true , selectedFields: [ 'vernacularName', 'scientificName', 'invasiveSpeciesEstablishment', 'administrativeStatuses', 'id', 'species', 'finnish' ],
             sortOrder: 'finnish_name'
         };
     }
 
     initialize() {
         this.settingsService.eventEmitter.addListener("change", ()=>{
-            console.log('change!!!');
             this.updateQuery();
-            console.log(this.query);
             this.updateTaxa();
         });
     }

@@ -47,6 +47,7 @@
   "taxon.help": "Pyydä apua",
   "taxon.helpText": "Pyydä apua tunnistamisessa.",
   "taxon.identification": "Tunnistaminen",
+  "taxoncard.nonspecies": "(ei kotoperäiset)",
   "mapOfObservations.header": "Havainnot",
   "mapOfObservations.info": "Saat lisätietoa klikkaamalla havaintoa. Varmistetut havainnot ovat vihreitä, varmistamattomat oransseja ja yli 10 vuotta vanhat keskeltä läpinäkyviä.",
   "mapOfObservations.link": "Tästä linkistä aukeaa Laji.fi-sivuston monipuolisempi havaintokartta.",

@@ -30,6 +30,7 @@ import { AlertService } from './service/alert.service';
 import { AreaService } from './service/area.service';
 import { HelpComponent } from './help/help.component';
 import { HelpPopupComponent } from './help/help-popup/help-popup.component';
+import { CapitalizePipe } from './pipe/capitalize.pipe';
 /**
  * Provides common utilities for other modules
  */
@@ -51,10 +52,10 @@ import { HelpPopupComponent } from './help/help-popup/help-popup.component';
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, HelpComponent, HelpPopupComponent ],
+  declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, HelpComponent, HelpPopupComponent, CapitalizePipe ],
   providers: [],
   exports: [NavbarComponent, RouterModule, FooterComponent, SpinnerModule, EditcmsModule, ObservationMapModule,
-    SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, HelpComponent]
+    SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, HelpComponent, CapitalizePipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
