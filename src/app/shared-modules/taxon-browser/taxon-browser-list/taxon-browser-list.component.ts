@@ -2,19 +2,21 @@ import { Component, Input } from "../../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../../node_modules/@ngx-translate/core";
 import { Router } from "@angular/router";
 import * as $ from 'jquery';
-import { Observable } from "rxjs";
 import { Taxonomy } from "../../../shared/model";
 
 @Component({
     selector: 'vrs-taxon-browser-list',
-    template: `<ngx-datatable class="material" [rows]="taxa" [columnMode]="'force'" [columns]="columns" [headerHeight]="50"
-                [rowHeight]="50" [reorderable]='true' [count]="taxa.length" [limit]="20" [footerHeight]="50"
-                [sorts]="[{prop: 'vernacularName', dir: 'asc'}]" (activate)="onDatatableActivate($event)" (page)="onDatatablePageChange()">
-                </ngx-datatable>`,
+    template: `<ngx-datatable class="material"
+                [rows]="taxa" [columnMode]="'force'" [columns]="columns"
+                [headerHeight]="50" [rowHeight]="50" [reorderable]='true'
+                [count]="taxa.length" [limit]="20" [footerHeight]="50"
+                [sorts]="[{prop: 'vernacularName', dir: 'asc'}]"
+                (activate)="onDatatableActivate($event)" (page)="onDatatablePageChange()">
+               </ngx-datatable>`,
     styleUrls: ['taxon-browser-list.component.scss']
 })
 export class TaxonBrowserListComponent {
-    taxa: Array<Taxonomy> = [];
+    private _taxa: Array<Taxonomy> = [];
 
     columns:any[] = [];
 
@@ -30,11 +32,14 @@ export class TaxonBrowserListComponent {
     }
 
     @Input()
-    set asyncTaxa(t:Array<Taxonomy>) {
+    set taxa(t:Array<Taxonomy>) {
         if(t) {
-            this.taxa = t;
+            this._taxa = t;
             this.updateRows(this.taxa);
         }
+    }
+    get taxa() {
+        return this._taxa;
     }
 
     updateRows(taxa) {
