@@ -1,7 +1,6 @@
 import { Component, Input } from "../../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../../node_modules/@ngx-translate/core";
 import { Router } from "@angular/router";
-import * as $ from 'jquery';
 import { Taxonomy } from "../../../shared/model";
 
 @Component({
@@ -11,7 +10,7 @@ import { Taxonomy } from "../../../shared/model";
                 [headerHeight]="50" [rowHeight]="50" [reorderable]='true'
                 [count]="taxa.length" [limit]="20" [footerHeight]="50"
                 [sorts]="[{prop: 'vernacularName', dir: 'asc'}]"
-                (activate)="onDatatableActivate($event)" (page)="onDatatablePageChange()">
+                (activate)="onDatatableActivate($event)">
                </ngx-datatable>`,
     styleUrls: ['taxon-browser-list.component.scss']
 })
@@ -20,7 +19,8 @@ export class TaxonBrowserListComponent {
 
     columns:any[] = [];
 
-    constructor(private translate:TranslateService, private router: Router) {
+    constructor(private translate:TranslateService,
+                private router: Router) {
         this.columns = [
             { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 150 },
             { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 150 },
@@ -84,9 +84,5 @@ export class TaxonBrowserListComponent {
         if(e.type=="click") {
             this.router.navigate(['/taxon', e.row.id]);
         }
-    }
-
-    onDatatablePageChange() {
-        $('html, body').animate({ scrollTop: ($('ngx-datatable').offset().top - 80) });
     }
 }

@@ -57,7 +57,6 @@ export class TaxonBrowserComponent implements OnInit{
     getPage(page:number) {
         this.parameterService.updateQuery({page: page});
         this.currentPage = page;
-        $('html, body').animate({ scrollTop: 0 }, 0);
     }
 
     getTotalItems() {
