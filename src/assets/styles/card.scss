@@ -3,22 +3,22 @@
 // Card
 
 .card {
-    background: $background-light;
-    border: 1px solid $border-light;
+    background: $neutral-2;
+    border: 1px solid $neutral-3;
     border-radius: $content-border-radius;
 }
 
 .card .card-header {
-    background: darken($background-light, 5);
-    color: lighten($text-dark, 20);
+    background: darken($neutral-2, 5);
+    color: lighten($neutral-8, 20);
     border-radius: $content-border-radius;
     border-bottom-left-radius: 0em;
     border-bottom-right-radius: 0em;
 }
 
 .card .card-body {
-    background: $background-light;
-    color: $text-dark;
+    background: $neutral-2;
+    color: $neutral-8;
     border-bottom-left-radius: $content-border-radius;
     border-bottom-right-radius: $content-border-radius;
 }
@@ -30,13 +30,13 @@ accordion .panel-heading.card-header {
 }
 
 accordion .card.panel-default {
-    background: darken($background-light, 5);
-    color: $text-light;
+    background: darken($neutral-2, 5);
+    color: $neutral-1;
 }
 
 :host ::ng-deep accordion .panel-body.card-block.card-body {
-    background: $background-light;
-    border: 1px solid $border-light;
+    background: $neutral-2;
+    border: 1px solid $neutral-3;
     border-bottom-left-radius: $content-border-radius;
     border-bottom-right-radius: $content-border-radius;
 }
@@ -45,7 +45,7 @@ accordion .panel-heading {
     cursor: pointer;
 
     &:hover {
-        color: $primary;
+        color: $accent-5;
     }
 }
 

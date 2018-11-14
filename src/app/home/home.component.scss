@@ -8,7 +8,7 @@
     margin-top: -$navbar-height;
     padding-bottom: 2em;
 
-    background: $background-light;
+    background: $neutral-2;
 
     @include media-breakpoint-down(xs) { 
         padding-top: 0em;
@@ -26,7 +26,7 @@
     color: rgba(255, 255, 255, 0.8);
     padding-top: 14em;
     .heading-container {
-        color: $text-light;
+        color: $neutral-1;
     }
     h1 {
         font-size: 2em;
@@ -37,7 +37,7 @@
     }
     p {
         font-size: 1em;
-        color: darken($text-light, 15);
+        color: darken($neutral-1, 15);
     }
     hr {
         border-top: 2px solid #444;
@@ -83,7 +83,7 @@
     display: table;
 }
 .portal-heading {
-    color: $text-light;
+    color: $neutral-1;
     font-size: 1.2em;
     font-weight: 600;
 }
@@ -95,17 +95,16 @@
     padding: 2em;
     padding-top: 4em;
     padding-bottom: 4em;
-    font-family: $font-montserrat;
     font-weight: 400;
     font-size: 1.25em;
-    color: $text-light-muted;
+    color: $neutral-5;
     vertical-align: middle;
 }
 
 /* CONTENT */
 
 .first-segment {
-    background: $background-light;
+    background: $neutral-2;
     border-bottom-left-radius: $content-border-radius;
     border-bottom-right-radius: $content-border-radius;
     position: relative;
@@ -133,7 +132,7 @@
 /* NEWS */
 
 .news-items {
-    background: lighten($secondary, 20);
+    background: lighten($accent-5, 20);
     text-align: center;
 
     margin-bottom: 1em;
@@ -143,7 +142,7 @@
 .news-item {
     padding-top: 1em;
     padding-bottom: 1em;
-    color: darken($secondary, 5);
+    color: darken($accent-5, 5);
 
     display:flex;
     flex-direction: column;
@@ -156,14 +155,14 @@
     }
     
     .news-date {
-        color: rgba($secondary, 0.5);
+        color: rgba($accent-5, 0.5);
     }
 
     &:hover {
-        background: $primary;
-        color: $text-light;
+        background: $accent-5;
+        color: $neutral-1;
         .news-date {
-            color: $text-light;
+            color: $neutral-1;
         }
     }
 }
@@ -220,7 +219,7 @@
         font-weight: 600;
     }
     p {
-        color: $text-dark-lighter;
+        color: $neutral-7;
     }
 }
 
@@ -243,14 +242,14 @@
             width: 300px;
             border-radius: $content-border-radius;
             text-align: center;
-            background: $background-light;
+            background: $neutral-2;
             padding: 0;
             margin: 1em;
             box-shadow: 0px 0px 25px 0px #ddd;
             img {
                 border-top-left-radius: $content-border-radius;
                 border-top-right-radius: $content-border-radius;
-                border-bottom: 4px solid $primary;
+                border-bottom: 4px solid $accent-5;
             }
             p {
                 padding: 1em 1em;
@@ -292,7 +291,7 @@
 /* EXOTIC PETS */
 
 .exotic-pets-bg {
-    color: $text-dark;
+    color: $neutral-8;
     padding-top: 10em;
     padding-bottom: 10em;
     padding-right: 2em;
@@ -315,7 +314,7 @@
         font-weight: 600;
     }
     p {
-        color: $text-dark-lighter;
+        color: $neutral-7;
     }
 
     @include media-breakpoint-down(sm) {
@@ -343,7 +342,7 @@
 
     cursor: pointer;
     &:hover{
-        background: $primary;
+        background: $accent-5;
     }
 }
 

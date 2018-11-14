@@ -1,16 +1,16 @@
 @import '../../../../assets/styles/vars';
 
-$highlight: $text-highlight;
+$highlight: $accent-5;
 
 .language-selector {
     background: none;
-    color: rgba($text-light, 0.5);
+    color: rgba($neutral-1, 0.5);
     border: none;
     font-weight: 400;
 }
 
 .language-selector a{
-    color: rgba($text-light, 0.5);
+    color: rgba($neutral-1, 0.5);
 }
 
 .language-selector a:hover {

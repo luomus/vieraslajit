@@ -3,14 +3,14 @@
 
 .footer-content {
     font-size: 1rem;
-    background: lighten($secondary, 0);
-    color: rgba($text-light, 0.8);
-    border-top: 6px solid $primary;
+    background: lighten($primary-5, 0);
+    color: rgba($neutral-1, 0.8);
+    border-top: 6px solid $accent-5;
     box-shadow: 0px 0px 5px 0px #666;
     a {
-        color: rgba($text-light, 0.5);
+        color: rgba($neutral-1, 0.5);
         &:hover {
-            color: $primary;
+            color: $accent-5;
         }
     }
 }
@@ -36,7 +36,7 @@
 }
 
 .vrs-contact {
-    color: rgba($text-light, 0.8);
+    color: rgba($neutral-1, 0.8);
 }
 
 .footer-divider {
@@ -48,7 +48,7 @@
 }
 
 .vrs-affiliates {
-    background: $background-light;
+    background: $neutral-2;
 
     ul {
         text-align: center;

@@ -5,22 +5,22 @@
     font-size: 1rem;
     
     .datatable-header {
-        background: $background-light;
+        background: $neutral-2;
         .datatable-header-cell-label {
-            color: lighten($text-dark, 15);
+            color: lighten($neutral-8, 15);
             font-size: 0.8rem;
         }
         .sort-btn {
-            color: $text-light;
+            color: $neutral-1;
         }
     }
 
     .datatable-footer {
-        background: $background-light;
+        background: $neutral-2;
     }
     
     datatable-body.datatable-body {
-        background: darken($background-light, 2);
+        background: darken($neutral-2, 2);
         .datatable-body-cell-label {
             font-size: 0.8rem;
         }

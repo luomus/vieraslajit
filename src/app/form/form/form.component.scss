@@ -11,23 +11,23 @@
     font-size: 1rem;
 
     .bootstrap-switch-primary {
-        background-color: $primary !important;
+        background-color: $accent-5 !important;
         color: black !important;
     }
 
     .rw-btn:hover {
-        color: $primary;
+        color: $accent-5;
     }
 
     .form-group .btn.btn-default{
-        background-color: $background-light;
+        background-color: $neutral-2;
         color: #222;
         border-color: #222;
     }
 
     .form-group .btn.btn-default:hover {
-        background-color: $background-light-highlight;
-        border-color: $primary;
+        background-color: $neutral-1;
+        border-color: $accent-5;
     }
 
     .modal-title {
@@ -39,15 +39,15 @@
     }
 
     #formSend {
-        background-color: $background-light;
+        background-color: $neutral-2;
         color: #222;
         border-color: #222;
-        font-family: $font-montserrat;
+        font-family: $font-family-base;
     }
 
     #formSend:hover{
         background-color: #222;
-        color: $background-light;
+        color: $neutral-2;
         transition: 0.3s;
     }
 

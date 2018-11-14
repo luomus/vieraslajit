@@ -18,9 +18,9 @@ html, body {
     padding: 0px;
     overflow-x: hidden;
     font-family: $font-family-base;
-    background: $background-light;
+    background: $neutral-2;
 
-    color: $text-dark;
+    color: $neutral-8;
 
     font-size: 16px;
 
@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5 {
 }
 
 p {
-    color: $text-dark-lighter;
+    color: $neutral-7;
 }
 
 .raised-1 {
@@ -78,6 +78,6 @@ p {
 
 .ngx-pagination {
     li.current {
-        background: $primary;
+        background: $accent-5;
     }
 }

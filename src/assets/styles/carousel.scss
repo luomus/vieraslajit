@@ -1,11 +1,11 @@
 
 :host ::ng-deep #carouseldropdown:hover {
     cursor: pointer;
-    color: $primary;
+    color: $accent-5;
 }
 
 :host ::ng-deep #carouselmenuitem:hover {
-    background-color: $primary;
+    background-color: $accent-5;
 }
 
 :host ::ng-deep #multimedia {
@@ -15,17 +15,17 @@
 :host ::ng-deep #caret-left, #caret-right {
     max-height: 100%;
     font-size: 10px;
-    color: $background-light;
+    color: $neutral-2;
 }
 
 :host ::ng-deep #caret-left:hover {
     cursor: pointer;
-    color: $primary;
+    color: $accent-5;
 }
 
 :host ::ng-deep #caret-right:hover {
     cursor: pointer;
-    color: $primary;
+    color: $accent-5;
 }
 
 :host ::ng-deep .card-slide.slide {
@@ -78,7 +78,7 @@
 }
 
 :host ::ng-deep .carousel-indicators .active {
-    background-color: $primary;
+    background-color: $accent-5;
 }
 
 :host ::ng-deep .carousel-control-next-icon {

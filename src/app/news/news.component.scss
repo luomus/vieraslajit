@@ -63,7 +63,7 @@
 }
 
 .news-modified {
-    color: $text-dark-muted;
+    color: $neutral-6;
     font-style:italic;
 }
 
@@ -81,7 +81,7 @@
     border: 1px solid #ccc;
     margin-right: 0.5em;
 
-    background: $background-light;
+    background: $neutral-2;
     white-space: nowrap;
     text-align: center;
     border-radius: $content-border-radius;
@@ -94,14 +94,14 @@
 }
 
 .navpill:hover {
-    background-color: $primary;
-    color: $background-light;    
+    background-color: $accent-5;
+    color: $neutral-2;    
 }
 
 .active {
-    background-color: $primary;
-    border-color: $primary;
-    color: $background-light;
+    background-color: $accent-5;
+    border-color: $accent-5;
+    color: $neutral-2;
     transform: translateY(2px);
     box-shadow: 0px 0px 2px 0px #ccc;
 }
