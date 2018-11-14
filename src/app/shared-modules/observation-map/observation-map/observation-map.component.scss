@@ -50,7 +50,7 @@ p {
 
 .selected-observation-left {
   border-right: 1px solid #ccc;
-  color: $text-dark-muted;
+  color: $neutral-6;
   @include media-breakpoint-down(xs) {
     display:none;
   }

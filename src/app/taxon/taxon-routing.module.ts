@@ -6,8 +6,7 @@ import { TaxonCardComponent } from './taxon-card/taxon-card.component';
 import { TaxonComparisonComponent } from './taxon-comparison/taxon-comparison.component';
 
 const routes: Routes = [
-  { path: '', component: TaxonListComponent, runGuardsAndResolvers: 'always' },
-  { path: 'informal/:group', component: TaxonListComponent, runGuardsAndResolvers: 'always' },
+  { path: '', component: TaxonListComponent },
   { path: ':id', component: TaxonCardComponent },
   { path: ':id/comparison', component: TaxonComparisonComponent }
 ];

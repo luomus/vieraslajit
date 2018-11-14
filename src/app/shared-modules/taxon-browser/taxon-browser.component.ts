@@ -1,93 +1,62 @@
-import { Component, Input, OnInit } from "../../../../node_modules/@angular/core";
+import { Component, OnInit } from "../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../node_modules/@ngx-translate/core";
-import { Observable, Subscription } from "rxjs";
-
-import * as $ from 'jquery';
+import { Subscription } from "rxjs";
 
 import { TaxonBrowserApiService } from "./services/taxon-browser-api.service";
-import { TaxonBrowserApiSettingsService, TaxonBrowserApiSettings } from "./services/taxon-browser-api-settings.service";
-import { Informal, Taxonomy } from "../../shared/model";
+import { TaxonBrowserApiSettingsService } from "./services/taxon-browser-api-settings.service";
+import { Taxonomy } from "../../shared/model";
+import { TaxonBrowserParameterService } from "./services/taxon-browser-parameter.service";
 
 @Component({
     selector: "vrs-taxon-browser",
     styleUrls: ["taxon-browser.component.scss"],
     templateUrl: "taxon-browser.component.html",
-    providers: [TaxonBrowserApiService, TaxonBrowserApiSettingsService]
+    providers: [TaxonBrowserApiService, TaxonBrowserApiSettingsService, TaxonBrowserParameterService]
 })
 export class TaxonBrowserComponent implements OnInit{
-    @Input() EuList?:boolean = false;
-    @Input() FiList?:boolean = false;
-
-    @Input() EuListSelector?:boolean;
-    @Input() FiListSelector?:boolean;
-
-    /* Dirty hack that makes sure settings service isn't accessed until ngOnInit has been executed */
-    afterInit:boolean = false;
-    tempInformal:Informal[];
-    @Input() set informalTaxonGroups(i:Informal[]) {
-        if(this.afterInit) {
-            this.settingsService.informalTaxonGroups = i;
-        } else {
-            this.tempInformal = i;
-        }
-    }
-    get informalTaxonGroups():Informal[] {return this.settingsService.apiSettings.informalTaxonGroups}
-
     taxa:Taxonomy[];
 
     currentPage:number = 1;
-    pageData:Array<Taxonomy> = [];
-    total = 0;
 
-    itemsPerPage:number = 12;
+    private langChangeSub:Subscription;
 
-    private onLangChange:Subscription;
-
-    // Spinner
     loading = true;
 
     constructor(private settingsService:TaxonBrowserApiSettingsService,
         private apiService: TaxonBrowserApiService,
-        private translate: TranslateService) {
+        private translate: TranslateService,
+        private parameterService: TaxonBrowserParameterService) {
         
     }
 
     ngOnInit() {
         this.apiService.initialize();
-
         this.apiService.eventEmitter.addListener('change', ()=>{
             this.loading=true;
         });
-
         this.apiService.eventEmitter.addListener('done', ()=>{
             this.taxa = this.apiService.taxa;
             this.loading=false;
         });
 
-        let settings:TaxonBrowserApiSettings = {
-            EuList: this.EuList,
-            FiList: this.FiList,
-            informalTaxonGroups: this.tempInformal,
-            lang: this.translate.currentLang
-        }
-        this.settingsService.apiSettings = settings;
+        this.parameterService.queryEventEmitter.subscribe((event) => {
+            if (event.page) this.currentPage = event.page;
+        });
+        this.parameterService.init();
 
-        this.onLangChange = this.translate.onLangChange.subscribe((lang)=> {
+        this.settingsService.lang = this.translate.currentLang;
+        this.langChangeSub = this.translate.onLangChange.subscribe((lang)=> {
             this.settingsService.apiSettings.lang = lang;
         })
-
-        this.afterInit = true;
     }
 
     ngOnDestroy() {
-        this.onLangChange ? this.onLangChange.unsubscribe() : null;
+        this.langChangeSub ? this.langChangeSub.unsubscribe() : null;
     }
 
     getPage(page:number) {
-        let settings:TaxonBrowserApiSettings = {page: page};
-        this.settingsService.apiSettings = settings;
+        this.parameterService.updateQuery({page: page});
         this.currentPage = page;
-        $('html, body').animate({ scrollTop: 0 }, 0);
     }
 
     getTotalItems() {
@@ -95,14 +64,14 @@ export class TaxonBrowserComponent implements OnInit{
     }
 
     onInformalGroupSelection(event) {
-        this.settingsService.informalTaxonGroups = event;
+        this.parameterService.updateQuery({informalTaxonGroups: event, page: 1});
     }
 
     onFiListCheckbox(event) {
-        this.settingsService.apiSettings = {FiList: event.target.checked}
+        this.parameterService.updateQuery({FiList: event.target.checked});
     }
 
     onEuListCheckbox(event) {
-        this.settingsService.apiSettings = {EuList: event.target.checked}
+        this.parameterService.updateQuery({EuList: event.target.checked});
     }
 }

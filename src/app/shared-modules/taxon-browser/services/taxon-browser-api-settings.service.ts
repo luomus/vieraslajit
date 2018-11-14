@@ -30,12 +30,7 @@ export class TaxonBrowserApiSettingsService {
         })
         this.eventEmitter.emit('change');
     }
-    set informalTaxonGroups(s:Informal[]) {
-        this._apiSettings.informalTaxonGroups = s;
-        this.eventEmitter.emit('change');
-    }
     set lang(s:string) {
         this._apiSettings.lang = s;
-        this.eventEmitter.emit('change');
     }
 }

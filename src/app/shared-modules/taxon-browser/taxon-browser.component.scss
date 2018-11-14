@@ -25,11 +25,10 @@
 
 .tabset-top {
     background: #eaeaea;
-    border-top-left-radius: $content-border-radius;
-    border-top-right-radius: $content-border-radius;
+    max-width: 1700px;
+    margin: auto;
     padding: 2em;
     padding-bottom: 0em;
-    border: 1px solid $border-light;
     border-bottom: none;
 }
 
@@ -51,6 +50,6 @@
     margin: auto;
     border: none;
     a.nav-link {
-        border-bottom: 1px solid $background-light;
+        border-bottom: 1px solid $neutral-2;
     }
 }

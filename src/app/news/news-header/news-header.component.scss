@@ -37,11 +37,11 @@
 .news-title {
     font-size: 1.2em;
     font-weight: 600;
-    color: $text-dark;
+    color: $neutral-8;
 }
 
 .news-tag {
-    color: lighten($text-dark, 20);
+    color: lighten($neutral-8, 20);
     font-style:italic;
     @include media-breakpoint-down(xs) {
         display: none;
@@ -49,7 +49,7 @@
 }
 
 .news-posted {
-    color: lighten($text-dark, 20);
+    color: lighten($neutral-8, 20);
 }
 
 .news-thumbnail {

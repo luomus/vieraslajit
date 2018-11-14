@@ -1,6 +1,6 @@
 .vrs-button {
-    background: lighten($secondary, 10);
-    color: $text-light;
+    background: lighten($primary-5, 10);
+    color: $neutral-1;
     border-radius: $content-border-radius;
     text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -10,8 +10,8 @@
 
     &:hover {
         cursor:pointer;
-        background: $primary;
-        color: $text-light;
+        background: $primary-5;
+        color: $neutral-1;
     }
     
     &:active {
@@ -19,22 +19,22 @@
         box-shadow: 0px 0px 2px 0px #ccc;
     }
 
-    &.primary {
-        background: $primary;
+    &.accent {
+        background: $accent-5;
         &:hover{
             cursor:pointer;
-            background:darken($primary, 10);
+            background:darken($accent-5, 10);
         }
     }
 
-    &.secondary {
+    &.primary {
         background: transparent;
-        color: rgba($text-dark, 0.8);
-        border-color: lighten($secondary, 20);
+        color: rgba($neutral-8, 0.8);
+        border-color: lighten($primary-5, 20);
 
         &:hover {
-            background: $primary;
-            color: $text-light;
+            background: $primary-5;
+            color: $neutral-1;
         }
     }
 }
