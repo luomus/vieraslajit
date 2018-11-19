@@ -1,4 +1,39 @@
-<nav class="navbar navbar-dark navbar-expand-lg fixed-top transparent">
+<nav class="fixed-top">
+    <section class="nav-top">
+        <div class="container">
+            <div class="header">
+                <div>
+                    <img class="vrs-logo-img vrs-logo">
+                    <span class="heading">Vieraslajit.fi</span>
+                </div>
+            </div>
+            <div class="list">
+                <img src="../../assets/images/logos/finland-b2.png">
+                <span>Kansallinen vieraslajiluettelo</span>
+            </div>
+            <div class="list">
+                <img src="../../assets/images/logos/eu-b.png">
+                <span>Euroopan unionin vieraslajiluettelo</span>
+            </div>
+            <div class="login-lang">
+                <a href='{{loginUrl}}'>{{'Login' | translate}}</a>
+                <vrs-language-selector></vrs-language-selector>
+            </div>
+        </div>
+    </section>
+    <section class="nav-bottom">
+        <div class="container">
+            <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
+            <div class="nav-links">
+                <div>Lajit</div>
+                <div>Ajankohtaista</div>
+                <div>Havaintokartta</div>
+                <div>Tietoa</div>
+            </div>
+        </div>
+    </section>
+</nav>
+<!-- <nav class="navbar navbar-dark navbar-expand-lg fixed-top transparent">
     <div class="container container-navbar align-items-end">
         <a class="navbar-brand" routerLink="/home" routerLinkActive="vrs-nav-active" (click)="isCollapsed = false" translate>
             <span class="vrs-logo-img vrs-logo"></span>
@@ -67,3 +102,4 @@
 
     </div>
 </nav>
+ -->

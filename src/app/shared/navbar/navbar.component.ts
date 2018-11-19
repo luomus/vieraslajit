@@ -55,7 +55,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
       this.setCMSRootId(event.lang);
       this.update();
     });
-    this.router.events.subscribe((e)=>{
+/*     this.router.events.subscribe((e)=>{
       if(e instanceof NavigationEnd) {
         this.updateNavbarTransparency();
       }
@@ -64,7 +64,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
       $(window).on('scroll', ()=>{
         this.updateNavbarTransparency();
       });
-    });
+    }); */
   }
 
   private updateNavbarTransparency() {
