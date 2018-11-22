@@ -1,5 +1,5 @@
 .vrs-button {
-    background: lighten($primary-5, 10);
+    background: $primary-5;
     color: $neutral-1;
     border-radius: $content-border-radius;
     text-align: center;
@@ -10,7 +10,7 @@
 
     &:hover {
         cursor:pointer;
-        background: $primary-5;
+        background: $primary-6;
         color: $neutral-1;
     }
     
@@ -23,17 +23,17 @@
         background: $accent-5;
         &:hover{
             cursor:pointer;
-            background:darken($accent-5, 10);
+            background:$accent-5;
         }
     }
 
     &.primary {
         background: transparent;
         color: rgba($neutral-8, 0.8);
-        border-color: lighten($primary-5, 20);
+        border-color: $primary-5;
 
         &:hover {
-            background: $primary-5;
+            background: $primary-6;
             color: $neutral-1;
         }
     }

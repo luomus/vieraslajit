@@ -1,23 +1,32 @@
 <nav class="fixed-top">
+    <section class="laji-toolbar">
+        <div class="container">
+            <a href="https://laji.fi">Suomen lajitietokeskus</a>
+            <vrs-language-selector></vrs-language-selector>
+        </div>
+    </section>
     <section class="nav-top">
         <div class="container">
             <div class="header">
-                <div>
+                <div class="header-link" routerLink="/home">
                     <img class="vrs-logo-img vrs-logo">
                     <span class="heading">Vieraslajit.fi</span>
                 </div>
             </div>
-            <div class="list">
+<!--             <div class="list">
                 <img src="../../assets/images/logos/finland-b2.png">
                 <span>Kansallinen vieraslajiluettelo</span>
             </div>
             <div class="list">
                 <img src="../../assets/images/logos/eu-b.png">
                 <span>Euroopan unionin vieraslajiluettelo</span>
-            </div>
-            <div class="login-lang">
-                <a href='{{loginUrl}}'>{{'Login' | translate}}</a>
+            </div> -->
+<!--             <div class="login-lang">
+                <a href='{{loginUrl}}'>{{'navigation.login' | translate}}</a>
                 <vrs-language-selector></vrs-language-selector>
+            </div> -->
+            <div class="login">
+                <a class="btn"><span class="oi oi-account-login"></span>Kirjaudu sisään</a>
             </div>
         </div>
     </section>
@@ -25,10 +34,11 @@
         <div class="container">
             <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
             <div class="nav-links">
-                <div>Lajit</div>
-                <div>Ajankohtaista</div>
-                <div>Havaintokartta</div>
-                <div>Tietoa</div>
+                <div routerLink="/taxon" routerLinkActive="active">Lajit</div>
+                <div routerLink="/news" routerLinkActive="active">Ajankohtaista</div>
+                <div routerLink="/observations" routerLinkActive="active">Havaintokartta</div>
+                <div>Kansalaistoiminta</div>
+                <div>Tietoa <span class="oi oi-caret-bottom dropdown-caret"></span></div>
             </div>
         </div>
     </section>

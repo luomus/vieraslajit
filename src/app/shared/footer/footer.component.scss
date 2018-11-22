@@ -3,10 +3,10 @@
 
 .footer-content {
     font-size: 1rem;
-    background: lighten($primary-5, 0);
+    background: linear-gradient(to bottom right, $primary-7 0%, lighten($primary-7, 5) 100%);
     color: rgba($neutral-1, 0.8);
     border-top: 6px solid $accent-5;
-    box-shadow: 0px 0px 5px 0px #666;
+    box-shadow: 0px 0px 10px 0px $neutral-9;
     a {
         color: rgba($neutral-1, 0.5);
         &:hover {
