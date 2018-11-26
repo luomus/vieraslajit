@@ -26,7 +26,21 @@
                 <vrs-language-selector></vrs-language-selector>
             </div> -->
             <div class="login">
-                <a class="btn"><span class="oi oi-account-login"></span>Kirjaudu sisään</a>
+                <div *ngIf="!loggedIn;then login_content else welcome_content"></div>
+                <ng-template #login_content>
+                    <a href='{{loginUrl}}' class="btn login-btn"><span class="oi oi-account-login"></span>Kirjaudu sisään</a>
+                </ng-template>
+                <ng-template #welcome_content>
+                    <div class="dropdown" id="dropdown-user" dropdown>
+                        <div class="person-button-hover-area">
+                            <button class="btn dropdown-toggle" aria-controls="dropdown-basic" id="personbutton"><span class="oi oi-person"></span>{{userPropertiesWrapper().person.fullName}}</button>
+                            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+                            <li routerLink="/observations" [queryParams]="{user: true}" role="usermenuitem"><span class="dropdown-item usermenuitem">Omat havainnot</span></li>
+                            <li (click)="logout()" role="usermenuitem"><span class="dropdown-item usermenuitem"><span translate>navigation.logout</span></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
         </div>
     </section>

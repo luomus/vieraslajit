@@ -14,7 +14,7 @@
 .taxon-browser {
     box-shadow: 0px 0px 50px 0px rgba(#000, 0.5);
     border-radius: $content-border-radius;
-    background: #eaeaea;
+    background: $primary-2;
 }
 
 :host ::ng-deep ul.nav.nav-tabs {
@@ -24,7 +24,7 @@
 }
 
 .tabset-top {
-    background: #eaeaea;
+    background: $primary-2;
     max-width: 1400px;
     margin: auto;
     padding: 2em;
@@ -46,10 +46,14 @@
 
 :host ::ng-deep tabset ul.nav.nav-tabs {
     max-width: 1200px;
-    background: #eaeaea;
+    background: $primary-2;
     margin: auto;
     border: none;
     a.nav-link {
+        background: $primary-2;
         border-bottom: 1px solid $neutral-2;
+        &.active {
+            background: $neutral-2;
+        }
     }
 }
