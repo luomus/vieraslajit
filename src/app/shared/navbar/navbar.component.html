@@ -26,21 +26,10 @@
                 <vrs-language-selector></vrs-language-selector>
             </div> -->
             <div class="login">
-                <div *ngIf="!loggedIn;then login_content else welcome_content"></div>
-                <ng-template #login_content>
-                    <a href='{{loginUrl}}' class="btn login-btn"><span class="oi oi-account-login"></span>Kirjaudu sisään</a>
-                </ng-template>
-                <ng-template #welcome_content>
-                    <div class="dropdown" id="dropdown-user" dropdown>
-                        <div class="person-button-hover-area">
-                            <button class="btn dropdown-toggle" aria-controls="dropdown-basic" id="personbutton"><span class="oi oi-person"></span>{{userPropertiesWrapper().person.fullName}}</button>
-                            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
-                            <li routerLink="/observations" [queryParams]="{user: true}" role="usermenuitem"><span class="dropdown-item usermenuitem">Omat havainnot</span></li>
-                            <li (click)="logout()" role="usermenuitem"><span class="dropdown-item usermenuitem"><span translate>navigation.logout</span></span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </ng-template>
+                <vrs-user-menu [loginUrl]="loginUrl"
+                               [loggedIn]="loggedIn"
+                               [personName]="userPropertiesWrapper().person.fullName"
+                               (onLogout)="logout()"></vrs-user-menu>
             </div>
         </div>
     </section>
@@ -48,11 +37,17 @@
         <div class="container">
             <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
             <div class="nav-links">
-                <div routerLink="/taxon" routerLinkActive="active">Lajit</div>
-                <div routerLink="/news" routerLinkActive="active">Ajankohtaista</div>
-                <div routerLink="/observations" routerLinkActive="active">Havaintokartta</div>
-                <div>Kansalaistoiminta</div>
-                <div>Tietoa <span class="oi oi-caret-bottom dropdown-caret"></span></div>
+                <div class="link" routerLink="/taxon" routerLinkActive="active">Lajit</div>
+                <div class="link" routerLink="/news" routerLinkActive="active">Ajankohtaista</div>
+                <div class="link" routerLink="/observations" routerLinkActive="active">Havaintokartta</div>
+                <div class="link">Kansalaistoiminta</div>
+                <div class="dropdown link" id="dropdown-about" dropdown>
+                    <a class="dropdown-toggle" id="dropdown-title">Tietoa<span class="caret"></span></a>
+                    <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
+                        <li *ngFor="let child of menu" role="menuitem"><a class="dropdown-item" id="dropdown-menu-item"
+                                routerLink="static/{{child.id}}">{{child.title}}</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>

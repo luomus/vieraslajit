@@ -18,12 +18,11 @@
 <div class="news-container">
 <div class="container">
   <laji-spinner [ngClass]="{'news-spinner': newsLoading}" [spinning]="newsLoading" [hideContentWhileLoading]='true' [fullViewport]='false'>
-  <div *ngFor="let newsElement of (asyncNews | async | paginate: { id: 'pagination-controls', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems })" class="news-post">
-    
-    <vrs-news-header [newsElement]="newsElement"></vrs-news-header>
-    
-    <div class="row justify-content-center news-content">
-      <div class="col-12 col-lg-11 col-xl-10">
+  <div *ngFor="let newsElement of (asyncNews | async | paginate: { id: 'pagination-controls', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems })" class="news-post row">
+    <div class="col-10">
+      <vrs-news-header [newsElement]="newsElement"></vrs-news-header>
+      
+      <div class="row news-content">
         <p [innerHTML]="newsElement.content">Post content</p>
         <div class="text-right news-modified p-2">
           <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span> 
@@ -31,8 +30,8 @@
           <span *ngIf= "newsElement.modified">)</span>
         </div>
       </div>
+      <hr>
     </div>
-    <hr>
   </div> <!-- / news-post -->
   </laji-spinner>
 </div> <!-- /container-->
