@@ -125,7 +125,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
     this.userService.logout();
   }
 
-  userPropertiesWrapper() {
+  userPropertiesWrapper(): any {
     if(this.loggedIn) {
       return UserService.getUserProperties();
     } else {
