@@ -16,7 +16,7 @@
 .oi-magnifying-glass {
   color: #999;
   position: absolute;
-  top:0.5em;
+  top:0.55em;
   left: 0.5em;
 }
 
@@ -24,10 +24,10 @@ input {
   box-shadow: $inset-box-shadow;
 
   &:focus {
-    box-shadow: none;
+    box-shadow: 2px 2px 20px 0px $neutral-9;
   }
 
-  width: 12vw;
+  width: 15em;
   
   @include media-breakpoint-down(md) {
       width: 15em;
@@ -35,7 +35,7 @@ input {
   &.form-control {
       border: none;
       height: 80%;
-      font-size: 0.9em;
+      font-size: 1em;
       padding: 0.5em 0.8em;
       padding-left: 2.1em;
   }

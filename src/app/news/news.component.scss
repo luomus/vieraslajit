@@ -8,8 +8,9 @@
         font-size: 1rem;
     }
 
+    background: $neutral-3;
+
     margin-top: $navbar-height;
-    padding-bottom:2em;
 }
 
 .navpill-bg {
@@ -23,6 +24,11 @@
         padding: 0em;
         max-width: none;
     }
+}
+
+.news-container {
+    background: $neutral-2;
+    padding-bottom: 2em;
 }
 
 :host ::ng-deep .top-pagination {
@@ -49,7 +55,7 @@
 }
 
 .news-post {
-    padding: 2em 4em;
+    padding: 2em;
     min-height: 50vh;
     @include media-breakpoint-down(md) {
         padding-left: 0em;
@@ -81,7 +87,7 @@
     border: 1px solid #ccc;
     margin-right: 0.5em;
 
-    background: $neutral-2;
+    background: $neutral-1;
     white-space: nowrap;
     text-align: center;
     border-radius: $content-border-radius;
@@ -95,15 +101,15 @@
 
 .navpill:hover {
     background-color: $accent-5;
-    color: $neutral-2;    
+    color: $accent-8;    
 }
 
 .active {
     background-color: $accent-5;
     border-color: $accent-5;
-    color: $neutral-2;
+    color: $accent-8;
     transform: translateY(2px);
-    box-shadow: 0px 0px 2px 0px #ccc;
+    box-shadow: inset 0 0 10px 0 $accent-6;
 }
 
 :host ::ng-deep .ngx-pagination a {

@@ -55,7 +55,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
       this.setCMSRootId(event.lang);
       this.update();
     });
-    this.router.events.subscribe((e)=>{
+/*     this.router.events.subscribe((e)=>{
       if(e instanceof NavigationEnd) {
         this.updateNavbarTransparency();
       }
@@ -64,7 +64,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
       $(window).on('scroll', ()=>{
         this.updateNavbarTransparency();
       });
-    });
+    }); */
   }
 
   private updateNavbarTransparency() {
@@ -83,8 +83,8 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
 
   ngAfterViewInit() {
     /* Dropdown toggle */
-    $("#dropdown-hover-area").on("mouseenter mouseleave", ()=>{
-      this.d.first.toggle(true);
+    $("#dropdown-about").on("mouseenter mouseleave", ()=>{
+      this.d.last.toggle(true);
     });
   }
 
@@ -94,7 +94,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
       /* wait for the dropdown-user element to appear before binding */
       if($("#dropdown-user").length !== 0) {
         $("#dropdown-user").on("mouseenter mouseleave", ()=>{
-          this.d.last.toggle(true);
+          this.d.first.toggle(true);
         });
         this.dropdown_user_bound = true;
       }
@@ -125,9 +125,11 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
     this.userService.logout();
   }
 
-  userPropertiesWrapper() {
+  userPropertiesWrapper(): any {
     if(this.loggedIn) {
       return UserService.getUserProperties();
+    } else {
+      return {person: {fullName: ''}};
     }
   }
 

@@ -1,4 +1,58 @@
-<nav class="navbar navbar-dark navbar-expand-lg fixed-top transparent">
+<nav class="fixed-top">
+    <section class="laji-toolbar">
+        <div class="container">
+            <a href="https://laji.fi">Suomen lajitietokeskus</a>
+            <vrs-language-selector></vrs-language-selector>
+        </div>
+    </section>
+    <section class="nav-top">
+        <div class="container">
+            <div class="header">
+                <div class="header-link" routerLink="/home">
+                    <img class="vrs-logo-img vrs-logo">
+                    <span class="heading">Vieraslajit.fi</span>
+                </div>
+            </div>
+<!--             <div class="list">
+                <img src="../../assets/images/logos/finland-b2.png">
+                <span>Kansallinen vieraslajiluettelo</span>
+            </div>
+            <div class="list">
+                <img src="../../assets/images/logos/eu-b.png">
+                <span>Euroopan unionin vieraslajiluettelo</span>
+            </div> -->
+<!--             <div class="login-lang">
+                <a href='{{loginUrl}}'>{{'navigation.login' | translate}}</a>
+                <vrs-language-selector></vrs-language-selector>
+            </div> -->
+            <div class="login">
+                <vrs-user-menu [loginUrl]="loginUrl"
+                               [loggedIn]="loggedIn"
+                               [personName]="userPropertiesWrapper().person.fullName"
+                               (onLogout)="logout()"></vrs-user-menu>
+            </div>
+        </div>
+    </section>
+    <section class="nav-bottom">
+        <div class="container">
+            <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
+            <div class="nav-links">
+                <div class="link" routerLink="/taxon" routerLinkActive="active">Lajit</div>
+                <div class="link" routerLink="/news" routerLinkActive="active">Ajankohtaista</div>
+                <div class="link" routerLink="/observations" routerLinkActive="active">Havaintokartta</div>
+                <div class="link">Kansalaistoiminta</div>
+                <div class="dropdown link" id="dropdown-about" dropdown>
+                    <a class="dropdown-toggle" id="dropdown-title">Tietoa<span class="caret"></span></a>
+                    <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
+                        <li *ngFor="let child of menu" role="menuitem"><a class="dropdown-item" id="dropdown-menu-item"
+                                routerLink="static/{{child.id}}">{{child.title}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</nav>
+<!-- <nav class="navbar navbar-dark navbar-expand-lg fixed-top transparent">
     <div class="container container-navbar align-items-end">
         <a class="navbar-brand" routerLink="/home" routerLinkActive="vrs-nav-active" (click)="isCollapsed = false" translate>
             <span class="vrs-logo-img vrs-logo"></span>
@@ -67,3 +121,4 @@
 
     </div>
 </nav>
+ -->

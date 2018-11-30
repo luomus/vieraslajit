@@ -20,7 +20,6 @@ import { FormApiClient } from './api/FormApiClient';
 import { UserService } from './service/user.service';
 import { HttpModule } from '@angular/http';
 import { InformationService } from './service/information.service';
-import {ListService } from './service/list.service';
 import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
 import { ObservationService } from './service/observation.service';
 import {EditcmsModule} from './../shared-modules/editcms/editcms.module';
@@ -31,6 +30,8 @@ import { AreaService } from './service/area.service';
 import { HelpComponent } from './help/help.component';
 import { HelpPopupComponent } from './help/help-popup/help-popup.component';
 import { CapitalizePipe } from './pipe/capitalize.pipe';
+import { UserMenuComponent } from './navbar/user-menu/user-menu.component';
+import { PersonMenuComponent } from './navbar/user-menu/person-menu.component';
 /**
  * Provides common utilities for other modules
  */
@@ -52,7 +53,7 @@ import { CapitalizePipe } from './pipe/capitalize.pipe';
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, HelpComponent, HelpPopupComponent, CapitalizePipe ],
+  declarations: [NavbarComponent, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent ],
   providers: [],
   exports: [NavbarComponent, RouterModule, FooterComponent, SpinnerModule, EditcmsModule, ObservationMapModule,
     SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, HelpComponent, CapitalizePipe]

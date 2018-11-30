@@ -3,7 +3,7 @@
 
 
 .news-header {
-    background: #eee;
+    background: $neutral-3;
     border-left: 8px solid red;
     padding: 2em 2em 2em 0.5em;
 
@@ -35,7 +35,7 @@
 }
 
 .news-title {
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: 600;
     color: $neutral-8;
 }

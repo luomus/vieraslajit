@@ -26,6 +26,7 @@ export class MapApiController {
 
     private updateObservationList() {
         this.getObservations().subscribe((r)=>{
+            console.log(r);
             this.obsMapObservations.removeAll();
             let observations = [];
             r.results.forEach(element => {

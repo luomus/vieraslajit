@@ -4,13 +4,13 @@ $highlight: $accent-5;
 
 .language-selector {
     background: none;
-    color: rgba($neutral-1, 0.5);
+    color: $primary-5;
     border: none;
     font-weight: 400;
 }
 
 .language-selector a{
-    color: rgba($neutral-1, 0.5);
+    color: $primary-5;
 }
 
 .language-selector a:hover {

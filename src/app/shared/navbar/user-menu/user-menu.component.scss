@@ -1,0 +1,14 @@
+@import '../../../../assets/styles/vars';
+
+.login_content a {
+    background: $neutral-1;
+    color: $neutral-7;
+    border-radius: $content-border-radius;
+    box-shadow: 1px 1px 4px 0px $neutral-6;
+    padding: 0.5em;
+    text-decoration: none;
+    
+    &:hover {
+        background: $accent-2;
+    }
+}
