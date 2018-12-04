@@ -14,9 +14,6 @@
     }
 }
 
-.menu-wrapper {
-
-}
 .menu-bottom {
     position: absolute;
     z-index: 1000;
@@ -45,11 +42,12 @@
 .menu-bottom a {
     position: relative;
     z-index: 1001;
+    display: block;
 
     color: $neutral-6;
     text-decoration: none;
     cursor: pointer;
-    
+
     &:hover {
         color: $neutral-8;
     }

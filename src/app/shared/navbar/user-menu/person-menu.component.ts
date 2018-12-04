@@ -3,22 +3,18 @@ import { Component, ViewChild, Renderer2, Output, Input, EventEmitter, AfterView
 @Component({
     selector: 'vrs-person-menu',
     template: `
-<div [ngClass]="{'menu-wrapper': showMenu}" #hover_area>
+<div #hover_area>
     <a class="name">
         <span class="oi oi-person"></span>
         {{personName}}
     </a>
     <div *ngIf="showMenu" class="menu-bottom">
-        <div>
         <a routerLink="/observations" [queryParams]="{user: true}">
             Omat havainnot
         </a>
-        </div>
-        <div>
         <a (click)="logout()">
             {{ 'navigation.logout' | translate }}
         </a>
-        </div>
     </div>
 </div>
     `,

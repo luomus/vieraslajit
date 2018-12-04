@@ -245,6 +245,10 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     }
 }
 
+.dropdown-item:focus {
+    background: $primary-6;
+}
+
 /* #dropdown-about {
     border: none;
     display: flex;
