@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomeModule' },
   { path: 'taxon', loadChildren: './taxon/taxon.module#TaxonModule' },
   { path: 'eradication', loadChildren: './eradication/eradication.module#EradicationModule' },
+  { path: 'viekas', loadChildren: './viekas/viekas.module#ViekasModule' },
   { path: 'news', loadChildren: './news/news.module#NewsModule' },
   { path: 'legal', loadChildren: './legal/legal.module#LegalModule' },
   { path: 'legal/law', loadChildren: './legal/legal.module#LegalModule' },
