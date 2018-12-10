@@ -1,6 +1,10 @@
 @import '../../../assets/styles/vars';
 @import '../../../assets/styles/carousel';
 
+:host {
+    background: $neutral-2;
+}
+
 .head {
     padding-top: 1em;
     padding-bottom: 1em;

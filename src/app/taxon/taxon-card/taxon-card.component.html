@@ -19,7 +19,7 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-12 col-md-6">
+      <div class="col-sm-12 col-md-7">
         <div *ngIf="desc?.groups; else infoAndLajifiTemplate">
           <div id="taxoncard" *ngFor="let group of desc?.groups; let first = first">
                 <div *ngFor="let variable of group.variables">
@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <div class="col-sm-12 col-md-6">
+      <div class="col-sm-12 col-md-5">
 
         <ng-container *ngIf="media != null && media.length > 0">
           <div class="card taxon-info-card" id="taxoncard-right">
