@@ -26,6 +26,8 @@
       <a [routerLink]="['/taxon/' + selectedInfo.id]">{{selectedInfo.taxonVerbatim.charAt(0).toUpperCase() + selectedInfo.taxonVerbatim.substr(1)}} (<i>{{selectedInfo.scientificName}}</i>)</a>
       <br>
       {{selectedInfo.team}} {{selectedInfo.municipalityDisplayname}} {{selectedInfo.displayDateTime}}
+      <br>
+      {{selectedInfo.reliability}}
     </div>
   </div>
 </div> <!-- col-5 -->
