@@ -21,7 +21,8 @@ export interface VrsObservation {
         recordBasis?:string,
         taxonVerbatim?:string,
         unitId?:string,
-        notes?:string
+        notes?:string,
+        quality?:any;
     };
 }
 

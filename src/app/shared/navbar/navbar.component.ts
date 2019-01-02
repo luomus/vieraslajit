@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList, NgZone } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ElementRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { UserService, Role } from '../service/user.service';
 import {Router, NavigationEnd} from '@angular/router';
@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { StaticContent, findContentID } from './../../../assets/i18n/cms-content';
 import * as $ from 'jquery';
 import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';
+import { rendererTypeName } from '@angular/compiler';
 
 @Component({
   selector: 'vrs-navbar',
@@ -26,10 +27,11 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   private dropdown_user_bound = false;
 
   @ViewChildren(BsDropdownDirective) d : QueryList<BsDropdownDirective>;
-  
+
   constructor(private router: Router, private userService: UserService,
      private informationService: InformationService, private translate:TranslateService,
-     private zone: NgZone ) {
+     private zone: NgZone,
+     private renderer: Renderer2 ) {
       this.loginSub = userService.loginStateChange.subscribe(() => {
         this.loggedIn = UserService.loggedIn();
       if(this.loggedIn == false) {
@@ -43,7 +45,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
     router.events.subscribe((val) => {
       this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
     });
-    
+
   }
 
   getCurrentLang() {
@@ -82,10 +84,17 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   }
 
   ngAfterViewInit() {
-    /* Dropdown toggle */
-    $("#dropdown-about").on("mouseenter mouseleave", ()=>{
-      this.d.last.toggle(true);
-    });
+    this.d.forEach((dropdown) => {
+      // hacking into private property (of dropdown directive) because we are above the law
+      // @ts-ignore
+      let el = dropdown._elementRef.nativeElement;
+      this.renderer.listen(el, "mouseenter", ()=>{
+        dropdown.toggle(true);
+      })
+      this.renderer.listen(el, "mouseleave", ()=>{
+        dropdown.toggle(true);
+      })
+    })
   }
 
   /* dropdown-user is inside an *ngIf statement, so it can't be selected until the if statement is evaluated*/

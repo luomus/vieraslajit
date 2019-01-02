@@ -1023,7 +1023,7 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-attr-accept@^1.0.3:
+attr-accept@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-1.1.3.tgz#48230c79f93790ef2775fcec4f0db0f5db41ca52"
   integrity sha512-iT40nudw8zmCweivz6j58g+RT33I4KbaIvRUhjNmDwO2WmsQUxFEZZYZ5w3vXe5x5MX9D7mfvA/XaLOZYFR9EQ==
@@ -2509,7 +2509,7 @@ debug@^3.1.0, debug@^3.2.5:
   dependencies:
     ms "^2.1.1"
 
-debuglog@*, debuglog@^1.0.1:
+debuglog@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/debuglog/-/debuglog-1.0.1.tgz#aa24ffb9ac3df9a2351837cfb2d279360cd78492"
   integrity sha1-qiT/uaw9+aI1GDfPstJ5NgzXhJI=
@@ -4585,7 +4585,7 @@ import-local@^2.0.0:
     pkg-dir "^3.0.0"
     resolve-cwd "^2.0.0"
 
-imurmurhash@*, imurmurhash@^0.1.4:
+imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
   integrity sha1-khi5srkoojixPcT7a21XbyMUU+o=
@@ -5543,17 +5543,17 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
-laji-form@^0.0.484:
-  version "0.0.484"
-  resolved "https://registry.yarnpkg.com/laji-form/-/laji-form-0.0.484.tgz#27a025882a14f77193cef7f529e521b905ec5277"
-  integrity sha512-QnxRVol6LZi0uJWo8ZWCXuiM7ZP0r1R4ijqzhDrUOmCQF1iv4jtpusHBqOE8ll2gHfhsTUMesdI0LOc4q6rP8A==
+laji-form@^0.0.552:
+  version "0.0.552"
+  resolved "https://registry.yarnpkg.com/laji-form/-/laji-form-0.0.552.tgz#67f0a378e81443e32deaf9d098be1d2f87784b53"
+  integrity sha512-sLYyuMFI0s3V50x1JpLAAPqAc7lKupFYdxmbNThEKt9UaGMn2M8T1NUCzml2IVGXVwyfViVSrJBO5djJpY01cg==
   dependencies:
     babel-runtime "^6.18.0"
     deep-equal "^1.0.1"
     deepmerge "^1.1.1"
     immutability-helper "^2.1.2"
-    laji-map "^1.0.397"
-    laji-validate "0.0.69"
+    laji-map "^1.0.454"
+    laji-validate "0.0.73"
     moment "*"
     prop-types "^15.5.8"
     react "^16.4.1"
@@ -5563,15 +5563,15 @@ laji-form@^0.0.484:
     react-bootstrap "^0.32.1"
     react-bootstrap-switch "^15.0.4"
     react-dom "^16.4.1"
-    react-dropzone "^3.12.3"
+    react-dropzone "^4.3.0"
     react-inlinesvg "^0.6.0"
-    react-jsonschema-form "git+https://git@github.com/olzraiti/react-jsonschema-form.git#453552e958aa42bea1daaac8ba14e177c7825494"
+    react-jsonschema-form "git+https://git@github.com/olzraiti/react-jsonschema-form.git#d7e3482f2ad275a674ecb000793c579b12570235"
     react-sortable-hoc "^0.6.3"
     react-spinner "^0.2.7"
     react-transition-group "^1.1.1"
     react-widgets "^3.4.8"
 
-laji-map@^1.0.395, laji-map@^1.0.397:
+laji-map@^1.0.395, laji-map@^1.0.397, laji-map@^1.0.454:
   version "1.0.454"
   resolved "https://registry.yarnpkg.com/laji-map/-/laji-map-1.0.454.tgz#7b54c60effa6b2674d106558e17d92179ed71d6a"
   integrity sha512-IImyNQlSe5p4PTQqJMD3t1Nu6a+1dFkF0cQw3fsi2WfMq7THb5WtCQOF4qXIe4PTrj3fAb7I0An9jrAwt35C0A==
@@ -5595,10 +5595,10 @@ laji-map@^1.0.395, laji-map@^1.0.397:
     "@types/leaflet.markercluster" "*"
     "@types/node" "*"
 
-laji-validate@0.0.69:
-  version "0.0.69"
-  resolved "https://registry.yarnpkg.com/laji-validate/-/laji-validate-0.0.69.tgz#52b69a8c61d8224c258c887953e65d420d816b7a"
-  integrity sha512-xYeYFBWR/uef2JA+ToIsIhBLyZTXFBwGjd+QbBTSGF7KXHfx6s4PjrTfi7nT7fI3PQYF+N2Gulu8MMTfrZVpGw==
+laji-validate@0.0.73:
+  version "0.0.73"
+  resolved "https://registry.yarnpkg.com/laji-validate/-/laji-validate-0.0.73.tgz#e6387d9c0d4dd9eb4b32f2461ebfb6667dbb4644"
+  integrity sha512-hA2FUtbtL3rypH+1tHy3i2QtzS38cA2MuaLK7JdXuynbLEMuWH1pNeggqEDK15UHGjXJFjEUYjXWsw50XEwNtA==
   dependencies:
     "@mapbox/geojson-area" "^0.2.2"
     geojson-bounds "^1.0.1"
@@ -5884,11 +5884,6 @@ lockfile@^1.0.4:
   dependencies:
     signal-exit "^3.0.2"
 
-lodash._baseindexof@*:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/lodash._baseindexof/-/lodash._baseindexof-3.1.0.tgz#fe52b53a1c6761e42618d654e4a25789ed61822c"
-  integrity sha1-/lK1OhxnYeQmGNZU5KJXie1hgiw=
-
 lodash._baseuniq@~4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash._baseuniq/-/lodash._baseuniq-4.6.0.tgz#0ebb44e456814af7905c6212fa2c9b2d51b841e8"
@@ -5897,32 +5892,10 @@ lodash._baseuniq@~4.6.0:
     lodash._createset "~4.0.0"
     lodash._root "~3.0.0"
 
-lodash._bindcallback@*:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/lodash._bindcallback/-/lodash._bindcallback-3.0.1.tgz#e531c27644cf8b57a99e17ed95b35c748789392e"
-  integrity sha1-5THCdkTPi1epnhftlbNcdIeJOS4=
-
-lodash._cacheindexof@*:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/lodash._cacheindexof/-/lodash._cacheindexof-3.0.2.tgz#3dc69ac82498d2ee5e3ce56091bafd2adc7bde92"
-  integrity sha1-PcaayCSY0u5ePOVgkbr9Ktx73pI=
-
-lodash._createcache@*:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/lodash._createcache/-/lodash._createcache-3.1.2.tgz#56d6a064017625e79ebca6b8018e17440bdcf093"
-  integrity sha1-VtagZAF2JeeevKa4AY4XRAvc8JM=
-  dependencies:
-    lodash._getnative "^3.0.0"
-
 lodash._createset@~4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/lodash._createset/-/lodash._createset-4.0.3.tgz#0f4659fbb09d75194fa9e2b88a6644d363c9fe26"
   integrity sha1-D0ZZ+7CddRlPqeK4imZE02PJ/iY=
-
-lodash._getnative@*, lodash._getnative@^3.0.0:
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/lodash._getnative/-/lodash._getnative-3.9.1.tgz#570bc7dede46d61cdcde687d65d3eecbaa3aaff5"
-  integrity sha1-VwvH3t5G1hzc3mh9ZdPuy6o6r/U=
 
 lodash._root@~3.0.0:
   version "3.0.1"
@@ -5948,11 +5921,6 @@ lodash.mergewith@^4.6.0:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.1.tgz#639057e726c3afbdb3e7d42741caa8d6e4335927"
   integrity sha512-eWw5r+PYICtEBgrBE5hhlT6aAa75f411bgDz/ZL2KZqYV03USvucsxcHUIlGTDTECs1eunpI7HOV7U+WLDvNdQ==
-
-lodash.restparam@*:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/lodash.restparam/-/lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805"
-  integrity sha1-k2pOMJ7zMKdkXtQUWYbIWuWyCAU=
 
 lodash.tail@^4.1.1:
   version "4.1.1"
@@ -8204,12 +8172,12 @@ react-dom@^16.4.1:
     prop-types "^15.6.2"
     scheduler "^0.11.2"
 
-react-dropzone@^3.12.3:
-  version "3.13.4"
-  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-3.13.4.tgz#84da26815c40339691c49b4544c2ef7a16912ccc"
-  integrity sha1-hNomgVxAM5aRxJtFRMLvehaRLMw=
+react-dropzone@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-4.3.0.tgz#facdd7db16509772633c9f5200621ac01aa6706f"
+  integrity sha512-ULfrLaTSsd8BDa9KVAGCueuq1AN3L14dtMsGGqtP0UwYyjG4Vhf158f/ITSHuSPYkZXbvfcIiOlZsH+e3QWm+Q==
   dependencies:
-    attr-accept "^1.0.3"
+    attr-accept "^1.1.3"
     prop-types "^15.5.7"
 
 react-inlinesvg@^0.6.0:
@@ -8225,9 +8193,9 @@ react-is@^16.3.2:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.6.3.tgz#d2d7462fcfcbe6ec0da56ad69047e47e56e7eac0"
   integrity sha512-u7FDWtthB4rWibG/+mFbVd5FvdI20yde86qKGx4lVUTWmPlSWQ4QxbBIrrs+HnXGbxOUlUzTAP/VDmvCwaP2yA==
 
-"react-jsonschema-form@git+https://git@github.com/olzraiti/react-jsonschema-form.git#453552e958aa42bea1daaac8ba14e177c7825494":
+"react-jsonschema-form@git+https://git@github.com/olzraiti/react-jsonschema-form.git#d7e3482f2ad275a674ecb000793c579b12570235":
   version "1.0.0"
-  resolved "git+https://git@github.com/olzraiti/react-jsonschema-form.git#453552e958aa42bea1daaac8ba14e177c7825494"
+  resolved "git+https://git@github.com/olzraiti/react-jsonschema-form.git#d7e3482f2ad275a674ecb000793c579b12570235"
   dependencies:
     ajv "^5.2.3"
     lodash.topath "^4.5.2"
@@ -8468,7 +8436,7 @@ readable-stream@~2.0.5, readable-stream@~2.0.6:
     string_decoder "~0.10.x"
     util-deprecate "~1.0.1"
 
-readdir-scoped-modules@*, readdir-scoped-modules@^1.0.0:
+readdir-scoped-modules@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/readdir-scoped-modules/-/readdir-scoped-modules-1.0.2.tgz#9fafa37d286be5d92cbaebdee030dc9b5f406747"
   integrity sha1-n6+jfShr5dksuuve4DDcm19AZ0c=

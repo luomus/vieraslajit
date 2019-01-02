@@ -10,7 +10,7 @@ import { AreaService } from "../../../../../shared/service/area.service";
 @Injectable()
 
 export class MapApiController {
-    
+
     constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapObservations, private observationService: ObservationService, private areaService: AreaService) {}
 
     initialize() {
@@ -43,8 +43,11 @@ export class MapApiController {
             page: 1,
             pageSize: 200,
             selected: [
-                "unit.taxonVerbatim", "unit.linkings.taxon.scientificName", "unit.linkings.taxon.qname", "gathering.conversions.wgs84CenterPoint.lat", "gathering.conversions.wgs84CenterPoint.lon",
-                "gathering.displayDateTime", "gathering.interpretations.municipalityDisplayname", "gathering.team"
+                "unit.taxonVerbatim", "unit.linkings.taxon.scientificName",
+                "unit.linkings.taxon.qname", "gathering.conversions.wgs84CenterPoint.lat",
+                "gathering.conversions.wgs84CenterPoint.lon", "gathering.displayDateTime",
+                "gathering.interpretations.municipalityDisplayname", "gathering.team",
+                "unit.quality"
             ]
         };
         if(this.obsMapOptions.getOption("id")) query["taxonId"] = this.obsMapOptions.getOption("id")
