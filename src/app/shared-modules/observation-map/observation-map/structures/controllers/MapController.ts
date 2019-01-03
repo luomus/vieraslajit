@@ -31,7 +31,7 @@ export class MapController {
             tileLayerName: <TileLayerName>"openStreetMap"
         });
         this.obsMapObservations.eventEmitter.addListener('change', ()=>{
-          if(this.obsMapOptions.getOption('municipality') && 
+          if(this.obsMapOptions.getOption('municipality') &&
           this.obsMapOptions.getOption('municipality').length > 0 && this.obsMapObservations.getObservations().length > 0) {
             this.zoomAt([this.obsMapObservations.getObservations()[0].gathering.conversions.wgs84CenterPoint.lat,
                          this.obsMapObservations.getObservations()[0].gathering.conversions.wgs84CenterPoint.lon], 3);
@@ -46,11 +46,11 @@ export class MapController {
 
     private getMapData():Data[] {
       let mapData=[];
-        
+
       let obs = this.obsMapObservations.getObservations();
       let features = [];
       obs.forEach((o)=>{
-        if(o.gathering.conversions) {  
+        if(o.gathering.conversions) {
           let f = {
             type: "Feature",
             geometry: {
@@ -88,6 +88,7 @@ export class MapController {
           let municipality = obs[data].gathering.interpretations.municipalityDisplayname || "";
           let date = obs[data].gathering.displayDateTime;
           let notes = obs[data].unit.notes || "";
+          let reliability = obs[data].unit.quality.reliable ? "Luotettava <br>" : "";
 
           this.eventEmitter.emit('onPopup', obs[data]);
 
@@ -97,6 +98,7 @@ export class MapController {
           + date.substring(5, 7) + "."
           + date.substring(0, 4) + " | "
           + municipality + " <br> "
+          + reliability
           + notes;
         }
       }

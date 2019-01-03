@@ -57,34 +57,10 @@
     @include media-breakpoint-down(xs) {
         padding-left: 2em;
     }
-    
+
     @include media-breakpoint-up(sm) {
         justify-content: center;
     }
-}
-
-.luomus-logo {
-    content:url(./../../../assets/images/logos/luomus_logo.png);
-}
-
-.luke-logo {
-    content:url(./../../../assets/images/logos/luke_logo.png);
-}
-
-.ely-logo {
-    content:url(./../../../assets/images/logos/ELY_logo.jpg);
-}
-
-.mmm-logo {
-    content:url(./../../../assets/images/logos/mmmlogo_fi.png);
-}
-
-.sll-logo {
-    content:url(./../../../assets/images/logos/sll_logo.png);
-}
-
-.syke-logo {
-    content:url(./../../../assets/images/logos/syke_logo.png);
 }
 
 .affiliate-img {

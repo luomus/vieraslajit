@@ -24,19 +24,19 @@ html, body {
 
     font-size: 16px;
 
-    @include media-breakpoint-up(xs) { 
+    @include media-breakpoint-up(xs) {
         font-size: 14px;
     }
-    @include media-breakpoint-up(sm) { 
+    @include media-breakpoint-up(sm) {
         font-size: 16px;
     }
-    @include media-breakpoint-up(md) { 
+    @include media-breakpoint-up(md) {
         font-size: 18px;
     }
-    @include media-breakpoint-up(lg) { 
+    @include media-breakpoint-up(lg) {
         font-size: 19px;
     }
-    @include media-breakpoint-up(xl) { 
+    @include media-breakpoint-up(xl) {
         font-size: 20px;
     }
 }
@@ -65,14 +65,10 @@ p {
 .laji-form .laji-form-map-container, .laji-form .popover {
     z-index: 0;
   }
-  
+
   .laji-form .blocking-loader {
       z-index: 2;
   }
-
-.vrs-logo-img {
-    content:url(./assets/images/logos/vieraslaji-logo-160x160_cleaned.png);
-}
 
 /* ngx-pagination */
 

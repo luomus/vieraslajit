@@ -9,7 +9,7 @@
         <div class="container">
             <div class="header">
                 <div class="header-link" routerLink="/home">
-                    <img class="vrs-logo-img vrs-logo">
+                    <img class="vrs-logo-img vrs-logo" src="./assets/images/logos/vieraslaji-logo-160x160_cleaned.png">
                     <span class="heading">Vieraslajit.fi</span>
                 </div>
             </div>
@@ -39,10 +39,18 @@
             <div class="nav-links">
                 <div class="link" routerLink="/taxon" routerLinkActive="active">Lajit</div>
                 <div class="link" routerLink="/news" routerLinkActive="active">Ajankohtaista</div>
-                <div class="link" routerLink="/observations" routerLinkActive="active">Havaintokartta</div>
                 <div class="link" routerLink="/viekas" routerLinkActive="active">Kansalaistoiminta</div>
-                <div class="dropdown link" id="dropdown-about" dropdown>
-                    <a class="dropdown-toggle" id="dropdown-title">Tietoa<span class="caret"></span></a>
+                <div class="dropdown link vrs-dropdown" dropdown>
+                  <a class="dropdown-toggle">Havainnot<span class="caret"></span></a>
+                  <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
+                      <li role="menuitem"><a class="dropdown-item"
+                          routerLink="/observations">Havaintokartta</a></li>
+                      <li role="menuitem"><a class="dropdown-item"
+                          routerLink="/form/JX.123757">Ilmoita havainto</a></li>
+                  </ul>
+                </div>
+                <div class="dropdown link vrs-dropdown" id="dropdown-about" dropdown>
+                    <a class="dropdown-toggle">Tietoa<span class="caret"></span></a>
                     <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
                         <li *ngFor="let child of menu" role="menuitem"><a class="dropdown-item" id="dropdown-menu-item"
                                 routerLink="static/{{child.id}}">{{child.title}}</a></li>

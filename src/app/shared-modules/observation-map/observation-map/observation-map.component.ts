@@ -106,7 +106,8 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
       "scientificName": o.unit.linkings.taxon.scientificName,
       "municipalityDisplayname": o.gathering.interpretations ? o.gathering.interpretations.municipalityDisplayname : "N/A",
       "displayDateTime": o.gathering.displayDateTime,
-      "id": o.unit.linkings.taxon.qname.substring(14,o.unit.linkings.taxon.qname.length)
+      "id": o.unit.linkings.taxon.qname.substring(14,o.unit.linkings.taxon.qname.length),
+      "reliability": o.unit.quality.realiable ? "Luotettava" : ""
     }
   }
 }
