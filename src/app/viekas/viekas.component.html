@@ -1,16 +1,14 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-2 sidebar">
-      <ul>
-        <li><a routerLink='./'>Kansalaistoiminta</a></li>
-        <li><a routerLink='./eradication'>Yleisiä torjuntaohjeita</a></li>
-        <li><a routerLink='./volunteer'>Vapaaehtoistyö</a></li>
-        <li><a routerLink='./calendar'>Kalenteri</a></li>
-        <li><a routerLink='./education'>Opetustyö</a></li>
-        <li><a routerLink='./legal'>Yritykset ja kunnat</a></li>
-      </ul>
+        <a routerLink='./about' routerLinkActive='sidebar-active'>Kansalaistoiminta</a>
+        <a routerLink='./eradication' routerLinkActive='sidebar-active'>Torjuntaohjeet</a>
+        <a routerLink='./volunteer' routerLinkActive='sidebar-active'>Vapaaehtoistyö</a>
+        <a routerLink='./calendar' routerLinkActive='sidebar-active'>Kalenteri</a>
+        <a routerLink='./education' routerLinkActive='sidebar-active'>Opetustyö</a>
+        <a routerLink='./legal' routerLinkActive='sidebar-active'>Yritykset ja kunnat</a>
     </div>
-    <div class="col-10">
+    <div class="col-10 content">
       <router-outlet></router-outlet>
     </div>
   </div>

@@ -1,6 +1,11 @@
 @import '../../../assets/styles/vars';
 @import '~bootstrap/scss/bootstrap-grid';
 
+:host {
+    position: relative;
+    z-index: 10;
+}
+
 .footer-content {
     font-size: 1rem;
     background: linear-gradient(to bottom right, $primary-7 0%, lighten($primary-7, 5) 100%);
