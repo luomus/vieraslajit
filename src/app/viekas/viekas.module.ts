@@ -8,11 +8,13 @@ import { ViekasVolunteerComponent } from './viekas-volunteer/viekas-volunteer.co
 import { ViekasCalendarComponent } from './viekas-calendar/viekas-calendar.component';
 import { ViekasEducationComponent } from './viekas-education/viekas-education.component';
 import { ViekasLegalComponent } from './viekas-legal/viekas-legal.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    ViekasRoutingModule
+    ViekasRoutingModule,
+    SharedModule
   ],
   declarations: [
     ViekasComponent,

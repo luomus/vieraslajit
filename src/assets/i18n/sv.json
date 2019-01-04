@@ -87,5 +87,12 @@
   "document.dayOfYearEdited":"Redigerad",
   "observations.all":"Alla observationer som skickas av användare",
   "form.login": "Logga in först",
-  "form.send": "Skicka"
+  "form.send": "Skicka",
+
+  "viekas.nav.about": null,
+  "viekas.nav.eradication": null,
+  "viekas.nav.volunteer": null,
+  "viekas.nav.calendar": null,
+  "viekas.nav.education": null,
+  "viekas.nav.legal": null
   }
