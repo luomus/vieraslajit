@@ -10,7 +10,7 @@
 
     background: $neutral-2;
 
-    @include media-breakpoint-down(xs) { 
+    @include media-breakpoint-down(xs) {
         padding-top: 0em;
         margin-bottom: 0em;
         border-radius: 0px;
@@ -31,12 +31,14 @@
         color: $neutral-1;
     }
     h1 {
+        color: rgba(255, 255, 255, 0.9);
         font-size: 2em;
         padding: 0.5em;
         margin: 0;
         font-weight: 600;
     }
     h2 {
+        color: rgba(255, 255, 255, 0.8);
         font-size: 1.2em;
     }
     p {
@@ -80,7 +82,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: $content-border-radius;
-    @include media-breakpoint-down(xs) { 
+    @include media-breakpoint-down(xs) {
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
     }
@@ -114,7 +116,7 @@
     border-bottom-left-radius: $content-border-radius;
     border-bottom-right-radius: $content-border-radius;
     position: relative;
-    @include media-breakpoint-down(xs) { 
+    @include media-breakpoint-down(xs) {
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
     }
@@ -155,11 +157,11 @@
     justify-content: space-between;
 
     cursor:pointer;
-    
+
     .news-title {
         display:block;
     }
-    
+
     .news-date {
         color: rgba($accent-5, 0.5);
     }
