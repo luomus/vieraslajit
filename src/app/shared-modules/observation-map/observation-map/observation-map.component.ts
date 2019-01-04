@@ -2,9 +2,9 @@ import { Component, Input, AfterViewInit, ViewChild, OnInit } from '@angular/cor
 import * as $ from 'jquery';
 
 import { UserService } from '../../../shared/service/user.service';
-import { ObsMapOptions, ObsMapOption } from './structures/data/ObsMapOptions';
-import { MapApiController } from './structures/controllers/MapApiController';
-import { MapController } from './structures/controllers/MapController';
+import { ObsMapOptions, ObsMapOption } from './services/data/ObsMapOptions';
+import { MapApiService } from './services/MapApiService';
+import { MapService } from './services/MapService';
 import { ObsMapListComponent } from './obs-map-list/obs-map-list';
 import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
 
@@ -34,7 +34,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   municipalities:Array<any> = [];
   isLoggedIn = UserService.loggedIn();
 
-  constructor(private obsMapOptions:ObsMapOptions, private mapApiController:MapApiController, private mapController:MapController) {}
+  constructor(private obsMapOptions:ObsMapOptions, private mapApiController:MapApiService, private mapController:MapService) {}
 
   ngOnInit() {
     this.mapApiController.initialize();

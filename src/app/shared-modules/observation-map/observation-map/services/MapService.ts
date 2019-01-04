@@ -1,19 +1,19 @@
 import * as LM from 'laji-map';
-import LajiMap from '../../../../../../../node_modules/laji-map/lib/map.d';
-import { TileLayerName, Data, DataOptions } from '../../../../../../../node_modules/laji-map/lib/map.defs';
+import LajiMap from 'laji-map/lib/map';
+import { TileLayerName, Data, DataOptions } from 'laji-map/lib/map.defs';
 
-import { ObsMapObservations } from "../data/ObsMapObservations";
-import { ObsMapOptions } from '../data/ObsMapOptions';
-import { PathOptions } from '../../../../../../../node_modules/@types/leaflet';
-import { Injectable } from '../../../../../../../node_modules/@angular/core';
-import { ObservationMapModule } from '../../../observation-map.module';
+import { ObsMapObservations } from "./data/ObsMapObservations";
+import { ObsMapOptions } from './data/ObsMapOptions';
+import { PathOptions } from 'leaflet';
+import { Injectable } from '@angular/core';
+import { ObservationMapModule } from '../../observation-map.module';
 import { EventEmitter } from 'events';
 /* Listens to updates in obsMapObservations
     and updates the map accordingly */
 
 @Injectable()
 
-export class MapController {
+export class MapService {
 
     private map:LajiMap;
 

@@ -1,15 +1,15 @@
-import { ObsMapObservations } from "../data/ObsMapObservations";
-import { ObsMapOptions, ObsMapOption } from "../data/ObsMapOptions";
-import { ObservationService } from "../../../../../shared/service/observation.service";
-import { Injectable } from "../../../../../../../node_modules/@angular/core";
-import { AreaService } from "../../../../../shared/service/area.service";
+import { ObsMapObservations } from "./data/ObsMapObservations";
+import { ObsMapOptions, ObsMapOption } from "./data/ObsMapOptions";
+import { ObservationService } from "../../../../shared/service/observation.service";
+import { Injectable } from "@angular/core";
+import { AreaService } from "../../../../shared/service/area.service";
 
 /* Listens to updates in obsMapOptions
     and updates obsMapObservations accordingly */
 
 @Injectable()
 
-export class MapApiController {
+export class MapApiService {
 
     constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapObservations, private observationService: ObservationService, private areaService: AreaService) {}
 
