@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 
 @Component({
-    template: `<p>Viekas front works!</p>`
+    templateUrl: './viekas-front.component.html'
 })
 export class ViekasFrontComponent {
 
