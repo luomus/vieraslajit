@@ -29,6 +29,12 @@
             background: $neutral-2;
         }
     }
+    h5 {
+        color: $neutral-5;
+        font-size: 0.8em;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
 }
 
 .sidebar-active {

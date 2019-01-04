@@ -1,6 +1,11 @@
 @import '../../assets/styles/vars';
 
+:host {
+    min-height: inherit;
+}
+
 .container {
+    min-height: inherit;
     margin-top: $navbar-height;
     padding-top: 1em;
     padding-bottom: 8em;
