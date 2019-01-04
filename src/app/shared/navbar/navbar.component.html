@@ -37,20 +37,20 @@
         <div class="container">
             <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
             <div class="nav-links">
-                <div class="link" routerLink="/taxon" routerLinkActive="active">Lajit</div>
-                <div class="link" routerLink="/news" routerLinkActive="active">Ajankohtaista</div>
-                <div class="link" routerLink="/viekas" routerLinkActive="active">Kansalaistoiminta</div>
+                <div class="link" routerLink="/taxon" routerLinkActive="active" translate>navigation.taxonomy</div>
+                <div class="link" routerLink="/news" routerLinkActive="active" translate>navigation.news</div>
+                <div class="link" routerLink="/viekas" routerLinkActive="active" translate>navigation.viekas</div>
                 <div class="dropdown link vrs-dropdown" dropdown>
-                  <a class="dropdown-toggle">Havainnot<span class="caret"></span></a>
+                  <a class="dropdown-toggle" translate>navigation.observations<span class="caret"></span></a>
                   <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
                       <li role="menuitem"><a class="dropdown-item"
-                          routerLink="/observations">Havaintokartta</a></li>
+                          routerLink="/observations" translate>navigation.observations.map</a></li>
                       <li role="menuitem"><a class="dropdown-item"
-                          routerLink="/form/JX.123757">Ilmoita havainto</a></li>
+                          routerLink="/form/JX.123757" translate>navigation.observations.report</a></li>
                   </ul>
                 </div>
                 <div class="dropdown link vrs-dropdown" id="dropdown-about" dropdown>
-                    <a class="dropdown-toggle">Tietoa<span class="caret"></span></a>
+                    <a class="dropdown-toggle" translate>navigation.about<span class="caret"></span></a>
                     <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
                         <li *ngFor="let child of menu" role="menuitem"><a class="dropdown-item" id="dropdown-menu-item"
                                 routerLink="static/{{child.id}}">{{child.title}}</a></li>

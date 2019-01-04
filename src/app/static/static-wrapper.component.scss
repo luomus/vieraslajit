@@ -1,9 +1,16 @@
 @import '../../assets/styles/vars';
 
-.container {
-    margin-top: $navbar-height + 20px;
-    margin-bottom: 8em;
+:host {
+    min-height: inherit;
+}
 
+.container {
+    min-height: inherit;
+    margin-top: $navbar-height;
+    padding-top: 1em;
+    padding-bottom: 8em;
+
+    background: $neutral-2;
     display: flex;
     justify-content: center;
 }

@@ -1,3 +1,16 @@
-<p>
-  viekas works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-2 sidebar">
+        <h5>VieKas</h5>
+        <a routerLink='./about' routerLinkActive='sidebar-active'>Kansalaistoiminta</a>
+        <a routerLink='./eradication' routerLinkActive='sidebar-active'>Torjuntaohjeet</a>
+        <a routerLink='./volunteer' routerLinkActive='sidebar-active'>Vapaaehtoistyö</a>
+        <a routerLink='./calendar' routerLinkActive='sidebar-active'>Kalenteri</a>
+        <a routerLink='./education' routerLinkActive='sidebar-active'>Opetustyö</a>
+        <a routerLink='./legal' routerLinkActive='sidebar-active'>Yritykset ja kunnat</a>
+    </div>
+    <div class="col-10 content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

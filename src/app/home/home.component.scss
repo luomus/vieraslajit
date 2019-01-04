@@ -5,12 +5,12 @@
     /* COMPONENT BASE FONT SIZE */
     font-size: 1rem;
 
-    margin-top: -$navbar-height;
+    margin-top: $navbar-height;
     padding-bottom: 2em;
 
     background: $neutral-2;
 
-    @include media-breakpoint-down(xs) { 
+    @include media-breakpoint-down(xs) {
         padding-top: 0em;
         margin-bottom: 0em;
         border-radius: 0px;
@@ -21,19 +21,25 @@
 
 .header-v2 {
     position:relative;
-    height: 100vh;
+    height: 500px;
     /* margin-top: -$navbar-height; */
     color: rgba(255, 255, 255, 0.8);
-    padding-top: 14em;
+    padding-top: 6em;
+    text-align: center;
+    text-shadow: 1px 1px 5px $neutral-9;
     .heading-container {
         color: $neutral-1;
     }
     h1 {
+        color: rgba(255, 255, 255, 0.9);
         font-size: 2em;
-        padding: 1em;
-        padding-left: 0em;
+        padding: 0.5em;
         margin: 0;
         font-weight: 600;
+    }
+    h2 {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.2em;
     }
     p {
         font-size: 1em;
@@ -57,7 +63,9 @@
     content: '';
     height:100%;
     width:100%;
-    background: linear-gradient(to right, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%), url('http://fotod.org/servlets/showPictureServletBig?id=10993&size=17&user=1&place=50070007');
+    background: url('http://fotod.org/servlets/showPictureServletBig?id=10993&size=17&user=1&place=50070007');
+    background-color: rgba(#000, 0.2);
+    background-blend-mode: multiply;
     background-repeat: no-repeat;
     transform: scale(1.1);
     //background: #666;
@@ -74,7 +82,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: $content-border-radius;
-    @include media-breakpoint-down(xs) { 
+    @include media-breakpoint-down(xs) {
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
     }
@@ -108,7 +116,7 @@
     border-bottom-left-radius: $content-border-radius;
     border-bottom-right-radius: $content-border-radius;
     position: relative;
-    @include media-breakpoint-down(xs) { 
+    @include media-breakpoint-down(xs) {
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
     }
@@ -149,11 +157,11 @@
     justify-content: space-between;
 
     cursor:pointer;
-    
+
     .news-title {
         display:block;
     }
-    
+
     .news-date {
         color: rgba($accent-5, 0.5);
     }

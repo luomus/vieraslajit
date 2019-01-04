@@ -1,0 +1,47 @@
+@import '../../assets/styles/vars';
+
+:host {
+    display: inline-block;
+    height: 100%;
+    min-height: inherit;
+    width: 100%;
+}
+
+.container {
+  min-height: inherit;
+  .row {
+    min-height: inherit;
+  }
+}
+
+.sidebar {
+    padding: 0;
+    padding-top: 1em;
+    a {
+        text-decoration: none;
+        display: block;
+        padding: 0.5em;
+        padding-left: 0.75em;
+        color: $neutral-6;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        &:hover {
+            background: $neutral-2;
+        }
+    }
+    h5 {
+        color: $neutral-5;
+        font-size: 0.8em;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+}
+
+.sidebar-active {
+    background: $neutral-2;
+}
+
+.content {
+    padding: 2em;
+    background: $neutral-2;
+}

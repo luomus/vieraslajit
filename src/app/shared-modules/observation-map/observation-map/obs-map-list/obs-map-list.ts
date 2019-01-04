@@ -1,20 +1,20 @@
 import { Component, Input, OnInit } from "../../../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../../../node_modules/@ngx-translate/core";
-import { ObsMapObservations, VrsObservation } from "../structures/data/ObsMapObservations";
+import { ObsMapObservations, VrsObservation } from "../services/data/ObsMapObservations";
 import { EventEmitter } from "events";
-import { ObsMapOptions } from "../structures/data/ObsMapOptions";
+import { ObsMapOptions } from "../services/data/ObsMapOptions";
 
 @Component({
     selector: 'vrs-obs-map-list',
     template: `
     <laji-spinner [ngClass]="{'list-spinner': loading}" [spinning]="loading" [fullViewport]="false"></laji-spinner>
     <ngx-datatable class="material" [ngStyle]="{'height': height+'px'}"
-    [rows]="observations" 
-    [columnMode]="'force'" 
-    [columns]="columns" 
+    [rows]="observations"
+    [columnMode]="'force'"
+    [columns]="columns"
     [headerHeight]="50"
-    [rowHeight]="50" 
-    [reorderable]='false' 
+    [rowHeight]="50"
+    [reorderable]='false'
     scrollbarV="true"
     (activate)="onTableActivate($event)"
     >

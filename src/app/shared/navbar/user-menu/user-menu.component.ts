@@ -8,7 +8,7 @@ import { Component, Output, Input, EventEmitter, Renderer2, ViewChild, OnInit, E
     <div class="login_content">
         <a href='{{loginUrl}}'>
             <span class="oi oi-account-login"></span>
-            Kirjaudu sisään
+            {{ 'navigation.login' | translate}}
         </a>
     </div>
 </ng-template>
