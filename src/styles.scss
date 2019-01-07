@@ -41,6 +41,21 @@ html, body {
     }
 }
 
+a {
+    color: $accent-5;
+    &:hover {
+        color: $accent-7;
+        text-decoration: none;
+    }
+}
+
+p a {
+    font-family: $font-accent;
+    font-weight: 600;
+    font-size: 0.7em;
+    text-transform: lowercase;
+}
+
 h1, h2, h3, h4, h5 {
     font-family: $font-heading;
     color: $neutral-8;

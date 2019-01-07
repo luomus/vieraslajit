@@ -1,0 +1,36 @@
+@import '../../../assets/styles/vars';
+
+.benefits {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: flex;
+}
+
+.benefit {
+    flex: 1;
+    display: flex;
+}
+
+.benefit-icon {
+}
+
+.benefit-text {
+    margin-left: 0.5em;
+}
+
+.floating-img {
+    margin: 1em;
+    box-shadow: 2px 2px 15px 0px rgba(#000, 0.3);
+}
+
+p {
+    max-width: 40em;
+}
+
+.oi {
+    background: $neutral-7;
+    border-radius: 100%;
+    color: $neutral-1;
+    padding: 0.5em;
+    font-size: 1.2em;
+}
