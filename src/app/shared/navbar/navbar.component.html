@@ -1,5 +1,5 @@
-<nav class="fixed-top">
-    <section class="laji-toolbar">
+<nav>
+    <section class="laji-toolbar" [ngClass]="{'heightFix': fixedTop}">
         <div class="container">
             <a href="https://laji.fi">Suomen lajitietokeskus</a>
             <vrs-language-selector></vrs-language-selector>
@@ -33,7 +33,7 @@
             </div>
         </div>
     </section>
-    <section class="nav-bottom">
+    <section class="nav-bottom" [ngClass]="{'fixed-top': fixedTop}">
         <div class="container">
             <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
             <div class="nav-links">
