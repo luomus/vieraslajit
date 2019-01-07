@@ -93,8 +93,6 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
         this.fixedTop = true;
     }
     if (this.fixedTop !== _fixedTop) {
-        console.log("change");
-        console.log(this.fixedTop);
         this.cd.detectChanges();
     }
   }
