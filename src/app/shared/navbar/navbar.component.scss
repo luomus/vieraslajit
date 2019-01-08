@@ -137,6 +137,13 @@ nav {
                 background: $primary-6;
                 border-bottom: 3px solid $primary-6;
             }
+            @include media-breakpoint-down(lg) {
+                padding: 0.5em 1em;
+            }
+            @include media-breakpoint-down(md) {
+                padding: 0.5em 0.5em;
+            }
+
         }
         .active {
             background: $primary-8;
@@ -148,6 +155,18 @@ nav {
                 border-bottom: 3px solid $accent-5;
             }
         }
+    }
+}
+
+.nav-bottom.vrs-collapse {
+    .container {
+        display: block;
+    }
+    .nav-links {
+        display: block;
+    }
+    .nav-links .link {
+        display: block;
     }
 }
 

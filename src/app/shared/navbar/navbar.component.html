@@ -1,11 +1,11 @@
 <nav>
-    <section class="laji-toolbar" [ngClass]="{'heightFix': fixedTop}">
+    <section *ngIf="!mobile" class="laji-toolbar" [ngClass]="{'heightFix': fixedTop}">
         <div class="container">
             <a href="https://laji.fi">Suomen lajitietokeskus</a>
             <vrs-language-selector></vrs-language-selector>
         </div>
     </section>
-    <section class="nav-top">
+    <section *ngIf="!mobile" class="nav-top">
         <div class="container">
             <div class="header">
                 <div class="header-link" routerLink="/home">
@@ -33,7 +33,7 @@
             </div>
         </div>
     </section>
-    <section class="nav-bottom" [ngClass]="{'fixed-top': fixedTop}">
+    <section class="nav-bottom" [ngClass]="{'fixed-top': fixedTop, 'vrs-collapse': mobile}">
         <div class="container">
             <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
             <div class="nav-links">
