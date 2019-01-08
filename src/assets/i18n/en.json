@@ -103,6 +103,13 @@
   "observations.form.help": "Which species?",
   "form.submitted": "Form submitted!",
 
+  "viekas.nav.about": null,
+  "viekas.nav.eradication": null,
+  "viekas.nav.volunteer": null,
+  "viekas.nav.calendar": null,
+  "viekas.nav.education": null,
+  "viekas.nav.legal": null,
+
   "footer.sitemap.heading1": "Invasive species",
   "footer.sitemap.heading2": "Other",
   "footer.sitemap.heading3": "Information",

@@ -9,6 +9,8 @@
 
 /* Background */
 nav {
+    position: relative;
+    z-index: 10;
 
     /* COMPONENT BASE FONT SIZE */
     /* font-size: 0.8rem; */
@@ -36,6 +38,11 @@ nav {
             margin-right: 1.5em;
         }
     }
+}
+
+// compensates for lost height on scroll
+.heightFix {
+    padding-bottom: 66px;
 }
 
 .nav-top {

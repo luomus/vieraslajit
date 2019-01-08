@@ -105,6 +105,13 @@
   "observations.own":"Omat havainnot",
   "form.submitted": "Lähetys onnistui!",
 
+  "viekas.nav.about": "Etusivu",
+  "viekas.nav.eradication": "Torjuntaohjeet",
+  "viekas.nav.volunteer": "Vapaaehtoistyö",
+  "viekas.nav.calendar": "Kalenteri",
+  "viekas.nav.education": "Opetustyö",
+  "viekas.nav.legal": "Yritykset ja kunnat",
+
   "footer.sitemap.heading1": "Vieraslajit",
   "footer.sitemap.heading2": "Muuta",
   "footer.sitemap.heading3": "Tietoa vieraslajeista",

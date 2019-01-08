@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { UserService, Role } from '../service/user.service';
 import {Router, NavigationEnd} from '@angular/router';
@@ -17,6 +17,7 @@ import { rendererTypeName } from '@angular/compiler';
 })
 export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit {
   loginUrl = '#';
+  fixedTop = false;
   isCollapsed = false;
   loggedIn = false;
   menu: Array<any> = new Array();
@@ -31,7 +32,8 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   constructor(private router: Router, private userService: UserService,
      private informationService: InformationService, private translate:TranslateService,
      private zone: NgZone,
-     private renderer: Renderer2 ) {
+     private renderer: Renderer2,
+     private cd: ChangeDetectorRef) {
       this.loginSub = userService.loginStateChange.subscribe(() => {
         this.loggedIn = UserService.loggedIn();
       if(this.loggedIn == false) {
@@ -61,12 +63,12 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
       if(e instanceof NavigationEnd) {
         this.updateNavbarTransparency();
       }
-    })
+    })*/
     this.zone.runOutsideAngular(() => {
       $(window).on('scroll', ()=>{
-        this.updateNavbarTransparency();
+        this.updateFixedTop();
       });
-    }); */
+    });
   }
 
   private updateNavbarTransparency() {
@@ -80,6 +82,18 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
     } else {
       $('nav').addClass('notransition');
       $('nav').removeClass('transparent');
+    }
+  }
+
+  private updateFixedTop() {
+    const _fixedTop = this.fixedTop;
+    if ($(window).scrollTop() <= 138) {
+        this.fixedTop = false;
+    } else {
+        this.fixedTop = true;
+    }
+    if (this.fixedTop !== _fixedTop) {
+        this.cd.detectChanges();
     }
   }
 
