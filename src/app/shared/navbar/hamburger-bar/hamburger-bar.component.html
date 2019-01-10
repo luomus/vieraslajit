@@ -1,0 +1,24 @@
+<nav class="fixed-top" [ngClass]="{'nav-expand': !collapse}">
+    <div class="container-fluid">
+        <vrs-omnisearch></vrs-omnisearch>
+        <a class="hamburger" (click)="onCollapse()"><span class="oi oi-menu"></span></a>
+    </div>
+    <div class="container" *ngIf="!collapse">
+        <div [ngClass]="{'translate-left': translateLeft}">
+        <div class="nav-links">
+            <a class="link" routerLink="/taxon" routerLinkActive="active" translate>navigation.taxonomy</a>
+            <a class="link" routerLink="/news" routerLinkActive="active" translate>navigation.news</a>
+            <a class="link" routerLink="/viekas" routerLinkActive="active" translate>navigation.viekas</a>
+            <a (click)="translateLeft = !translateLeft" class="link" routerLink="/viekas" routerLinkActive="active" translate>navigation.observations <span class="oi oi-caret-right"></span></a>
+            <a class="link" routerLink="/viekas" routerLinkActive="active" translate>navigation.about <span class="oi oi-caret-right"></span></a>
+            <hr>
+            <a class="link" routerLink="/viekas" routerLinkActive="active" translate>navigation.login</a>
+        </div>
+        <div class="nav-links submenu">
+            <a class="link" routerLink="/taxon" routerLinkActive="active" translate>navigation.taxonomy</a>
+            <a class="link" routerLink="/news" routerLinkActive="active" translate>navigation.news</a>
+            <a class="link" routerLink="/viekas" routerLinkActive="active" translate>navigation.viekas</a>
+        </div>
+        </div>
+    </div>
+</nav>

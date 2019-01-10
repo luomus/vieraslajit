@@ -32,6 +32,7 @@ import { HelpPopupComponent } from './help/help-popup/help-popup.component';
 import { CapitalizePipe } from './pipe/capitalize.pipe';
 import { UserMenuComponent } from './navbar/user-menu/user-menu.component';
 import { PersonMenuComponent } from './navbar/user-menu/person-menu.component';
+import { HamburgerBarComponent } from './navbar/hamburger-bar/hamburger-bar.component';
 /**
  * Provides common utilities for other modules
  */
@@ -53,7 +54,7 @@ import { PersonMenuComponent } from './navbar/user-menu/person-menu.component';
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent ],
+  declarations: [NavbarComponent, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent ],
   providers: [],
   exports: [NavbarComponent, RouterModule, FooterComponent, SpinnerModule, EditcmsModule, ObservationMapModule,
     SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, HelpComponent, CapitalizePipe]

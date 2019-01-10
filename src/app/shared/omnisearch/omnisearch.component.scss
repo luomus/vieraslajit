@@ -32,7 +32,7 @@ input {
   }
 
   width: 15em;
-  
+
   @include media-breakpoint-down(md) {
       width: 15em;
   }

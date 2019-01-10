@@ -120,6 +120,9 @@ nav {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        @include media-breakpoint-down(md) {
+            max-width: none;
+        }
     }
     .nav-links {
         margin: 0;
@@ -155,18 +158,6 @@ nav {
                 border-bottom: 3px solid $accent-5;
             }
         }
-    }
-}
-
-.nav-bottom.vrs-collapse {
-    .container {
-        display: block;
-    }
-    .nav-links {
-        display: block;
-    }
-    .nav-links .link {
-        display: block;
     }
 }
 

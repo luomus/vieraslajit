@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   rootId: string = "";
   currentId: string= "";
   private dropdown_user_bound = false;
-  
+
   mobile = false;
 
   @ViewChildren(BsDropdownDirective) d : QueryList<BsDropdownDirective>;
@@ -110,9 +110,6 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
         this.fixedTop = false;
     } else {
         this.fixedTop = true;
-    }
-    if (this.mobile) {
-      this.fixedTop = true;
     }
     if (this.fixedTop !== _fixedTop) {
         this.cd.detectChanges();

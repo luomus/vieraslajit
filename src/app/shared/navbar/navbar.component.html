@@ -1,11 +1,12 @@
-<nav>
-    <section *ngIf="!mobile" class="laji-toolbar" [ngClass]="{'heightFix': fixedTop}">
+<vrs-hamburger-bar *ngIf="mobile"></vrs-hamburger-bar>
+<nav *ngIf="!mobile">
+    <section class="laji-toolbar" [ngClass]="{'heightFix': fixedTop}">
         <div class="container">
             <a href="https://laji.fi">Suomen lajitietokeskus</a>
             <vrs-language-selector></vrs-language-selector>
         </div>
     </section>
-    <section *ngIf="!mobile" class="nav-top">
+    <section class="nav-top">
         <div class="container">
             <div class="header">
                 <div class="header-link" routerLink="/home">
@@ -33,7 +34,7 @@
             </div>
         </div>
     </section>
-    <section class="nav-bottom" [ngClass]="{'fixed-top': fixedTop, 'vrs-collapse': mobile}">
+    <section class="nav-bottom" [ngClass]="{'fixed-top': fixedTop}">
         <div class="container">
             <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
             <div class="nav-links">
@@ -41,13 +42,13 @@
                 <div class="link" routerLink="/news" routerLinkActive="active" translate>navigation.news</div>
                 <div class="link" routerLink="/viekas" routerLinkActive="active" translate>navigation.viekas</div>
                 <div class="dropdown link vrs-dropdown" dropdown>
-                  <a class="dropdown-toggle" translate>navigation.observations<span class="caret"></span></a>
-                  <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
-                      <li role="menuitem"><a class="dropdown-item"
-                          routerLink="/observations" translate>navigation.observations.map</a></li>
-                      <li role="menuitem"><a class="dropdown-item"
-                          routerLink="/form/JX.123757" translate>navigation.observations.report</a></li>
-                  </ul>
+                <a class="dropdown-toggle" translate>navigation.observations<span class="caret"></span></a>
+                <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
+                    <li role="menuitem"><a class="dropdown-item"
+                        routerLink="/observations" translate>navigation.observations.map</a></li>
+                    <li role="menuitem"><a class="dropdown-item"
+                        routerLink="/form/JX.123757" translate>navigation.observations.report</a></li>
+                </ul>
                 </div>
                 <div class="dropdown link vrs-dropdown" id="dropdown-about" dropdown>
                     <a class="dropdown-toggle" translate>navigation.about<span class="caret"></span></a>
