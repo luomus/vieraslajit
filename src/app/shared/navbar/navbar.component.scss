@@ -40,6 +40,14 @@ nav {
     }
 }
 
+.mobileHeightFix {
+    margin-bottom: 55px;
+
+    @include media-breakpoint-down(xs) {
+        margin-bottom: 52px;
+    }
+}
+
 // compensates for lost height on scroll
 .heightFix {
     padding-bottom: 66px;

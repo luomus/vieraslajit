@@ -11,7 +11,4 @@ body {
 .vrs-content {
     min-height: 80vh;
     margin-top: $navbar-height;
-    @include media-breakpoint-down(xs) {
-        margin-top: 76px;
-    }
 }
