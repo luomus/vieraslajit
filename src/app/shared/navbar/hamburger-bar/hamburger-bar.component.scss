@@ -17,18 +17,25 @@ nav {
 }
 
 .container {
-    text-align: center;
     position: relative;
+    padding: 0;
 }
 
 .nav-links {
     position: absolute;
-    left: 100px;
+    width: 100vw;
+    max-width: 100%;
+    text-align: center;
     font-size: 2em;
     .link {
+        cursor: pointer;
         display: block;
         color: $neutral-2;
-        margin: 1em;
+        margin-bottom: 1em;
+        margin-top: 1em;
+        &:hover {
+            color: $accent-5;
+        }
         .oi {
             font-size: 0.5em;
             margin-left: 0.5em;
@@ -41,12 +48,16 @@ nav {
 }
 
 .translate-left {
-    transform: translate(-500px, 0);
-    transition-duration: 1s;
+    transform: translateX(-100vw);
+    transition-duration: 500ms;
+}
+
+.translation-base {
+    transition: transform 500ms ease-out;
 }
 
 .submenu {
-    left: 600px;
+    left: 100vw;
 }
 
 .container-fluid {
@@ -58,12 +69,15 @@ nav {
     font-size: 1rem;
 }
 
-.hamburger {
+a.hamburger {
     margin-right: 1em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     cursor: pointer;
+    &:hover {
+        color: $accent-5;
+    }
     span {
         font-size: 1.4em;
         padding-bottom: 0.1em;
