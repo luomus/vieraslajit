@@ -120,6 +120,9 @@ nav {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        @include media-breakpoint-down(md) {
+            max-width: none;
+        }
     }
     .nav-links {
         margin: 0;
@@ -137,6 +140,13 @@ nav {
                 background: $primary-6;
                 border-bottom: 3px solid $primary-6;
             }
+            @include media-breakpoint-down(lg) {
+                padding: 0.5em 1em;
+            }
+            @include media-breakpoint-down(md) {
+                padding: 0.5em 0.5em;
+            }
+
         }
         .active {
             background: $primary-8;

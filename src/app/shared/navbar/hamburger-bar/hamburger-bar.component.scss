@@ -1,0 +1,90 @@
+@import '../../../../assets/styles/vars';
+@import '~bootstrap/scss/bootstrap-grid';
+
+nav {
+    box-shadow: 0 0 10px 0 $neutral-9;
+    background: $primary-7;
+    color: $neutral-2;
+    font-family: $font-heading;
+    user-select: none;
+}
+
+.nav-expand {
+    background: rgba($primary-7, 0.9);
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+}
+
+.container {
+    position: relative;
+    padding: 0;
+}
+
+.nav-links {
+    position: absolute;
+    width: 100vw;
+    max-width: 100%;
+    text-align: center;
+    font-size: 2em;
+    .link {
+        cursor: pointer;
+        display: block;
+        color: $neutral-2;
+        margin-bottom: 1em;
+        margin-top: 1em;
+        &:hover {
+            color: $accent-5;
+        }
+        .oi {
+            font-size: 0.5em;
+            margin-left: 0.5em;
+        }
+    }
+    hr {
+        width: 75%;
+        border-color: $neutral-4;
+    }
+}
+
+.translate-left {
+    transform: translateX(-100vw);
+    transition-duration: 500ms;
+}
+
+.translation-base {
+    transition: transform 500ms ease-out;
+}
+
+.submenu {
+    left: 100vw;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: space-between;
+}
+
+:host ::ng-deep nav .omni-search {
+    font-size: 1rem;
+}
+
+a.hamburger {
+    margin-right: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    &:hover {
+        color: $accent-5;
+    }
+    span {
+        font-size: 1.4em;
+        padding-bottom: 0.1em;
+    }
+}
+
+:host ::ng-deep span.oi-magnifying-glass {
+    top: 1.3em;
+    left: 1.3em;
+}

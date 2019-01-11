@@ -27,6 +27,8 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   currentId: string= "";
   private dropdown_user_bound = false;
 
+  mobile = false;
+
   @ViewChildren(BsDropdownDirective) d : QueryList<BsDropdownDirective>;
 
   constructor(private router: Router, private userService: UserService,
@@ -55,6 +57,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   }
 
   ngOnInit() {
+    this.updateMobileMode();
     this.onLangChange = this.translate.onLangChange.subscribe((event) =>{
       this.setCMSRootId(event.lang);
       this.update();
@@ -65,10 +68,26 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
       }
     })*/
     this.zone.runOutsideAngular(() => {
+      $(window).resize(() => {
+        this.updateMobileMode();
+      });
       $(window).on('scroll', ()=>{
         this.updateFixedTop();
       });
     });
+  }
+
+  private updateMobileMode() {
+    const _mobile = this.mobile;
+    if (window.innerWidth < 768) {
+      this.mobile = true;
+    } else {
+      this.mobile = false;
+    }
+    if (_mobile !== this.mobile) {
+      this.updateFixedTop();
+      this.cd.detectChanges();
+    }
   }
 
   private updateNavbarTransparency() {
