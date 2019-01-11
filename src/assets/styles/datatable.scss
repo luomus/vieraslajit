@@ -3,7 +3,7 @@
 :host ::ng-deep .ngx-datatable {
     border-radius: $content-border-radius;
     font-size: 1rem;
-    
+
     .datatable-header {
         background: $neutral-2;
         .datatable-header-cell-label {
@@ -18,11 +18,15 @@
     .datatable-footer {
         background: $neutral-2;
     }
-    
+
     datatable-body.datatable-body {
         background: darken($neutral-2, 2);
         .datatable-body-cell-label {
             font-size: 0.8rem;
         }
+    }
+
+    .datatable-body-row {
+        transform: translateZ(0);
     }
 }
