@@ -40,7 +40,12 @@ nav {
         }
         .oi {
             font-size: 0.5em;
-            margin-left: 0.5em;
+        }
+        .oi-caret-left {
+            margin-left: -0.5em;
+        }
+        .oi-caret-right{
+            margin-right: -0.5em;
         }
     }
 }
