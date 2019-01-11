@@ -1,4 +1,4 @@
-<vrs-hamburger-bar *ngIf="mobile" [aboutMenu]="menu"></vrs-hamburger-bar>
+<vrs-hamburger-bar *ngIf="mobile" [aboutMenu]="menu" (onLogout)="logout()"></vrs-hamburger-bar>
 <nav *ngIf="!mobile">
     <section class="laji-toolbar" [ngClass]="{'heightFix': fixedTop}">
         <div class="container">
@@ -14,18 +14,6 @@
                     <span class="heading">Vieraslajit.fi</span>
                 </div>
             </div>
-<!--             <div class="list">
-                <img src="../../assets/images/logos/finland-b2.png">
-                <span>Kansallinen vieraslajiluettelo</span>
-            </div>
-            <div class="list">
-                <img src="../../assets/images/logos/eu-b.png">
-                <span>Euroopan unionin vieraslajiluettelo</span>
-            </div> -->
-<!--             <div class="login-lang">
-                <a href='{{loginUrl}}'>{{'navigation.login' | translate}}</a>
-                <vrs-language-selector></vrs-language-selector>
-            </div> -->
             <div class="login">
                 <vrs-user-menu [loginUrl]="loginUrl"
                                [loggedIn]="loggedIn"
@@ -61,73 +49,3 @@
         </div>
     </section>
 </nav>
-<!-- <nav class="navbar navbar-dark navbar-expand-lg fixed-top transparent">
-    <div class="container container-navbar align-items-end">
-        <a class="navbar-brand" routerLink="/home" routerLinkActive="vrs-nav-active" (click)="isCollapsed = false" translate>
-            <span class="vrs-logo-img vrs-logo"></span>
-            Vieraslajit.fi
-        </a>
-        <button class="navbar-toggler collapsed" id="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon" id="navbar-toggler-icon"></span>
-        </button>
-
-       <div class="collapse navbar-collapse" [collapse]="!isCollapsed" id="navbarCollapse">
-            <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/taxon" routerLinkActive="vrs-nav-active" (click)="isCollapsed = !isCollapsed"
-                    aria-expanded="false" translate>navigation.taxonomy</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/eradication" routerLinkActive="vrs-nav-active" (click)="isCollapsed = !isCollapsed"
-                    aria-expanded="false" translate>navigation.removal</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/news" routerLinkActive="vrs-nav-active" (click)="isCollapsed = !isCollapsed"
-                    aria-expanded="false" translate>navigation.news</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/observations" routerLinkActive="vrs-nav-active" (click)="isCollapsed = !isCollapsed"
-                    aria-expanded="false" translate>navigation.observations</a>
-                </li>
-                <li class="dropdown" id="dropdown-about" dropdown>
-                    <div id="dropdown-hover-area">
-                        <a  class="dropdown-toggle py-2" id="dropdown-toggle" translate>navigation.about<span class="caret"></span></a>
-                        <ul *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
-                            <li *ngFor="let child of menu" role="menuitem"><a class="dropdown-item" id="dropdown-menu-item"
-                                    routerLink="static/{{child.id}}">{{child.title}}</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-
-            <div class= "ml-auto">
-               <ul class="nav navbar-nav">
-                  <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
-                  <li class="nav-item">
-                    <div *ngIf="!loggedIn;then login_content else welcome_content"></div>
-                    <ng-template #login_content>
-                        <a href='{{loginUrl}}' class="btn btn-sm oi oi-account-login icon" translate></a>
-                    </ng-template>
-                    <ng-template #welcome_content>
-                        <div class="dropdown" id="dropdown-user" dropdown>
-                            <div class="person-button-hover-area">
-                                <button class="btn btn-sm oi oi-person icon dropdown-toggle" aria-controls="dropdown-basic" id="personbutton"></button>
-                                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
-                                <li routerLink="/observations" [queryParams]="{user: true}" role="usermenuitem"><span class="dropdown-item usermenuitem">{{userPropertiesWrapper().person.fullName}}</span></li>
-                                <li (click)="logout()" role="usermenuitem"><span class="dropdown-item usermenuitem"><span translate>navigation.logout</span></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </ng-template>
-                  </li>
-                  <li class="nav-item" id="language-selector">
-                    <vrs-language-selector ></vrs-language-selector>
-                  </li>
-               </ul>
-            </div>
-        </div>
-
-    </div>
-</nav>
- -->

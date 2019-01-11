@@ -1,5 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from "@angular/core";
 import { Router, NavigationStart } from "@angular/router";
+import { UserService } from "../../service/user.service";
 
 @Component({
     selector: 'vrs-hamburger-bar',
@@ -8,13 +9,15 @@ import { Router, NavigationStart } from "@angular/router";
 })
 export class HamburgerBarComponent {
     @Input() aboutMenu;
+    @Input() loginUrl;
+    @Output() onLogout = new EventEmitter<null>();
 
     collapse = true;
     translateLeft = false;
     observations = false;
     about = false;
 
-    constructor(private router: Router) {}
+    constructor(private router: Router, private cd: ChangeDetectorRef) {}
 
     ngOnInit() {
         this.router.events.subscribe((event)=> {
@@ -26,6 +29,7 @@ export class HamburgerBarComponent {
 
     onCollapse() {
         this.collapse = !this.collapse;
+        this.cd.detectChanges();
     }
 
     toggleObservations() {
@@ -46,5 +50,21 @@ export class HamburgerBarComponent {
         } else {
             this.about = true;
         }
+    }
+
+    getUserProps(): any {
+        if(this.getLoggedIn()) {
+          return UserService.getUserProperties();
+        } else {
+          return {person: {fullName: ''}};
+        }
+      }
+
+    getLoggedIn() {
+        return UserService.loggedIn();
+    }
+
+    logout() {
+        this.onLogout.emit();
     }
 }
