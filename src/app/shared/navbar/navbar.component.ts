@@ -1,14 +1,12 @@
 import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { UserService, Role } from '../service/user.service';
-import {Router, NavigationEnd} from '@angular/router';
+import { UserService } from '../service/user.service';
+import {Router} from '@angular/router';
 import { InformationService } from '../service/information.service';
-import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { StaticContent, findContentID } from './../../../assets/i18n/cms-content';
 import * as $ from 'jquery';
 import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';
-import { rendererTypeName } from '@angular/compiler';
 
 @Component({
   selector: 'vrs-navbar',
@@ -62,11 +60,6 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
       this.setCMSRootId(event.lang);
       this.update();
     });
-/*     this.router.events.subscribe((e)=>{
-      if(e instanceof NavigationEnd) {
-        this.updateNavbarTransparency();
-      }
-    })*/
     this.zone.runOutsideAngular(() => {
       $(window).resize(() => {
         this.updateMobileMode();
@@ -87,20 +80,6 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
     if (_mobile !== this.mobile) {
       this.updateFixedTop();
       this.cd.detectChanges();
-    }
-  }
-
-  private updateNavbarTransparency() {
-    if(this.router.url === '/home' || this.router.url === '/') {
-      $('nav').removeClass('notransition');
-      if($(window).scrollTop() < 200) {
-        $('nav').addClass('transparent');
-      } else {
-        $('nav').removeClass('transparent');
-      }
-    } else {
-      $('nav').addClass('notransition');
-      $('nav').removeClass('transparent');
     }
   }
 

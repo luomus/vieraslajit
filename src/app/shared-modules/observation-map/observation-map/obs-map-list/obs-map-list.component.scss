@@ -1,0 +1,16 @@
+@import '../../../../../assets/styles/datatable';
+@import '../../../../../assets/styles/vars';
+
+.list-spinner {
+    position:absolute;
+    height:100%;
+    width:100%;
+    top: 300px;
+    z-index: 10000;
+}
+
+:host ::ng-deep .ngx-datatable {
+    .datatable-header {
+        background: $neutral-3;
+    }
+}

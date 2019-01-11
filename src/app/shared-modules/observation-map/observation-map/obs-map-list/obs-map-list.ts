@@ -19,15 +19,7 @@ import { ObsMapOptions } from "../services/data/ObsMapOptions";
     (activate)="onTableActivate($event)"
     >
     </ngx-datatable>`,
-    styles: [`
-        .list-spinner {
-            position:absolute;
-            height:100%;
-            width:100%;
-            top: 300px;
-            z-index: 10000;
-        }
-    `]
+    styleUrls: [`obs-map-list.component.scss`]
 })
 export class ObsMapListComponent implements OnInit {
     @Input() height = 500;
