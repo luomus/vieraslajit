@@ -41,10 +41,24 @@
                 </div>
                 <div class="dropdown link vrs-dropdown" id="dropdown-about" dropdown>
                     <a class="dropdown-toggle" translate>navigation.about<span class="caret"></span></a>
-                    <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
-                        <li *ngFor="let child of menu" role="menuitem"><a class="dropdown-item" id="dropdown-menu-item"
-                                routerLink="static/{{child.id}}">{{child.title}}</a></li>
-                    </ul>
+                    <div *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-3">
+                                    <h3>Tietoa vieraslajeista</h3>
+                                </div>
+                                <div class="col-3">
+                                    <h3>Vieraslajitoiminta</h3>
+                                </div>
+                                <div class="col-3">
+                                    <h3>Lainsäädäntö ja sopimukset</h3>
+                                </div>
+                                <div class="col-3">
+                                    <h3>Resurssit</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

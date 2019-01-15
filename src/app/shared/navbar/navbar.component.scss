@@ -258,6 +258,7 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         border: none;
+        font-size: 1em;
         a {
             color: $primary-1;
             &:hover {
@@ -269,6 +270,19 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 
 .dropdown-item:focus {
     background: $primary-6;
+}
+
+#dropdown-about.vrs-dropdown {
+    position: static;
+    .dropdown-menu {
+        width: 100%;
+        margin-top: 0px;
+        border-radius: 0px;
+        cursor: default;
+        h3 {
+            color: $neutral-2;
+        }
+    }
 }
 
 /* #dropdown-about {
