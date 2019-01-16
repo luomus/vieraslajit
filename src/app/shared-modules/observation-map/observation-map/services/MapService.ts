@@ -2,7 +2,7 @@ import * as LM from 'laji-map';
 import LajiMap from 'laji-map/lib/map';
 import { TileLayerName, Data, DataOptions } from 'laji-map/lib/map.defs';
 
-import { ObsMapObservations } from "./data/ObsMapObservations";
+import { ObsMapObservations, VrsObservation } from "./data/ObsMapObservations";
 import { ObsMapOptions } from './data/ObsMapOptions';
 import { PathOptions } from 'leaflet';
 import { Injectable } from '@angular/core';
@@ -47,29 +47,11 @@ export class MapService {
     private getMapData():Data[] {
       let mapData=[];
 
-      let obs = this.obsMapObservations.getObservations();
-      let features = [];
-      obs.forEach((o)=>{
-        if(o.gathering.conversions) {
-          let f = {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates:
-              [o.gathering.conversions.wgs84CenterPoint.lon,
-                o.gathering.conversions.wgs84CenterPoint.lat]
-            },
-            properties: {}
-          };
-          features.push(f);
-        }
-      });
+      const obs = this.obsMapObservations.getObservations();
+      const geoJSON = this.getGeoJSONFromObservations(obs);
 
       let dataOptions: DataOptions = {
-        featureCollection: {
-          type: "FeatureCollection",
-          features: features
-        },
+        featureCollection: geoJSON,
         cluster: {
           spiderfyOnMaxZoom: true,
           showCoverageOnHover: true,
@@ -105,5 +87,28 @@ export class MapService {
 
       mapData.push(dataOptions);
       return mapData;
+    }
+
+    getGeoJSONFromObservations(obs: VrsObservation[]) {
+        let features = [];
+        obs.forEach((o)=>{
+            if(o.gathering.conversions) {
+                let f = {
+                type: "Feature",
+                geometry: {
+                    type: "Point",
+                    coordinates:
+                    [o.gathering.conversions.wgs84CenterPoint.lon,
+                    o.gathering.conversions.wgs84CenterPoint.lat]
+                },
+                properties: {}
+                };
+                features.push(f);
+            }
+        });
+        return {
+            type: "FeatureCollection",
+            features: features
+          };
     }
 }
