@@ -26,7 +26,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { WarehouseQueryInterface } from './WarehouseQueryInterface';
-import { PagedResult } from 'src/app/shared/model';
+import { PagedResult } from '../../../../shared/model';
 import { SearchQuery } from './search-query.model';
 import { WarehouseCountResultInterface } from './WarehouseCountResultInterface';
 import { environment } from '../../../../../environments/environment';
