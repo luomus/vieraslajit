@@ -8,7 +8,7 @@ import { ObsMapListComponent } from './observation-map/obs-map-list/obs-map-list
 import { MapApiService } from './observation-map/services/MapApiService';
 import { MapService } from './observation-map/services/MapService';
 import { ObsMapOptions } from './observation-map/services/data/ObsMapOptions';
-import { ObsMapObservations } from './observation-map/services/data/ObsMapObservations';
+import { ObsMapData } from './observation-map/services/data/ObsMapData';
 import { SpinnerModule } from '../spinner/spinner.module';
 
 @NgModule({
@@ -27,7 +27,7 @@ import { SpinnerModule } from '../spinner/spinner.module';
     MapApiService,
     MapService,
     ObsMapOptions,
-    ObsMapObservations
+    ObsMapData
   ],
   exports: [
     ObservationMapComponent

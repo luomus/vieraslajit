@@ -1,4 +1,4 @@
-import { ObsMapObservations } from "./data/ObsMapObservations";
+import { ObsMapData } from "./data/ObsMapData";
 import { ObsMapOptions, ObsMapOption } from "./data/ObsMapOptions";
 import { ObservationService } from "../../../../shared/service/observation.service";
 import { Injectable } from "@angular/core";
@@ -11,7 +11,7 @@ import { AreaService } from "../../../../shared/service/area.service";
 
 export class MapApiService {
 
-    constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapObservations, private observationService: ObservationService, private areaService: AreaService) {}
+    constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapData, private observationService: ObservationService, private areaService: AreaService) {}
 
     initialize() {
         /* Update observation list whenever there's a change in options */

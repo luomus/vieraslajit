@@ -1,5 +1,4 @@
-import { Injectable, EventEmitter } from "../../../../../../../node_modules/@angular/core";
-import { ObservationMapModule } from "../../../observation-map.module";
+import { Injectable, EventEmitter } from "@angular/core";
 
 export interface VrsObservation {
     document?:any;
@@ -27,37 +26,37 @@ export interface VrsObservation {
 
 @Injectable()
 
-export class ObsMapObservations {
+export class ObsMapData {
 
-    private observations:Array<any>;
+    private data:Array<any>;
     eventEmitter:EventEmitter<any> = new EventEmitter();
 
     constructor() {
-        this.observations = [];
+        this.data = [];
     }
 
     getObservations():VrsObservation[] {
-        return this.observations;
+        return this.data;
     }
 
     addObservation(observation:VrsObservation) {
-        this.observations.push(observation);
-        this.eventEmitter.emit(this.observations);
+        this.data.push(observation);
+        this.eventEmitter.emit(this.data);
     }
 
     addObservations(observations:Array<VrsObservation>) {
         observations.forEach(observation => {
-            this.observations.push(observation);
+            this.data.push(observation);
         })
-        this.eventEmitter.emit(this.observations);
+        this.eventEmitter.emit(this.data);
     }
 
     pop() {
-        return this.observations.pop;
+        return this.data.pop;
     }
 
     removeAll() {
-        this.observations = [];
-        this.eventEmitter.emit(this.observations);
+        this.data = [];
+        this.eventEmitter.emit(this.data);
     }
 }

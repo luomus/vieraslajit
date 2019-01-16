@@ -2,7 +2,7 @@ import * as LM from 'laji-map';
 import LajiMap from 'laji-map/lib/map';
 import { TileLayerName, Data, DataOptions } from 'laji-map/lib/map.defs';
 
-import { ObsMapObservations, VrsObservation } from "./data/ObsMapObservations";
+import { ObsMapData, VrsObservation } from "./data/ObsMapData";
 import { ObsMapOptions } from './data/ObsMapOptions';
 import { PathOptions } from 'leaflet';
 import { Injectable } from '@angular/core';
@@ -19,7 +19,7 @@ export class MapService {
 
     eventEmitter:EventEmitter = new EventEmitter();
 
-    constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapObservations) {}
+    constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapData) {}
 
     initializeMap(e:HTMLElement) {
         this.map = new LM.default({

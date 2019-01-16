@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "../../../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../../../node_modules/@ngx-translate/core";
-import { ObsMapObservations, VrsObservation } from "../services/data/ObsMapObservations";
+import { ObsMapData, VrsObservation } from "../services/data/ObsMapData";
 import { EventEmitter } from "events";
 import { ObsMapOptions } from "../services/data/ObsMapOptions";
 
@@ -29,7 +29,7 @@ export class ObsMapListComponent implements OnInit {
 
     loading:boolean = true;
 
-    constructor(private translate:TranslateService, private obsMapObservations:ObsMapObservations,
+    constructor(private translate:TranslateService, private obsMapObservations:ObsMapData,
                 private obsMapOptions:ObsMapOptions) {
         this.columns = [
             { prop: 'unit.taxonVerbatim', name: this.translate.instant('taxon.name'), draggable: false, resizeable: false },
