@@ -36,7 +36,8 @@ export class ObsMapListComponent implements OnInit {
             { prop: 'gathering.interpretations.municipalityDisplayname', name: this.translate.instant('document.location'), draggable: false, resizeable: false },
             { prop: 'gathering.displayDateTime', name: this.translate.instant('observation.datetime'), draggable: false, resizeable: false }
           ];
-        this.obsMapObservations.eventEmitter.addListener("change", ()=>{
+        this.obsMapObservations.eventEmitter.subscribe(()=>{
+            // TODO: unsubscribe
             this.observations = this.obsMapObservations.getObservations();
         });
     }

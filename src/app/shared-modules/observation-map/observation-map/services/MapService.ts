@@ -30,24 +30,23 @@ export class MapService {
             zoomToData: false,
             tileLayerName: <TileLayerName>"openStreetMap"
         });
-        this.obsMapObservations.eventEmitter.addListener('change', ()=>{
-          if(this.obsMapOptions.getOption('municipality') &&
-          this.obsMapOptions.getOption('municipality').length > 0 && this.obsMapObservations.getObservations().length > 0) {
-            this.zoomAt([this.obsMapObservations.getObservations()[0].gathering.conversions.wgs84CenterPoint.lat,
-                         this.obsMapObservations.getObservations()[0].gathering.conversions.wgs84CenterPoint.lon], 3);
-          }
-          this.map.setData(this.getMapData());
-        });
+        this.obsMapObservations.eventEmitter.subscribe((obs) => {
+            // TODO: Unsubscribe
+            if(this.obsMapOptions.getOption('municipality') &&
+            this.obsMapOptions.getOption('municipality').length > 0 && this.obsMapObservations.getObservations().length > 0) {
+              this.zoomAt([this.obsMapObservations.getObservations()[0].gathering.conversions.wgs84CenterPoint.lat,
+                           this.obsMapObservations.getObservations()[0].gathering.conversions.wgs84CenterPoint.lon], 3);
+            }
+            this.map.setData(this.getMapData(obs));
+        })
     }
 
     zoomAt(center:[number, number], zoomLevel:number) {
       this.map.setOptions({center: center, zoom: zoomLevel});
     }
 
-    private getMapData():Data[] {
+    private getMapData(obs):Data[] {
       let mapData=[];
-
-      const obs = this.obsMapObservations.getObservations();
       const geoJSON = this.getGeoJSONFromObservations(obs);
 
       let dataOptions: DataOptions = {
