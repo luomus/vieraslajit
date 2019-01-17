@@ -2,7 +2,7 @@ import * as LM from 'laji-map';
 import LajiMap from 'laji-map/lib/map';
 import { TileLayerName, Data, DataOptions } from 'laji-map/lib/map.defs';
 
-import { ObsMapObservations } from "./data/ObsMapObservations";
+import { ObsMapData, VrsObservation } from "./data/ObsMapData";
 import { ObsMapOptions } from './data/ObsMapOptions';
 import { PathOptions } from 'leaflet';
 import { Injectable } from '@angular/core';
@@ -19,7 +19,7 @@ export class MapService {
 
     eventEmitter:EventEmitter = new EventEmitter();
 
-    constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapObservations) {}
+    constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapData) {}
 
     initializeMap(e:HTMLElement) {
         this.map = new LM.default({
@@ -30,46 +30,27 @@ export class MapService {
             zoomToData: false,
             tileLayerName: <TileLayerName>"openStreetMap"
         });
-        this.obsMapObservations.eventEmitter.addListener('change', ()=>{
-          if(this.obsMapOptions.getOption('municipality') &&
-          this.obsMapOptions.getOption('municipality').length > 0 && this.obsMapObservations.getObservations().length > 0) {
-            this.zoomAt([this.obsMapObservations.getObservations()[0].gathering.conversions.wgs84CenterPoint.lat,
-                         this.obsMapObservations.getObservations()[0].gathering.conversions.wgs84CenterPoint.lon], 3);
-          }
-          this.map.setData(this.getMapData());
-        });
+        this.obsMapObservations.eventEmitter.subscribe((obs) => {
+            // TODO: Unsubscribe
+            if(this.obsMapOptions.getOption('municipality') &&
+            this.obsMapOptions.getOption('municipality').length > 0 && this.obsMapObservations.getObservations().length > 0) {
+              this.zoomAt([this.obsMapObservations.getObservations()[0].gathering.conversions.wgs84CenterPoint.lat,
+                           this.obsMapObservations.getObservations()[0].gathering.conversions.wgs84CenterPoint.lon], 3);
+            }
+            this.map.setData(this.getMapData(obs));
+        })
     }
 
     zoomAt(center:[number, number], zoomLevel:number) {
       this.map.setOptions({center: center, zoom: zoomLevel});
     }
 
-    private getMapData():Data[] {
+    private getMapData(obs):Data[] {
       let mapData=[];
-
-      let obs = this.obsMapObservations.getObservations();
-      let features = [];
-      obs.forEach((o)=>{
-        if(o.gathering.conversions) {
-          let f = {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates:
-              [o.gathering.conversions.wgs84CenterPoint.lon,
-                o.gathering.conversions.wgs84CenterPoint.lat]
-            },
-            properties: {}
-          };
-          features.push(f);
-        }
-      });
+      const geoJSON = this.getGeoJSONFromObservations(obs);
 
       let dataOptions: DataOptions = {
-        featureCollection: {
-          type: "FeatureCollection",
-          features: features
-        },
+        featureCollection: geoJSON,
         cluster: {
           spiderfyOnMaxZoom: true,
           showCoverageOnHover: true,
@@ -105,5 +86,28 @@ export class MapService {
 
       mapData.push(dataOptions);
       return mapData;
+    }
+
+    getGeoJSONFromObservations(obs: VrsObservation[]) {
+        let features = [];
+        obs.forEach((o)=>{
+            if(o.gathering.conversions) {
+                let f = {
+                type: "Feature",
+                geometry: {
+                    type: "Point",
+                    coordinates:
+                    [o.gathering.conversions.wgs84CenterPoint.lon,
+                    o.gathering.conversions.wgs84CenterPoint.lat]
+                },
+                properties: {}
+                };
+                features.push(f);
+            }
+        });
+        return {
+            type: "FeatureCollection",
+            features: features
+          };
     }
 }
