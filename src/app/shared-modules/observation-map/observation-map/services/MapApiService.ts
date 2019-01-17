@@ -13,7 +13,7 @@ import { environment } from "../../../../../environments/environment";
 
 export class MapApiService {
 
-    constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapData,
+    constructor(private obsMapOptions:ObsMapOptions, private obsMapData:ObsMapData,
                 private observationService: ObservationService,
                 private areaService: AreaService,
                 private ykjService: YkjService) {}
@@ -37,18 +37,19 @@ export class MapApiService {
         this.ykjService.getGeoJson({
             collectionId: [environment.vierasCollection],
         }).subscribe((res) => {
+            this.obsMapData.setData(res, 'geojson');
             console.log(res);
         })
     }
 
     private updateObservationList() {
         this.getObservations().subscribe((r)=>{
-            this.obsMapObservations.removeData();
+            this.obsMapData.removeData();
             let observations = [];
             r.results.forEach(element => {
                 observations.push(element);
             });
-            this.obsMapObservations.setData(observations, 'observations');
+            this.obsMapData.setData(observations, 'observations');
             this.obsMapOptions.loadState=false;
         });
     }
@@ -57,7 +58,7 @@ export class MapApiService {
         let query = {
             invasive: true,
             page: 1,
-            pageSize: 200,
+            pageSize: 20000,
             selected: [
                 "unit.taxonVerbatim", "unit.linkings.taxon.scientificName",
                 "unit.linkings.taxon.qname", "gathering.conversions.wgs84CenterPoint.lat",
@@ -71,7 +72,7 @@ export class MapApiService {
         if(this.obsMapOptions.getOption("municipality")) query["finnishMunicipalityId"] = this.obsMapOptions.getOption("municipality");
 
         this.obsMapOptions.loadState = true;
-        this.obsMapObservations.removeData();
+        this.obsMapData.removeData();
         return this.observationService.getObservations(query);
     }
 }

@@ -64,7 +64,8 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     let options: Array<[ObsMapOption, any]> = [
       ["id", this.id],
       ["list", this.listEnabled],
-      ["taxonSearch", this.taxonSearchEnabled]
+      ["taxonSearch", this.taxonSearchEnabled],
+      ["aggregate", true]
     ]
     if(this.id && this.taxonSearchEnabled) {
       this.taxonSearch.fillValue('', this.id);

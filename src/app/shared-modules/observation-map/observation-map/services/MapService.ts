@@ -37,9 +37,14 @@ export class MapService {
                 this.zoomAt([data.payload[0].gathering.conversions.wgs84CenterPoint.lat,
                             data.payload[0].gathering.conversions.wgs84CenterPoint.lon], 3);
                 }
-                this.map.setData(this.getMapData(data.payload));
+                this.map.setData(this.getMapData(this.getGeoJSONFromObservations(data.payload)));
             } else if (data.type == 'geojson') {
-                console.log('returned geojson');
+                this.map.setData(this.getMapData(
+                    {
+                        type: "FeatureCollection",
+                        features: data.payload
+                    }
+                ));
             }
         })
     }
@@ -48,9 +53,8 @@ export class MapService {
       this.map.setOptions({center: center, zoom: zoomLevel});
     }
 
-    private getMapData(obs: VrsObservation[]):Data[] {
+    private getMapData(geoJSON):Data[] {
       let mapData=[];
-      const geoJSON = this.getGeoJSONFromObservations(obs);
 
       let dataOptions: DataOptions = {
         featureCollection: geoJSON,
