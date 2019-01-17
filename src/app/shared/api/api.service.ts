@@ -31,12 +31,12 @@ export class ApiService {
    *  "defaultLanguage": "string",
    *  "role": ["string"]
    * }
-   * 
+   *
    * @param personToken person-token received from laji-auth on login
    */
   personByToken(personToken: string) {
     return this.httpClient.get(
-      `${environment.lajiApi.url}person/` + personToken,
+      `${environment.lajiApi.url}/person/` + personToken,
       { params: { 'access_token': environment.lajiApi.accessToken } }
     );
   }
@@ -48,21 +48,21 @@ export class ApiService {
    *  "target": "string",
    *  "next": "string"
    * }
-   * 
+   *
    * next = path that is used for redirection after login is complete
-   * 
+   *
    * @param token person-token received from laji-auth on login
    */
   personToken(token: string) {
     return this.httpClient.get(
-      `${environment.lajiApi.url}person-token/` + token,
+      `${environment.lajiApi.url}/person-token/` + token,
       { params: { 'access_token': environment.lajiApi.accessToken } }
     );
   }
 
   /**
    * Used for autocompletion of searchqueries
-   * 
+   *
    * Returns:
    * [
    *   {
@@ -71,7 +71,7 @@ export class ApiService {
    *     "payload": {}
    *   }
    * ]
-   * 
+   *
    * @param endpoint Target API endpoint
    * @param field Field type to be autocompleted: taxon, collection, friends, unit, person
    * @param query Query as defined by LajiApi.AutocompleteQuery
@@ -86,15 +86,15 @@ export class ApiService {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @param endpoint Target API endpoint
-   * @param count 
+   * @param count
    * @param query Query as defined by LajiApi.warehousequeryCountQuery
    */
   warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: LajiApi.warehousequerycountQuery): Observable<WarehouseQueryCount>;
   warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: object = {}): Observable<any> {
-    const url = `${environment.lajiApi.url}${endpoint}`;
+    const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
       url,
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
@@ -102,13 +102,13 @@ export class ApiService {
   }
 
   /**
-   * 
-   * @param endpoint 
-   * @param query 
+   *
+   * @param endpoint
+   * @param query
    */
   warehouseQueryListById(endpoint: LajiApi.Endpoints.warehousequerylist, query: LajiApi.WarehouseQueryListQuery): Observable<PagedResult<WarehouseQueryList>>;
   warehouseQueryListById(endpoint: LajiApi.Endpoints.warehousequerylist, query: object = {}): Observable<any> {
-    const url = `${environment.lajiApi.url}${endpoint}`;
+    const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
       url,
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
@@ -130,7 +130,7 @@ export class ApiService {
     );
   }
 
-  /** 
+  /**
    * Returns range that is of type select (alt)
    * @param endpoint Target API endpoint
    * @param range Type of range
@@ -164,7 +164,7 @@ export class ApiService {
     );
   }
 
-  /** 
+  /**
   * News API
   * @param endpoint Target API endpoint
   * @param query
@@ -178,7 +178,7 @@ export class ApiService {
     );
   }
 
-  /** 
+  /**
   * Information API
   * @param endpoint Target API endpoint
   * @param id Id of the information
@@ -192,7 +192,7 @@ export class ApiService {
     );
   }
 
-  /** 
+  /**
   * Form API
   * @param endpoint Target API endpoint
   * @param id Id of the form
@@ -208,20 +208,20 @@ export class ApiService {
   }
   documentsByPersonToken(endpoint: LajiApi.Endpoints.documents, query: LajiApi.Query): Observable<any>;
   documentsByPersonToken(endpoint: LajiApi.Endpoints.documents, query: object = {}): Observable<any> {
-    const url = `${environment.lajiApi.url}${endpoint}`;
+    const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
       url,
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
 
   areas(endpoint: LajiApi.Endpoints.areas, query: object): Observable<any> {
-    const url = `${environment.lajiApi.url}${endpoint}`;
+    const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
       url,
       { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
 
   getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query:LajiApi.WarehouseQueryListQuery ):Observable<any>;
   getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query: object={}):Observable<any>{
-        const url = `${environment.lajiApi.url}${endpoint}`;
+        const url = `${environment.lajiApi.url}/${endpoint}`;
         return this.httpClient.get(
           url,
           { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
@@ -229,7 +229,7 @@ export class ApiService {
   /**
    * Document API for POST method
    * @param endpoint Target API endpoint
-   * @param personToken Persontoken received from laji-auth on login 
+   * @param personToken Persontoken received from laji-auth on login
    * @param data Data to send
    */
   documentPost(endpoint: LajiApi.Endpoints.createDocument, personToken: string, data: Document): Observable<Document>;
@@ -307,7 +307,7 @@ export namespace LajiApi {
     adminStatusFilters?:String;
     personToken?:String;
     invasive?:boolean;
-  
+
 
   }
   export interface AutocompleteQuery {

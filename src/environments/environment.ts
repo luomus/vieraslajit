@@ -5,8 +5,9 @@
 
 export const environment = {
   production: false,
+  vierasCollection: 'HR.2049',
   lajiApi: {
-    url: 'https://apitest.laji.fi/v0/',
+    url: 'https://apitest.laji.fi/v0',
     accessToken: 'kFEdTHdoHEY2c98BokkdjhOLx8PUHdjbDTFeIkDLkWLwGwYcz8RwA3UxI1ybegzx'
   },
   lajiAuth: {

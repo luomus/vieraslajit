@@ -3,6 +3,8 @@ import { ObsMapOptions, ObsMapOption } from "./data/ObsMapOptions";
 import { ObservationService } from "../../../../shared/service/observation.service";
 import { Injectable } from "@angular/core";
 import { AreaService } from "../../../../shared/service/area.service";
+import { YkjService } from "../import-from-laji-front/ykj.service";
+import { environment } from "../../../../../environments/environment";
 
 /* Listens to updates in obsMapOptions
     and updates obsMapObservations accordingly */
@@ -11,12 +13,19 @@ import { AreaService } from "../../../../shared/service/area.service";
 
 export class MapApiService {
 
-    constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapData, private observationService: ObservationService, private areaService: AreaService) {}
+    constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapData,
+                private observationService: ObservationService,
+                private areaService: AreaService,
+                private ykjService: YkjService) {}
 
     initialize() {
         /* Update observation list whenever there's a change in options */
         this.obsMapOptions.eventEmitter.addListener("change", ()=>{
-            this.updateObservationList();
+            if (this.obsMapOptions.getOption('aggregate')) {
+                this.updateAggregate();
+            } else {
+                this.updateObservationList();
+            }
         });
     }
 
@@ -24,15 +33,22 @@ export class MapApiService {
         return this.areaService.getMunicipalities("municipality");
     }
 
+    private updateAggregate() {
+        this.ykjService.getGeoJson({
+            collectionId: [environment.vierasCollection],
+        }).subscribe((res) => {
+            console.log(res);
+        })
+    }
+
     private updateObservationList() {
         this.getObservations().subscribe((r)=>{
-            console.log(r);
-            this.obsMapObservations.removeAll();
+            this.obsMapObservations.removeData();
             let observations = [];
             r.results.forEach(element => {
                 observations.push(element);
             });
-            this.obsMapObservations.addObservations(observations);
+            this.obsMapObservations.setData(observations, 'observations');
             this.obsMapOptions.loadState=false;
         });
     }
@@ -55,7 +71,7 @@ export class MapApiService {
         if(this.obsMapOptions.getOption("municipality")) query["finnishMunicipalityId"] = this.obsMapOptions.getOption("municipality");
 
         this.obsMapOptions.loadState = true;
-        this.obsMapObservations.removeAll();
+        this.obsMapObservations.removeData();
         return this.observationService.getObservations(query);
     }
 }

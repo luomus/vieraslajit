@@ -24,39 +24,39 @@ export interface VrsObservation {
     };
 }
 
+type ObsMapDataType = 'observations' | 'geojson'
+
+export interface ObsMapDataMeta {
+    type: ObsMapDataType,
+    payload: any
+}
+
 @Injectable()
 
 export class ObsMapData {
 
-    private data:Array<any>;
-    eventEmitter:EventEmitter<any> = new EventEmitter();
+    private data: any;
+    private type: ObsMapDataType;
+    eventEmitter:EventEmitter<ObsMapDataMeta> = new EventEmitter();
 
-    constructor() {
-        this.data = [];
+    constructor() {}
+
+    setData(data, type: ObsMapDataType) {
+        this.data = data;
+        this.type = type
+        this.eventEmitter.emit(this.getData())
     }
 
-    getObservations():VrsObservation[] {
-        return this.data;
+    getData():ObsMapDataMeta {
+        return {
+            type: this.type,
+            payload: this.data
+        };
     }
 
-    addObservation(observation:VrsObservation) {
-        this.data.push(observation);
-        this.eventEmitter.emit(this.data);
-    }
-
-    addObservations(observations:Array<VrsObservation>) {
-        observations.forEach(observation => {
-            this.data.push(observation);
-        })
-        this.eventEmitter.emit(this.data);
-    }
-
-    pop() {
-        return this.data.pop;
-    }
-
-    removeAll() {
-        this.data = [];
-        this.eventEmitter.emit(this.data);
+    removeData() {
+        this.data = null;
+        this.type = null;
+        this.eventEmitter.emit(this.getData());
     }
 }

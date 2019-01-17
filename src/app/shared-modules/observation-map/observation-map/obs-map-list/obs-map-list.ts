@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "../../../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../../../node_modules/@ngx-translate/core";
-import { ObsMapData, VrsObservation } from "../services/data/ObsMapData";
+import { ObsMapData, VrsObservation, ObsMapDataMeta } from "../services/data/ObsMapData";
 import { EventEmitter } from "events";
 import { ObsMapOptions } from "../services/data/ObsMapOptions";
 
@@ -29,16 +29,18 @@ export class ObsMapListComponent implements OnInit {
 
     loading:boolean = true;
 
-    constructor(private translate:TranslateService, private obsMapObservations:ObsMapData,
+    constructor(private translate:TranslateService, private obsMapData:ObsMapData,
                 private obsMapOptions:ObsMapOptions) {
         this.columns = [
             { prop: 'unit.taxonVerbatim', name: this.translate.instant('taxon.name'), draggable: false, resizeable: false },
             { prop: 'gathering.interpretations.municipalityDisplayname', name: this.translate.instant('document.location'), draggable: false, resizeable: false },
             { prop: 'gathering.displayDateTime', name: this.translate.instant('observation.datetime'), draggable: false, resizeable: false }
           ];
-        this.obsMapObservations.eventEmitter.subscribe(()=>{
+        this.obsMapData.eventEmitter.subscribe((data: ObsMapDataMeta)=>{
             // TODO: unsubscribe
-            this.observations = this.obsMapObservations.getObservations();
+            if (data.type == 'observations') {
+                this.observations = data.payload;
+            }
         });
     }
 

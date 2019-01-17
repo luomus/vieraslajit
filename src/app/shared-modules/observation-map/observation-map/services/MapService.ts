@@ -2,11 +2,10 @@ import * as LM from 'laji-map';
 import LajiMap from 'laji-map/lib/map';
 import { TileLayerName, Data, DataOptions } from 'laji-map/lib/map.defs';
 
-import { ObsMapData, VrsObservation } from "./data/ObsMapData";
+import { ObsMapData, VrsObservation, ObsMapDataMeta } from "./data/ObsMapData";
 import { ObsMapOptions } from './data/ObsMapOptions';
 import { PathOptions } from 'leaflet';
 import { Injectable } from '@angular/core';
-import { ObservationMapModule } from '../../observation-map.module';
 import { EventEmitter } from 'events';
 /* Listens to updates in obsMapObservations
     and updates the map accordingly */
@@ -19,7 +18,7 @@ export class MapService {
 
     eventEmitter:EventEmitter = new EventEmitter();
 
-    constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapData) {}
+    constructor(private obsMapOptions:ObsMapOptions, private obsMapData:ObsMapData) {}
 
     initializeMap(e:HTMLElement) {
         this.map = new LM.default({
@@ -30,14 +29,18 @@ export class MapService {
             zoomToData: false,
             tileLayerName: <TileLayerName>"openStreetMap"
         });
-        this.obsMapObservations.eventEmitter.subscribe((obs) => {
+        this.obsMapData.eventEmitter.subscribe((data: ObsMapDataMeta) => {
             // TODO: Unsubscribe
-            if(this.obsMapOptions.getOption('municipality') &&
-            this.obsMapOptions.getOption('municipality').length > 0 && this.obsMapObservations.getObservations().length > 0) {
-              this.zoomAt([this.obsMapObservations.getObservations()[0].gathering.conversions.wgs84CenterPoint.lat,
-                           this.obsMapObservations.getObservations()[0].gathering.conversions.wgs84CenterPoint.lon], 3);
+            if(data.type == 'observations') {
+                if(this.obsMapOptions.getOption('municipality') &&
+                this.obsMapOptions.getOption('municipality').length > 0 && data.payload.length > 0) {
+                this.zoomAt([data.payload[0].gathering.conversions.wgs84CenterPoint.lat,
+                            data.payload[0].gathering.conversions.wgs84CenterPoint.lon], 3);
+                }
+                this.map.setData(this.getMapData(data.payload));
+            } else if (data.type == 'geojson') {
+                console.log('returned geojson');
             }
-            this.map.setData(this.getMapData(obs));
         })
     }
 
@@ -45,7 +48,7 @@ export class MapService {
       this.map.setOptions({center: center, zoom: zoomLevel});
     }
 
-    private getMapData(obs):Data[] {
+    private getMapData(obs: VrsObservation[]):Data[] {
       let mapData=[];
       const geoJSON = this.getGeoJSONFromObservations(obs);
 
