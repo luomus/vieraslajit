@@ -36,9 +36,7 @@ export class ApiService {
    */
   personByToken(personToken: string) {
     return this.httpClient.get(
-      `${environment.lajiApi.url}/person/` + personToken,
-      { params: { 'access_token': environment.lajiApi.accessToken } }
-    );
+      `${environment.lajiApi.url}/person/` + personToken);
   }
 
   /**
@@ -55,8 +53,7 @@ export class ApiService {
    */
   personToken(token: string) {
     return this.httpClient.get(
-      `${environment.lajiApi.url}/person-token/` + token,
-      { params: { 'access_token': environment.lajiApi.accessToken } }
+      `${environment.lajiApi.url}/person-token/` + token
     );
   }
 
@@ -80,8 +77,7 @@ export class ApiService {
   autocompleteFindByField(endpoint: LajiApi.Endpoints.autocomplete, field: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
-      url,
-      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+      url
     );
   }
 
@@ -96,8 +92,7 @@ export class ApiService {
   warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
-      url,
-      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+      url
     );
   }
 
@@ -110,8 +105,7 @@ export class ApiService {
   warehouseQueryListById(endpoint: LajiApi.Endpoints.warehousequerylist, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
-      url,
-      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+      url
     );
   }
 
@@ -125,8 +119,7 @@ export class ApiService {
   informalTaxonGroups(endpoint: LajiApi.Endpoints, query: object = {}, id?: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.get(
-      url,
-      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+      url
     );
   }
 
@@ -140,8 +133,7 @@ export class ApiService {
   fetchMetadata(endpoint: LajiApi.Endpoints, range?: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%range%', range);
     return this.httpClient.get(
-      url,
-      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+      url
     );
   }
 
@@ -159,8 +151,7 @@ export class ApiService {
   taxonomyFindById(endpoint: LajiApi.Endpoints, id: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.get(
-      url,
-      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+      url
     );
   }
 
@@ -173,8 +164,7 @@ export class ApiService {
   newsFindAll(endpoint: LajiApi.Endpoints, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
-      url,
-      { params: { ...query, 'access_token': environment.lajiApi.accessToken } }
+      url
     );
   }
 
@@ -187,8 +177,7 @@ export class ApiService {
   informationFindById(endpoint: LajiApi.Endpoints, id: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.get(
-      url,
-      { params: { 'access_token': environment.lajiApi.accessToken } }
+      url
     );
   }
 
@@ -202,29 +191,28 @@ export class ApiService {
   formById(endpoint: LajiApi.Endpoints, id: string, lang: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.get(
-      url,
-      { params: { lang: lang, 'access_token': environment.lajiApi.accessToken } }
+      url
     );
   }
   documentsByPersonToken(endpoint: LajiApi.Endpoints.documents, query: LajiApi.Query): Observable<any>;
   documentsByPersonToken(endpoint: LajiApi.Endpoints.documents, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
-      url,
-      { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
+      url
+    );
+  }
 
   areas(endpoint: LajiApi.Endpoints.areas, query: object): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
-      url,
-      { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
+      url);
+  }
 
   getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query:LajiApi.WarehouseQueryListQuery ):Observable<any>;
   getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query: object={}):Observable<any>{
         const url = `${environment.lajiApi.url}/${endpoint}`;
         return this.httpClient.get(
-          url,
-          { params: { ...query, 'access_token': environment.lajiApi.accessToken } });}
+          url);}
 
   /**
    * Document API for POST method
@@ -237,8 +225,7 @@ export class ApiService {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.post(
       url,
-      JSON.stringify(data),
-      { params: { 'personToken': personToken, 'access_token': environment.lajiApi.accessToken } }
+      JSON.stringify(data)
     );
   }
   /**
@@ -251,8 +238,7 @@ export class ApiService {
   documentGet(endpoint: LajiApi.Endpoints, personToken: string, documentId: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', documentId);
     return this.httpClient.get(
-      url,
-      { params: { 'personToken': personToken, 'access_token': environment.lajiApi.accessToken } }
+      url
     );
   }
 
@@ -260,8 +246,7 @@ export class ApiService {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.put(
       url,
-      JSON.stringify(data),
-      { params: { 'personToken': personToken, 'access_token': environment.lajiApi.accessToken } }
+      JSON.stringify(data)
     );
   }
 }
