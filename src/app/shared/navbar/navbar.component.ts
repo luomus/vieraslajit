@@ -7,7 +7,7 @@ import { Subscription, of } from 'rxjs';
 import { StaticContent, findContentID } from './../../../assets/i18n/cms-content';
 import * as $ from 'jquery';
 import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';
-import { mergeMap, map, catchError } from 'rxjs/operators';
+import { mergeMap, map, catchError, concatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'vrs-navbar',
@@ -132,7 +132,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
       mergeMap((base) => {
         return of(...base.children)
       }),
-      mergeMap((header) => {
+      concatMap((header) => {
         return this.informationService.getInformation(header.id)
       })
     )
