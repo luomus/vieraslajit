@@ -44,7 +44,7 @@
                     <div *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
                         <div class="container">
                             <div class="row">
-                                <div class="col-3">
+<!--                                 <div class="col-3">
                                     <h5>Tietoa vieraslajeista</h5>
                                     <a href="">Määritelmät</a>
                                     <a href="">Uhat ja riskit</a>
@@ -72,6 +72,10 @@
                                     <a href="">Ohjeet ja oppaat</a>
                                     <a href="">Vieraslajit muualla verkossa</a>
                                     <a href="">Yhteystiedot</a>
+                                </div> -->
+                                <div *ngFor="let item of menu" class="col-3">
+                                    <h5>{{item.title}}</h5>
+                                    <ng-container *ngIf="item.hasOwnProperty('children')"><a *ngFor="let child of item.children" routerLink="/static/{{child.id}}">{{child.title}}</a></ng-container>
                                 </div>
                             </div>
                         </div>
