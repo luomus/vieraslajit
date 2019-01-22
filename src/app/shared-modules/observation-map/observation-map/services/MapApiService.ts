@@ -5,6 +5,8 @@ import { Injectable } from "@angular/core";
 import { AreaService } from "../../../../shared/service/area.service";
 import { YkjService } from "../import-from-laji-front/ykj.service";
 import { environment } from "../../../../../environments/environment";
+import { ApiService, LajiApi } from "../../../../shared/api/api.service";
+import { WarehouseQueryInterface } from "../import-from-laji-front/WarehouseQueryInterface";
 
 /* Listens to updates in obsMapOptions
     and updates obsMapObservations accordingly */
@@ -16,16 +18,20 @@ export class MapApiService {
     constructor(private obsMapOptions:ObsMapOptions, private obsMapData:ObsMapData,
                 private observationService: ObservationService,
                 private areaService: AreaService,
-                private ykjService: YkjService) {}
+                private ykjService: YkjService,
+                private apiService: ApiService) {}
 
     initialize() {
         /* Update observation list whenever there's a change in options */
         this.obsMapOptions.eventEmitter.addListener("change", ()=>{
-            if (this.obsMapOptions.getOption('aggregate')) {
-                this.updateAggregate();
-            } else {
-                this.updateObservationList();
-            }
+            console.log('change happened');
+            this.getObservationCount().subscribe(res => {
+                if (res.total > 2000) {
+                    this.updateAggregate();
+                } else {
+                    this.updateObservationList();
+                }
+            });
         });
     }
 
@@ -36,9 +42,9 @@ export class MapApiService {
     private updateAggregate() {
         this.ykjService.getGeoJson({
             collectionId: [environment.vierasCollection],
-        }).subscribe((res) => {
+        }, "100kmCenter").subscribe((res) => {
             this.obsMapData.setData(res, 'geojson');
-            console.log(res);
+            this.obsMapOptions.loadState=false;
         })
     }
 
@@ -74,5 +80,15 @@ export class MapApiService {
         this.obsMapOptions.loadState = true;
         this.obsMapData.removeData();
         return this.observationService.getObservations(query);
+    }
+
+    private getObservationCount() {
+        const query: WarehouseQueryInterface = {}
+        if (this.obsMapOptions.getOption("id")) query["taxonId"] = this.obsMapOptions.getOption("id");
+        if (this.obsMapOptions.getOption("municipality")) query["area"] = this.obsMapOptions.getOption("municipality");
+        if (this.obsMapOptions.getOption("personToken")) query["observerPersonToken"] = this.obsMapOptions.getOption("personToken");
+        console.log(this.obsMapOptions.getOption("personToken"));
+        console.log(query)
+        return this.apiService.warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount, "count", query)
     }
 }

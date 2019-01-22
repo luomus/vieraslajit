@@ -34,8 +34,6 @@ export class FormApiClient {
 
     const queryParameters = new URLSearchParams();
 
-    queryParameters.set('access_token', environment.lajiApi.accessToken);
-
     if (this._lang !== undefined) {
       queryParameters.set('lang', this._lang);
     }

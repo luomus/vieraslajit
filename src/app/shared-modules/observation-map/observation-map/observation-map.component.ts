@@ -65,7 +65,6 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
       ["id", this.id],
       ["list", this.listEnabled],
       ["taxonSearch", this.taxonSearchEnabled],
-      ["aggregate", true]
     ]
     if(this.id && this.taxonSearchEnabled) {
       this.taxonSearch.fillValue('', this.id);
@@ -88,6 +87,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   }
 
   ownModeChange() {
+    console.log(this.ownModeEnabled)
     this.ownModeEnabled ? this.obsMapOptions.setOption("personToken", UserService.getToken()) : this.obsMapOptions.setOption("personToken", null);
   }
 
