@@ -1,6 +1,6 @@
 import * as LM from 'laji-map';
 import LajiMap from 'laji-map/lib/map';
-import { TileLayerName, Data, DataOptions } from 'laji-map/lib/map.defs';
+import { TileLayerName, Data, DataOptions, GetFeatureStyleOptions } from 'laji-map/lib/map.defs';
 
 import { ObsMapData, VrsObservation, ObsMapDataMeta } from "./data/ObsMapData";
 import { ObsMapOptions } from './data/ObsMapOptions';
@@ -27,7 +27,8 @@ export class MapService {
             center: [65.2, 27],
             zoom: 2,
             zoomToData: false,
-            tileLayerName: TileLayerName.maastokartta
+            tileLayerName: TileLayerName.maastokartta,
+            tileLayerOpacity: 0.5
         });
         this.obsMapData.eventEmitter.subscribe((data: ObsMapDataMeta) => {
             if(data.type == 'observations') {
@@ -50,7 +51,7 @@ export class MapService {
 
     private getObservationMapData(geoJSON):Data[] {
         let mapData=[];
-        const obs = geoJSON.features
+        const obs = this.obsMapData.getData().payload
 
         let dataOptions: DataOptions = {
             featureCollection: geoJSON,
@@ -98,15 +99,18 @@ export class MapService {
                 type: "FeatureCollection",
                 features: geoJSONFeatures
             },
-            getFeatureStyle: ():PathOptions=>{
+            getFeatureStyle: (options: GetFeatureStyleOptions):PathOptions=>{
+                const opacity = Math.min(0.5, Math.max(0.1, options.feature.properties.count * 0.0025))
                 let p:PathOptions = {
                     color: "#f89525",
                     fillColor: "#f89525",
+                    opacity: opacity,
+                    fillOpacity: opacity
                 }
                 return p;
             },
             getPopup: (data):string=>{
-                return geoJSONFeatures[data];
+                return "Havaintoja: " + geoJSONFeatures[data].properties.count;
             }
         })
         return data;
@@ -128,10 +132,11 @@ export class MapService {
                     };
                     features.push(f);
                 }
-            });
-            return {
-                type: "FeatureCollection",
-                features: features
-            };
-        }
+            }
+        );
+        return {
+            type: "FeatureCollection",
+            features: features
+        };
     }
+}

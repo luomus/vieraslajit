@@ -25,6 +25,7 @@ export class MapApiService {
         /* Update observation list whenever there's a change in options */
         this.obsMapOptions.eventEmitter.addListener("change", ()=>{
             this.getObservationCount().subscribe(res => {
+                this.obsMapData.observationCount = res.total
                 if (res.total > 2000) {
                     this.updateAggregate();
                     this.obsMapOptions.setOptionSilent('aggregate', true);
@@ -40,9 +41,20 @@ export class MapApiService {
         return this.areaService.getMunicipalities("municipality");
     }
 
+    private getWarehouseQuery() {
+        const query: WarehouseQueryInterface = {
+            invasive: true
+        }
+        if (this.obsMapOptions.getOption("id")) query["taxonId"] = this.obsMapOptions.getOption("id");
+        if (this.obsMapOptions.getOption("municipality")) query["area"] = this.obsMapOptions.getOption("municipality");
+        if (this.obsMapOptions.getOption("personToken")) query["observerPersonToken"] = this.obsMapOptions.getOption("personToken");
+        return query;
+    }
+
     private updateAggregate() {
         this.ykjService.getGeoJson({
-            collectionId: [environment.vierasCollection],
+            invasive: true,
+            ...this.getWarehouseQuery()
         }, "100kmCenter").subscribe((res) => {
             this.obsMapData.setData(res, 'geojson');
             this.obsMapOptions.loadState=false;
@@ -84,10 +96,7 @@ export class MapApiService {
     }
 
     private getObservationCount() {
-        const query: WarehouseQueryInterface = {}
-        if (this.obsMapOptions.getOption("id")) query["taxonId"] = this.obsMapOptions.getOption("id");
-        if (this.obsMapOptions.getOption("municipality")) query["area"] = this.obsMapOptions.getOption("municipality");
-        if (this.obsMapOptions.getOption("personToken")) query["observerPersonToken"] = this.obsMapOptions.getOption("personToken");
+        const query: WarehouseQueryInterface = {...this.getWarehouseQuery()}
         return this.apiService.warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount, "count", query)
     }
 }

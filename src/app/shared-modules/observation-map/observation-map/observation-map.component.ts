@@ -7,6 +7,7 @@ import { MapApiService } from './services/MapApiService';
 import { MapService } from './services/MapService';
 import { ObsMapListComponent } from './obs-map-list/obs-map-list';
 import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
+import { ObsMapData } from './services/data/ObsMapData';
 
 @Component({
   selector: 'vrs-observation-map',
@@ -34,7 +35,10 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   municipalities:Array<any> = [];
   isLoggedIn = UserService.loggedIn();
 
-  constructor(private obsMapOptions:ObsMapOptions, private mapApiController:MapApiService, private mapController:MapService) {}
+  constructor(private obsMapOptions:ObsMapOptions,
+              private mapApiController:MapApiService,
+              private mapController:MapService,
+              private obsMapData: ObsMapData) {}
 
   ngOnInit() {
     this.mapApiController.initialize();
@@ -65,6 +69,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
       ["id", this.id],
       ["list", this.listEnabled],
       ["taxonSearch", this.taxonSearchEnabled],
+      ["aggregate", true]
     ]
     if(this.id && this.taxonSearchEnabled) {
       this.taxonSearch.fillValue('', this.id);
@@ -93,6 +98,10 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   isAggregateMap() {
       const is_aggregate = this.obsMapOptions.getOption("aggregate")
       return !!is_aggregate;
+  }
+
+  getObservationCount() {
+      return this.obsMapData.observationCount;
   }
 
   onTableActivate(e) {

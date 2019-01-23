@@ -35,6 +35,7 @@ export interface ObsMapDataMeta {
 
 export class ObsMapData {
 
+    observationCount: number;
     private data: any;
     private type: ObsMapDataType;
     eventEmitter:EventEmitter<ObsMapDataMeta> = new EventEmitter();

@@ -18,7 +18,7 @@
   </div>
 </div> <!-- col-7 -->
 <div *ngIf="selectedInfo" class="col-12 col-sm-5">
-  <div class="row">
+  <div class="row" [ngClass]="{'hidden': isAggregateMap()}">
     <div class="col-3 selected-observation-left">
       Havainto
     </div>
@@ -38,8 +38,12 @@
     <div class="col-12 col-sm-7 col-map">
         <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
     </div>
-    <div class="col-12 col-sm-5 col-list">
+    <div class="col-12 col-sm-5 col-list" [ngClass]="{'hidden': isAggregateMap()}">
       <vrs-obs-map-list height="{{mapHeight}}"></vrs-obs-map-list>
+    </div>
+    <div class="col-12 col-sm-5 col-list text-center" [ngClass]="{'hidden': !isAggregateMap()}">
+        <h5 class="observation-count"><b>{{getObservationCount() | number}}</b> havaintoa.</h5>
+        <p>Rajaa hakua nähdäksesi listan tarkoista havainnoista.</p>
     </div>
 </div>
 </ng-container>
