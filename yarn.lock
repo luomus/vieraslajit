@@ -5571,13 +5571,37 @@ laji-form@^0.0.552:
     react-transition-group "^1.1.1"
     react-widgets "^3.4.8"
 
-laji-map@^1.0.395, laji-map@^1.0.397, laji-map@^1.0.454:
+laji-map@^1.0.395, laji-map@^1.0.454:
   version "1.0.454"
   resolved "https://registry.yarnpkg.com/laji-map/-/laji-map-1.0.454.tgz#7b54c60effa6b2674d106558e17d92179ed71d6a"
   integrity sha512-IImyNQlSe5p4PTQqJMD3t1Nu6a+1dFkF0cQw3fsi2WfMq7THb5WtCQOF4qXIe4PTrj3fAb7I0An9jrAwt35C0A==
   dependencies:
     Leaflet.vector-markers "git+https://git@github.com/olzraiti/Leaflet.vector-markers.git#17601bee91f2dae098a0a76e96714d59ec958fe6"
     leaflet "1.3.4"
+    leaflet-contextmenu "1.4.0"
+    leaflet-draw "1.0.3"
+    leaflet-geometryutil "0.8.0"
+    leaflet-geosearch "git+https://git@github.com/olzraiti/leaflet-geosearch.git#d0fb4384742e22799074355a99094adcc2416577"
+    leaflet-mml-layers "2.0.1"
+    leaflet-textpath "git+https://git@github.com/olzraiti/Leaflet.textPath.git#7fd168f22e2b1a52bdf62d473237f01caaa01e95"
+    leaflet.markercluster "1.3.0"
+    nouislider "10.0.0"
+    proj4 "2.3.16"
+    proj4leaflet "1.0.2"
+  optionalDependencies:
+    "@types/geojson" "*"
+    "@types/leaflet" "*"
+    "@types/leaflet-draw" "*"
+    "@types/leaflet.markercluster" "*"
+    "@types/node" "*"
+
+laji-map@^1.0.461:
+  version "1.0.461"
+  resolved "https://registry.yarnpkg.com/laji-map/-/laji-map-1.0.461.tgz#b7e88d5e7156e49e8f00cde7001009b05e5f6cf2"
+  integrity sha512-Ckt8pkecc2OXWEdz1vajhi6yGWtIWuUkZ3KHj8bNO2+lBG//HvnfY1pImbEyxIYMW/oTSoLsBgwHgtj3+oy9TQ==
+  dependencies:
+    Leaflet.vector-markers "git+https://git@github.com/olzraiti/Leaflet.vector-markers.git#17601bee91f2dae098a0a76e96714d59ec958fe6"
+    leaflet "1.4.0"
     leaflet-contextmenu "1.4.0"
     leaflet-draw "1.0.3"
     leaflet-geometryutil "0.8.0"
@@ -5681,7 +5705,7 @@ leaflet.markercluster@1.3.0:
   resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.3.0.tgz#58eb0654e90bd3274a660390ab0bc734212b204d"
   integrity sha512-bHBaI8kTaLrZxI/ZP7pnNaS8WCKKz98BU1//B5OH9b/kTk6IriduvDtMFGlGBYYr/ymuXCB9lO7HsGBr5dSw5w==
 
-leaflet@*, leaflet@1.3.4, leaflet@>=0.7.0, leaflet@^1.0.1:
+leaflet@*, leaflet@1.3.4, leaflet@1.4.0, leaflet@>=0.7.0, leaflet@^1.0.1:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.3.4.tgz#7f006ea5832603b53d7269ef5c595fd773060a40"
   integrity sha512-FYL1LGFdj6v+2Ifpw+AcFIuIOqjNggfoLUwuwQv6+3sS21Za7Wvapq+LhbSE4NDXrEj6eYnW3y7LsaBICpyXtw==

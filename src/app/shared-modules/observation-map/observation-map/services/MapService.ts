@@ -27,10 +27,9 @@ export class MapService {
             center: [65.2, 27],
             zoom: 2,
             zoomToData: false,
-            tileLayerName: TileLayerName.openStreetMap
+            tileLayerName: TileLayerName.maastokartta
         });
         this.obsMapData.eventEmitter.subscribe((data: ObsMapDataMeta) => {
-            // TODO: Unsubscribe
             if(data.type == 'observations') {
                 if(this.obsMapOptions.getOption('municipality') &&
                    this.obsMapOptions.getOption('municipality').length > 0 && data.payload.length > 0) {

@@ -78,7 +78,8 @@ export class ApiService {
   autocompleteFindByField(endpoint: LajiApi.Endpoints.autocomplete, field: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
-      url
+      url,
+      { params: {...query} }
     );
   }
 
@@ -93,7 +94,8 @@ export class ApiService {
   warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
-      url
+      url,
+      { params: {...query} }
     );
   }
 
@@ -106,7 +108,8 @@ export class ApiService {
   warehouseQueryListById(endpoint: LajiApi.Endpoints.warehousequerylist, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
-      url
+      url,
+      { params: {...query} }
     );
   }
 
@@ -120,7 +123,8 @@ export class ApiService {
   informalTaxonGroups(endpoint: LajiApi.Endpoints, query: object = {}, id?: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.get(
-      url
+      url,
+      { params: {...query} }
     );
   }
 
@@ -134,7 +138,8 @@ export class ApiService {
   fetchMetadata(endpoint: LajiApi.Endpoints, range?: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%range%', range);
     return this.httpClient.get(
-      url
+      url,
+      { params: {...query} }
     );
   }
 
@@ -152,7 +157,8 @@ export class ApiService {
   taxonomyFindById(endpoint: LajiApi.Endpoints, id: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.get(
-      url
+      url,
+      { params: {...query} }
     );
   }
 
@@ -165,7 +171,8 @@ export class ApiService {
   newsFindAll(endpoint: LajiApi.Endpoints, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
-      url
+      url,
+      { params: {...query} }
     );
   }
 
@@ -199,21 +206,26 @@ export class ApiService {
   documentsByPersonToken(endpoint: LajiApi.Endpoints.documents, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
-      url
+      url,
+      { params: {...query} }
     );
   }
 
   areas(endpoint: LajiApi.Endpoints.areas, query: object): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
-      url);
+      url,
+      { params: {...query} }
+      );
   }
 
   getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query:LajiApi.WarehouseQueryListQuery ):Observable<any>;
   getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query: object={}):Observable<any>{
         const url = `${environment.lajiApi.url}/${endpoint}`;
         return this.httpClient.get(
-          url);}
+          url,
+          { params: {...query} }
+          );}
 
   /**
    * Document API for POST method
@@ -226,7 +238,8 @@ export class ApiService {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.post(
       url,
-      JSON.stringify(data)
+      JSON.stringify(data),
+      {params: {'personToken': personToken}}
     );
   }
   /**
@@ -239,7 +252,8 @@ export class ApiService {
   documentGet(endpoint: LajiApi.Endpoints, personToken: string, documentId: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', documentId);
     return this.httpClient.get(
-      url
+      url,
+      {params: {'personToken': personToken}}
     );
   }
 
@@ -247,7 +261,8 @@ export class ApiService {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.put(
       url,
-      JSON.stringify(data)
+      JSON.stringify(data),
+      {params: {'personToken': personToken}}
     );
   }
 }

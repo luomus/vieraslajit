@@ -87,8 +87,12 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   }
 
   ownModeChange() {
-    console.log(this.ownModeEnabled)
     this.ownModeEnabled ? this.obsMapOptions.setOption("personToken", UserService.getToken()) : this.obsMapOptions.setOption("personToken", null);
+  }
+
+  isAggregateMap() {
+      const is_aggregate = this.obsMapOptions.getOption("aggregate")
+      return !!is_aggregate;
   }
 
   onTableActivate(e) {

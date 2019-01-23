@@ -24,12 +24,13 @@ export class MapApiService {
     initialize() {
         /* Update observation list whenever there's a change in options */
         this.obsMapOptions.eventEmitter.addListener("change", ()=>{
-            console.log('change happened');
             this.getObservationCount().subscribe(res => {
                 if (res.total > 2000) {
                     this.updateAggregate();
+                    this.obsMapOptions.setOptionSilent('aggregate', true);
                 } else {
                     this.updateObservationList();
+                    this.obsMapOptions.setOptionSilent('aggregate', false);
                 }
             });
         });
@@ -64,7 +65,7 @@ export class MapApiService {
         let query = {
             invasive: true,
             page: 1,
-            pageSize: 20000,
+            pageSize: 10000,
             selected: [
                 "unit.taxonVerbatim", "unit.linkings.taxon.scientificName",
                 "unit.linkings.taxon.qname", "gathering.conversions.wgs84CenterPoint.lat",
@@ -87,8 +88,6 @@ export class MapApiService {
         if (this.obsMapOptions.getOption("id")) query["taxonId"] = this.obsMapOptions.getOption("id");
         if (this.obsMapOptions.getOption("municipality")) query["area"] = this.obsMapOptions.getOption("municipality");
         if (this.obsMapOptions.getOption("personToken")) query["observerPersonToken"] = this.obsMapOptions.getOption("personToken");
-        console.log(this.obsMapOptions.getOption("personToken"));
-        console.log(query)
         return this.apiService.warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount, "count", query)
     }
 }
