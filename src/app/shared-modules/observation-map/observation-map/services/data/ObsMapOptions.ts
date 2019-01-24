@@ -2,7 +2,7 @@ import { EventEmitter } from "events";
 import { Injectable } from "../../../../../../../node_modules/@angular/core";
 
 export type ObsMapOption = "id" | "list" | "municipality" | "personToken"
-                           | "taxonSearch" | "aggregate";
+                           | "taxonSearch";
 
 // TODO: typechecking for Options
 type Options = {
@@ -42,10 +42,6 @@ export class ObsMapOptions {
     setOption(option:ObsMapOption, value:any) {
         this.options[option] = value;
         this.eventEmitter.emit('change');
-    }
-
-    setOptionSilent(option:ObsMapOption, value:any) {
-        this.options[option] = value;
     }
 
     setOptions(options:Array<[ObsMapOption, any]>) {

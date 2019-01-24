@@ -68,8 +68,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     let options: Array<[ObsMapOption, any]> = [
       ["id", this.id],
       ["list", this.listEnabled],
-      ["taxonSearch", this.taxonSearchEnabled],
-      ["aggregate", true]
+      ["taxonSearch", this.taxonSearchEnabled]
     ]
     if(this.id && this.taxonSearchEnabled) {
       this.taxonSearch.fillValue('', this.id);
@@ -96,12 +95,11 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   }
 
   isAggregateMap() {
-      const is_aggregate = this.obsMapOptions.getOption("aggregate")
-      return !!is_aggregate;
+    return this.obsMapData.type == "geojson";
   }
 
   getObservationCount() {
-      return this.obsMapData.observationCount;
+    return this.obsMapData.observationCount;
   }
 
   onTableActivate(e) {

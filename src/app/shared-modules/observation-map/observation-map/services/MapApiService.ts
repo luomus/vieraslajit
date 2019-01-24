@@ -28,10 +28,8 @@ export class MapApiService {
                 this.obsMapData.observationCount = res.total
                 if (res.total > 2000) {
                     this.updateAggregate();
-                    this.obsMapOptions.setOptionSilent('aggregate', true);
                 } else {
                     this.updateObservationList();
-                    this.obsMapOptions.setOptionSilent('aggregate', false);
                 }
             });
         });
