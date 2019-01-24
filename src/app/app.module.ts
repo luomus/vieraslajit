@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -12,7 +12,10 @@ import { EditcmsModule } from './shared-modules/editcms/editcms.module';
 import { SharedModule } from './shared/shared.module';
 import { UserService } from './shared/service/user.service';
 
+import { registerLocaleData } from '@angular/common';
+import localeFi from '@angular/common/locales/fi';
 
+registerLocaleData(localeFi);
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -45,7 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SpinnerModule,
     EditcmsModule
   ],
-  providers: [UserService],
+  providers: [UserService, { provide: LOCALE_ID, useValue: 'fi' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

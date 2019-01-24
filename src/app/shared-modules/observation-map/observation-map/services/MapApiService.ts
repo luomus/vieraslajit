@@ -3,6 +3,10 @@ import { ObsMapOptions, ObsMapOption } from "./data/ObsMapOptions";
 import { ObservationService } from "../../../../shared/service/observation.service";
 import { Injectable } from "@angular/core";
 import { AreaService } from "../../../../shared/service/area.service";
+import { YkjService } from "../import-from-laji-front/ykj.service";
+import { environment } from "../../../../../environments/environment";
+import { ApiService, LajiApi } from "../../../../shared/api/api.service";
+import { WarehouseQueryInterface } from "../import-from-laji-front/WarehouseQueryInterface";
 
 /* Listens to updates in obsMapOptions
     and updates obsMapObservations accordingly */
@@ -11,12 +15,23 @@ import { AreaService } from "../../../../shared/service/area.service";
 
 export class MapApiService {
 
-    constructor(private obsMapOptions:ObsMapOptions, private obsMapObservations:ObsMapData, private observationService: ObservationService, private areaService: AreaService) {}
+    constructor(private obsMapOptions:ObsMapOptions, private obsMapData:ObsMapData,
+                private observationService: ObservationService,
+                private areaService: AreaService,
+                private ykjService: YkjService,
+                private apiService: ApiService) {}
 
     initialize() {
         /* Update observation list whenever there's a change in options */
         this.obsMapOptions.eventEmitter.addListener("change", ()=>{
-            this.updateObservationList();
+            this.getObservationCount().subscribe(res => {
+                this.obsMapData.observationCount = res.total
+                if (res.total > 2000) {
+                    this.updateAggregate();
+                } else {
+                    this.updateObservationList();
+                }
+            });
         });
     }
 
@@ -24,15 +39,34 @@ export class MapApiService {
         return this.areaService.getMunicipalities("municipality");
     }
 
+    private getWarehouseQuery() {
+        const query: WarehouseQueryInterface = {
+            invasive: true
+        }
+        if (this.obsMapOptions.getOption("id")) query["taxonId"] = this.obsMapOptions.getOption("id");
+        if (this.obsMapOptions.getOption("municipality")) query["area"] = this.obsMapOptions.getOption("municipality");
+        if (this.obsMapOptions.getOption("personToken")) query["observerPersonToken"] = this.obsMapOptions.getOption("personToken");
+        return query;
+    }
+
+    private updateAggregate() {
+        this.ykjService.getGeoJson({
+            invasive: true,
+            ...this.getWarehouseQuery()
+        }, "10kmCenter").subscribe((res) => {
+            this.obsMapData.setData(res, 'geojson');
+            this.obsMapOptions.loadState=false;
+        })
+    }
+
     private updateObservationList() {
         this.getObservations().subscribe((r)=>{
-            console.log(r);
-            this.obsMapObservations.removeAll();
+            this.obsMapData.removeData();
             let observations = [];
             r.results.forEach(element => {
                 observations.push(element);
             });
-            this.obsMapObservations.addObservations(observations);
+            this.obsMapData.setData(observations, 'observations');
             this.obsMapOptions.loadState=false;
         });
     }
@@ -41,7 +75,7 @@ export class MapApiService {
         let query = {
             invasive: true,
             page: 1,
-            pageSize: 200,
+            pageSize: 10000,
             selected: [
                 "unit.taxonVerbatim", "unit.linkings.taxon.scientificName",
                 "unit.linkings.taxon.qname", "gathering.conversions.wgs84CenterPoint.lat",
@@ -55,7 +89,12 @@ export class MapApiService {
         if(this.obsMapOptions.getOption("municipality")) query["finnishMunicipalityId"] = this.obsMapOptions.getOption("municipality");
 
         this.obsMapOptions.loadState = true;
-        this.obsMapObservations.removeAll();
+        this.obsMapData.removeData();
         return this.observationService.getObservations(query);
+    }
+
+    private getObservationCount() {
+        const query: WarehouseQueryInterface = {...this.getWarehouseQuery()}
+        return this.apiService.warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount, "count", query)
     }
 }

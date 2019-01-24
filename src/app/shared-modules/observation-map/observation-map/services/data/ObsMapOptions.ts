@@ -1,8 +1,8 @@
 import { EventEmitter } from "events";
 import { Injectable } from "../../../../../../../node_modules/@angular/core";
-import { ObservationMapModule } from "../../../observation-map.module";
 
-export type ObsMapOption = "id" | "list" | "municipality" | "personToken" | "taxonSearch";
+export type ObsMapOption = "id" | "list" | "municipality" | "personToken"
+                           | "taxonSearch";
 
 // TODO: typechecking for Options
 type Options = {
@@ -14,7 +14,7 @@ type Options = {
 export class ObsMapOptions {
 
     private options:Options;
-    
+
     private _loadState:boolean = false;
     eventEmitter:EventEmitter = new EventEmitter();
 

@@ -3,10 +3,11 @@ import { UserService } from '../service/user.service';
 import {Router} from '@angular/router';
 import { InformationService } from '../service/information.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subscription, of } from 'rxjs';
 import { StaticContent, findContentID } from './../../../assets/i18n/cms-content';
 import * as $ from 'jquery';
 import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';
+import { mergeMap, map, catchError, concatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'vrs-navbar',
@@ -126,11 +127,18 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
    * Fetches static content from API with rootId to populate navbar menu
    */
   update(){
-    this.informationService.getInformation(this.rootId).subscribe((data) => {
-      this.menu= [];
-      for(let c of data.children) {
-          this.menu.push(c);
-      }
+    this.menu = [];
+    this.informationService.getInformation(this.rootId).pipe(
+      mergeMap((base) => {
+        return of(...base.children)
+      }),
+      concatMap((header) => {
+        return this.informationService.getInformation(header.id)
+      })
+    )
+    .subscribe((data) => {
+      this.menu.push(data)
+      this.cd.markForCheck()
     });
   }
 

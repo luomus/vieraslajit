@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
+  vierasCollection: 'HR.2049',
   lajiApi: {
-    url: 'https://apitest.laji.fi/v0/',
-    accessToken: 'kFEdTHdoHEY2c98BokkdjhOLx8PUHdjbDTFeIkDLkWLwGwYcz8RwA3UxI1ybegzx'
+    url: 'https://vieraslajit.fi/api'
   },
   lajiAuth: {
     authUrl: 'https://fmnh-ws-test.it.helsinki.fi/laji-auth/',
