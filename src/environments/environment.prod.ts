@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   vierasCollection: 'HR.2049',
   lajiApi: {
-    url: 'https://vieraslajit.fi/api'
+    url: 'https://vieraslajit-dev.laji.fi/api'
   },
   lajiAuth: {
     authUrl: 'https://fmnh-ws-test.it.helsinki.fi/laji-auth/',
