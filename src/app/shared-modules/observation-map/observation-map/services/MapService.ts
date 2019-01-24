@@ -28,7 +28,7 @@ export class MapService {
             zoom: 2,
             zoomToData: false,
             tileLayerName: TileLayerName.maastokartta,
-            tileLayerOpacity: 0.5
+            tileLayerOpacity: 0.25
         });
         this.obsMapData.eventEmitter.subscribe((data: ObsMapDataMeta) => {
             if(data.type == 'observations') {
