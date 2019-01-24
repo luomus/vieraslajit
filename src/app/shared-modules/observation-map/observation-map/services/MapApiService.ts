@@ -53,7 +53,7 @@ export class MapApiService {
         this.ykjService.getGeoJson({
             invasive: true,
             ...this.getWarehouseQuery()
-        }, "100kmCenter").subscribe((res) => {
+        }, "10kmCenter").subscribe((res) => {
             this.obsMapData.setData(res, 'geojson');
             this.obsMapOptions.loadState=false;
         })
