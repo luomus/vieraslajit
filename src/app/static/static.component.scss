@@ -15,25 +15,18 @@ h1 {
 }
 
 .static-content {
-    padding-left: 2em;
-    margin-left: 3em;
-
     max-width:39em;
-
-    @include media-breakpoint-down(xs){
-        padding-right: 1em;
-        padding-left: 1em;
-        margin-right: 0em;
-        margin-left: 2em;
-    }
 }
-
 
 .static-spinner {
     display: block;
     margin-top: 5em;
     margin-bottom: 10em;
     padding: 5em;
+}
+
+nav .breadcrumb {
+    background: $neutral-3;
 }
 
 /* Wordpress styles */

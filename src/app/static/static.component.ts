@@ -41,19 +41,20 @@ export class StaticComponent implements OnInit, OnChanges {
   getInformation(id) {
     this.loading = true;
     this.informationService.getInformation(id).subscribe((data) => {
-        this.scontent = data;
-        this.scontent["content"] = this.parseWP(this.scontent["content"]);
-        this.child_pages = data.children;
-        if(data.children) {
-          for(let c of this.child_pages) {
-            this.informationService.getInformation(c.id).subscribe((data) => {
-              c.data = data;
-              this.loading=false;
-            });
-          }
-        } else {
-          this.loading = false;
+      this.scontent = data;
+      this.scontent["content"] = this.parseWP(this.scontent["content"]);
+      this.scontent["directParent"] = data.parents[data.parents.length - 1];
+      this.child_pages = data.children;
+      if(data.children) {
+        for(let c of this.child_pages) {
+          this.informationService.getInformation(c.id).subscribe((data) => {
+            c.data = data;
+            this.loading=false;
+          });
         }
+      } else {
+        this.loading = false;
+      }
     });
   }
 
