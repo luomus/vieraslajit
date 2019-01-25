@@ -43,7 +43,6 @@ export class StaticComponent implements OnInit, OnChanges {
     this.informationService.getInformation(id).subscribe((data) => {
         this.scontent = data;
         this.scontent["content"] = this.parseWP(this.scontent["content"]);
-        console.log(this.scontent);
         this.child_pages = data.children;
         if(data.children) {
           for(let c of this.child_pages) {
