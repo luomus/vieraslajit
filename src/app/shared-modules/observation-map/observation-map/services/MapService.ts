@@ -35,7 +35,7 @@ export class MapService {
                 if(this.obsMapOptions.getOption('municipality') &&
                    this.obsMapOptions.getOption('municipality').length > 0 && data.payload.length > 0) {
                     this.zoomAt([data.payload[0].gathering.conversions.wgs84CenterPoint.lat,
-                        data.payload[0].gathering.conversions.wgs84CenterPoint.lon], 3);
+                        data.payload[0].gathering.conversions.wgs84CenterPoint.lon], 6);
                     }
                     this.map.setData(this.getObservationMapData(this.getGeoJSONFromObservations(data.payload)));
             } else if (data.type == 'geojson') {
