@@ -25,7 +25,11 @@
     <div class="col-12 col-sm-9">
       <a [routerLink]="['/taxon/' + selectedInfo.id]">{{selectedInfo.taxonVerbatim.charAt(0).toUpperCase() + selectedInfo.taxonVerbatim.substr(1)}} (<i>{{selectedInfo.scientificName}}</i>)</a>
       <br>
-      {{selectedInfo.team}} {{selectedInfo.municipalityDisplayname}} {{selectedInfo.displayDateTime}}
+      <div *ngFor="let name of selectedInfo.team">
+        {{name}}
+        <br>
+      </div>
+      {{selectedInfo.municipalityDisplayname}}, {{selectedInfo.displayDateTime}}
       <br>
       {{selectedInfo.reliability}}
     </div>

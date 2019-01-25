@@ -139,6 +139,7 @@ nav {
         flex-direction: row;
         justify-content: space-between;
         .link {
+            color: inherit;
             display: inline-block;
             padding: 1em 2em;
             border-bottom: 3px solid $primary-7;

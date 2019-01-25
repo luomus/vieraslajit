@@ -104,8 +104,11 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
       this.renderer.listen(el, "mouseenter", ()=>{
         dropdown.toggle(true);
       })
+      this.renderer.listen(el, "click", ()=>{
+        dropdown.toggle(false);
+      })
       this.renderer.listen(el, "mouseleave", ()=>{
-        dropdown.toggle(true);
+        dropdown.toggle(false);
       })
     })
   }
