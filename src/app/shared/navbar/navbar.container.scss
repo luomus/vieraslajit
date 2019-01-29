@@ -1,0 +1,9 @@
+@import '~bootstrap/scss/bootstrap-grid';
+
+.mobileHeightFix {
+    margin-bottom: 55px;
+
+    @include media-breakpoint-down(xs) {
+        margin-bottom: 52px;
+    }
+}

@@ -18,7 +18,7 @@ export class TaxonBrowserApiService {
 
     constructor(private settingsService:TaxonBrowserApiSettingsService, private apiService:ApiService, private translate:TranslateService) {
         this.query = { page: 1, pageSize: 12,
-            invasiveSpeciesFilter: true,onlyFinnish: false, lang: this.settingsService.apiSettings.lang,
+            invasiveSpeciesFilter: true, lang: this.settingsService.apiSettings.lang,
             includeMedia: true, includeDescriptions: true , selectedFields: [ 'vernacularName', 'scientificName', 'invasiveSpeciesEstablishment', 'administrativeStatuses', 'id', 'species', 'finnish' ],
             sortOrder: 'finnish_name'
         };
@@ -27,6 +27,7 @@ export class TaxonBrowserApiService {
     initialize() {
         this.settingsService.eventEmitter.addListener("change", ()=>{
             this.updateQuery();
+            console.log(this.query);
             this.updateTaxa();
         });
     }

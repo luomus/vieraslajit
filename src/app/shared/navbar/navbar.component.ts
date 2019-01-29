@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ElementRef, ChangeDetectorRef, Input, OnDestroy } from '@angular/core';
 import { UserService } from '../service/user.service';
 import {Router} from '@angular/router';
 import { InformationService } from '../service/information.service';
@@ -14,19 +14,19 @@ import { mergeMap, map, catchError, concatMap } from 'rxjs/operators';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit {
+export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit, OnDestroy {
   loginUrl = '#';
   fixedTop = false;
   isCollapsed = false;
   loggedIn = false;
-  menu: Array<any> = new Array();
   loginSub: Subscription;
   private onLangChange: Subscription;
   rootId: string = "";
   currentId: string= "";
   private dropdown_user_bound = false;
+  private scrollListener;
 
-  mobile = false;
+  @Input() menu;
 
   @ViewChildren(BsDropdownDirective) d : QueryList<BsDropdownDirective>;
 
@@ -56,32 +56,15 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   }
 
   ngOnInit() {
-    this.updateMobileMode();
     this.onLangChange = this.translate.onLangChange.subscribe((event) =>{
       this.setCMSRootId(event.lang);
-      this.update();
+      // this.update();
     });
     this.zone.runOutsideAngular(() => {
-      $(window).resize(() => {
-        this.updateMobileMode();
-      });
-      $(window).on('scroll', ()=>{
+      this.scrollListener = this.renderer.listen(window, 'scroll', () => {
         this.updateFixedTop();
-      });
+      })
     });
-  }
-
-  private updateMobileMode() {
-    const _mobile = this.mobile;
-    if (window.innerWidth < 768) {
-      this.mobile = true;
-    } else {
-      this.mobile = false;
-    }
-    if (_mobile !== this.mobile) {
-      this.updateFixedTop();
-      this.cd.detectChanges();
-    }
   }
 
   private updateFixedTop() {
@@ -127,25 +110,6 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   }
 
   /**
-   * Fetches static content from API with rootId to populate navbar menu
-   */
-  update(){
-    this.menu = [];
-    this.informationService.getInformation(this.rootId).pipe(
-      mergeMap((base) => {
-        return of(...base.children)
-      }),
-      concatMap((header) => {
-        return this.informationService.getInformation(header.id)
-      })
-    )
-    .subscribe((data) => {
-      this.menu.push(data)
-      this.cd.markForCheck()
-    });
-  }
-
-  /**
    * Changes root id used in static content API call when language changes
    */
 
@@ -168,6 +132,9 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   ngOnDestroy(){
     this.loginSub ? this.loginSub.unsubscribe() : null;
     this.onLangChange ? this.onLangChange.unsubscribe() : null;
+    this.cd.detach();
+    if (this.scrollListener) {
+      this.scrollListener();
+    }
   }
-
 }

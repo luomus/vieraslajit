@@ -80,37 +80,6 @@
             </div>
           </div> <!-- /card -->
         </ng-container>
-        
-        <!-- <div class="card" id="taxoncard-right">
-          <div class="card-header">
-            <span translate>taxon.identification</span>
-          </div>
-          <div class="row">
-
-            <div class="col-sm-12 col-md-6">
-              <div class="card-body">
-                <div class="card-text">
-                  <button class="btn vrs-button" routerLink='/taxon/{{id}}/comparison' translate>comparison.title</button>
-                  <br>
-                  <br>
-                  <span translate>comparison.text</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6">
-              <div class="card-body">
-                <div class="card-text">
-                  <a routerLink="/form/MHL.9" class="btn vrs-button secondary" translate>Tunnistusapu</a>
-                  <br>
-                  <br>
-                  <span translate>taxon.helpText</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div> -->
 
         <div class="taxon-card-map">
           <div class="">
@@ -132,63 +101,6 @@
       </div>
 
       <ng-template #infoAndLajifiTemplate>
-        <!-- <div class="card" id="taxoncard-right">
-          <div class="card-header">
-            <span translate>taxon.card</span>
-          </div>
-          <div class="card-block">
-            <div class="card-body">
-              <div>
-                <strong>{{'taxon.name' | translate}}</strong>
-                {{taxon?.vernacularName}}
-              </div>
-              <div>
-                <strong>{{'taxon.scientific' | translate}}</strong>
-                <em>{{taxon?.scientificName}}</em>
-              </div>
-              <div>
-                <strong>{{'taxon.establishedFin' | translate}}</strong>
-                <span translate>{{taxon?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
-              </div>
-              <div>
-                <strong>{{'taxon.occurrence' | translate}}</strong>
-                <span>{{(taxon?.occurrenceInFinland | label: 'MX.occurrenceInFinlandEnum':lang | async) || 'taxon.unknown' | translate
-                  }}
-                </span>
-              </div>
-              <div>
-                <strong>{{'taxonomy.quarantinePlantPest' | translate}}</strong>
-                <span translate>{{quarantinePlantPest == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
-              </div>
-              <hr/>
-              <ng-container *ngIf="taxon?.administrativeStatuses">
-                <div>
-                  <strong translate>taxon.administrative</strong>
-                  <ul>
-                    <li *ngFor="let status of taxon.administrativeStatuses">
-                      {{status | label: 'MX.adminStatusEnum':lang | async}}
-                    </li>
-                  </ul>
-                </div>
-              </ng-container>
-            </div>
-          </div>
-        </div> -->
-        <!-- <div class="card" id="taxoncard-right">
-          <div class="card-header">
-            <a href="http://tun.fi/{{id}}" target="_blank">
-              <img src="https://laji.fi/static/images/icons/favicon.ico" style="margin-Top:-3px" alt="laji.fi">
-            </a>
-            <span translate>Laji.fi</span>
-          </div>
-          <div class="card-block">
-            <div class="card-body">
-              <span class="card-text" translate>taxon.lajiFi</span>
-              <a href="http://tun.fi/{{id}}" target="_blank">http://tun.fi/{{id}}</a>
-            </div>
-          </div>
-        </div> -->
-
         <hr>
         <div class="text-center">
           <a class='laji-fi-link' href='http://tun.fi/{{id}}'>Tarkastele lajia laji.fi sivustolla</a>

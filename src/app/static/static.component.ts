@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { InformationService } from '../shared/service/information.service';
 import { Router } from '@angular/router';
+import { parseWP } from '../shared/pipe/parse-wp.pipe';
 
 /**
  * Renders content from CMS.
@@ -41,31 +42,20 @@ export class StaticComponent implements OnInit, OnChanges {
   getInformation(id) {
     this.loading = true;
     this.informationService.getInformation(id).subscribe((data) => {
-        this.scontent = data;
-        this.scontent["content"] = this.parseWP(this.scontent["content"]);
-        this.child_pages = data.children;
-        if(data.children) {
-          for(let c of this.child_pages) {
-            this.informationService.getInformation(c.id).subscribe((data) => {
-              c.data = data;
-              this.loading=false;
-            });
-          }
-        } else {
-          this.loading = false;
+      this.scontent = data;
+      this.scontent["content"] = parseWP(this.scontent["content"]);
+      this.scontent["directParent"] = data.parents[data.parents.length - 1];
+      this.child_pages = data.children;
+      if(data.children) {
+        for(let c of this.child_pages) {
+          this.informationService.getInformation(c.id).subscribe((data) => {
+            c.data = data;
+            this.loading=false;
+          });
         }
+      } else {
+        this.loading = false;
+      }
     });
   }
-
-  parseWP(data:string): string{
-    // Replace captions with <figcaption>
-    // with linked image
-    const regexLink = /\[caption[^\]]*\](<a.+?<\/a>)(.+?(?=\[\/caption\]))\[\/caption\]/mg;
-    // just the image
-    const regexImg = /\[caption[^\]]*\](<img.+?(?=\/>)\/>)(.+?(?=\[\/caption\]))\[\/caption\]/mg;
-    let output = data.replace(regexLink, '<figure>$1<figcaption>$2</figcaption></figure>');
-    output = output.replace(regexImg, '<figure>$1<figcaption>$2</figcaption></figure>');
-    return output
-  }
-
 }

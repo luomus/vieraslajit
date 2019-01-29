@@ -1,0 +1,25 @@
+@import './vars';
+
+/* Wordpress styles */
+
+:host ::ng-deep .alignright {
+    float:right;
+    text-align: center;
+    margin: 5px 0px 5px 20px;
+}
+
+:host ::ng-deep {
+    figure {
+        display: table;
+        font-style: italic;
+        color: $neutral-6;
+        font-size: 0.7em;
+        text-indent: 0;
+        margin: 0.5em;
+        padding: 0.5em;
+        figcaption {
+            display: table-caption;
+            caption-side: bottom;
+        }
+    }
+}

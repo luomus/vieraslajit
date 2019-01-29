@@ -12,7 +12,8 @@ import {
   OnDestroy,
   AfterViewInit,
   ElementRef,
-  ViewChild
+  ViewChild,
+  Renderer2
 } from '@angular/core';
 import { Autocomplete } from '../../shared/model/Autocomplete';
 import { WarehouseQueryCount } from '../../shared/model/Warehouse'
@@ -63,6 +64,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   groupId = 'MVL.1';
 
   @ViewChild('omniElement') omniElement: ElementRef;
+  @ViewChild('omniInput') omniInput: ElementRef;
 
 
   constructor(
@@ -72,6 +74,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
     private taxonservice: TaxonService,
     private router: Router,
     private translate: TranslateService,
+    private renderer: Renderer2,
     viewContainerRef: ViewContainerRef
   ) {
     this.el = viewContainerRef.element.nativeElement;
@@ -91,6 +94,9 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
     } else {
       this.resultsDirection = 'right';
     }
+    this.renderer.listen(this.omniInput.nativeElement, 'blur', () => {
+      this.close();
+    })
   }
   
   ngOnChanges() {

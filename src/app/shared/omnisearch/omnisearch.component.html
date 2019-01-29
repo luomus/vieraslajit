@@ -1,7 +1,7 @@
 <div class="form-group omni-search" #omniElement *ngIf="visible" (keyup)="keyEvent($event)">
   <div>
     <span class="oi oi-magnifying-glass"></span>
-    <input type="text" class="form-control input-sm omni" id="search-box"
+    <input #omniInput type="text" class="form-control input-sm omni" id="search-box"
       [formControl]="searchControl" placeholder="{{'omnisearch.search' | translate}}"
       autoComplete="off" />
   </div>
@@ -23,11 +23,11 @@
               <img [src]="'assets/images/taxon-groups/'+groupId+'.svg'">
             </div>
             <div class="col-10 taxon-match" *ngIf="!comparisonView;else comparisonTemplate">
-              <a [routerLink]="['/taxon/' + taxon.key]">
+              <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()">
                 <span class="vernacularName">{{taxon.payload.vernacularName}}</span>
               </a>
               <br>
-              <a [routerLink]="['/taxon/' + taxon.key]">
+              <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()">
                 <span class="scientificName" [ngClass]="{cursive: taxon.payload.cursiveName}">{{taxon.payload.scientificName}}</span>
               </a>
               <br>
