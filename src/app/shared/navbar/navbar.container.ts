@@ -7,10 +7,10 @@ import { findContentID, StaticContent } from "../../../assets/i18n/cms-content";
 
 @Component({
     selector: `vrs-navbar-wrapper`,
-    templateUrl: `./navbar-wrapper.component.html`,
-    styleUrls: [`./navbar-wrapper.component.scss`]
+    templateUrl: `./navbar.container.html`,
+    styleUrls: [`./navbar.container.scss`]
 })
-export class NavbarWrapperComponent implements OnInit{
+export class NavbarContainer implements OnInit{
     mobile = false;
     menu = [];
     private rootId = "";
@@ -21,6 +21,7 @@ export class NavbarWrapperComponent implements OnInit{
     ngOnInit() {
         this.setCMSRootId('fi');
         this.updateInformation();
+        this.updateMobileMode();
         this.zone.runOutsideAngular(() => {
             $(window).resize(() => {
                 this.updateMobileMode();

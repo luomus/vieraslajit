@@ -33,7 +33,7 @@ import { CapitalizePipe } from './pipe/capitalize.pipe';
 import { UserMenuComponent } from './navbar/user-menu/user-menu.component';
 import { PersonMenuComponent } from './navbar/user-menu/person-menu.component';
 import { HamburgerBarComponent } from './navbar/hamburger-bar/hamburger-bar.component';
-import { NavbarWrapperComponent } from './navbar/navbar-wrapper.component';
+import { NavbarContainer } from './navbar/navbar.container';
 import { ParseWPPipe } from './pipe/parse-wp.pipe';
 /**
  * Provides common utilities for other modules
@@ -56,9 +56,9 @@ import { ParseWPPipe } from './pipe/parse-wp.pipe';
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, NavbarWrapperComponent, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent ],
+  declarations: [NavbarComponent, NavbarContainer, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent ],
   providers: [],
-  exports: [NavbarComponent, NavbarWrapperComponent, RouterModule, FooterComponent, SpinnerModule, EditcmsModule, ObservationMapModule,
+  exports: [NavbarComponent, NavbarContainer, RouterModule, FooterComponent, SpinnerModule, EditcmsModule, ObservationMapModule,
     SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, CapitalizePipe]
 })
 export class SharedModule {
