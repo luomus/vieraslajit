@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ElementRef, ChangeDetectorRef, Input } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ElementRef, ChangeDetectorRef, Input, OnDestroy } from '@angular/core';
 import { UserService } from '../service/user.service';
 import {Router} from '@angular/router';
 import { InformationService } from '../service/information.service';
@@ -14,7 +14,7 @@ import { mergeMap, map, catchError, concatMap } from 'rxjs/operators';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit {
+export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit, OnDestroy {
   loginUrl = '#';
   fixedTop = false;
   isCollapsed = false;
@@ -24,6 +24,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   rootId: string = "";
   currentId: string= "";
   private dropdown_user_bound = false;
+  private scrollListener;
 
   @Input() menu;
 
@@ -60,9 +61,9 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
       // this.update();
     });
     this.zone.runOutsideAngular(() => {
-      $(window).on('scroll', ()=>{
+      this.scrollListener = this.renderer.listen(window, 'scroll', () => {
         this.updateFixedTop();
-      });
+      })
     });
   }
 
@@ -131,6 +132,9 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit 
   ngOnDestroy(){
     this.loginSub ? this.loginSub.unsubscribe() : null;
     this.onLangChange ? this.onLangChange.unsubscribe() : null;
+    this.cd.detach();
+    if (this.scrollListener) {
+      this.scrollListener();
+    }
   }
-
 }
