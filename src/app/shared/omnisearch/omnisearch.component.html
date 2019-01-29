@@ -23,11 +23,11 @@
               <img [src]="'assets/images/taxon-groups/'+groupId+'.svg'">
             </div>
             <div class="col-10 taxon-match" *ngIf="!comparisonView;else comparisonTemplate">
-              <a [routerLink]="['/taxon/' + taxon.key]">
+              <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()">
                 <span class="vernacularName">{{taxon.payload.vernacularName}}</span>
               </a>
               <br>
-              <a [routerLink]="['/taxon/' + taxon.key]">
+              <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()">
                 <span class="scientificName" [ngClass]="{cursive: taxon.payload.cursiveName}">{{taxon.payload.scientificName}}</span>
               </a>
               <br>

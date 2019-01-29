@@ -7,8 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 
-import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.component';
-
 @Component({
   selector: 'vrs-taxon-card',
   templateUrl: './taxon-card.component.html',
@@ -16,8 +14,6 @@ import { OmnisearchComponent } from '../../shared/omnisearch/omnisearch.componen
 })
 
 export class TaxonCardComponent implements OnInit, OnDestroy {
-  @ViewChild(OmnisearchComponent) omnisearch:OmnisearchComponent;
-
   private sub: Subscription;
   private onLangChange: Subscription;
   public loading = true; // spinner true on start
@@ -48,11 +44,8 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     this.comparison = false;
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
-      /* Don't run omnisearch.close on the first route change */
       if(this.first) {
         this.first = false;
-      } else {
-        this.omnisearch.close();
       }
       this.scrollTop();
       this.update();
