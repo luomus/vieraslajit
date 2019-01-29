@@ -30,7 +30,10 @@ export class TaxonBrowserComponent implements OnInit{
     }
 
     ngOnInit() {
+        this.settingsService.lang = this.translate.currentLang;
+        
         this.apiService.initialize();
+
         this.apiService.eventEmitter.addListener('change', ()=>{
             this.loading=true;
         });
@@ -44,7 +47,6 @@ export class TaxonBrowserComponent implements OnInit{
         });
         this.parameterService.init();
 
-        this.settingsService.lang = this.translate.currentLang;
         this.langChangeSub = this.translate.onLangChange.subscribe((lang)=> {
             this.settingsService.apiSettings.lang = lang;
         })
