@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { EditcmsModule } from '../shared-modules/editcms/editcms.module';
 import { SpinnerModule } from '../shared-modules/spinner/spinner.module';
 import { NewsHeaderComponent } from './news-header/news-header.component';
+import { SharedModule } from '../shared/shared.module';
 
 describe('NewsComponent', () => {
   let component: NewsComponent;
@@ -18,7 +19,7 @@ describe('NewsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ NewsComponent, NewsHeaderComponent],
       imports: [HttpClientModule, TranslateModule.forRoot(),EditcmsModule, NgxPaginationModule,
-                SpinnerModule],
+                SpinnerModule, SharedModule],
       providers: [ApiService, NewsService]
     })
     .compileComponents();
