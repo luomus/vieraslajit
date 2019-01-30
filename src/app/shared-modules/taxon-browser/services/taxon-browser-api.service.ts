@@ -27,7 +27,6 @@ export class TaxonBrowserApiService {
     initialize() {
         this.settingsService.eventEmitter.addListener("change", ()=>{
             this.updateQuery();
-            console.log(this.query);
             this.updateTaxa();
         });
     }
@@ -38,7 +37,7 @@ export class TaxonBrowserApiService {
             tempAdminStatusFilters.push('MX.euInvasiveSpeciesList');
         }
         if (this.settingsService.apiSettings.FiList) {
-            tempAdminStatusFilters.push('MX.nationalInvasiveSpeciesStrategy');
+            tempAdminStatusFilters.push('MX.nationallySignificantInvasiveSpecies');
         }
         this.query.adminStatusFilters = tempAdminStatusFilters.toString();
 
