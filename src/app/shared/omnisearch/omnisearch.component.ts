@@ -94,9 +94,13 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
     } else {
       this.resultsDirection = 'right';
     }
-    this.renderer.listen(this.omniInput.nativeElement, 'blur', () => {
-      this.close();
-    })
+    this.renderer.listen(window, 'click', (e) => {
+      if (isDescendant(this.omniElement.nativeElement, e.target)) {
+        this.omniInput.nativeElement.focus();
+      } else {
+        this.close();
+      }
+    });
   }
   
   ngOnChanges() {
@@ -204,4 +208,15 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
 
   }
 
+}
+
+function isDescendant(parent, child) {
+  var node = child.parentNode;
+  while (node != null) {
+      if (node == parent) {
+          return true;
+      }
+      node = node.parentNode;
+  }
+  return false;
 }
