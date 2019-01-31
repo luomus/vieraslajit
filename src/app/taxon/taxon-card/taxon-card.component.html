@@ -12,7 +12,7 @@
         </div>
         <div class="col-auto">
           <button class="btn vrs-button" routerLink='/taxon/{{id}}/comparison' translate>comparison.title</button>
-          <button routerLink="/form/MHL.9" class="btn vrs-button primary" translate>Tunnistusapu</button>
+          <button routerLink="/form/JX.123757" id="report" class="btn vrs-button primary" translate>taxon.report</button>
         </div>
       </div>
       <h5 [class.cursive]="taxon?.cursiveName">{{taxon?.scientificName}}</h5>
@@ -86,11 +86,8 @@
             <h5>Havaintokartta</h5>
             <vrs-observation-map [id]="id" [mapHeight]="600"></vrs-observation-map>
             <div class="row">
-              <div class="col-6">
+              <div class="col-12">
                   <button [routerLink]="['/observations']" [queryParams]="{id: id}" class="btn vrs-button">Havaintokarttanäkymään</button>
-              </div>
-              <div class="col-6">
-                  <button routerLink="/form/JX.123757" id="report" class="btn vrs-button primary" translate>taxon.report</button>
               </div>
             </div>
             <br>

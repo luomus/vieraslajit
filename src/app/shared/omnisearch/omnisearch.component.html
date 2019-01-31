@@ -8,7 +8,7 @@
 
   <div style="clear: both"></div>
   <div class="col-12" *ngIf="taxa.length > 0 && search.length > 2">
-    <div class="omni-search-results" [ngClass]='resultsDirection'>
+    <div class="omni-search-results" #omniSearchResults [ngClass]='resultsDirection'>
       <div class="row">
         <div class="col-12 col-md-3 matches">
           <span class="match" *ngFor="let taxon of taxa; let i=index" [ngClass]="{active: i === active, link: i !== active}" (click)="activate(i)">
