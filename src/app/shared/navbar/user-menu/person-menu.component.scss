@@ -2,6 +2,9 @@
 
 :host {
     position: relative;
+    a {
+        font-family: $font-family-base;
+    }
 }
 
 :host .name {
