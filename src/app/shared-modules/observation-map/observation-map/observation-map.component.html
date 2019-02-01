@@ -21,6 +21,8 @@
   <div class="row" [ngClass]="{'hidden': isAggregateMap()}">
     <div class="col-3 selected-observation-left">
       Havainto
+      <br>
+      <a [routerLink]="" (click)="openModal()">Lisätiedot</a>
     </div>
     <div class="col-12 col-sm-9">
       <a [routerLink]="['/taxon/' + selectedInfo.id]">{{selectedInfo.taxonVerbatim.charAt(0).toUpperCase() + selectedInfo.taxonVerbatim.substr(1)}} (<i>{{selectedInfo.scientificName}}</i>)</a>

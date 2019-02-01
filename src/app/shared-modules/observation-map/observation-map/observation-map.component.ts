@@ -8,6 +8,8 @@ import { MapService } from './services/MapService';
 import { ObsMapListComponent } from './obs-map-list/obs-map-list';
 import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
 import { ObsMapData } from './services/data/ObsMapData';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { ObservationModalComponent } from './observation-modal.component';
 
 @Component({
   selector: 'vrs-observation-map',
@@ -30,6 +32,8 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   @ViewChild(TaxonSearchComponent)
   taxonSearch : TaxonSearchComponent
 
+  bsModalRef: BsModalRef;
+
   selectedInfo;
 
   municipalities:Array<any> = [];
@@ -38,7 +42,8 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   constructor(private obsMapOptions:ObsMapOptions,
               private mapApiController:MapApiService,
               private mapController:MapService,
-              private obsMapData: ObsMapData) {}
+              private obsMapData: ObsMapData,
+              private modalService: BsModalService) {}
 
   ngOnInit() {
     this.mapApiController.initialize();
@@ -121,5 +126,9 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
       "id": o.unit.linkings.taxon.qname.substring(14,o.unit.linkings.taxon.qname.length),
       "reliability": o.unit.quality.realiable ? "Luotettava" : ""
     }
+  }
+
+  openModal() {
+    this.bsModalRef = this.modalService.show(ObservationModalComponent, {initialState: {id: 'JX.133230'}, class: 'modal-custom'});
   }
 }
