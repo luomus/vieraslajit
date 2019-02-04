@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
+import { GoogleSearchApiService } from '../api/google-search.api.service';
 
 describe('OmnisearchComponent', () => {
   let component: OmnisearchComponent;
@@ -15,7 +16,7 @@ describe('OmnisearchComponent', () => {
     TestBed.configureTestingModule({
       declarations:[OmnisearchComponent],
       imports:[HttpClientModule,FormsModule,ReactiveFormsModule,RouterTestingModule, TranslateModule.forRoot()],
-      providers:[ ApiService, TaxonService ]
+      providers:[ ApiService, TaxonService, GoogleSearchApiService ]
     })
     .compileComponents();
   }));

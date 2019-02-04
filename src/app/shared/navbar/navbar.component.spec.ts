@@ -11,6 +11,7 @@ import { ApiService } from '../api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared.module';
 import { TaxonService } from '../service/taxon.service';
+import { GoogleSearchApiService } from '../api/google-search.api.service';
 
 
 describe('NavbarComponent', () => {
@@ -21,7 +22,7 @@ describe('NavbarComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ],
       imports: [TranslateModule.forRoot(), ModalModule.forRoot(), CollapseModule.forRoot(), RouterTestingModule, HttpClientModule, SharedModule, BsDropdownModule.forRoot()],
-      providers: [TranslateService, BsModalService, InformationService, ApiService, UserService, TaxonService]
+      providers: [TranslateService, BsModalService, InformationService, ApiService, UserService, TaxonService, GoogleSearchApiService]
     })
     .compileComponents();
   }));

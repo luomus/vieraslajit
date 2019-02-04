@@ -7,9 +7,21 @@
   </div>
 
   <div style="clear: both"></div>
-  <div class="col-12" *ngIf="taxa.length > 0 && search.length > 2">
+  <div class="col-12" *ngIf="open">
     <div class="omni-search-results" #omniSearchResults [ngClass]='resultsDirection'>
-      <div class="row">
+      <div class="row mode-selector">
+        <div class="col-12">
+          <a routerLink="" (click)="contentMode = 'taxon'" [ngClass]="{'mode-active': contentMode === 'taxon'}">Lajit</a>
+          <a routerLink="" (click)="contentMode = 'content'; contentSearch()" [ngClass]="{'mode-active': contentMode === 'content'}">Sisältö</a>
+        </div>
+      </div>
+      <div class="row" *ngIf="contentMode === 'content'">
+        <button (click)="contentSearch()">Hae</button>
+        <div *ngFor="let item of content.items">
+          <h4>{{item?.title}}</h4>
+        </div>
+      </div>
+      <div class="row" *ngIf="contentMode === 'taxon'">
         <div class="col-12 col-md-3 matches">
           <span class="match" *ngFor="let taxon of taxa; let i=index" [ngClass]="{active: i === active, link: i !== active}" (click)="activate(i)">
             {{taxon.value}}
@@ -23,16 +35,16 @@
               <img [src]="'assets/images/taxon-groups/'+groupId+'.svg'">
             </div>
             <div class="col-10 taxon-match" *ngIf="!comparisonView;else comparisonTemplate">
-              <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()">
-                <span class="vernacularName">{{taxon.payload.vernacularName}}</span>
+              <a [routerLink]="['/taxon/' + taxon?.key]" (click)="close()">
+                <span class="vernacularName">{{taxon?.payload?.vernacularName}}</span>
               </a>
               <br>
-              <a [routerLink]="['/taxon/' + taxon.key]" (click)="close()">
-                <span class="scientificName" [ngClass]="{cursive: taxon.payload.cursiveName}">{{taxon.payload.scientificName}}</span>
+              <a [routerLink]="['/taxon/' + taxon?.key]" (click)="close()">
+                <span class="scientificName" [ngClass]="{cursive: taxon?.payload?.cursiveName}">{{taxon?.payload?.scientificName}}</span>
               </a>
               <br>
               <ul>
-                <li *ngFor="let group of taxon.informalTaxonGroups">{{group}}</li>
+                <li *ngFor="let group of taxon?.informalTaxonGroups">{{group}}</li>
               </ul>
             </div>
           </div>
@@ -43,6 +55,10 @@
             <div class="col-md-offset-1 col-md-11 observations" *ngIf="taxon">
               <a [routerLink]="['/observations']" [queryParams]="{id: taxon.key}" (click)="close()">
                 {{taxon.count}}
+              </a>
+              <br>
+              <a [routerLink]="['/form/JX.123757']" (click)="close()">
+                {{'navigation.observations.report' | translate}}
               </a>
             </div>
           </div>

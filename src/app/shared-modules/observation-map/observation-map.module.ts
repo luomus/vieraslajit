@@ -11,18 +11,22 @@ import { ObsMapOptions } from './observation-map/services/data/ObsMapOptions';
 import { ObsMapData } from './observation-map/services/data/ObsMapData';
 import { SpinnerModule } from '../spinner/spinner.module';
 import { YkjService } from './observation-map/import-from-laji-front/ykj.service';
+import { ObservationModalComponent } from './observation-map/observation-modal.component';
+import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
     NgxDatatableModule,
     RouterModule,
-    SpinnerModule
+    SpinnerModule,
+    ModalModule
   ],
   declarations: [
     ObservationMapComponent,
     TaxonSearchComponent,
-    ObsMapListComponent
+    ObsMapListComponent,
+    ObservationModalComponent
   ],
   providers: [
     MapApiService,
@@ -33,6 +37,9 @@ import { YkjService } from './observation-map/import-from-laji-front/ykj.service
   ],
   exports: [
     ObservationMapComponent
+  ],
+  entryComponents: [
+    ObservationModalComponent
   ]
 })
 export class ObservationMapModule { }
