@@ -35,6 +35,7 @@ import { PersonMenuComponent } from './navbar/user-menu/person-menu.component';
 import { HamburgerBarComponent } from './navbar/hamburger-bar/hamburger-bar.component';
 import { NavbarContainer } from './navbar/navbar.container';
 import { ParseWPPipe } from './pipe/parse-wp.pipe';
+import { GoogleSearchApiService } from './api/google-search.api.service';
 /**
  * Provides common utilities for other modules
  */
@@ -67,6 +68,7 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         ApiService,
+        GoogleSearchApiService,
         TaxonService,
         NewsService,
         MetadataService,

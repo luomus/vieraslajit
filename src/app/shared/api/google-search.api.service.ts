@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 export class GoogleSearchApiService {
     baseUrl = environment.googleSearch.url
     engineId = environment.googleSearch.engineId
+    key = environment.googleSearch.key
     constructor(private http: HttpClient) {}
     list(q, optional?) {
         return this.http.get(
@@ -13,6 +14,7 @@ export class GoogleSearchApiService {
             {params: {
                 q: q,
                 cx: this.engineId,
+                key: this.key,
                 ...optional
             }}
         );

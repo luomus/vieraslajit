@@ -28,6 +28,7 @@ import { Router } from '@angular/router'
 import * as $ from 'jquery';
 
 import { TranslateService } from '@ngx-translate/core';
+import { GoogleSearchApiService } from '../api/google-search.api.service';
 
 
 
@@ -50,8 +51,11 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   public searchControl:FormControl = new FormControl();
   public active = 0;
   public taxa = [];
+  public content = {}
   public taxon: any;
   public loading = false;
+
+  public open = false;
 
   private subTaxa: Subscription;
   private subCnt: Subscription;
@@ -59,6 +63,8 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   private el: Element;
 
   resultsDirection = 'right';
+
+  contentMode: 'taxon' | 'content' = 'taxon';
 
   // Informal Taxon Group ID of currently selected taxon
   groupId = 'MVL.1';
@@ -75,6 +81,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
     private router: Router,
     private translate: TranslateService,
     private renderer: Renderer2,
+    private googleApi: GoogleSearchApiService,
     viewContainerRef: ViewContainerRef
   ) {
     this.el = viewContainerRef.element.nativeElement;
@@ -83,6 +90,11 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   ngOnInit() {
     this.inputChange = this.searchControl.valueChanges.pipe(tap(val=>{
       this.search = val;
+      if (val.length > 2) {
+        this.open = true;
+      } else {
+        this.open = false;
+      }
     })).subscribe(()=>{
       this.updateTaxa();
     })
@@ -94,11 +106,18 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
     } else {
       this.resultsDirection = 'right';
     }
+    this.renderer.listen(this.omniInput.nativeElement, 'focus', (e) => {
+      if (this.searchControl.value && this.searchControl.value.length > 2) {
+        this.open = true;
+        this.changeDetector.markForCheck();
+      }
+    });
     this.renderer.listen(window, 'click', (e) => {
       if (isDescendant(this.omniElement.nativeElement, e.target)) {
-        this.omniInput.nativeElement.focus();
+
       } else {
-        this.close();
+        this.open = false;
+        this.changeDetector.markForCheck();
       }
     });
   }
@@ -118,12 +137,13 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
       this.subTaxa.unsubscribe();
     }
   }
+
   close() {
     this.searchControl.setValue('');
     this.search = '';
     this.taxa = [];
-
   }
+
   activate(index: number): void {
     if (this.taxa[index]) {
 
@@ -183,6 +203,13 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
       }
     }
 
+  }
+
+  contentSearch() {
+    this.googleApi.list(this.searchControl.value).subscribe((data)=> {
+      console.log(data);
+      this.content = data;
+    })
   }
 
   private updateTaxa() {
