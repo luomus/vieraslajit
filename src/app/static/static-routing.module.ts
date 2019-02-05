@@ -10,6 +10,7 @@ import { StaticWrapperComponent } from './static-wrapper.component';
  */
 
 const routes: Routes = [
+  { path: '', redirectTo: 'i-2'},
   { path: ':id', component: StaticWrapperComponent }
 ];
 
