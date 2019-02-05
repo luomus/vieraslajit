@@ -17,6 +17,7 @@ h1 {
 
 .static-content {
     max-width:39em;
+    min-width:39em;
 }
 
 .static-spinner {
@@ -28,4 +29,27 @@ h1 {
 
 nav .breadcrumb {
     background: $neutral-3;
+}
+
+.breadcrumb .active {
+    font-weight: 600;
+}
+
+.link {
+    cursor: pointer;
+}
+
+.child-pages {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    font-size: 0.8em;
+    a {
+        color: $neutral-6;
+    }
+    li {
+        display: inline;
+        margin-right: 1em;
+    }
 }

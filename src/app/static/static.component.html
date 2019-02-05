@@ -1,31 +1,19 @@
 <laji-spinner [ngClass]="{'static-spinner': loading}" [spinning]="loading" [hideContentWhileLoading]='true' [fullViewport]='false' >
-<ng-container *ngIf="child_pages">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Tietoa</li>
-            <li class="breadcrumb-item active">{{scontent['directParent'].title}}</li>
-            <li class="breadcrumb-item active" aria-current="page">{{scontent['title']}}</li>
-        </ol>
-    </nav>
-    <tabset>
-        <tab *ngFor="let child of child_pages" heading="{{child.title}}">
-            <ng-container *ngIf="child.data">
-                <vrs-editcms id="{{child.id}}"></vrs-editcms>
-                <div [innerHTML]="child.data.content" class= "childContent"></div>
-            </ng-container>
-        </tab>
-    </tabset>
-</ng-container>
-
-<ng-container *ngIf="scontent && !child_pages">
+<ng-container *ngIf="scontent">
     <vrs-editcms [id]="id.substring(2, id.length)"></vrs-editcms>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Tietoa</li>
-            <li class="breadcrumb-item active">{{scontent['directParent'].title}}</li>
+            <ng-container *ngIf="scontent['parents']">
+                <li *ngFor="let parent of scontent['parents']" class="breadcrumb-item link" [routerLink]="['/static/', parent.id]">{{parent.title}}</li>
+            </ng-container>
             <li class="breadcrumb-item active" aria-current="page">{{scontent['title']}}</li>
         </ol>
     </nav>
+    <ul *ngIf="child_pages" class="child-pages">
+        <li *ngFor="let child of child_pages">
+            <a [routerLink]="['/static/', child.id]">{{child.title}}</a>
+        </li>
+    </ul>
     <div class="static-content" [innerHTML]="scontent['content']"></div>
 </ng-container>
 </laji-spinner>
