@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   vierasCollection: 'HR.2049',
+  baseUrl: 'vieraslajit-dev.laji.fi',
   lajiApi: {
     url: 'https://vieraslajit-dev.laji.fi/api'
   },
