@@ -7,6 +7,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { GoogleSearchApiService } from '../api/google-search.api.service';
+import { SpinnerModule } from '../../shared-modules/spinner/spinner.module';
 
 describe('OmnisearchComponent', () => {
   let component: OmnisearchComponent;
@@ -15,7 +16,7 @@ describe('OmnisearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations:[OmnisearchComponent],
-      imports:[HttpClientModule,FormsModule,ReactiveFormsModule,RouterTestingModule, TranslateModule.forRoot()],
+      imports:[HttpClientModule,FormsModule,ReactiveFormsModule,RouterTestingModule, TranslateModule.forRoot(), SpinnerModule],
       providers:[ ApiService, TaxonService, GoogleSearchApiService ]
     })
     .compileComponents();

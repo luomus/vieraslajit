@@ -13,13 +13,19 @@
         <div class="col-12">
           <a routerLink="" (click)="contentMode = 'taxon'" [ngClass]="{'mode-active': contentMode === 'taxon'}">Lajit</a>
           <a routerLink="" (click)="contentMode = 'content'; contentSearch()" [ngClass]="{'mode-active': contentMode === 'content'}">Sisältö</a>
+          <span *ngIf="contentMode === 'content'" class="oi oi-reload" (click)="contentSearch()"></span>
         </div>
       </div>
-      <div class="row" *ngIf="contentMode === 'content'">
-        <button (click)="contentSearch()">Hae</button>
-        <div *ngFor="let item of content.items">
-          <h4>{{item?.title}}</h4>
+      <div class="content-results" *ngIf="contentMode === 'content'">
+        <laji-spinner [spinning]="googleApiLoading" [hideContentWhileLoading]='true' [fullViewport]='false'>
+        <ng-container *ngIf="!content.items">
+          Ei hakutuloksia
+        </ng-container>
+        <div class="content-item" *ngFor="let item of content.items">
+          <h4 [routerLink]="formatContentUrl(item?.formattedUrl)">{{item?.title}}</h4>
+          <p [innerHTML]="item?.snippet"></p>
         </div>
+        </laji-spinner>
       </div>
       <div class="row" *ngIf="contentMode === 'taxon'">
         <div class="col-12 col-md-3 matches">
@@ -31,7 +37,7 @@
         <div class="col-12 col-md-5 first-col">
           <div translate>omnisearch.information</div>
           <div class="row">
-            <div class="col-2">
+            <div class="col-2" *ngIf="groupId">
               <img [src]="'assets/images/taxon-groups/'+groupId+'.svg'">
             </div>
             <div class="col-10 taxon-match" *ngIf="!comparisonView;else comparisonTemplate">

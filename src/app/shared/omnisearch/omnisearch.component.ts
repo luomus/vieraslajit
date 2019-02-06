@@ -29,6 +29,7 @@ import * as $ from 'jquery';
 
 import { TranslateService } from '@ngx-translate/core';
 import { GoogleSearchApiService } from '../api/google-search.api.service';
+import { environment } from '../../../environments/environment';
 
 
 
@@ -66,8 +67,10 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
 
   contentMode: 'taxon' | 'content' = 'taxon';
 
+  googleApiLoading = false;
+
   // Informal Taxon Group ID of currently selected taxon
-  groupId = 'MVL.1';
+  groupId = '';
 
   @ViewChild('omniElement') omniElement: ElementRef;
   @ViewChild('omniInput') omniInput: ElementRef;
@@ -145,16 +148,17 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   }
 
   activate(index: number): void {
+    this.groupId = '';
     if (this.taxa[index]) {
-
       // show the right informal group image
       let compatibleTaxonGroups = ['MVL.1', 'MVL.2', 'MVL.21', 'MVL.22', 'MVL.26', 'MVL.27', 'MVL.28',
-                                   'MVL.37', 'MVL.39', 'MVL.40', 'MVL.41', 'MVL.232', 'MVL.233'];
+                                   'MVL.37', 'MVL.39', 'MVL.40', 'MVL.41', 'MVL.232', 'MVL.233', 'MVL.343'];
       compatibleTaxonGroups.forEach(g => {
         this.taxa[index].payload.informalTaxonGroups.forEach(t => {
           if(t.id == g) {
             this.groupId = g;
           }
+          this.changeDetector.markForCheck();
         });
       });
 
@@ -206,9 +210,11 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   }
 
   contentSearch() {
+    this.googleApiLoading = true;
     this.googleApi.list(this.searchControl.value).subscribe((data)=> {
-      console.log(data);
       this.content = data;
+      this.changeDetector.markForCheck();
+      this.googleApiLoading = false;
     })
   }
 
@@ -235,6 +241,9 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
 
   }
 
+  formatContentUrl(input: string) {
+    return input.replace(environment.baseUrl, '');
+  }
 }
 
 function isDescendant(parent, child) {
