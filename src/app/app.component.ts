@@ -22,6 +22,7 @@ export class AppComponent {
   title = 'vrs';
   translate: TranslateService;
   isPopState = false;
+  hideFooter = false;
 
   /**
   * Initializes TranslateService
@@ -29,6 +30,17 @@ export class AppComponent {
   * 2. Use either the default language or language stored in localStorage
   */
   constructor(translate: TranslateService, private userService: UserService, private locStrat: LocationStrategy, private router: Router) {
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (event.url === '/observations') {
+          this.hideFooter = true;
+        }  else {
+          this.hideFooter = false;
+        }
+      }
+    });
+
     this.translate = translate;
 
     /**
