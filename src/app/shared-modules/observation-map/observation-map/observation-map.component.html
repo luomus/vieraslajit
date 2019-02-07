@@ -40,7 +40,7 @@
 </div> <!-- row -->
 <!-- Render list if list-mode enabled -->
 <ng-container *ngIf="listEnabled">
-<div class="row">
+<div class="row" #maprow>
     <div class="col-12 col-sm-7 col-map">
         <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
     </div>

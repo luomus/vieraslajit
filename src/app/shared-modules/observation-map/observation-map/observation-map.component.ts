@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild, OnInit } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef } from '@angular/core';
 import * as $ from 'jquery';
 
 import { UserService } from '../../../shared/service/user.service';
@@ -20,11 +20,14 @@ import { ObservationModalComponent } from './observation-modal.component';
 export class ObservationMapComponent implements AfterViewInit, OnInit{
   @Input() id?: string;
   @Input() listEnabled?: boolean = false;
-  @Input() mapHeight?: number = 400;
   @Input() taxonSearchEnabled?: boolean = false;
   @Input() municipalitySelectEnabled?: boolean = false;
   @Input() ownModeSelectorEnabled?: boolean = false;
   @Input() ownModeEnabled?: boolean = false;
+
+  @Input() mapHeight: number = 400;
+
+  @ViewChild('maprow') mapRow: ElementRef;
 
   @ViewChild(ObsMapListComponent)
   mapTaxonList : ObsMapListComponent;
