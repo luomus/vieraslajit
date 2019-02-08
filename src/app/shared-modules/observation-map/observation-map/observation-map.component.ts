@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef } from '@angular/core';
 import * as $ from 'jquery';
 
 import { UserService } from '../../../shared/service/user.service';
@@ -46,7 +46,8 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
               private mapApiController:MapApiService,
               private mapController:MapService,
               private obsMapData: ObsMapData,
-              private modalService: BsModalService) {}
+              private modalService: BsModalService,
+              private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.mapApiController.initialize();
@@ -71,6 +72,13 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   }
 
   ngAfterViewInit() {
+    // DYNAMIC MAP HEIGHT
+    if (this.mapHeight === 0) {
+      this.mapHeight = window.innerHeight - this.mapRow.nativeElement.offsetTop - 5;
+      this.cd.detectChanges();
+    }
+
+    // INITIALIZE MAP
     this.mapController.initializeMap(document.getElementById("map"));
     // Initialize mapOptions
     let options: Array<[ObsMapOption, any]> = [
