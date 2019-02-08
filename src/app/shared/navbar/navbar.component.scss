@@ -257,15 +257,22 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
         border-top-right-radius: 0;
         border: none;
         font-size: 1em;
-        a {
-            color: $primary-1;
-        }
+    }
+
+    .dropdown-item:focus {
+        background: $primary-6;
+    }
+
+    .dropdown-item {
+        color: rgba($neutral-1, 0.8);
+    }
+
+    .dropdown-item:hover {
+        background-color: initial;
+        color: $neutral-1;
     }
 }
 
-.dropdown-item:focus {
-    background: $primary-6;
-}
 
 #dropdown-about.vrs-dropdown {
     position: static;
