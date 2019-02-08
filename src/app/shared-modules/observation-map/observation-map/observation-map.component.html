@@ -41,6 +41,7 @@
 <div class="row" #maprow>
     <div class="col-12 col-sm-7 col-map">
         <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
+        <a href="https://laji.fi/observation/map?administrativeStatusId=MX.nationallySignificantInvasiveSpecies,MX.nationalInvasiveSpeciesStrategy,MX.otherInvasiveSpeciesList,MX.euInvasiveSpeciesList,MX.quarantinePlantPest" target="_blank" rel="noopener noreferrer" class="laji-link">Tarkastele laji.fi kartalla</a>
     </div>
     <div class="col-12 col-sm-5 col-list" [ngClass]="{'hidden': isAggregateMap()}">
       <vrs-obs-map-list height="{{mapHeight}}"></vrs-obs-map-list>
