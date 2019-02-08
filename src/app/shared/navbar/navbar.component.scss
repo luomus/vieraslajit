@@ -19,14 +19,15 @@ nav {
     font-family: $font-family-base;
     font-weight: 500;
 
-/*     padding-top: 1em;
-    padding-bottom: 1em; */
-
-    box-shadow: 0 0 10px 0 $neutral-9;
+    box-shadow: 0 0 25px 0 rgba(0,0,0,0.5);
 
     a {
         font-family: $font-family-base;
     }
+}
+
+.fixed-top {
+    box-shadow: 0 0 25px 0 rgba(0,0,0,0.5);
 }
 
 .laji-toolbar {

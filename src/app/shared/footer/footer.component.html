@@ -1,96 +1,60 @@
-<footer class="container-fluid footer-content">
+<!-- <footer class="container-fluid footer-content">
+  <ul class="list-inline">
+      <li class="list-inline-item"><a href="https://laji.fi/" translate>footer.laji</a></li>
+      <li class="list-inline-item"><a href="https://www.facebook.com/vieraslajit/" translate>footer.facebook</a></li>
+    </ul>
+</footer> -->
+<footer>
   <div class="container">
-    <div class="row py-4">
-      <div class="col-md-8 col-sm-12">
-        <!-- Sitemap -->
-        <div class="row sitemap">
-          <div class="col-sm-6 col-12">
-            <h5 translate>footer.sitemap.heading1</h5>
-            <ul>
-              <li><a routerLink="/removal" translate>footer.removal</a></li>
-              <li><a routerLink="/taxon" translate>footer.taxon</a></li>
-              <li><a routerLink="/observations" translate>footer.observations</a></li>
-              <li><a routerLink="/static/i-229" translate>footer.pets</a></li>
-            </ul>
-            <h5 translate>footer.sitemap.heading2</h5>
-            <ul>
-              <li><a routerLink="/home" translate>footer.home</a></li>
-              <li><a routerLink="/news" translate>footer.news</a></li>
-              <li><a href="https://fmnh-ws-test.it.helsinki.fi/laji-auth/login?target=KE.741&redirectMethod=GET&locale=fi&next=/home" translate>footer.login</a></li>
-            </ul>
-          </div>
-          <div class="col-sm-6 col-12">
-            <h5 translate>footer.sitemap.heading3</h5>
-            <ul>
-              <li *ngFor="let p of sPages"><a routerLink="/static/{{p.id}}">{{p.title}}</a></li>
-              <li><a routerLink="/administrativelists" translate>footer.eu.administrative</a></li>
-              <li><a routerLink="/administrativelists/national" translate>footer.fi.administrative</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-12 text-center align-self-center">
-        <img class="vrs-logo-img" src="./assets/images/logos/vieraslaji-logo-160x160_cleaned.png">
-        <!-- Contact -->
-        <p class="vrs-contact">
-          Portaalin toiminnallisuuteen ja VISAKE-hankkeeseen liittyvä palaute: vieraslajiportaali@luke.fi
-        </p>
-        <ul class="list-inline">
-          <li class="list-inline-item"><a href="https://laji.fi/" translate>footer.laji</a></li>
-          <li class="list-inline-item"><a href="mailto:helpdesk@laji.fi?subject=Vieraslajit.fi" translate>footer.feedback</a></li>
-          <li class="list-inline-item"><a href="https://www.facebook.com/vieraslajit/" translate>footer.facebook</a></li>
-        </ul>
-        <hr>
-        <ul class="list-inline">
-          <li class="list-inline-item"><a href="https://www.luomus.fi/fi/tietosuojaseloste">Tietosuojaseloste</a></li>
-          <li *ngIf="isAdmin()" class="list-inline-item">
-            <a href="https://vieras-cms.laji.fi">Vieras-CMS</a>
-          </li>
-        </ul>
-      </div>
+    <ul class="list-inline links">
+      <li class="list-inline-item"><a href="https://www.facebook.com/vieraslajit/" translate>footer.facebook</a></li>
+      <li class="list-inline-item">|</li>
+      <li class="list-inline-item"><a href="https://www.luomus.fi/fi/tietosuojaseloste" translate>footer.privacy</a></li>
+      <li class="list-inline-item">|</li>
+      <li class="list-inline-item"><a href="mailto:helpdesk@laji.fi?subject=Vieraslajit.fi" translate>footer.feedback</a></li>
+    </ul>
+  </div>
+  <div class="row mx-0 vrs-affiliates">
+    <div class="col px-0">
+      <!-- Affiliates -->
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <a href="http://luomus.fi" target="_blank">
+            <img class="affiliate-img" [ngStyle]="{'max-height': '60px'}" alt="LUOMUS - Luonnontieteellinen keskusmuseo"
+                src="./../../../assets/images/logos/luomus_logo.png">
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="http://www.luke.fi/" target="_blank">
+            <img class="affiliate-img" alt="LUKE - Luonnonvarakeskus"
+                src="./../../../assets/images/logos/luke_logo.png">
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="https://www.ely-keskus.fi/" target="_blank">
+            <img class="affiliate-img" alt="ELY - Elinkeino-, liikenne- ja ympäristökeskus"
+                src="./../../../assets/images/logos/ELY_logo2.png">
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="http://mmm.fi/etusivu/" target="_blank">
+            <img class="affiliate-img mmm-img" alt="MMM - Maa- ja Metsätalousministeriö"
+                src="./../../../assets/images/logos/MMM_logo_vaaka_2r_FIN_RGB.svg">
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="http://www.syke.fi/fi-FI/" target="_blank">
+            <img class="affiliate-img" alt="SYKE - Suomen ympäristökeskus"
+                src="./../../../assets/images/logos/syke_logo.png">
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="https://www.sll.fi/" target="_blank">
+            <img class="affiliate-img" alt="SLL - Suomen luonnonsuojeluliitto"
+                src="./../../../assets/images/logos/sll_logo.png">
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </footer>
-<div class="row py-4 mx-0 vrs-affiliates">
-  <div class="col px-0">
-    <!-- Affiliates -->
-    <ul class="list-inline">
-      <li class="list-inline-item">
-        <a href="http://luomus.fi" target="_blank">
-          <img class="affiliate-img" alt="LUOMUS - Luonnontieteellinen keskusmuseo"
-               src="./../../../assets/images/logos/luomus_logo.png">
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="http://www.luke.fi/" target="_blank">
-          <img class="affiliate-img" alt="LUKE - Luonnonvarakeskus"
-               src="./../../../assets/images/logos/luke_logo.png">
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="https://www.ely-keskus.fi/" target="_blank">
-          <img class="affiliate-img" alt="ELY - Elinkeino-, liikenne- ja ympäristökeskus"
-               src="./../../../assets/images/logos/ELY_logo.jpg">
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="http://mmm.fi/etusivu/" target="_blank">
-          <img class="affiliate-img mmm-img" alt="MMM - Maa- ja Metsätalousministeriö"
-               src="./../../../assets/images/logos/MMM_logo_vaaka_2r_FIN_RGB.svg">
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="http://www.syke.fi/fi-FI/" target="_blank">
-          <img class="affiliate-img" alt="SYKE - Suomen ympäristökeskus"
-               src="./../../../assets/images/logos/syke_logo.png">
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="https://www.sll.fi/" target="_blank">
-          <img class="affiliate-img" alt="SLL - Suomen luonnonsuojeluliitto"
-               src="./../../../assets/images/logos/sll_logo.png">
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
