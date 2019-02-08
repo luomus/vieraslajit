@@ -16,7 +16,6 @@
     </div>
   </div>
 </div>
-<div class="news-container">
 <div class="container">
   <laji-spinner [ngClass]="{'news-spinner': newsLoading}" [spinning]="newsLoading" [hideContentWhileLoading]='true' [fullViewport]='false'>
   <div *ngFor="let newsElement of (asyncNews | async | paginate: { id: 'pagination-controls', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems })" class="news-post row">
@@ -36,7 +35,6 @@
   </div> <!-- / news-post -->
   </laji-spinner>
 </div> <!-- /container-->
-</div>
 <div class="pagination-controls-container">
   <div class="container">
     <div class="text-right">

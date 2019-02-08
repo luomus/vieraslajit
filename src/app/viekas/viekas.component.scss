@@ -16,8 +16,9 @@
 
 .sidebar {
     padding: 0;
-    padding-top: 1em;
+    padding-top: 2em;
     a {
+        position:relative;
         text-decoration: none;
         display: block;
         padding: 0.5em;
@@ -40,9 +41,15 @@
 
 .sidebar-active {
     background: $neutral-2;
+    z-index: 1;
+    box-shadow: -10px 10px 25px -10px rgba(0, 0, 0, 0.075), -10px -10px 25px -10px rgba(1, 0, 0, 0.075);
 }
 
 .content {
     padding: 2em;
     background: $neutral-2;
+    margin-bottom: 2em;
+    box-shadow: 2px 2px 50px rgba(#000, 0.125);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }

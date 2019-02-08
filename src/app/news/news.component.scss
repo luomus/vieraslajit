@@ -30,6 +30,10 @@
 .news-container {
     background: $neutral-2;
     padding-bottom: 2em;
+    margin-bottom: 2em;
+    box-shadow: 2px 2px 50px rgba(#000, 0.125);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 :host ::ng-deep .top-pagination {
@@ -40,11 +44,6 @@
     ul.ngx-pagination {
         margin: 0em;
         margin-top: 6px;
-    }
-}
-
-.news-container {
-    .container {
     }
 }
 
