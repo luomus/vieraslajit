@@ -13,6 +13,7 @@ import { SpinnerModule } from '../spinner/spinner.module';
 import { YkjService } from './observation-map/import-from-laji-front/ykj.service';
 import { ObservationModalComponent } from './observation-map/observation-modal.component';
 import { ModalModule } from 'ngx-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { ModalModule } from 'ngx-bootstrap';
     NgxDatatableModule,
     RouterModule,
     SpinnerModule,
-    ModalModule
+    ModalModule,
+    TranslateModule
   ],
   declarations: [
     ObservationMapComponent,

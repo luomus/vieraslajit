@@ -83,6 +83,8 @@
   "observations.form.sighting": "Rapportera en observation",
   "observations.form.help": "Vilken art?",
   "observations.intro":"Du hittar dina egna observationer här",
+  "observations.modal.title": null,
+  "observations.modal.close": null,
   "document.dayOfYearBegin":"Startdatum",
   "document.dayOfYearEdited":"Redigerad",
   "observations.all":"Alla observationer som skickas av användare",

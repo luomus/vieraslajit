@@ -139,7 +139,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     }
   }
 
-  openModal() {
-    this.bsModalRef = this.modalService.show(ObservationModalComponent, {initialState: {id: 'JX.133230'}, class: 'modal-custom'});
+  openModal(selectedId) {
+    this.bsModalRef = this.modalService.show(ObservationModalComponent, {initialState: {id: selectedId}, class: 'modal-custom'});
   }
 }

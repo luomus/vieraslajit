@@ -101,6 +101,8 @@
   "observations.own":"My observations",
   "observations.form.sighting": "Report a sighting",
   "observations.form.help": "Which species?",
+  "observations.modal.title": "Observation",
+  "observations.modal.close": "Close",
   "form.submitted": "Form submitted!",
 
   "viekas.nav.about": null,
