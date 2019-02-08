@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild, OnInit } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef } from '@angular/core';
 import * as $ from 'jquery';
 
 import { UserService } from '../../../shared/service/user.service';
@@ -20,11 +20,14 @@ import { ObservationModalComponent } from './observation-modal.component';
 export class ObservationMapComponent implements AfterViewInit, OnInit{
   @Input() id?: string;
   @Input() listEnabled?: boolean = false;
-  @Input() mapHeight?: number = 400;
   @Input() taxonSearchEnabled?: boolean = false;
   @Input() municipalitySelectEnabled?: boolean = false;
   @Input() ownModeSelectorEnabled?: boolean = false;
   @Input() ownModeEnabled?: boolean = false;
+
+  @Input() mapHeight: number = 400;
+
+  @ViewChild('maprow') mapRow: ElementRef;
 
   @ViewChild(ObsMapListComponent)
   mapTaxonList : ObsMapListComponent;
@@ -43,7 +46,8 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
               private mapApiController:MapApiService,
               private mapController:MapService,
               private obsMapData: ObsMapData,
-              private modalService: BsModalService) {}
+              private modalService: BsModalService,
+              private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.mapApiController.initialize();
@@ -68,6 +72,13 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   }
 
   ngAfterViewInit() {
+    // DYNAMIC MAP HEIGHT
+    if (this.mapHeight === 0) {
+      this.mapHeight = window.innerHeight - this.mapRow.nativeElement.offsetTop - 5;
+      this.cd.detectChanges();
+    }
+
+    // INITIALIZE MAP
     this.mapController.initializeMap(document.getElementById("map"));
     // Initialize mapOptions
     let options: Array<[ObsMapOption, any]> = [
@@ -128,7 +139,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     }
   }
 
-  openModal() {
-    this.bsModalRef = this.modalService.show(ObservationModalComponent, {initialState: {id: 'JX.133230'}, class: 'modal-custom'});
+  openModal(selectedId) {
+    this.bsModalRef = this.modalService.show(ObservationModalComponent, {initialState: {id: selectedId}, class: 'modal-custom'});
   }
 }

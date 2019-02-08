@@ -101,6 +101,8 @@
   "observations.own":"My observations",
   "observations.form.sighting": "Report a sighting",
   "observations.form.help": "Which species?",
+  "observations.modal.title": "Observation",
+  "observations.modal.close": "Close",
   "form.submitted": "Form submitted!",
 
   "viekas.nav.about": null,
@@ -126,5 +128,6 @@
 
   "footer.laji": "Biodiversity information facility",
   "footer.feedback": "Feedback",
-  "footer.facebook": "Facebook"
+  "footer.facebook": "Facebook",
+  "footer.privacy": "Privacy policy"
 }

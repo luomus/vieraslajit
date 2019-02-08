@@ -12,8 +12,8 @@
 }
 
 .taxon-browser {
-    box-shadow: 0px 0px 50px 0px rgba(#000, 0.5);
-    border-radius: $content-border-radius;
+    box-shadow: 0px 0px 50px rgba(#000, 0.125);
+    margin-bottom: 2em;
     background: $neutral-3;
 }
 
@@ -56,4 +56,8 @@
             background: $neutral-2;
         }
     }
+}
+
+:host ::ng-deep .tab-content {
+    border-radius: 0;
 }

@@ -6,7 +6,7 @@ import { DomSanitizer } from "@angular/platform-browser";
     selector: 'vrs-observation-modal',
     template: `
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Hello</h4>
+    <h4 class="modal-title pull-left" translate>observations.modal.title</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -15,13 +15,14 @@ import { DomSanitizer } from "@angular/platform-browser";
     <iframe [src]="iframeUrl()"></iframe>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()" translate>observations.modal.close</button>
   </div>
 `,
     styles: [`
 iframe {
     width: 75vw;
     height: 65vh;
+    border: none;
 }
     `],
     changeDetection: ChangeDetectionStrategy.OnPush

@@ -17,12 +17,10 @@
     <div class="col-12 col-sm-8" *ngIf="taxonSearchEnabled"><vrs-taxon-search></vrs-taxon-search></div>
   </div>
 </div> <!-- col-7 -->
-<div *ngIf="selectedInfo" class="col-12 col-sm-5">
+<div *ngIf="selectedInfo" class="col-12 col-sm-5 selected-info">
   <div class="row" [ngClass]="{'hidden': isAggregateMap()}">
     <div class="col-3 selected-observation-left">
-      Havainto
-      <br>
-      <a [routerLink]="" (click)="openModal()">Lisätiedot</a>
+      <a [routerLink]="" (click)="openModal(selectedInfo.id)">Havainto</a>
     </div>
     <div class="col-12 col-sm-9">
       <a [routerLink]="['/taxon/' + selectedInfo.id]">{{selectedInfo.taxonVerbatim.charAt(0).toUpperCase() + selectedInfo.taxonVerbatim.substr(1)}} (<i>{{selectedInfo.scientificName}}</i>)</a>
@@ -40,9 +38,10 @@
 </div> <!-- row -->
 <!-- Render list if list-mode enabled -->
 <ng-container *ngIf="listEnabled">
-<div class="row">
+<div class="row" #maprow>
     <div class="col-12 col-sm-7 col-map">
         <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
+        <a href="https://laji.fi/observation/map?administrativeStatusId=MX.nationallySignificantInvasiveSpecies,MX.nationalInvasiveSpeciesStrategy,MX.otherInvasiveSpeciesList,MX.euInvasiveSpeciesList,MX.quarantinePlantPest" target="_blank" rel="noopener noreferrer" class="laji-link">Tarkastele laji.fi kartalla</a>
     </div>
     <div class="col-12 col-sm-5 col-list" [ngClass]="{'hidden': isAggregateMap()}">
       <vrs-obs-map-list height="{{mapHeight}}"></vrs-obs-map-list>

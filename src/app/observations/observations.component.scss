@@ -35,6 +35,6 @@
     box-shadow: $container-shadow;
 }
 
-:host ::ng-deep .observations .obs-map {
-    padding: 0em 2em;
+.observations {
+    padding-top: 1em;
 }

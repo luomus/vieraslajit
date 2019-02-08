@@ -47,9 +47,16 @@ nav .breadcrumb {
     font-size: 0.8em;
     a {
         color: $neutral-6;
+        &:hover {
+            color: $neutral-9;
+        }
     }
     li {
         display: inline;
         margin-right: 1em;
     }
+}
+
+:host ::ng-deep img {
+    border-radius: 10px;
 }

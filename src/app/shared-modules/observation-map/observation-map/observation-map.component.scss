@@ -66,3 +66,15 @@ p {
         font-size: 1.5em;
     }
 }
+
+.selected-info a {
+  color: $neutral-6;
+  font-weight: 600;
+}
+
+a.laji-link {
+  position: absolute;
+  bottom: 0.25em;
+  right: 0.5em;
+  color: $neutral-6;
+}

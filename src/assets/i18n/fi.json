@@ -103,6 +103,8 @@
   "observations.onmap":"Näytä kartalla",
   "observations.list":"Näytä luettelona",
   "observations.own":"Omat havainnot",
+  "observations.modal.title": "Havainto",
+  "observations.modal.close": "Sulje",
   "form.submitted": "Lähetys onnistui!",
 
   "viekas.nav.about": "Etusivu",
@@ -128,5 +130,6 @@
 
   "footer.laji": "Lajitietokeskus",
   "footer.feedback": "Palaute",
-  "footer.facebook": "Facebook"
+  "footer.facebook": "Facebook",
+  "footer.privacy": "Tietosuojaseloste"
 }
