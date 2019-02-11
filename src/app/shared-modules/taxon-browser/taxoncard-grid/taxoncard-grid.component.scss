@@ -7,11 +7,30 @@
     padding-bottom: 1em;
 
     .card {
-        height: 300px;
-        flex: 1 1 20%;
         margin: 0.5em;
         border-radius: 15px;
         overflow: hidden;
+
+        @include media-breakpoint-up(xs) {
+            height: 250px;
+            flex: 1 1 100%;
+        }
+        @include media-breakpoint-up(sm) {
+            height: 250px;
+            flex: 1 1 40%;
+        }
+        @include media-breakpoint-up(md) {
+            height: 250px;
+            flex: 1 1 30%;
+        }
+        @include media-breakpoint-up(lg) {
+            height: 275px;
+            flex: 1 1 20%;
+        }
+        @include media-breakpoint-up(xl) {
+            height: 300px;
+            flex: 1 1 20%;
+        }
     }
 
     .card-img-top {
