@@ -30,6 +30,10 @@ export class TaxonBrowserApiSettingsService {
         })
         this.eventEmitter.emit('change');
     }
+    setPage(page: number) {
+        this._apiSettings.page = page;
+        this.eventEmitter.emit('change');
+    }
     set lang(s:string) {
         this._apiSettings.lang = s;
     }

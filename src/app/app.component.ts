@@ -29,7 +29,7 @@ export class AppComponent {
   * 1. Use English if a particular translation element is not found
   * 2. Use either the default language or language stored in localStorage
   */
-  constructor(translate: TranslateService, private userService: UserService, private locStrat: LocationStrategy, private router: Router) {
+  constructor(translate: TranslateService, private userService: UserService, private router: Router) {
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -61,27 +61,5 @@ export class AppComponent {
     if (UserService.getToken()) {
       userService.updateUserProperties(UserService.getToken());
     }
-
-    this.locStrat.onPopState(() => {
-      this.isPopState = true;
-    });
-
-    this.router.events.subscribe(event => {
-      // Scroll to top if accessing a page, not via browser history stack
-      if (event instanceof NavigationEnd && !this.isPopState) {
-        this.onActivate();
-        this.isPopState = false;
-      }
-
-      // Ensures that isPopState is reset
-      if (event instanceof NavigationEnd) {
-        this.isPopState = false;
-      }
-    });
   }
-
-  onActivate() {
-    $('html, body').animate({ scrollTop: 0 }, 0);
-  }
-
 }

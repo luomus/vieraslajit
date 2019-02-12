@@ -14,7 +14,7 @@ import { TaxonBrowserParameterService } from "./services/taxon-browser-parameter
     providers: [TaxonBrowserApiService, TaxonBrowserApiSettingsService, TaxonBrowserParameterService]
 })
 export class TaxonBrowserComponent implements OnInit{
-    taxa:Taxonomy[];
+    taxa:Taxonomy[] = [];
 
     currentPage:number = 1;
 
@@ -35,15 +35,14 @@ export class TaxonBrowserComponent implements OnInit{
         this.apiService.initialize();
 
         this.apiService.eventEmitter.addListener('change', ()=>{
-            this.loading=true;
         });
         this.apiService.eventEmitter.addListener('done', ()=>{
-            this.taxa = this.apiService.taxa;
+            this.taxa.push(...this.apiService.taxa);
             this.loading=false;
         });
 
         this.parameterService.queryEventEmitter.subscribe((event) => {
-            if (event.page) this.currentPage = event.page;
+            if (event.page) this.currentPage = parseInt(event.page);
         });
         this.parameterService.init();
 
@@ -56,8 +55,9 @@ export class TaxonBrowserComponent implements OnInit{
         this.langChangeSub ? this.langChangeSub.unsubscribe() : null;
     }
 
-    getPage(page:number) {
-        this.parameterService.updateQuery({page: page});
+    getPage(page:any) {
+        page = parseInt(page);
+        this.settingsService.setPage(page);
         this.currentPage = page;
     }
 
@@ -66,7 +66,8 @@ export class TaxonBrowserComponent implements OnInit{
     }
 
     onInformalGroupSelection(event) {
-        this.parameterService.updateQuery({informalTaxonGroups: event, page: 1});
+        this.parameterService.updateQuery({informalTaxonGroups: event});
+        this.settingsService.setPage(1);
     }
 
     onFiListCheckbox(event) {
@@ -75,5 +76,9 @@ export class TaxonBrowserComponent implements OnInit{
 
     onEuListCheckbox(event) {
         this.parameterService.updateQuery({EuList: event.target.checked});
+    }
+    
+    onScroll() {
+        this.getPage(this.currentPage+1);
     }
 }

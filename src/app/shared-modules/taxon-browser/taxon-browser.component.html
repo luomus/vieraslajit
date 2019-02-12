@@ -27,8 +27,11 @@
                 {id: 'server', itemsPerPage: 12, currentPage: currentPage, totalItems: getTotalItems()}"></vrs-taxoncard-grid>
                 </laji-spinner>
             </div>
+            <div infiniteScroll
+                [infiniteScrollDistance]="2"
+                [infiniteScrollThrottle]="1000"
+                [scrollWindow]="true"
+                (scrolled)="onScroll()"></div>
         </tab>
-        <div class="container"><pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls></div>
-        <br>
     </tabset>
 </div>
