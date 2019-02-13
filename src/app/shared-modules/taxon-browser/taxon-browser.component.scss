@@ -1,4 +1,5 @@
 @import './../../../assets/styles/vars';
+@import '~bootstrap/scss/bootstrap-grid';
 
 #browser-tabset .card-body {
     background:none;
@@ -12,8 +13,6 @@
 }
 
 .taxon-browser {
-    box-shadow: 0px 0px 50px rgba(#000, 0.125);
-    margin-bottom: 2em;
     background: $neutral-3;
 }
 
@@ -60,4 +59,10 @@
 
 :host ::ng-deep .tab-content {
     border-radius: 0;
+}
+
+.container {
+    @include media-breakpoint-up(xl) {
+        max-width: 1400px;
+    }
 }

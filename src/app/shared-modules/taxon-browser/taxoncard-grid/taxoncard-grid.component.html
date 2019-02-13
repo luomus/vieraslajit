@@ -1,4 +1,9 @@
-<div class="card-group" id="important">
+<div class="card-group" id="important" infiniteScroll
+    [infiniteScrollDistance]="0.1"
+    [infiniteScrollThrottle]="1000"
+    [infiniteScrollContainer]="'.card-group'"
+    [fromRoot]="true"
+    (scrolled)="onScroll()">
     <div *ngFor="let taxon of taxa" class="card raised-1" [routerLink]="'/taxon/' + taxon.id">
         <img *ngIf="taxon.multimedia && taxon.multimedia[0].thumbnailURL" class="card-img-top" src="{{taxon.multimedia[0].thumbnailURL}}">
         <img *ngIf="!taxon.multimedia || !taxon.multimedia[0].thumbnailURL" class="card-img-top" src="../../../../assets/images/taxon_placeholder.png">

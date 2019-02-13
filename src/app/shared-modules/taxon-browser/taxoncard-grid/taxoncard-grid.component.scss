@@ -5,6 +5,8 @@
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 1em;
+    overflow-y: scroll;
+    height: 80vh;
 
     .card {
         margin: 0.5em;
@@ -25,7 +27,7 @@
         }
         @include media-breakpoint-up(lg) {
             height: 275px;
-            flex: 1 1 20%;
+            flex: 1 1 30%;
         }
         @include media-breakpoint-up(xl) {
             height: 300px;

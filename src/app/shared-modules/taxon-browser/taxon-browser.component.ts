@@ -16,9 +16,9 @@ import { TaxonBrowserParameterService } from "./services/taxon-browser-parameter
 export class TaxonBrowserComponent implements OnInit{
     taxa:Taxonomy[] = [];
 
-    currentPage:number = 1;
-
     private langChangeSub:Subscription;
+
+    viewMode: "list" | "grid" = "grid"
 
     loading = true;
 
@@ -37,13 +37,10 @@ export class TaxonBrowserComponent implements OnInit{
         this.apiService.eventEmitter.addListener('change', ()=>{
         });
         this.apiService.eventEmitter.addListener('done', ()=>{
-            this.taxa.push(...this.apiService.taxa);
+            this.taxa = this.apiService.taxa;
             this.loading=false;
         });
 
-        this.parameterService.queryEventEmitter.subscribe((event) => {
-            if (event.page) this.currentPage = parseInt(event.page);
-        });
         this.parameterService.init();
 
         this.langChangeSub = this.translate.onLangChange.subscribe((lang)=> {
@@ -55,19 +52,12 @@ export class TaxonBrowserComponent implements OnInit{
         this.langChangeSub ? this.langChangeSub.unsubscribe() : null;
     }
 
-    getPage(page:any) {
-        page = parseInt(page);
-        this.settingsService.setPage(page);
-        this.currentPage = page;
-    }
-
     getTotalItems() {
         return this.settingsService.apiSettings.total;
     }
 
     onInformalGroupSelection(event) {
         this.parameterService.updateQuery({informalTaxonGroups: event});
-        this.settingsService.setPage(1);
     }
 
     onFiListCheckbox(event) {
@@ -79,6 +69,6 @@ export class TaxonBrowserComponent implements OnInit{
     }
     
     onScroll() {
-        this.getPage(this.currentPage+1);
+        this.apiService.loadMore();
     }
 }

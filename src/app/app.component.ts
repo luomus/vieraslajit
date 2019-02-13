@@ -33,7 +33,7 @@ export class AppComponent {
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        if (event.url === '/observations') {
+        if (event.url === '/observations' || event.url === '/taxon') {
           this.hideFooter = true;
         }  else {
           this.hideFooter = false;

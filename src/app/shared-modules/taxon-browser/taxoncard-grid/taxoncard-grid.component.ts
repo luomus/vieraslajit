@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "../../../../../node_modules/@angular/core";
+import { Component, Input, OnInit, Output, EventEmitter } from "../../../../../node_modules/@angular/core";
 import { Taxonomy } from "../../../shared/model";
 
 /** 
@@ -13,9 +13,15 @@ import { Taxonomy } from "../../../shared/model";
 export class TaxonCardGridComponent implements OnInit {
     @Input() taxa:Array<Taxonomy>;
 
+    @Output() scrolled = new EventEmitter();
+
     constructor() {}
 
     ngOnInit() {
         
+    }
+
+    onScroll() {
+        this.scrolled.emit();
     }
 }

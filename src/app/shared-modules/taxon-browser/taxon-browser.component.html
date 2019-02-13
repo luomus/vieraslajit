@@ -1,6 +1,8 @@
 <div class="taxon-browser">
-    <div class="tabset-top">
-        <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid>
+<div class="container">
+<div class="row">
+    <div class="col-3">
+<!--         <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid> -->
         <div class="checkbox">
             <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
             <label for="finnishList">Kansallinen luettelo</label>
@@ -11,27 +13,17 @@
             <label for="euList">Euroopan luettelo</label>
             <vrs-help>Tässä on löpinää eu:n luettelosta</vrs-help>
         </div>
+        <button class="btn vrs-button" (click)="viewMode = 'grid'">grid mode</button>
+        <button class="btn vrs-button" (click)="viewMode = 'list'">list mode</button>
     </div>
-    <tabset id='browser-tabset'>
-        <tab heading="{{'navigation.list' | translate}}">
-            <laji-spinner [ngClass]="{'browser-spinner': loading}" [fullViewport]='false' [spinning]="loading" [hideContentWhileLoading]='true'>
-            <div class="tab-pane container " id="taxontable">
-                <vrs-taxon-browser-list [taxa]='taxa'></vrs-taxon-browser-list>
-            </div>
-            </laji-spinner>
-        </tab>
-        <tab heading="{{'navigation.grid' | translate}}"[active]="true">
-            <div class="tab-pane container py-3" id="cardcontainer">
-                <laji-spinner [ngClass]="{'browser-spinner': loading}"  [fullViewport]='false' [spinning]="loading" [hideContentWhileLoading]='true'>
-                <vrs-taxoncard-grid [taxa]="taxa | paginate:
-                {id: 'server', itemsPerPage: 12, currentPage: currentPage, totalItems: getTotalItems()}"></vrs-taxoncard-grid>
-                </laji-spinner>
-            </div>
-            <div infiniteScroll
-                [infiniteScrollDistance]="2"
-                [infiniteScrollThrottle]="1000"
-                [scrollWindow]="true"
-                (scrolled)="onScroll()"></div>
-        </tab>
-    </tabset>
+    <div class="col-9">
+        <div *ngIf="viewMode == 'grid'">
+            <vrs-taxoncard-grid [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxoncard-grid>
+        </div>
+        <div *ngIf="viewMode == 'list'">
+            <vrs-taxon-browser-list [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxon-browser-list>
+        </div>
+    </div>
+</div>
+</div>
 </div>
