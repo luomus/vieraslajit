@@ -1,4 +1,4 @@
-import { Component, OnInit } from "../../../../node_modules/@angular/core";
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, AfterViewInit } from "../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../node_modules/@ngx-translate/core";
 import { Subscription } from "rxjs";
 
@@ -13,7 +13,7 @@ import { TaxonBrowserParameterService } from "./services/taxon-browser-parameter
     templateUrl: "taxon-browser.component.html",
     providers: [TaxonBrowserApiService, TaxonBrowserApiSettingsService, TaxonBrowserParameterService]
 })
-export class TaxonBrowserComponent implements OnInit{
+export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     taxa:Taxonomy[] = [];
 
     private langChangeSub:Subscription;
@@ -22,10 +22,15 @@ export class TaxonBrowserComponent implements OnInit{
 
     loading = true;
 
+    maxHeight = 400;
+
+    @ViewChild('cardscont') cardsContainer: ElementRef;
+
     constructor(private settingsService:TaxonBrowserApiSettingsService,
         private apiService: TaxonBrowserApiService,
         private translate: TranslateService,
-        private parameterService: TaxonBrowserParameterService) {
+        private parameterService: TaxonBrowserParameterService,
+        private cd: ChangeDetectorRef) {
         
     }
 
@@ -37,7 +42,8 @@ export class TaxonBrowserComponent implements OnInit{
         this.apiService.eventEmitter.addListener('change', ()=>{
         });
         this.apiService.eventEmitter.addListener('done', ()=>{
-            this.taxa = this.apiService.taxa;
+            // duplicate array to avoid mutability problems
+            this.taxa = this.apiService.taxa.slice();
             this.loading=false;
         });
 
@@ -46,6 +52,11 @@ export class TaxonBrowserComponent implements OnInit{
         this.langChangeSub = this.translate.onLangChange.subscribe((lang)=> {
             this.settingsService.apiSettings.lang = lang;
         })
+    }
+
+    ngAfterViewInit() {
+        this.maxHeight = window.innerHeight - this.cardsContainer.nativeElement.offsetTop - 13;
+        this.cd.detectChanges();
     }
 
     ngOnDestroy() {

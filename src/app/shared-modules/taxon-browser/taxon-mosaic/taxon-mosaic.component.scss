@@ -1,0 +1,37 @@
+@import '../../../../assets/styles/vars';
+@import '../../../../../node_modules/bootstrap/scss/bootstrap-grid';
+
+:host {
+    height: inherit;
+}
+
+.mosaic-parent {
+    overflow-y: scroll;
+    height: inherit;
+    display: flex;
+    justify-content: left;
+}
+
+.mosaic-babysitter {
+    max-width: 1200px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.mosaic-child {
+    margin: 1em;
+    cursor: pointer;
+    img {
+        height: 200px;
+        width: auto;
+    }
+}
+
+.vernacular-name {
+    color: $neutral-7;
+}
+
+.scientific-name {
+    color: $neutral-6;
+    font-size: 0.8em;
+}

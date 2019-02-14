@@ -1,0 +1,11 @@
+<div class="checkbox-dropdown raised-1" (click)="open = !open">
+    Group dropdown
+</div>
+<div *ngIf="open" class="dropdown-content raised-1">
+    <div class="dropdown-item">
+        <input class="form-check-input" type="checkbox" value="" id="test1">
+        <label class="form-check-label" for="test1">
+            test1
+        </label>
+    </div>
+</div>

@@ -16,6 +16,15 @@
     background: $neutral-3;
 }
 
+.options-menu {
+    background: $neutral-2;
+    box-shadow: 0 0 30px 0 rgba($neutral-6, 0.2);
+}
+
+.cards-wrapper {
+    height: inherit;
+}
+
 :host ::ng-deep ul.nav.nav-tabs {
     border-top-left-radius: 0;
     border-top-right-radius: 0;

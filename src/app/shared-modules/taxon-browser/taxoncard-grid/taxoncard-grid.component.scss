@@ -1,12 +1,15 @@
 @import '../../../../assets/styles/vars';
 @import '../../../../../node_modules/bootstrap/scss/bootstrap-grid';
 
+:host {
+    height: inherit;
+}
+
 #important.card-group {
-    display: flex;
-    flex-wrap: wrap;
-    padding-bottom: 1em;
     overflow-y: scroll;
-    height: 80vh;
+    height: inherit;
+    display: flex;
+    justify-content: center;
 
     .card {
         margin: 0.5em;
@@ -61,15 +64,8 @@
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+.card-container {
+    max-width: 1100px;
+    display:flex;
+    flex-wrap:wrap;
+}

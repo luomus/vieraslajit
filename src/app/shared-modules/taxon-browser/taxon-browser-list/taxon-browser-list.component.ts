@@ -11,7 +11,13 @@ import { Taxonomy } from "../../../shared/model";
                 [count]="taxa.length" [footerHeight]="50"
                 [sorts]="[{prop: 'vernacularName', dir: 'asc'}]"
                 [scrollbarV]="true"
-                (activate)="onDatatableActivate($event)">
+                (activate)="onDatatableActivate($event)"
+                infiniteScroll
+                [infiniteScrollDistance]="0.1"
+                [infiniteScrollThrottle]="1000"
+                [infiniteScrollContainer]="'datatable-body'"
+                [fromRoot]="true"
+                (scrolled)="onScroll()">
                </ngx-datatable>`,
     styleUrls: ['taxon-browser-list.component.scss']
 })
@@ -21,6 +27,10 @@ export class TaxonBrowserListComponent {
     columns:any[] = [];
 
     @Output() scrolled = new EventEmitter();
+
+    onScroll() {
+        this.scrolled.emit();
+    }
 
     constructor(private translate:TranslateService,
                 private router: Router) {

@@ -1,8 +1,8 @@
-<div class="taxon-browser">
-<div class="container">
-<div class="row">
-    <div class="col-3">
+<div class="taxon-browser row">
+    <div class="col-3 options-menu">
 <!--         <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid> -->
+        <vrs-group-dropdown></vrs-group-dropdown>
+        <br>
         <div class="checkbox">
             <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
             <label for="finnishList">Kansallinen luettelo</label>
@@ -13,17 +13,18 @@
             <label for="euList">Euroopan luettelo</label>
             <vrs-help>Tässä on löpinää eu:n luettelosta</vrs-help>
         </div>
+        <br>
         <button class="btn vrs-button" (click)="viewMode = 'grid'">grid mode</button>
+        <br>
         <button class="btn vrs-button" (click)="viewMode = 'list'">list mode</button>
     </div>
-    <div class="col-9">
-        <div *ngIf="viewMode == 'grid'">
-            <vrs-taxoncard-grid [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxoncard-grid>
+    <div class="col-9 pl-4" #cardscont [ngStyle]="{'height': maxHeight+'px'}">
+        <div *ngIf="viewMode == 'grid'" class="cards-wrapper">
+<!--             <vrs-taxoncard-grid [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxoncard-grid> -->
+            <vrs-taxon-mosaic [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxon-mosaic>
         </div>
-        <div *ngIf="viewMode == 'list'">
+        <div *ngIf="viewMode == 'list'" class="cards-wrapper">
             <vrs-taxon-browser-list [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxon-browser-list>
         </div>
     </div>
-</div>
-</div>
 </div>

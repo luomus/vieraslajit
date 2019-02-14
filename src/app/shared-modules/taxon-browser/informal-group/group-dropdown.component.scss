@@ -1,0 +1,23 @@
+@import './../../../../assets/styles/vars';
+
+:host {
+    display: inline-block;
+}
+
+.checkbox-dropdown {
+    padding: 0.5em;
+    border-radius: 5px;
+    background: $neutral-1;
+    cursor:pointer;
+}
+
+.dropdown-content {
+    position: absolute;
+    background: $neutral-1;
+    border-radius: 5px;
+    padding: 0.5em;
+    margin-top: 10px;
+}
+
+.dropdown-item {
+}
