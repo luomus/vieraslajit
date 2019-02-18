@@ -82,4 +82,8 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     onScroll() {
         this.apiService.loadMore();
     }
+
+    onGroupSelected(event) {
+        this.parameterService.updateQuery({informalTaxonGroups: Array.from(event)});
+    }
 }

@@ -1,7 +1,8 @@
 <div class="taxon-browser row">
     <div class="col-3 options-menu">
 <!--         <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid> -->
-        <vrs-group-dropdown></vrs-group-dropdown>
+        <vrs-group-dropdown [groups]="['MVL.232', 'MVL.27', 'MVL.343', 'MVL.1', 'MVL.28', 'MVL.26', 'MVL.40', 'MVL.2', 'MVL.233', 'MVL.37', 'MVL.39', 'MVL.41']"
+        (selected)="onGroupSelected($event)"></vrs-group-dropdown>
         <br>
         <div class="checkbox">
             <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
