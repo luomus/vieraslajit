@@ -15,16 +15,25 @@
 .mosaic-babysitter {
     max-width: 1200px;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
 }
 
 .mosaic-child {
+    display: inline;
     margin: 1em;
     cursor: pointer;
+}
+
+.mosaic-img {
+    display: inline-block;
     img {
-        height: 200px;
+        height:150px;
         width: auto;
     }
+}
+
+.mosaic-desc {
+    display:inline-block;
 }
 
 .vernacular-name {
