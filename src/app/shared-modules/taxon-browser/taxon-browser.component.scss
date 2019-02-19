@@ -14,11 +14,29 @@
 
 .taxon-browser {
     background: $neutral-3;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.options-menu-wrapper {
+    margin: 1em 0em;
+    border-right: 2px solid $neutral-4;
+    flex: 1 1 30%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
 }
 
 .options-menu {
-    background: $neutral-2;
-    box-shadow: 0 0 30px 0 rgba($neutral-6, 0.2);
+    padding-top: 1em;
+}
+
+.checkbox {
+    display: block !important;
+}
+
+.cards-container {
+    flex: 1 1 70%;
 }
 
 .cards-wrapper {

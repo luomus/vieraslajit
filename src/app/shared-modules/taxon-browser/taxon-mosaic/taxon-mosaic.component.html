@@ -1,4 +1,4 @@
-<div class="mosaic-parent pt-3" infiniteScroll
+<div class="mosaic-parent" infiniteScroll
     [infiniteScrollDistance]="0.1"
     [infiniteScrollThrottle]="1000"
     [infiniteScrollContainer]="'.mosaic-parent'"
@@ -14,9 +14,11 @@
                 <div *ngIf="taxon.species || !taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}}</div>
                 <div *ngIf="!taxon.species && taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxoncard.nonspecies' | translate}}</div>
                 <div *ngIf="taxon.vernacularName" class="scientific-name" [class.cursive]="taxon?.cursiveName">{{taxon.scientificName | capitalize}}</div>
-                <div *ngIf="taxon.administrativeStatuses.includes('MX.euInvasiveSpeciesList')" class="administrative-status">EU listalla</div>
-                <div *ngIf="taxon.administrativeStatuses.includes('MX.nationalInvasiveSpeciesStrategy')" class="administrative-status">FI listalla</div>
-                <div *ngIf="taxon.administrativeStatuses.includes('MX.quarantinePlantPest')" class="administrative-status">Vaarallinen kasvintuhooja</div>
+                <ul>
+                    <li *ngIf="taxon.administrativeStatuses.includes('MX.euInvasiveSpeciesList')" class="administrative-status">EU listalla</li>
+                    <li *ngIf="taxon.administrativeStatuses.includes('MX.nationalInvasiveSpeciesStrategy')" class="administrative-status">FI listalla</li>
+                    <li *ngIf="taxon.administrativeStatuses.includes('MX.quarantinePlantPest')" class="administrative-status">Vaarallinen kasvintuhooja</li>
+                </ul>
             </div>
         </div>
     </div>

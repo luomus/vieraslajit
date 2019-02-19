@@ -1,25 +1,23 @@
-<div class="taxon-browser row">
-    <div class="col-3 options-menu">
+<div class="taxon-browser">
+    <div class="options-menu-wrapper">
+        <div class="options-menu">
 <!--         <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid> -->
-        <vrs-group-dropdown [groups]="['MVL.232', 'MVL.27', 'MVL.343', 'MVL.1', 'MVL.28', 'MVL.26', 'MVL.40', 'MVL.2', 'MVL.233', 'MVL.37', 'MVL.39', 'MVL.41']"
-        (selected)="onGroupSelected($event)"></vrs-group-dropdown>
-        <br>
-        <div class="checkbox">
-            <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
-            <label for="finnishList">Kansallinen luettelo</label>
-            <vrs-help>Tässä on löpinää kansallisesta luettelosta</vrs-help>
+            <vrs-group-dropdown [groups]="['MVL.232', 'MVL.27', 'MVL.343', 'MVL.1', 'MVL.28', 'MVL.26', 'MVL.40', 'MVL.2', 'MVL.233', 'MVL.37', 'MVL.39', 'MVL.41']"
+            (selected)="onGroupSelected($event)"></vrs-group-dropdown>
+            <br>
+            <div class="checkbox">
+                <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
+                <label for="finnishList">Kansallinen luettelo</label>
+                <vrs-help>Tässä on löpinää kansallisesta luettelosta</vrs-help>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList">
+                <label for="euList">Euroopan luettelo</label>
+                <vrs-help>Tässä on löpinää eu:n luettelosta</vrs-help>
+            </div>
         </div>
-        <div class="checkbox">
-            <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList">
-            <label for="euList">Euroopan luettelo</label>
-            <vrs-help>Tässä on löpinää eu:n luettelosta</vrs-help>
-        </div>
-        <br>
-        <button class="btn vrs-button" (click)="viewMode = 'grid'">grid mode</button>
-        <br>
-        <button class="btn vrs-button" (click)="viewMode = 'list'">list mode</button>
     </div>
-    <div class="col-9 pl-4" #cardscont [ngStyle]="{'height': maxHeight+'px'}">
+    <div class="cards-container" #cardscont [ngStyle]="{'height': maxHeight+'px'}">
         <div *ngIf="viewMode == 'grid'" class="cards-wrapper">
 <!--             <vrs-taxoncard-grid [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxoncard-grid> -->
             <vrs-taxon-mosaic [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxon-mosaic>
