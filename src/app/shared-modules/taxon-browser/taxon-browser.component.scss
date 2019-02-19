@@ -7,8 +7,6 @@
 
 .browser-spinner {
     display: block;
-    margin-top: 5em;
-    margin-bottom: 5em;
     padding: 5em;
 }
 
@@ -19,7 +17,7 @@
 }
 
 .options-menu-wrapper {
-    margin: 1em 0em;
+    background: $neutral-1;
     border-right: 2px solid $neutral-4;
     flex: 1 1 30%;
     display: flex;
@@ -28,7 +26,7 @@
 }
 
 .options-menu {
-    padding-top: 1em;
+    padding-top: 2em;
 }
 
 .checkbox {
