@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StateService } from '../../state.service';
 
 @Component({
   selector: 'vrs-taxon-list',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./taxon-list.component.scss']
 })
 export class TaxonListComponent {
-  constructor() { }
+  constructor(private state: StateService) {
+    state.footerEnabled = false;
+  }
 }

@@ -8,6 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Subscriber ,  Subscription } from 'rxjs';
 import * as $ from 'jquery';
 import { LocationStrategy } from '@angular/common';
+import { StateService } from './state.service';
 
 /**
  * Main component that acts as a container for navigation, content and footer.
@@ -29,15 +30,11 @@ export class AppComponent {
   * 1. Use English if a particular translation element is not found
   * 2. Use either the default language or language stored in localStorage
   */
-  constructor(translate: TranslateService, private userService: UserService, private router: Router) {
+  constructor(state: StateService, translate: TranslateService, private userService: UserService, private router: Router) {
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        if (event.url === '/observations' || event.url === '/taxon') {
-          this.hideFooter = true;
-        }  else {
-          this.hideFooter = false;
-        }
+        this.hideFooter = !state.footerEnabled;
       }
     });
 

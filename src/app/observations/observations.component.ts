@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { WarehouseQueryList } from '../shared/model/Warehouse';
 import { PagedResult } from '../shared/model/PagedResult';
 import { Subscription } from 'rxjs';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'vrs-observations',
@@ -15,7 +16,9 @@ export class ObservationsComponent implements OnInit, OnDestroy {
   id:string;
   queryParams: Subscription;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private state: StateService, private route: ActivatedRoute) {
+    this.state.footerEnabled = false;
+  }
 
   ngOnInit() {
     this.queryParams = this.route.queryParams.subscribe((params)=>{

@@ -14,6 +14,7 @@ import { UserService } from './shared/service/user.service';
 
 import { registerLocaleData } from '@angular/common';
 import localeFi from '@angular/common/locales/fi';
+import { StateService } from './state.service';
 
 registerLocaleData(localeFi);
 
@@ -48,7 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SpinnerModule,
     EditcmsModule
   ],
-  providers: [UserService, { provide: LOCALE_ID, useValue: 'fi' }],
+  providers: [StateService, UserService, { provide: LOCALE_ID, useValue: 'fi' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
