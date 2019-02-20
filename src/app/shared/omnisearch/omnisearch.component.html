@@ -11,8 +11,8 @@
     <div class="omni-search-results" #omniSearchResults [ngClass]='resultsDirection'>
       <div class="row mode-selector">
         <div class="col-12">
-          <a routerLink="" (click)="contentMode = 'taxon'" [ngClass]="{'mode-active': contentMode === 'taxon'}">Lajit</a>
-          <a routerLink="" (click)="contentMode = 'content'; contentSearch()" [ngClass]="{'mode-active': contentMode === 'content'}">Sisältö</a>
+          <a (click)="contentMode = 'taxon'" [ngClass]="{'mode-active': contentMode === 'taxon'}">Lajit</a>
+          <a (click)="contentMode = 'content'; contentSearch()" [ngClass]="{'mode-active': contentMode === 'content'}">Sisältö</a>
           <span *ngIf="contentMode === 'content'" class="oi oi-reload" (click)="contentSearch()"></span>
         </div>
       </div>
