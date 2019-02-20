@@ -1,77 +1,71 @@
 @import '../../../../assets/styles/vars';
 @import '../../../../../node_modules/bootstrap/scss/bootstrap-grid';
 
-/** Species card styling **/
+:host {
+    height: inherit;
+}
 
-#species-card {
-    background-color: #fefefe;
-    border: 1px solid $neutral-3;
-    width: 100%;
-    height: 90%;
-    transition: 0.2s;
-    cursor: pointer;
+#important.card-group {
+    overflow-y: scroll;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+
+    .card {
+        margin: 0.5em;
+        border-radius: 15px;
+        overflow: hidden;
+
+        @include media-breakpoint-up(xs) {
+            height: 250px;
+            flex: 1 1 100%;
+        }
+        @include media-breakpoint-up(sm) {
+            height: 250px;
+            flex: 1 1 40%;
+        }
+        @include media-breakpoint-up(md) {
+            height: 250px;
+            flex: 1 1 30%;
+        }
+        @include media-breakpoint-up(lg) {
+            height: 275px;
+            flex: 1 1 30%;
+        }
+        @include media-breakpoint-up(xl) {
+            height: 300px;
+            flex: 1 1 20%;
+        }
+    }
+
+    .card-img-top {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
     .card-body {
-        background: transparent;
+        line-height:1;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
+
+    .card-text.scientific {
+        padding: 0.5em;
+        font-size: 0.6em;
+        color: $neutral-7;
+    }
+
+    .cursive {
+        font-style: italic;
+    }
+
 }
 
-#species-card:hover {
-    border-color: $accent-5;
-    #species-card-text {
-        color: $accent-5;
-    }
-}
-
-/** Species img styling, scaling the images about same sized **/
-
-#species-card-text {
-    width: 100%;
-    color: #222;
-}
-
-#species-img {
-    padding: 0.5em;
-    width: 100%;
-    max-height: 15vw;
-    object-fit: scale-down;
-    @include media-breakpoint-up(xl) {
-        max-height: 200px;
-    }
-    @include media-breakpoint-down(xs) {
-        max-height: 200px;
-    }
-}
-
-
-
-@media screen and (max-width: 600px) {
-    #species-img {
-        width: 100%;
-        height: 60%;
-        object-fit:scale-down;
-    }
-}
-
-@media (min-width: 767px) and (max-width: 1199px) {
-    #species-img {
-        width: 100%;
-        height: 70%;
-
-    }
-    #species-card-text {
-        font-size: 14px;
-    }
-}
-
-@media (min-width: 1199.98px) {
-    #species-img {
-        width: 100%;
-        height: 70%;
-        object-fit: cover;
-    }
-
-    #species-card-text {
-        height: 12vw;
-        font-size: 15px;
-    }
+.card-container {
+    max-width: 1100px;
+    display:flex;
+    flex-wrap:wrap;
 }

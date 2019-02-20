@@ -1,0 +1,14 @@
+<div #elemwrapper>
+<div class="checkbox-dropdown raised-1" (click)="open = !open">
+    <ng-container *ngIf="selected_groups.size === 0">Valitse lajiryhmä</ng-container>
+    <ng-container *ngFor="let group of selected_groups">{{group}}, </ng-container>
+</div>
+<div *ngIf="open" class="dropdown-content raised-1">
+    <div *ngFor="let group of groups" class="dropdown-item">
+        <input class="form-check-input" type="checkbox" id="{{group}}" [checked]="checked(group)" (change)="onChecked($event)">
+        <label class="form-check-label" for="{{group}}">
+            {{group}}
+        </label>
+    </div>
+</div>
+</div>

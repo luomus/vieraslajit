@@ -30,6 +30,7 @@ import * as $ from 'jquery';
 import { TranslateService } from '@ngx-translate/core';
 import { GoogleSearchApiService } from '../api/google-search.api.service';
 import { environment } from '../../../environments/environment';
+import { isDescendant } from '../../utils';
 
 
 
@@ -244,15 +245,4 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   formatContentUrl(input: string) {
     return input.replace(environment.baseUrl, '');
   }
-}
-
-function isDescendant(parent, child) {
-  var node = child.parentNode;
-  while (node != null) {
-      if (node == parent) {
-          return true;
-      }
-      node = node.parentNode;
-  }
-  return false;
 }

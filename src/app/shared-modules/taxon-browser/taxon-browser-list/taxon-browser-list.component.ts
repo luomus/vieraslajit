@@ -1,4 +1,4 @@
-import { Component, Input } from "../../../../../node_modules/@angular/core";
+import { Component, Input, Output, EventEmitter } from "../../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../../node_modules/@ngx-translate/core";
 import { Router } from "@angular/router";
 import { Taxonomy } from "../../../shared/model";
@@ -8,9 +8,16 @@ import { Taxonomy } from "../../../shared/model";
     template: `<ngx-datatable class="material"
                 [rows]="taxa" [columnMode]="'force'" [columns]="columns"
                 [headerHeight]="50" [rowHeight]="50" [reorderable]='true'
-                [count]="taxa.length" [limit]="20" [footerHeight]="50"
+                [count]="taxa.length" [footerHeight]="50"
                 [sorts]="[{prop: 'vernacularName', dir: 'asc'}]"
-                (activate)="onDatatableActivate($event)">
+                [scrollbarV]="true"
+                (activate)="onDatatableActivate($event)"
+                infiniteScroll
+                [infiniteScrollDistance]="0.1"
+                [infiniteScrollThrottle]="1000"
+                [infiniteScrollContainer]="'datatable-body'"
+                [fromRoot]="true"
+                (scrolled)="onScroll()">
                </ngx-datatable>`,
     styleUrls: ['taxon-browser-list.component.scss']
 })
@@ -18,6 +25,12 @@ export class TaxonBrowserListComponent {
     private _taxa: Array<Taxonomy> = [];
 
     columns:any[] = [];
+
+    @Output() scrolled = new EventEmitter();
+
+    onScroll() {
+        this.scrolled.emit();
+    }
 
     constructor(private translate:TranslateService,
                 private router: Router) {

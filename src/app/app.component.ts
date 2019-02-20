@@ -8,6 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Subscriber ,  Subscription } from 'rxjs';
 import * as $ from 'jquery';
 import { LocationStrategy } from '@angular/common';
+import { StateService } from './state.service';
 
 /**
  * Main component that acts as a container for navigation, content and footer.
@@ -29,15 +30,11 @@ export class AppComponent {
   * 1. Use English if a particular translation element is not found
   * 2. Use either the default language or language stored in localStorage
   */
-  constructor(translate: TranslateService, private userService: UserService, private locStrat: LocationStrategy, private router: Router) {
+  constructor(state: StateService, translate: TranslateService, private userService: UserService, private router: Router) {
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        if (event.url === '/observations') {
-          this.hideFooter = true;
-        }  else {
-          this.hideFooter = false;
-        }
+        this.hideFooter = !state.footerEnabled;
       }
     });
 
@@ -61,27 +58,5 @@ export class AppComponent {
     if (UserService.getToken()) {
       userService.updateUserProperties(UserService.getToken());
     }
-
-    this.locStrat.onPopState(() => {
-      this.isPopState = true;
-    });
-
-    this.router.events.subscribe(event => {
-      // Scroll to top if accessing a page, not via browser history stack
-      if (event instanceof NavigationEnd && !this.isPopState) {
-        this.onActivate();
-        this.isPopState = false;
-      }
-
-      // Ensures that isPopState is reset
-      if (event instanceof NavigationEnd) {
-        this.isPopState = false;
-      }
-    });
   }
-
-  onActivate() {
-    $('html, body').animate({ scrollTop: 0 }, 0);
-  }
-
 }

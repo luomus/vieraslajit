@@ -1,0 +1,26 @@
+<div class="mosaic-parent" infiniteScroll
+    [infiniteScrollDistance]="0.1"
+    [infiniteScrollThrottle]="1000"
+    [infiniteScrollContainer]="'.mosaic-parent'"
+    [fromRoot]="true"
+    (scrolled)="onScroll()">
+    <div class="mosaic-babysitter">
+        <div class="total-taxa">Rajauksilla löytyi {{total}} vieraslajia</div>
+        <div class="mosaic-child" [routerLink]="'/taxon/' + taxon.id" *ngFor="let taxon of taxa">
+            <div class="mosaic-img">
+                <img *ngIf="taxon.multimedia && taxon.multimedia[0].thumbnailURL" class="card-img-top" src="{{taxon.multimedia[0].thumbnailURL}}">
+                <img *ngIf="!taxon.multimedia || !taxon.multimedia[0].thumbnailURL" class="card-img-top" src="../../../../assets/images/taxon_placeholder.png">
+            </div>
+            <div class="mosaic-desc">
+                <div *ngIf="taxon.species || !taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}}</div>
+                <div *ngIf="!taxon.species && taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxoncard.nonspecies' | translate}}</div>
+                <div *ngIf="taxon.vernacularName" class="scientific-name" [class.cursive]="taxon?.cursiveName">{{taxon.scientificName | capitalize}}</div>
+                <ul>
+                    <li *ngIf="taxon.administrativeStatuses.includes('MX.euInvasiveSpeciesList')" class="administrative-status">EU listalla</li>
+                    <li *ngIf="taxon.administrativeStatuses.includes('MX.nationalInvasiveSpeciesStrategy')" class="administrative-status">FI listalla</li>
+                    <li *ngIf="taxon.administrativeStatuses.includes('MX.quarantinePlantPest')" class="administrative-status">Vaarallinen kasvintuhooja</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

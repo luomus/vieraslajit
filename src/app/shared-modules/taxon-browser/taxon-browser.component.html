@@ -1,34 +1,29 @@
 <div class="taxon-browser">
-    <div class="tabset-top">
-        <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid>
-        <div class="checkbox">
-            <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
-            <label for="finnishList">Kansallinen luettelo</label>
-            <vrs-help>Tässä on löpinää kansallisesta luettelosta</vrs-help>
-        </div>
-        <div class="checkbox">
-            <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList">
-            <label for="euList">Euroopan luettelo</label>
-            <vrs-help>Tässä on löpinää eu:n luettelosta</vrs-help>
+    <div class="options-menu-wrapper">
+        <div class="options-menu">
+<!--         <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid> -->
+            <vrs-group-dropdown [groups]="['MVL.232', 'MVL.27', 'MVL.343', 'MVL.1', 'MVL.28', 'MVL.26', 'MVL.40', 'MVL.2', 'MVL.233', 'MVL.37', 'MVL.39', 'MVL.41']"
+            (selected)="onGroupSelected($event)"></vrs-group-dropdown>
+            <br>
+            <div class="checkbox">
+                <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
+                <label for="finnishList">Kansallinen luettelo</label>
+                <vrs-help>Tässä on löpinää kansallisesta luettelosta</vrs-help>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList">
+                <label for="euList">Euroopan luettelo</label>
+                <vrs-help>Tässä on löpinää eu:n luettelosta</vrs-help>
+            </div>
         </div>
     </div>
-    <tabset id='browser-tabset'>
-        <tab heading="{{'navigation.list' | translate}}">
-            <laji-spinner [ngClass]="{'browser-spinner': loading}" [fullViewport]='false' [spinning]="loading" [hideContentWhileLoading]='true'>
-            <div class="tab-pane container " id="taxontable">
-                <vrs-taxon-browser-list [taxa]='taxa'></vrs-taxon-browser-list>
-            </div>
-            </laji-spinner>
-        </tab>
-        <tab heading="{{'navigation.grid' | translate}}"[active]="true">
-            <div class="tab-pane container py-3" id="cardcontainer">
-                <laji-spinner [ngClass]="{'browser-spinner': loading}"  [fullViewport]='false' [spinning]="loading" [hideContentWhileLoading]='true'>
-                <vrs-taxoncard-grid [taxa]="taxa | paginate:
-                {id: 'server', itemsPerPage: 12, currentPage: currentPage, totalItems: getTotalItems()}"></vrs-taxoncard-grid>
-                </laji-spinner>
-            </div>
-        </tab>
-        <div class="container"><pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls></div>
-        <br>
-    </tabset>
+    <div class="cards-container" #cardscont [ngStyle]="{'height': maxHeight+'px'}">
+        <div *ngIf="viewMode == 'grid'" class="cards-wrapper">
+<!--             <vrs-taxoncard-grid [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxoncard-grid> -->
+            <vrs-taxon-mosaic [taxa]="taxa" [total]="total" (scrolled)="onScroll()"></vrs-taxon-mosaic>
+        </div>
+        <div *ngIf="viewMode == 'list'" class="cards-wrapper">
+            <vrs-taxon-browser-list [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxon-browser-list>
+        </div>
+    </div>
 </div>

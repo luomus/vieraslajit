@@ -1,17 +1,14 @@
 import { Component, Input, OnInit, Output, EventEmitter } from "../../../../../node_modules/@angular/core";
 import { Taxonomy } from "../../../shared/model";
 
-/** 
- *  Takes Array<Taxonomy> as input and renders a group of mini taxon-cards in a grid
- */
-
 @Component({
-    selector: 'vrs-taxoncard-grid',
-    templateUrl: 'taxoncard-grid.component.html',
-    styleUrls: ['taxoncard-grid.component.scss']
+    selector: 'vrs-taxon-mosaic',
+    templateUrl: 'taxon-mosaic.component.html',
+    styleUrls: ['taxon-mosaic.component.scss']
 })
-export class TaxonCardGridComponent implements OnInit {
+export class TaxonMosaicComponent implements OnInit {
     @Input() taxa:Array<Taxonomy>;
+    @Input() total:number;
 
     @Output() scrolled = new EventEmitter();
 
@@ -22,6 +19,7 @@ export class TaxonCardGridComponent implements OnInit {
     }
 
     onScroll() {
+        console.log(this.taxa);
         this.scrolled.emit();
     }
 }

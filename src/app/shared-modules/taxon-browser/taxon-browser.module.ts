@@ -2,6 +2,7 @@ import { TabsModule } from 'ngx-bootstrap';
 import { NgModule } from '../../../../node_modules/@angular/core';
 import { TaxonBrowserComponent } from './taxon-browser.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TaxonCardGridComponent } from './taxoncard-grid/taxoncard-grid.component';
 import { RouterModule } from '../../../../node_modules/@angular/router';
 import { CommonModule } from '../../../../node_modules/@angular/common';
@@ -13,11 +14,13 @@ import { SpinnerModule } from '../../shared-modules/spinner/spinner.module';
 import { SharedModule } from '../../shared/shared.module';
 import { InformalGroupComponent } from './informal-group/informal-group.component';
 import { InformalGroupGridComponent } from './informal-group/informal-group-grid.component';
+import { TaxonMosaicComponent } from './taxon-mosaic/taxon-mosaic.component';
+import { GroupDropdownComponent } from './informal-group/group-dropdown.component';
 
 @NgModule({
     imports: [NgxPaginationModule, TabsModule, NgxDatatableModule, RouterModule,
-        CommonModule, TranslateModule, FormsModule, SpinnerModule, SharedModule],
-    declarations: [TaxonCardGridComponent, TaxonBrowserComponent, TaxonBrowserListComponent, InformalGroupComponent, InformalGroupGridComponent ],
+        CommonModule, TranslateModule, FormsModule, SpinnerModule, SharedModule, InfiniteScrollModule],
+    declarations: [GroupDropdownComponent, TaxonCardGridComponent, TaxonMosaicComponent, TaxonBrowserComponent, TaxonBrowserListComponent, InformalGroupComponent, InformalGroupGridComponent ],
     exports: [TaxonBrowserComponent]
 })
 export class TaxonBrowserModule {}

@@ -1,11 +1,17 @@
-<div class="card-group" id="taxongrid">
-    <div *ngFor="let taxon of taxa" class="col-12 col-sm-6 col-md-6 col-lg-3">
-        <div class="card raised-1" id="species-card" [routerLink]="'/taxon/' + taxon.id">
-            <img *ngIf="taxon.multimedia && taxon.multimedia[0].thumbnailURL" class="card-img-top" src="{{taxon.multimedia[0].thumbnailURL}}" id="species-img">
-            <img *ngIf="!taxon.multimedia || !taxon.multimedia[0].thumbnailURL" class="card-img-top" src="../../../../assets/images/taxon_placeholder.png" id="species-img">
-            <div class="card-body text-center" id="species-card-body">
-                <a *ngIf="taxon.species || !taxon.finnish" class="card-text" id="species-card-text">{{(taxon.vernacularName || taxon.scientificName) | capitalize}}</a>
-                <a *ngIf="!taxon.species && taxon.finnish" class="card-text" id="species-card-text">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxoncard.nonspecies' | translate}}</a>
+<div class="card-group" id="important" infiniteScroll
+    [infiniteScrollDistance]="0.1"
+    [infiniteScrollThrottle]="1000"
+    [infiniteScrollContainer]="'.card-group'"
+    [fromRoot]="true"
+    (scrolled)="onScroll()">
+    <div class="card-container">
+        <div *ngFor="let taxon of taxa" class="card raised-1" [routerLink]="'/taxon/' + taxon.id">
+            <img *ngIf="taxon.multimedia && taxon.multimedia[0].thumbnailURL" class="card-img-top" src="{{taxon.multimedia[0].thumbnailURL}}">
+            <img *ngIf="!taxon.multimedia || !taxon.multimedia[0].thumbnailURL" class="card-img-top" src="../../../../assets/images/taxon_placeholder.png">
+            <div class="card-body text-center">
+                <div *ngIf="taxon.species || !taxon.finnish" class="card-text">{{(taxon.vernacularName || taxon.scientificName) | capitalize}}</div>
+                <div *ngIf="!taxon.species && taxon.finnish" class="card-text">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxoncard.nonspecies' | translate}}</div>
+                <div *ngIf="taxon.vernacularName" class="card-text scientific" [class.cursive]="taxon?.cursiveName">{{taxon.scientificName | capitalize}}</div>
             </div>
         </div>
     </div>

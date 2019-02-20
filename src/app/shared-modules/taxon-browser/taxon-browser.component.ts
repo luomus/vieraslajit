@@ -1,4 +1,4 @@
-import { Component, OnInit } from "../../../../node_modules/@angular/core";
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, AfterViewInit } from "../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../node_modules/@ngx-translate/core";
 import { Subscription } from "rxjs";
 
@@ -13,19 +13,25 @@ import { TaxonBrowserParameterService } from "./services/taxon-browser-parameter
     templateUrl: "taxon-browser.component.html",
     providers: [TaxonBrowserApiService, TaxonBrowserApiSettingsService, TaxonBrowserParameterService]
 })
-export class TaxonBrowserComponent implements OnInit{
-    taxa:Taxonomy[];
-
-    currentPage:number = 1;
+export class TaxonBrowserComponent implements OnInit, AfterViewInit {
+    taxa:Taxonomy[] = [];
+    total: number = 0;
 
     private langChangeSub:Subscription;
 
+    viewMode: "list" | "grid" = "grid"
+
     loading = true;
+
+    maxHeight = 400;
+
+    @ViewChild('cardscont') cardsContainer: ElementRef;
 
     constructor(private settingsService:TaxonBrowserApiSettingsService,
         private apiService: TaxonBrowserApiService,
         private translate: TranslateService,
-        private parameterService: TaxonBrowserParameterService) {
+        private parameterService: TaxonBrowserParameterService,
+        private cd: ChangeDetectorRef) {
         
     }
 
@@ -35,16 +41,14 @@ export class TaxonBrowserComponent implements OnInit{
         this.apiService.initialize();
 
         this.apiService.eventEmitter.addListener('change', ()=>{
-            this.loading=true;
         });
         this.apiService.eventEmitter.addListener('done', ()=>{
-            this.taxa = this.apiService.taxa;
+            // duplicate array to avoid mutability problems
+            this.taxa = this.apiService.taxa.slice();
+            this.total = this.settingsService.apiSettings.total;
             this.loading=false;
         });
 
-        this.parameterService.queryEventEmitter.subscribe((event) => {
-            if (event.page) this.currentPage = event.page;
-        });
         this.parameterService.init();
 
         this.langChangeSub = this.translate.onLangChange.subscribe((lang)=> {
@@ -52,13 +56,13 @@ export class TaxonBrowserComponent implements OnInit{
         })
     }
 
-    ngOnDestroy() {
-        this.langChangeSub ? this.langChangeSub.unsubscribe() : null;
+    ngAfterViewInit() {
+        this.maxHeight = window.innerHeight - this.cardsContainer.nativeElement.offsetTop - 13;
+        this.cd.detectChanges();
     }
 
-    getPage(page:number) {
-        this.parameterService.updateQuery({page: page});
-        this.currentPage = page;
+    ngOnDestroy() {
+        this.langChangeSub ? this.langChangeSub.unsubscribe() : null;
     }
 
     getTotalItems() {
@@ -66,7 +70,7 @@ export class TaxonBrowserComponent implements OnInit{
     }
 
     onInformalGroupSelection(event) {
-        this.parameterService.updateQuery({informalTaxonGroups: event, page: 1});
+        this.parameterService.updateQuery({informalTaxonGroups: event});
     }
 
     onFiListCheckbox(event) {
@@ -75,5 +79,13 @@ export class TaxonBrowserComponent implements OnInit{
 
     onEuListCheckbox(event) {
         this.parameterService.updateQuery({EuList: event.target.checked});
+    }
+    
+    onScroll() {
+        this.apiService.loadMore();
+    }
+
+    onGroupSelected(event) {
+        this.parameterService.updateQuery({informalTaxonGroups: Array.from(event)});
     }
 }

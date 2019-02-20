@@ -8,7 +8,6 @@ export interface TaxonBrowserApiSettings {
 
     informalTaxonGroups?:Informal[];
 
-    page?:number;
     total?:number;
 
     lang?:string;
@@ -16,7 +15,7 @@ export interface TaxonBrowserApiSettings {
 
 @Injectable()
 export class TaxonBrowserApiSettingsService {
-    private _apiSettings:TaxonBrowserApiSettings = {page: 1, total: 0};
+    private _apiSettings:TaxonBrowserApiSettings = {total: 0};
 
     eventEmitter:EventEmitter = new EventEmitter();
 
