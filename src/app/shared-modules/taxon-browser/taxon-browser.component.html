@@ -20,7 +20,7 @@
     <div class="cards-container" #cardscont [ngStyle]="{'height': maxHeight+'px'}">
         <div *ngIf="viewMode == 'grid'" class="cards-wrapper">
 <!--             <vrs-taxoncard-grid [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxoncard-grid> -->
-            <vrs-taxon-mosaic [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxon-mosaic>
+            <vrs-taxon-mosaic [taxa]="taxa" [total]="total" (scrolled)="onScroll()"></vrs-taxon-mosaic>
         </div>
         <div *ngIf="viewMode == 'list'" class="cards-wrapper">
             <vrs-taxon-browser-list [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxon-browser-list>

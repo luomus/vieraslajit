@@ -5,6 +5,7 @@
     [fromRoot]="true"
     (scrolled)="onScroll()">
     <div class="mosaic-babysitter">
+        <div class="total-taxa">Rajauksilla löytyi {{total}} vieraslajia</div>
         <div class="mosaic-child" [routerLink]="'/taxon/' + taxon.id" *ngFor="let taxon of taxa">
             <div class="mosaic-img">
                 <img *ngIf="taxon.multimedia && taxon.multimedia[0].thumbnailURL" class="card-img-top" src="{{taxon.multimedia[0].thumbnailURL}}">

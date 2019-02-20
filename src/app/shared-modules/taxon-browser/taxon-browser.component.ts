@@ -15,6 +15,7 @@ import { TaxonBrowserParameterService } from "./services/taxon-browser-parameter
 })
 export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     taxa:Taxonomy[] = [];
+    total: number = 0;
 
     private langChangeSub:Subscription;
 
@@ -44,6 +45,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
         this.apiService.eventEmitter.addListener('done', ()=>{
             // duplicate array to avoid mutability problems
             this.taxa = this.apiService.taxa.slice();
+            this.total = this.settingsService.apiSettings.total;
             this.loading=false;
         });
 

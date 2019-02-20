@@ -10,8 +10,15 @@
     height: inherit;
     display: flex;
     justify-content: left;
-    padding-top: 1em;
     padding-left: 1em;
+}
+
+.total-taxa {
+    padding-left: 2em;
+    padding-top: 1em;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: $neutral-6;
 }
 
 .mosaic-babysitter {

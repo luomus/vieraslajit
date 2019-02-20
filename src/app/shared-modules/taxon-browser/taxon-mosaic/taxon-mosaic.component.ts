@@ -8,6 +8,7 @@ import { Taxonomy } from "../../../shared/model";
 })
 export class TaxonMosaicComponent implements OnInit {
     @Input() taxa:Array<Taxonomy>;
+    @Input() total:number;
 
     @Output() scrolled = new EventEmitter();
 
