@@ -10,6 +10,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, AccordionModule } from 'ngx-bootstrap';
 import { InformationService } from './shared/service/information.service';
 import { UserService } from './shared/service/user.service';
+import { StateService } from './state.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -27,7 +28,7 @@ describe('AppComponent', () => {
         BsDropdownModule.forRoot(),
         AccordionModule.forRoot()
       ],
-      providers:[ ApiService, TaxonService, InformationService, UserService ]
+      providers:[ ApiService, TaxonService, InformationService, UserService, StateService ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {

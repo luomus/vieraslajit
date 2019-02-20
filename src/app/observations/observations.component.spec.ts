@@ -15,6 +15,7 @@ import { TaxonService } from '../shared/service/taxon.service';
 
 import { ObservationsComponent } from './observations.component';
 import { UserService } from '../shared/service/user.service';
+import { StateService } from '../state.service';
 
 describe('AllobservationsComponent', () => {
   let component: ObservationsComponent;
@@ -24,7 +25,7 @@ describe('AllobservationsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ObservationsComponent ],
       imports: [HttpClientModule, SharedModule, TranslateModule.forRoot(), NgxDatatableModule, RouterTestingModule,TabsModule.forRoot(),AlertModule],
-      providers: [ObservationService, ApiService,AlertService, UserService,DatePipe, AreaService, TaxonService]
+      providers: [ObservationService, ApiService,AlertService, UserService,DatePipe, AreaService, TaxonService, StateService]
     })
     .compileComponents();
   }));
