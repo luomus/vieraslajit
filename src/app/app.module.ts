@@ -15,6 +15,8 @@ import { UserService } from './shared/service/user.service';
 import { registerLocaleData } from '@angular/common';
 import localeFi from '@angular/common/locales/fi';
 import { StateService } from './state.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 registerLocaleData(localeFi);
 
@@ -47,7 +49,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabsModule.forRoot(),
     PaginationModule.forRoot(),
     SpinnerModule,
-    EditcmsModule
+    EditcmsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [StateService, UserService, { provide: LOCALE_ID, useValue: 'fi' }],
   bootstrap: [AppComponent]
