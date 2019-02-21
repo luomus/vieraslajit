@@ -69,7 +69,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit,
 
   private updateFixedTop() {
     const _fixedTop = this.fixedTop;
-    if ($(window).scrollTop() < 75) {
+    if ($(window).scrollTop() < 86) {
         this.fixedTop = false;
     } else {
         this.fixedTop = true;
