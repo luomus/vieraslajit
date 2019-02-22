@@ -32,4 +32,8 @@ export class TaxonBrowserApiSettingsService {
     set lang(s:string) {
         this._apiSettings.lang = s;
     }
+    clear() {
+        this._apiSettings = {total:0};
+        this.eventEmitter.emit('change');
+    }
 }

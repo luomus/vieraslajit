@@ -39,4 +39,11 @@ export class TaxonBrowserParameterService {
         });
         this.router.navigate([], { queryParams: this.query });
     }
+
+    clearQuery() {
+        this.query = {};
+        this.settings.clear();
+        this.queryEventEmitter.emit({});
+        this.router.navigate([], { queryParams: this.query });
+    }
 }
