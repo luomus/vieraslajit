@@ -31,6 +31,6 @@ export class ObservationModalComponent {
     id = ''
     constructor(public bsModalRef: BsModalRef, private sanitizer: DomSanitizer) {}
     iframeUrl() {
-        return this.sanitizer.bypassSecurityTrustResourceUrl(`https://embedded.laji.fi/view?uri=${this.id}`)
+        return this.sanitizer.bypassSecurityTrustResourceUrl(`https://dev-embedded.laji.fi/view?uri=${this.id}`)
     }
 }
