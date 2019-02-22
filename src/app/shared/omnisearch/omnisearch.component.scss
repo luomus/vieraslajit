@@ -22,13 +22,16 @@
 }
 
 input {
-  color: $neutral-6;
-  transition: box-shadow 0.2s ease;
+  background: $neutral-1;
+  color: $neutral-7;
   position: relative;
   z-index: 2000;
+  box-shadow: inset 1px 2px 3px hsla(0, 0, 0, 0.2);
+  border: 1px solid $neutral-3 !important;
 
   &:focus {
-    box-shadow: 2px 2px 20px 0px rgba(#000, 0.4);
+    box-shadow: inset 1px 2px 3px hsla(0, 0, 0, 0.2);
+    background: $neutral-1;
   }
 
   width: 15em;
@@ -60,7 +63,7 @@ input {
   top: -50px;
   z-index: 1000;
 
-  background-color: $neutral-3;
+  background-color: $neutral-2;
   padding: 2em;
   padding-top: 4em;
 

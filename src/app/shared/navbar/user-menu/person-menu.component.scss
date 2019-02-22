@@ -1,6 +1,7 @@
 @import '../../../../assets/styles/vars';
 
 :host {
+    font-size: 0.9em;
     position: relative;
     a {
         font-family: $font-family-base;
@@ -8,7 +9,7 @@
 }
 
 :host .name {
-    color: $primary-6;
+    color: $neutral-7;
     position: relative;
     z-index: 1001;
     cursor: default;
@@ -47,11 +48,11 @@
     z-index: 1001;
     display: block;
 
-    color: $neutral-7;
+    color: $primary-5;
     text-decoration: none;
     cursor: pointer;
 
     &:hover {
-        color: $neutral-8;
+        color: $primary-8;
     }
 }
