@@ -31,7 +31,7 @@ nav {
 }
 
 .laji-toolbar {
-    background: $neutral-2;
+    background: $neutral-1;
     font-size: 0.7em;
     padding: 0.25em;
     .container {
@@ -52,7 +52,7 @@ nav {
 
 .nav-top {
     padding: 5px 0;
-    background: $neutral-2;
+    background: $neutral-1;
     border-bottom: 1px solid $neutral-4;
     padding-bottom: 15px;
     .container {
@@ -121,8 +121,10 @@ nav {
 }
 
 .nav-bottom {
-    background: $neutral-4;
-    color: $primary-6;
+    background-color: $neutral-2;
+    /* Texture pattern from https://www.transparenttextures.com/ */
+    background-image: url("../../../assets/images/patterns/billie-holiday.png");
+    color: $neutral-7;
     .container {
         display: flex;
         flex-direction: row;
@@ -145,7 +147,8 @@ nav {
             outline: none;
             &:hover {
                 color: $neutral-2;
-                background: $primary-6;
+                background-color: hsl(118, 50, 30);
+                background-image: url("../../../assets/images/patterns/billie-holiday.png");
             }
             @include media-breakpoint-down(lg) {
                 padding: 0.5em 1em;
@@ -157,9 +160,10 @@ nav {
         }
         .active {
             cursor: default;
-            background: $primary-6;
+            background-color: hsl(118, 50, 30);
+            background-image: url("../../../assets/images/patterns/billie-holiday.png");
             color: $neutral-2;
-            box-shadow: inset 0 0 20px 0 $primary-8;
+            box-shadow: inset 0 0 20px 0 $primary-7;
         }
     }
 }
@@ -245,11 +249,10 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     color: $accent-5;
 }
 
-/* "About" Dropdown Menu */
-
 .vrs-dropdown {
     .dropdown-menu {
-        background: $primary-6;
+        background-color: hsl(118, 50, 30);
+        background-image: url("../../../assets/images/patterns/billie-holiday.png");
         border-radius: 10px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -259,7 +262,8 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     }
 
     .dropdown-item:focus {
-        background: $primary-6;
+        background-color: hsl(118, 50, 30);
+        background-image: url("../../../assets/images/patterns/billie-holiday.png");
     }
 
     .dropdown-item {
@@ -275,8 +279,8 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 .dropdown.link.vrs-dropdown {
     &:hover {
         color: $neutral-2 !important;
-        background: $primary-6 !important;
-        border-color: $primary-6 !important;
+        background-color: hsl(118, 50, 30);
+        background-image: url("../../../assets/images/patterns/billie-holiday.png");
     }
 }
 
@@ -285,7 +289,8 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     .dropdown-menu {
         padding: 2em;
         box-shadow: 0px 10px 25px -5px rgba(0, 0, 0, 0.25);
-        background: $primary-6;
+        background-color: hsl(118, 50, 30);
+        background-image: url("../../../assets/images/patterns/billie-holiday.png");
         width: 100%;
         margin-top: 0px;
         border-radius: 0px;

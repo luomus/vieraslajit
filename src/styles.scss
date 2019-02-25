@@ -18,7 +18,9 @@ html, body {
     padding: 0px;
     overflow-x: hidden;
     font-family: $font-family-base;
-    background: $neutral-3;
+    background-color: $primary-5;
+    /* Texture pattern from https://www.transparenttextures.com/ */
+    background-image: url("./assets/images/patterns/buried.png");
 
     color: $neutral-7;
 
@@ -55,19 +57,19 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-    font-size: 3em;
-}
-
-h2 {
     font-size: 2em;
 }
 
-h3 {
+h2 {
     font-size: 1.5em;
 }
 
-h4 {
+h3 {
     font-size: 1.25em;
+}
+
+h4 {
+    font-size: 1.1em;
 }
 
 h5 {

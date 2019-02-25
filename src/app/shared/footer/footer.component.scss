@@ -6,9 +6,12 @@
     z-index: 10;
 }
 
+footer {
+    background: $neutral-3;
+}
+
 .footer-content {
     font-size: 1rem;
-    background: linear-gradient(to bottom right, $primary-7 0%, lighten($primary-7, 5) 100%);
     color: rgba($neutral-1, 0.8);
     border-top: 6px solid $accent-5;
     box-shadow: 0px 0px 10px 0px $neutral-9;
@@ -54,8 +57,6 @@
 }
 
 .vrs-affiliates {
-    background: $neutral-3;
-
     ul {
         text-align: center;
     }
