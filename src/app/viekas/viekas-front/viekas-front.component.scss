@@ -1,5 +1,16 @@
 @import '../../../assets/styles/vars';
 
+:host {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.viekas-front {
+    max-width: 1000px;
+    padding: 10px 50px;
+}
+
 .benefits {
     margin-top: 1em;
     margin-bottom: 1em;
