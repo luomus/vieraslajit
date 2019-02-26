@@ -60,6 +60,7 @@ footer {
 .vrs-affiliates {
     ul {
         text-align: center;
+        margin: 0;
     }
 
     @include media-breakpoint-down(xs) {
@@ -97,5 +98,17 @@ footer {
         &:hover {
             color: $neutral-9;
         }
+    }
+}
+
+.hero-credit {
+    font-size: 0.7rem;
+    color: $neutral-5;
+    padding: 2px;
+    padding-bottom: 10px;
+    text-align: center;
+    a {
+        color: $neutral-5;
+        font-weight: 600;
     }
 }
