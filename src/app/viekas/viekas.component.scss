@@ -7,11 +7,8 @@
     width: 100%;
 }
 
-.container {
-  min-height: inherit;
-  .row {
-    min-height: inherit;
-  }
+.viekas-container {
+    padding: 0 50px;
 }
 
 .sidebar {
@@ -49,6 +46,7 @@
 }
 
 .content {
+    max-width: 1400px;
     position: relative;
     z-index: 1;
     padding: 2em;
