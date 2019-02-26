@@ -88,4 +88,8 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     onGroupSelected(event) {
         this.parameterService.updateQuery({informalTaxonGroups: Array.from(event)});
     }
+
+    onClearSettings() {
+        this.parameterService.clearQuery();
+    }
 }

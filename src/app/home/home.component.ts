@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   getNews(page){
     this.newsService.getPage('1', '20', this.translate.currentLang, "vieraslajit.fi,technical")
     .subscribe((data) => {
+      console.log(data);
       let technical: Array<any> = [0];
       this.news=[];
       for(let d of data.results) {

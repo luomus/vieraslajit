@@ -24,31 +24,36 @@
         padding: 0.5em;
         margin: 0.5em 0;
         padding-left: 0.75em;
-        color: $neutral-6;
+        color: $primary-3;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
         &:hover {
+            color: $primary-8;
             background: $neutral-2;
         }
     }
     h5 {
-        color: $neutral-5;
+        color: $primary-2;
         font-size: 0.8em;
         text-transform: uppercase;
         font-weight: 600;
     }
 }
 
-.sidebar-active {
+.sidebar a.sidebar-active {
+    cursor: default;
     background: $neutral-2;
-    z-index: 1;
+    color: $primary-8;
+    z-index: 2;
     box-shadow: -10px 10px 25px -10px rgba(0, 0, 0, 0.075), -10px -10px 25px -10px rgba(1, 0, 0, 0.075);
 }
 
 .content {
+    position: relative;
+    z-index: 1;
     padding: 2em;
     background: $neutral-2;
-    margin-bottom: 2em;
+    margin-bottom: -50px;
     box-shadow: 2px 2px 50px rgba(#000, 0.125);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;

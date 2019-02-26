@@ -5,11 +5,13 @@
 }
 
 .container {
+    position: relative;
+    z-index: 1;
     min-height: inherit;
     margin-top: $navbar-height;
     padding-top: 1em;
-    padding-bottom: 5em;
-    margin-bottom: 2em;
+    padding-bottom: 50px;
+    margin-bottom: -50px;
     box-shadow: 2px 2px 50px rgba(#000, 0.125);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
