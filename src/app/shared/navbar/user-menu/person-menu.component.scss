@@ -13,9 +13,6 @@
     position: relative;
     z-index: 1001;
     cursor: default;
-    &:hover {
-        color: $primary-6;
-    }
 }
 
 .menu-bottom {
@@ -48,11 +45,11 @@
     z-index: 1001;
     display: block;
 
-    color: $primary-5;
+    color: $neutral-5;
     text-decoration: none;
     cursor: pointer;
 
     &:hover {
-        color: $primary-8;
+        color: $neutral-8;
     }
 }

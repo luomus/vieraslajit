@@ -19,22 +19,22 @@
 .options-menu-wrapper {
     background: $neutral-1;
     border-right: 2px solid $neutral-4;
-    flex: 1 1 30%;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .options-menu {
-    padding-top: 2em;
+    padding: 20px;
 }
 
 .checkbox {
     display: block !important;
+    white-space: nowrap;
 }
 
 .cards-container {
-    flex: 1 1 70%;
+    flex: 1 1 auto;
 }
 
 .cards-wrapper {
