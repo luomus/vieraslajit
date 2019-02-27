@@ -5,6 +5,17 @@
     background: $neutral-2;
 }
 
+.container {
+    position: relative;
+    z-index: 1;
+    background: $neutral-2;
+    padding: 0 50px;
+    margin-bottom: -50px;
+    box-shadow: 2px 2px 25px rgba(#000, 0.3);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
 .head {
     padding-top: 2em;
     padding-bottom: 1em;
@@ -34,6 +45,7 @@
 }
 
 .taxon-info-card {
+    background: $neutral-1;
     box-shadow: 0px 0px 50px 10px #ddd;
 }
 
