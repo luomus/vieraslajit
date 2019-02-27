@@ -5,8 +5,11 @@ import { TranslateService } from '@ngx-translate/core';
 import {OmnisearchComponent} from '../shared/omnisearch/omnisearch.component'
 import { NewsComponent } from '../news/news.component';
 import { environment } from '../../environments/environment';
-import { Subscription } from 'rxjs';
+import { Subscription, forkJoin } from 'rxjs';
 import { findContentID, StaticContent } from '../../assets/i18n/cms-content';
+import { InformationService } from '../shared/service/information.service';
+import { map, concatMap } from 'rxjs/operators';
+import { TaxonService } from '../shared/service/taxon.service';
 
 /**
  * Renders the home-/frontpage ie. /home/ route
@@ -23,9 +26,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   private onLangChange: Subscription;
   alerts: Array<any> = [];
   news: Array<any>= [];
+  topical: Array<any> = [];
   staticPetsID:string;
 
-  constructor(private newsService: NewsService, private translate: TranslateService) { }
+  constructor(private informationService: InformationService, private taxonService: TaxonService, private newsService: NewsService, private translate: TranslateService) { }
 
   /**
    * 1. Create subscription for news
@@ -39,6 +43,20 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.getNews(1);
     });
     this.getNews(1);
+
+    // HACK: get topical species from CMS
+    this.informationService.getInformation('i-386').pipe(
+      map((res) => {
+        return res.content.replace(/<.*?>/g, "").split(',');
+      }), concatMap((res) => {
+        return res;
+      }), concatMap(res => {
+        return this.taxonService.getTaxonWithMedia(res);
+      })
+      ).subscribe((res) => {
+        console.log(res);
+        this.topical.push(res);
+    })
   }
 
   ngOnDestroy() {
@@ -48,7 +66,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   getNews(page){
     this.newsService.getPage('1', '20', this.translate.currentLang, "vieraslajit.fi,technical")
     .subscribe((data) => {
-      console.log(data);
       let technical: Array<any> = [0];
       this.news=[];
       for(let d of data.results) {

@@ -8,6 +8,7 @@ import { ApiService } from '../shared/api/api.service';
 import { TaxonService } from '../shared/service/taxon.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { InformationService } from '../shared/service/information.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -17,7 +18,7 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
       imports:[SharedModule, HttpClientModule, TranslateModule.forRoot(),FormsModule, RouterTestingModule],
-      providers:[NewsService, ApiService, TranslateService,TaxonService]
+      providers:[NewsService, ApiService, TranslateService,TaxonService,InformationService,TaxonService]
     })
     .compileComponents();
   }));

@@ -37,6 +37,10 @@ export class TaxonService {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.taxon, taxonId, { lang: lang, langFallback: false });
   }
+  getTaxonWithMedia(taxonId: string, lang?: string): Observable<Taxonomy> {
+    return this.apiService
+      .taxonomyFindById(LajiApi.Endpoints.taxon, taxonId, { lang: lang, langFallback: false, includeMedia: true });
+  }
   // Get root groups.
   getInformalGroups(lang: string): Observable<PagedResult<Informal>> {
     return this.apiService

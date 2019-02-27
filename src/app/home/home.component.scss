@@ -78,7 +78,7 @@
         background-blend-mode: soft-light;
         /* Texture pattern from https://www.transparenttextures.com/ */
         background-image: url("../../assets/images/patterns/buried.png");
-        padding: 150px 200px;
+        padding: 50px 200px;
         h2 {
             color: $primary-3;
             text-align: center;
@@ -90,7 +90,7 @@
             padding: 0 15px;
         }
         li {
-            flex: 0 1 33%;
+            flex: 0 1 25%;
             margin: 15px;
             background: $neutral-4;
             box-shadow: 0 2px 10px rgba(#000, 0.25);

@@ -23,17 +23,9 @@
         <div class="container">
             <h2>Topical species</h2>
             <ul>
-                <li>
-                    <img src="https://image.laji.fi/MM.52016/MX.39158_Impa_gland_kukka_TerhiRyttari.JPG" alt="">
-                    <div>Jättipalsami</div>
-                </li>
-                <li>
-                    <img src="https://image.laji.fi/MM.53383/MX.41389_Majavankaali2_TerhiRyttari.JPG" alt="">
-                    <div>Keltamajavankaali</div>
-                </li>
-                <li>
-                    <img src="https://image.laji.fi/MM.53409/MX.42910_Hera_sosnowskyi1_TimoHokkanen.jpg" alt="">
-                    <div>Jättiputket</div>
+                <li *ngFor="let taxon of topical">
+                    <img [src]="taxon.multimedia[0].fullURL" alt="">
+                    <div>{{taxon.scientificName}}</div>
                 </li>
             </ul>
         </div>
