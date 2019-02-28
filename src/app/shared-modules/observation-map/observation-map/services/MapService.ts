@@ -119,7 +119,7 @@ export class MapService {
     getGeoJSONFromObservations(obs: VrsObservation[]) {
         let features = [];
         obs.forEach((o)=>{
-            if(o.gathering.conversions) {
+            if(o.gathering && o.gathering.conversions) {
                 let f = {
                     type: "Feature",
                     geometry: {

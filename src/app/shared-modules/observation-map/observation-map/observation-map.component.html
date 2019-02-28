@@ -1,12 +1,26 @@
 <div class="obs-map">
 <div class="row pb-2" *ngIf="ownModeSelectorEnabled || municipalitySelectEnabled || taxonSearchEnabled">
 <div class="col-12 col-sm-7 pl-4">
-  <div *ngIf="isLoggedIn && ownModeSelectorEnabled" class="form-check vrs-map-checkbox">
-    <input class="form-check-input" type="checkbox" value="" id="ownCheck" [checked]="ownModeEnabled" (change)="ownModeEnabled = !ownModeEnabled; ownModeChange()">
-    <label class="form-check-label" for="ownCheck">
+  <div *ngIf="isLoggedIn && ownModeSelectorEnabled" class="checkbox">
+    <input type="checkbox" id="ownCheck" [checked]="ownModeEnabled" (change)="ownModeEnabled = !ownModeEnabled; ownModeChange()">
+    <label for="ownCheck">
       Vain omat havainnot
     </label>
   </div>
+  <ng-container *ngIf="administrativeCheckboxes">
+    <div class="checkbox">
+        <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
+        <label for="finnishList">Kansallinen luettelo</label>
+    </div>
+    <div class="checkbox">
+        <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList">
+        <label for="euList">Euroopan luettelo</label>
+    </div>
+    <div class="checkbox">
+        <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest">
+        <label for="plantPest">Vaarallinen kasvintuhooja</label>
+    </div>
+  </ng-container>
   <div class="row" *ngIf="municipalitySelectEnabled">
     <div class="col-12 col-sm-4"><div class="input-group">
         <select id="select-municipality" class="custom-select">

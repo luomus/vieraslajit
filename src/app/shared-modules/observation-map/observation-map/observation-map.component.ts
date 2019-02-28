@@ -24,6 +24,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   @Input() municipalitySelectEnabled?: boolean = false;
   @Input() ownModeSelectorEnabled?: boolean = false;
   @Input() ownModeEnabled?: boolean = false;
+  @Input() administrativeCheckboxes?: boolean = false;
 
   @Input() mapHeight: number = 400;
 
@@ -141,5 +142,17 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
 
   openModal(selectedId) {
     this.bsModalRef = this.modalService.show(ObservationModalComponent, {initialState: {id: selectedId}, class: 'modal-custom'});
+  }
+
+  onFiListCheckbox(e) {
+    this.obsMapOptions.setOption("fiList", e.target.checked);
+  }
+
+  onEuListCheckbox(e) {
+    this.obsMapOptions.setOption("euList", e.target.checked);
+  }
+
+  onPlantPestCheckbox(e) {
+    this.obsMapOptions.setOption("plantPest", e.target.checked);
   }
 }
