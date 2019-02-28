@@ -15,6 +15,11 @@
                 <label for="euList">Euroopan luettelo</label>
                 <vrs-help>Tässä on löpinää eu:n luettelosta</vrs-help>
             </div>
+            <div class="checkbox">
+                <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest">
+                <label for="plantPest">Vaaralliset kasvintuhoojat</label>
+                <vrs-help>Tietoa kasvintuhoojista</vrs-help>
+            </div>
             <button (click)="onClearSettings()">Poista kaikki valinnat</button>
         </div>
     </div>

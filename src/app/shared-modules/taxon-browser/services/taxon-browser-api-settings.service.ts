@@ -5,6 +5,7 @@ import { Informal } from "../../../shared/model";
 export interface TaxonBrowserApiSettings {
     EuList?:boolean;
     FiList?:boolean;
+    PlantPest?:boolean;
 
     informalTaxonGroups?:Informal[];
 

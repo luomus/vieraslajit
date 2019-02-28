@@ -5,6 +5,7 @@ import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { SearchComponent } from '../shared/googlesearch/search/search.component';
+import { TopicalSpeciesComponent } from './topical-species/topical-species.component';
 
 /**
  * Declares routes and component for rendering the home/front -page
@@ -16,7 +17,7 @@ import { SearchComponent } from '../shared/googlesearch/search/search.component'
     CommonModule,
     SharedModule,
   ],
-  declarations: [HomeComponent]
+  declarations: [HomeComponent, TopicalSpeciesComponent]
 })
 
 export class HomeModule { }

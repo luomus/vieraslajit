@@ -21,13 +21,7 @@
     </div>
     <div class="topical-species">
         <div class="container">
-            <h2>Topical species</h2>
-            <ul>
-                <li *ngFor="let taxon of topical">
-                    <img [src]="taxon.multimedia[0].fullURL" alt="">
-                    <div>{{taxon.scientificName}}</div>
-                </li>
-            </ul>
+            <vrs-topical-species [taxa]="topical"></vrs-topical-species>
         </div>
     </div>
     <div class="what-is">

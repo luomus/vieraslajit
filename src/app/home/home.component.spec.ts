@@ -9,6 +9,7 @@ import { TaxonService } from '../shared/service/taxon.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { InformationService } from '../shared/service/information.service';
+import { TopicalSpeciesComponent } from './topical-species/topical-species.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -16,7 +17,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ],
+      declarations: [ HomeComponent, TopicalSpeciesComponent ],
       imports:[SharedModule, HttpClientModule, TranslateModule.forRoot(),FormsModule, RouterTestingModule],
       providers:[NewsService, ApiService, TranslateService,TaxonService,InformationService,TaxonService]
     })
