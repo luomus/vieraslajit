@@ -46,6 +46,10 @@ export class MapApiService {
         if (this.obsMapOptions.getOption("id")) query["taxonId"] = this.obsMapOptions.getOption("id");
         if (this.obsMapOptions.getOption("municipality")) query["area"] = this.obsMapOptions.getOption("municipality");
         if (this.obsMapOptions.getOption("personToken")) query["observerPersonToken"] = this.obsMapOptions.getOption("personToken");
+        query["administrativeStatusId"] = [];
+        if (this.obsMapOptions.getOption("fiList")) query["administrativeStatusId"].push('MX.nationallySignificantInvasiveSpecies');
+        if (this.obsMapOptions.getOption("euList")) query["administrativeStatusId"].push('MX.euInvasiveSpeciesList');
+        if (this.obsMapOptions.getOption("plantPest")) query["administrativeStatusId"].push('MX.quarantinePlantPest');
         return query;
     }
 
@@ -87,6 +91,10 @@ export class MapApiService {
         if(this.obsMapOptions.getOption("id")) query["taxonId"] = this.obsMapOptions.getOption("id")
         if(this.obsMapOptions.getOption("personToken")) query["observerPersonToken"] = this.obsMapOptions.getOption("personToken");
         if(this.obsMapOptions.getOption("municipality")) query["finnishMunicipalityId"] = this.obsMapOptions.getOption("municipality");
+        query["administrativeStatusId"] = [];
+        if (this.obsMapOptions.getOption("fiList")) query["administrativeStatusId"].push('MX.nationallySignificantInvasiveSpecies');
+        if (this.obsMapOptions.getOption("euList")) query["administrativeStatusId"].push('MX.euInvasiveSpeciesList');
+        if (this.obsMapOptions.getOption("plantPest")) query["administrativeStatusId"].push('MX.quarantinePlantPest');
 
         this.obsMapOptions.loadState = true;
         this.obsMapData.removeData();
