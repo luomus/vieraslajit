@@ -57,7 +57,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         return this.taxonService.getTaxonWithMedia(res, this.translate.currentLang);
       })
       ).subscribe((res) => {
-        console.log(res);
         this.topical.push(res);
         this.topical = this.topical.slice();
     })
