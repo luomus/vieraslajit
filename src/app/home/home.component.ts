@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { SearchComponent } from '../shared/googlesearch/search/search.component';
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -29,7 +29,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   topical: Array<any> = [];
   staticPetsID:string;
 
-  constructor(private informationService: InformationService, private taxonService: TaxonService, private newsService: NewsService, private translate: TranslateService) { }
+  constructor(private informationService: InformationService,
+              private taxonService: TaxonService,
+              private newsService: NewsService,
+              private translate: TranslateService) { }
 
   /**
    * 1. Create subscription for news
@@ -51,11 +54,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       }), concatMap((res) => {
         return res;
       }), concatMap(res => {
-        return this.taxonService.getTaxonWithMedia(res);
+        return this.taxonService.getTaxonWithMedia(res, this.translate.currentLang);
       })
       ).subscribe((res) => {
         console.log(res);
         this.topical.push(res);
+        this.topical = this.topical.slice();
     })
   }
 
