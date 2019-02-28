@@ -42,6 +42,9 @@ export class TaxonBrowserApiService {
         if (this.settingsService.apiSettings.FiList) {
             tempAdminStatusFilters.push('MX.nationallySignificantInvasiveSpecies');
         }
+        if (this.settingsService.apiSettings.PlantPest) {
+            tempAdminStatusFilters.push('MX.quarantinePlantPest');
+        }
         this.query.adminStatusFilters = tempAdminStatusFilters.toString();
 
         if (this.settingsService.apiSettings.informalTaxonGroups) {

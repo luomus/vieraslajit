@@ -80,6 +80,10 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     onEuListCheckbox(event) {
         this.parameterService.updateQuery({EuList: event.target.checked});
     }
+
+    onPlantPestCheckbox(event) {
+        this.parameterService.updateQuery({PlantPest: event.target.checked});
+    }
     
     onScroll() {
         this.apiService.loadMore();
