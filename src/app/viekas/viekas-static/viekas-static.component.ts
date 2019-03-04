@@ -4,10 +4,12 @@ import { InformationService } from "../../shared/service/information.service";
 @Component({
     selector: 'vrs-viekas-static',
     template: `
-<vrs-editcms [id]="id"></vrs-editcms>
-<h2>{{data?.title}}</h2>
-<div [innerHTML]="data?.content | parsewp"></div>
-`
+<div>
+    <vrs-editcms [id]="id"></vrs-editcms>
+    <h2>{{data?.title}}</h2>
+    <div [innerHTML]="data?.content | parsewp"></div>
+</div>
+`,  styleUrls: ['./viekas-static.component.scss']
 })
 export class ViekasStaticComponent implements OnChanges {
     @Input() id;
