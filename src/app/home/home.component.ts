@@ -81,7 +81,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.news.push(d);
         }  
       } 
-      console.log(this.news);
       this.filterTechnicalNews(technical);
     });
     
