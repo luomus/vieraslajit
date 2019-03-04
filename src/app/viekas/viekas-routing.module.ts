@@ -5,10 +5,8 @@ import { ViekasFrontComponent } from './viekas-front/viekas-front.component';
 import { ViekasResolver } from './../viekas/viekas.resolver';
 import { findContentID, StaticContent } from '../../assets/i18n/cms-content';
 
-const rootId = findContentID(StaticContent.Viekas, 'fi');
-
 const routes: Routes = [
-  { path: '', redirectTo: rootId, pathMatch: 'full'},
+  { path: '', redirectTo: 'i-393', pathMatch: 'full'},
   { path: ':id', component: ViekasComponent, resolve: {data: ViekasResolver}}
 ];
 
