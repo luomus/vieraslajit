@@ -39,8 +39,8 @@
                     <h2>News</h2>
                     <ul>
                         <li *ngFor="let story of news">
-                            <h3>{{story.title}}</h3>
-                            <p>Description</p>
+                            <h3 [routerLink]="['/news']">{{story.title}}</h3>
+                            <p [innerHTML]="story.content"></p>
                         </li>
                     </ul>
                 </div>

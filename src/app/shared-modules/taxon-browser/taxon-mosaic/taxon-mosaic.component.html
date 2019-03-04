@@ -6,14 +6,14 @@
     (scrolled)="onScroll()">
     <div class="mosaic-babysitter">
         <div class="total-taxa">Rajauksilla löytyi {{total}} vieraslajia</div>
-        <a class="mosaic-child" [routerLink]="'/taxon/' + taxon.id" *ngFor="let taxon of taxa">
+        <div class="mosaic-child" *ngFor="let taxon of taxa">
             <div class="mosaic-img">
                 <img *ngIf="taxon.multimedia && taxon.multimedia[0].thumbnailURL" class="card-img-top" src="{{taxon.multimedia[0].thumbnailURL}}">
                 <img *ngIf="!taxon.multimedia || !taxon.multimedia[0].thumbnailURL" class="card-img-top" src="../../../../assets/images/taxon_placeholder.png">
             </div>
             <div class="mosaic-desc">
-                <div *ngIf="taxon.species || !taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}}</div>
-                <div *ngIf="!taxon.species && taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxoncard.nonspecies' | translate}}</div>
+                <a *ngIf="taxon.species || !taxon.finnish" [routerLink]="'/taxon/' + taxon.id "class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}}</a>
+                <a *ngIf="!taxon.species && taxon.finnish" [routerLink]="'/taxon/' + taxon.id "class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxoncard.nonspecies' | translate}}</a>
                 <div *ngIf="taxon.vernacularName" class="scientific-name" [class.cursive]="taxon?.cursiveName">{{taxon.scientificName | capitalize}}</div>
                 <ul>
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.euInvasiveSpeciesList')" class="administrative-status">Kuuluu unionin vieraslajiluetteloon</li>
@@ -21,7 +21,7 @@
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.quarantinePlantPest')" class="administrative-status">Vaarallinen kasvintuhooja</li>
                 </ul>
             </div>
-        </a>
+        </div>
         <div *ngIf="taxa.length < total" class="more-results">
             Ladataan lisää lajeja...
         </div>

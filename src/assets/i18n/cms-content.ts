@@ -1,5 +1,5 @@
 export enum StaticContent {
-    EUList, FIList, EuListObligations, FIListObligations, EradicationInfo, EradicationGuides, Root, Pets
+    Viekas, EUList, FIList, EuListObligations, FIListObligations, EradicationInfo, EradicationGuides, Root, Pets
 }
 
 export function findContentID(target: StaticContent, lang: string) {
@@ -44,6 +44,11 @@ export function findContentID(target: StaticContent, lang: string) {
             if (lang == "fi") r = "i-229";
             if (lang == "en") r = "i-259";
             if (lang == "sv") r = "i-256";
+            break;
+        case StaticContent.Viekas:
+            if (lang == "fi") r = "i-393";
+            if (lang == "en") r = "i-393";
+            if (lang == "sv") r = "i-393";
             break;
     }
     return r;

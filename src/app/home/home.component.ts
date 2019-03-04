@@ -76,7 +76,9 @@ export class HomeComponent implements OnInit, OnDestroy {
           technical.push(d);
         }
         if (d.tag.includes("vieraslajit.fi")&&this.news.length<5) {
-            this.news.push(d);
+          d.content = d.content.replace(/<\/p>/mg, '<br>')
+          d.content = d.content.replace(/<(?:(?!br).)+>/mg, '');
+          this.news.push(d);
         }  
       } 
       this.filterTechnicalNews(technical);
