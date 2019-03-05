@@ -21,16 +21,16 @@
         padding: 0.5em;
         margin: 0.5em 0;
         padding-left: 0.75em;
-        color: $primary-3;
+        color: hsl(40, 15, 35);
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
         &:hover {
-            color: $primary-8;
+            color: $neutral-8;
             background: $neutral-2;
         }
     }
     h5 {
-        color: $primary-2;
+        color: hsl(40, 15, 40);
         font-size: 0.8em;
         text-transform: uppercase;
         font-weight: 600;
@@ -40,7 +40,7 @@
 .sidebar a.sidebar-active {
     cursor: default;
     background: $neutral-2;
-    color: $primary-8;
+    color: $neutral-8;
     z-index: 2;
     box-shadow: -10px 10px 25px -10px rgba(0, 0, 0, 0.075), -10px -10px 25px -10px rgba(1, 0, 0, 0.075);
 }

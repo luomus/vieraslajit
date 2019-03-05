@@ -29,7 +29,7 @@
         height: 250px;
         position: absolute;
         background: $neutral-2;
-        bottom: -100px;
+        bottom: -75px;
         left: 50%;
         margin-left: -350px;
         z-index: 1;
@@ -48,11 +48,11 @@
     }
 
     .mission-statement-wrapper {
-        padding-top: 75px;
+        padding-top: 50px;
         background: $neutral-4;
     }
     .mission-statement {
-        padding: 100px 0px;
+        padding: 50px 0px;
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
@@ -73,8 +73,8 @@
     }
 
     .topical-species {
-        box-shadow: inset 0 0 50px rgba(#000, 0.3);
-        background-color: hsl(40, 15, 41);
+        box-shadow: inset 0 0 25px rgba(#000, 0.25);
+        background-color: hsl(40, 15, 70);
         background-blend-mode: soft-light;
         /* Texture pattern from https://www.transparenttextures.com/ */
         background-image: url("../../assets/images/patterns/buried.png");

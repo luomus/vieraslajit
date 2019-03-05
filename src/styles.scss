@@ -18,11 +18,7 @@ html, body {
     padding: 0px;
     overflow-x: hidden;
     font-family: $font-family-base;
-    background-color: hsl(118, 15, 41);
-    background-blend-mode: soft-light;
-    /* Texture pattern from https://www.transparenttextures.com/ */
-    background-image: url("./assets/images/patterns/buried.png");
-
+    background-color: hsl(40, 15, 80);
     color: $neutral-7;
 
     font-size: 16px;

@@ -19,7 +19,7 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-12 col-md-7">
+      <div class="col-sm-12 col-md-7 left-container">
         <div *ngIf="desc?.groups; else infoAndLajifiTemplate">
           <div id="taxoncard" *ngFor="let group of desc?.groups; let first = first">
                 <div *ngFor="let variable of group.variables">
