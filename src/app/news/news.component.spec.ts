@@ -10,6 +10,8 @@ import { EditcmsModule } from '../shared-modules/editcms/editcms.module';
 import { SpinnerModule } from '../shared-modules/spinner/spinner.module';
 import { NewsHeaderComponent } from './news-header/news-header.component';
 import { SharedModule } from '../shared/shared.module';
+import { NewsParamsService } from './news-params.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('NewsComponent', () => {
   let component: NewsComponent;
@@ -18,9 +20,9 @@ describe('NewsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ NewsComponent, NewsHeaderComponent],
-      imports: [HttpClientModule, TranslateModule.forRoot(),EditcmsModule, NgxPaginationModule,
+      imports: [RouterTestingModule, HttpClientModule, TranslateModule.forRoot(),EditcmsModule, NgxPaginationModule,
                 SpinnerModule, SharedModule],
-      providers: [ApiService, NewsService]
+      providers: [ApiService, NewsService, NewsParamsService]
     })
     .compileComponents();
   }));
