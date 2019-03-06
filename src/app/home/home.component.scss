@@ -26,7 +26,7 @@
 
     .hero-overlap {
         width: 700px;
-        height: 250px;
+        height: 300px;
         position: absolute;
         background: $neutral-2;
         bottom: -75px;
@@ -39,6 +39,10 @@
         display: flex;
         flex-flow: column nowrap;
         justify-content: flex-end;
+        font-size: 0.9em;
+        p {
+            text-align: left;
+        }
         div {
             text-align: center;
         }

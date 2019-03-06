@@ -67,6 +67,10 @@
   padding: 1em 0em;
 }
 
+.news-section {
+    width: 35em;
+}
+
 .news-modified {
     color: $neutral-6;
     font-style:italic;
@@ -103,7 +107,7 @@
     color: $accent-8;
 }
 
-.active {
+.active-navpill {
     background-color: $accent-5;
     border-color: $accent-5;
     color: $accent-8;

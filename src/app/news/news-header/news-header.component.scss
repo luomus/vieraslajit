@@ -3,30 +3,13 @@
 
 
 .news-header {
-    border-left: 4px solid red;
-    padding: 1em 2em 1em 0.5em;
+    padding: 1em 2em 1em 0em;
+}
 
-    &.c0{
-        border-color: red;
-    }
-    &.c1 {
-        border-color: purple;
-    }
-    &.c2 {
-        border-color: yellow;
-    }
-    &.c3 {
-        border-color: deeppink;
-    }
-    &.c4 {
-        border-color: blue;
-    }
-    &.c5 {
-        border-color: fuchsia;
-    }
-    &.c6 {
-        border-color: lime;
-    }
+.news-header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 }
 
 .news-header-text {
@@ -34,6 +17,7 @@
 }
 
 .news-title {
+    padding-right: 15px;
     font-size: 1.1em;
     font-weight: 600;
     color: $neutral-8;
@@ -54,4 +38,5 @@
 .news-thumbnail {
     object-fit: scale-down;
     max-height: 100px;
+    padding: 0 1em;
 }

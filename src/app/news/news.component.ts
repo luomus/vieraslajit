@@ -7,6 +7,8 @@ import { PagedResult } from '../shared/model/PagedResult';
 import { tap, map } from 'rxjs/operators';
 
 import * as $ from 'jquery';
+import { ActivatedRoute } from '@angular/router';
+import { NewsParamsService } from './news-params.service';
 
 @Component({
   selector: 'vrs-news',
@@ -30,13 +32,21 @@ export class NewsComponent implements OnInit, OnDestroy {
   // Spinner
   newsLoading:boolean = true;
 
-  constructor(private newsService: NewsService, private translate: TranslateService) { }
+  constructor(private newsService: NewsService,
+              private translate: TranslateService,
+              private route: ActivatedRoute,
+              private paramsService: NewsParamsService) { }
 
   ngOnInit() {
+    this.paramsService.queryParams$.subscribe(params => {
+      params.page ? this.currentPage = params.page : this.currentPage = 1;
+      params.tags ? this.currentTags = params.tags : this.currentTags = 'vieraslajit.fi';
+      this.getPage(this.currentPage);
+    });
+    this.paramsService.init();
     this.onLangChange= this.translate.onLangChange.subscribe((event) =>{
       this.getPage(this.currentPage);
     });
-    this.getPage(1);
   }
 
   getPage(page:number) {
@@ -49,15 +59,19 @@ export class NewsComponent implements OnInit, OnDestroy {
     $('html, body').animate({ scrollTop: 0 }, 200);
   }
 
+  onPageChange(page:number) {
+    this.paramsService.setPage(page);
+  }
+
   onClick(tags:string, id){
-    Array.from(document.getElementsByClassName("active")).forEach(
+    Array.from(document.getElementsByClassName("active-navpill")).forEach(
       function(element) {
-        element.classList.remove("active");
+        element.classList.remove("active-navpill");
       }
     );
 
-    document.getElementById(id).classList.add('active');
-    this.currentTags = tags;
+    document.getElementById(id).classList.add('active-navpill');
+    this.paramsService.setTags(tags);
     this.getPage(1);
   }
 
