@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { TabsModule } from 'ngx-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination'
 import { NewsHeaderComponent } from './news-header/news-header.component';
+import { NewsParamsService } from './news-params.service';
 
 /**
  * Declares component and routes for the main news view of the app
@@ -18,6 +19,7 @@ import { NewsHeaderComponent } from './news-header/news-header.component';
     TabsModule.forRoot(),
     NgxPaginationModule
   ],
-  declarations: [NewsComponent, NewsHeaderComponent]
+  declarations: [NewsComponent, NewsHeaderComponent],
+  providers: [NewsParamsService]
 })
 export class NewsModule { }

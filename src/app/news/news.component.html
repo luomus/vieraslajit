@@ -5,13 +5,13 @@
     <div class= "row justify-content-between">
       <div class="col-12 col-md-auto">
         <ul id="navpills">
-            <li class="navpill active" id="navpillNews" (click)="onClick('vieraslajit.fi', 'navpillNews')" translate><span class="oi oi-calendar"></span>news.news</li>
+            <li class="navpill active-navpill" id="navpillNews" (click)="onClick('vieraslajit.fi', 'navpillNews')" translate><span class="oi oi-calendar"></span>news.news</li>
             <li class="navpill" id="navpillTechnical" (click)="onClick('technical', 'navpillTechnical')" translate><span class="oi oi-wrench"></span>news.technical</li>
             <li class="navpill" id="navpillAll" (click)="onClick('vieraslajit.fi,technical', 'navpillAll')" translate><span class="oi oi-list"></span>news.all</li>
           </ul>
       </div>
       <div class="col-12 col-sm-auto">
-        <pagination-controls class="top-pagination" (pageChange)="getPage($event)" id="pagination-controls" maxSize='0'></pagination-controls>
+        <pagination-controls class="top-pagination" (pageChange)="onPageChange($event)" id="pagination-controls" maxSize='0'></pagination-controls>
       </div>
     </div>
   </div>
@@ -19,10 +19,10 @@
 <div class="container">
   <laji-spinner [ngClass]="{'news-spinner': newsLoading}" [spinning]="newsLoading" [hideContentWhileLoading]='true' [fullViewport]='false'>
   <div *ngFor="let newsElement of (asyncNews | async | paginate: { id: 'pagination-controls', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems })" class="news-post row">
-    <div class="col-10">
+    <div class="news-section">
       <vrs-news-header [newsElement]="newsElement"></vrs-news-header>
       
-      <div class="row news-content">
+      <div class="news-content">
         <p [innerHTML]="newsElement.content | parsewp">Post content</p>
         <div class="text-right news-modified p-2">
           <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span> 
@@ -30,8 +30,8 @@
           <span *ngIf= "newsElement.modified">)</span>
         </div>
       </div>
-      <hr>
     </div>
+    <hr>
   </div> <!-- / news-post -->
   </laji-spinner>
 </div> <!-- /container-->
@@ -39,7 +39,7 @@
   <div class="container">
     <div class="text-right">
         <div class="pagination-controls">
-          <pagination-controls (pageChange)="getPage($event)" id="pagination-controls"></pagination-controls>
+          <pagination-controls (pageChange)="onPageChange($event)" id="pagination-controls"></pagination-controls>
         </div>
       </div>
   </div>
