@@ -49,3 +49,23 @@ p {
     font-size: 1.2em;
 }
 }
+
+// VIEKAS CALENDAR
+
+:host ::ng-deep iframe#viekas-calendar {
+    color: #123456;
+    body {
+        background-color: $neutral-2;
+    }
+    .view-container-border {
+        background-color: $primary-2;
+    }
+    .mv-event-container {
+        background-color: $neutral-2;
+        border: none;
+    }
+    .mv-daynames-table {
+        background: $primary-2;
+        color: $primary-7;
+    }
+}

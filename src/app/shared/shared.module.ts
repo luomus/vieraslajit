@@ -36,6 +36,7 @@ import { HamburgerBarComponent } from './navbar/hamburger-bar/hamburger-bar.comp
 import { NavbarContainer } from './navbar/navbar.container';
 import { ParseWPPipe } from './pipe/parse-wp.pipe';
 import { GoogleSearchApiService } from './api/google-search.api.service';
+import { RouteTransformerDirective } from './directive/route-transformer.directive';
 /**
  * Provides common utilities for other modules
  */
@@ -57,10 +58,10 @@ import { GoogleSearchApiService } from './api/google-search.api.service';
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, NavbarContainer, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent ],
+  declarations: [NavbarComponent, NavbarContainer, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent, RouteTransformerDirective],
   providers: [],
   exports: [NavbarComponent, NavbarContainer, RouterModule, FooterComponent, SpinnerModule, EditcmsModule, ObservationMapModule,
-    SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, CapitalizePipe]
+    SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, CapitalizePipe, RouteTransformerDirective]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
