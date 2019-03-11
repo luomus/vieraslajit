@@ -131,5 +131,8 @@
   "footer.laji": "Lajitietokeskus",
   "footer.feedback": "Palaute",
   "footer.facebook": "Facebook",
-  "footer.privacy": "Tietosuojaseloste"
+  "footer.privacy": "Tietosuojaseloste",
+
+  "vieraslajit.fi": "vieraslajit",
+  "technical": "tekninen tiedote"
 }
