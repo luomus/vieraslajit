@@ -10,7 +10,7 @@
     height: inherit;
     display: flex;
     justify-content: left;
-    padding-left: 1em;
+    padding: 0 50px;
 }
 
 .total-taxa {
@@ -18,65 +18,62 @@
     padding-left: 2em;
     padding-top: 1em;
     font-size: 1.2em;
-    font-weight: 600;
-    color: hsl(40, 15, 60);
+    color: hsl(40, 10, 45);
 }
 
 .mosaic-babysitter {
     display: flex;
     flex-flow: row wrap;
+    max-width: 1200px;
 }
 
 .mosaic-child {
-    display: inline-block;
+    display: inline-flex;
+    flex-flow: column nowrap;
     margin: 1em;
-    width: 700px;
 
-    box-shadow: 2px 2px 10px rgba(#000, 0.2), inset 0 0 0 2px rgba(0, 0, 0, 0);
+    box-shadow: 0px 2px 5px rgba(#000, 0.25);
     background: $neutral-1;
-    padding: 1em;
     border-radius: 15px;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 7px 30px rgba(#000, 0.25);
+    }
 }
 
 .mosaic-img {
     display: inline-block;
-    width: 250px;
+    overflow: hidden;
+    width: 350px;
     text-align: center;
     background: $neutral-3;
     box-shadow: 0px 0px 2px #ccc;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     img {
-        max-height: 150px;
-        max-width: 250px;
+        max-height: 200px;
+        max-width: 350px;
         width: auto;
-        height: 150px;
+        height: 200px;
     }
 }
 
 .mosaic-desc {
     display:inline-block;
-    padding: 0em 1em;
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-    li {
-        margin: 0.25em 0;
-        background: $accent-1;
-        color: $accent-6;
-        border: 1px solid $accent-2;
-        padding: 0.25em 1em;
-        border-radius: 10px;
-    }
+    padding: 0.5em 1em;
+    max-width: 350px;
 }
 
 .vernacular-name {
+    font-size: 0.9rem;
     color: $neutral-7;
     font-weight: 600;
 }
 
 .scientific-name {
+    font-size: 0.8rem;
     color: $neutral-6;
-    font-size: 0.8em;
     margin-bottom: 1em;
 }
 

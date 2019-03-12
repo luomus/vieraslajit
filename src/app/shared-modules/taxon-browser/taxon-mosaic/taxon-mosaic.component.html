@@ -5,15 +5,15 @@
     [fromRoot]="true"
     (scrolled)="onScroll()">
     <div class="mosaic-babysitter">
-        <div class="total-taxa">Rajauksilla löytyi {{total}} vieraslajia</div>
-        <div class="mosaic-child" *ngFor="let taxon of taxa">
+        <div class="total-taxa">Rajauksilla löytyi yhteensä {{total}} vieraslajia</div>
+        <div class="mosaic-child" *ngFor="let taxon of taxa" [routerLink]="'/taxon/' + taxon.id">
             <div class="mosaic-img">
-                <img *ngIf="taxon.multimedia && taxon.multimedia[0].thumbnailURL" class="card-img-top" src="{{taxon.multimedia[0].thumbnailURL}}">
-                <img *ngIf="!taxon.multimedia || !taxon.multimedia[0].thumbnailURL" class="card-img-top" src="../../../../assets/images/taxon_placeholder.png">
+                <img *ngIf="taxon.multimedia && taxon.multimedia[0].thumbnailURL" src="{{taxon.multimedia[0].thumbnailURL}}">
+                <img *ngIf="!taxon.multimedia || !taxon.multimedia[0].thumbnailURL" src="../../../../assets/images/taxon_placeholder.png">
             </div>
             <div class="mosaic-desc">
-                <a *ngIf="taxon.species || !taxon.finnish" [routerLink]="'/taxon/' + taxon.id "class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}}</a>
-                <a *ngIf="!taxon.species && taxon.finnish" [routerLink]="'/taxon/' + taxon.id "class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxoncard.nonspecies' | translate}}</a>
+                <div *ngIf="taxon.species || !taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}}</div>
+                <div *ngIf="!taxon.species && taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxoncard.nonspecies' | translate}}</div>
                 <div *ngIf="taxon.vernacularName" class="scientific-name" [class.cursive]="taxon?.cursiveName">{{taxon.scientificName | capitalize}}</div>
                 <ul>
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.euInvasiveSpeciesList')" class="administrative-status">Kuuluu unionin vieraslajiluetteloon</li>

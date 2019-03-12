@@ -16,11 +16,12 @@ import { InformalGroupComponent } from './informal-group/informal-group.componen
 import { InformalGroupGridComponent } from './informal-group/informal-group-grid.component';
 import { TaxonMosaicComponent } from './taxon-mosaic/taxon-mosaic.component';
 import { GroupDropdownComponent } from './informal-group/group-dropdown.component';
+import { OptionsAccordionComponent } from './options-accordion.component';
 
 @NgModule({
     imports: [NgxPaginationModule, TabsModule, NgxDatatableModule, RouterModule,
         CommonModule, TranslateModule, FormsModule, SpinnerModule, SharedModule, InfiniteScrollModule],
-    declarations: [GroupDropdownComponent, TaxonCardGridComponent, TaxonMosaicComponent, TaxonBrowserComponent, TaxonBrowserListComponent, InformalGroupComponent, InformalGroupGridComponent ],
+    declarations: [GroupDropdownComponent, TaxonCardGridComponent, TaxonMosaicComponent, TaxonBrowserComponent, TaxonBrowserListComponent, InformalGroupComponent, InformalGroupGridComponent, OptionsAccordionComponent ],
     exports: [TaxonBrowserComponent]
 })
 export class TaxonBrowserModule {}
