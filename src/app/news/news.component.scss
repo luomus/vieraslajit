@@ -63,12 +63,15 @@
     }
 }
 
-.news-content {
-  padding: 1em 0em;
+:host ::ng-deep .news-content {
+    padding: 1em 0em;
+    width: 35em;
+    figure.alignright {
+        margin-right: -30%;
+    }
 }
 
 .news-section {
-    width: 35em;
 }
 
 .news-modified {

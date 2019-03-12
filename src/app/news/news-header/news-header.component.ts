@@ -11,7 +11,7 @@ import { NewsElement } from '../../shared/model';
             <div class="news-posted p-0 p-sm-2">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }}</div>
         </div>
         <div>
-            <span class="news-tag float-right">{{newsElement.tag}}</span>
+            <span class="news-tag float-right">{{newsElement.tag | translate}}</span>
             <vrs-editcms class="float-right" id="{{newsElement.id}}"></vrs-editcms>
         </div>
     </div>
@@ -24,7 +24,7 @@ import { NewsElement } from '../../shared/model';
             <div class="news-posted">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }}</div>
         </div>
         <div>
-            <span class="news-tag float-right">{{newsElement.tag}}</span>
+            <span class="news-tag float-right">{{newsElement.tag | translate}}</span>
             <vrs-editcms class="float-right" id="{{newsElement.id}}"></vrs-editcms>
         </div>
     </div>

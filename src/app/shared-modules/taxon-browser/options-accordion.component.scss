@@ -1,0 +1,36 @@
+@import './../../../assets/styles/vars';
+
+:host {
+    user-select: none;
+}
+
+.options-title {
+    border-top: 1px solid $neutral-6;
+    border-bottom: 1px solid $neutral-6;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 5px 0px;
+    margin: 10px 0px;
+    max-width: 300px;
+}
+
+.options-title-icon-container {
+    display: inline-flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.hide {
+    display: none;
+}
+
+:host ::ng-deep .checkbox {
+    border-bottom: 1px solid $neutral-4;
+    padding: 5px 0px;
+}
+
+.options-content {
+    padding-left: 10px;
+}

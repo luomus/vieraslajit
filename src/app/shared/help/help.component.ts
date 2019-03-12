@@ -1,6 +1,5 @@
 import { Component, Renderer2, OnInit, ElementRef } from "@angular/core";
 
-// TODO: Open help dialog on hover. Use content projection for injecting content to the dialog.
 @Component({
     selector: 'vrs-help',
     template: `
