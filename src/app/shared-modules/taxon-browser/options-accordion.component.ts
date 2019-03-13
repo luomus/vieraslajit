@@ -12,7 +12,7 @@ import { Component, Input } from "@angular/core";
 })
 export class OptionsAccordionComponent {
     @Input() title;
-    active = false;
+    active = true;
     constructor(){}
     onClick(e) {
         this.active = !this.active;
