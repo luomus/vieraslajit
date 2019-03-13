@@ -19,9 +19,22 @@ export class TaxonBrowserApiService {
     eventEmitter:EventEmitter = new EventEmitter();
 
     constructor(private settingsService:TaxonBrowserApiSettingsService, private apiService:ApiService, private translate:TranslateService) {
-        this.query = { page: 1, pageSize: 12,
-            invasiveSpeciesFilter: true, lang: this.settingsService.apiSettings.lang,
-            includeMedia: true, includeDescriptions: true , selectedFields: [ 'vernacularName', 'scientificName', 'cursiveName', 'invasiveSpeciesEstablishment', 'administrativeStatuses', 'id', 'species', 'finnish' ],
+        this.query = {
+            page: 1,
+            pageSize: 12,
+            invasiveSpeciesFilter: true,
+            lang: this.settingsService.apiSettings.lang,
+            includeMedia: true,
+            selectedFields: [
+                                'vernacularName',
+                                'scientificName',
+                                'cursiveName',
+                                'invasiveSpeciesEstablishment',
+                                'administrativeStatuses',
+                                'id',
+                                'species',
+                                'finnish'
+                            ],
             sortOrder: 'finnish_name'
         };
     }

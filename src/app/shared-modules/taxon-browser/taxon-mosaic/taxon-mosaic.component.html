@@ -6,7 +6,14 @@
     (scrolled)="onScroll()">
     <div class="mosaic-babysitter">
         <div class="total-taxa">Rajauksilla löytyi yhteensä {{total}} vieraslajia</div>
-        <div class="mosaic-child" *ngFor="let taxon of taxa" [routerLink]="'/taxon/' + taxon.id">
+        <div class="mosaic-child"
+            *ngFor="let taxon of taxa"
+            [routerLink]="'/taxon/' + taxon.id"
+            [ngClass]= "{
+                            'mosaic-child-established': taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveEstablished',
+                            'mosaic-child-sporadic': taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveSporadic'
+                        }"
+            >
             <div class="mosaic-img">
                 <img *ngIf="taxon.multimedia && taxon.multimedia[0].thumbnailURL" src="{{taxon.multimedia[0].thumbnailURL}}">
                 <img *ngIf="!taxon.multimedia || !taxon.multimedia[0].thumbnailURL" src="../../../../assets/images/taxon_placeholder.png">
@@ -20,6 +27,9 @@
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.nationalInvasiveSpeciesStrategy')" class="administrative-status">Kuuluu kansalliseen vieraslajistrategiaan</li>
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.quarantinePlantPest')" class="administrative-status">Vaarallinen kasvintuhooja</li>
                 </ul>
+                <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveEstablished'" class="establishment establishment-established"><span class="oi oi-home"></span>vakiintunut</div>
+                <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveSporadic'" class="establishment establishment-sporadic">harvinainen</div>
+                <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveNotYetInFinland'" class="establishment">ei vakiintunut</div>
             </div>
         </div>
         <div *ngIf="taxa.length < total" class="more-results">
