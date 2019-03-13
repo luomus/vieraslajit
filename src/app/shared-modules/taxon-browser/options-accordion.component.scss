@@ -4,7 +4,7 @@
     user-select: none;
 }
 
-.options-title {
+.options-header {
     border-top: 1px solid $neutral-6;
     border-bottom: 1px solid $neutral-6;
     display: flex;
@@ -16,7 +16,7 @@
     max-width: 300px;
 }
 
-.options-title-icon-container {
+.options-header-icon-container {
     display: inline-flex;
     flex-flow: column;
     justify-content: center;

@@ -8,7 +8,7 @@
 <!--         <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid> -->
 <!--             <vrs-group-dropdown [groups]="['MVL.232', 'MVL.27', 'MVL.343', 'MVL.1', 'MVL.28', 'MVL.26', 'MVL.40', 'MVL.2', 'MVL.233', 'MVL.37', 'MVL.39', 'MVL.41']"
             (selected)="onGroupSelected($event)"></vrs-group-dropdown> -->
-            <options-accordion title="Vieraslajiryhmät">
+            <options-accordion header="Vieraslajiryhmät">
                 <div class="checkbox">
                     <input type="checkbox" id="plants">
                     <label for="plants">Kasvit</label>
@@ -38,7 +38,7 @@
                     <label for="agricultural-pests">Maatalouden tuholaiset</label>
                 </div>
             </options-accordion>
-            <options-accordion title="Haitalliset vieraslajit">
+            <options-accordion header="Haitalliset vieraslajit">
                 <div class="checkbox">
                     <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
                     <label for="finnishList">Kansallinen luettelo</label>
