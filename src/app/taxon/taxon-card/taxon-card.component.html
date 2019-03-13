@@ -23,10 +23,11 @@
         <div *ngIf="desc?.groups; else infoAndLajifiTemplate">
           <div id="taxoncard" *ngFor="let group of desc?.groups; let first = first">
                 <div *ngFor="let variable of group.variables">
-                  <h4>
+                  <h3>
                     {{variable.title}}
-                  </h4>
+                  </h3>
                   <span [innerHTML]="variable.content"></span>
+                  <br>
                 </div>
           </div>
         </div>
