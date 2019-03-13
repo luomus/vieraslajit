@@ -66,6 +66,10 @@
 
 .laji-fi-link {
     color: $neutral-6;
+    &:hover {
+        color: $neutral-7;
+        border-bottom: 2px solid $accent-5;
+    }
 }
 
 #taxoncard {
