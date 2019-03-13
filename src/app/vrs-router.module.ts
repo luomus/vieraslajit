@@ -14,7 +14,6 @@ const routes: Routes = [
   { path: 'news', loadChildren: './news/news.module#NewsModule' },
   { path: 'legal', loadChildren: './legal/legal.module#LegalModule' },
   { path: 'legal/law', loadChildren: './legal/legal.module#LegalModule' },
-  { path: 'administrativelists', loadChildren: './administrativelists/administrativelists.module#administrativelistsModule' },
   { path: 'static', loadChildren: './static/static.module#StaticModule' },
   { path: 'user', loadChildren: './user/user.module#UserModule' },
   { path: 'form', loadChildren: './form/form.module#FormModule' },
