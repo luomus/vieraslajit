@@ -20,8 +20,6 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit,
   isCollapsed = false;
   loggedIn = false;
   loginSub: Subscription;
-  private onLangChange: Subscription;
-  rootId: string = "";
   currentId: string= "";
   private dropdown_user_bound = false;
   private scrollListener;
@@ -56,10 +54,6 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit,
   }
 
   ngOnInit() {
-    this.onLangChange = this.translate.onLangChange.subscribe((event) =>{
-      this.setCMSRootId(event.lang);
-      // this.update();
-    });
     this.zone.runOutsideAngular(() => {
       this.scrollListener = this.renderer.listen(window, 'scroll', () => {
         this.updateFixedTop();
@@ -109,14 +103,6 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit,
     }
   }
 
-  /**
-   * Changes root id used in static content API call when language changes
-   */
-
-  setCMSRootId(lang: string) {
-    this.rootId = findContentID(StaticContent.Root, lang);
-  }
-
   logout() {
     this.userService.logout();
   }
@@ -131,7 +117,6 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit,
 
   ngOnDestroy(){
     this.loginSub ? this.loginSub.unsubscribe() : null;
-    this.onLangChange ? this.onLangChange.unsubscribe() : null;
     this.cd.detach();
     if (this.scrollListener) {
       this.scrollListener();
