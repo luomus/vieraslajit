@@ -78,6 +78,7 @@ export class TaxonBrowserApiService {
                 this.taxa = res;
             }
             this.eventEmitter.emit('done');
+            console.log(res);
         });
         this.eventEmitter.emit('change');
     }

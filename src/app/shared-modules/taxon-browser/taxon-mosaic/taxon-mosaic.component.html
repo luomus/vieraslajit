@@ -23,7 +23,8 @@
                 <div *ngIf="!taxon.species && taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxoncard.nonspecies' | translate}}</div>
                 <div *ngIf="taxon.vernacularName" class="scientific-name" [class.cursive]="taxon?.cursiveName">{{taxon.scientificName | capitalize}}</div>
                 <ul>
-                    <li *ngIf="taxon.administrativeStatuses.includes('MX.euInvasiveSpeciesList')" class="administrative-status">Kuuluu unionin vieraslajiluetteloon</li>
+                    <li *ngIf="taxon.administrativeStatuses.includes('MX.euInvasiveSpeciesList')" class="administrative-status">Haitallinen vieraslaji (EU luettelo)</li>
+                    <li *ngIf="taxon.administrativeStatuses.includes('MX.nationallySignificantInvasiveSpecies')" class="administrative-status">Haitallinen vieraslaji (kansallinen luettelo)</li>
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.nationalInvasiveSpeciesStrategy')" class="administrative-status">Kuuluu kansalliseen vieraslajistrategiaan</li>
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.quarantinePlantPest')" class="administrative-status">Vaarallinen kasvintuhooja</li>
                 </ul>
