@@ -2,7 +2,7 @@
 <div class="row pb-2" *ngIf="ownModeSelectorEnabled || municipalitySelectEnabled || taxonSearchEnabled">
 <div class="col-12 col-sm-7 pl-4">
   <div *ngIf="isLoggedIn && ownModeSelectorEnabled" class="checkbox">
-    <input type="checkbox" id="ownCheck" [checked]="ownModeEnabled" (change)="ownModeEnabled = !ownModeEnabled; ownModeChange()">
+    <input type="checkbox" id="ownCheck" (change)="onOwnModeChange($event)">
     <label for="ownCheck">
       Vain omat havainnot
     </label>

@@ -10,6 +10,7 @@ import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
 import { ObsMapData } from './services/data/ObsMapData';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ObservationModalComponent } from './observation-modal.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'vrs-observation-map',
@@ -23,7 +24,6 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   @Input() taxonSearchEnabled?: boolean = false;
   @Input() municipalitySelectEnabled?: boolean = false;
   @Input() ownModeSelectorEnabled?: boolean = false;
-  @Input() ownModeEnabled?: boolean = false;
   @Input() administrativeCheckboxes?: boolean = false;
 
   @Input() mapHeight: number = 400;
@@ -48,6 +48,8 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
               private mapController:MapService,
               private obsMapData: ObsMapData,
               private modalService: BsModalService,
+              private route: ActivatedRoute,
+              private router: Router,
               private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
@@ -73,6 +75,25 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   }
 
   ngAfterViewInit() {
+    this.route.queryParams.subscribe(res => {
+      // USER MODE
+      let user: boolean;
+      res['user'] === 'true' ? user = true : user = false;
+      if (this.ownModeSelectorEnabled) {
+        const ownCheck = <HTMLInputElement> document.getElementById('ownCheck');
+        ownCheck.checked = user;
+      }
+      user ? this.obsMapOptions.setOption("personToken", UserService.getToken()) : this.obsMapOptions.setOption("personToken", null);
+      // FI LIST
+      let fiList: boolean;
+      res['fiList'] === 'true' ? fiList = true : fiList = false;
+      if (this.administrativeCheckboxes) {
+        const fiCheck = <HTMLInputElement> document.getElementById('finnishList');
+        fiCheck.checked = fiList;
+      }
+      this.obsMapOptions.setOption("fiList", fiList);
+    });
+
     // DYNAMIC MAP HEIGHT
     if (this.mapHeight === 0) {
       this.mapHeight = window.innerHeight - this.mapRow.nativeElement.offsetTop - 5;
@@ -90,8 +111,6 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     if(this.id && this.taxonSearchEnabled) {
       this.taxonSearch.fillValue('', this.id);
     }
-    if(this.ownModeEnabled) options.push(["personToken", UserService.getToken()])
-    this.obsMapOptions.setOptions(options);
 
     if(this.mapTaxonList) this.mapTaxonList.eventEmitter.addListener("change", (e)=>{
       this.onTableActivate(e);
@@ -107,8 +126,14 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     });
   }
 
-  ownModeChange() {
-    this.ownModeEnabled ? this.obsMapOptions.setOption("personToken", UserService.getToken()) : this.obsMapOptions.setOption("personToken", null);
+  updateQueryParam(param, value) {
+    let params = JSON.parse(JSON.stringify(this.route.snapshot.queryParams));
+    params[param] = value;
+    this.router.navigate([], {queryParams: params});
+  }
+
+  onOwnModeChange(e) {
+    this.updateQueryParam('user', e.target.checked);
   }
 
   isAggregateMap() {
@@ -145,7 +170,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   }
 
   onFiListCheckbox(e) {
-    this.obsMapOptions.setOption("fiList", e.target.checked);
+    this.updateQueryParam('fiList', e.target.checked);
   }
 
   onEuListCheckbox(e) {
