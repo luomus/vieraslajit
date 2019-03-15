@@ -6,7 +6,7 @@
     (scrolled)="onScroll()">
     <div class="mosaic-babysitter">
         <div class="total-taxa">Rajauksilla löytyi yhteensä {{total}} vieraslajia</div>
-        <div class="mosaic-child"
+        <a class="mosaic-child"
             *ngFor="let taxon of taxa"
             [routerLink]="'/taxon/' + taxon.id"
             [ngClass]= "{
@@ -32,7 +32,7 @@
                 <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveSporadic'" class="establishment establishment-sporadic">harvinainen</div>
                 <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveNotYetInFinland'" class="establishment">ei vakiintunut</div>
             </div>
-        </div>
+        </a>
         <div *ngIf="taxa.length < total" class="more-results">
             Ladataan lisää lajeja...
         </div>
