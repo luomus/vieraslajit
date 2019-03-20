@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef, TemplateRef } from '@angular/core';
 import * as $ from 'jquery';
 
 import { UserService } from '../../../shared/service/user.service';
@@ -101,7 +101,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     }
 
     // INITIALIZE MAP
-    this.mapController.initializeMap(document.getElementById("map"));
+    this.mapController.initializeMap(document.getElementById("map"), this.bsModalRef);
     // Initialize mapOptions
     let options: Array<[ObsMapOption, any]> = [
       ["id", this.id],
@@ -147,9 +147,11 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   onTableActivate(e) {
     if(e.type == "click"){
       this.updateSelectedInfoByObservation(e.row);
+      const coordinates: [number, number] = [e.row.gathering.conversions.wgs84CenterPoint.lat, e.row.gathering.conversions.wgs84CenterPoint.lon];
       this.mapController.zoomAt(
-        [e.row.gathering.conversions.wgs84CenterPoint.lat, e.row.gathering.conversions.wgs84CenterPoint.lon],
+        coordinates,
         this.obsMapOptions.getOption("municipality") ? 7 : 5);
+      this.mapController.openPopup(coordinates);
     }
   }
 
@@ -163,10 +165,6 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
       "id": o.unit.linkings.taxon.qname.substring(14,o.unit.linkings.taxon.qname.length),
       "reliability": o.unit.quality.realiable ? "Luotettava" : ""
     }
-  }
-
-  openModal(selectedId) {
-    this.bsModalRef = this.modalService.show(ObservationModalComponent, {initialState: {id: selectedId}, class: 'modal-custom'});
   }
 
   onFiListCheckbox(e) {

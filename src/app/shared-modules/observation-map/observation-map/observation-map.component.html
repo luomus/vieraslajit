@@ -1,4 +1,44 @@
-<div class="obs-map">
+<div class="map-container" #maprow>
+  <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
+  <div class="left-float-menu">
+    <div class="input-group">
+      <select id="select-municipality" class="custom-select">
+        <option value="">Kunta...</option>
+        <option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</option>
+      </select>
+    </div>
+    <vrs-taxon-search></vrs-taxon-search>
+    <div *ngIf="isLoggedIn && ownModeSelectorEnabled" class="checkbox">
+      <input type="checkbox" id="ownCheck" (change)="onOwnModeChange($event)">
+      <label for="ownCheck">
+        Vain omat havainnot
+      </label>
+    </div>
+    <ng-container *ngIf="administrativeCheckboxes">
+      <div class="checkbox">
+          <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
+          <label for="finnishList">Kansallinen luettelo</label>
+      </div>
+      <div class="checkbox">
+          <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList">
+          <label for="euList">Euroopan luettelo</label>
+      </div>
+      <div class="checkbox">
+          <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest">
+          <label for="plantPest">Vaarallinen kasvintuhooja</label>
+      </div>
+    </ng-container>
+  </div>
+  <div class="right-float-menu" *ngIf="listEnabled">
+    <vrs-obs-map-list height="700" [ngClass]="{'hidden': isAggregateMap()}"></vrs-obs-map-list>
+    <div [ngClass]="{'hidden': !isAggregateMap()}">
+      <h5 class="observation-count"><b>{{getObservationCount() | number}}</b> havaintoa.</h5>
+      <p>Rajaa hakua nähdäksesi listan tarkoista havainnoista.</p>
+    </div>
+  </div>
+  <a href="https://laji.fi/observation/map?administrativeStatusId=MX.nationallySignificantInvasiveSpecies,MX.nationalInvasiveSpeciesStrategy,MX.otherInvasiveSpeciesList,MX.euInvasiveSpeciesList,MX.quarantinePlantPest" target="_blank" rel="noopener noreferrer" class="laji-link">Tarkastele laji.fi kartalla</a>
+</div>
+<!-- <div class="obs-map">
 <div class="row pb-2" *ngIf="ownModeSelectorEnabled || municipalitySelectEnabled || taxonSearchEnabled">
 <div class="col-12 col-sm-7 pl-4">
   <div *ngIf="isLoggedIn && ownModeSelectorEnabled" class="checkbox">
@@ -30,7 +70,7 @@
       </div></div>
     <div class="col-12 col-sm-8" *ngIf="taxonSearchEnabled"><vrs-taxon-search></vrs-taxon-search></div>
   </div>
-</div> <!-- col-7 -->
+</div>
 <div *ngIf="selectedInfo" class="col-12 col-sm-5 selected-info">
   <div class="row" [ngClass]="{'hidden': isAggregateMap()}">
     <div class="col-3 selected-observation-left">
@@ -48,9 +88,8 @@
       {{selectedInfo.reliability}}
     </div>
   </div>
-</div> <!-- col-5 -->
-</div> <!-- row -->
-<!-- Render list if list-mode enabled -->
+</div>
+</div>
 <ng-container *ngIf="listEnabled">
 <div class="row" #maprow>
     <div class="col-12 col-sm-7 col-map">
@@ -70,3 +109,4 @@
     <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
 </ng-container>
 </div>
+ -->

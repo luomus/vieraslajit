@@ -1,11 +1,11 @@
 @import './vars';
 
 :host ::ng-deep .ngx-datatable {
-    border-radius: $content-border-radius;
     font-size: 1rem;
+    background: transparent;
 
     .datatable-header {
-        background: $neutral-2;
+        background: transparent;
         .datatable-header-cell-label {
             color: lighten($neutral-8, 15);
             font-size: 0.8rem;
@@ -16,11 +16,11 @@
     }
 
     .datatable-footer {
-        background: $neutral-2;
+        background: transparent;
     }
 
     datatable-body.datatable-body {
-        background: darken($neutral-2, 2);
+        background: transparent;
         .datatable-body-cell-label {
             font-size: 0.8rem;
         }

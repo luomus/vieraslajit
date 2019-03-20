@@ -7,9 +7,3 @@
     top: 300px;
     z-index: 10000;
 }
-
-:host ::ng-deep .ngx-datatable {
-    .datatable-header {
-        background: $neutral-3;
-    }
-}

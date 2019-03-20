@@ -5,8 +5,10 @@ import { TileLayerName, Data, DataOptions, GetFeatureStyleOptions } from 'laji-m
 import { ObsMapData, VrsObservation, ObsMapDataMeta } from "./data/ObsMapData";
 import { ObsMapOptions } from './data/ObsMapOptions';
 import { PathOptions } from 'leaflet';
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef, ElementRef, ComponentFactoryResolver, Injector } from '@angular/core';
 import { EventEmitter } from 'events';
+import { ObservationMapPopupComponent } from '../observation-map-popup.component';
+import { BsModalRef } from 'ngx-bootstrap';
 /* Listens to updates in obsMapObservations
 and updates the map accordingly */
 
@@ -15,17 +17,22 @@ and updates the map accordingly */
 export class MapService {
 
     private map:LajiMap;
+    private modalRef: BsModalRef;
 
     eventEmitter:EventEmitter = new EventEmitter();
 
-    constructor(private obsMapOptions:ObsMapOptions, private obsMapData:ObsMapData) {}
+    constructor(private obsMapOptions:ObsMapOptions,
+                private obsMapData:ObsMapData,
+                private resolver: ComponentFactoryResolver,
+                private injector: Injector) {}
 
-    initializeMap(e:HTMLElement) {
+    initializeMap(e:HTMLElement, modalRef: BsModalRef) {
+        this.modalRef = modalRef
         this.map = new LM.default({
             rootElem: e,
             popupOnHover: false,
             center: [65.2, 27],
-            zoom: 2,
+            zoom: 2.4,
             zoomToData: false,
             tileLayerName: TileLayerName.maastokartta,
             tileLayerOpacity: 0.25
@@ -49,6 +56,15 @@ export class MapService {
         this.map.setOptions({center: center, zoom: zoomLevel});
     }
 
+    openPopup(coordinates: [number, number]) {
+        // HACK
+        const index = this.map.data[0].featureCollection.features.findIndex(
+            (f) => coordinates[0] === f.geometry.coordinates[1] && coordinates[1] === f.geometry.coordinates[0]
+        );
+        const layer: any = this.map.getLayerByIdxTuple([0,index]);
+        layer.fire("click", {latlng: layer.getCenter ? layer.Center() : layer.getLatLng()});
+    }
+
     private getObservationMapData(geoJSON):Data[] {
         let mapData=[];
         const obs = this.obsMapData.getData().payload
@@ -69,22 +85,26 @@ export class MapService {
                 return p;
             },
             getPopup: (data):string=>{
-                let name = obs[data].unit.taxonVerbatim;
-                let municipality = obs[data].gathering.interpretations.municipalityDisplayname || "";
-                let date = obs[data].gathering.displayDateTime;
-                let notes = obs[data].unit.notes || "";
-                let reliability = obs[data].unit.quality.reliable ? "Luotettava <br>" : "";
+                const name = obs[data].unit.taxonVerbatim;
+                const municipality = obs[data].gathering.interpretations.municipalityDisplayname || "";
+                const date = obs[data].gathering.displayDateTime;
+                const notes = obs[data].unit.notes || "";
+                const reliability = obs[data].unit.quality.reliable ? "Luotettava <br>" : "";
 
                 this.eventEmitter.emit('onPopup', obs[data]);
 
-                return name.charAt(0).toUpperCase()
-                + name.substr(1)+ " | "
-                + date.substring(8, 10) + "."
-                + date.substring(5, 7) + "."
-                + date.substring(0, 4) + " | "
-                + municipality + " <br> "
-                + reliability
-                + notes;
+                const compFac = this.resolver.resolveComponentFactory(ObservationMapPopupComponent);
+                const compRef = compFac.create(this.injector);
+                compRef.instance.name = name;
+                compRef.instance.municipality = municipality;
+                compRef.instance.date = date;
+                compRef.instance.notes = notes;
+                compRef.instance.reliability = reliability;
+                compRef.instance.taxonId = obs[data].unit.linkings.taxon.id.substring(14);
+                compRef.instance.observationId = obs[data].gathering.gatheringId.substring(14);
+                compRef.instance.modalRef = this.modalRef;
+                compRef.changeDetectorRef.detectChanges();
+                return compRef.location.nativeElement;
             }
         }
 

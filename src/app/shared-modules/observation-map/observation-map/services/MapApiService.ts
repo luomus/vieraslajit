@@ -81,11 +81,11 @@ export class MapApiService {
             page: 1,
             pageSize: 10000,
             selected: [
-                "unit.taxonVerbatim", "unit.linkings.taxon.scientificName",
-                "unit.linkings.taxon.qname", "gathering.conversions.wgs84CenterPoint.lat",
+                "unit.taxonVerbatim", "unit.linkings.taxon.scientificName", "unit.linkings.taxon.qname",
+                "unit.linkings.taxon.id", "gathering.conversions.wgs84CenterPoint.lat",
                 "gathering.conversions.wgs84CenterPoint.lon", "gathering.displayDateTime",
                 "gathering.interpretations.municipalityDisplayname", "gathering.team",
-                "unit.quality"
+                "unit.quality", "gathering.gatheringId"
             ]
         };
         if(this.obsMapOptions.getOption("id")) query["taxonId"] = this.obsMapOptions.getOption("id")

@@ -14,6 +14,7 @@ import { YkjService } from './observation-map/import-from-laji-front/ykj.service
 import { ObservationModalComponent } from './observation-map/observation-modal.component';
 import { ModalModule } from 'ngx-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
+import { ObservationMapPopupComponent } from './observation-map/observation-map-popup.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { TranslateModule } from '@ngx-translate/core';
     ObservationMapComponent,
     TaxonSearchComponent,
     ObsMapListComponent,
-    ObservationModalComponent
+    ObservationModalComponent,
+    ObservationMapPopupComponent
   ],
   providers: [
     MapApiService,
@@ -41,7 +43,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ObservationMapComponent
   ],
   entryComponents: [
-    ObservationModalComponent
+    ObservationModalComponent, ObservationMapPopupComponent
   ]
 })
 export class ObservationMapModule { }

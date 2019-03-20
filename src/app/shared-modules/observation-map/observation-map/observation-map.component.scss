@@ -74,8 +74,8 @@ p {
 
 a.laji-link {
   position: absolute;
-  bottom: 0.25em;
-  right: 0.5em;
+  bottom: 20px;
+  left: 20px;
   color: $neutral-6;
 }
 
@@ -84,5 +84,77 @@ a.laji-link {
   margin-left: 20px;
   label {
     padding: 0 15px;
+  }
+}
+
+
+
+
+.map-container {
+  position: relative;
+}
+
+.left-float-menu {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  background: $neutral-1;
+  border-radius: 15px;
+  box-shadow: 0 1px 3px rgba(#000, 0.3);
+  padding: 20px;
+  width: 400px;
+  z-index: 400;
+}
+
+.right-float-menu {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  background: $neutral-1;
+  border-radius: 15px;
+  box-shadow: 0 1px 3px rgba(#000, 0.3);
+  padding: 20px;
+  width: 500px;
+  z-index: 400;
+}
+
+:host ::ng-deep {
+  .leaflet-rrose-content-wrapper {
+    background: rgba(#333, 0.8);
+  }
+  .leaflet-rrose-tip.leaflet-rrose-tip-n {
+    background: rgba(#333,0.8);
+  }
+  .leaflet-rrose-content {
+    width: 200px;
+    color: $neutral-2;
+    font-size: 0.8rem;
+    .popup-link-row {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      .oi {
+        color: $neutral-2;
+        cursor: pointer;
+      }
+      .oi-eye {
+        margin-right: 10px;
+      }
+      .oi-info {
+        margin-right: 13px;
+      }
+    }
+    h5 {
+      color: $neutral-4;
+      margin: 0;
+      font-size: 1em;
+    }
+    hr {
+      margin: 10px 0;
+      border-color: rgba(white, 0.1);
+    }
+  }
+  .leaflet-rrose.leaflet-zoom-animated {
+    bottom: 15px !important;
   }
 }
