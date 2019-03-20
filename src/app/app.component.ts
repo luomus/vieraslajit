@@ -1,14 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { FooterComponent } from './shared/footer/footer.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { OmnisearchComponent } from './shared/omnisearch/omnisearch.component'
 import { UserService, userProperty } from './shared/service/user.service';
 import { Router, NavigationEnd } from '@angular/router';
-import { Subscriber ,  Subscription } from 'rxjs';
-import * as $ from 'jquery';
-import { LocationStrategy } from '@angular/common';
 import { StateService } from './state.service';
+import { SwUpdate } from '@angular/service-worker';
 
 /**
  * Main component that acts as a container for navigation, content and footer.
@@ -19,7 +14,7 @@ import { StateService } from './state.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'vrs';
   translate: TranslateService;
   isPopState = false;
@@ -30,7 +25,8 @@ export class AppComponent {
   * 1. Use English if a particular translation element is not found
   * 2. Use either the default language or language stored in localStorage
   */
-  constructor(state: StateService, translate: TranslateService, private userService: UserService, private router: Router) {
+  constructor(state: StateService, translate: TranslateService, private userService: UserService,
+              private router: Router, private swUpdate: SwUpdate) {
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -57,6 +53,15 @@ export class AppComponent {
 
     if (UserService.getToken()) {
       userService.updateUserProperties(UserService.getToken());
+    }
+  }
+  ngOnInit() {
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.available.subscribe(() => {
+        if (confirm('New version available. Load New Version?')) {
+          window.location.reload();
+        }
+      });
     }
   }
 }
