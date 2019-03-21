@@ -98,15 +98,16 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
       );
       if (res['taxonId']) {
         this.taxonSearch.fillValue('', res['taxonId'], false);
-        this.obsMapOptions.setOption("id", res['taxonId']);
+        this.obsMapOptions.setOptionSilent("id", res['taxonId']);
       } else {
-        this.obsMapOptions.setOption("id", null);
+        this.obsMapOptions.setOptionSilent("id", null);
       }
       if (res['municipality']) {
-        this.obsMapOptions.setOption("municipality", res['municipality']);
+        this.obsMapOptions.setOptionSilent("municipality", res['municipality']);
       } else {
-        this.obsMapOptions.setOption("municipality", null);
+        this.obsMapOptions.setOptionSilent("municipality", null);
       }
+      this.obsMapOptions.emitChange();
     });
 
     // DYNAMIC MAP HEIGHT
@@ -182,7 +183,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     if (selectorEnabled) {
       updateCheckbox(checkboxId, temp);
     }
-    temp ? this.obsMapOptions.setOption(option, optionValue) : this.obsMapOptions.setOption(option, null);
+    temp ? this.obsMapOptions.setOptionSilent(option, optionValue) : this.obsMapOptions.setOptionSilent(option, null);
   }
 }
 

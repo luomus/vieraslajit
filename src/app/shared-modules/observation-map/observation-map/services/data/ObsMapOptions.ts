@@ -44,6 +44,14 @@ export class ObsMapOptions {
         this.eventEmitter.emit('change');
     }
 
+    setOptionSilent(option:ObsMapOption, value:any) {
+        this.options[option] = value;
+    }
+
+    emitChange() {
+        this.eventEmitter.emit('change');
+    }
+
     setOptions(options:Array<[ObsMapOption, any]>) {
         options.forEach(option => {
             this.options[option[0]] = option[1];
