@@ -24,9 +24,7 @@ export class MapApiService {
     initialize() {
         /* Update observation list whenever there's a change in options */
         this.obsMapOptions.eventEmitter.addListener("change", ()=>{
-            console.log('obsmapoptions change');
             this.getObservationCount().subscribe(res => {
-                console.log(res);
                 this.obsMapData.observationCount = res.total
                 if (res.total > 2000) {
                     this.updateAggregate();
