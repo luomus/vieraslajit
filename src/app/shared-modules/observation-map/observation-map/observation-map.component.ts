@@ -103,6 +103,17 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
         'plantPest',
         strToBool(res['plantPest'])
       );
+      if (res['taxonId']) {
+        this.taxonSearch.fillValue('', res['taxonId'], false);
+        this.obsMapOptions.setOption("id", res['taxonId']);
+      } else {
+        this.obsMapOptions.setOption("id", null);
+      }
+      if (res['municipality']) {
+        this.obsMapOptions.setOption("municipality", res['municipality']);
+      } else {
+        this.obsMapOptions.setOption("municipality", null);
+      }
     });
 
     // DYNAMIC MAP HEIGHT
@@ -123,12 +134,13 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     });
 
     if(this.taxonSearch) this.taxonSearch.eventEmitter.addListener("change", (id)=>{
-      this.obsMapOptions.setOption("id", id);
-    })
+      this.updateQueryParam("taxonId", id);
+    });
 
     // select municipality
     $('#select-municipality').change(() => {
-      this.obsMapOptions.setOption("municipality", $('#select-municipality').val());
+      const val = $('#select-municipality').val();
+      val ? this.updateQueryParam("municipality", val) : this.updateQueryParam("municipality", null);
     });
   }
 

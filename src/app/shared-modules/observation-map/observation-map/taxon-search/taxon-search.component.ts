@@ -55,12 +55,12 @@ export class TaxonSearchComponent implements OnInit {
         $('.autocomplete').append(this.base);
     }
 
-    fillValue(val: string, id:string) {
+    fillValue(val: string, id:string, emit = true) {
         $('#selectedTaxon').text(val + ' : ' + id);
         $('#vrs-taxon-search-textarea').val('');
         $('#removeSelected').show();
         this.initBase();
-        this.eventEmitter.emit("change", id);
+        if (emit) this.eventEmitter.emit("change", id);
     }
 
     removeSelected() {
