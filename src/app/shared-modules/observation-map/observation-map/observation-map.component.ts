@@ -75,22 +75,34 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
 
   ngAfterViewInit() {
     this.route.queryParams.subscribe(res => {
-      // USER MODE
-      let user: boolean;
-      res['user'] === 'true' ? user = true : user = false;
-      if (this.ownModeSelectorEnabled) {
-        const ownCheck = <HTMLInputElement> document.getElementById('ownCheck');
-        ownCheck.checked = user;
-      }
-      user ? this.obsMapOptions.setOption("personToken", UserService.getToken()) : this.obsMapOptions.setOption("personToken", null);
-      // FI LIST
-      let fiList: boolean;
-      res['fiList'] === 'true' ? fiList = true : fiList = false;
-      if (this.administrativeCheckboxes) {
-        const fiCheck = <HTMLInputElement> document.getElementById('finnishList');
-        fiCheck.checked = fiList;
-      }
-      this.obsMapOptions.setOption("fiList", fiList);
+      this.onQueryParamWithCheckboxChange(
+        res['user'],
+        'ownCheck',
+        this.ownModeSelectorEnabled,
+        'personToken',
+        UserService.getToken()
+      );
+      this.onQueryParamWithCheckboxChange(
+        res['fiList'],
+        'finnishList',
+        this.administrativeCheckboxes,
+        'fiList',
+        strToBool(res['fiList'])
+      );
+      this.onQueryParamWithCheckboxChange(
+        res['euList'],
+        'euList',
+        this.administrativeCheckboxes,
+        'euList',
+        strToBool(res['euList'])
+      );
+      this.onQueryParamWithCheckboxChange(
+        res['plantPest'],
+        'plantPest',
+        this.administrativeCheckboxes,
+        'plantPest',
+        strToBool(res['plantPest'])
+      );
     });
 
     // DYNAMIC MAP HEIGHT
@@ -166,10 +178,27 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   }
 
   onEuListCheckbox(e) {
-    this.obsMapOptions.setOption("euList", e.target.checked);
+    this.updateQueryParam('euList', e.target.checked);
   }
 
   onPlantPestCheckbox(e) {
-    this.obsMapOptions.setOption("plantPest", e.target.checked);
+    this.updateQueryParam('plantPest', e.target.checked);
   }
+
+  onQueryParamWithCheckboxChange(param:string, checkboxId:string, selectorEnabled:boolean, option:ObsMapOption, optionValue:any) {
+    const temp = strToBool(param);
+    if (selectorEnabled) {
+      updateCheckbox(checkboxId, temp);
+    }
+    temp ? this.obsMapOptions.setOption(option, optionValue) : this.obsMapOptions.setOption(option, null);
+  }
+}
+
+function strToBool(str:string): boolean {
+  return str === 'true';
+}
+
+function updateCheckbox(checkboxId:string, checked:boolean) {
+  const checkbox = <HTMLInputElement> document.getElementById(checkboxId);
+  checkbox.checked = checked;
 }
