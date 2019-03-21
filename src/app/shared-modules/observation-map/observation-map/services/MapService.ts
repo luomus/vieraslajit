@@ -37,6 +37,7 @@ export class MapService {
             tileLayerName: TileLayerName.maastokartta,
             tileLayerOpacity: 0.25
         });
+        this.map.tileLayer.setOpacity(0.25);
         this.obsMapData.eventEmitter.subscribe((data: ObsMapDataMeta) => {
             if(data.type == 'observations') {
                 if(this.obsMapOptions.getOption('municipality') &&
