@@ -1,6 +1,6 @@
 <div class="map-container" #maprow>
   <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
-  <div class="left-float-menu">
+  <div *ngIf="taxonSearchEnabled || municipalitySelectEnabled || ownModeSelectorEnabled || administrativeCheckboxes" class="left-float-menu">
     <div class="input-group">
       <select id="select-municipality" class="custom-select">
         <option value="">Kunta...</option>

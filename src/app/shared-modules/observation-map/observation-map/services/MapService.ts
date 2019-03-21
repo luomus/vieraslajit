@@ -32,7 +32,7 @@ export class MapService {
             rootElem: e,
             popupOnHover: false,
             center: [65.2, 27],
-            zoom: 2.4,
+            zoom: 2,
             zoomToData: false,
             tileLayerName: TileLayerName.maastokartta,
             tileLayerOpacity: 0.25

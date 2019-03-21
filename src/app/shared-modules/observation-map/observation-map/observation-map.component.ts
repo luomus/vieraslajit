@@ -9,7 +9,6 @@ import { ObsMapListComponent } from './obs-map-list/obs-map-list';
 import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
 import { ObsMapData } from './services/data/ObsMapData';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { ObservationModalComponent } from './observation-modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -102,12 +101,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
 
     // INITIALIZE MAP
     this.mapController.initializeMap(document.getElementById("map"), this.bsModalRef);
-    // Initialize mapOptions
-    let options: Array<[ObsMapOption, any]> = [
-      ["id", this.id],
-      ["list", this.listEnabled],
-      ["taxonSearch", this.taxonSearchEnabled]
-    ]
+
     if(this.id && this.taxonSearchEnabled) {
       this.taxonSearch.fillValue('', this.id);
     }
