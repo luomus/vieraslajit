@@ -192,5 +192,5 @@ function strToBool(str:string): boolean {
 
 function updateCheckbox(checkboxId:string, checked:boolean) {
   const checkbox = <HTMLInputElement> document.getElementById(checkboxId);
-  checkbox.checked = checked;
+  if (checkbox) checkbox.checked = checked;
 }
