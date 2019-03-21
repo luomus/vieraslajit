@@ -37,8 +37,6 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
 
   bsModalRef: BsModalRef;
 
-  selectedInfo;
-
   municipalities:Array<any> = [];
   isLoggedIn = UserService.loggedIn();
 
@@ -65,11 +63,6 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
         if(nameA < nameB) return -1;
         return 0;
       });
-    });
-    this.mapController.eventEmitter.addListener('onPopup', (o)=>{
-      if(this.obsMapOptions.getOption("list")) {
-        this.updateSelectedInfoByObservation(o);
-      }
     });
   }
 
@@ -164,24 +157,11 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
 
   onTableActivate(e) {
     if(e.type == "click"){
-      this.updateSelectedInfoByObservation(e.row);
       const coordinates: [number, number] = [e.row.gathering.conversions.wgs84CenterPoint.lat, e.row.gathering.conversions.wgs84CenterPoint.lon];
       this.mapController.zoomAt(
         coordinates,
         this.obsMapOptions.getOption("municipality") ? 7 : 5);
       this.mapController.openPopup(coordinates);
-    }
-  }
-
-  updateSelectedInfoByObservation(o) {
-    this.selectedInfo = {
-      "taxonVerbatim": o.unit.taxonVerbatim,
-      "team": o.gathering.team,
-      "scientificName": o.unit.linkings.taxon.scientificName,
-      "municipalityDisplayname": o.gathering.interpretations ? o.gathering.interpretations.municipalityDisplayname : "N/A",
-      "displayDateTime": o.gathering.displayDateTime,
-      "id": o.unit.linkings.taxon.qname.substring(14,o.unit.linkings.taxon.qname.length),
-      "reliability": o.unit.quality.realiable ? "Luotettava" : ""
     }
   }
 
