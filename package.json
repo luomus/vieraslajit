@@ -37,7 +37,7 @@
     "fast-deep-equal": "^2.0.1",
     "jquery": "^3.3.1",
     "laji-form": "^0.0.552",
-    "laji-map": "^1.0.461",
+    "laji-map": "~1.0.461",
     "leaflet": "1.3.4",
     "ngx-bootstrap": "^3.0.1",
     "ngx-infinite-scroll": "^7.0.1",

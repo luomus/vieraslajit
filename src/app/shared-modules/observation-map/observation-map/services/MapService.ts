@@ -1,6 +1,6 @@
 import * as LM from 'laji-map';
 import LajiMap from 'laji-map/lib/map';
-import { TileLayerName, Data, DataOptions, GetFeatureStyleOptions } from 'laji-map/lib/map.defs';
+import { TileLayerName, Data, DataOptions, GetFeatureStyleOptions, GetPopupOptions } from 'laji-map/lib/map.defs';
 
 import { ObsMapData, VrsObservation, ObsMapDataMeta } from "./data/ObsMapData";
 import { ObsMapOptions } from './data/ObsMapOptions';
@@ -84,7 +84,8 @@ export class MapService {
                 }
                 return p;
             },
-            getPopup: (data):string=>{
+            getPopup: (options: GetPopupOptions):string=>{
+                const data = options.dataIdx;
                 const name = obs[data].unit.taxonVerbatim;
                 const municipality = obs[data].gathering.interpretations.municipalityDisplayname || "";
                 const date = obs[data].gathering.displayDateTime;
@@ -129,7 +130,8 @@ export class MapService {
                 }
                 return p;
             },
-            getPopup: (data):string=>{
+            getPopup: (options: GetPopupOptions):string=>{
+                const data = options.dataIdx;
                 return "Havaintoja: " + geoJSONFeatures[data].properties.count;
             }
         })
