@@ -65,6 +65,8 @@ export class TaxonBrowserApiService {
         }
 
         this.settingsService.apiSettings.lang? this.query.lang = this.settingsService.apiSettings.lang : null;
+
+        this.settingsService.apiSettings.mode === 'list' ? this.query.pageSize = 2000 : this.query.pageSize = 12;
     }
 
     updateTaxa(append = false) {
@@ -78,7 +80,6 @@ export class TaxonBrowserApiService {
                 this.taxa = res;
             }
             this.eventEmitter.emit('done');
-            console.log(res);
         });
         this.eventEmitter.emit('change');
     }

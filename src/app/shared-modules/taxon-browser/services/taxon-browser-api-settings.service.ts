@@ -7,6 +7,8 @@ export interface TaxonBrowserApiSettings {
     FiList?:boolean;
     PlantPest?:boolean;
 
+    mode?:'grid'|'list';
+
     informalTaxonGroups?:Informal[];
 
     total?:number;

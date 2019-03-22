@@ -13,6 +13,8 @@
 }
 
 .options-menu-wrapper {
+    position: relative;
+    z-index: 2;
     background: hsl(40, 15, 90);
     border-right: 2px solid hsl(40, 15, 60);
     display: flex;
@@ -53,6 +55,7 @@
 }
 
 .cards-container {
+    position: relative;
     flex: 1 1 auto;
 }
 
@@ -109,4 +112,22 @@
     @include media-breakpoint-up(xl) {
         max-width: 1400px;
     }
+}
+
+.browser-content-wrapper {
+    width: 100%;
+}
+
+.browser-content-menu {
+    padding: 0 25px;
+    padding-top: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    background: hsl(40, 15, 83);
+    border-bottom: 1px solid hsl(40, 20, 50);
+}
+
+.viewModeSwitch {
+    cursor: pointer;
 }

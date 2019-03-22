@@ -6,7 +6,7 @@ import { Taxonomy } from "../../../shared/model";
 @Component({
     selector: 'vrs-taxon-browser-list',
     template: `<ngx-datatable class="material"
-                [rows]="taxa" [columnMode]="'force'" [columns]="columns"
+                [rows]="taxa" [columnMode]="'default'" [columns]="columns"
                 [headerHeight]="50" [rowHeight]="50" [reorderable]='true'
                 [count]="taxa.length" [footerHeight]="50"
                 [sorts]="[{prop: 'vernacularName', dir: 'asc'}]"
@@ -35,12 +35,12 @@ export class TaxonBrowserListComponent {
     constructor(private translate:TranslateService,
                 private router: Router) {
         this.columns = [
-            { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 150 },
-            { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 150 },
-            { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
-            { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
-            { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false },
-            { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false }
+            { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 250, comparator: this.comparator },
+            { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 300, comparator: this.comparator },
+            { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false, minWidth: 180, comparator: this.comparator },
+            { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false, minWidth: 120, comparator: this.comparatorReverse },
+            { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false, minWidth: 180, comparator: this.comparatorReverse },
+            { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false, minWidth: 150, comparator: this.comparatorReverse }
         ];
     }
 
@@ -57,6 +57,9 @@ export class TaxonBrowserListComponent {
 
     updateRows(taxa) {
         taxa.forEach((taxon)=>{
+            if(taxon.vernacularName) {
+                taxon.vernacularName = taxon.vernacularName.charAt(0).toUpperCase() + taxon.vernacularName.substring(1);
+            }
             taxon.onEUList = false;
             taxon.onNationalList = false;
             taxon.isQuarantinePlantPest = false;
@@ -97,5 +100,19 @@ export class TaxonBrowserListComponent {
         if(e.type=="click") {
             this.router.navigate(['/taxon', e.row.id]);
         }
+    }
+
+    comparator(valueA, valueB, rowA, rowB, sortDirection) {
+        if (!valueA) return 1;
+        if (valueA > valueB) return 1;
+        if (valueA < valueB) return -1;
+        return 0;
+    }
+
+    comparatorReverse(valueA, valueB, rowA, rowB, sortDirection) {
+        if (!valueA) return 1;
+        if (valueA > valueB) return -1;
+        if (valueA < valueB) return 1;
+        return 0;
     }
 }

@@ -1,5 +1,14 @@
 @import './../../../../assets/styles/datatable';
 
 ngx-datatable {
-    height: 60vh;
+    height: 100%;
+}
+
+:host ::ng-deep {
+    .ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover, .ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover .datatable-row-group {
+        background-color: hsl(40, 15, 70);
+    }
+    .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
+        color: $neutral-8;
+    }
 }

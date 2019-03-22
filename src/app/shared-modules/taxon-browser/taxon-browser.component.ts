@@ -54,6 +54,8 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
         this.langChangeSub = this.translate.onLangChange.subscribe((lang)=> {
             this.settingsService.apiSettings.lang = lang;
         })
+
+        this.viewMode = this.settingsService.apiSettings.mode;
     }
 
     ngAfterViewInit() {
@@ -95,5 +97,10 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
 
     onClearSettings() {
         this.parameterService.clearQuery();
+    }
+
+    onSwitchViewMode() {
+        this.viewMode === 'grid' ? this.viewMode = 'list' : this.viewMode = 'grid';
+        this.parameterService.updateQuery({mode: this.viewMode});
     }
 }

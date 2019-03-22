@@ -57,13 +57,20 @@
             </options-accordion>
         </div>
     </div>
-    <div class="cards-container" #cardscont [ngStyle]="{'height': maxHeight+'px'}">
-        <div *ngIf="viewMode == 'grid'" class="cards-wrapper">
-<!--             <vrs-taxoncard-grid [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxoncard-grid> -->
-            <vrs-taxon-mosaic [taxa]="taxa" [total]="total" (scrolled)="onScroll()"></vrs-taxon-mosaic>
+    <div class="browser-content-wrapper">
+        <div class="browser-content-menu">
+            <div class="viewModeSwitch" (click)="onSwitchViewMode()">
+                <span class="oi oi-list" *ngIf="viewMode === 'grid'"></span>
+                <span class="oi oi-grid-three-up" *ngIf="viewMode === 'list'"></span>
+            </div>
         </div>
-        <div *ngIf="viewMode == 'list'" class="cards-wrapper">
-            <vrs-taxon-browser-list [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxon-browser-list>
+        <div class="cards-container" #cardscont [ngStyle]="{'height': maxHeight+'px'}">
+            <div *ngIf="viewMode == 'grid'" class="cards-wrapper">
+                <vrs-taxon-mosaic [taxa]="taxa" [total]="total" (scrolled)="onScroll()"></vrs-taxon-mosaic>
+            </div>
+            <div *ngIf="viewMode == 'list'" class="cards-wrapper">
+                <vrs-taxon-browser-list [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxon-browser-list>
+            </div>
         </div>
     </div>
 </div>
