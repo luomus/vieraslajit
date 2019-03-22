@@ -103,14 +103,18 @@ export class TaxonBrowserListComponent {
     }
 
     comparator(valueA, valueB, rowA, rowB, sortDirection) {
+        if (!valueA && !valueB) return 0;
         if (!valueA) return 1;
+        if (!valueB) return -1;
         if (valueA > valueB) return 1;
         if (valueA < valueB) return -1;
         return 0;
     }
 
     comparatorReverse(valueA, valueB, rowA, rowB, sortDirection) {
+        if (!valueA && !valueB) return 0;
         if (!valueA) return 1;
+        if (!valueB) return -1;
         if (valueA > valueB) return -1;
         if (valueA < valueB) return 1;
         return 0;

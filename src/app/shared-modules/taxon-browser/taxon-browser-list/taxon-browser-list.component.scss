@@ -11,4 +11,8 @@ ngx-datatable {
     .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
         color: $neutral-8;
     }
+    .sort-btn {
+        color: $neutral-7 !important;
+        font-size: 1.2em;
+    }
 }
