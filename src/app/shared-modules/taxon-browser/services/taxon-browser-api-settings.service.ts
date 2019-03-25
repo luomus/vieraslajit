@@ -18,7 +18,7 @@ export interface TaxonBrowserApiSettings {
 
 @Injectable()
 export class TaxonBrowserApiSettingsService {
-    private _apiSettings:TaxonBrowserApiSettings = {total: 0};
+    private _apiSettings:TaxonBrowserApiSettings = {total: 0, mode: 'grid'};
 
     eventEmitter:EventEmitter = new EventEmitter();
 
@@ -36,7 +36,7 @@ export class TaxonBrowserApiSettingsService {
         this._apiSettings.lang = s;
     }
     clear() {
-        this._apiSettings = {total:0};
+        this._apiSettings = {total:0, 'mode': 'grid'};
         this.eventEmitter.emit('change');
     }
 }
