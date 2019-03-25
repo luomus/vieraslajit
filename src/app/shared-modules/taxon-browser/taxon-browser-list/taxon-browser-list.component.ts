@@ -6,7 +6,7 @@ import { Taxonomy } from "../../../shared/model";
 @Component({
     selector: 'vrs-taxon-browser-list',
     template: `<ngx-datatable class="material"
-                [rows]="taxa" [columnMode]="'default'" [columns]="columns"
+                [rows]="taxa" [columnMode]="'force'" [columns]="columns"
                 [headerHeight]="50" [rowHeight]="50" [reorderable]='true'
                 [count]="taxa.length" [footerHeight]="50"
                 [sorts]="[{prop: 'vernacularName', dir: 'asc'}]"
@@ -35,12 +35,12 @@ export class TaxonBrowserListComponent {
     constructor(private translate:TranslateService,
                 private router: Router) {
         this.columns = [
-            { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 250, comparator: this.comparator },
-            { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), canAutoResize: true, draggable: false, resizeable: false, minWidth: 300, comparator: this.comparator },
-            { prop: 'stableString', name: this.translate.instant('taxonomy.established'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false, minWidth: 180, comparator: this.comparator },
-            { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false, minWidth: 120, comparator: this.comparatorReverse },
-            { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false, minWidth: 180, comparator: this.comparatorReverse },
-            { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), draggable: false, canAutoResize: false, headerClass: 'mobile-hidden', cellClass: 'mobile-hidden', resizeable: false, minWidth: 150, comparator: this.comparatorReverse }
+            { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), comparator: this.comparator},
+            { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), comparator: this.comparator },
+            { prop: 'stableString', name: this.translate.instant('taxonomy.established'), comparator: this.comparator },
+            { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), comparator: this.comparatorReverse },
+            { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), comparator: this.comparatorReverse },
+            { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), comparator: this.comparatorReverse }
         ];
     }
 
