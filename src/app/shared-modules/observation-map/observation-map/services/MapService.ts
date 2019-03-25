@@ -132,7 +132,6 @@ export class MapService {
                 return p;
             },
             getPopup: (options: GetPopupOptions):string=>{
-                console.log(options);
                 return "Havaintoja: " + geoJSONFeatures[options.featureIdx].properties.count;
             }
         })
