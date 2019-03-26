@@ -101,5 +101,9 @@
   "footer.privacy": null,
 
   "vieraslajit.fi": null,
-  "technical": null
+  "technical": null,
+
+  "tooltip.fiList": null,
+  "tooltip.euList": null,
+  "tooltip.quarantine": null
 }

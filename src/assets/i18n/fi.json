@@ -134,5 +134,9 @@
   "footer.privacy": "Tietosuojaseloste",
 
   "vieraslajit.fi": "vieraslajit",
-  "technical": "tekninen tiedote"
+  "technical": "tekninen tiedote",
+
+  "tooltip.fiList": "Laji kuuluu kansallisesti haitallisten vieraslajien luetteloon. EU:n säädökset antavat valtioille mahdollisuuden määrittää kansallisesti haitallisia vieraslajeja. Suomi on toistaiseksi sisällyttänyt kansalliseen luetteloon kuusi lajia, kymmenen lajiryhmää ja yhden risteymän. Yksi kansallisen luettelon lajeista, kaukasianjättiputki, on siirretty EU:n luetteloon 2017. Jäsenvaltiot voivat määrittää näille lajeille omia rajoituksiaan.",
+  "tooltip.euList": "Laji on säädetty haitalliseksi vieraslajiksi koko EU:n tasolla, minkä johdosta lajien maahantuonti, kasvatus, myynti ja muu hallussapito sekä ympäristöön päästäminen on kielletty.",
+  "tooltip.quarantine": "Laji on luokiteltu vaaralliseksi kasvintuhoojaksi. Kaikki havainnot näistä lajeista on ilmoitettava Ruokavirastoon."
 }

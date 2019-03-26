@@ -1,8 +1,9 @@
 @import '../../../../assets/styles/vars';
 
-:host {
+:host ::ng-deep {
     position:absolute;
-    white-space: nowrap;
+    white-space: initial;
+    width: 30em;
     background: $neutral-8;
     color: $neutral-4;
     padding: 1em;

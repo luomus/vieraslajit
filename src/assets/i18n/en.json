@@ -131,6 +131,10 @@
   "footer.facebook": "Facebook",
   "footer.privacy": "Privacy policy",
 
-  "vieraslajit.fi": "invasive species",
-  "technical": "technical"
+  "vieraslajit.fi": "invasive species portal",
+  "technical": "technical",
+
+  "tooltip.fiList": null,
+  "tooltip.euList": null,
+  "tooltip.quarantine": null
 }
