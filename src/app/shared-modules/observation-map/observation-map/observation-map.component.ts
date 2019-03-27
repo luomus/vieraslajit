@@ -10,6 +10,7 @@ import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
 import { ObsMapData } from './services/data/ObsMapData';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TimeSelectorComponent } from './time-selector/time-selector.component';
 
 @Component({
   selector: 'vrs-observation-map',
@@ -33,7 +34,10 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   mapTaxonList : ObsMapListComponent;
 
   @ViewChild(TaxonSearchComponent)
-  taxonSearch : TaxonSearchComponent
+  taxonSearch : TaxonSearchComponent;
+
+  @ViewChild(TimeSelectorComponent)
+  timeSelector : TimeSelectorComponent;
 
   bsModalRef: BsModalRef;
 
@@ -106,6 +110,12 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
         this.obsMapOptions.setOptionSilent("municipality", res['municipality']);
       } else {
         this.obsMapOptions.setOptionSilent("municipality", null);
+      }
+      if (res['time']) {
+        this.obsMapOptions.setOptionSilent("time", res['time']);
+        this.timeSelector.setTimeValue(res['time']);
+      } else {
+        this.obsMapOptions.setOptionSilent("time", null);
       }
       this.obsMapOptions.emitChange();
     });
@@ -184,6 +194,10 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
       updateCheckbox(checkboxId, temp);
     }
     temp ? this.obsMapOptions.setOptionSilent(option, optionValue) : this.obsMapOptions.setOptionSilent(option, null);
+  }
+
+  onTimeChange(event) {
+    this.updateQueryParam('time', event);
   }
 }
 

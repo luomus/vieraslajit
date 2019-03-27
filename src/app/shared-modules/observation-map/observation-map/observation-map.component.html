@@ -8,6 +8,7 @@
       </select>
     </div>
     <vrs-taxon-search></vrs-taxon-search>
+    <vrs-time-selector (timeChangeEvent)="onTimeChange($event)"></vrs-time-selector>
     <div *ngIf="isLoggedIn && ownModeSelectorEnabled" class="checkbox">
       <input type="checkbox" id="ownCheck" (change)="onOwnModeChange($event)">
       <label for="ownCheck">

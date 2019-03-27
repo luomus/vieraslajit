@@ -43,6 +43,10 @@ html, body {
     }
 }
 
+:focus {
+    outline: none;
+}
+
 a {
     color: $accent-5;
     &:hover {

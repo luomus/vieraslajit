@@ -15,6 +15,7 @@ import { ObservationModalComponent } from './observation-map/observation-modal.c
 import { ModalModule } from 'ngx-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { ObservationMapPopupComponent } from './observation-map/observation-map-popup.component';
+import { TimeSelectorComponent } from './observation-map/time-selector/time-selector.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { ObservationMapPopupComponent } from './observation-map/observation-map-
     TaxonSearchComponent,
     ObsMapListComponent,
     ObservationModalComponent,
-    ObservationMapPopupComponent
+    ObservationMapPopupComponent,
+    TimeSelectorComponent
   ],
   providers: [
     MapApiService,
