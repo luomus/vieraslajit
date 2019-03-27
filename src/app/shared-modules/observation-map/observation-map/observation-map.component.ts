@@ -98,7 +98,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
         strToBool(res['plantPest'])
       );
       if (res['taxonId']) {
-        this.taxonSearch.fillValue('', res['taxonId'], false);
+        this.taxonSearch.fillValue(res['taxonId'], false);
         this.obsMapOptions.setOptionSilent("id", res['taxonId']);
       } else {
         this.obsMapOptions.setOptionSilent("id", null);
@@ -127,7 +127,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     this.mapController.initializeMap(document.getElementById("map"), this.bsModalRef);
 
     if(this.id) {
-      this.taxonSearch.fillValue('', this.id);
+      this.taxonSearch.fillValue(this.id);
     }
 
     if(this.mapTaxonList) this.mapTaxonList.eventEmitter.addListener("change", (e)=>{

@@ -9,6 +9,7 @@ import { AccordionModule, CollapseModule, TabsModule,AlertModule } from 'ngx-boo
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ObservationsComponent } from './observations.component';
+import { ObservationMapModule } from '../shared-modules/observation-map/observation-map.module';
 
 
 
@@ -16,17 +17,9 @@ import { ObservationsComponent } from './observations.component';
   imports: [
     CommonModule,
     ObservationsRoutingModule,
-    SharedModule,
-    NgxDatatableModule,
-    TabsModule.forRoot(),
-    AccordionModule,
-    CollapseModule,
-    PaginationModule.forRoot(),
-    TabsModule,
-    FormsModule,
-    AlertModule.forRoot()
+    ObservationMapModule
   ],
   declarations: [ObservationsComponent],
-  providers:[ApiService,ObservationService,DatePipe]
+  providers:[]
 })
 export class ObservationsModule { }

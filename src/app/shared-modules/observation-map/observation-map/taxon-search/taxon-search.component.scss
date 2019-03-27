@@ -52,6 +52,22 @@ input {
     }
 }
 
-#removeSelected {
-    cursor: pointer;
+.selected-taxon {
+    width: min-content;
+    font-size: .8rem;
+    background: $accent-1;
+    border-radius: 15px;
+    padding: 2px 10px;
+    color: $accent-6;
+    border: 1px solid $accent-3;
+    margin-top: 5px;
+    position: relative;
+    a {
+        position: relative;
+        top: 0px;
+        display: inline-block;
+        cursor: pointer;
+        font-size: .6rem;
+        margin-left: 5px;
+    }
 }

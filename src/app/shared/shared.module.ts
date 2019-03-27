@@ -37,6 +37,7 @@ import { NavbarContainer } from './navbar/navbar.container';
 import { ParseWPPipe } from './pipe/parse-wp.pipe';
 import { GoogleSearchApiService } from './api/google-search.api.service';
 import { RouteTransformerDirective } from './directive/route-transformer.directive';
+import { TaxonNamePipe } from './pipe/taxonName.pipe';
 /**
  * Provides common utilities for other modules
  */
@@ -51,17 +52,16 @@ import { RouteTransformerDirective } from './directive/route-transformer.directi
     BsDropdownModule,
     SpinnerModule,
     EditcmsModule,
-    ObservationMapModule,
     ModalModule.forRoot(),
     CollapseModule.forRoot(),
     HttpModule
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, NavbarContainer, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent, RouteTransformerDirective],
+  declarations: [NavbarComponent, NavbarContainer, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent, RouteTransformerDirective, TaxonNamePipe],
   providers: [],
-  exports: [NavbarComponent, NavbarContainer, RouterModule, FooterComponent, SpinnerModule, EditcmsModule, ObservationMapModule,
-    SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, CapitalizePipe, RouteTransformerDirective]
+  exports: [NavbarComponent, NavbarContainer, RouterModule, FooterComponent, SpinnerModule, EditcmsModule,
+    SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, CapitalizePipe, RouteTransformerDirective, TaxonNamePipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

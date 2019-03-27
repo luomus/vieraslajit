@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { WarehouseQueryList } from '../shared/model/Warehouse';
 import { PagedResult } from '../shared/model/PagedResult';
 import { Subscription } from 'rxjs';

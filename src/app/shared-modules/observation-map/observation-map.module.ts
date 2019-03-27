@@ -16,6 +16,7 @@ import { ModalModule } from 'ngx-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { ObservationMapPopupComponent } from './observation-map/observation-map-popup.component';
 import { TimeSelectorComponent } from './observation-map/time-selector/time-selector.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { TimeSelectorComponent } from './observation-map/time-selector/time-sele
     RouterModule,
     SpinnerModule,
     ModalModule,
-    TranslateModule
+    TranslateModule,
+    SharedModule
   ],
   declarations: [
     ObservationMapComponent,

@@ -9,20 +9,21 @@ import { TranslateService } from "../../../../../../node_modules/@ngx-translate/
     template: `<div class='autocomplete' (keyup)="keyEvent($event)">
     <span class="oi oi-magnifying-glass"></span>
     <input type='text' id='vrs-taxon-search-textarea' class='form-control' placeholder="Valitse laji"></div>
-    <div>
-        <span id='selectedTaxon'></span>
-        <a id='removeSelected' class='oi oi-x icon' (click)="removeSelected()"></a>
+    <div class="selected-taxon">
+        <span>{{taxonId | taxonname:translate.currentLang | async}}</span>
+        <a class='oi oi-x icon' (click)="removeSelected()"></a>
     </div>`,
     styleUrls: ["./taxon-search.component.scss"]
 })
 export class TaxonSearchComponent implements OnInit {
     private base: HTMLElement;
-    eventEmitter:EventEmitter = new EventEmitter
+    eventEmitter:EventEmitter = new EventEmitter();
 
-    constructor(private taxonService: TaxonService, private translate: TranslateService) {}
+    taxonId = '';
+    constructor(private taxonService: TaxonService, public translate: TranslateService) {}
 
     ngOnInit() {
-        $('#removeSelected').hide();
+        $('.selected-taxon').hide();
         this.initBase();
 
         $('#vrs-taxon-search-textarea').on('blur', ()=>{
@@ -42,7 +43,7 @@ export class TaxonSearchComponent implements OnInit {
                         $('.autocomplete-items').append(b);
                         b.innerHTML = element.payload.matchingName;
                         b.onclick = ()=>{
-                            this.fillValue(element.payload.matchingName, element.key);
+                            this.fillValue(element.key);
                         }
                     });
                 }
@@ -57,17 +58,16 @@ export class TaxonSearchComponent implements OnInit {
         $('.autocomplete').append(this.base);
     }
 
-    fillValue(val: string, id:string, emit = true) {
-        $('#selectedTaxon').text(val + ' ' + id);
+    fillValue(id:string, emit = true) {
+        this.taxonId = id;
         $('#vrs-taxon-search-textarea').val('');
-        $('#removeSelected').show();
+        $('.selected-taxon').show();
         this.initBase();
         if (emit) this.eventEmitter.emit("change", id);
     }
 
     removeSelected() {
-        $('#selectedTaxon').text('');
-        $('#removeSelected').hide();
+        $('.selected-taxon').hide();
         this.eventEmitter.emit("change", null);
     }
 
