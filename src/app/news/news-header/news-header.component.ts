@@ -8,10 +8,10 @@ import { NewsElement } from '../../shared/model';
         <img class="news-thumbnail rounded" src="{{newsElement.featuredImage}}">
         <div>
             <h2 class="news-title py-2 py-sm-0">{{newsElement.title}}</h2>
-            <div class="news-posted p-0 p-sm-2">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }}</div>
+            <div class="news-posted p-0 p-sm-2">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }} <span class="news-tag">{{newsElement.tag | translate}}</span></div>
         </div>
         <div>
-            <span class="news-tag float-right">{{newsElement.tag | translate}}</span>
+            
             <vrs-editcms class="float-right" id="{{newsElement.id}}"></vrs-editcms>
         </div>
     </div>
@@ -21,10 +21,9 @@ import { NewsElement } from '../../shared/model';
     <div *ngIf='!newsElement.featuredImage' class="news-header justify-content-between">
         <div>
             <h2 class="news-title">{{newsElement.title}}</h2>
-            <div class="news-posted">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }}</div>
+            <div class="news-posted">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }} <span class="news-tag">{{newsElement.tag | translate}}</span></div>
         </div>
         <div>
-            <span class="news-tag float-right">{{newsElement.tag | translate}}</span>
             <vrs-editcms class="float-right" id="{{newsElement.id}}"></vrs-editcms>
         </div>
     </div>

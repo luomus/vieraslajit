@@ -25,11 +25,13 @@
 }
 
 .news-tag {
-    color: lighten($neutral-8, 20);
-    font-style:italic;
-    @include media-breakpoint-down(xs) {
-        display: none;
-    }
+    background: $accent-1;
+    color: $accent-6;
+    border-radius: 15px;
+    font-size: .8rem;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border: 1px solid $accent-2;
 }
 
 .news-posted {
