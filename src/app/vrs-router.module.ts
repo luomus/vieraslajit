@@ -6,8 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
  */
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', loadChildren: './home/home.module#HomeModule' },
+  { path: '', loadChildren: './home/home.module#HomeModule' },
   { path: 'taxon', loadChildren: './taxon/taxon.module#TaxonModule' },
   { path: 'eradication', loadChildren: './eradication/eradication.module#EradicationModule' },
   { path: 'viekas', loadChildren: './viekas/viekas.module#ViekasModule' },
