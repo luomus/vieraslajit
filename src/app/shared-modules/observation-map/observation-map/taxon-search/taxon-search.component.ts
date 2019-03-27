@@ -9,8 +9,10 @@ import { TranslateService } from "../../../../../../node_modules/@ngx-translate/
     template: `<div class='autocomplete' (keyup)="keyEvent($event)">
     <span class="oi oi-magnifying-glass"></span>
     <input type='text' id='vrs-taxon-search-textarea' class='form-control' placeholder="Valitse laji"></div>
-    <span id='selectedTaxon'></span>
-    <a id='removeSelected' class='oi oi-x icon' (click)="removeSelected()"></a>`,
+    <div>
+        <span id='selectedTaxon'></span>
+        <a id='removeSelected' class='oi oi-x icon' (click)="removeSelected()"></a>
+    </div>`,
     styleUrls: ["./taxon-search.component.scss"]
 })
 export class TaxonSearchComponent implements OnInit {
@@ -56,7 +58,7 @@ export class TaxonSearchComponent implements OnInit {
     }
 
     fillValue(val: string, id:string, emit = true) {
-        $('#selectedTaxon').text(val + ' : ' + id);
+        $('#selectedTaxon').text(val + ' ' + id);
         $('#vrs-taxon-search-textarea').val('');
         $('#removeSelected').show();
         this.initBase();

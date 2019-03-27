@@ -106,6 +106,17 @@ a.laji-link {
   z-index: 400;
 }
 
+.filter-group {
+  margin-bottom: 20px;
+  h5 {
+    font-size: .8rem;
+    font-weight: 600;
+    color: $neutral-6;
+    margin: 0;
+    margin-bottom: 5px;
+  }
+}
+
 .right-float-menu {
   position: absolute;
   top: 50px;

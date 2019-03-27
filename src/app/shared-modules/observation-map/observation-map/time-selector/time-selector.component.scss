@@ -1,5 +1,11 @@
 @import '../../../../../assets/styles/vars';
 
+.time-selector {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
 input {
     width: 8em;
     border-radius: 5px;
@@ -9,8 +15,5 @@ input {
     border: none;
     &::placeholder {
         color: $neutral-4;
-    }
-    &:focus {
-        box-shadow: 0 1px 3px $neutral-6;
     }
 }

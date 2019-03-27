@@ -1,6 +1,11 @@
 @import '../../../../../assets/styles/vars';
 
+:host {
+    width: 100%;
+}
+
 .autocomplete {
+    width: 100%;
     position: relative;
     display: inline-block;
     .form-control {
@@ -49,9 +54,4 @@ input {
 
 #removeSelected {
     cursor: pointer;
-    margin: 0.5em;
-}
-
-#selectedTaxon {
-    margin: 0.5em;
 }

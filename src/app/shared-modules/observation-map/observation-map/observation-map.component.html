@@ -1,21 +1,34 @@
 <div class="map-container" #maprow>
   <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
-  <div *ngIf="taxonSearchEnabled || municipalitySelectEnabled || ownModeSelectorEnabled || administrativeCheckboxes" class="left-float-menu">
-    <div class="input-group">
-      <select id="select-municipality" class="custom-select">
-        <option value="">Kunta...</option>
-        <option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</option>
-      </select>
+  <div *ngIf="filterMenuEnabled" class="left-float-menu">
+    <div class="filter-group">
+      <h5>KUNTA</h5>
+      <div class="input-group">
+        <select id="select-municipality" class="custom-select">
+          <option value="">Kaikki kunnat</option>
+          <option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</option>
+        </select>
+      </div>
     </div>
-    <vrs-taxon-search></vrs-taxon-search>
-    <vrs-time-selector (timeChangeEvent)="onTimeChange($event)"></vrs-time-selector>
-    <div *ngIf="isLoggedIn && ownModeSelectorEnabled" class="checkbox">
-      <input type="checkbox" id="ownCheck" (change)="onOwnModeChange($event)">
-      <label for="ownCheck">
-        Vain omat havainnot
-      </label>
+    <div class="filter-group">
+      <h5>LAJI</h5>
+      <vrs-taxon-search></vrs-taxon-search>
     </div>
-    <ng-container *ngIf="administrativeCheckboxes">
+    <div class="filter-group">
+      <h5>HAVAINTOAIKA</h5>
+      <vrs-time-selector (timeChangeEvent)="onTimeChange($event)"></vrs-time-selector>
+    </div>
+    <div class="filter-group" *ngIf="isLoggedIn">
+      <h5>OMAT HAVAINNOT</h5>
+      <div class="checkbox">
+        <input type="checkbox" id="ownCheck" (change)="onOwnModeChange($event)">
+        <label for="ownCheck">
+          Vain omat havainnot
+        </label>
+      </div>
+    </div>
+    <div class="filter-group">
+      <h5>HALLINNOLLISET</h5>
       <div class="checkbox">
           <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
           <label for="finnishList">Kansallinen luettelo</label>
@@ -28,9 +41,9 @@
           <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest">
           <label for="plantPest">Vaarallinen kasvintuhooja</label>
       </div>
-    </ng-container>
+    </div>
   </div>
-  <div class="right-float-menu" *ngIf="listEnabled">
+  <div class="right-float-menu" *ngIf="listMenuEnabled">
     <vrs-obs-map-list height="700" [ngClass]="{'hidden': isAggregateMap()}"></vrs-obs-map-list>
     <div [ngClass]="{'hidden': !isAggregateMap()}">
       <h5 class="observation-count"><b>{{getObservationCount() | number}}</b> havaintoa.</h5>

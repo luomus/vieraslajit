@@ -19,18 +19,6 @@
     }
 }
 
-:host ::ng-deep .input-group {
-    padding: 0.5em 0em;
-}
-
-:host ::ng-deep .autocomplete {
-    padding: 0.5em 0em;
-    
-    .oi-magnifying-glass {
-        top: 21px;
-    }
-}
-
 .card {
     box-shadow: $container-shadow;
 }

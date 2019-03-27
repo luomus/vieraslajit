@@ -20,11 +20,8 @@ import { TimeSelectorComponent } from './time-selector/time-selector.component';
 
 export class ObservationMapComponent implements AfterViewInit, OnInit{
   @Input() id?: string;
-  @Input() listEnabled?: boolean = false;
-  @Input() taxonSearchEnabled?: boolean = false;
-  @Input() municipalitySelectEnabled?: boolean = false;
-  @Input() ownModeSelectorEnabled?: boolean = false;
-  @Input() administrativeCheckboxes?: boolean = false;
+  @Input() listMenuEnabled?: boolean = false;
+  @Input() filterMenuEnabled?: boolean = false;
 
   @Input() mapHeight: number = 400;
 
@@ -75,28 +72,28 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
       this.onQueryParamWithCheckboxChange(
         res['user'],
         'ownCheck',
-        this.ownModeSelectorEnabled,
+        true,
         'personToken',
         UserService.getToken()
       );
       this.onQueryParamWithCheckboxChange(
         res['fiList'],
         'finnishList',
-        this.administrativeCheckboxes,
+        true,
         'fiList',
         strToBool(res['fiList'])
       );
       this.onQueryParamWithCheckboxChange(
         res['euList'],
         'euList',
-        this.administrativeCheckboxes,
+        true,
         'euList',
         strToBool(res['euList'])
       );
       this.onQueryParamWithCheckboxChange(
         res['plantPest'],
         'plantPest',
-        this.administrativeCheckboxes,
+        true,
         'plantPest',
         strToBool(res['plantPest'])
       );
@@ -129,7 +126,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     // INITIALIZE MAP
     this.mapController.initializeMap(document.getElementById("map"), this.bsModalRef);
 
-    if(this.id && this.taxonSearchEnabled) {
+    if(this.id) {
       this.taxonSearch.fillValue('', this.id);
     }
 
