@@ -86,14 +86,14 @@ export class MapService {
                 return p;
             },
             getPopup: (options: GetPopupOptions):string=>{
-                const data = options.dataIdx;
-                const name = obs[data].unit.taxonVerbatim;
-                const municipality = obs[data].gathering.interpretations.municipalityDisplayname || "";
-                const date = obs[data].gathering.displayDateTime;
-                const notes = obs[data].unit.notes || "";
-                const reliability = obs[data].unit.quality.reliable ? "Luotettava <br>" : "";
+                const feature = options.featureIdx;
+                const name = obs[feature].unit.taxonVerbatim;
+                const municipality = obs[feature].gathering.interpretations.municipalityDisplayname || "";
+                const date = obs[feature].gathering.displayDateTime;
+                const notes = obs[feature].unit.notes || "";
+                const reliability = obs[feature].unit.quality.reliable ? "Luotettava <br>" : "";
 
-                this.eventEmitter.emit('onPopup', obs[data]);
+                this.eventEmitter.emit('onPopup', obs[feature]);
 
                 const compFac = this.resolver.resolveComponentFactory(ObservationMapPopupComponent);
                 const compRef = compFac.create(this.injector);
@@ -102,8 +102,8 @@ export class MapService {
                 compRef.instance.date = date;
                 compRef.instance.notes = notes;
                 compRef.instance.reliability = reliability;
-                compRef.instance.taxonId = obs[data].unit.linkings.taxon.id.substring(14);
-                compRef.instance.observationId = obs[data].gathering.gatheringId.substring(14);
+                compRef.instance.taxonId = obs[feature].unit.linkings.taxon.id.substring(14);
+                compRef.instance.observationId = obs[feature].gathering.gatheringId.substring(14);
                 compRef.instance.modalRef = this.modalRef;
                 compRef.changeDetectorRef.detectChanges();
                 return compRef.location.nativeElement;
