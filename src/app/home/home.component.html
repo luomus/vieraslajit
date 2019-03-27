@@ -41,10 +41,10 @@
                 <div class="col-4 news">
                     <h2>Uutiset</h2>
                     <ul>
-                        <li *ngFor="let story of news">
-                            <h3 [routerLink]="['/news']">{{story.title}}</h3>
+                        <li *ngFor="let story of news"><a [routerLink]="['/news']">
+                            <h3>{{story.title}}</h3>
                             <div class="story-posted">{{story.posted | date: 'dd.MM.yyyy'}}</div>
-                        </li>
+                        </a></li>
                     </ul>
                 </div>
             </div>

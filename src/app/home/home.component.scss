@@ -110,7 +110,8 @@
         ul {
             list-style-type: none;
             padding: 0;
-            li {
+            li a {
+                display: block;
                 background: $neutral-1;
                 border-radius: 15px;
                 padding: 25px;
@@ -118,6 +119,9 @@
                 box-shadow: 0 1px 3px rgba($neutral-8, 0.2);
                 max-height: 300px;
                 overflow: hidden;
+                &:hover {
+                    box-shadow: 0 5px 15px rgba($neutral-8, 0.2);
+                }
                 h3 {
                     cursor: pointer;
                     font-size: 0.8rem;
