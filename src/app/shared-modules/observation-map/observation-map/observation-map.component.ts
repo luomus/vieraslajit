@@ -127,7 +127,8 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     this.mapController.initializeMap(document.getElementById("map"), this.bsModalRef);
 
     if(this.id) {
-      this.taxonSearch.fillValue(this.id);
+      if (this.taxonSearch) this.taxonSearch.fillValue(this.id);
+      this.obsMapOptions.setOption('id', this.id);
     }
 
     if(this.mapTaxonList) this.mapTaxonList.eventEmitter.addListener("change", (e)=>{
