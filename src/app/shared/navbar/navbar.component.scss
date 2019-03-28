@@ -74,20 +74,18 @@ nav {
     flex-direction: column;
     justify-content: flex-end;
     margin-right: 2em;
-    div {
-        display: flex;
-        align-items: flex-end;
-    }
     .heading {
         margin-left: 55px;
         font-size: 1.25em;
         font-family: $font-heading;
         font-weight: 400;
+        color: $neutral-8;
         &:hover {
             color: $accent-5;
         }
     }
     .header-link {
+        display: block;
         cursor: pointer;
         outline: none;
     }
@@ -218,6 +216,7 @@ nav.notransition:after {
 .vrs-logo {
     position: absolute;
     max-height: 50px;
+    bottom: 80px;
 }
 
 nav .navbar-brand {
