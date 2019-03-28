@@ -10,47 +10,47 @@
             (selected)="onGroupSelected($event)"></vrs-group-dropdown> -->
             <options-accordion header="Vieraslajiryhmät">
                 <div class="checkbox">
-                    <input type="checkbox" id="plants">
+                    <input type="checkbox" id="plants" #plantsCheckbox>
                     <label for="plants">Kasvit</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="mammals-and-birds">
+                    <input type="checkbox" id="mammals-and-birds" #mammalsCheckbox>
                     <label for="mammals-and-birds">Nisäkkäät ja linnut</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="freshwater-species">
+                    <input type="checkbox" id="freshwater-species" #freshwaterCheckbox>
                     <label for="freshwater-species">Sisävesien lajit</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="baltic-species">
+                    <input type="checkbox" id="baltic-species" #balticCheckbox>
                     <label for="baltic-species">Itämeren lajit</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="interior-pests">
+                    <input type="checkbox" id="interior-pests" #interiorCheckbox>
                     <label for="interior-pests">Sisätilojen tuholaiset</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="forestry-pests">
+                    <input type="checkbox" id="forestry-pests" #forestryCheckbox>
                     <label for="forestry-pests">Metsätalouden tuholaiset</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="agricultural-pests">
+                    <input type="checkbox" id="agricultural-pests" #agriculturalCheckbox>
                     <label for="agricultural-pests">Maatalouden tuholaiset</label>
                 </div>
             </options-accordion>
             <options-accordion header="Haitalliset vieraslajit">
                 <div class="checkbox">
-                    <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
+                    <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList" #fiCheckbox>
                     <label for="finnishList">Kansallinen luettelo</label>
                     <vrs-help>{{'tooltip.fiList' | translate}}</vrs-help>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList">
+                    <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList" #euCheckbox>
                     <label for="euList">EU:n luettelo</label>
                     <vrs-help>{{'tooltip.euList' | translate}}</vrs-help>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest">
+                    <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest" #plantPestCheckbox>
                     <label for="plantPest">Vaaralliset kasvintuhoojat</label>
                     <vrs-help>{{'tooltip.quarantine' | translate}}</vrs-help>
                 </div>

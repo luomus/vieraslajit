@@ -19,7 +19,7 @@ export class TaxonBrowserParameterService {
     init() {
         this.route.queryParams.subscribe((params) => {
             // Translate strings to booleans (queryparams are always string)
-            const mutated = {...params};
+            const mutated: TaxonBrowserQuery = {...params};
             Object.keys(mutated).forEach((key) => {
                 if(mutated[key] === "true") {
                     mutated[key] = true;
@@ -28,6 +28,7 @@ export class TaxonBrowserParameterService {
                     mutated[key] = false;
                 }
             })
+            this.query = mutated;
             this.settings.apiSettings = mutated;
             this.queryEventEmitter.emit(mutated);
        })

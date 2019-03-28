@@ -19,7 +19,6 @@ export class TaxonMosaicComponent implements OnInit {
     }
 
     onScroll() {
-        console.log(this.taxa);
         this.scrolled.emit();
     }
 }

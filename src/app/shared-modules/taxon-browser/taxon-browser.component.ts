@@ -5,7 +5,7 @@ import { Subscription } from "rxjs";
 import { TaxonBrowserApiService } from "./services/taxon-browser-api.service";
 import { TaxonBrowserApiSettingsService } from "./services/taxon-browser-api-settings.service";
 import { Taxonomy } from "../../shared/model";
-import { TaxonBrowserParameterService } from "./services/taxon-browser-parameter.service";
+import { TaxonBrowserParameterService, TaxonBrowserQuery } from "./services/taxon-browser-parameter.service";
 
 @Component({
     selector: "vrs-taxon-browser",
@@ -27,6 +27,18 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
 
     @ViewChild('cardscont') cardsContainer: ElementRef;
 
+    /* CHECKBOXES */
+    @ViewChild('plantsCheckbox')        plantsCheckbox: ElementRef;
+    @ViewChild('mammalsCheckbox')       mammalsCheckbox: ElementRef;
+    @ViewChild('freshwaterCheckbox')    freshwaterCheckbox: ElementRef;
+    @ViewChild('balticCheckbox')        balticCheckbox: ElementRef;
+    @ViewChild('interiorCheckbox')      interiorCheckbox: ElementRef;
+    @ViewChild('forestryCheckbox')      forestryCheckbox: ElementRef;
+    @ViewChild('agriculturalCheckbox')  agriculturalCheckbox: ElementRef;
+    @ViewChild('fiCheckbox')            fiCheckbox: ElementRef;
+    @ViewChild('euCheckbox')            euCheckbox: ElementRef;
+    @ViewChild('plantPestCheckbox')     plantPestCheckbox: ElementRef;
+
     constructor(private settingsService:TaxonBrowserApiSettingsService,
         private apiService: TaxonBrowserApiService,
         private translate: TranslateService,
@@ -47,6 +59,13 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
             this.taxa = this.apiService.taxa.slice();
             this.total = this.settingsService.apiSettings.total;
             this.loading=false;
+        });
+
+        this.parameterService.queryEventEmitter.subscribe((event: TaxonBrowserQuery) => {
+            // TODO vieraslajiryhmät
+            if (event.hasOwnProperty('FiList')) this.fiCheckbox.nativeElement.checked = event.FiList;
+            if (event.hasOwnProperty('EuList')) this.euCheckbox.nativeElement.checked = event.EuList;
+            if (event.hasOwnProperty('PlantPest')) this.plantPestCheckbox.nativeElement.checked = event.PlantPest;
         });
 
         this.parameterService.init();
