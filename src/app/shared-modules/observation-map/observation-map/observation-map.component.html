@@ -4,7 +4,7 @@
     <div class="filter-group">
       <h5>KUNTA</h5>
       <div class="input-group">
-        <select id="select-municipality" class="custom-select">
+        <select (change)="onSelectMunicipality($event)" class="custom-select">
           <option value="">Kaikki kunnat</option>
           <option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</option>
         </select>

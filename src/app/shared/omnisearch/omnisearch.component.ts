@@ -4,7 +4,6 @@ import {
   Component,
   OnInit,
   EventEmitter,
-  HostListener,
   Input,
   Output,
   ViewContainerRef,
@@ -15,18 +14,12 @@ import {
   ViewChild,
   Renderer2
 } from '@angular/core';
-import { Autocomplete } from '../../shared/model/Autocomplete';
-import { WarehouseQueryCount } from '../../shared/model/Warehouse'
-import { Subscription ,  Observable, of } from 'rxjs'
+import { Subscription, of } from 'rxjs'
 import { tap, combineLatest } from 'rxjs/operators'
 import { FormControl } from '@angular/forms'
 import { TaxonService } from '../../shared/service/taxon.service'
 import { ApiService } from '../../shared/api/api.service';
 import { Router } from '@angular/router'
-
-
-import * as $ from 'jquery';
-
 import { TranslateService } from '@ngx-translate/core';
 import { GoogleSearchApiService } from '../api/google-search.api.service';
 import { environment } from '../../../environments/environment';
@@ -105,7 +98,8 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   }
 
   ngAfterViewInit() {
-    if(($(this.omniElement.nativeElement).position().left - $(this.omniElement.nativeElement).width()) > ($(window).width() / 2)) {
+    const el: HTMLElement = this.omniElement.nativeElement;
+    if((el.clientLeft - el.clientWidth) > (window.innerWidth / 2)) {
       this.resultsDirection = 'left';
     } else {
       this.resultsDirection = 'right';

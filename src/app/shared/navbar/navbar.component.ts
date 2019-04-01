@@ -1,27 +1,23 @@
-import { Component, OnInit, AfterViewChecked, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ElementRef, ChangeDetectorRef, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ChangeDetectorRef, Input, OnDestroy } from '@angular/core';
 import { UserService } from '../service/user.service';
 import {Router} from '@angular/router';
 import { InformationService } from '../service/information.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, of } from 'rxjs';
-import { StaticContent, findContentID } from './../../../assets/i18n/cms-content';
-import * as $ from 'jquery';
 import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';
-import { mergeMap, map, catchError, concatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'vrs-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit, OnDestroy {
+export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   loginUrl = '#';
   fixedTop = false;
   isCollapsed = false;
   loggedIn = false;
   loginSub: Subscription;
   currentId: string= "";
-  private dropdown_user_bound = false;
   private scrollListener;
 
   @Input() menu;
@@ -63,7 +59,7 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit,
 
   private updateFixedTop() {
     const _fixedTop = this.fixedTop;
-    if ($(window).scrollTop() < 86) {
+    if (window.scrollY < 86) {
         this.fixedTop = false;
     } else {
         this.fixedTop = true;
@@ -88,19 +84,6 @@ export class NavbarComponent implements OnInit, AfterViewChecked, AfterViewInit,
         dropdown.toggle(false);
       })
     })
-  }
-
-  /* dropdown-user is inside an *ngIf statement, so it can't be selected until the if statement is evaluated*/
-  ngAfterViewChecked() {
-    if(!this.dropdown_user_bound) {
-      /* wait for the dropdown-user element to appear before binding */
-      if($("#dropdown-user").length !== 0) {
-        $("#dropdown-user").on("mouseenter mouseleave", ()=>{
-          this.d.first.toggle(true);
-        });
-        this.dropdown_user_bound = true;
-      }
-    }
   }
 
   logout() {
