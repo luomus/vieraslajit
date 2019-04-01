@@ -1,9 +1,9 @@
 import { TaxonService } from "../../../../shared/service/taxon.service";
-import { Component, OnInit, Renderer2, Inject } from "../../../../../../node_modules/@angular/core";
+import { Component, OnInit, Renderer2, Inject, PLATFORM_ID } from "../../../../../../node_modules/@angular/core";
 import { EventEmitter } from 'events'
 import * as $ from 'jquery';
 import { TranslateService } from "../../../../../../node_modules/@ngx-translate/core";
-import { PLATFORM_BROWSER_ID, isPlatformBrowser } from "@angular/common/src/platform_id";
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
     selector: "vrs-taxon-search",
@@ -29,7 +29,7 @@ export class TaxonSearchComponent implements OnInit {
     constructor(private taxonService: TaxonService,
                 public translate: TranslateService,
                 private renderer: Renderer2,
-                @Inject(PLATFORM_BROWSER_ID) private platformId) {}
+                @Inject(PLATFORM_ID) private platformId) {}
 
     ngOnInit() {
         if (isPlatformBrowser(this.platformId)) {
