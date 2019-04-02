@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "ng-high-memory": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng",
+    "webpack-high-memory": "node --max_old_space_size=4096 ./node_modules/webpack/bin/webpack.js",
     "ng": "ng",
     "update": "ng update @angular/cli @angular/core",
     "start": "ng serve",
@@ -14,10 +16,10 @@
     "doc:build": "compodoc -p src/tsconfig.app.json",
     "doc:serve": "compodoc -s",
     "doc:buildandserve": "compodoc -p src/tsconfig.app.json -s",
-    "compile:server": "webpack --config webpack.server.config.js --progress --colors",
+    "compile:server": "yarn run webpack-high-memory --config webpack.server.config.js --progress --colors",
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
-    "build:client-and-server-bundles": "ng build --prod && ng run vieraslajit:server:production"
+    "build:client-and-server-bundles": "yarn run ng-high-memory build --prod && yarn run ng-high-memory run vieraslajit:server:production"
   },
   "private": true,
   "dependencies": {

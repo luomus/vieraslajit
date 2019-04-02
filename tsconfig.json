@@ -15,12 +15,12 @@
       "es2017",
       "dom"
     ],
+    "paths": {
+      "@observation-map/*": [
+        "app/shared-modules/observation-map/observation-map/*"
+      ]
+    },
     "module": "es2015",
-    "baseUrl": "./"
-  },
-  "paths": {
-    "@observationMapService/*": [
-      "src/app/shared-modules/observation-map/observation-map/*"
-    ]
+    "baseUrl": "./src"
   }
 }

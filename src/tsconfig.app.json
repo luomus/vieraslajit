@@ -1,18 +1,23 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "lib": ["es2017", "dom"],
     "outDir": "../out-tsc/app",
-    "baseUrl": "./",
     "module": "es2015",
-    "types": ["node"]
+    "baseUrl": "",
+    "paths": {
+      "@observation-map/*": [
+        "app/shared-modules/observation-map/observation-map/*"
+      ]
+    }
   },
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ],
-  "paths": {
-    "@observation-map/*": [
-      "app/shared-modules/observation-map/observation-map/*"
-    ]
-  }
+  ]
 }
