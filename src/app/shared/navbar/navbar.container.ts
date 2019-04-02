@@ -1,5 +1,4 @@
-import { Component, NgZone, OnInit, ChangeDetectorRef, OnDestroy } from "@angular/core";
-import * as $ from 'jquery';
+import { Component, NgZone, OnInit, ChangeDetectorRef, OnDestroy, Renderer2 } from "@angular/core";
 import { InformationService } from "../service/information.service";
 import { mergeMap, concatMap, tap } from "rxjs/operators";
 import { of, Subscription } from "rxjs";
@@ -19,7 +18,8 @@ export class NavbarContainer implements OnInit, OnDestroy {
     constructor(private informationService: InformationService,
                 private zone: NgZone,
                 private cd: ChangeDetectorRef,
-                private translate: TranslateService) {}
+                private translate: TranslateService,
+                private renderer: Renderer2) {}
 
     ngOnInit() {
         this.translateSub = this.translate.onLangChange.subscribe((lang) => {
@@ -28,7 +28,7 @@ export class NavbarContainer implements OnInit, OnDestroy {
         })
         this.updateMobileMode();
         this.zone.runOutsideAngular(() => {
-            $(window).resize(() => {
+            this.renderer.listen(window, "resize", () => {
                 this.updateMobileMode();
             });
         });

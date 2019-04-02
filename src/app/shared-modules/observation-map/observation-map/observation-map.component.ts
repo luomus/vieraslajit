@@ -1,5 +1,4 @@
 import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef, TemplateRef } from '@angular/core';
-import * as $ from 'jquery';
 
 import { UserService } from '../../../shared/service/user.service';
 import { ObsMapOptions, ObsMapOption } from './services/data/ObsMapOptions';
@@ -138,12 +137,11 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     if(this.taxonSearch) this.taxonSearch.eventEmitter.addListener("change", (id)=>{
       this.updateQueryParam("taxonId", id);
     });
+  }
 
-    // select municipality
-    $('#select-municipality').change(() => {
-      const val = $('#select-municipality').val();
-      val ? this.updateQueryParam("municipality", val) : this.updateQueryParam("municipality", null);
-    });
+  onSelectMunicipality(event: any) {
+    const val = event.target.value;
+    val ? this.updateQueryParam("municipality", val) : this.updateQueryParam("municipality", null);
   }
 
   updateQueryParam(param, value) {

@@ -1,14 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2, Inject, PLATFORM_ID } from '@angular/core';
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, Observable } from 'rxjs';
-import { NewsElement } from '../shared/model/NewsElement';
-import { PagedResult } from '../shared/model/PagedResult';
 import { tap, map } from 'rxjs/operators';
 
-import * as $ from 'jquery';
-import { ActivatedRoute } from '@angular/router';
 import { NewsParamsService } from './news-params.service';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'vrs-news',
@@ -34,8 +31,9 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   constructor(private newsService: NewsService,
               private translate: TranslateService,
-              private route: ActivatedRoute,
-              private paramsService: NewsParamsService) { }
+              private paramsService: NewsParamsService,
+              @Inject(DOCUMENT) private document: Document,
+              @Inject(PLATFORM_ID) private platformId: object) { }
 
   ngOnInit() {
     this.paramsService.queryParams$.subscribe(params => {
@@ -56,7 +54,9 @@ export class NewsComponent implements OnInit, OnDestroy {
                     this.currentPage = page;
                     this.newsLoading = false; }),
           map(res=>res.results));
-    $('html, body').animate({ scrollTop: 0 }, 200);
+    if(isPlatformBrowser(this.platformId)) {
+      this.document.body.scrollTop = 0;
+    }
   }
 
   onPageChange(page:number) {
