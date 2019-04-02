@@ -16,5 +16,10 @@
   "include": [
     "**/*.spec.ts",
     "**/*.d.ts"
-  ]
+  ],
+  "paths": {
+    "@observation-map/*": [
+      "app/shared-modules/observation-map/observation-map/*"
+    ]
+  }
 }

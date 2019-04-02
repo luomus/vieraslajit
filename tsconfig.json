@@ -17,5 +17,10 @@
     ],
     "module": "es2015",
     "baseUrl": "./"
+  },
+  "paths": {
+    "@observationMapService/*": [
+      "src/app/shared-modules/observation-map/observation-map/*"
+    ]
   }
 }

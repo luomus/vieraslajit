@@ -9,5 +9,10 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "paths": {
+    "@observation-map/*": [
+      "app/shared-modules/observation-map/observation-map/*"
+    ]
+  }
 }

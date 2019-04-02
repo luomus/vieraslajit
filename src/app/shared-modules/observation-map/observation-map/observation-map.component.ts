@@ -4,7 +4,7 @@ import * as $ from 'jquery';
 import { UserService } from '../../../shared/service/user.service';
 import { ObsMapOptions, ObsMapOption } from './services/data/ObsMapOptions';
 import { MapApiService } from './services/MapApiService';
-import { MapService } from './services/MapService';
+import { MapService } from '@observation-map/services/MapService';
 import { ObsMapListComponent } from './obs-map-list/obs-map-list';
 import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
 import { ObsMapData } from './services/data/ObsMapData';
@@ -43,7 +43,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
 
   constructor(private obsMapOptions:ObsMapOptions,
               private mapApiController:MapApiService,
-              private mapController:MapService,
+              private mapService:MapService,
               private obsMapData: ObsMapData,
               private modalService: BsModalService,
               private route: ActivatedRoute,
@@ -124,7 +124,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     }
 
     // INITIALIZE MAP
-    this.mapController.initializeMap(document.getElementById("map"), this.bsModalRef);
+    this.mapService.initializeMap(document.getElementById("map"), this.bsModalRef);
 
     if(this.id) {
       if (this.taxonSearch) this.taxonSearch.fillValue(this.id);
@@ -167,10 +167,10 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   onTableActivate(e) {
     if(e.type == "click"){
       const coordinates: [number, number] = [e.row.gathering.conversions.wgs84CenterPoint.lat, e.row.gathering.conversions.wgs84CenterPoint.lon];
-      this.mapController.zoomAt(
+      this.mapService.zoomAt(
         coordinates,
         this.obsMapOptions.getOption("municipality") ? 7 : 5);
-      this.mapController.openPopup(coordinates);
+      this.mapService.openPopup(coordinates);
     }
   }
 

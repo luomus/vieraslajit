@@ -13,7 +13,11 @@
     "postinstall": "ng build --aot --prod",
     "doc:build": "compodoc -p src/tsconfig.app.json",
     "doc:serve": "compodoc -s",
-    "doc:buildandserve": "compodoc -p src/tsconfig.app.json -s"
+    "doc:buildandserve": "compodoc -p src/tsconfig.app.json -s",
+    "compile:server": "webpack --config webpack.server.config.js --progress --colors",
+    "serve:ssr": "node dist/server",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+    "build:client-and-server-bundles": "ng build --prod && ng run vieraslajit:server:production"
   },
   "private": true,
   "dependencies": {
@@ -26,12 +30,15 @@
     "@angular/http": "^7.2.10",
     "@angular/platform-browser": "^7.2.10",
     "@angular/platform-browser-dynamic": "^7.2.10",
+    "@angular/platform-server": "^7.2.10",
     "@angular/pwa": "^0.13.3",
     "@angular/router": "^7.2.10",
     "@angular/service-worker": "^7.2.10",
+    "@nguniversal/express-engine": "^7.1.1",
+    "@nguniversal/module-map-ngfactory-loader": "0.0.0",
     "@ngx-translate/core": "^10.0.2",
     "@ngx-translate/http-loader": "^3.0.1",
-    "@swimlane/ngx-datatable": "^14.0.0",
+    "@swimlane/ngx-datatable": "git+https://git@github.com/vixriihi/laji-datatable",
     "bootstrap": "^4.1.3",
     "core-js": "^2.5.7",
     "express": "^4.16.3",
@@ -68,9 +75,11 @@
     "karma-jasmine": "^1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.4.0",
+    "ts-loader": "^5.2.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "^3.2.4"
+    "typescript": "^3.2.4",
+    "webpack-cli": "^3.1.0"
   },
   "engines": {
     "node": "^8.9.4",

@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app-server",
+    "baseUrl": "."
+  },
+  "angularCompilerOptions": {
+    "entryModule": "app/app.server.module#AppServerModule"
+  },
+  "paths": {
+    "@observation-map/*": [
+      "app/shared-modules/observation-map/observation-map/*"
+    ]
+  }
+}
