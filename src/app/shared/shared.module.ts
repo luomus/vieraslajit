@@ -23,7 +23,6 @@ import { InformationService } from './service/information.service';
 import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
 import { ObservationService } from './service/observation.service';
 import {EditcmsModule} from './../shared-modules/editcms/editcms.module';
-import {ObservationMapModule} from '../shared-modules/observation-map/observation-map.module';
 import { DocumentService } from './service/document.service';
 import { AlertService } from './service/alert.service';
 import { AreaService } from './service/area.service';

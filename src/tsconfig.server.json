@@ -1,16 +1,24 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "lib": ["es2017", "dom"],
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "module": "commonjs",
     "types": [
       "node"
     ],
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
     "paths": {
-      "@observation-map/*": [
-        "app/shared-modules/observation-map/observation-map/*"
-      ]
+      "@observation-map/*": ["app/shared-modules/observation-map-mock/*"],
+      "@form/*": ["app/form-mock/*"]
     }
   },
   "exclude": [

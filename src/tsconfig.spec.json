@@ -6,7 +6,12 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "paths": {
+      "@observation-map/*": [
+        "app/shared-modules/observation-map/*"
+      ]
+    }
   },
   "files": [
     "test.ts",
@@ -16,9 +21,4 @@
     "**/*.spec.ts",
     "**/*.d.ts"
   ],
-  "paths": {
-    "@observation-map/*": [
-      "app/shared-modules/observation-map/observation-map/*"
-    ]
-  }
 }

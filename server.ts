@@ -7,6 +7,9 @@ import {provideModuleMap} from '@nguniversal/module-map-ngfactory-loader';
 
 import * as express from 'express';
 import {join} from 'path';
+import { readFileSync } from 'fs';
+
+const domino = require('domino');
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
@@ -15,7 +18,17 @@ enableProdMode();
 const app = express();
 
 const PORT = process.env.PORT || 4000;
-const DIST_FOLDER = join(process.cwd(), 'dist/browser');
+const DIST_FOLDER = join(process.cwd(), 'dist');
+const BROWSER_PATH = join(DIST_FOLDER, 'browser');
+const template = readFileSync(join(BROWSER_PATH, 'index.html')).toString();
+const win = domino.createWindow(template);
+win.localStorage = {
+  getItem(s: string) {
+    return '';
+  }
+}
+global['window'] = win;
+global['document'] = win.document;
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('./dist/server/main');
@@ -29,12 +42,12 @@ app.engine('html', ngExpressEngine({
 }));
 
 app.set('view engine', 'html');
-app.set('views', DIST_FOLDER);
+app.set('views', BROWSER_PATH);
 
 // Example Express Rest API endpoints
 // app.get('/api/**', (req, res) => { });
 // Serve static files from /browser
-app.get('*.*', express.static(DIST_FOLDER, {
+app.get('*.*', express.static(BROWSER_PATH, {
   maxAge: '1y'
 }));
 

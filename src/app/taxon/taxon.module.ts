@@ -11,7 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TaxonComparisonComponent } from './taxon-comparison/taxon-comparison.component';
 import { TaxonBrowserModule } from '../shared-modules/taxon-browser/taxon-browser.module';
-import { ObservationMapModule } from '../shared-modules/observation-map/observation-map.module';
+import { ObservationMapModule } from '@observation-map/observation-map.module';
 
 /**
  * Declares routes and components for browsing and viewing invasive species

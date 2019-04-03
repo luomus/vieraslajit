@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'legal/law', loadChildren: './legal/legal.module#LegalModule' },
   { path: 'static', loadChildren: './static/static.module#StaticModule' },
   { path: 'user', loadChildren: './user/user.module#UserModule' },
-  { path: 'form', loadChildren: './form/form.module#FormModule' },
+  { path: 'form', loadChildren: '@form/form.module#FormModule' },
   { path: 'observations', loadChildren: './observations/observations.module#ObservationsModule' },
   { path: 'reload', loadChildren: './reload/reload.module#ReloadModule' }
 ];

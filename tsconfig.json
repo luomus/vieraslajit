@@ -16,9 +16,8 @@
       "dom"
     ],
     "paths": {
-      "@observation-map/*": [
-        "app/shared-modules/observation-map/observation-map/*"
-      ]
+      "@observation-map/*": ["app/shared-modules/observation-map/*"],
+      "@form/*": ["app/form/*"]
     },
     "module": "es2015",
     "baseUrl": "./src"

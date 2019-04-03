@@ -11,9 +11,8 @@
     "module": "es2015",
     "baseUrl": "",
     "paths": {
-      "@observation-map/*": [
-        "app/shared-modules/observation-map/observation-map/*"
-      ]
+      "@observation-map/*": ["app/shared-modules/observation-map/*"],
+      "@form/*": ["app/form/*"]
     }
   },
   "exclude": [

@@ -3,13 +3,13 @@ import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeD
 import { UserService } from '../../../shared/service/user.service';
 import { ObsMapOptions, ObsMapOption } from './services/data/ObsMapOptions';
 import { MapApiService } from './services/MapApiService';
-import { MapService } from '@observation-map/services/MapService';
 import { ObsMapListComponent } from './obs-map-list/obs-map-list';
 import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
 import { ObsMapData } from './services/data/ObsMapData';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TimeSelectorComponent } from './time-selector/time-selector.component';
+import { MapService } from './services/MapService';
 
 @Component({
   selector: 'vrs-observation-map',

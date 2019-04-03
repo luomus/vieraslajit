@@ -12,7 +12,6 @@ import { WarehouseQueryList } from '../model/Warehouse';
 import { Information } from '../model/Information';
 import { userProperty, UserService } from '../service/user.service';
 import { Document } from '../model/Document';
-import { WarehouseQueryInterface } from '../../shared-modules/observation-map/observation-map/import-from-laji-front/WarehouseQueryInterface';
 
 /**
  * Handles creation of API requests
@@ -90,7 +89,7 @@ export class ApiService {
    * @param count
    * @param query Query as defined by LajiApi.warehousequeryCountQuery
    */
-  warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: LajiApi.warehousequerycountQuery | WarehouseQueryInterface): Observable<any>;
+  warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: LajiApi.warehousequerycountQuery | any): Observable<any>;
   warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
