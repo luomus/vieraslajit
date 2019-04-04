@@ -8,7 +8,6 @@
     "ng": "ng",
     "update": "ng update @angular/cli @angular/core",
     "start": "ng serve",
-    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -19,7 +18,9 @@
     "ssr:run": "yarn build:ssr && yarn serve:ssr",
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+    "build:ssr:local": "npm run build:client-and-server-bundles:local && npm run compile:server",
     "build:client-and-server-bundles": "yarn run ng-high-memory build --prod && yarn run ng-high-memory run vieraslajit:server:production",
+    "build:client-and-server-bundles:local": "yarn run ng-high-memory build --prod --base-href http://localhost:4000/ && yarn run ng-high-memory run vieraslajit:server:production",
     "bundle-report": "ng build --prod --aot --stats-json --named-chunks=true && webpack-bundle-analyzer dist/browser/stats.json"
   },
   "private": true,
