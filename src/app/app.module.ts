@@ -4,6 +4,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsDropdownModule, AccordionModule, TabsModule, PaginationModule } from 'ngx-bootstrap';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 
 import { VrsRouterModule } from './vrs-router.module';
 import { AppComponent } from './app.component';
@@ -21,7 +22,7 @@ import { environment } from '../environments/environment';
 registerLocaleData(localeFi);
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 
 /**
@@ -50,7 +51,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     PaginationModule.forRoot(),
     SpinnerModule,
     EditcmsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    TransferHttpCacheModule
   ],
   providers: [StateService, UserService, { provide: LOCALE_ID, useValue: 'fi' }],
   bootstrap: [AppComponent]
