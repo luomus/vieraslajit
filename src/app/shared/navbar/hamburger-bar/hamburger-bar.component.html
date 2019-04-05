@@ -6,6 +6,7 @@
     <div class="container" *ngIf="!collapse">
         <div class="translation-base" [ngClass]="{'translate-left': translateLeft}">
             <div class="nav-links">
+                <a class="link" routerLink="/" routerLinkActive="active" translate>navigation.home</a>
                 <a class="link" routerLink="/taxon" routerLinkActive="active" translate>navigation.taxonomy</a>
                 <a class="link" routerLink="/news" routerLinkActive="active" translate>navigation.news</a>
                 <a class="link" routerLink="/viekas" routerLinkActive="active" translate>navigation.viekas</a>

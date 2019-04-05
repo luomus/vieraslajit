@@ -18,13 +18,9 @@
 .navpill-bg {
     padding-top: 2em;
     padding-bottom: 1em;
-}
-
-.container {
-    @include media-breakpoint-down(sm) {
-        margin: 0em;
-        padding: 0em;
-        max-width: none;
+    @include media-breakpoint-down(xs) {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 
@@ -66,6 +62,9 @@
 :host ::ng-deep .news-content {
     padding: 1em 0em;
     width: 35em;
+    @include media-breakpoint-down(xs) {
+        width: unset;
+    }
     figure.alignright {
         margin-right: -30%;
     }
@@ -81,6 +80,10 @@
 
 #navpills {
     margin-bottom: 0;
+    @include media-breakpoint-down(xs) {
+        margin: 0;
+        padding: 0;
+    }
 }
 
 .navpill {
@@ -123,6 +126,10 @@
 
 :host ::ng-deep .ngx-pagination {
     display: inline-block;
+    padding: 0;
+    @include media-breakpoint-down(xs) {
+        display: block;
+    }
 }
 
 .pagination-controls {
