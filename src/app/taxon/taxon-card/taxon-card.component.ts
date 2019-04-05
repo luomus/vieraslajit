@@ -24,7 +24,6 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   media: Array<TaxonomyImage>;
   family: Array<Taxonomy>;
   quarantinePlantPest: boolean;  // Vaarallinen kasvintuhoaja
-  comparison: boolean;
   isFirstOpen: boolean;
   customClass: string;
   selectedImage: TaxonomyImage;
@@ -41,7 +40,6 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isFirstOpen = false;
     this.onLangChange = this.translate.onLangChange.subscribe(this.update.bind(this));
-    this.comparison = false;
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       if(this.first) {
@@ -80,10 +78,6 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     if (this.loading) {
       this.loading = false;
     }
-  }
-
-  comparisonView() {
-    this.comparison = !this.comparison;
   }
 
   scrollTop() {
