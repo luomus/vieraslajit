@@ -6,7 +6,6 @@ import {OmnisearchComponent} from '../shared/omnisearch/omnisearch.component'
 import { NewsComponent } from '../news/news.component';
 import { environment } from '../../environments/environment';
 import { Subscription, forkJoin } from 'rxjs';
-import { findContentID, StaticContent } from '../../assets/i18n/cms-content';
 import { InformationService } from '../shared/service/information.service';
 import { map, concatMap } from 'rxjs/operators';
 import { TaxonService } from '../shared/service/taxon.service';
@@ -40,9 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
    * 3. Filter only alerts from past 3 days (20 in testing)
    */
   ngOnInit() {
-    this.setStaticID(this.translate.currentLang);
     this.onLangChange = this.translate.onLangChange.subscribe((event) => {
-      this.setStaticID(event.lang);
       this.getNews(1);
     });
     this.getNews(1);
@@ -84,10 +81,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.filterTechnicalNews(technical);
     });
     
-  }
-
-  private setStaticID(lang: string) {
-    this.staticPetsID = findContentID(StaticContent.Pets, lang);
   }
 
   filterTechnicalNews(technical: Array<any>){
