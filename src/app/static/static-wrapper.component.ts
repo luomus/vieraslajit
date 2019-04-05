@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, OnDestroy } from "../../../node_modules/@angular/core";
+import { Component, Input, OnInit, OnDestroy, Inject, PLATFORM_ID } from "../../../node_modules/@angular/core";
 import { ActivatedRoute, Router } from "../../../node_modules/@angular/router";
 import { Subscription } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
     selector: 'vrs-static-wrapper',
@@ -15,7 +16,11 @@ export class StaticWrapperComponent implements OnInit, OnDestroy {
 
     private onLangChange:Subscription;
 
-    constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService) {}
+    constructor(private route: ActivatedRoute,
+                private router: Router,
+                private translate: TranslateService,
+                @Inject(PLATFORM_ID) private platformId: Object
+               ) {}
 
     ngOnInit() {
         if(!this.id){
@@ -24,6 +29,10 @@ export class StaticWrapperComponent implements OnInit, OnDestroy {
             });
         }
         this.onLangChange = this.translate.onLangChange.subscribe(this.loadHomePage.bind(this));
+
+        if (!isPlatformBrowser(this.platformId)) {
+            this.id = this.route.snapshot.params['id'];
+        }
     }
 
     ngOnDestroy() {

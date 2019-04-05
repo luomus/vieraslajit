@@ -24,7 +24,12 @@ const template = readFileSync(join(BROWSER_PATH, 'index.html')).toString();
 const win = domino.createWindow(template);
 win.localStorage = {
   getItem(s: string) {
-    return '';
+    return null;
+  }
+}
+win.sessionStorage = {
+  getItem(s: string) {
+    return null;
   }
 }
 global['window'] = win;

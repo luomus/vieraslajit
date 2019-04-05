@@ -23,8 +23,7 @@ export class StaticComponent implements OnInit, OnChanges {
   child_pages: Array<any>;
   loading = true;
 
-  constructor(public informationService: InformationService,
-    private router: Router) { }
+  constructor(public informationService: InformationService) { }
 
   ngOnInit() {
 
