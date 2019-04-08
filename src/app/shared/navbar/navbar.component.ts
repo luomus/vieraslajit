@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ChangeDetectorRef, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ChangeDetectorRef, Input, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { UserService } from '../service/user.service';
 import {Router} from '@angular/router';
 import { InformationService } from '../service/information.service';
@@ -12,7 +12,6 @@ import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
-  loginUrl = '#';
   fixedTop = false;
   isCollapsed = false;
   loggedIn = false;
@@ -21,6 +20,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   private scrollListener;
 
   @Input() menu;
+  @Input() loginUrl = '#';
+  @Output() onLogout = new EventEmitter();
 
   @ViewChildren(BsDropdownDirective) d : QueryList<BsDropdownDirective>;
 
@@ -36,13 +37,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.router.navigate(["reload/" + this.router.url]);
       }
     })
-    /**
-     * Update login url next parameter every time active route changes
-     */
-    router.events.subscribe((val) => {
-      this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
-    });
-
   }
 
   getCurrentLang() {
@@ -87,7 +81,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   logout() {
-    this.userService.logout();
+    this.onLogout.emit();
   }
 
   userPropertiesWrapper(): any {

@@ -4,6 +4,8 @@ import { mergeMap, concatMap, tap } from "rxjs/operators";
 import { of, Subscription } from "rxjs";
 import { findContentID, StaticContent } from "../../../assets/i18n/cms-content";
 import { TranslateService } from "@ngx-translate/core";
+import { UserService } from "../service/user.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: `vrs-navbar-wrapper`,
@@ -13,13 +15,16 @@ import { TranslateService } from "@ngx-translate/core";
 export class NavbarContainer implements OnInit, OnDestroy {
     mobile = false;
     menu = [];
+    loginUrl = "#";
     private rootId = "";
     private translateSub: Subscription;
     constructor(private informationService: InformationService,
                 private zone: NgZone,
                 private cd: ChangeDetectorRef,
                 private translate: TranslateService,
-                private renderer: Renderer2) {}
+                private renderer: Renderer2,
+                private userService: UserService,
+                private router: Router) {}
 
     ngOnInit() {
         this.translateSub = this.translate.onLangChange.subscribe((lang) => {
@@ -31,6 +36,12 @@ export class NavbarContainer implements OnInit, OnDestroy {
             this.renderer.listen(window, "resize", () => {
                 this.updateMobileMode();
             });
+        });
+        /**
+         * Update login url next parameter every time active route changes
+         */
+        this.router.events.subscribe((val) => {
+            this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
         });
     }
 
@@ -68,7 +79,9 @@ export class NavbarContainer implements OnInit, OnDestroy {
         });
     }
 
-    logout(){}
+    logout(){
+        this.userService.logout();
+    }
 
     ngOnDestroy() {
         this.translateSub ? this.translateSub.unsubscribe : null;

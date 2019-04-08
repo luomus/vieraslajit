@@ -1,5 +1,5 @@
 <ng-container *ngIf="mobile">
-    <vrs-hamburger-bar [aboutMenu]="menu" (onLogout)="logout()"></vrs-hamburger-bar>
+    <vrs-hamburger-bar [aboutMenu]="menu" [loginUrl]="loginUrl" (onLogout)="logout()"></vrs-hamburger-bar>
     <div class="mobileHeightFix"></div>
 </ng-container>
-<vrs-navbar *ngIf="!mobile" [menu]="menu"></vrs-navbar>
+<vrs-navbar *ngIf="!mobile" [menu]="menu" [loginUrl]="loginUrl" (onLogout)="logout()"></vrs-navbar>
