@@ -26,10 +26,16 @@ import { Component, Input } from "@angular/core";
     styleUrls: [`./topical-species.component.scss`]
 })
 export class TopicalSpeciesComponent {
+    constructor() {
+
+    }
     @Input()
     set taxa(taxa: any[]) {
         this.pagedTaxa = [[]];
-        const pageSize = 4;
+        let pageSize = 4;
+        if (window.innerWidth < 1200) {
+            pageSize = 2;
+        }
         let pageIndex = 0;
         taxa.forEach((taxa, index) => {
             if (index + 1 > (pageIndex + 1) * pageSize) {

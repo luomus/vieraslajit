@@ -44,7 +44,7 @@
         cursor: pointer;
         @include media-breakpoint-down(xs) {
             margin: 5px;
-            height: 100px;
+            height: 150px;
             flex-basis: 50%;
         }
         &:hover {
@@ -55,12 +55,17 @@
             max-height: 70%;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
+            @include media-breakpoint-down(xs) {
+            }
         }
         div {
             position: absolute;
             top: 70%;
             font-size: 0.8rem;
             padding: 15px 25px;
+            @include media-breakpoint-down(xs) {
+                padding: 10px;
+            }
         }
     }
     span {
