@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, AfterViewInit } from "../../../../node_modules/@angular/core";
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, AfterViewInit, Renderer2 } from "../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../node_modules/@ngx-translate/core";
 import { Subscription } from "rxjs";
 
@@ -25,6 +25,10 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
 
     maxHeight = 400;
 
+    sidebarActive = true;
+
+    @ViewChild('sidebar') sidebar: ElementRef;
+    @ViewChild('sidebarToggle') sidebarToggle: ElementRef;
     @ViewChild('cardscont') cardsContainer: ElementRef;
 
     /* CHECKBOXES */
@@ -43,9 +47,8 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
         private apiService: TaxonBrowserApiService,
         private translate: TranslateService,
         private parameterService: TaxonBrowserParameterService,
-        private cd: ChangeDetectorRef) {
-        
-    }
+        private cd: ChangeDetectorRef,
+        private renderer: Renderer2) {}
 
     ngOnInit() {
         this.settingsService.lang = this.translate.currentLang;
@@ -78,6 +81,12 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        if (window.innerWidth < 768) {
+            this.sidebarActive = false;
+            this.renderer.setStyle(this.sidebar.nativeElement, "width", "16px");
+            this.renderer.removeClass(this.sidebarToggle.nativeElement, "oi-arrow-thick-left");
+            this.renderer.addClass(this.sidebarToggle.nativeElement, "oi-arrow-thick-right");
+        }
         this.maxHeight = window.innerHeight - this.cardsContainer.nativeElement.offsetTop - 13;
         this.cd.detectChanges();
     }
@@ -121,5 +130,18 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     onSwitchViewMode() {
         this.viewMode === 'grid' ? this.viewMode = 'list' : this.viewMode = 'grid';
         this.parameterService.updateQuery({mode: this.viewMode});
+    }
+
+    onToggleSidebar() {
+        this.sidebarActive = !this.sidebarActive;
+        if (!this.sidebarActive) {
+            this.renderer.setStyle(this.sidebar.nativeElement, "width", "16px");
+            this.renderer.removeClass(this.sidebarToggle.nativeElement, "oi-arrow-thick-left");
+            this.renderer.addClass(this.sidebarToggle.nativeElement, "oi-arrow-thick-right");
+        } else {
+            this.renderer.removeStyle(this.sidebar.nativeElement, "width");
+            this.renderer.removeClass(this.sidebarToggle.nativeElement, "oi-arrow-thick-right");
+            this.renderer.addClass(this.sidebarToggle.nativeElement, "oi-arrow-thick-left");
+        }
     }
 }

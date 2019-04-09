@@ -1,5 +1,6 @@
 <div class="taxon-browser">
-    <div class="options-menu-wrapper">
+    <div class="options-menu-wrapper" #sidebar>
+        <div class="sidebar-toggle" (click)="onToggleSidebar()"><span class="oi oi-arrow-thick-left" #sidebarToggle></span></div>
         <div class="options-menu">
             <div class="filters-title">
                 <h5>Rajaukset</h5>
