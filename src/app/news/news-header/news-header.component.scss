@@ -4,6 +4,10 @@
 
 .news-header {
     padding: 1em 2em 1em 0em;
+    @include media-breakpoint-down(xs) {
+        padding-top: 0;
+        padding-right: 0;
+    }
 }
 
 .news-header {
