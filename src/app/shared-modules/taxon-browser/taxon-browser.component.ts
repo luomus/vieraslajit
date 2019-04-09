@@ -87,7 +87,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
             this.renderer.removeClass(this.sidebarToggle.nativeElement, "oi-arrow-thick-left");
             this.renderer.addClass(this.sidebarToggle.nativeElement, "oi-arrow-thick-right");
         }
-        this.maxHeight = window.innerHeight - this.cardsContainer.nativeElement.offsetTop - 13;
+        this.maxHeight = window.innerHeight - this.cardsContainer.nativeElement.offsetTop;
         this.cd.detectChanges();
     }
 
