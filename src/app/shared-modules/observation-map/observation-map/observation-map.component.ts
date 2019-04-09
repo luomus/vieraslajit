@@ -118,7 +118,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
 
     // DYNAMIC MAP HEIGHT
     if (this.mapHeight === 0) {
-      this.mapHeight = window.innerHeight - this.mapRow.nativeElement.offsetTop - 5;
+      this.mapHeight = window.innerHeight - this.mapRow.nativeElement.offsetTop;
       this.cd.detectChanges();
     }
 
