@@ -33,6 +33,7 @@
         }
     }
     li {
+        overflow: hidden;
         text-align: center;
         position: relative;
         height: 250px;
@@ -53,10 +54,6 @@
         img {
             max-width: 100%;
             max-height: 70%;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-            @include media-breakpoint-down(xs) {
-            }
         }
         div {
             position: absolute;
