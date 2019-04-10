@@ -8,8 +8,8 @@
         <a routerLink='./calendar' routerLinkActive='sidebar-active' translate>viekas.nav.calendar</a>
         <a routerLink='./education' routerLinkActive='sidebar-active' translate>viekas.nav.education</a>
         <a routerLink='./legal' routerLinkActive='sidebar-active' translate>viekas.nav.legal</a> -->
-        <a [routerLink]="['../', rootId]" routerLinkActive='sidebar-active'>{{cmsData.menuTitle}}</a>
-        <a *ngFor="let page of cmsData.children" [routerLink]="['../', page.id]" routerLinkActive='sidebar-active'>{{page.menuTitle}}</a>
+        <a [routerLink]="['../', rootId]" routerLinkActive='sidebar-active'>{{cmsData.title}}</a>
+        <a *ngFor="let page of cmsData.children" [routerLink]="['../', page.id]" routerLinkActive='sidebar-active'>{{page.title}}</a>
     </div>
     <div class="col-10 content">
       <vrs-viekas-static [id]="id"></vrs-viekas-static>
