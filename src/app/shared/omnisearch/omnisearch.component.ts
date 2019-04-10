@@ -46,7 +46,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   public searchControl:FormControl = new FormControl();
   public active = 0;
   public taxa = [];
-  public content = {}
+  public content: any = { items: [] };
   public taxon: any;
   public loading = false;
 

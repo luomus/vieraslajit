@@ -29,7 +29,7 @@
       </div>
       <div class="row" *ngIf="contentMode === 'taxon'">
         <div class="col-12 col-md-3 matches">
-          <span class="match" *ngFor="let taxon of taxa; let i=index" [ngClass]="{active: i === active, link: i !== active}" (click)="activate(i)">
+          <span class="match" *ngFor="let taxon of taxa | slice:0:8; let i=index" [ngClass]="{active: i === active, link: i !== active}" (click)="activate(i)">
             {{taxon.value}}
           </span>
         </div>
