@@ -75,7 +75,6 @@ export class MapApiService {
             });
             this.obsMapData.setData(observations, 'observations');
             this.obsMapOptions.loadState=false;
-            console.log(observations);
         });
     }
 
