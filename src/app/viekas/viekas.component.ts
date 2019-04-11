@@ -11,7 +11,7 @@ import { findContentID, StaticContent } from '../../assets/i18n/cms-content';
 })
 export class ViekasComponent implements OnInit {
   rootId = '';
-  cmsData = {menuTitle: '', children: []};
+  cmsData = {title: '', children: []};
   id = '';
 
   constructor(private route: ActivatedRoute, private translate: TranslateService) { }
