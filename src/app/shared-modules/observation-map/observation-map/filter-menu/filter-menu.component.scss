@@ -7,6 +7,9 @@
   box-shadow: 0 1px 3px rgba(#000, 0.3);
   padding: 20px;
   width: 400px;
+  @include media-breakpoint-down(xs) {
+    width: 300px;
+  }
 }
 
 .filter-group {

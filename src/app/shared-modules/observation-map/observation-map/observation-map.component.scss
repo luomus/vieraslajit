@@ -88,6 +88,10 @@ vrs-map-filters {
   top: 75px;
   left: 50px;
   z-index: 400;
+  @include media-breakpoint-down(xs) {
+    top: 50px;
+    left: 10px;
+  }
 }
 
 .right-float-menu {
@@ -100,6 +104,11 @@ vrs-map-filters {
   padding: 20px;
   width: 500px;
   z-index: 400;
+  @include media-breakpoint-down(xs) {
+    right: 0;
+    left: 2.5vw;
+    width: 95vw;
+  }
 }
 
 :host ::ng-deep {
@@ -147,6 +156,11 @@ vrs-map-filters {
   position: absolute;
   top: 25px;
   left: 50px;
+  z-index: 400;
+  @include media-breakpoint-down(xs) {
+    left: 10px;
+    top: 10px;
+  }
   button {
     background: $neutral-2;
     border: none;
@@ -163,11 +177,5 @@ vrs-map-filters {
     &:focus {
       outline: unset;
     }
-  }
-  &:nth-child(1) {
-
-  }
-  &:nth-child(1) {
-    
   }
 }

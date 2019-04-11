@@ -17,7 +17,7 @@
     (taxonChange)="onTaxonChange($event)">
   </vrs-map-filters>
   <div class="right-float-menu" *ngIf="listMenuEnabled" [ngStyle]="listHidden && {'display': 'none'}">
-    <vrs-obs-map-list height="700" [ngClass]="{'hidden': isAggregateMap()}"></vrs-obs-map-list>
+    <vrs-obs-map-list [ngClass]="{'hidden': isAggregateMap()}"></vrs-obs-map-list>
     <div [ngClass]="{'hidden': !isAggregateMap()}">
       <h5 class="observation-count"><b>{{getObservationCount() | number}}</b> havaintoa.</h5>
       <p>Rajaa hakua nähdäksesi listan tarkoista havainnoista.</p>

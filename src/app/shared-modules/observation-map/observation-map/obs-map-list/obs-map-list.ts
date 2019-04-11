@@ -8,7 +8,7 @@ import { ObsMapOptions } from "../services/data/ObsMapOptions";
     selector: 'vrs-obs-map-list',
     template: `
     <laji-spinner [ngClass]="{'list-spinner': loading}" [spinning]="loading" [fullViewport]="false"></laji-spinner>
-    <ngx-datatable class="material" [ngStyle]="{'height': height+'px'}"
+    <ngx-datatable class="material"
     [rows]="observations"
     [columnMode]="'force'"
     [columns]="columns"
@@ -22,7 +22,6 @@ import { ObsMapOptions } from "../services/data/ObsMapOptions";
     styleUrls: [`obs-map-list.component.scss`]
 })
 export class ObsMapListComponent implements OnInit {
-    @Input() height = 500;
     observations:Array<VrsObservation> = [];
     columns:Array<any>;
     eventEmitter:EventEmitter = new EventEmitter();

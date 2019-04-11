@@ -70,6 +70,10 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   }
 
   ngAfterViewInit() {
+    if (window.innerWidth < 768) {
+      this.filterMenuHidden = true;
+      this.listHidden = true;
+    }
     this.route.queryParams.subscribe(res => {
       this.onQueryParamWithCheckboxChange(
         res['user'],

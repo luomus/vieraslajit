@@ -1,9 +1,17 @@
 @import '../../../../../assets/styles/datatable';
 @import '../../../../../assets/styles/vars';
+@import '~bootstrap/scss/bootstrap-grid';
 
 .list-spinner {
     position:absolute;
     width:100%;
     top: 300px;
     z-index: 10000;
+}
+
+ngx-datatable {
+    height: 700px;
+    @include media-breakpoint-down(xs) {
+        height: 70vh;
+    }
 }
