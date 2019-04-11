@@ -1,6 +1,5 @@
 import { TaxonService } from "../../../../shared/service/taxon.service";
-import { Component, OnInit, Renderer2, Inject, PLATFORM_ID } from "../../../../../../node_modules/@angular/core";
-import { EventEmitter } from 'events'
+import { Component, OnInit, Renderer2, Inject, PLATFORM_ID, Output, EventEmitter } from "../../../../../../node_modules/@angular/core";
 import * as $ from 'jquery';
 import { TranslateService } from "../../../../../../node_modules/@ngx-translate/core";
 import { isPlatformBrowser } from "@angular/common";
@@ -23,9 +22,11 @@ import { isPlatformBrowser } from "@angular/common";
 })
 export class TaxonSearchComponent implements OnInit {
     private items: HTMLElement;
-    eventEmitter:EventEmitter = new EventEmitter();
 
     taxonId = '';
+
+    @Output() taxonChange = new EventEmitter();
+
     constructor(private taxonService: TaxonService,
                 public translate: TranslateService,
                 private renderer: Renderer2,
@@ -84,12 +85,12 @@ export class TaxonSearchComponent implements OnInit {
         $('#vrs-taxon-search-textarea').val('');
         $('.selected-taxon').show();
         this.initBase();
-        if (emit) this.eventEmitter.emit("change", id);
+        if (emit) this.taxonChange.emit(id);
     }
 
     removeSelected() {
         $('.selected-taxon').hide();
-        this.eventEmitter.emit("change", null);
+        this.taxonChange.emit(null);
     }
 
     keyEvent(e) {

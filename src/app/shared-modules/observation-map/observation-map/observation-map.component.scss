@@ -79,42 +79,12 @@ a.laji-link {
   color: $neutral-6;
 }
 
-.checkbox {
-  display: inline-block;
-  margin-left: 20px;
-  label {
-    padding: 0 15px;
-  }
-}
 
 
 
 
 .map-container {
   position: relative;
-}
-
-.left-float-menu {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  background: $neutral-1;
-  border-radius: 15px;
-  box-shadow: 0 1px 3px rgba(#000, 0.3);
-  padding: 20px;
-  width: 400px;
-  z-index: 400;
-}
-
-.filter-group {
-  margin-bottom: 20px;
-  h5 {
-    font-size: .8rem;
-    font-weight: 600;
-    color: $neutral-6;
-    margin: 0;
-    margin-bottom: 5px;
-  }
 }
 
 .right-float-menu {

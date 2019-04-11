@@ -17,6 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ObservationMapPopupComponent } from './observation-map/observation-map-popup.component';
 import { TimeSelectorComponent } from './observation-map/time-selector/time-selector.component';
 import { SharedModule } from '../../shared/shared.module';
+import { FilterMenuComponent } from './observation-map/filter-menu/filter-menu.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { SharedModule } from '../../shared/shared.module';
     ObsMapListComponent,
     ObservationModalComponent,
     ObservationMapPopupComponent,
-    TimeSelectorComponent
+    TimeSelectorComponent,
+    FilterMenuComponent
   ],
   providers: [
     MapApiService,

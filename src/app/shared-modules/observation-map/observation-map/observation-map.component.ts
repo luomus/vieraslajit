@@ -6,10 +6,11 @@ import { MapApiService } from './services/MapApiService';
 import { ObsMapListComponent } from './obs-map-list/obs-map-list';
 import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
 import { ObsMapData } from './services/data/ObsMapData';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TimeSelectorComponent } from './time-selector/time-selector.component';
 import { MapService } from './services/MapService';
+import { FilterMenuComponent } from './filter-menu/filter-menu.component';
 
 @Component({
   selector: 'vrs-observation-map',
@@ -32,8 +33,8 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   @ViewChild(TaxonSearchComponent)
   taxonSearch : TaxonSearchComponent;
 
-  @ViewChild(TimeSelectorComponent)
-  timeSelector : TimeSelectorComponent;
+  @ViewChild(FilterMenuComponent)
+  filterMenu : FilterMenuComponent;
 
   bsModalRef: BsModalRef;
 
@@ -44,7 +45,6 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
               private mapApiController:MapApiService,
               private mapService:MapService,
               private obsMapData: ObsMapData,
-              private modalService: BsModalService,
               private route: ActivatedRoute,
               private router: Router,
               private cd: ChangeDetectorRef) {}
@@ -70,46 +70,47 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     this.route.queryParams.subscribe(res => {
       this.onQueryParamWithCheckboxChange(
         res['user'],
-        'ownCheck',
+        this.filterMenu.updateOwnMode,
         true,
         'personToken',
         UserService.getToken()
       );
       this.onQueryParamWithCheckboxChange(
         res['fiList'],
-        'finnishList',
+        this.filterMenu.updateFiList,
         true,
         'fiList',
         strToBool(res['fiList'])
       );
       this.onQueryParamWithCheckboxChange(
         res['euList'],
-        'euList',
+        this.filterMenu.updateEuList,
         true,
         'euList',
         strToBool(res['euList'])
       );
       this.onQueryParamWithCheckboxChange(
         res['plantPest'],
-        'plantPest',
+        this.filterMenu.updatePlantPest,
         true,
         'plantPest',
         strToBool(res['plantPest'])
       );
       if (res['taxonId']) {
-        this.taxonSearch.fillValue(res['taxonId'], false);
+        this.filterMenu.updateTaxon(res['taxonId']);
         this.obsMapOptions.setOptionSilent("id", res['taxonId']);
       } else {
         this.obsMapOptions.setOptionSilent("id", null);
       }
       if (res['municipality']) {
+        this.filterMenu.updateMunicipality(res['municipality']);
         this.obsMapOptions.setOptionSilent("municipality", res['municipality']);
       } else {
         this.obsMapOptions.setOptionSilent("municipality", null);
       }
       if (res['time']) {
         this.obsMapOptions.setOptionSilent("time", res['time']);
-        this.timeSelector.setTimeValue(res['time']);
+        this.filterMenu.updateTime(res["time"]);
       } else {
         this.obsMapOptions.setOptionSilent("time", null);
       }
@@ -133,14 +134,9 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     if(this.mapTaxonList) this.mapTaxonList.eventEmitter.addListener("change", (e)=>{
       this.onTableActivate(e);
     });
-
-    if(this.taxonSearch) this.taxonSearch.eventEmitter.addListener("change", (id)=>{
-      this.updateQueryParam("taxonId", id);
-    });
   }
 
-  onSelectMunicipality(event: any) {
-    const val = event.target.value;
+  onSelectMunicipality(val) {
     val ? this.updateQueryParam("municipality", val) : this.updateQueryParam("municipality", null);
   }
 
@@ -151,7 +147,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   }
 
   onOwnModeChange(e) {
-    this.updateQueryParam('user', e.target.checked);
+    this.updateQueryParam('user', e);
   }
 
   isAggregateMap() {
@@ -173,21 +169,21 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   }
 
   onFiListCheckbox(e) {
-    this.updateQueryParam('fiList', e.target.checked);
+    this.updateQueryParam('fiList', e);
   }
 
   onEuListCheckbox(e) {
-    this.updateQueryParam('euList', e.target.checked);
+    this.updateQueryParam('euList', e);
   }
 
   onPlantPestCheckbox(e) {
-    this.updateQueryParam('plantPest', e.target.checked);
+    this.updateQueryParam('plantPest', e);
   }
 
-  onQueryParamWithCheckboxChange(param:string, checkboxId:string, selectorEnabled:boolean, option:ObsMapOption, optionValue:any) {
+  onQueryParamWithCheckboxChange(param:string, checkboxUpdateCallback:Function, selectorEnabled:boolean, option:ObsMapOption, optionValue:any) {
     const temp = strToBool(param);
     if (selectorEnabled) {
-      updateCheckbox(checkboxId, temp);
+      this.updateCheckbox(checkboxUpdateCallback, temp);
     }
     temp ? this.obsMapOptions.setOptionSilent(option, optionValue) : this.obsMapOptions.setOptionSilent(option, null);
   }
@@ -195,13 +191,16 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   onTimeChange(event) {
     this.updateQueryParam('time', event);
   }
+
+  onTaxonChange(event) {
+    this.updateQueryParam("taxonId", event);
+  }
+
+  updateCheckbox(checkboxUpdateCallback:Function, checked:boolean) {
+    checkboxUpdateCallback(checked);
+  }
 }
 
 function strToBool(str:string): boolean {
   return str === 'true';
-}
-
-function updateCheckbox(checkboxId:string, checked:boolean) {
-  const checkbox = <HTMLInputElement> document.getElementById(checkboxId);
-  if (checkbox) checkbox.checked = checked;
 }

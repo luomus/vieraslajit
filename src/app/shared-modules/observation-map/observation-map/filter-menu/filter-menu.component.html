@@ -1,0 +1,43 @@
+<div class="left-float-menu">
+  <div class="filter-group">
+    <h5>KUNTA</h5>
+    <div class="input-group">
+      <select (change)="onSelectMunicipality($event)" class="custom-select">
+        <option value="">Kaikki kunnat</option>
+        <option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="filter-group">
+    <h5>LAJI</h5>
+    <vrs-taxon-search (taxonChange)="onTaxonChange($event)"></vrs-taxon-search>
+  </div>
+  <div class="filter-group">
+    <h5>HAVAINTOAIKA</h5>
+    <vrs-time-selector (timeChangeEvent)="onTimeChange($event)"></vrs-time-selector>
+  </div>
+  <div class="filter-group" *ngIf="isLoggedIn">
+    <h5>OMAT HAVAINNOT</h5>
+    <div class="checkbox">
+      <input type="checkbox" id="ownCheck" (change)="onOwnModeChange($event)">
+      <label for="ownCheck">
+        Vain omat havainnot
+      </label>
+    </div>
+  </div>
+  <div class="filter-group">
+    <h5>HALLINNOLLISET</h5>
+    <div class="checkbox">
+        <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
+        <label for="finnishList">Kansallinen luettelo</label>
+    </div>
+    <div class="checkbox">
+        <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList">
+        <label for="euList">Euroopan luettelo</label>
+    </div>
+    <div class="checkbox">
+        <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest">
+        <label for="plantPest">Vaarallinen kasvintuhooja</label>
+    </div>
+  </div>
+</div>
