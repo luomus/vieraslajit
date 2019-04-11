@@ -1,6 +1,11 @@
 <div class="map-container" #maprow>
   <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
+  <div id="view-buttons">
+    <button (click)="filterMenuHidden = !filterMenuHidden" [ngClass]="{'active': !filterMenuHidden}"><span class="oi oi-beaker"></span></button>
+    <button (click)="listHidden = !listHidden" [ngClass]="{'active': !listHidden}"><span class="oi oi-list"></span></button>
+  </div>
   <vrs-map-filters *ngIf="filterMenuEnabled"
+    [hidden]="filterMenuHidden"
     [municipalities]="municipalities"
     [isLoggedIn]="isLoggedIn"
     (euListChange)="onEuListCheckbox($event)"
@@ -11,7 +16,7 @@
     (timeChange)="onTimeChange($event)"
     (taxonChange)="onTaxonChange($event)">
   </vrs-map-filters>
-  <div class="right-float-menu" *ngIf="listMenuEnabled">
+  <div class="right-float-menu" *ngIf="listMenuEnabled" [ngStyle]="listHidden && {'display': 'none'}">
     <vrs-obs-map-list height="700" [ngClass]="{'hidden': isAggregateMap()}"></vrs-obs-map-list>
     <div [ngClass]="{'hidden': !isAggregateMap()}">
       <h5 class="observation-count"><b>{{getObservationCount() | number}}</b> havaintoa.</h5>

@@ -8,10 +8,6 @@
   height: 400px;
 }
 
-#select-municipality {
-  box-shadow: inset 0 2px 2px 0 #999;
-}
-
 .col-map {
   @include media-breakpoint-up (sm) {
     padding-right: 0px;
@@ -87,6 +83,13 @@ a.laji-link {
   position: relative;
 }
 
+vrs-map-filters {
+  position: absolute;
+  top: 75px;
+  left: 50px;
+  z-index: 400;
+}
+
 .right-float-menu {
   position: absolute;
   top: 50px;
@@ -137,5 +140,34 @@ a.laji-link {
   }
   .leaflet-rrose.leaflet-zoom-animated {
     bottom: 15px !important;
+  }
+}
+
+#view-buttons {
+  position: absolute;
+  top: 25px;
+  left: 50px;
+  button {
+    background: $neutral-2;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    color: $neutral-7;
+    box-shadow: 0 1px 3px 0 rgba(black, 0.3), inset 0 1px 3px 0 rgba(black, 0);
+    margin-right: 10px;
+    &.active {
+      color: $neutral-6;
+      background: $neutral-3;
+      box-shadow: 0 1px 3px 0 rgba(black, 0), inset 0 1px 3px 0 rgba(black, 0.3);
+    }
+    &:focus {
+      outline: unset;
+    }
+  }
+  &:nth-child(1) {
+
+  }
+  &:nth-child(1) {
+    
   }
 }

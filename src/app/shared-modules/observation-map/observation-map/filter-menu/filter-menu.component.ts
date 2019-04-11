@@ -10,6 +10,7 @@ import { TimeSelectorComponent } from "../time-selector/time-selector.component"
 export class FilterMenuComponent {
     @Input() municipalities: any[];
     @Input() isLoggedIn = false;
+    @Input() hidden = false;
 
     @Output() fiListChange = new EventEmitter();
     @Output() euListChange = new EventEmitter();

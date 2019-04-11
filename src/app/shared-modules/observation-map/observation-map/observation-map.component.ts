@@ -41,6 +41,9 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   municipalities:Array<any> = [];
   isLoggedIn = UserService.loggedIn();
 
+  filterMenuHidden = false;
+  listHidden = false;
+
   constructor(private obsMapOptions:ObsMapOptions,
               private mapApiController:MapApiService,
               private mapService:MapService,
