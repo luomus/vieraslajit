@@ -32,7 +32,7 @@ export class ObsMapListComponent implements OnInit {
     constructor(private translate:TranslateService, private obsMapData:ObsMapData,
                 private obsMapOptions:ObsMapOptions) {
         this.columns = [
-            { prop: 'unit.taxonVerbatim', name: this.translate.instant('taxon.name'), draggable: false, resizeable: false },
+            { prop: 'unit.linkings.taxon.vernacularName.fi', name: this.translate.instant('taxon.name'), draggable: false, resizeable: false },
             { prop: 'gathering.interpretations.municipalityDisplayname', name: this.translate.instant('document.location'), draggable: false, resizeable: false },
             { prop: 'gathering.displayDateTime', name: this.translate.instant('observation.datetime'), draggable: false, resizeable: false }
           ];

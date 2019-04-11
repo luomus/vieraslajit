@@ -75,6 +75,7 @@ export class MapApiService {
             });
             this.obsMapData.setData(observations, 'observations');
             this.obsMapOptions.loadState=false;
+            console.log(observations);
         });
     }
 
@@ -84,7 +85,7 @@ export class MapApiService {
             page: 1,
             pageSize: 10000,
             selected: [
-                "unit.taxonVerbatim", "unit.linkings.taxon.scientificName", "unit.linkings.taxon.qname",
+                "unit.linkings.taxon.scientificName", "unit.linkings.taxon.vernacularName", "unit.linkings.taxon.qname",
                 "unit.linkings.taxon.id", "gathering.conversions.wgs84CenterPoint.lat",
                 "gathering.conversions.wgs84CenterPoint.lon", "gathering.displayDateTime",
                 "gathering.interpretations.municipalityDisplayname", "gathering.team",
