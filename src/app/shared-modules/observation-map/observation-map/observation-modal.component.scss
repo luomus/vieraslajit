@@ -1,0 +1,11 @@
+@import '~bootstrap/scss/bootstrap-grid';
+
+iframe {
+    width: 75vw;
+    height: 65vh;
+    border: none;
+    @include media-breakpoint-down(xs) {
+        width: 90vw;
+        height: 70vh;
+    }
+}

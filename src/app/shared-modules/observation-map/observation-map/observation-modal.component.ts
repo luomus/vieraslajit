@@ -18,13 +18,7 @@ import { DomSanitizer } from "@angular/platform-browser";
     <button type="button" class="btn btn-default" (click)="bsModalRef.hide()" translate>observations.modal.close</button>
   </div>
 `,
-    styles: [`
-iframe {
-    width: 75vw;
-    height: 65vh;
-    border: none;
-}
-    `],
+    styleUrls: ['./observation-modal.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ObservationModalComponent {

@@ -116,4 +116,7 @@ h5 {
 
 .modal-custom {
     max-width: 80vw;
+    @include media-breakpoint-down(xs) {
+        max-width: 95vw;
+    }
 }
