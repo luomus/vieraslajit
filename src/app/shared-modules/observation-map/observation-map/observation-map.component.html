@@ -23,5 +23,5 @@
       <p>Rajaa hakua nähdäksesi listan tarkoista havainnoista.</p>
     </div>
   </div>
-  <a href="https://laji.fi/observation/map?administrativeStatusId=MX.nationallySignificantInvasiveSpecies,MX.nationalInvasiveSpeciesStrategy,MX.otherInvasiveSpeciesList,MX.euInvasiveSpeciesList,MX.quarantinePlantPest" target="_blank" rel="noopener noreferrer" class="laji-link">Tarkastele laji.fi kartalla</a>
+  <a *ngIf="lajiLinkEnabled" href="https://laji.fi/observation/map?administrativeStatusId=MX.nationallySignificantInvasiveSpecies,MX.nationalInvasiveSpeciesStrategy,MX.otherInvasiveSpeciesList,MX.euInvasiveSpeciesList,MX.quarantinePlantPest" target="_blank" rel="noopener noreferrer" class="laji-link">Tarkastele laji.fi kartalla</a>
 </div>

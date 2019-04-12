@@ -85,7 +85,7 @@
         <div class="taxon-card-map">
           <div class="">
             <h5>Havaintokartta</h5>
-            <vrs-observation-map [id]="id" [mapHeight]="600"></vrs-observation-map>
+            <vrs-observation-map [id]="id" [mapHeight]="600" [lajiLinkEnabled]="false"></vrs-observation-map>
             <div class="row">
               <div class="col-12">
                   <button [routerLink]="['/observations']" [queryParams]="{id: id}" class="btn vrs-button">Havaintokarttanäkymään</button>
