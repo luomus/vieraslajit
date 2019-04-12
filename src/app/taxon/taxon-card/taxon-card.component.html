@@ -3,23 +3,23 @@
 <ng-container *ngIf=!loading>
   <div class="container">
     <div class="head">
-      <div class="row justify-content-between">
+      <div class="row title-row">
         <div class="col-auto">
           <h1 *ngIf="taxon?.vernacularName">
             {{ taxon.vernacularName[0].toUpperCase() + taxon.vernacularName.substr(1, taxon.vernacularName.length) }}
             <img src="assets/images/logos/vieraslaji-logo-70x70.png" width="40" height="40" alt="">
           </h1>
+          <h5 [class.cursive]="taxon?.cursiveName">{{taxon?.scientificName}}</h5>
         </div>
         <div class="col-auto">
 <!--           <button class="btn vrs-button" routerLink='/taxon/{{id}}/comparison' translate>comparison.title</button> -->
           <button routerLink="/form/JX.123757" id="report" class="btn vrs-button primary" translate>taxon.report</button>
         </div>
       </div>
-      <h5 [class.cursive]="taxon?.cursiveName">{{taxon?.scientificName}}</h5>
     </div>
 
     <div class="row">
-      <div class="col-sm-12 col-md-7 left-container">
+      <div class="col-sm-12 order-2 col-md-7 order-md-1 left-container">
         <div *ngIf="desc?.groups; else infoAndLajifiTemplate">
           <div id="taxoncard" *ngFor="let group of desc?.groups; let first = first">
                 <div *ngFor="let variable of group.variables">
@@ -33,7 +33,7 @@
         </div>
       </div>
 
-      <div class="col-sm-12 col-md-5">
+      <div class="col-sm-12 order-1 col-md-5 order-md-2">
 
         <ng-container *ngIf="media != null && media.length > 0">
           <div class="card taxon-info-card" id="taxoncard-right">

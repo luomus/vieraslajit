@@ -1,3 +1,4 @@
+@import '~bootstrap/scss/bootstrap-grid';
 
 :host ::ng-deep #carouseldropdown:hover {
     cursor: pointer;
@@ -32,6 +33,10 @@
     height: 400px;
     position: relative;
     background-color: rgba(255, 255, 255, 0.5);
+
+    @include media-breakpoint-down(xs) {
+        height: 200px;
+    }
 }
 
 :host ::ng-deep .card-slide .item img {

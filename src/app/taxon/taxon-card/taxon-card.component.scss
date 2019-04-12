@@ -1,5 +1,6 @@
 @import '../../../assets/styles/vars';
 @import '../../../assets/styles/carousel';
+@import '~bootstrap/scss/bootstrap-grid';
 
 :host {
     background: $neutral-2;
@@ -9,11 +10,13 @@
     position: relative;
     z-index: 1;
     background: $neutral-2;
-    padding: 0 50px;
     margin-bottom: -50px;
     box-shadow: 2px 2px 25px rgba(#000, 0.3);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    @include media-breakpoint-up(md) {
+        padding: 0 50px;
+    }
 }
 
 .left-container {
@@ -28,6 +31,9 @@
         height: 50px;
         margin-top: 0.5em;
         margin-left: 1em;
+        @include media-breakpoint-down(xs) {
+            margin: 0;
+        }
     }
     h5 {
         font-size: 1.2em;
@@ -73,5 +79,28 @@
 #taxoncard {
     h1, h2, h3, h4, h5, h6 {
         margin-top: 0.5em;
+    }
+}
+
+.title-row {
+    justify-content: space-between;
+    @include media-breakpoint-down(xs) {
+        h1 {
+            margin: 0;
+        }
+        img {
+            position: relative;
+            bottom: 10px;
+        }
+        h5 {
+            margin-bottom: 25px;
+        }
+    }
+}
+
+#report {
+    @include media-breakpoint-down(xs) {
+        font-size: 1.2rem;
+        padding: 10px 50px;
     }
 }
