@@ -77,28 +77,28 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     this.route.queryParams.subscribe(res => {
       this.onQueryParamWithCheckboxChange(
         res['user'],
-        this.filterMenu.updateOwnMode,
+        this.filterMenu && this.filterMenu.updateOwnMode,
         true,
         'personToken',
         UserService.getToken()
       );
       this.onQueryParamWithCheckboxChange(
         res['fiList'],
-        this.filterMenu.updateFiList,
+        this.filterMenu && this.filterMenu.updateFiList,
         true,
         'fiList',
         strToBool(res['fiList'])
       );
       this.onQueryParamWithCheckboxChange(
         res['euList'],
-        this.filterMenu.updateEuList,
+        this.filterMenu && this.filterMenu.updateEuList,
         true,
         'euList',
         strToBool(res['euList'])
       );
       this.onQueryParamWithCheckboxChange(
         res['plantPest'],
-        this.filterMenu.updatePlantPest,
+        this.filterMenu && this.filterMenu.updatePlantPest,
         true,
         'plantPest',
         strToBool(res['plantPest'])
@@ -189,7 +189,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
 
   onQueryParamWithCheckboxChange(param:string, checkboxUpdateCallback:Function, selectorEnabled:boolean, option:ObsMapOption, optionValue:any) {
     const temp = strToBool(param);
-    if (selectorEnabled) {
+    if (selectorEnabled && checkboxUpdateCallback) {
       this.updateCheckbox(checkboxUpdateCallback, temp);
     }
     temp ? this.obsMapOptions.setOptionSilent(option, optionValue) : this.obsMapOptions.setOptionSilent(option, null);
