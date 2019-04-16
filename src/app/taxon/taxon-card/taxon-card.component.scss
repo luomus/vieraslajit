@@ -68,6 +68,12 @@
     }
 }
 
+.taxon-card-map-title {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
 .laji-fi-link {
     color: $neutral-6;
     &:hover {

@@ -30,6 +30,8 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   modalRef: BsModalRef;
   lang: string;
 
+  mapToggle = true;
+
   private first=true;
 
   constructor(private route: ActivatedRoute,
@@ -48,6 +50,9 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       this.scrollTop();
       this.update();
     });
+    if (window.innerWidth < 768) {
+      this.mapToggle = false;
+    }
   }
 
   update() {
