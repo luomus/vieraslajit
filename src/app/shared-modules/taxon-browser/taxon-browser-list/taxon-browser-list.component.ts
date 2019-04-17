@@ -8,7 +8,7 @@ import { Taxonomy } from "../../../shared/model";
     template: `<ngx-datatable class="material"
                 [rows]="taxa" [columnMode]="'force'" [columns]="columns"
                 [headerHeight]="50" [rowHeight]="50" [reorderable]='true'
-                [count]="taxa.length" [footerHeight]="50"
+                [count]="taxa.length"
                 [sorts]="[{prop: 'vernacularName', dir: 'asc'}]"
                 [scrollbarV]="true"
                 (activate)="onDatatableActivate($event)"
