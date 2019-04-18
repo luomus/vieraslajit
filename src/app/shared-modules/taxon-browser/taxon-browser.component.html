@@ -11,31 +11,31 @@
             (selected)="onGroupSelected($event)"></vrs-group-dropdown> -->
             <options-accordion header="Vieraslajiryhmät">
                 <div class="checkbox">
-                    <input type="checkbox" id="plants" #plantsCheckbox>
+                    <input type="checkbox" id="plants" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG2')" #plantsCheckbox>
                     <label for="plants">Kasvit</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="mammals-and-birds" #mammalsCheckbox>
+                    <input type="checkbox" id="mammals-and-birds" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG8')" #mammalsCheckbox>
                     <label for="mammals-and-birds">Nisäkkäät ja linnut</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="freshwater-species" #freshwaterCheckbox>
+                    <input type="checkbox" id="freshwater-species" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG5')" #freshwaterCheckbox>
                     <label for="freshwater-species">Sisävesien lajit</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="baltic-species" #balticCheckbox>
+                    <input type="checkbox" id="baltic-species" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG4')" #balticCheckbox>
                     <label for="baltic-species">Itämeren lajit</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="interior-pests" #interiorCheckbox>
+                    <input type="checkbox" id="interior-pests" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG9')" #interiorCheckbox>
                     <label for="interior-pests">Sisätilojen tuholaiset</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="forestry-pests" #forestryCheckbox>
+                    <input type="checkbox" id="forestry-pests" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG6')" #forestryCheckbox>
                     <label for="forestry-pests">Metsätalouden tuholaiset</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="agricultural-pests" #agriculturalCheckbox>
+                    <input type="checkbox" id="agricultural-pests" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG7')" #agriculturalCheckbox>
                     <label for="agricultural-pests">Maatalouden tuholaiset</label>
                 </div>
             </options-accordion>

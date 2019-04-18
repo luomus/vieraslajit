@@ -64,6 +64,10 @@ export class TaxonBrowserApiService {
             this.query.informalGroupFilters = this.settingsService.apiSettings.informalTaxonGroups.toString();
         }
 
+        if (this.settingsService.apiSettings.invasiveSpeciesMainGroups) {
+            this.query.invasiveSpeciesMainGroups = this.settingsService.apiSettings.invasiveSpeciesMainGroups.toString();
+        }
+
         this.settingsService.apiSettings.lang? this.query.lang = this.settingsService.apiSettings.lang : null;
 
         this.settingsService.apiSettings.mode === 'list' ? this.query.pageSize = 2000 : this.query.pageSize = 12;

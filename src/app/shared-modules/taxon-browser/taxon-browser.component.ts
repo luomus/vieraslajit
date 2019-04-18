@@ -65,7 +65,16 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
         });
 
         this.parameterService.queryEventEmitter.subscribe((event: TaxonBrowserQuery) => {
-            // TODO vieraslajiryhmät
+            if (event.hasOwnProperty('invasiveSpeciesMainGroups')) {
+                const groups: string[] = event.invasiveSpeciesMainGroups;
+                groups.includes("HBE.MG2") ? this.plantsCheckbox.nativeElement.checked = true : this.plantsCheckbox.nativeElement.checked = false;
+                groups.includes("HBE.MG8") ? this.mammalsCheckbox.nativeElement.checked = true : this.mammalsCheckbox.nativeElement.checked = false;
+                groups.includes("HBE.MG5") ? this.freshwaterCheckbox.nativeElement.checked = true : this.freshwaterCheckbox.nativeElement.checked = false;
+                groups.includes("HBE.MG4") ? this.balticCheckbox.nativeElement.checked = true : this.balticCheckbox.nativeElement.checked = false;
+                groups.includes("HBE.MG9") ? this.interiorCheckbox.nativeElement.checked = true : this.interiorCheckbox.nativeElement.checked = false;
+                groups.includes("HBE.MG6") ? this.forestryCheckbox.nativeElement.checked = true : this.forestryCheckbox.nativeElement.checked = false;
+                groups.includes("HBE.MG7") ? this.agriculturalCheckbox.nativeElement.checked = true : this.agriculturalCheckbox.nativeElement.checked = false;
+            }
             if (event.hasOwnProperty('FiList')) this.fiCheckbox.nativeElement.checked = event.FiList;
             if (event.hasOwnProperty('EuList')) this.euCheckbox.nativeElement.checked = event.EuList;
             if (event.hasOwnProperty('PlantPest')) this.plantPestCheckbox.nativeElement.checked = event.PlantPest;
@@ -101,6 +110,22 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
 
     onInformalGroupSelection(event) {
         this.parameterService.updateQuery({informalTaxonGroups: event});
+    }
+
+    onInvasiveGroupCheckbox(event, groupId:string) {
+        let invasiveSpeciesMainGroups: string[];
+        if (typeof this.settingsService.apiSettings.invasiveSpeciesMainGroups === 'string') {
+            invasiveSpeciesMainGroups = [this.settingsService.apiSettings.invasiveSpeciesMainGroups];
+        } else {
+            invasiveSpeciesMainGroups = this.settingsService.apiSettings.invasiveSpeciesMainGroups;
+        }
+        if (event.target.checked) {
+            if (invasiveSpeciesMainGroups) invasiveSpeciesMainGroups.push(groupId);
+            else invasiveSpeciesMainGroups = [groupId];
+        } else if(invasiveSpeciesMainGroups) {
+            invasiveSpeciesMainGroups = invasiveSpeciesMainGroups.filter((group: string) => group !== groupId);
+        }
+        this.parameterService.updateQuery({invasiveSpeciesMainGroups: invasiveSpeciesMainGroups});
     }
 
     onFiListCheckbox(event) {

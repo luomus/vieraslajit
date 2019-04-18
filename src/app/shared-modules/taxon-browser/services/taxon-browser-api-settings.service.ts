@@ -10,6 +10,7 @@ export interface TaxonBrowserApiSettings {
     mode?:'grid'|'list';
 
     informalTaxonGroups?:Informal[];
+    invasiveSpeciesMainGroups?:string[];
 
     total?:number;
 
