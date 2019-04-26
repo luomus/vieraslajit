@@ -1,0 +1,13 @@
+<div class="level-0" *ngFor="let item0 of levels[0]">
+    <a [routerLink]="'/static/' + item0?.id">{{item0.title}}</a>
+    <ng-container *ngIf="item0.active">
+        <div class="level-1" *ngFor="let item1 of levels[1]">
+            <a [routerLink]="'/static/' + item1?.id">{{item1.title}}</a>
+            <ng-container *ngIf="item1.active">
+                <div class="level-2" *ngFor="let item2 of levels[2]">
+                    <a [routerLink]="'/static/' + item2?.id">{{item2.title}}</a>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+</div>

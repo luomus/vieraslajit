@@ -5,6 +5,8 @@ import { TabsModule } from 'ngx-bootstrap';
 import {SharedModule} from '../shared/shared.module';
 import { SpinnerModule } from '../shared-modules/spinner/spinner.module';
 import { StaticContainerComponent } from './static.container';
+import { StaticSidebarComponent } from './static-sidebar/static-sidebar.component';
+import { StaticContentComponent } from './static-content/static-content.component';
 
 /**
  * Declares component and routes for viewing static content
@@ -18,6 +20,6 @@ import { StaticContainerComponent } from './static.container';
     SharedModule,
     SpinnerModule
   ],
-  declarations: [StaticContainerComponent]
+  declarations: [StaticContainerComponent, StaticSidebarComponent, StaticContentComponent]
 })
 export class StaticModule { }

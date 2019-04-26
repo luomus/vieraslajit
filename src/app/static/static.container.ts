@@ -5,22 +5,24 @@ import { parseWP } from '../shared/pipe/parse-wp.pipe';
 import { InformationItem, Information } from 'app/shared/model';
 import { forkJoin } from 'rxjs';
 
+export interface StaticNavItem {
+    title: string,
+    id: string,
+    active: boolean,
+    parent: string
+}
 
 @Component({
     selector: 'vrs-static',
     template: `
-<nav>
-
-</nav>
-<main>
-
-</main>
-`
+<vrs-static-sidebar [levels]="navLevels"></vrs-static-sidebar>
+<vrs-static-content-component [information]="selectedInformation"></vrs-static-content-component>
+`,
+    styleUrls: ['./static.container.scss']
 })
 export class StaticContainerComponent implements OnInit {
-    level0 = [];
-    level1 = [];
-    level2 = [];
+    navLevels: StaticNavItem[][] = [];
+    selectedInformation: Information;
 
     constructor(private route: ActivatedRoute, private informationService: InformationService) { }
 
@@ -32,28 +34,41 @@ export class StaticContainerComponent implements OnInit {
 
     updateInformation(id: string) {
         this.informationService.getInformation(id).subscribe(base => {
+            this.selectedInformation = base;
             const parents$ = base.parents.map(parent => this.informationService.getInformation(parent.id));
             forkJoin(...parents$).subscribe((parents: Information[]) => {
                 const pages: Information[] = [...parents, base];
-                const levels = pages.map(page => {
+                const idHierarchy = pages.map(page => page.id);
+                console.log(parents);
+                const navItems: StaticNavItem[] = pages.map(page => {
                     return {
                         title: page.title,
                         id: page.id,
-                        active: true
+                        active: true,
+                        parent: undefined
                     }
                 });
-                let siblings: InformationItem[] = [];
                 pages.forEach(page => {
-                    siblings.push(...page.children);
-                });
-                levels.push(...siblings.map(item => {
-                    return {
-                        title: item.menuTitle,
-                        id: item.id,
-                        active: false
+                    if (page.children) {
+                        navItems.push(...page.children.filter(item => {
+                            const match = navItems.find(p => p.id === item.id);
+                            if (match) {
+                                match.parent = page.id;
+                                return false;
+                            } else return true;
+                        }).map(item => {
+                            return {
+                                title: item.title,
+                                id: item.id,
+                                active: false,
+                                parent: page.id
+                            }
+                        }));
                     }
-                }));
-                console.log(levels);
+                });
+                this.navLevels = idHierarchy.map(parentId => {
+                    return navItems.filter(item => item.parent === parentId);
+                });
             });
         });
     }

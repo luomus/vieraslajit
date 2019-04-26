@@ -1,7 +1,7 @@
 export interface Information {
-    id: string;
+    id?: string;
 
-    content: string;
+    content?: string;
 
     title?: string;
 
@@ -19,8 +19,9 @@ export interface Information {
 }
 
 export interface InformationItem {
-    id: string;
+    id?: string;
 
-    menuTitle: string;
+    menuTitle?: string;
+    title?: string;
 
 }

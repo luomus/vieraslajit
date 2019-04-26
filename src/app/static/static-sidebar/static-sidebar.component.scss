@@ -1,0 +1,21 @@
+@import '../../../assets/styles/vars';
+@import '~bootstrap/scss/bootstrap-grid';
+
+.level-0 {
+
+}
+
+.level-1 {
+    margin-left: 1em;
+}
+
+.level-2 {
+    margin-left: 1em;
+}
+
+a {
+    color: $neutral-6;
+    &:hover {
+        color: $neutral-8;
+    }
+}

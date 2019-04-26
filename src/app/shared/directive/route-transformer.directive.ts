@@ -12,8 +12,6 @@ export class RouteTransformerDirective {
 
   @HostListener('click', ['$event'])
   public onClick(event) {
-    console.log(event);
-    console.log(event.target.getAttribute('href'));
     if (event.target.tagName === 'A' && event.target.getAttribute('href').startsWith('/')) {
       this.router.navigate([event.target.getAttribute('href')]);
       event.preventDefault();
