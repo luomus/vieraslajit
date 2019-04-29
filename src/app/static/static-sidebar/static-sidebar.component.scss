@@ -1,6 +1,19 @@
 @import '../../../assets/styles/vars';
 @import '~bootstrap/scss/bootstrap-grid';
 
+h5 {
+    color: hsl(40, 15, 40);
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.active {
+    color: $neutral-8;
+    text-shadow: 0 0 1px rgba(#000, 0.3);
+}
+
 .level-0 {
 
 }
@@ -17,5 +30,6 @@ a {
     color: $neutral-6;
     &:hover {
         color: $neutral-8;
+        text-shadow: 0 0 1px rgba(#000, 0.3);
     }
 }

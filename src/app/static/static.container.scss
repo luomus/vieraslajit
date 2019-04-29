@@ -1,12 +1,23 @@
+@import '~bootstrap/scss/bootstrap-grid';
+@import '../../assets/styles/vars';
+
 :host {
     display: flex;
     flex-flow: row nowrap;
 }
 
-vrs-static-sidebar {
-
-}
-
-vrs-static-content {
-
+:host ::ng-deep {
+    vrs-static-sidebar {
+        padding: 25px;
+    }
+    vrs-static-content {
+        position: relative;
+        z-index: 1;
+        background: $neutral-2;
+        padding: 50px;
+        margin-bottom: -50px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        box-shadow: 2px 2px 25px 0 rgba(#000, 0.3);
+    }
 }
