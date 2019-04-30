@@ -237,6 +237,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   }
 
   formatContentUrl(input: string) {
-    return input.replace(environment.baseUrl, '');
+    let output = input.replace(environment.baseUrl, '');
+    return output;
   }
 }
