@@ -20,7 +20,7 @@ export interface InformationItemWithIdx extends InformationItem {
 @Component({
     selector: 'vrs-static',
     template: `
-<vrs-static-sidebar [levels]="navLevels" [title]="sidebarTitle" [activeId]="selectedInformation.id"></vrs-static-sidebar>
+<vrs-static-sidebar [levels]="navLevels" [title]="sidebarTitle" [activeId]="selectedInformation?.id"></vrs-static-sidebar>
 <vrs-static-content [information]="selectedInformation"></vrs-static-content>
 `,
     styleUrls: ['./static.container.scss']
