@@ -1,12 +1,12 @@
 <h5>{{title}}</h5>
 <div class="level-0" *ngFor="let item0 of levels[0]">
-    <a [routerLink]="'/static/' + item0?.id" [ngClass]="{'active': item0?.active}">{{item0.title}}</a>
+    <a [routerLink]="'../' + item0?.id" [ngClass]="{'active': item0?.id === activeId}">{{item0.title}}</a>
     <ng-container *ngIf="item0.active">
         <div class="level-1" *ngFor="let item1 of levels[1]">
-            <a [routerLink]="'/static/' + item1?.id" [ngClass]="{'active': item1?.active}">{{item1.title}}</a>
+            <a [routerLink]="'../' + item1?.id" [ngClass]="{'active': item1?.id === activeId}">{{item1.title}}</a>
             <ng-container *ngIf="item1.active">
                 <div class="level-2" *ngFor="let item2 of levels[2]">
-                    <a [routerLink]="'/static/' + item2?.id" [ngClass]="{'active': item2?.active}">{{item2.title}}</a>
+                    <a [routerLink]="'../' + item2?.id" [ngClass]="{'active': item2?.id === activeId}">{{item2.title}}</a>
                 </div>
             </ng-container>
         </div>

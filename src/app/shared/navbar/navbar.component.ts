@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ChangeDetectorRef, Input, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { UserService } from '../service/user.service';
-import {Router} from '@angular/router';
+import {Router, NavigationEnd} from '@angular/router';
 import { InformationService } from '../service/information.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, of } from 'rxjs';
@@ -49,6 +49,13 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.updateFixedTop();
       })
     });
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.d.forEach((dropdown) => {
+          dropdown.toggle(false);
+        });
+      }
+    });
   }
 
   private updateFixedTop() {
@@ -70,9 +77,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
       let el = dropdown._elementRef.nativeElement;
       this.renderer.listen(el, "mouseenter", ()=>{
         dropdown.toggle(true);
-      })
-      this.renderer.listen(el, "click", ()=>{
-        dropdown.toggle(false);
       })
       this.renderer.listen(el, "mouseleave", ()=>{
         dropdown.toggle(false);

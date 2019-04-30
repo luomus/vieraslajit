@@ -5,7 +5,7 @@ import { Information } from "app/shared/model";
     selector: 'vrs-static-content',
     template: `
 <vrs-editcms [id]="information?.id.substring(2, information?.id.length)"></vrs-editcms>
-<div class="static-content" [innerHTML]="information?.content | parsewp" routeTransformer></div>
+<div class="static-content" [innerHTML]="information?.content | parsewp | bypasshtml" routeTransformer></div>
     `,
     styleUrls: ['./static-content.component.scss']
 })

@@ -20,7 +20,7 @@ export interface InformationItemWithIdx extends InformationItem {
 @Component({
     selector: 'vrs-static',
     template: `
-<vrs-static-sidebar [levels]="navLevels" [title]="sidebarTitle"></vrs-static-sidebar>
+<vrs-static-sidebar [levels]="navLevels" [title]="sidebarTitle" [activeId]="selectedInformation.id"></vrs-static-sidebar>
 <vrs-static-content [information]="selectedInformation"></vrs-static-content>
 `,
     styleUrls: ['./static.container.scss']
@@ -41,6 +41,7 @@ export class StaticContainerComponent implements OnInit {
     updateInformation(id: string) {
         this.informationService.getInformation(id).subscribe(base => {
             this.selectedInformation = base;
+            if (!base.parents) return;
             const parents$ = base.parents.map(parent => this.informationService.getInformation(parent.id));
             forkJoin(...parents$).subscribe((parents: Information[]) => {
                 this.sidebarTitle = parents[0].title;

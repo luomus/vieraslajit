@@ -9,4 +9,5 @@ import { StaticNavItem } from "../static.container";
 export class StaticSidebarComponent {
     @Input() levels: StaticNavItem[][];
     @Input() title: string;
+    @Input() activeId: string;
 }

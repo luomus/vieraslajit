@@ -8,13 +8,19 @@
 
 :host ::ng-deep {
     vrs-static-sidebar {
-        padding: 25px;
+        padding: 50px 25px;
+        padding-right: 50px;
+        position: static;
     }
     vrs-static-content {
         position: relative;
         z-index: 1;
         background: $neutral-2;
-        padding: 50px;
+        max-width: 80em;
+        padding-left: 100px;
+        padding-top: 50px;
+        padding-bottom: 100px;
+        padding-right: 150px;
         margin-bottom: -50px;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
