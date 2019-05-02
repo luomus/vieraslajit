@@ -18,7 +18,10 @@
 }
 
 .static-content {
-    width: 40em;
+    max-width: 40rem;
+    @include media-breakpoint-down(xs) {
+        max-width: 80%;
+    }
 }
 
 .link {
