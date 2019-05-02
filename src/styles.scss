@@ -64,25 +64,28 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 2rem;
     font-weight: 400;
+    @include media-breakpoint-down(lg) {
+        font-size: 1.75rem;
+    }
 }
 
 h2 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: 400;
 }
 
 h3 {
-    font-size: 1.25em;
+    font-size: 1.25rem;
 }
 
 h4 {
-    font-size: 1.1em;
+    font-size: 1.1rem;
 }
 
 h5 {
-    font-size: 1em;
+    font-size: 1rem;
 }
 
 .raised-1 {

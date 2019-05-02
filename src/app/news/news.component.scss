@@ -61,6 +61,10 @@
 .news-post {
     padding: 2em 4em;
     @include media-breakpoint-down(md) {
+        padding-left: 1em;
+        padding-right: 2em;
+    }
+    @include media-breakpoint-down(sm) {
         padding-left: 0em;
         padding-right: 1em;
     }
@@ -69,12 +73,11 @@
 :host ::ng-deep .news-content {
     padding: 1em 0em;
     width: 35em;
-    @include media-breakpoint-down(xs) {
+    @include media-breakpoint-down(sm) {
         width: unset;
     }
     .alignright {
-        margin-right: -30%;
-        @include media-breakpoint-down(xs) {
+        @include media-breakpoint-down(md) {
             margin: 15px 0px;
             padding: 0;
             float: none;
@@ -99,7 +102,7 @@
 
 #navpills {
     margin-bottom: 0;
-    @include media-breakpoint-down(xs) {
+    @include media-breakpoint-down(md) {
         margin: 0;
         padding: 0;
     }

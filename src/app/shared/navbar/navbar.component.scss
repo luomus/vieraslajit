@@ -216,6 +216,9 @@ nav.notransition:after {
     position: absolute;
     max-height: 50px;
     bottom: 80px;
+    @include media-breakpoint-down(lg) {
+        bottom: 60px;
+    }
 }
 
 nav .navbar-brand {

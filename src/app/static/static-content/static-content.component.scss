@@ -22,6 +22,15 @@
     @include media-breakpoint-down(xs) {
         max-width: 80%;
     }
+    @media only screen and (max-width: 1500px) {
+        max-width: 35rem;
+    }
+    @include media-breakpoint-up(lg) {
+        width: 35rem;
+    }
+    @include media-breakpoint-up(xl) {
+        width: 40rem;
+    }
 }
 
 .link {
