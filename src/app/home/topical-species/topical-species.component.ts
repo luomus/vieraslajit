@@ -33,7 +33,7 @@ export class TopicalSpeciesComponent {
     set taxa(taxa: any[]) {
         this.pagedTaxa = [[]];
         let pageSize = 4;
-        if (window.innerWidth < 1200) {
+        if (window.innerWidth <= 768) {
             pageSize = 2;
         }
         let pageIndex = 0;
