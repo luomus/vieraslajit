@@ -31,9 +31,17 @@
     max-width: 350px;
     overflow-x: hidden;
 
-    @include media-breakpoint-down(xs) {
+    @include media-breakpoint-down(lg) {
         width:275px;
         max-width:275px;
+    }
+    @include media-breakpoint-down(md) {
+        width:250px;
+        max-width:250px;
+    }
+    @include media-breakpoint-down(xs) {
+        width:250px;
+        max-width:250px;
     }
 }
 
