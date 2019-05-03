@@ -16,9 +16,8 @@
         position: static;
         @include media-breakpoint-down(lg) {
             padding-top: 25px;
-        }
-        @include media-breakpoint-down(md) {
-            padding: 25px 10px;
+            padding-right: 25px;
+            padding-left: 10px;
         }
         @include media-breakpoint-down(sm) {
             padding: 25px 25px;
@@ -42,8 +41,8 @@
             padding-right: 100px;
         }
         @include media-breakpoint-down(lg) {
-            padding-left: 50px;
-            padding-right: 50px;
+            padding-left: 25px;
+            padding-right: 25px;
             padding-top: 25px;
         }
         @include media-breakpoint-down(sm) {

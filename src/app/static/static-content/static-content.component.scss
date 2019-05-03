@@ -18,18 +18,31 @@
 }
 
 .static-content {
+    min-width: 35rem;
     max-width: 40rem;
-    @include media-breakpoint-down(xs) {
-        max-width: 80%;
-    }
     @media only screen and (max-width: 1500px) {
+        max-width: 30rem;
         max-width: 35rem;
     }
-    @include media-breakpoint-up(lg) {
-        width: 35rem;
+    @include media-breakpoint-down(lg) {
+        min-width: 20rem;
+        max-width: 35rem;
+        width: 100%;
     }
-    @include media-breakpoint-up(xl) {
-        width: 40rem;
+    @include media-breakpoint-down(md) {
+        width: 100%;
+        min-width: 20rem;
+        max-width: 40rem;
+    }
+    @include media-breakpoint-down(sm) {
+        width: 100%;
+        min-width: 20rem;
+        max-width: 35rem;
+    }
+    @include media-breakpoint-down(xs) {
+        width: 100%;
+        min-width: 15rem;
+        max-width: 30rem;
     }
 }
 
