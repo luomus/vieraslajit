@@ -107,10 +107,14 @@ vrs-map-filters {
   padding: 20px;
   width: 500px;
   z-index: 400;
-  @include media-breakpoint-down(xs) {
+  @include media-breakpoint-down(md) {
+    top: 70px;
     right: 0;
     left: 2.5vw;
     width: 95vw;
+  }
+  @include media-breakpoint-down(xs) {
+    top: 50px;
   }
 }
 

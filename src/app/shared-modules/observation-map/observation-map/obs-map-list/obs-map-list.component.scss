@@ -10,7 +10,7 @@
 }
 
 ngx-datatable {
-    height: 700px;
+    height: 60vh;
     @include media-breakpoint-down(xs) {
         height: 70vh;
     }
