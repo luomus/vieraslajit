@@ -1,0 +1,35 @@
+@import '../../../assets/styles/vars';
+@import '~bootstrap/scss/bootstrap-grid';
+
+.subscription-form {
+    background: $neutral-3;
+    border-radius: 15px;
+    padding: 20px;
+    width: 100%;
+    box-shadow: inset 0px 1px 3px rgba(black, 0.2);
+}
+
+.email-label {
+    display: block;
+    margin: 0;
+    padding: 3px 0px;
+}
+
+.email-input {
+    display: block;
+    background: $neutral-1;
+    border-radius: 5px;
+    padding: 3px;
+    box-shadow: inset 0px 1px 3px rgba(black, 0.1);
+    margin-bottom: 5px;
+    width: 100%;
+    max-width: 15rem;
+}
+
+.subscription-permission {
+    margin-bottom: 5px;
+    label {
+        margin: 0;
+        margin-left: 5px;
+    }
+}

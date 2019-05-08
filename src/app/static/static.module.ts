@@ -7,6 +7,7 @@ import { SpinnerModule } from '../shared-modules/spinner/spinner.module';
 import { StaticContainerComponent } from './static.container';
 import { StaticSidebarComponent } from './static-sidebar/static-sidebar.component';
 import { StaticContentComponent } from './static-content/static-content.component';
+import { NewsletterFormComponent } from './newsletter-form/newsletter-form.component';
 
 /**
  * Declares component and routes for viewing static content
@@ -20,6 +21,7 @@ import { StaticContentComponent } from './static-content/static-content.componen
     SharedModule,
     SpinnerModule
   ],
-  declarations: [StaticContainerComponent, StaticSidebarComponent, StaticContentComponent]
+  declarations: [StaticContainerComponent, StaticSidebarComponent, StaticContentComponent, NewsletterFormComponent],
+  entryComponents: [NewsletterFormComponent]
 })
 export class StaticModule { }
