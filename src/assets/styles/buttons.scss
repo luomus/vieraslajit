@@ -8,10 +8,16 @@
     text-align:center;
     outline: none;
 
+    &.borderless {
+        box-shadow: none;
+        background: unset;
+    }
+
     &:hover {
         cursor:pointer;
         background: $primary-2;
-        color: $primary-6;
+        color: $primary-7;
+        border: 1px solid $primary-3;
     }
 
     &.accent {

@@ -112,3 +112,37 @@ footer {
         font-weight: 600;
     }
 }
+
+.vrs-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vrs-portal {
+    padding: 25px 0;
+    padding-bottom: 5px;
+}
+
+.vrs-logo {
+    vertical-align: bottom;
+    height: 2rem;
+    width: auto;
+}
+
+.vrs-title {
+    font-size: 1.2rem;
+}
+
+.vrs-description {
+    font-size: 0.9rem;
+    max-width: 35em;
+    margin: 0;
+    color: $neutral-6;
+}
+
+.laji-logo {
+    height: 80px;
+    width: auto;
+}

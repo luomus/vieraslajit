@@ -138,5 +138,9 @@
 
   "tooltip.fiList": "Laji kuuluu kansallisesti haitallisten vieraslajien luetteloon. EU:n säädökset antavat valtioille mahdollisuuden määrittää kansallisesti haitallisia vieraslajeja. Suomi on toistaiseksi sisällyttänyt kansalliseen luetteloon kuusi lajia, kymmenen lajiryhmää ja yhden risteymän. Yksi kansallisen luettelon lajeista, kaukasianjättiputki, on siirretty EU:n luetteloon 2017. Jäsenvaltiot voivat määrittää näille lajeille omia rajoituksiaan.",
   "tooltip.euList": "Laji on säädetty haitalliseksi vieraslajiksi koko EU:n tasolla, minkä johdosta lajien maahantuonti, kasvatus, myynti ja muu hallussapito sekä ympäristöön päästäminen on kielletty.",
-  "tooltip.quarantine": "Laji on luokiteltu vaaralliseksi kasvintuhoojaksi. Kaikki havainnot näistä lajeista on ilmoitettava Ruokavirastoon."
+  "tooltip.quarantine": "Laji on luokiteltu vaaralliseksi kasvintuhoojaksi. Kaikki havainnot näistä lajeista on ilmoitettava Ruokavirastoon.",
+
+
+
+  "viekas.home.description": "VieKas LIFE (2018-2023) on Suomen suurin ja kunnianhimoisin haitallisten vieraslajien kartoitukseen, torjuntaan ja tietoisuuden levittämiseen keskittyvä hanke. Hankkeessa suomalaiset perehdytetään haitallisiin vieraslajeihin, esimerkkilajien jättipalsamin, jättiputkien ja keltamajavankaalin avulla."
 }
