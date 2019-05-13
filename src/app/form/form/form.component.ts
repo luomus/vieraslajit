@@ -11,7 +11,6 @@ import { FormApiClient } from '../../shared/api/FormApiClient';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService, Role } from '../../shared/service/user.service';
 import { DocumentService } from '../../shared/service/document.service';
-import { ObservationService } from '../../shared/service/observation.service';
 import { AlertService } from '../../shared/service/alert.service';
 
 @Component({

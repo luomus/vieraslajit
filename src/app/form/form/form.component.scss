@@ -1,10 +1,39 @@
 @import '../../../assets/styles/vars';
-//@import '../../../assets/styles/CustomBootstrap3/css/bootstrap.css';
-//@import url('https://cdn.laji.fi/bootstrap/3.3.7/css/bootstrap.css');
 
 .form-login {
     padding: 2em;
     font-size: 3rem;
+}
+
+:host {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.vrs-form {
+    position: relative;
+    z-index: 1;
+    padding: 50px;
+    width: 100%;
+    max-width: 50rem;
+    background: $neutral-2;
+    margin-bottom: -50px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 2px 2px 25px 0 rgba(0, 0, 0, 0.2);
+}
+
+#formName {
+
+}
+
+#formDesc {
+    max-width: 35rem;
+}
+
+.lajiform {
+    width: 100%;
 }
 
 :host ::ng-deep .laji-form {
@@ -71,46 +100,46 @@
     .informal-group-image.MVL\.1 {
         background-image: url('../../../assets/images/taxon-groups/MVL.1.svg');
     }
-    
+
     .informal-group-image.MVL\.2 {
         background-image: url('../../../assets/images/taxon-groups/MVL.2.svg');
     }
-    
+
     .informal-group-image.MVL\.21 {
         background-image: url('../../../assets/images/taxon-groups/MVL.21.svg');
     }
-    
+
     .informal-group-image.MVL\.22 {
         background-image: url('../../../assets/images/taxon-groups/MVL.22.svg');
     }
-    
+
     .informal-group-image.MVL\.26 {
         background-image: url('../../../assets/images/taxon-groups/MVL.26.svg');
     }
-    
+
     .informal-group-image.MVL\.27 {
         background-image: url('../../../assets/images/taxon-groups/MVL.27.svg');
     }
-    
+
     .informal-group-image.MVL\.37 {
         background-image: url('../../../assets/images/taxon-groups/MVL.37.svg');
     }
-    
+
     .informal-group-image.MVL\.39 {
         background-image: url('../../../assets/images/taxon-groups/MVL.39.svg');
     }
     .informal-group-image.MVL\.40 {
         background-image: url('../../../assets/images/taxon-groups/MVL.40.svg');
     }
-    
+
     .informal-group-image.MVL\.41 {
         background-image: url('../../../assets/images/taxon-groups/MVL.41.svg');
     }
-    
+
     .informal-group-image.MVL\.232 {
         background-image: url('../../../assets/images/taxon-groups/MVL.232.svg');
     }
-    
+
     .informal-group-image.MVL\.233 {
         background-image: url('../../../assets/images/taxon-groups/MVL.233.svg');
     }
