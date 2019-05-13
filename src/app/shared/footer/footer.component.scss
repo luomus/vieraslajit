@@ -146,3 +146,14 @@ footer {
     height: 80px;
     width: auto;
 }
+
+.sll-desc {
+    flex: 1 0 100%;
+    & > a > img {
+        max-height: 2.5rem;
+    }
+    & > .desc {
+        color: $neutral-6;
+        padding-bottom: 50px;
+    }
+}
