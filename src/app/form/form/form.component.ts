@@ -86,7 +86,8 @@ export class FormComponent implements AfterViewInit, OnDestroy {
           lang: this.translate.currentLang,
           renderSubmit: false,
           topOffset: 50,
-          bottomOffset: 50
+          bottomOffset: 50,
+          showShortcutButton: false
         });
       });
     });
