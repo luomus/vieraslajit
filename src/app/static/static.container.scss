@@ -41,8 +41,8 @@
             padding-right: 100px;
         }
         @include media-breakpoint-down(lg) {
-            padding-left: 25px;
-            padding-right: 25px;
+            padding-left: 50px;
+            padding-right: 50px;
             padding-top: 25px;
         }
         @include media-breakpoint-down(sm) {
