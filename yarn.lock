@@ -5774,17 +5774,17 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
-laji-form@^0.0.605:
-  version "0.0.605"
-  resolved "https://registry.yarnpkg.com/laji-form/-/laji-form-0.0.605.tgz#1c04b69ddfdded669478d4e61ea0eb67be343fd7"
-  integrity sha512-tfzATIW4k3/he46cQr+iWkZRTkjmON3j8VvRlvO0XqAAci8u5PVynUekvr+isTX2NSBoclQL9s5opUU2pFkCBQ==
+laji-form@^0.0.608:
+  version "0.0.608"
+  resolved "https://registry.yarnpkg.com/laji-form/-/laji-form-0.0.608.tgz#30f0688eb7098637dbee79858ec780e41cd47921"
+  integrity sha512-Ks36rxRucXgWpYJtEGoTYjrCklIOwGwZtPhME7OpnbKvTkQ32erYsJsV4i+VP0pyw3fB/PUvIVex+aXFpiFzBQ==
   dependencies:
     babel-runtime "^6.18.0"
     deep-equal "^1.0.1"
     deepmerge "^1.1.1"
     exif-js "^2.3.0"
     immutability-helper "^2.1.2"
-    laji-map "^1.0.494"
+    laji-map "^1.0.496"
     laji-validate "0.0.73"
     moment "*"
     prop-types "^15.5.8"
@@ -5803,10 +5803,34 @@ laji-form@^0.0.605:
     react-transition-group "^1.1.1"
     react-widgets "^3.4.8"
 
-laji-map@1.0.494, laji-map@^1.0.395, laji-map@^1.0.494:
+laji-map@1.0.494, laji-map@^1.0.395:
   version "1.0.494"
   resolved "https://registry.yarnpkg.com/laji-map/-/laji-map-1.0.494.tgz#5f0db760314866d15e0ec6fb220789ddbcd1ee1a"
   integrity sha512-iZbDAp1xnhRuBCnb5bWJz8E6PUVwVoYk7oGOo9iRNESjC2SVudyXVXl2FFMJpbrY9CkVdRnpWXHY9zcMi62EWA==
+  dependencies:
+    Leaflet.vector-markers "git+https://git@github.com/olzraiti/Leaflet.vector-markers.git#17601bee91f2dae098a0a76e96714d59ec958fe6"
+    leaflet "1.4.0"
+    leaflet-contextmenu "1.4.0"
+    leaflet-draw "1.0.3"
+    leaflet-geometryutil "0.8.0"
+    leaflet-geosearch "git+https://git@github.com/olzraiti/leaflet-geosearch.git#d0fb4384742e22799074355a99094adcc2416577"
+    leaflet-mml-layers "2.0.1"
+    leaflet-textpath "git+https://git@github.com/olzraiti/Leaflet.textPath.git#7fd168f22e2b1a52bdf62d473237f01caaa01e95"
+    leaflet.markercluster "1.3.0"
+    nouislider "13.1.0"
+    proj4 "2.3.16"
+    proj4leaflet "1.0.2"
+  optionalDependencies:
+    "@types/geojson" "*"
+    "@types/leaflet" "*"
+    "@types/leaflet-draw" "*"
+    "@types/leaflet.markercluster" "*"
+    "@types/node" "*"
+
+laji-map@^1.0.496:
+  version "1.0.497"
+  resolved "https://registry.yarnpkg.com/laji-map/-/laji-map-1.0.497.tgz#dc804815f4ab60ec075a2eed46399b93f36fd49b"
+  integrity sha512-EJJBOrTr+e9RThOJsmb3LIPAHjaaAzFaslrNL1WmNvvbIukkuzOo+biMQ9T7uyuQm8Mnc3dE3H9/ROnqwssMwQ==
   dependencies:
     Leaflet.vector-markers "git+https://git@github.com/olzraiti/Leaflet.vector-markers.git#17601bee91f2dae098a0a76e96714d59ec958fe6"
     leaflet "1.4.0"
