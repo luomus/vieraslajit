@@ -47,6 +47,7 @@ html, body {
 
 a {
     color: $accent-5;
+    font-weight: 500;
     &:hover {
         color: $accent-7;
         text-decoration: none;
