@@ -17,12 +17,15 @@ html, body {
     overflow-x: hidden;
     font-family: $font-family-base;
     background-color: hsl(40, 20, 85);
-    background-blend-mode: soft-light;
-    /* Texture pattern from https://www.transparenttextures.com/ */
-    background-image: url("/assets/images/patterns/buried.png");
     color: $neutral-7;
-
     font-size: 16px;
+
+    @supports (background-blend-mode: soft-light) {
+        background-image: none;
+        /* Texture pattern from https://www.transparenttextures.com/ */
+        background-image: url("/assets/images/patterns/buried.png");
+        background-blend-mode: soft-light;
+    }
 
     @include media-breakpoint-up(xs) {
         font-size: 14px;
