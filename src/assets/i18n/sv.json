@@ -105,5 +105,7 @@
 
   "tooltip.fiList": null,
   "tooltip.euList": null,
-  "tooltip.quarantine": null
+  "tooltip.quarantine": null,
+
+  "swupdate": null
 }
