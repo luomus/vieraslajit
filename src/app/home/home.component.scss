@@ -2,6 +2,15 @@
 @import '~bootstrap/scss/bootstrap-grid';
 
 .home-v3 {
+    min-height: calc(100vh - 162px);
+    background: $neutral-3;
+
+    @include media-breakpoint-down(md) {
+        min-height: calc(100vh - 138px);
+    }
+    @include media-breakpoint-down(xs) {
+        min-height: calc(100vh - 52px);
+    }
 
     .hero {
         background-image: linear-gradient(rgba(#000, 0.2), rgba(#000, 0.2)), url('/assets/images/bgs/herman_CC-BY-SA-20_MJRichardson.jpg');
