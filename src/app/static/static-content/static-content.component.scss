@@ -76,3 +76,18 @@
         height: 300px;
     }
 }
+
+:host ::ng-deep {
+    .vrs-guide-container {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .vrs-guide {
+        flex: 1 0 50%;
+        font-size: 0.9rem;
+        color: $neutral-7;
+        padding-right: 25px;
+        padding-bottom: 25px;
+    }
+}
