@@ -51,7 +51,10 @@ nav {
 
 // compensates for lost height on scroll
 .heightFix {
-    padding-bottom: 66px;
+    padding-bottom: 63px;
+    @include media-breakpoint-down(lg) {
+        padding-bottom: 42.09px;
+    }
 }
 
 .nav-top {
