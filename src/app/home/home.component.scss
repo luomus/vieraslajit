@@ -73,6 +73,13 @@
         button {
             margin: 0;
             margin-right: 5px;
+            @include media-breakpoint-down(xs) {
+                flex: 1 0 100%;
+                margin-top: 5px;
+                &.primary {
+                    margin-bottom: 5px;
+                }
+            }
         }
         @include media-breakpoint-up(xl) {
             flex-flow: row nowrap;
