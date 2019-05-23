@@ -41,11 +41,11 @@
               <img [src]="'assets/images/taxon-groups/'+groupId+'.svg'">
             </div>
             <div class="col-10 taxon-match" *ngIf="!comparisonView;else comparisonTemplate">
-              <a [routerLink]="['/taxon/' + taxon?.key]" (click)="close()">
+              <a [routerLink]="['/lajit/' + taxon?.key]" (click)="close()">
                 <span class="vernacularName">{{taxon?.payload?.vernacularName}}</span>
               </a>
               <br>
-              <a [routerLink]="['/taxon/' + taxon?.key]" (click)="close()">
+              <a [routerLink]="['/lajit/' + taxon?.key]" (click)="close()">
                 <span class="scientificName" [ngClass]="{cursive: taxon?.payload?.cursiveName}">{{taxon?.payload?.scientificName}}</span>
               </a>
               <br>
@@ -59,11 +59,11 @@
           <div translate>omnisearch.observations</div>
           <div class="row">
             <div class="col-md-offset-1 col-md-11 observations" *ngIf="taxon">
-              <a [routerLink]="['/observations']" [queryParams]="{taxonId: taxon.key}" (click)="close()">
+              <a [routerLink]="['/havainnot']" [queryParams]="{taxonId: taxon.key}" (click)="close()">
                 {{taxon.count}}
               </a>
               <br>
-              <a [routerLink]="['/form/MHL.53']" (click)="close()">
+              <a [routerLink]="['/ilmoita/MHL.53']" (click)="close()">
                 {{'navigation.observations.report' | translate}}
               </a>
             </div>
@@ -77,11 +77,11 @@
 
 <ng-template #comparisonTemplate>
   <div class="col-md-12 taxon-match">
-    <a [routerLink]="['/taxon/' + taxon.key]" [queryParams]="{comparison: true}">
+    <a [routerLink]="['/lajit/' + taxon.key]" [queryParams]="{comparison: true}">
       <span class="vernacularName">{{taxon.payload.vernacularName}}</span>
     </a>
     <br>
-    <a [routerLink]="['/taxon/' + taxon.key]" [queryParams]="{comparison: true}">
+    <a [routerLink]="['/lajit/' + taxon.key]" [queryParams]="{comparison: true}">
       <span class="scientificName" [ngClass]="{cursive: taxon.payload.cursiveName}">{{taxon.payload.scientificName}}</span>
     </a>
     <br>

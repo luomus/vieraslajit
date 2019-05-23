@@ -50,7 +50,7 @@
                     <h2>Uutiset</h2>
                     <hr>
                     <ul>
-                        <li *ngFor="let story of news"><a [routerLink]="['/news']">
+                        <li *ngFor="let story of news"><a [routerLink]="['/ajankohtaista']">
                             <h3>{{story.title}}</h3>
                             <div class="story-posted">{{story.posted | date: 'dd.MM.yyyy'}}</div>
                         </a></li>

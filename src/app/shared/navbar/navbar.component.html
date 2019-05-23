@@ -30,16 +30,16 @@
         <div class="container">
             <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
             <div class="nav-links">
-                <a class="link" routerLink="/taxon" routerLinkActive="active" translate>navigation.taxonomy</a>
-                <a class="link" routerLink="/news" routerLinkActive="active" [routerLinkActiveOptions]="{exact:false}" translate>navigation.news</a>
-                <a class="link" routerLink="/viekas" routerLinkActive="active" [routerLinkActiveOptions]="{exact:false}" translate>navigation.viekas</a>
+                <a class="link" routerLink="/lajit" routerLinkActive="active" translate>navigation.taxonomy</a>
+                <a class="link" routerLink="/ajankohtaista" routerLinkActive="active" [routerLinkActiveOptions]="{exact:false}" translate>navigation.news</a>
+                <a class="link" routerLink="/kansalaistoiminta" routerLinkActive="active" [routerLinkActiveOptions]="{exact:false}" translate>navigation.viekas</a>
                 <div class="dropdown link vrs-dropdown" dropdown>
                 <a class="dropdown-toggle" translate>navigation.observations<span class="caret"></span></a>
                 <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
                     <li role="menuitem"><a class="dropdown-item"
-                        routerLink="/observations" translate>navigation.observations.map</a></li>
+                        routerLink="/havainnot" translate>navigation.observations.map</a></li>
                     <li role="menuitem"><a class="dropdown-item"
-                        routerLink="/form/MHL.53" translate>navigation.observations.report</a></li>
+                        routerLink="/ilmoita/MHL.53" translate>navigation.observations.report</a></li>
                 </ul>
                 </div>
                 <div class="dropdown link vrs-dropdown" id="dropdown-about" dropdown>
@@ -48,8 +48,8 @@
                         <div class="container">
                             <div class="row">
                                 <div *ngFor="let item of menu" class="col-3">
-                                    <h5><a routerLink="/static/{{item.id}}">{{item.title}}</a></h5>
-                                    <ng-container *ngIf="item.hasOwnProperty('children')"><a *ngFor="let child of item.children" routerLink="/static/{{child.id}}">{{child.title}}</a></ng-container>
+                                    <h5><a routerLink="/info/{{item.id}}">{{item.title}}</a></h5>
+                                    <ng-container *ngIf="item.hasOwnProperty('children')"><a *ngFor="let child of item.children" routerLink="/info/{{child.id}}">{{child.title}}</a></ng-container>
                                 </div>
                             </div>
                         </div>

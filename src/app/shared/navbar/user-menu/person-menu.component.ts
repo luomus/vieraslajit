@@ -9,7 +9,7 @@ import { Component, ViewChild, Renderer2, Output, Input, EventEmitter, AfterView
         {{personName}}
     </a>
     <div *ngIf="showMenu" class="menu-bottom">
-        <a routerLink="/observations" [queryParams]="{user: true}">
+        <a routerLink="/havainnot" [queryParams]="{user: true}">
             {{ 'navigation.user.observations' | translate }}
         </a>
         <a (click)="logout()">

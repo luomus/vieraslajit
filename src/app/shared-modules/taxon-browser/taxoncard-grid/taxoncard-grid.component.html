@@ -5,7 +5,7 @@
     [fromRoot]="true"
     (scrolled)="onScroll()">
     <div class="card-container">
-        <div *ngFor="let taxon of taxa" class="card raised-1" [routerLink]="'/taxon/' + taxon.id">
+        <div *ngFor="let taxon of taxa" class="card raised-1" [routerLink]="'/lajit/' + taxon.id">
             <img *ngIf="taxon.multimedia && taxon.multimedia[0].thumbnailURL" class="card-img-top" src="{{taxon.multimedia[0].thumbnailURL}}">
             <img *ngIf="!taxon.multimedia || !taxon.multimedia[0].thumbnailURL" class="card-img-top" src="../../../../assets/images/taxon_placeholder.png">
             <div class="card-body text-center">

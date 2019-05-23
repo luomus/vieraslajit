@@ -7,21 +7,21 @@
         <div class="translation-base" [ngClass]="{'translate-left': translateLeft}">
             <div class="nav-links">
                 <a class="link" routerLink="/" routerLinkActive="active" translate>navigation.home</a>
-                <a class="link" routerLink="/taxon" routerLinkActive="active" translate>navigation.taxonomy</a>
-                <a class="link" routerLink="/news" routerLinkActive="active" translate>navigation.news</a>
-                <a class="link" routerLink="/viekas" routerLinkActive="active" translate>navigation.viekas</a>
+                <a class="link" routerLink="/lajit" routerLinkActive="active" translate>navigation.taxonomy</a>
+                <a class="link" routerLink="/ajankohtaista" routerLinkActive="active" translate>navigation.news</a>
+                <a class="link" routerLink="/kansalaistoiminta" routerLinkActive="active" translate>navigation.viekas</a>
                 <a (click)="translateLeft = !translateLeft; observations = true" class="link" translate>navigation.observations <span class="oi oi-caret-right"></span></a>
                 <a (click)="translateLeft = !translateLeft; about = true" class="link" translate>navigation.about <span class="oi oi-caret-right"></span></a>
             </div>
             <div *ngIf="observations" class="nav-links submenu">
                 <a class="link" (click)="translateLeft = !translateLeft; toggleObservations()"><span class="oi oi-caret-left"></span> Back</a>
-                <a class="link" routerLink="/observations" routerLinkActive="active" translate>navigation.observations.map</a>
-                <a class="link" routerLink="/form/MHL.53" routerLinkActive="active" translate>navigation.observations.report</a>
+                <a class="link" routerLink="/havainnot" routerLinkActive="active" translate>navigation.observations.map</a>
+                <a class="link" routerLink="/ilmoita/MHL.53" routerLinkActive="active" translate>navigation.observations.report</a>
             </div>
             <div *ngIf="about" class="nav-links submenu">
                 <a class="link" (click)="translateLeft = !translateLeft; toggleAbout()"><span class="oi oi-caret-left"></span> Back</a>
                 <a *ngFor="let child of aboutMenu" class="link"
-                    routerLink="static/{{child.id}}">{{child.title}}</a>
+                    routerLink="info/{{child.id}}">{{child.title}}</a>
             </div>
         </div>
         <div class="user-menu">
