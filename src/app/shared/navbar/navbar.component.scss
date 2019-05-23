@@ -152,8 +152,10 @@ nav {
             &:hover {
                 color: $neutral-2;
                 background-color: $focus-link-background;
-                background-blend-mode: soft-light;
-                background-image: url("/assets/images/patterns/billie-holiday.png");
+                @supports (background-blend-mode: soft-light) {
+                    background-blend-mode: soft-light;
+                    background-image: url("/assets/images/patterns/billie-holiday.png");
+                }
             }
             @include media-breakpoint-down(lg) {
                 padding: 0.5em 1em;
@@ -166,8 +168,10 @@ nav {
         .active {
             cursor: default;
             background-color: $focus-link-background;
-            background-blend-mode: soft-light;
-            background-image: url("/assets/images/patterns/billie-holiday.png");
+            @supports (background-blend-mode: soft-light) {
+                background-blend-mode: soft-light;
+                background-image: url("/assets/images/patterns/billie-holiday.png");
+            }
             color: $neutral-2;
             box-shadow: inset 0 0 20px 0 $primary-7;
         }
@@ -277,8 +281,10 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 .vrs-dropdown {
     .dropdown-menu {
         background-color: $focus-link-background;
-        background-blend-mode: soft-light;
-        background-image: url("/assets/images/patterns/billie-holiday.png");
+        @supports (background-blend-mode: soft-light) {
+            background-blend-mode: soft-light;
+            background-image: url("/assets/images/patterns/billie-holiday.png");
+        }
         border-radius: 10px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -289,8 +295,11 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 
     .dropdown-item:focus {
         background-color: $focus-link-background;
-        background-blend-mode: soft-light;
-        background-image: url("/assets/images/patterns/billie-holiday.png");
+
+        @supports (background-blend-mode: soft-light) {
+            background-blend-mode: soft-light;
+            background-image: url("/assets/images/patterns/billie-holiday.png");
+        }
     }
 
     .dropdown-item {
@@ -308,8 +317,10 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     &:hover {
         color: $neutral-2 !important;
         background-color: $focus-link-background;
-        background-blend-mode: soft-light;
-        background-image: url("/assets/images/patterns/billie-holiday.png");
+        @supports (background-blend-mode: soft-light) {
+            background-blend-mode: soft-light;
+            background-image: url("/assets/images/patterns/billie-holiday.png");
+        }
     }
 }
 
@@ -319,8 +330,10 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
         padding: 2em;
         box-shadow: 0px 10px 25px -5px rgba(0, 0, 0, 0.25);
         background-color: $focus-link-background;
-        background-blend-mode: soft-light;
-        background-image: url("/assets/images/patterns/billie-holiday.png");
+        @supports (background-blend-mode: soft-light) {
+            background-blend-mode: soft-light;
+            background-image: url("/assets/images/patterns/billie-holiday.png");
+        }
         width: 100%;
         margin-top: 0px;
         border-radius: 0px;

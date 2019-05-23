@@ -141,9 +141,13 @@
     .topical-species {
         box-shadow: inset 0 0 25px rgba(#000, 0.25);
         background-color: hsl(40, 15, 70);
-        background-blend-mode: soft-light;
-        /* Texture pattern from https://www.transparenttextures.com/ */
-        background-image: url("/assets/images/patterns/buried.png");
+
+        @supports (background-blend-mode: soft-light) {
+            background-blend-mode: soft-light;
+            /* Texture pattern from https://www.transparenttextures.com/ */
+            background-image: url("/assets/images/patterns/buried.png");
+        }
+
         padding: 50px 100px;
         @include media-breakpoint-down(lg) {
             padding: 50px 50px;
