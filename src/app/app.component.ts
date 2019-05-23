@@ -1,10 +1,9 @@
-import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { UserService, userProperty } from './shared/service/user.service';
+import { UserService } from './shared/service/user.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { StateService } from './state.service';
 import { SwUpdate } from '@angular/service-worker';
-import { isPlatformBrowser } from '@angular/common';
 
 /**
  * Main component that acts as a container for navigation, content and footer.
@@ -15,7 +14,7 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   title = 'vrs';
   translate: TranslateService;
   isPopState = false;
@@ -27,7 +26,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   * 2. Use either the default language or language stored in localStorage
   */
   constructor(state: StateService, translate: TranslateService, private userService: UserService,
-              private router: Router, private swUpdate: SwUpdate, @Inject(PLATFORM_ID) private platformId) {
+              private router: Router, private swUpdate: SwUpdate) {
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -63,14 +62,6 @@ export class AppComponent implements OnInit, AfterViewInit {
           window.location.reload();
         }
       });
-    }
-  }
-  ngAfterViewInit(): void {
-    //document.getElementById('vrs-body').className += ' safari';
-    if (isPlatformBrowser(this.platformId)) {
-      if (navigator.userAgent.match(/OS X.*Safari/) && ! navigator.userAgent.match(/Chrome/)) {
-        document.body.className += ' safari';
-      }
     }
   }
 }

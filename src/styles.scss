@@ -9,6 +9,16 @@
 @import './assets/styles/tabset.scss';
 @import './assets/styles/buttons.scss';
 
+@mixin background-blended {
+    @supports not (-webkit-overflow-scrolling: touch) {
+        @supports (background-blend-mode: soft-light) {
+            background-blend-mode: soft-light;
+            /* Texture pattern from https://www.transparenttextures.com/ */
+            background-image: url("/assets/images/patterns/buried.png");
+        }
+    }
+}
+
 html, body {
     width: 100%;
     min-height: 100%;
@@ -20,16 +30,7 @@ html, body {
     color: $neutral-7;
     font-size: 16px;
 
-    @supports not (-webkit-overflow-scrolling: touch) {
-        &:not(.safari) {
-            @supports (background-blend-mode: soft-light) {
-                background-image: none;
-                /* Texture pattern from https://www.transparenttextures.com/ */
-                background-image: url("/assets/images/patterns/buried.png");
-                background-blend-mode: soft-light;
-            }
-        }
-    }
+    @include background-blended;
 
     @include media-breakpoint-up(xs) {
         font-size: 14px;
