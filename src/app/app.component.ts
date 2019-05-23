@@ -66,9 +66,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
   }
   ngAfterViewInit(): void {
+    //document.getElementById('vrs-body').className += ' safari';
     if (isPlatformBrowser(this.platformId)) {
       if (navigator.userAgent.match(/OS X.*Safari/) && ! navigator.userAgent.match(/Chrome/)) {
-        document.body.className += 'safari';
+        document.body.className += ' safari';
       }
     }
   }

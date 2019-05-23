@@ -20,12 +20,14 @@ html, body {
     color: $neutral-7;
     font-size: 16px;
 
-    &:not(.safari) {
-        @supports (background-blend-mode: soft-light) {
-            background-image: none;
-            /* Texture pattern from https://www.transparenttextures.com/ */
-            background-image: url("/assets/images/patterns/buried.png");
-            background-blend-mode: soft-light;
+    @supports not (-webkit-overflow-scrolling: touch) {
+        &:not(.safari) {
+            @supports (background-blend-mode: soft-light) {
+                background-image: none;
+                /* Texture pattern from https://www.transparenttextures.com/ */
+                background-image: url("/assets/images/patterns/buried.png");
+                background-blend-mode: soft-light;
+            }
         }
     }
 
