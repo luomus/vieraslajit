@@ -123,6 +123,9 @@
         display:flex;
         flex-flow: row nowrap;
         justify-content: center;
+        img {
+            align-self: flex-end;
+        }
     }
 
     .viekas-horizontal-flex {
