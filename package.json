@@ -20,6 +20,7 @@
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
     "build:ssr:local": "npm run build:client-and-server-bundles:local && npm run compile:server",
     "build:client-and-server-bundles": "yarn run ng-high-memory build --prod --base-href https://vieraslajit-dev.laji.fi/ && yarn run ng-high-memory run vieraslajit:server:production",
+    "build:client-and-server-bundles:viekas": "yarn run ng-high-memory build --prod --base-href https://viekas.laji.fi/ && yarn run ng-high-memory run vieraslajit:server:production",
     "build:client-and-server-bundles:local": "yarn run ng-high-memory build --prod --base-href http://localhost:4000/ && yarn run ng-high-memory run vieraslajit:server:production",
     "bundle-report": "ng build --prod --aot --stats-json --named-chunks=true && webpack-bundle-analyzer dist/browser/stats.json"
   },
