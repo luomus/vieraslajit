@@ -82,7 +82,7 @@
 
 :host ::ng-deep {
     img {
-        max-width: 800px;
+        max-width: 750px;
         height: auto;
         @include media-breakpoint-down(lg) {
             max-width: 600px;
@@ -101,6 +101,18 @@
     .wp-image-633 {
         max-width: 500px;
         margin-top: 1rem;
+        @include media-breakpoint-down(lg) {
+            max-width: 450px;
+        }
+        @include media-breakpoint-down(md) {
+            max-width: 400px;
+        }
+        @include media-breakpoint-down(sm) {
+            max-width: 350px;
+        }
+        @include media-breakpoint-down(xs) {
+            max-width: 300px;
+        }
     }
 
     .center-child {
