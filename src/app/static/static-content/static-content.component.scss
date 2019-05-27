@@ -83,6 +83,19 @@
 :host ::ng-deep {
     img {
         max-width: 800px;
+        height: auto;
+        @include media-breakpoint-down(lg) {
+            max-width: 600px;
+        }
+        @include media-breakpoint-down(md) {
+            max-width: 450px;
+        }
+        @include media-breakpoint-down(sm) {
+            max-width: 400px;
+        }
+        @include media-breakpoint-down(xs) {
+            max-width: 300px;
+        }
     }
 
     .wp-image-633 {
@@ -94,6 +107,28 @@
         display:flex;
         flex-flow: row nowrap;
         justify-content: center;
+    }
+
+    .viekas-horizontal-flex {
+        display: flex;
+        flex-flow: row nowrap;
+        margin: 10px 0;
+        @include media-breakpoint-down(sm) {
+            flex-flow: row wrap;
+        }
+
+        img {
+            max-width: 247px;
+            height: auto;
+        }
+    }
+
+    .viekas-vertical-flex {
+        display: flex;
+        flex-flow: column nowrap;
+        @include media-breakpoint-down(sm) {
+            flex-flow: column wrap;
+        }
     }
 
     .viekas-step-by-step {
@@ -128,6 +163,8 @@
 
     .vrs-guide {
         flex: 1 0 50%;
+        display: flex;
+        flex-flow: column nowrap;
         font-size: 0.9rem;
         color: $neutral-7;
         padding-right: 25px;
