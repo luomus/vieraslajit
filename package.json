@@ -18,6 +18,7 @@
     "ssr:run:local": "yarn build:ssr:local && yarn serve:ssr",
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+    "build:ssr:viekas": "npm run build:client-and-server-bundles:viekas && npm run compile:server",
     "build:ssr:local": "npm run build:client-and-server-bundles:local && npm run compile:server",
     "build:client-and-server-bundles": "yarn run ng-high-memory build --prod --base-href https://vieraslajit-dev.laji.fi/ && yarn run ng-high-memory run vieraslajit:server:production",
     "build:client-and-server-bundles:viekas": "yarn run ng-high-memory build --prod --base-href https://viekas.laji.fi/ && yarn run ng-high-memory run vieraslajit:server:production",
