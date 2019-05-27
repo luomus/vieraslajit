@@ -151,9 +151,14 @@ footer {
     flex: 1 0 100%;
     & > a > img {
         max-height: 2.5rem;
+        margin-right: 20px;
     }
     & > .desc {
         color: $neutral-6;
         padding-bottom: 50px;
     }
+}
+
+#viekas-logo {
+    max-height: 2rem;
 }
