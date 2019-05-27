@@ -142,5 +142,8 @@
 
 
 
-  "viekas.home.description": "VieKas LIFE (2018-2023) on Suomen suurin ja kunnianhimoisin haitallisten vieraslajien kartoitukseen, torjuntaan ja tietoisuuden levittämiseen keskittyvä hanke. Hankkeessa suomalaiset perehdytetään haitallisiin vieraslajeihin, esimerkkilajien jättipalsamin, jättiputkien ja keltamajavankaalin avulla."
+  "viekas.home.title": "VieKas LIFE",
+  "viekas.home.description": "VieKas LIFE (2018-2023) on Suomen suurin ja kunnianhimoisin haitallisten vieraslajien kartoitukseen, torjuntaan ja tietoisuuden levittämiseen keskittyvä hanke. Hankkeessa suomalaiset perehdytetään haitallisiin vieraslajeihin, esimerkkilajien jättipalsamin, jättiputkien ja keltamajavankaalin avulla.",
+
+  "swupdate": "Uusi versio sivustosta saatavilla. Ladataanko uusi versio?"
 }

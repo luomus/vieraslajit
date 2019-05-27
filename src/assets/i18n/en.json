@@ -136,5 +136,10 @@
 
   "tooltip.fiList": null,
   "tooltip.euList": null,
-  "tooltip.quarantine": null
+  "tooltip.quarantine": null,
+
+  "viekas.home.title": null,
+  "viekas.home.description": null,
+
+  "swupdate": "New version available. Load New Version?"
 }

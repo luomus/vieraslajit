@@ -11,7 +11,7 @@ import { Component, Input } from "@angular/core";
 <div class="list-container">
     <span class="oi oi-chevron-left" [ngClass]="{'disabled': this.currentPage <= 0}" (click)="backward()"></span>
     <ul>
-        <li *ngFor="let taxon of taxa" [routerLink]="'/taxon/' + taxon.id">
+        <li *ngFor="let taxon of taxa" [routerLink]="'/lajit/' + taxon.id">
             <img [src]="taxon.multimedia[0].fullURL" alt="">
             <div>{{taxon.vernacularName | capitalize}}</div>
         </li>

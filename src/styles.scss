@@ -9,6 +9,16 @@
 @import './assets/styles/tabset.scss';
 @import './assets/styles/buttons.scss';
 
+@mixin background-blended {
+    @supports not (-webkit-overflow-scrolling: touch) {
+        @supports (background-blend-mode: soft-light) {
+            background-blend-mode: soft-light;
+            /* Texture pattern from https://www.transparenttextures.com/ */
+            background-image: url("/assets/images/patterns/buried.png");
+        }
+    }
+}
+
 html, body {
     width: 100%;
     min-height: 100%;
@@ -17,12 +27,10 @@ html, body {
     overflow-x: hidden;
     font-family: $font-family-base;
     background-color: hsl(40, 20, 85);
-    background-blend-mode: soft-light;
-    /* Texture pattern from https://www.transparenttextures.com/ */
-    background-image: url("/assets/images/patterns/buried.png");
     color: $neutral-7;
-
     font-size: 16px;
+
+    @include background-blended;
 
     @include media-breakpoint-up(xs) {
         font-size: 14px;
@@ -47,6 +55,7 @@ html, body {
 
 a {
     color: $accent-5;
+    font-weight: 500;
     &:hover {
         color: $accent-7;
         text-decoration: none;

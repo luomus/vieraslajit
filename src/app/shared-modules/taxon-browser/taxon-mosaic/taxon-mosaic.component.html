@@ -8,7 +8,7 @@
         <div class="total-taxa">Rajauksilla löytyi yhteensä {{total}} vieraslajia</div>
         <a class="mosaic-child"
             *ngFor="let taxon of taxa"
-            [routerLink]="'/taxon/' + taxon.id"
+            [routerLink]="'/lajit/' + taxon.id"
             [ngClass]= "{
                             'mosaic-child-established': taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveEstablished',
                             'mosaic-child-sporadic': taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveSporadic'

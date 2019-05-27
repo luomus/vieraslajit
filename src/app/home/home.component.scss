@@ -1,7 +1,26 @@
 @import '../../assets/styles/vars';
 @import '~bootstrap/scss/bootstrap-grid';
 
+@mixin background-blended {
+    @supports not (-webkit-overflow-scrolling: touch) {
+        @supports (background-blend-mode: soft-light) {
+            background-blend-mode: soft-light;
+            /* Texture pattern from https://www.transparenttextures.com/ */
+            background-image: url("/assets/images/patterns/buried.png");
+        }
+    }
+}
+
 .home-v3 {
+    min-height: calc(100vh - 162px);
+    background: $neutral-3;
+
+    @include media-breakpoint-down(md) {
+        min-height: calc(100vh - 138px);
+    }
+    @include media-breakpoint-down(xs) {
+        min-height: calc(100vh - 52px);
+    }
 
     .hero {
         background-image: linear-gradient(rgba(#000, 0.2), rgba(#000, 0.2)), url('/assets/images/bgs/herman_CC-BY-SA-20_MJRichardson.jpg');
@@ -22,7 +41,7 @@
         top: 33%;
         left: 50%;
         transform: translate(-50%, -50%);
-        color: $primary-1;
+        color: $neutral-1;
         font-weight: 600;
         text-shadow: 0 2px 5px rgba(#000, 0.5);
         @include media-breakpoint-down(xs) {
@@ -73,6 +92,13 @@
         button {
             margin: 0;
             margin-right: 5px;
+            @include media-breakpoint-down(xs) {
+                flex: 1 0 100%;
+                margin-top: 5px;
+                &.primary {
+                    margin-bottom: 5px;
+                }
+            }
         }
         @include media-breakpoint-up(xl) {
             flex-flow: row nowrap;
@@ -125,9 +151,9 @@
     .topical-species {
         box-shadow: inset 0 0 25px rgba(#000, 0.25);
         background-color: hsl(40, 15, 70);
-        background-blend-mode: soft-light;
-        /* Texture pattern from https://www.transparenttextures.com/ */
-        background-image: url("/assets/images/patterns/buried.png");
+
+        @include background-blended;
+
         padding: 50px 100px;
         @include media-breakpoint-down(lg) {
             padding: 50px 50px;

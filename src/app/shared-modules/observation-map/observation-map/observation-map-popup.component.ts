@@ -11,7 +11,7 @@ import { ObservationModalComponent } from "./observation-modal.component";
 <hr>
 <div class="popup-link-row">
     {{name.charAt(0).toUpperCase() + name.substr(1)}}
-    <a [routerLink]="['./taxon/', taxonId]" class="oi oi-info"></a>
+    <a [routerLink]="['./lajit/', taxonId]" class="oi oi-info"></a>
 </div>
 {{municipality}}<br>
 {{date.substring(8, 10) + "." + date.substring(5, 7) + "." + date.substring(0, 4)}}<br>

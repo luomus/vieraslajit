@@ -4,6 +4,16 @@
 
 $focus-link-background: hsl(118, 20, 41);
 
+@mixin nav-background-blended {
+    @supports not (-webkit-overflow-scrolling: touch) {
+        @supports (background-blend-mode: soft-light) {
+            background-blend-mode: soft-light;
+            /* Texture pattern from https://www.transparenttextures.com/ */
+            background-image: url("/assets/images/patterns/billie-holiday.png");
+        }
+    }
+}
+
 .container.container-navbar {
     padding: 0;
     max-width: 1400px;
@@ -51,7 +61,10 @@ nav {
 
 // compensates for lost height on scroll
 .heightFix {
-    padding-bottom: 66px;
+    padding-bottom: 63px;
+    @include media-breakpoint-down(lg) {
+        padding-bottom: 42.09px;
+    }
 }
 
 .nav-top {
@@ -149,8 +162,7 @@ nav {
             &:hover {
                 color: $neutral-2;
                 background-color: $focus-link-background;
-                background-blend-mode: soft-light;
-                background-image: url("/assets/images/patterns/billie-holiday.png");
+                @include nav-background-blended;
             }
             @include media-breakpoint-down(lg) {
                 padding: 0.5em 1em;
@@ -163,8 +175,7 @@ nav {
         .active {
             cursor: default;
             background-color: $focus-link-background;
-            background-blend-mode: soft-light;
-            background-image: url("/assets/images/patterns/billie-holiday.png");
+            @include nav-background-blended;
             color: $neutral-2;
             box-shadow: inset 0 0 20px 0 $primary-7;
         }
@@ -232,7 +243,8 @@ nav.notransition:after {
 }
 
 .natura-logo {
-    max-height: 40px;
+    height: 40px;
+    width: auto;
 }
 
 nav .navbar-brand {
@@ -273,8 +285,7 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 .vrs-dropdown {
     .dropdown-menu {
         background-color: $focus-link-background;
-        background-blend-mode: soft-light;
-        background-image: url("/assets/images/patterns/billie-holiday.png");
+        @include nav-background-blended;
         border-radius: 10px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -285,8 +296,8 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 
     .dropdown-item:focus {
         background-color: $focus-link-background;
-        background-blend-mode: soft-light;
-        background-image: url("/assets/images/patterns/billie-holiday.png");
+
+        @include nav-background-blended;
     }
 
     .dropdown-item {
@@ -304,8 +315,7 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     &:hover {
         color: $neutral-2 !important;
         background-color: $focus-link-background;
-        background-blend-mode: soft-light;
-        background-image: url("/assets/images/patterns/billie-holiday.png");
+        @include nav-background-blended;
     }
 }
 
@@ -315,8 +325,7 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
         padding: 2em;
         box-shadow: 0px 10px 25px -5px rgba(0, 0, 0, 0.25);
         background-color: $focus-link-background;
-        background-blend-mode: soft-light;
-        background-image: url("/assets/images/patterns/billie-holiday.png");
+        @include nav-background-blended;
         width: 100%;
         margin-top: 0px;
         border-radius: 0px;
@@ -474,4 +483,8 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     @include media-breakpoint-down(md) {
         margin-left:8px;
     }
+}
+
+a {
+    font-weight: 400;
 }

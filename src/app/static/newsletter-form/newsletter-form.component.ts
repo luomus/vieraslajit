@@ -4,7 +4,9 @@ import { Component } from "@angular/core";
     selector: 'vrs-newsletter-form',
     template: `
 <form class="subscription-form" action="https://suomen-luonnonsuojeluliitto.creamailer.fi/tilaa/kmhyymE4U5T3w" method="POST">
-    <input name="redirect" type="hidden" value="https://vieraslajit-dev.laji.fi/viekas/i-545">
+    <strong>Tilaa VieKas LIFE -uutiskirje sähköpostiisi!</strong>
+    <hr>
+    <input name="redirect" type="hidden" value="https://vieraslajit-dev.laji.fi/kansalaistoiminta/i-545">
     <div>
         <label class="email-label" for="userEmail">Sähköpostiosoite:</label><input class="email-input" type="text" name="userEmail" id="userEmail" required>
     </div>

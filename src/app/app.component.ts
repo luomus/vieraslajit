@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { UserService, userProperty } from './shared/service/user.service';
+import { UserService } from './shared/service/user.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { StateService } from './state.service';
 import { SwUpdate } from '@angular/service-worker';
@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.subscribe(() => {
-        if (confirm('New version available. Load New Version?')) {
+        if (confirm(this.translate.instant('swupdate'))) {
           window.location.reload();
         }
       });

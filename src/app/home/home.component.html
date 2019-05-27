@@ -7,13 +7,14 @@
                 <button class="btn vrs-button primary">Ilmoita vieraslajihavainto</button>
             </div>
         </div> -->
+        <h1 translate>viekas.home.title</h1>
         <div class="hero-overlap">
             <div>
                 <p translate>viekas.home.description</p>
                 <div class="viekas-buttons">
-                    <button class="btn vrs-button primary">Ilmoita vieraslajihavainnosta</button>
-                    <button class="btn vrs-button borderless">Hankesivuille</button>
-                    <button class="btn vrs-button borderless">Tapahtumakalenteri</button>
+                    <a routerLink="/ilmoita/MHL.53" class="btn vrs-button primary">Ilmoita vieraslajihavainnosta</a>
+                    <a routerLink="/kansalaistoiminta" class="btn vrs-button borderless">Hankesivuille</a>
+                    <a routerLink="/kansalaistoiminta/i-399" class="btn vrs-button borderless">Tapahtumakalenteri</a>
                 </div>
             </div>
         </div>
@@ -49,7 +50,7 @@
                     <h2>Uutiset</h2>
                     <hr>
                     <ul>
-                        <li *ngFor="let story of news"><a [routerLink]="['/news']">
+                        <li *ngFor="let story of news"><a [routerLink]="['/ajankohtaista']">
                             <h3>{{story.title}}</h3>
                             <div class="story-posted">{{story.posted | date: 'dd.MM.yyyy'}}</div>
                         </a></li>
