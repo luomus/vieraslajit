@@ -149,6 +149,7 @@ export class ApiService {
   * @param query
   */
   taxonomyFindById(endpoint: LajiApi.Endpoints.taxon, id: string, query: LajiApi.Query): Observable<Taxonomy>;
+  taxonomyFindById(endpoint: LajiApi.Endpoints.taxa, id: string, query: LajiApi.Query): Observable<PagedResult<Taxonomy>>;
   taxonomyFindById(endpoint: LajiApi.Endpoints.media, id: string, query: LajiApi.Query): Observable<Array<TaxonomyImage>>;
   taxonomyFindById(endpoint: LajiApi.Endpoints.description, id: string, query: LajiApi.Query): Observable<Array<any>>;
   taxonomyFindById(endpoint: LajiApi.Endpoints.taxonSpecies, id: string, query: {}): Observable<PagedResult<Taxonomy>>;
@@ -272,6 +273,7 @@ export namespace LajiApi {
     informalRoots = 'informal-taxon-groups/roots',
     informalChildren = 'informal-taxon-groups/%id%/children',
     taxonParents = 'taxa/%id%/parents',
+    taxa = 'taxa/',
     taxon = 'taxa/%id%',
     taxonSpecies = 'taxa/%id%/species',
     documents = 'documents',

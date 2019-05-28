@@ -74,7 +74,7 @@ export class TaxonBrowserApiService {
     }
 
     updateTaxa(append = false) {
-        this.apiService.taxonomyFindById(LajiApi.Endpoints.taxonSpecies, 'MX.37600', this.query).pipe(
+        this.apiService.taxonomyFindById(LajiApi.Endpoints.taxa, '', this.query).pipe(
             tap((res)=>{this.settingsService.apiSettings.total = res.total; this.lastPage = res.lastPage;}),
             map(res=>res.results)
         ).subscribe(res=>{
