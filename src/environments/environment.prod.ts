@@ -3,6 +3,7 @@ export const environment = {
   vierasCollection: 'HR.2049',
   newsTag: 'vieraslajit.fi',
   baseUrl: 'vieraslajit-dev.laji.fi',
+  embedUrl: 'https://dev-embedded.laji.fi',
   lajiApi: {
     url: 'https://vieraslajit-dev.laji.fi/api'
   },

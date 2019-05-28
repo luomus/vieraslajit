@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { BsModalRef } from "ngx-bootstrap";
 import { DomSanitizer } from "@angular/platform-browser";
+import { environment } from "environments/environment";
 
 @Component({
     selector: 'vrs-observation-modal',
@@ -25,6 +26,6 @@ export class ObservationModalComponent {
     id = ''
     constructor(public bsModalRef: BsModalRef, private sanitizer: DomSanitizer) {}
     iframeUrl() {
-        return this.sanitizer.bypassSecurityTrustResourceUrl(`https://dev-embedded.laji.fi/view?uri=${this.id}`)
+        return this.sanitizer.bypassSecurityTrustResourceUrl(environment.embedUrl + `/view?uri=${this.id}`)
     }
 }
