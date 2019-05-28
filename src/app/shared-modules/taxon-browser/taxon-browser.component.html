@@ -61,8 +61,8 @@
     <div class="browser-content-wrapper">
         <div class="browser-content-menu">
             <div class="viewModeSwitch" (click)="onSwitchViewMode()">
-                <span class="oi oi-list" *ngIf="viewMode === 'grid'"></span>
-                <span class="oi oi-grid-three-up" *ngIf="viewMode === 'list'"></span>
+                <div class="list-toggle" *ngIf="viewMode === 'grid'">Luettelo<span class="oi oi-list"></span></div>
+                <div class="list-toggle" *ngIf="viewMode === 'list'">Ruudukko<span class="oi oi-grid-three-up"></span></div>
             </div>
         </div>
         <div class="cards-container" #cardscont [ngStyle]="{'height': maxHeight+'px'}">
