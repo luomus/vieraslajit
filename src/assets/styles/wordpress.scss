@@ -23,7 +23,11 @@
         font-size: 0.7em;
         text-indent: 0;
         margin: 0.5em;
+        &:hover figcaption {
+            visibility: visible;
+        }
         figcaption {
+            visibility: hidden;
             margin-top: 10px;
             display: table-caption;
             caption-side: bottom;
