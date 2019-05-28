@@ -161,7 +161,11 @@ export class FormComponent implements AfterViewInit, OnDestroy {
       doc$.subscribe(
         (result) => {
           this.alertService.sendAlert(true);
-          this.router.navigate(['observations']);
+          this.router.navigate(['observations'], {
+              queryParams: {
+                user: true
+              }
+          });
         },
         (error) => {
           console.log('Error');

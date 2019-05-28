@@ -115,10 +115,17 @@
         }
     }
 
+    .wp-image-566 {
+        max-width: 100px !important;
+    }
+
     .center-child {
         display:flex;
         flex-flow: row nowrap;
         justify-content: center;
+        img {
+            align-self: flex-end;
+        }
     }
 
     .viekas-horizontal-flex {
@@ -132,6 +139,7 @@
         img {
             max-width: 247px;
             height: auto;
+            align-self: flex-end;
         }
     }
 
