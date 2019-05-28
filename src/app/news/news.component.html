@@ -5,9 +5,9 @@
     <div class= "row justify-content-between">
       <div class="col-12 col-md-auto">
         <ul id="navpills">
-            <li class="navpill active-navpill" id="navpillNews" (click)="onClick('vieraslajit.fi', 'navpillNews')" translate><span class="oi oi-calendar"></span>news.news</li>
+            <li class="navpill active-navpill" id="navpillNews" (click)="onClick(newsTag, 'navpillNews')" translate><span class="oi oi-calendar"></span>news.news</li>
             <li class="navpill" id="navpillTechnical" (click)="onClick('technical', 'navpillTechnical')" translate><span class="oi oi-wrench"></span>news.technical</li>
-            <li class="navpill" id="navpillAll" (click)="onClick('vieraslajit.fi,technical', 'navpillAll')" translate><span class="oi oi-list"></span>news.all</li>
+            <li class="navpill" id="navpillAll" (click)="onClick(newsTag+',technical', 'navpillAll')" translate><span class="oi oi-list"></span>news.all</li>
           </ul>
       </div>
       <div class="col-12 col-sm-auto">

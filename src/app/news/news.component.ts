@@ -6,6 +6,7 @@ import { tap, map } from 'rxjs/operators';
 
 import { NewsParamsService } from './news-params.service';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'vrs-news',
@@ -13,6 +14,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit, OnDestroy {
+  newsTag: string = environment.newsTag
   
   /* ngx pagination */
   currentPage:number=1;
@@ -21,7 +23,7 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   pageSize: number = 4;
   
-  currentTags: string = "vieraslajit.fi";
+  currentTags: string = this.newsTag;
 
   // Translate
   private onLangChange: Subscription;
@@ -38,7 +40,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.paramsService.queryParams$.subscribe(params => {
       params.page ? this.currentPage = params.page : this.currentPage = 1;
-      params.tags ? this.currentTags = params.tags : this.currentTags = 'vieraslajit.fi';
+      params.tags ? this.currentTags = params.tags : this.currentTags = this.newsTag;
       this.getPage(this.currentPage);
     });
     this.paramsService.init();

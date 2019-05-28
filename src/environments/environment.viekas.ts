@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   vierasCollection: 'HR.2049',
+  newsTag: 'viekas.laji.fi',
   baseUrl: 'viekas.laji.fi',
   lajiApi: {
     url: 'https://viekas.laji.fi/api'

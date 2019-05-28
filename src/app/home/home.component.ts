@@ -22,6 +22,7 @@ import { TaxonService } from '../shared/service/taxon.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  newsTag: string = environment.newsTag
   private onLangChange: Subscription;
   alerts: Array<any> = [];
   news: Array<any>= [];
@@ -64,7 +65,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getNews(page){
-    this.newsService.getPage('1', '20', this.translate.currentLang, "vieraslajit.fi,technical")
+    this.newsService.getPage('1', '20', this.translate.currentLang, this.newsTag+",technical")
     .subscribe((data) => {
       let technical: Array<any> = [0];
       this.news=[];
@@ -72,7 +73,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (d.tag.includes("technical")) {
           technical.push(d);
         }
-        if (d.tag.includes("vieraslajit.fi")&&this.news.length<5) {
+        if (d.tag.includes(this.newsTag)&&this.news.length<5) {
           d.content = d.content.replace(/<\/p>/mg, '<br>')
           d.content = d.content.replace(/<(?:(?!br).)+>/mg, '');
           this.news.push(d);
