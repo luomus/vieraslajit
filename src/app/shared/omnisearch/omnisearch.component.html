@@ -12,8 +12,8 @@
       <div class="row mode-selector">
         <div class="col-12">
           <a (click)="contentMode = 'taxon'" [ngClass]="{'mode-active': contentMode === 'taxon'}">Lajit</a>
-          <a (click)="contentMode = 'content'; contentSearch()" [ngClass]="{'mode-active': contentMode === 'content'}">Sisältö</a>
-          <span *ngIf="contentMode === 'content'" class="oi oi-reload" (click)="contentSearch()"></span>
+<!--           <a (click)="contentMode = 'content'; contentSearch()" [ngClass]="{'mode-active': contentMode === 'content'}">Sisältö</a>
+          <span *ngIf="contentMode === 'content'" class="oi oi-reload" (click)="contentSearch()"></span> -->
         </div>
       </div>
       <div class="content-results" *ngIf="contentMode === 'content'">
