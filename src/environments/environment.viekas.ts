@@ -7,7 +7,7 @@ export const environment = {
   },
   lajiAuth: {
     authUrl: 'https://login.laji.fi/laji-auth/',
-    systemID: 'KE.781'
+    systemID: 'KE.861'
   },
   googleSearch: {
     url: 'https://www.googleapis.com/customsearch/v1',
