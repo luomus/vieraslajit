@@ -91,7 +91,7 @@ export class MapService {
                 const municipality = obs[feature].gathering.interpretations.municipalityDisplayname || "";
                 const date = obs[feature].gathering.displayDateTime;
                 const notes = obs[feature].unit.notes || "";
-                const reliability = obs[feature].unit.quality.reliable ? "Luotettava <br>" : "";
+                const reliability = obs[feature].unit.quality.reliable ? "Luotettava" : "";
 
                 this.eventEmitter.emit('onPopup', obs[feature]);
 
