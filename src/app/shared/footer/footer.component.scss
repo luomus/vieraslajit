@@ -133,6 +133,10 @@ footer {
 
 .vrs-title {
     font-size: 1.2rem;
+    color: $neutral-6;
+    &:hover {
+        color: $neutral-8;
+    }
 }
 
 .vrs-description {
