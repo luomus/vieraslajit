@@ -1,7 +1,7 @@
 <div class="taxon-browser">
     <div class="options-menu-wrapper" #sidebar>
         <div class="sidebar-toggle" (click)="onToggleSidebar()"><span class="oi oi-arrow-thick-left" #sidebarToggle></span></div>
-        <div class="options-menu">
+        <div class="options-menu" #optionsmenu [ngStyle]="{'height': optionsHeight+'px'}">
             <div class="filters-title">
                 <h5>Rajaukset</h5>
                 <a class="clear-settings" (click)="onClearSettings()">Poista kaikki valinnat</a>

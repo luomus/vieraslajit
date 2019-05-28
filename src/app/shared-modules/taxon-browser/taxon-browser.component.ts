@@ -24,12 +24,14 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     loading = true;
 
     maxHeight = 400;
+    optionsHeight = 400;
 
     sidebarActive = true;
 
     @ViewChild('sidebar') sidebar: ElementRef;
     @ViewChild('sidebarToggle') sidebarToggle: ElementRef;
     @ViewChild('cardscont') cardsContainer: ElementRef;
+    @ViewChild('optionsmenu') optionsMenu: ElementRef;
 
     /* CHECKBOXES */
     @ViewChild('plantsCheckbox')        plantsCheckbox: ElementRef;
@@ -97,6 +99,8 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
             this.renderer.addClass(this.sidebarToggle.nativeElement, "oi-arrow-thick-right");
         }
         this.maxHeight = window.innerHeight - this.cardsContainer.nativeElement.offsetTop;
+        const viewportOffset = this.optionsMenu.nativeElement.getBoundingClientRect();
+        this.optionsHeight = window.innerHeight - viewportOffset.top
         this.cd.detectChanges();
     }
 
