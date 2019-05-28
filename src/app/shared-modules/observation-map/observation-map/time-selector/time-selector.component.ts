@@ -5,7 +5,7 @@ import { Component, Output, EventEmitter, Renderer2, ViewChild, ElementRef, Inpu
     template: `
 <div class="time-selector">
     <input #startTime type='text' placeholder="YYYY-MM-DD" (blur)="onTimeChange($event)">
-    -
+    –
     <input #endTime type='text' placeholder="YYYY-MM-DD" (blur)="onTimeChange($event)">
 </div>
     `, styleUrls: ['./time-selector.component.scss']
