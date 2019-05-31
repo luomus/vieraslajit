@@ -1,7 +1,7 @@
 import {
-  Component, OnDestroy, ElementRef, Inject, ViewEncapsulation,
-  ViewChild, AfterViewInit, Output, NgZone, EventEmitter,
-  ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges
+    Component, OnDestroy, ElementRef, Inject, ViewEncapsulation,
+    ViewChild, AfterViewInit, Output, NgZone, EventEmitter,
+    ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges, OnInit
 } from '@angular/core';
 import { FormService } from '../../shared/service/form.service';
 import { Subscription } from 'rxjs';
@@ -19,7 +19,7 @@ import { AlertService } from '../../shared/service/alert.service';
   styleUrls: ['./form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormComponent implements AfterViewInit, OnDestroy {
+export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
   @ViewChild('lajiform') formElem: ElementRef;
 
   private sub: Subscription;
@@ -34,6 +34,7 @@ export class FormComponent implements AfterViewInit, OnDestroy {
   lajiFormWrapper: any;
   lang: string;
   loggedIn = false;
+  loginUrl: string;
 
   constructor(@Inject(ElementRef) elementRef: ElementRef,
     private formService: FormService, private apiClient: FormApiClient, private docService: DocumentService,
@@ -41,6 +42,10 @@ export class FormComponent implements AfterViewInit, OnDestroy {
     private userService: UserService, private ngZone: NgZone, private cd: ChangeDetectorRef,
     private el: ElementRef, private alertService: AlertService) {
     this.loggedIn = UserService.loggedIn();
+  }
+
+  ngOnInit() {
+      this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
   }
 
   ngAfterViewInit() {
