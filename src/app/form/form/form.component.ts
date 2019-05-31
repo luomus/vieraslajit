@@ -62,7 +62,6 @@ export class FormComponent implements AfterViewInit, OnDestroy {
   initForm() {
     this.formService.getFormById(this.id, this.translate.currentLang).subscribe(data => {
       this.formData = data;
-      console.log(data);
       this.setFormDescription();
       this.ngZone.runOutsideAngular(() => {
         this.apiClient.lang = this.translate.currentLang;

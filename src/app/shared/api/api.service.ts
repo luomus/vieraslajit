@@ -199,7 +199,8 @@ export class ApiService {
   formById(endpoint: LajiApi.Endpoints, id: string, lang: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.get(
-      url
+      url,
+      { params: { lang } }
     );
   }
   documentsByPersonToken(endpoint: LajiApi.Endpoints.documents, query: LajiApi.Query): Observable<any>;
