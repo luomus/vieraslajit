@@ -1,0 +1,37 @@
+@import './../../assets/styles/vars.scss';
+@import './../../assets/styles/datatable.scss';
+@import '~bootstrap/scss/bootstrap-grid';
+
+.forms-container {
+    font-size: 1rem;
+    position: relative;
+    z-index: 11;
+
+    @include media-breakpoint-down(xs) {
+        font-size: 1rem;
+    }
+
+    margin-top: $navbar-height;
+    margin-bottom: -100px;
+
+    background: $neutral-2;
+    padding: 2em;
+    box-shadow: 2px 2px 25px rgba(#000, 0.3);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    @include media-breakpoint-down(xs) {
+        box-shadow: 0px 1px 20px rgba(black, 0.1);
+        border-radius: 0;
+    }
+}
+
+.space-between {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+h4 {
+    color: $neutral-7;
+    align-self: flex-end;
+}

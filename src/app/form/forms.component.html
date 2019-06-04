@@ -1,0 +1,16 @@
+<div class="container forms-container">
+    <div class="space-between">
+        <h4>Omat havainnot</h4>
+        <a class="btn vrs-button primary" routerLink="./MHL.53">Uusi havainto</a>
+    </div>
+    <ngx-datatable class="material"
+    [rows]="observations$ | async"
+    [columnMode]="'force'"
+    [columns]="columns"
+    [headerHeight]="50"
+    [rowHeight]="50"
+    [reorderable]='false'
+    [scrollbarV]="false"
+    >
+    </ngx-datatable>
+</div>

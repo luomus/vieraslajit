@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { routing } from './form.routing';
 import { FormComponent } from './form/form.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormsComponent } from './forms.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 /**
  * Declares routes and components for rendering laji-forms
@@ -11,8 +13,9 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     routing,
-    SharedModule
+    SharedModule,
+    NgxDatatableModule
   ],
-  declarations: [FormComponent]
+  declarations: [FormComponent, FormsComponent]
 })
 export class FormModule { }

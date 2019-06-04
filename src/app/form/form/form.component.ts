@@ -165,7 +165,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
       doc$.subscribe(
         (result) => {
           this.alertService.sendAlert(true);
-          this.router.navigate(['observations'], {
+          this.router.navigate(['ilmoita'], {
               queryParams: {
                 user: true
               }
@@ -174,6 +174,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
         (error) => {
           console.log('Error');
           console.log(error);
+          alert(error)
         }
       );
     });
