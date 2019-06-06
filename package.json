@@ -46,6 +46,7 @@
     "@ngx-translate/core": "^10.0.2",
     "@ngx-translate/http-loader": "^3.0.1",
     "@swimlane/ngx-datatable": "git+https://git@github.com/vixriihi/laji-datatable",
+    "angular2-moment": "^1.9.0",
     "bootstrap": "^4.1.3",
     "core-js": "^2.5.7",
     "domino": "^2.1.3",
