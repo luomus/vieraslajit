@@ -48,7 +48,6 @@ export class FormsComponent implements OnInit {
         }
         this.observations$ = this.documentService.getDocuments(UserService.getToken(), query).pipe(
             map((res) => {
-                console.log('q2: ', res);
                 const output = []
                 for (const r of res.results) {
                     const o = {}
