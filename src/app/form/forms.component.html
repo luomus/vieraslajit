@@ -1,7 +1,16 @@
 <div class="container forms-container">
-    <div class="space-between">
-        <h4>Omat havainnot</h4>
-        <a class="btn vrs-button primary" routerLink="./MHL.53">Uusi havainto</a>
+    <!-- TODO: get text from form api -->
+    <h3>Vieraslajien havaintolomake</h3>
+    <p>Älypuhelimille suunniteltua vieraslajihavaintojen ilmoituslomaketta käyttämällä osallistut VieKas LIFE-hankkeen kansalaistiedetoimintaan.</p>
+    <p>Lomakkeella ilmoitetut havainnot tallentuvat Lajitietokeskuksen tietokantaan ja ovat viranomaisten, kuntien, yhdistysten ja yksityishenkilöiden käytössä esim. kustannustehokkaita torjuntasuunnitelmia laadittaessa. Paikkakunnasta ja ilmoitettavasta vieraslajista riippuen vieraslajihavainnon ilmoittaminen voi johtaa torjuntatoimien käynnistymiseen.</p>
+    <a target="_blank" href="https://laji.fi/vihko/terms-of-service">Käyttöehdot</a>
+    <div class="py-3"></div>
+    <div class="space-between mb-2">
+        <h4>Viimeisimmät havaintoni</h4>
+        <div>
+            <a class="btn vrs-button borderless" routerLink="/havainnot/" [queryParams]="{user: true}">Tarkastele havaintokartalla</a>
+            <a class="btn vrs-button primary" routerLink="./MHL.53">Uusi havainto</a>
+        </div>
     </div>
     <ngx-datatable class="material"
     [rows]="observations$ | async"

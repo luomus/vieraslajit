@@ -2,6 +2,18 @@
 @import './../../assets/styles/datatable.scss';
 @import '~bootstrap/scss/bootstrap-grid';
 
+:host ::ng-deep {
+    .datatable-body-cell {
+        cursor: default !important;
+    }
+    .datatable-body-row {
+        background-color: unset !important;
+    }
+    .datatable-row-group:hover {
+        background-color: unset !important;
+    }
+}
+
 .forms-container {
     font-size: 1rem;
     position: relative;
@@ -27,11 +39,15 @@
 
 .space-between {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
 }
 
 h4 {
     color: $neutral-7;
     align-self: flex-end;
+}
+
+.vrs-button {
+    margin-left: 15px;
 }
