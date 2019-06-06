@@ -1,11 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef, NgZone } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { ObservationService } from "app/shared/service/observation.service";
 import { map } from "rxjs/operators";
 import { UserService } from "app/shared/service/user.service";
 import { DocumentService } from "app/shared/service/document.service";
-import {TimeAgoPipe} from "angular2-moment"
-import { environment } from "environments/environment.prod";
+import { DateTranslatePipe } from "app/shared/pipe/date-translate.pipe";
 
 @Component({
     selector: 'vrs-forms',
@@ -20,7 +18,6 @@ export class FormsComponent implements OnInit {
     loginUrl = '';
 
     constructor(private translate: TranslateService,
-                private observationService: ObservationService,
                 private documentService: DocumentService,
                 private cdr: ChangeDetectorRef,
                 private zone: NgZone) {
@@ -28,7 +25,7 @@ export class FormsComponent implements OnInit {
             { prop: 'vernacularName', name: this.translate.instant('taxon.name'), draggable: false, resizeable: false },
             { prop: 'municipality', name: this.translate.instant('document.location'), draggable: false, resizeable: false },
             { prop: 'dateBegin', name: this.translate.instant('gathering.eventDate.begin'), draggable: false, resizeable: false },
-            { prop: 'dateEdited', name: this.translate.instant('document.modifiedDate'), draggable: false, resizeable: false, pipe: new TimeAgoPipe(this.cdr, this.zone) }
+            { prop: 'dateEdited', name: this.translate.instant('document.modifiedDate'), draggable: false, resizeable: false, pipe: new DateTranslatePipe(this.cdr, this.zone) }
           ];
     }
 
