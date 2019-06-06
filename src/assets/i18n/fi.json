@@ -93,6 +93,8 @@
   "document.dayOfYearBegin":"Aloituspäivä",
   "document.dayOfYearEdited":"Muokattu",
   "document.location":"Paikka",
+  "document.modifiedDate":"Muokattu",
+  "gathering.eventDate.begin":"Havaintoaika",
   "observations.intro":"Löydät omat havaintosi täältä",
   "observations.all":"Viimeisimmät vieraslajihavainnot",
   "observation.team":"Havainnoija",

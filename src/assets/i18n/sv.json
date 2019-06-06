@@ -87,6 +87,8 @@
   "observations.modal.close": null,
   "document.dayOfYearBegin":"Startdatum",
   "document.dayOfYearEdited":"Redigerad",
+  "document.dateModified":null,
+  "gathering.eventDate.begin":null,
   "observations.all":"Alla observationer som skickas av användare",
   "form.login": "Logga in först",
   "form.send": "Skicka",

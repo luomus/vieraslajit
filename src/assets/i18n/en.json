@@ -92,6 +92,8 @@
   "document.dayOfYearBegin": "Starting date",
   "document.dayOfYearEdited":"Edited",
   "document.location":"Location",
+  "document.dateModified":"Modified",
+  "gathering.eventDate.begin":"Date observed",
   "observations.intro":"You can find your own observations here",
   "observations.all":"All of the observations sent in by users",
   "observation.team":"Observer",

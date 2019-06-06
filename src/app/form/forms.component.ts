@@ -1,8 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef, NgZone } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { ObservationService } from "app/shared/service/observation.service";
 import { map } from "rxjs/operators";
 import { UserService } from "app/shared/service/user.service";
+import { DocumentService } from "app/shared/service/document.service";
+import {TimeAgoPipe} from "angular2-moment"
+import { environment } from "environments/environment.prod";
 
 @Component({
     selector: 'vrs-forms',
@@ -17,11 +20,15 @@ export class FormsComponent implements OnInit {
     loginUrl = '';
 
     constructor(private translate: TranslateService,
-                private observationService: ObservationService) {
+                private observationService: ObservationService,
+                private documentService: DocumentService,
+                private cdr: ChangeDetectorRef,
+                private zone: NgZone) {
         this.columns = [
-            { prop: 'unit.linkings.taxon.vernacularName.fi', name: this.translate.instant('taxon.name'), draggable: false, resizeable: false },
-            { prop: 'gathering.interpretations.municipalityDisplayname', name: this.translate.instant('document.location'), draggable: false, resizeable: false },
-            { prop: 'gathering.displayDateTime', name: this.translate.instant('observation.datetime'), draggable: false, resizeable: false }
+            { prop: 'vernacularName', name: this.translate.instant('taxon.name'), draggable: false, resizeable: false },
+            { prop: 'municipality', name: this.translate.instant('document.location'), draggable: false, resizeable: false },
+            { prop: 'dateBegin', name: this.translate.instant('gathering.eventDate.begin'), draggable: false, resizeable: false },
+            { prop: 'dateEdited', name: this.translate.instant('document.modifiedDate'), draggable: false, resizeable: false, pipe: new TimeAgoPipe(this.cdr, this.zone) }
           ];
     }
 
@@ -30,30 +37,29 @@ export class FormsComponent implements OnInit {
         this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname))
         
         const query = {
-            observerPersonToken: UserService.getToken(),
-            invasive: true,
-            page: 1,
-            pageSize: 10000,
-            selected: [
-                "unit.linkings.taxon.scientificName",
-                "unit.linkings.taxon.vernacularName",
-                "unit.linkings.taxon.qname",
-                "unit.linkings.taxon.id",
-                "gathering.conversions.wgs84CenterPoint.lat",
-                "gathering.conversions.wgs84CenterPoint.lon",
-                "gathering.displayDateTime",
-                "gathering.interpretations.municipalityDisplayname",
-                "gathering.team",
-                "unit.quality",
-                "gathering.gatheringId"
-            ]
+            collectionID: 'HR.3051',
+            selectedFields: [
+                "dateEdited",
+                "gatherings.municipality",
+                "gatherings.dateBegin",
+                "gatherings.units.identifications.taxon",
+            ],
+            pageSize: 10
         }
-        this.observations$ = this.observationService.getObservations(query)
-        .pipe(
-            map((r) => {
-                console.log(r)
-                return r.results
+        this.observations$ = this.documentService.getDocuments(UserService.getToken(), query).pipe(
+            map((res) => {
+                console.log('q2: ', res);
+                const output = []
+                for (const r of res.results) {
+                    const o = {}
+                    o['dateEdited'] = r.dateEdited
+                    o['municipality'] = r.gatherings[0].municipality
+                    o['dateBegin'] = r.gatherings[0].dateBegin
+                    o['vernacularName'] = r.gatherings[0].units[0].identifications[0].taxon
+                    output.push(o);
+                }
+                return output;
             })
-        )
+        );
     }
 }

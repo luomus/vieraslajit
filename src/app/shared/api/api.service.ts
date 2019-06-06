@@ -258,7 +258,22 @@ export class ApiService {
     );
   }
 
+  documents(endpoint: LajiApi.Endpoints.documents, personToken: string, query: any): Observable<PagedResult<Document>>;
+  documents(endpoint: LajiApi.Endpoints.documents, personToken: string, query: any): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`;
+    return this.httpClient.get(
+      url,
+      {
+        params: {
+          ...query,
+          'personToken': personToken
+        }
+      }
+    );
+  }
+
   documentUpdate(endpoint: LajiApi.Endpoints.updateDocument, id: string, data: Document, personToken: string): Observable<any> {
+
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.put(
       url,
