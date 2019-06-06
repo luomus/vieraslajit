@@ -10,8 +10,11 @@ import { UserService } from "app/shared/service/user.service";
     styleUrls: ['./forms.component.scss']
 })
 export class FormsComponent implements OnInit {
-    columns = []
+    columns = [];
     observations$;
+
+    loggedIn = false;
+    loginUrl = '';
 
     constructor(private translate: TranslateService,
                 private observationService: ObservationService) {
@@ -23,6 +26,9 @@ export class FormsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.loggedIn = UserService.loggedIn()
+        this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname))
+        
         const query = {
             observerPersonToken: UserService.getToken(),
             invasive: true,

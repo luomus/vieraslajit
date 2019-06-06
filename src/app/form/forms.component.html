@@ -1,4 +1,5 @@
 <div class="container forms-container">
+    <div class="vrs-form" *ngIf="loggedIn;else loginError">
     <!-- TODO: get text from form api -->
     <h3>Vieraslajien havaintolomake</h3>
     <p>Älypuhelimille suunniteltua vieraslajihavaintojen ilmoituslomaketta käyttämällä osallistut VieKas LIFE-hankkeen kansalaistiedetoimintaan.</p>
@@ -22,4 +23,9 @@
     [scrollbarV]="false"
     >
     </ngx-datatable>
+    </div>
 </div>
+
+<ng-template #loginError>
+    <h1><a href="{{loginUrl}}" translate>form.login</a></h1>
+</ng-template>
