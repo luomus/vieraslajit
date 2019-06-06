@@ -3,7 +3,7 @@
 
 .menu {
   max-height: 62vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   background: $neutral-1;
   border-radius: 15px;
   box-shadow: 0 1px 3px rgba(#000, 0.3);
