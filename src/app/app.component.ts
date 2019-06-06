@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from './shared/service/user.service';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { StateService } from './state.service';
 import { SwUpdate } from '@angular/service-worker';
+import { LoaderService } from './shared/service/loader.service';
 
 /**
  * Main component that acts as a container for navigation, content and footer.
@@ -26,10 +27,15 @@ export class AppComponent implements OnInit {
   * 2. Use either the default language or language stored in localStorage
   */
   constructor(state: StateService, translate: TranslateService, private userService: UserService,
-              private router: Router, private swUpdate: SwUpdate) {
+              private router: Router, private swUpdate: SwUpdate, private loaderService: LoaderService) {
 
     this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.loaderService.reset();
+        this.loaderService.register();
+      }
       if (event instanceof NavigationEnd) {
+        this.loaderService.complete();
         this.hideFooter = !state.footerEnabled;
       }
     });

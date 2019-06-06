@@ -38,6 +38,7 @@ import { GoogleSearchApiService } from './api/google-search.api.service';
 import { RouteTransformerDirective } from './directive/route-transformer.directive';
 import { TaxonNamePipe } from './pipe/taxonName.pipe';
 import { HtmlSanitizerPipe } from './pipe/html-sanitizer.pipe';
+import { LoaderService } from './service/loader.service';
 /**
  * Provides common utilities for other modules
  */
@@ -80,7 +81,8 @@ export class SharedModule {
         ObservationService,
         DocumentService,
         AlertService,
-        AreaService
+        AreaService,
+        LoaderService
       ]
     };
   }

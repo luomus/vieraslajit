@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsDropdownModule, AccordionModule, TabsModule, PaginationModule } from 'ngx-bootstrap';
@@ -18,6 +18,7 @@ import localeFi from '@angular/common/locales/fi';
 import { StateService } from './state.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LoaderInterceptor } from './shared/interceptor/loader-interceptor';
 
 registerLocaleData(localeFi);
 
@@ -54,7 +55,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     TransferHttpCacheModule
   ],
-  providers: [StateService, UserService, { provide: LOCALE_ID, useValue: 'fi' }],
+  providers: [
+    StateService,
+    UserService,
+    { provide: LOCALE_ID, useValue: 'fi' },
+    {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,6 +5,7 @@ import { InformationService } from '../service/information.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, of } from 'rxjs';
 import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';
+import { LoaderService, LoadingEvent } from '../service/loader.service';
 
 @Component({
   selector: 'vrs-navbar',
@@ -18,6 +19,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   loginSub: Subscription;
   currentId: string= "";
   private scrollListener;
+  loading = false;
 
   @Input() menu;
   @Input() loginUrl = '#';
@@ -29,7 +31,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
      private informationService: InformationService, private translate:TranslateService,
      private zone: NgZone,
      private renderer: Renderer2,
-     private cd: ChangeDetectorRef) {
+     private cd: ChangeDetectorRef,
+     private loaderService: LoaderService) {
       this.loginSub = userService.loginStateChange.subscribe(() => {
         this.loggedIn = UserService.loggedIn();
       if(this.loggedIn == false) {
@@ -56,6 +59,14 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         });
       }
     });
+    this.loaderService.loading.subscribe((res) => {
+      if (res === LoadingEvent.Start) {
+        this.loading = true;
+      }
+      if (res === LoadingEvent.End) {
+        this.loading = false;
+      }
+    })
   }
 
   private updateFixedTop() {
