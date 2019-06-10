@@ -3,8 +3,8 @@
         <div class="sidebar-toggle" (click)="onToggleSidebar()"><span class="oi oi-arrow-thick-left" #sidebarToggle></span></div>
         <div class="options-menu" #optionsmenu [ngStyle]="{'height': optionsHeight+'px'}">
             <div class="filters-title">
-                <h5>Rajaukset</h5>
-                <a class="clear-settings" (click)="onClearSettings()">Poista kaikki valinnat</a>
+                <h5 translate>taxonomy.filters</h5>
+                <a class="clear-settings" (click)="onClearSettings()" translate>taxonomy.filters.clear</a>
             </div>
 <!--         <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid> -->
 <!--             <vrs-group-dropdown [groups]="['MVL.232', 'MVL.27', 'MVL.343', 'MVL.1', 'MVL.28', 'MVL.26', 'MVL.40', 'MVL.2', 'MVL.233', 'MVL.37', 'MVL.39', 'MVL.41']"
@@ -12,47 +12,47 @@
             <options-accordion header="Vieraslajiryhmät">
                 <div class="checkbox">
                     <input type="checkbox" id="plants" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG2')" #plantsCheckbox>
-                    <label for="plants">Kasvit</label>
+                    <label for="plants" translate>iasGroupName.plants</label>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" id="mammals-and-birds" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG8')" #mammalsCheckbox>
-                    <label for="mammals-and-birds">Nisäkkäät ja linnut</label>
+                    <label for="mammals-and-birds" translate>iasGroupName.mammals</label>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" id="freshwater-species" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG5')" #freshwaterCheckbox>
-                    <label for="freshwater-species">Sisävesien lajit</label>
+                    <label for="freshwater-species" translate>iasGroupName.freshwater</label>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" id="baltic-species" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG4')" #balticCheckbox>
-                    <label for="baltic-species">Itämeren lajit</label>
+                    <label for="baltic-species" translate>iasGroupName.baltic</label>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" id="interior-pests" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG9')" #interiorCheckbox>
-                    <label for="interior-pests">Sisätilojen tuholaiset</label>
+                    <label for="interior-pests" translate>iasGroupName.interior</label>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" id="forestry-pests" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG6')" #forestryCheckbox>
-                    <label for="forestry-pests">Metsätalouden tuholaiset</label>
+                    <label for="forestry-pests" translate>iasGroupName.forestry</label>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" id="agricultural-pests" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG7')" #agriculturalCheckbox>
-                    <label for="agricultural-pests">Maatalouden tuholaiset</label>
+                    <label for="agricultural-pests" translate>iasGroupName.agricultural</label>
                 </div>
             </options-accordion>
             <options-accordion header="Haitalliset vieraslajit">
                 <div class="checkbox">
                     <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList" #fiCheckbox>
-                    <label for="finnishList">Kansallinen luettelo</label>
+                    <label for="finnishList" translate>taxonomy.filters.finnishList</label>
                     <vrs-help>{{'tooltip.fiList' | translate}}</vrs-help>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList" #euCheckbox>
-                    <label for="euList">EU:n luettelo</label>
+                    <label for="euList" translate>taxonomy.filters.euList</label>
                     <vrs-help>{{'tooltip.euList' | translate}}</vrs-help>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest" #plantPestCheckbox>
-                    <label for="plantPest">Vaaralliset kasvintuhoojat</label>
+                    <label for="plantPest">taxonomy.filters.plantPests</label>
                     <vrs-help>{{'tooltip.quarantine' | translate}}</vrs-help>
                 </div>
             </options-accordion>
@@ -61,8 +61,8 @@
     <div class="browser-content-wrapper">
         <div class="browser-content-menu">
             <div class="viewModeSwitch" (click)="onSwitchViewMode()">
-                <div class="list-toggle" *ngIf="viewMode === 'grid'">Luettelo<span class="oi oi-list"></span></div>
-                <div class="list-toggle" *ngIf="viewMode === 'list'">Ruudukko<span class="oi oi-grid-three-up"></span></div>
+                <div class="list-toggle" *ngIf="viewMode === 'grid'" translate>taxonomy.listMode.list<span class="oi oi-list"></span></div>
+                <div class="list-toggle" *ngIf="viewMode === 'list'" translate>taxonomy.listMode.grid<span class="oi oi-grid-three-up"></span></div>
             </div>
         </div>
         <div class="cards-container" #cardscont [ngStyle]="{'height': maxHeight+'px'}">

@@ -11,7 +11,7 @@ import { isPlatformBrowser } from "@angular/common";
     <span class="oi oi-magnifying-glass"></span>
     <input type='text' id='vrs-taxon-search-textarea' (blur)="onSearchAreaBlur($event)"
            (input)="onSearchAreaInput($event)" (focusin)="onSearchAreaInput($event)"
-           class='form-control' placeholder="Valitse laji">
+           class='form-control' placeholder="{{'observation-map.filterMenu.species.placeholder' | translate}}">
 </div>
 
 <div class="selected-taxon">

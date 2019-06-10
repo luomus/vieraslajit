@@ -14,12 +14,12 @@
 <!--                 <a (click)="translateLeft = !translateLeft; about = true" class="link" translate>navigation.about <span class="oi oi-caret-right"></span></a> -->
             </div>
             <div *ngIf="observations" class="nav-links submenu">
-                <a class="link" (click)="translateLeft = !translateLeft; toggleObservations()"><span class="oi oi-caret-left"></span> Back</a>
+                <a class="link" (click)="translateLeft = !translateLeft; toggleObservations()"><span class="oi oi-caret-left"></span> {{'navigation.back' | translate}}</a>
                 <a class="link" routerLink="/havainnot" routerLinkActive="active" translate>navigation.observations.map</a>
                 <a class="link" routerLink="/ilmoita" routerLinkActive="active" translate>navigation.observations.report</a>
             </div>
             <div *ngIf="about" class="nav-links submenu">
-                <a class="link" (click)="translateLeft = !translateLeft; toggleAbout()"><span class="oi oi-caret-left"></span> Back</a>
+                <a class="link" (click)="translateLeft = !translateLeft; toggleAbout()"><span class="oi oi-caret-left"></span> {{'navigation.back' | translate}}</a>
                 <a *ngFor="let child of aboutMenu" class="link"
                     routerLink="info/{{child.id}}">{{child.title}}</a>
             </div>

@@ -5,7 +5,7 @@ import { ObservationModalComponent } from "./observation-modal.component";
 @Component({
     template: `
 <div class="popup-link-row">
-    <h5>Havainto</h5>
+    <h5 translate>observation-map.popup.title</h5>
     <a (click)="openModal(observationId)" class="oi oi-eye"></a>
 </div>
 <hr>

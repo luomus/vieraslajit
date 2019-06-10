@@ -11,15 +11,15 @@
     <div class="omni-search-results" #omniSearchResults [ngClass]='resultsDirection'>
       <div class="row mode-selector">
         <div class="col-12">
-          <a (click)="contentMode = 'taxon'" [ngClass]="{'mode-active': contentMode === 'taxon'}">Lajit</a>
-<!--           <a (click)="contentMode = 'content'; contentSearch()" [ngClass]="{'mode-active': contentMode === 'content'}">Sisältö</a>
+          <a (click)="contentMode = 'taxon'" [ngClass]="{'mode-active': contentMode === 'taxon'}" translate>omnisearch.contentMode.taxon</a>
+<!--           <a (click)="contentMode = 'content'; contentSearch()" [ngClass]="{'mode-active': contentMode === 'content'}" translate>omnisearch.contentMode.content</a>
           <span *ngIf="contentMode === 'content'" class="oi oi-reload" (click)="contentSearch()"></span> -->
         </div>
       </div>
       <div class="content-results" *ngIf="contentMode === 'content'">
         <laji-spinner [spinning]="googleApiLoading" [hideContentWhileLoading]='true' [fullViewport]='false'>
         <ng-container *ngIf="!content.items">
-          Ei hakutuloksia
+          {{'omnisearch.results.none' | translate}}
         </ng-container>
         <div class="content-item" *ngFor="let item of content.items">
           <h4 [routerLink]="formatContentUrl(item?.formattedUrl)">{{item?.title}}</h4>

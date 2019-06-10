@@ -10,7 +10,7 @@
             <img *ngIf="!taxon.multimedia || !taxon.multimedia[0].thumbnailURL" class="card-img-top" src="../../../../assets/images/taxon_placeholder.png">
             <div class="card-body text-center">
                 <div *ngIf="taxon.species || !taxon.finnish" class="card-text">{{(taxon.vernacularName || taxon.scientificName) | capitalize}}</div>
-                <div *ngIf="!taxon.species && taxon.finnish" class="card-text">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxoncard.nonspecies' | translate}}</div>
+                <div *ngIf="!taxon.species && taxon.finnish" class="card-text">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxonomy.nonspecies' | translate}}</div>
                 <div *ngIf="taxon.vernacularName" class="card-text scientific" [class.cursive]="taxon?.cursiveName">{{taxon.scientificName | capitalize}}</div>
             </div>
         </div>

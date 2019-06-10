@@ -1,43 +1,41 @@
 <div class="menu" [ngStyle]="hidden && {'display': 'none'}">
   <div class="filter-group">
-    <h5>KUNTA</h5>
+    <h5 translate>observation-map.filterMenu.municipality</h5>
     <div class="input-group">
       <select (change)="onSelectMunicipality($event)" class="custom-select">
-        <option value="">Kaikki kunnat</option>
+        <option value="" translate>observation-map.filterMenu.municipality.all</option>
         <option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</option>
       </select>
     </div>
   </div>
   <div class="filter-group">
-    <h5>LAJI</h5>
+    <h5 translate>observation-map.filterMenu.species</h5>
     <vrs-taxon-search (taxonChange)="onTaxonChange($event)"></vrs-taxon-search>
   </div>
   <div class="filter-group">
-    <h5>HAVAINTOAIKA</h5>
+    <h5 translate>observation-map.filterMenu.time</h5>
     <vrs-time-selector (timeChangeEvent)="onTimeChange($event)"></vrs-time-selector>
   </div>
   <div class="filter-group" *ngIf="isLoggedIn">
-    <h5>OMAT HAVAINNOT</h5>
+    <h5 translate>observation-map.filterMenu.own</h5>
     <div class="checkbox">
       <input type="checkbox" id="ownCheck" (change)="onOwnModeChange($event)">
-      <label for="ownCheck">
-        Vain omat havainnot
-      </label>
+      <label for="ownCheck" translate>observation-map.filterMenu.own.label</label>
     </div>
   </div>
   <div class="filter-group">
-    <h5>HALLINNOLLISET</h5>
+    <h5 translate>observation-map.filterMenu.administrative</h5>
     <div class="checkbox">
         <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
-        <label for="finnishList">Kansallinen luettelo</label>
+        <label for="finnishList" translate>observation-map.filterMenu.administrative.fi</label>
     </div>
     <div class="checkbox">
         <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList">
-        <label for="euList">Euroopan luettelo</label>
+        <label for="euList" translate>observation-map.filterMenu.administrative.eu</label>
     </div>
     <div class="checkbox">
         <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest">
-        <label for="plantPest">Vaarallinen kasvintuhooja</label>
+        <label for="plantPest" translate>observation-map.filterMenu.administrative.pest</label>
     </div>
   </div>
 </div>

@@ -5,7 +5,7 @@
     [fromRoot]="true"
     (scrolled)="onScroll()">
     <div class="mosaic-babysitter">
-        <div class="total-taxa">Rajauksilla löytyi yhteensä {{total}} vieraslajia</div>
+        <div class="total-taxa">{{'taxonomy.grid.results.1' | translate}} {{total}} {{'taxonomy.grid.results.2' | translate}}</div>
         <a class="mosaic-child"
             *ngFor="let taxon of taxa"
             [routerLink]="'/lajit/' + taxon.id"
@@ -20,21 +20,19 @@
             </div>
             <div class="mosaic-desc">
                 <div *ngIf="taxon.species || !taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}}</div>
-                <div *ngIf="!taxon.species && taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxoncard.nonspecies' | translate}}</div>
+                <div *ngIf="!taxon.species && taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxonomy.nonspecies' | translate}}</div>
                 <div *ngIf="taxon.vernacularName" class="scientific-name" [class.cursive]="taxon?.cursiveName">{{taxon.scientificName | capitalize}}</div>
                 <ul>
-                    <li *ngIf="taxon.administrativeStatuses.includes('MX.euInvasiveSpeciesList')" class="administrative-status">Haitallinen vieraslaji (EU luettelo)</li>
-                    <li *ngIf="taxon.administrativeStatuses.includes('MX.nationallySignificantInvasiveSpecies')" class="administrative-status">Haitallinen vieraslaji (kansallinen luettelo)</li>
-                    <li *ngIf="taxon.administrativeStatuses.includes('MX.nationalInvasiveSpeciesStrategy')" class="administrative-status">Kuuluu kansalliseen vieraslajistrategiaan</li>
-                    <li *ngIf="taxon.administrativeStatuses.includes('MX.quarantinePlantPest')" class="administrative-status">Vaarallinen kasvintuhooja</li>
+                    <li *ngIf="taxon.administrativeStatuses.includes('MX.euInvasiveSpeciesList')" class="administrative-status" translate>administrativeStatus.euInvasiveSpeciesList</li>
+                    <li *ngIf="taxon.administrativeStatuses.includes('MX.nationallySignificantInvasiveSpecies')" class="administrative-status" translate>administrativeStatus.nationallySignificantInvasiveSpecies</li>
+                    <li *ngIf="taxon.administrativeStatuses.includes('MX.nationalInvasiveSpeciesStrategy')" class="administrative-status" translate>administrativeStatus.nationalInvasiveSpeciesStrategy</li>
+                    <li *ngIf="taxon.administrativeStatuses.includes('MX.quarantinePlantPest')" class="administrative-status" translate>administrativeStatus.quarantinePlantPest</li>
                 </ul>
-                <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveEstablished'" class="establishment establishment-established"><span class="oi oi-home"></span>vakiintunut</div>
-                <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveSporadic'" class="establishment establishment-sporadic">harvinainen</div>
-                <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveNotYetInFinland'" class="establishment">ei vakiintunut</div>
+                <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveEstablished'" class="establishment establishment-established"><span class="oi oi-home"></span>{{'establishment.established' | translate}}</div>
+                <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveSporadic'" class="establishment establishment-sporadic">{{'establishment.sporadic' | translate}}</div>
+                <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveNotYetInFinland'" class="establishment">{{'establishment.none' | translate}}</div>
             </div>
         </a>
-        <div *ngIf="taxa.length < total" class="more-results">
-            Ladataan lisää lajeja...
-        </div>
+        <div *ngIf="taxa.length < total" class="more-results" translate>taxonomy.grid.loading</div>
     </div>
 </div>
