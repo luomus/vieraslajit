@@ -39,6 +39,7 @@ import { RouteTransformerDirective } from './directive/route-transformer.directi
 import { TaxonNamePipe } from './pipe/taxonName.pipe';
 import { HtmlSanitizerPipe } from './pipe/html-sanitizer.pipe';
 import { LoaderService } from './service/loader.service';
+import { DateTranslatePipe } from './pipe/date-translate.pipe';
 /**
  * Provides common utilities for other modules
  */
@@ -59,10 +60,10 @@ import { LoaderService } from './service/loader.service';
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, NavbarContainer, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent, RouteTransformerDirective, TaxonNamePipe, HtmlSanitizerPipe],
+  declarations: [NavbarComponent, NavbarContainer, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent, RouteTransformerDirective, TaxonNamePipe, HtmlSanitizerPipe, DateTranslatePipe],
   providers: [],
   exports: [NavbarComponent, NavbarContainer, RouterModule, FooterComponent, SpinnerModule, EditcmsModule,
-    SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, CapitalizePipe, RouteTransformerDirective, TaxonNamePipe, HtmlSanitizerPipe]
+    SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, CapitalizePipe, RouteTransformerDirective, TaxonNamePipe, HtmlSanitizerPipe, DateTranslatePipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
