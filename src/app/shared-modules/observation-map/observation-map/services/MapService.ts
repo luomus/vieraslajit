@@ -103,7 +103,7 @@ export class MapService {
                 compRef.instance.notes = notes;
                 compRef.instance.reliability = reliability;
                 compRef.instance.taxonId = obs[feature].unit.linkings.taxon.id.substring(14);
-                compRef.instance.observationId = obs[feature].gathering.gatheringId.substring(14);
+                compRef.instance.observationId = obs[feature].document.documentId;
                 compRef.instance.modalRef = this.modalRef;
                 compRef.changeDetectorRef.detectChanges();
                 return compRef.location.nativeElement;
