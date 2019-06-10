@@ -11,7 +11,7 @@ yarn start
 ## Production build
 ```
 yarn install --frozen-lockfile
-yarn build:client-and-server-bundles:viekas
+yarn build:ssr:viekas
 ```
 serve from dist/browser
 
