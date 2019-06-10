@@ -75,6 +75,8 @@
 
   "taxonomy.filters": "Rajaukset",
   "taxonomy.filters.clear": "Poista kaikki valinnat",
+  "taxonomy.filters.iasGroups": "Vieraslajiryhmät",
+  "taxonomy.filters.harmful": "Haitalliset vieraslajit",
   "taxonomy.filters.finnishList": "Kansallinen luettelo",
   "taxonomy.filters.euList": "EU:n luettelo",
   "taxonomy.filters.plantPests": "Vaaralliset kasvintuhoojat",
