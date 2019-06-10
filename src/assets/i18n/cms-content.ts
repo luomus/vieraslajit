@@ -12,8 +12,8 @@ export function findContentID(target: StaticContent, lang: string) {
             break;
         case StaticContent.Viekas:
             if (lang == "fi") r = "i-393";
-            if (lang == "en") r = "i-393";
-            if (lang == "sv") r = "i-393";
+            if (lang == "en") r = "i-698";
+            if (lang == "sv") r = "i-700";
             break;
     }
     return r;
