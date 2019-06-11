@@ -53,7 +53,7 @@ export class TaxonBrowserApiService {
             tempAdminStatusFilters.push('MX.euInvasiveSpeciesList');
         }
         if (this.settingsService.apiSettings.FiList) {
-            tempAdminStatusFilters.push('MX.nationallySignificantInvasiveSpecies');
+            tempAdminStatusFilters.push('MX.controllingRisksOfInvasiveAlienSpecies');
         }
         if (this.settingsService.apiSettings.PlantPest) {
             tempAdminStatusFilters.push('MX.quarantinePlantPest');
