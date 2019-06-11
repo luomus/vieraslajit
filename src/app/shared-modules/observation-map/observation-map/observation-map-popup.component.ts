@@ -6,7 +6,7 @@ import { ObservationModalComponent } from "./observation-modal.component";
     template: `
 <div class="popup-link-row">
     <h5 translate>observation-map.popup.title</h5>
-    <a (click)="openModal(observationId)" class="oi oi-eye"></a>
+    <a (click)="openModal(observationId, unitId)" class="oi oi-eye"></a>
 </div>
 <hr>
 <div class="popup-link-row">
@@ -27,11 +27,12 @@ export class ObservationMapPopupComponent {
     @Input() notes: string;
     @Input() taxonId: string;
     @Input() observationId: string;
+    @Input() unitId: string;
     @Input() modalRef: BsModalRef;
 
     constructor(private modalService: BsModalService) {}
 
-    openModal(selectedId) {
-        this.modalRef = this.modalService.show(ObservationModalComponent, {initialState: {id: selectedId}, class: 'modal-custom'});
+    openModal(observationId, unitId) {
+        this.modalRef = this.modalService.show(ObservationModalComponent, {initialState: {observationId, unitId}, class: 'modal-custom'});
     }
 }
