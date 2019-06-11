@@ -24,7 +24,7 @@
                 <div *ngIf="taxon.vernacularName" class="scientific-name" [class.cursive]="taxon?.cursiveName">{{taxon.scientificName | capitalize}}</div>
                 <ul>
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.euInvasiveSpeciesList')" class="administrative-status" translate>administrativeStatus.euInvasiveSpeciesList</li>
-                    <li *ngIf="taxon.administrativeStatuses.includes('MX.nationallySignificantInvasiveSpecies')" class="administrative-status" translate>administrativeStatus.nationallySignificantInvasiveSpecies</li>
+                    <li *ngIf="taxon.administrativeStatuses.includes('MX.controllingRisksOfInvasiveAlienSpecies')" class="administrative-status" translate>administrativeStatus.nationallySignificantInvasiveSpecies</li>
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.nationalInvasiveSpeciesStrategy')" class="administrative-status" translate>administrativeStatus.nationalInvasiveSpeciesStrategy</li>
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.quarantinePlantPest')" class="administrative-status" translate>administrativeStatus.quarantinePlantPest</li>
                 </ul>
