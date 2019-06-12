@@ -23,9 +23,10 @@ import { environment } from "environments/environment";
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ObservationModalComponent {
-    id = ''
+    observationId = '';
+    unitId = '';
     constructor(public bsModalRef: BsModalRef, private sanitizer: DomSanitizer) {}
     iframeUrl() {
-        return this.sanitizer.bypassSecurityTrustResourceUrl(environment.embedUrl + `/view?uri=${this.id}`)
+        return this.sanitizer.bypassSecurityTrustResourceUrl(environment.embedUrl + `/view?uri=${this.observationId}&highlight=${encodeURIComponent(this.unitId)}`)
     }
 }

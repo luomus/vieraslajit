@@ -14,14 +14,14 @@ export class ListService {
   getEuList(taxonId: string,lang?: string): Observable<PagedResult<Taxonomy>> {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
-        {invasiveSpeciesFilter: true,onlyFinnish: false, lang: lang, langFallback: true, adminStatusFilters:'MX.euInvasiveSpeciesList',
+        {invasiveSpeciesFilter: true,onlyFinnish: false, lang: lang, langFallback: true, adminStatusFilters: 'MX.euInvasiveSpeciesList',
         includeMedia: true, includeDescriptions: true});
   }
   /* Retrieves a list of species in National invasive species list */ 
   getNationalList(taxonId: string,lang?: string): Observable<any> {
     return this.apiService
       .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId,
-        {invasiveSpeciesFilter: true,onlyFinnish: false, lang: lang, langFallback: true, adminStatusFilters:'MX.nationallySignificantInvasiveSpecies',
+        {invasiveSpeciesFilter: true,onlyFinnish: false, lang: lang, langFallback: true, adminStatusFilters: 'MX.controllingRisksOfInvasiveAlienSpecies',
         includeMedia: true, includeDescriptions: true});
   }
 
