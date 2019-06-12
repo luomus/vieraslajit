@@ -35,6 +35,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
   lang: string;
   loggedIn = false;
   loginUrl: string;
+  saving = false;
 
   constructor(@Inject(ElementRef) elementRef: ElementRef,
     private formService: FormService, private apiClient: FormApiClient, private docService: DocumentService,
@@ -158,6 +159,10 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   _onSubmit(data) {
+    if (this.saving) {
+        return;
+    }
+    this.saving = true;
     this.ngZone.run(() => {
       const doc$ = this.edit ?
         this.docService.updateDocument(this.documentId, this.formData.formData, this.personToken) :
@@ -174,7 +179,8 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
         (error) => {
           console.log('Error');
           console.log(error);
-          alert(error)
+          alert(error);
+          this.saving = false;
         }
       );
     });
