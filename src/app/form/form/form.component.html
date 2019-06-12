@@ -2,7 +2,7 @@
     <h3 id="formName"></h3>
     <p id="formDesc"></p>
     <div class="vrs-laji-form" #lajiform></div>
-    <button id="formSend" type="submit" class="btn btn-primary" (click)="submit()" translate>
+    <button id="formSend" type="submit" class="btn btn-primary" (click)="submit()" [disabled]="saving" translate>
         form.send
     </button>
 </div>
