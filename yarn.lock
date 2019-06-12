@@ -5781,17 +5781,17 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
-laji-form@^0.0.611:
-  version "0.0.611"
-  resolved "https://registry.yarnpkg.com/laji-form/-/laji-form-0.0.611.tgz#9364ebd5abdce91ad958eed24d733342c8b0d2d1"
-  integrity sha512-FU0IJGNvvd4sii9CUgTzEPs6vvK7CSpQTHJvAWxTG7O1V2Jw15dNYb+rk2HMg03lQ5y22WJbzGCnvLoctu2pqQ==
+laji-form@^0.0.623:
+  version "0.0.623"
+  resolved "https://registry.yarnpkg.com/laji-form/-/laji-form-0.0.623.tgz#42564dc611260d75de24dad35d64c6794ae95072"
+  integrity sha512-JhwwKjRA42rMTFVWC5yaMS9DtLUgKsAEX48WiduuL/4GhFeT/QfESYKJat+geYaonzA1G09hLOPAwD3egXHpuQ==
   dependencies:
     babel-runtime "^6.18.0"
     deep-equal "^1.0.1"
     deepmerge "^1.1.1"
     exif-js "^2.3.0"
     immutability-helper "^2.1.2"
-    laji-map "^1.0.496"
+    laji-map "^1.0.502"
     laji-validate "0.0.73"
     moment "*"
     prop-types "^15.5.8"
@@ -5834,10 +5834,10 @@ laji-map@1.0.494, laji-map@^1.0.395:
     "@types/leaflet.markercluster" "*"
     "@types/node" "*"
 
-laji-map@^1.0.496:
-  version "1.0.497"
-  resolved "https://registry.yarnpkg.com/laji-map/-/laji-map-1.0.497.tgz#dc804815f4ab60ec075a2eed46399b93f36fd49b"
-  integrity sha512-EJJBOrTr+e9RThOJsmb3LIPAHjaaAzFaslrNL1WmNvvbIukkuzOo+biMQ9T7uyuQm8Mnc3dE3H9/ROnqwssMwQ==
+laji-map@^1.0.502:
+  version "1.0.506"
+  resolved "https://registry.yarnpkg.com/laji-map/-/laji-map-1.0.506.tgz#4d64b802dd1481a0eb7709fe5bca28ad073a9a13"
+  integrity sha512-XjwjQAjqs0ZjzhecEAXOew3tWAM0vhYrLWVHWTQdxOCNPG9z5EOTujy8kJEIJWA1Xc3KGi0rPEpixkYdOpTYWw==
   dependencies:
     Leaflet.vector-markers "git+https://git@github.com/olzraiti/Leaflet.vector-markers.git#17601bee91f2dae098a0a76e96714d59ec958fe6"
     leaflet "1.4.0"
