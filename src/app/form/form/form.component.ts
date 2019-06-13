@@ -74,7 +74,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
           this.initSchemaContext();
           this.apiClient.personToken = this.personToken;
           this.lajiFormWrapper = new LajiForm({
-            staticImgPath: '/static/lajiForm/',
+            staticImgPath: '/assets/images/laji-form',
             rootElem: this.formElem.nativeElement,
             schema: this.formData.schema,
             uiSchema: this.formData.uiSchema,
