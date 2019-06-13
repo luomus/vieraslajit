@@ -75,6 +75,8 @@
 
   "taxonomy.filters": null,
   "taxonomy.filters.clear": null,
+  "taxonomy.filters.iasGroups": null,
+  "taxonomy.filters.harmful": null,
   "taxonomy.filters.finnishList": null,
   "taxonomy.filters.euList": null,
   "taxonomy.filters.plantPests": null,

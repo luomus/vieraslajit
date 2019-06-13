@@ -49,9 +49,9 @@
 
   "taxonomy.grid.results.1": "Rajauksilla löytyi yhteensä",
   "taxonomy.grid.results.2": "vieraslajia",
-  "taxonomy.grid.loading": "Ladataa lisää lajeja...",
+  "taxonomy.grid.loading": "Ladataan lisää lajeja...",
 
-  "administrativeStatus.euInvasiveSpeciesList": "Haitallinen vieraslaji (EU luettelo)",
+  "administrativeStatus.euInvasiveSpeciesList": "Haitallinen vieraslaji (EU:n luettelo)",
   "administrativeStatus.nationallySignificantInvasiveSpecies": "Haitallinen vieraslaji (kansallinen luettelo)",
   "administrativeStatus.nationalInvasiveSpeciesStrategy": "Kuuluu kansalliseen vieraslajistrategiaan",
   "administrativeStatus.quarantinePlantPest": "Vaarallinen kasvintuhooja",
@@ -69,12 +69,14 @@
   "taxonomy.yes": "Kyllä",
   "taxonomy.no": "Ei",
   "taxonomy.nonspecies": "(ei kotoperäiset)",
-  "tooltip.fiList": "Laji kuuluu kansallisesti haitallisten vieraslajien luetteloon. EU:n säädökset antavat valtioille mahdollisuuden määrittää kansallisesti haitallisia vieraslajeja. Suomi on toistaiseksi sisällyttänyt kansalliseen luetteloon kuusi lajia, kymmenen lajiryhmää ja yhden risteymän. Yksi kansallisen luettelon lajeista, kaukasianjättiputki, on siirretty EU:n luetteloon 2017. Jäsenvaltiot voivat määrittää näille lajeille omia rajoituksiaan.",
+  "tooltip.fiList": "Laji kuuluu kansallisesti haitallisten vieraslajien luetteloon. EU:n säädökset antavat valtioille mahdollisuuden määrittää kansallisesti haitallisia vieraslajeja. Suomi on toistaiseksi sisällyttänyt kansalliseen luetteloon 16 lajia, kahdeksan lajiryhmää ja yhden risteymän. Jäsenvaltiot voivat määrittää näille lajeille omia rajoituksiaan.",
   "tooltip.euList": "Laji on säädetty haitalliseksi vieraslajiksi koko EU:n tasolla, minkä johdosta lajien maahantuonti, kasvatus, myynti ja muu hallussapito sekä ympäristöön päästäminen on kielletty.",
   "tooltip.quarantine": "Laji on luokiteltu vaaralliseksi kasvintuhoojaksi. Kaikki havainnot näistä lajeista on ilmoitettava Ruokavirastoon.",
 
   "taxonomy.filters": "Rajaukset",
   "taxonomy.filters.clear": "Poista kaikki valinnat",
+  "taxonomy.filters.iasGroups": "Vieraslajiryhmät",
+  "taxonomy.filters.harmful": "Haitalliset vieraslajit",
   "taxonomy.filters.finnishList": "Kansallinen luettelo",
   "taxonomy.filters.euList": "EU:n luettelo",
   "taxonomy.filters.plantPests": "Vaaralliset kasvintuhoojat",
@@ -116,7 +118,7 @@
   "technical": "tekninen tiedote",
 
   "forms.title": "Vieraslajien havaintolomake",
-  "forms.desc.1": "Älypuhelimille suunniteltua vieraslajihavaintojen ilmoituslomaketta käyttämällä osallistut VieKas LIFE-hankkeen kansalaistiedetoimintaan.",
+  "forms.desc.1": "Älypuhelimille suunniteltua vieraslajihavaintojen ilmoituslomaketta käyttämällä osallistut VieKas LIFE -hankkeen kansalaistiedetoimintaan.",
   "forms.desc.2": "Lomakkeella ilmoitetut havainnot tallentuvat Lajitietokeskuksen tietokantaan ja ovat viranomaisten, kuntien, yhdistysten ja yksityishenkilöiden käytössä esim. kustannustehokkaita torjuntasuunnitelmia laadittaessa. Paikkakunnasta ja ilmoitettavasta vieraslajista riippuen vieraslajihavainnon ilmoittaminen voi johtaa torjuntatoimien käynnistymiseen.",
   "forms.desc.3": "Tallennetut havainnot ja niihin liittyvät kuvat julkaistaan Laji.fi-sivuston kautta avoimena tietona Creative Commons Nimeä 4.0 -lisenssillä.",
   "forms.desc.4": "Käyttöehdot",
@@ -129,7 +131,7 @@
 
   "observation-map.count": "havaintoa.",
   "observation-map.instructions": "Rajaa hakua nähdäksesi listan tarkoista havainnoista.",
-  "observation-map.laji": "Tarkastele laji.fi kartalla",
+  "observation-map.laji": "Tarkastele Laji.fi-kartalla",
 
   "observation-map.filterMenu.municipality": "KUNTA",
   "observation-map.filterMenu.municipality.all": "Kaikki kunnat",

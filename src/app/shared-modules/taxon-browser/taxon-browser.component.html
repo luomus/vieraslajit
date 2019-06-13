@@ -9,7 +9,7 @@
 <!--         <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid> -->
 <!--             <vrs-group-dropdown [groups]="['MVL.232', 'MVL.27', 'MVL.343', 'MVL.1', 'MVL.28', 'MVL.26', 'MVL.40', 'MVL.2', 'MVL.233', 'MVL.37', 'MVL.39', 'MVL.41']"
             (selected)="onGroupSelected($event)"></vrs-group-dropdown> -->
-            <options-accordion header="Vieraslajiryhmät">
+            <options-accordion header="{{'taxonomy.filters.iasGroups' | translate}}">
                 <div class="checkbox">
                     <input type="checkbox" id="plants" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG2')" #plantsCheckbox>
                     <label for="plants" translate>iasGroupName.plants</label>
@@ -39,7 +39,7 @@
                     <label for="agricultural-pests" translate>iasGroupName.agricultural</label>
                 </div>
             </options-accordion>
-            <options-accordion header="Haitalliset vieraslajit">
+            <options-accordion header="{{'taxonomy.filters.harmful' | translate}}">
                 <div class="checkbox">
                     <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList" #fiCheckbox>
                     <label for="finnishList" translate>taxonomy.filters.finnishList</label>
