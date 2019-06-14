@@ -40,8 +40,7 @@
   "omnisearch.results.none": "No results",
 
   "home.viekas.title": "VieKas LIFE",
-  "home.viekas.description": "VieKas LIFE (2018–2023) is the Finland’s largest and most ambitious project that aims to survey, prevent and raise awareness of invasive alien species.
-In the project, Finns are familiarized with harmful invasive alien species with example species such as Indian balsam, giant hogweeds and yellow skunk gabbage..",
+  "home.viekas.description": "VieKas LIFE (2018–2023) is the Finland’s largest and most ambitious project that aims to survey, prevent and raise awareness of invasive alien species. In the project, Finns are familiarized with harmful invasive alien species with example species such as Indian balsam, giant hogweeds and yellow skunk gabbage..",
   "home.viekas.report": "Report an observation of invasive alien species",
   "home.viekas.viekasLink": "To Viekas LIFE pages",
   "home.viekas.calendar": "Event calendar",
@@ -52,7 +51,7 @@ In the project, Finns are familiarized with harmful invasive alien species with 
   "taxonomy.grid.results.2": "invasive alien species",
   "taxonomy.grid.loading": "Downloading more species...",
 
-  "administrativeStatus.euInvasiveSpeciesList": "Invasive alien species of Union concern (EU list)”,
+  "administrativeStatus.euInvasiveSpeciesList": "Invasive alien species of Union concern (EU list)",
   "administrativeStatus.nationallySignificantInvasiveSpecies": "Invasive alien species of national importance (national list)",
   "administrativeStatus.nationalInvasiveSpeciesStrategy": "Is on Finland’s national strategy on invasive alien species",
   "administrativeStatus.quarantinePlantPest": "Quarantine plant pest",
@@ -83,7 +82,7 @@ In the project, Finns are familiarized with harmful invasive alien species with 
   "taxonomy.filters.plantPests": "Quarantine plant pest",
   "taxonomy.listMode.grid": "Grid",
   "taxonomy.listMode.list": "List",
-  
+
   "iasGroupName.plants": "Plants",
   "iasGroupName.mammals": "Mammals and birds",
   "iasGroupName.freshwater": "Freshwater",
@@ -120,8 +119,7 @@ In the project, Finns are familiarized with harmful invasive alien species with 
 
   "forms.title": "Report form for invasive alien species",
   "forms.desc.1": "Using the invasive alien species report form for smart phones, you will participate in the civic activities of the VieKas LIFE Project.",
-  "forms.desc.2": "The observations reported on the form are stored in the database of FinBIF and are available for the authorities, municipalities, associations and individuals for example for making cost effective
-prevention plans. Depending on the locality and the species to be reported, reporting invasive alien species observation may result in eradication action.",
+  "forms.desc.2": "The observations reported on the form are stored in the database of FinBIF and are available for the authorities, municipalities, associations and individuals for example for making cost effective prevention plans. Depending on the locality and the species to be reported, reporting invasive alien species observation may result in eradication action.",
   "forms.desc.3": "Reported observations and related images are published via Species.fi as open data under Creative Commons Attribution 4.0 license.",
   "forms.desc.4": "Terms of service",
   "forms.list.title": "Last modified observations",
