@@ -19,6 +19,7 @@ export class FilterMenuComponent {
     @Output() ownModeChange = new EventEmitter();
     @Output() municipalityChange = new EventEmitter();
     @Output() taxonChange = new EventEmitter();
+    @Output() onClose = new EventEmitter();
 
     @ViewChild(TaxonSearchComponent) taxonSearch: TaxonSearchComponent;
     @ViewChild(TimeSelectorComponent) timeSelector : TimeSelectorComponent;

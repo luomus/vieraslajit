@@ -1,4 +1,5 @@
 <div class="menu" [ngStyle]="hidden && {'display': 'none'}">
+    <button class="close" (click)="onClose.emit($event)">×</button>
   <div class="filter-group">
     <h5 translate>observation-map.filterMenu.municipality</h5>
     <div class="input-group">

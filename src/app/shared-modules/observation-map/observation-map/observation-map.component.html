@@ -14,9 +14,11 @@
     (plantPestChange)="onPlantPestCheckbox($event)"
     (municipalityChange)="onSelectMunicipality($event)"
     (timeChange)="onTimeChange($event)"
-    (taxonChange)="onTaxonChange($event)">
+    (taxonChange)="onTaxonChange($event)"
+    (onClose)="filterMenuHidden = true">
   </vrs-map-filters>
   <div class="right-float-menu" *ngIf="listMenuEnabled" [ngStyle]="listHidden && {'display': 'none'}">
+    <button class="close" (click)="listHidden = true">×</button>
     <vrs-obs-map-list [ngClass]="{'hidden': isAggregateMap()}"></vrs-obs-map-list>
     <div [ngClass]="{'hidden': !isAggregateMap()}">
       <h5 class="observation-count"><b>{{getObservationCount() | number}}</b> {{'observation-map.count' | translate}}</h5>
