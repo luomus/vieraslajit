@@ -86,10 +86,10 @@ export class MapService {
             },
             getPopup: (options: GetPopupOptions):string=>{
                 const feature = options.featureIdx;
-                const name = obs[feature].unit.linkings.taxon.vernacularName.fi;
-                const municipality = obs[feature].gathering.interpretations.municipalityDisplayname || "";
-                const date = obs[feature].gathering.displayDateTime;
-                const notes = obs[feature].unit.notes || "";
+                const name = obs[feature].unit.linkings.taxon.vernacularName.fi ? obs[feature].unit.linkings.taxon.vernacularName.fi : "";
+                const municipality = obs[feature].gathering.interpretations ? obs[feature].gathering.interpretations.municipalityDisplayname : "";
+                const date = obs[feature].gathering.displayDateTime ? obs[feature].gathering.displayDateTime : "";
+                const notes = obs[feature].unit.notes ? obs[feature].unit.notes : "";
                 const reliability = obs[feature].unit.quality.reliable ? "Luotettava" : "";
 
                 this.eventEmitter.emit('onPopup', obs[feature]);
