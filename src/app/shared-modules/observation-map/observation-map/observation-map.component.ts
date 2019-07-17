@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef, Renderer2, OnDestroy } from '@angular/core';
 
 import { UserService } from '../../../shared/service/user.service';
 import { ObsMapOptions, ObsMapOption } from './services/data/ObsMapOptions';
@@ -18,7 +18,7 @@ import { FilterMenuComponent } from './filter-menu/filter-menu.component';
   styleUrls: ['./observation-map.component.scss']
 })
 
-export class ObservationMapComponent implements AfterViewInit, OnInit{
+export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy{
   @Input() id?: string;
   @Input() listMenuEnabled?: boolean = false;
   @Input() filterMenuEnabled?: boolean = false;
@@ -45,12 +45,15 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
   filterMenuHidden = false;
   listHidden = false;
 
+  resizeUnlisten = () => {}
+
   constructor(private obsMapOptions:ObsMapOptions,
               private mapApiController:MapApiService,
               private mapService:MapService,
               private obsMapData: ObsMapData,
               private route: ActivatedRoute,
               private router: Router,
+              private renderer: Renderer2,
               private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
@@ -127,6 +130,10 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
 
     // DYNAMIC MAP HEIGHT
     if (this.mapHeight === 0) {
+      this.resizeUnlisten = this.renderer.listen(window, 'resize', () => {
+        this.mapHeight = window.innerHeight - this.mapRow.nativeElement.offsetTop;
+        this.cd.detectChanges();
+      });
       this.mapHeight = window.innerHeight - this.mapRow.nativeElement.offsetTop;
       this.cd.detectChanges();
     }
@@ -142,6 +149,10 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
     if(this.mapTaxonList) this.mapTaxonList.eventEmitter.addListener("change", (e)=>{
       this.onTableActivate(e);
     });
+  }
+
+  ngOnDestroy() {
+    this.resizeUnlisten();
   }
 
   onSelectMunicipality(val) {
