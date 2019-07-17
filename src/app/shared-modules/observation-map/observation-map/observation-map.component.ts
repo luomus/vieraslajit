@@ -172,7 +172,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit{
       this.mapService.zoomAt(
         coordinates,
         this.obsMapOptions.getOption("municipality") ? 7 : 5);
-      this.mapService.openPopup(coordinates);
+      this.mapService.openPopup(e.row.gathering.gatheringId);
     }
   }
 
