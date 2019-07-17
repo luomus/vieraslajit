@@ -74,6 +74,7 @@ export class TaxonBrowserApiService {
     }
 
     updateTaxa(append = false) {
+        console.log({...this.query})
         this.apiService.taxonomyFindById(LajiApi.Endpoints.taxa, '', this.query).pipe(
             tap((res)=>{this.settingsService.apiSettings.total = res.total; this.lastPage = res.lastPage;}),
             map(res=>res.results)
