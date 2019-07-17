@@ -152,5 +152,9 @@
 
   "observation.datetime": "Datum",
   "observations.modal.title": "Observation",
-  "observations.modal.close": "Stäng"
+  "observations.modal.close": "Stäng",
+
+  "datatable.observations.empty": null,
+  "datatable.map.empty": null,
+  "datatable.species.empty": null
 }

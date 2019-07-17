@@ -28,6 +28,8 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
 
     sidebarActive = true;
 
+    resizeUnlisten = () => {}
+
     @ViewChild('sidebar') sidebar: ElementRef;
     @ViewChild('sidebarToggle') sidebarToggle: ElementRef;
     @ViewChild('cardscont') cardsContainer: ElementRef;
@@ -98,6 +100,12 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
             this.renderer.removeClass(this.sidebarToggle.nativeElement, "oi-arrow-thick-left");
             this.renderer.addClass(this.sidebarToggle.nativeElement, "oi-arrow-thick-right");
         }
+        this.resizeUnlisten = this.renderer.listen(window, 'resize', () => {
+            this.maxHeight = window.innerHeight - this.cardsContainer.nativeElement.offsetTop;
+            const viewportOffset = this.optionsMenu.nativeElement.getBoundingClientRect();
+            this.optionsHeight = window.innerHeight - viewportOffset.top
+            this.cd.detectChanges();
+        });
         this.maxHeight = window.innerHeight - this.cardsContainer.nativeElement.offsetTop;
         const viewportOffset = this.optionsMenu.nativeElement.getBoundingClientRect();
         this.optionsHeight = window.innerHeight - viewportOffset.top
@@ -106,6 +114,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
 
     ngOnDestroy() {
         this.langChangeSub ? this.langChangeSub.unsubscribe() : null;
+        this.resizeUnlisten();
     }
 
     getTotalItems() {

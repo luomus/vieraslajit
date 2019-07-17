@@ -152,6 +152,10 @@
 
   "observation.datetime": "Date",
   "observations.modal.title": "Observation",
-  "observations.modal.close": "Close"
+  "observations.modal.close": "Close",
+
+  "datatable.observations.empty": "No observations",
+  "datatable.map.empty": "No observations found",
+  "datatable.species.empty": "No species found"
 }
 

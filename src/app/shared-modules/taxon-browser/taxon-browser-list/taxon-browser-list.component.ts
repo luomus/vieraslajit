@@ -17,7 +17,11 @@ import { Taxonomy } from "../../../shared/model";
                 [infiniteScrollThrottle]="1000"
                 [infiniteScrollContainer]="'datatable-body'"
                 [fromRoot]="true"
-                (scrolled)="onScroll()">
+                (scrolled)="onScroll()"
+                [messages]="{
+                    emptyMessage: getEmptyMessage()
+                }"
+                >
                </ngx-datatable>`,
     styleUrls: ['taxon-browser-list.component.scss']
 })
@@ -118,5 +122,9 @@ export class TaxonBrowserListComponent {
         if (valueA > valueB) return -1;
         if (valueA < valueB) return 1;
         return 0;
+    }
+
+    getEmptyMessage() {
+        return this.translate.instant('datatable.species.empty')
     }
 }

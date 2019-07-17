@@ -152,5 +152,9 @@
 
   "observation.datetime":"Päivämäärä",
   "observations.modal.title": "Havainto",
-  "observations.modal.close": "Sulje"
+  "observations.modal.close": "Sulje",
+
+  "datatable.observations.empty": "Ei havaintoja",
+  "datatable.map.empty": "Ei havaintoja",
+  "datatable.species.empty": "Ei lajeja"
 }

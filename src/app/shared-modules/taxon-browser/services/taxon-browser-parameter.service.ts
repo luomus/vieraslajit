@@ -42,9 +42,12 @@ export class TaxonBrowserParameterService {
     }
 
     clearQuery() {
-        this.query = {};
-        this.settings.clear();
-        this.queryEventEmitter.emit({});
-        this.router.navigate([], { queryParams: this.query });
+        let q = {
+            invasiveSpeciesMainGroups: [],
+            FiList: false,
+            EuList: false,
+            PlantPest: false
+        }
+        this.router.navigate([], { queryParams: q });
     }
 }

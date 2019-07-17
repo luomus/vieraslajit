@@ -57,10 +57,9 @@ export class MapService {
         this.map.setOptions({center: center, zoom: zoomLevel});
     }
 
-    openPopup(coordinates: [number, number]) {
-        // HACK
+    openPopup(gatheringId: string) {
         const index = this.map.data[0].featureCollection.features.findIndex(
-            (f) => coordinates[0] === f.geometry.coordinates[1] && coordinates[1] === f.geometry.coordinates[0]
+            (f) => gatheringId === f.properties.gatheringId
         );
         const layer: any = this.map.getLayerByIdxTuple([0,index]);
         layer.fire("click", {latlng: layer.getCenter ? layer.Center() : layer.getLatLng()});
@@ -87,10 +86,10 @@ export class MapService {
             },
             getPopup: (options: GetPopupOptions):string=>{
                 const feature = options.featureIdx;
-                const name = obs[feature].unit.linkings.taxon.vernacularName.fi;
-                const municipality = obs[feature].gathering.interpretations.municipalityDisplayname || "";
-                const date = obs[feature].gathering.displayDateTime;
-                const notes = obs[feature].unit.notes || "";
+                const name = obs[feature].unit.linkings.taxon.vernacularName.fi ? obs[feature].unit.linkings.taxon.vernacularName.fi : "";
+                const municipality = obs[feature].gathering.interpretations ? obs[feature].gathering.interpretations.municipalityDisplayname : "";
+                const date = obs[feature].gathering.displayDateTime ? obs[feature].gathering.displayDateTime : "";
+                const notes = obs[feature].unit.notes ? obs[feature].unit.notes : "";
                 const reliability = obs[feature].unit.quality.reliable ? "Luotettava" : "";
 
                 this.eventEmitter.emit('onPopup', obs[feature]);
@@ -151,7 +150,9 @@ export class MapService {
                         [o.gathering.conversions.wgs84CenterPoint.lon,
                             o.gathering.conversions.wgs84CenterPoint.lat]
                         },
-                        properties: {}
+                        properties: {
+                            gatheringId: o.gathering.gatheringId
+                        }
                     };
                     features.push(f);
                 }

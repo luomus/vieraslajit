@@ -17,6 +17,9 @@ import { ObsMapOptions } from "../services/data/ObsMapOptions";
     [reorderable]='false'
     scrollbarV="true"
     (activate)="onTableActivate($event)"
+    [messages]="{
+        emptyMessage: getEmptyMessage()
+    }"
     >
     </ngx-datatable>`,
     styleUrls: [`obs-map-list.component.scss`]
@@ -51,5 +54,9 @@ export class ObsMapListComponent implements OnInit {
 
     onTableActivate(e) {
         this.eventEmitter.emit("change", e);
+    }
+
+    getEmptyMessage() {
+        return this.translate.instant('datatable.map.empty')
     }
 }
