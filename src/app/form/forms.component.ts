@@ -58,4 +58,8 @@ export class FormsComponent implements OnInit {
             })
         );
     }
+
+    getEmptyMessage() {
+        return this.translate.instant('datatable.observations.empty')
+    }
 }
