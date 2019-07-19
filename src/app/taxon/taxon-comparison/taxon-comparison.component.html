@@ -48,7 +48,7 @@
                   <div>
                     <ul>
                       <li *ngFor="let status of taxon.administrativeStatuses">
-                        {{status | label: 'MX.adminStatusEnum':lang | async}}
+                        {{status | metadatalabel: 'MX.adminStatusEnum':lang | async}}
                       </li>
                     </ul>
                   </div>
@@ -132,7 +132,7 @@
                     <div>
                       <ul>
                         <li *ngFor="let status of selected?.administrativeStatuses">
-                          {{status | label: 'MX.adminStatusEnum':lang | async}}
+                          {{status | metadatalabel: 'MX.adminStatusEnum':lang | async}}
                         </li>
                       </ul>
                     </div>
