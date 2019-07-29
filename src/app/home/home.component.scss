@@ -49,14 +49,20 @@
         }
     }
 
-    .hero-overlap {
-        width: 700px;
-        height: 300px;
+    .hero-overlap-cont {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        width: 100%;
         position: absolute;
-        background: $neutral-2;
         bottom: -75px;
-        left: 50%;
-        margin-left: -350px;
+        @include media-breakpoint-down(sm) {
+            bottom: -150px;
+        }
+    }
+
+    .hero-overlap {
+        background: $neutral-2;
         z-index: 1;
         border-radius: 15px;
         padding: 50px;
@@ -66,8 +72,7 @@
         justify-content: center;
         font-size: 0.9em;
         @include media-breakpoint-down(xs) {
-            width: unset;
-            height: unset;
+            width: 100%;
             left: 0;
             margin-left: 0;
             border-radius: 0;
@@ -76,6 +81,7 @@
         }
         p {
             text-align: left;
+            max-width: 32rem;
         }
         div {
             text-align: center;
@@ -89,9 +95,9 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: flex-start;
-        button {
-            margin: 0;
-            margin-right: 5px;
+        max-width: 33rem;
+        .vrs-button {
+            margin: 5px;
             @include media-breakpoint-down(xs) {
                 flex: 1 0 100%;
                 margin-top: 5px;
@@ -99,9 +105,6 @@
                     margin-bottom: 5px;
                 }
             }
-        }
-        @include media-breakpoint-up(xl) {
-            flex-flow: row nowrap;
         }
     }
 

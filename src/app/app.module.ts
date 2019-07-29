@@ -19,6 +19,7 @@ import { StateService } from './state.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LoaderInterceptor } from './shared/interceptor/loader-interceptor';
+import { TranslateFileLoader } from './translate-file-loader';
 
 registerLocaleData(localeFi);
 
@@ -40,8 +41,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
+        useClass: TranslateFileLoader
       }
     }),
     VrsRouterModule,

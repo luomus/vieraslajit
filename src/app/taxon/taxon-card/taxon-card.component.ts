@@ -7,12 +7,15 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 
+const descriptionGroupSortPosition = {
+  "MX.SDVG13": 0
+}
+
 @Component({
   selector: 'vrs-taxon-card',
   templateUrl: './taxon-card.component.html',
   styleUrls: ['./taxon-card.component.scss']
 })
-
 export class TaxonCardComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   private onLangChange: Subscription;
@@ -65,6 +68,25 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     });
     this.taxonService.getTaxonDescription(this.id, this.translate.currentLang).subscribe(data => {
       this.desc = data[0];
+      if (this.desc.groups) {
+        this.desc.groups.sort((group1, group2) => {
+          let pos1 = 100
+          let pos2 = 100
+          if (group1.group in descriptionGroupSortPosition) {
+            pos1 = descriptionGroupSortPosition[group1.group]
+          }
+          if (group2.group in descriptionGroupSortPosition) {
+            pos2 = descriptionGroupSortPosition[group1.group]
+          }
+          if (pos1 < pos2) {
+            return -1;
+          } else if (pos1 > pos2) {
+            return 1;
+          } else {
+            return 0;
+          }
+        })
+      }
     });
     this.taxonService.getTaxonMedia(this.id, this.translate.currentLang).subscribe(data => {
       this.media = data;

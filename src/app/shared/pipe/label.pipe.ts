@@ -5,7 +5,7 @@ import { map } from '../../../../node_modules/rxjs/operators';
 
 
 @Pipe({
-  name: 'label'
+  name: 'metadatalabel'
 })
 export class LabelPipe implements PipeTransform {
   value = '';

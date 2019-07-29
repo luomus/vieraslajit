@@ -118,3 +118,7 @@ a.hamburger {
     top: 1.3em;
     left: 1.3em;
 }
+
+:host ::ng-deep vrs-language-selector .language-selector {
+    color: $primary-4;
+}

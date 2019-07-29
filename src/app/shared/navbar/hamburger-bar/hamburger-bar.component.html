@@ -25,6 +25,7 @@
             </div>
         </div>
         <div class="user-menu">
+            <vrs-language-selector></vrs-language-selector>
             <hr>
             <h5 *ngIf="getLoggedIn()">{{getUserProps().person.fullName}}</h5>
             <a *ngIf="getLoggedIn()" (click)="logout()" class="link" translate>navigation.logout</a>

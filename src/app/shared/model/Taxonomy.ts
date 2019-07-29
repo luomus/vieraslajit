@@ -208,11 +208,9 @@ export interface TaxonomyDescriptionVariable {
 }
 
 export interface TaxonomyDescriptionGroup {
-
     title?: string;
-
     variables?: Array<TaxonomyDescriptionVariable>;
-
+    group?: string;
 }
 
 export interface TaxonomyDescription {
