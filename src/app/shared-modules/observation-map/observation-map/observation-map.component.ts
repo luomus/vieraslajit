@@ -183,7 +183,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
       this.mapService.zoomAt(
         coordinates,
         this.obsMapOptions.getOption("municipality") ? 7 : 5);
-      this.mapService.openPopup(e.row.gathering.gatheringId);
+      this.mapService.openPopup(e.row.unit.unitId);
     }
   }
 
