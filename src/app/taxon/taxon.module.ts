@@ -12,6 +12,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TaxonComparisonComponent } from './taxon-comparison/taxon-comparison.component';
 import { TaxonBrowserModule } from '../shared-modules/taxon-browser/taxon-browser.module';
 import { ObservationMapModule } from '@observation-map/observation-map.module';
+import { TaxonCardFacade } from './taxon-card/taxon-card.facade';
 
 /**
  * Declares routes and components for browsing and viewing invasive species
@@ -32,6 +33,7 @@ import { ObservationMapModule } from '@observation-map/observation-map.module';
     TaxonBrowserModule,
     ObservationMapModule
   ],
+  providers: [TaxonCardFacade],
   declarations: [TaxonListComponent, TaxonCardComponent, TaxonComparisonComponent ]
 })
 export class TaxonModule { }
