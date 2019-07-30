@@ -67,7 +67,7 @@ export class MapService {
 
     private getObservationMapData(geoJSON):Data[] {
         let mapData=[];
-        const obs = this.obsMapData.getData().payload
+        const obs: any[] = this.obsMapData.getData().payload
 
         let dataOptions: DataOptions = {
             featureCollection: geoJSON,
@@ -85,14 +85,14 @@ export class MapService {
                 return p;
             },
             getPopup: (options: GetPopupOptions):string=>{
-                const feature = options.featureIdx;
-                const name = obs[feature].unit.linkings.taxon.vernacularName.fi ? obs[feature].unit.linkings.taxon.vernacularName.fi : "";
-                const municipality = obs[feature].gathering.interpretations ? obs[feature].gathering.interpretations.municipalityDisplayname : "";
-                const date = obs[feature].gathering.displayDateTime ? obs[feature].gathering.displayDateTime : "";
-                const notes = obs[feature].unit.notes ? obs[feature].unit.notes : "";
-                const reliability = obs[feature].unit.quality.reliable ? "Luotettava" : "";
+                const value = obs.find((v) => (v.unit.unitId == options.feature.properties.unitId))
+                const name = value.unit.linkings.taxon.vernacularName.fi ? value.unit.linkings.taxon.vernacularName.fi : "";
+                const municipality = value.gathering.interpretations ? value.gathering.interpretations.municipalityDisplayname : "";
+                const date = value.gathering.displayDateTime ? value.gathering.displayDateTime : "";
+                const notes = value.unit.notes ? value.unit.notes : "";
+                const reliability = value.unit.quality.reliable ? "Luotettava" : "";
 
-                this.eventEmitter.emit('onPopup', obs[feature]);
+                this.eventEmitter.emit('onPopup', value);
 
                 const compFac = this.resolver.resolveComponentFactory(ObservationMapPopupComponent);
                 const compRef = compFac.create(this.injector);
@@ -101,9 +101,9 @@ export class MapService {
                 compRef.instance.date = date;
                 compRef.instance.notes = notes;
                 compRef.instance.reliability = reliability;
-                compRef.instance.taxonId = obs[feature].unit.linkings.taxon.id.substring(14);
-                compRef.instance.observationId = obs[feature].document.documentId;
-                compRef.instance.unitId = obs[feature].unit.unitId;
+                compRef.instance.taxonId = value.unit.linkings.taxon.id.substring(14);
+                compRef.instance.observationId = value.document.documentId;
+                compRef.instance.unitId = value.unit.unitId;
                 compRef.instance.modalRef = this.modalRef;
                 compRef.changeDetectorRef.detectChanges();
                 return compRef.location.nativeElement;
