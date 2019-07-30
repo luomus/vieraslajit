@@ -57,9 +57,9 @@ export class MapService {
         this.map.setOptions({center: center, zoom: zoomLevel});
     }
 
-    openPopup(gatheringId: string) {
+    openPopup(unitId: string) {
         const index = this.map.data[0].featureCollection.features.findIndex(
-            (f) => gatheringId === f.properties.gatheringId
+            (f) => unitId === f.properties.unitId
         );
         const layer: any = this.map.getLayerByIdxTuple([0,index]);
         layer.fire("click", {latlng: layer.getCenter ? layer.Center() : layer.getLatLng()});
@@ -151,7 +151,7 @@ export class MapService {
                             o.gathering.conversions.wgs84CenterPoint.lat]
                         },
                         properties: {
-                            gatheringId: o.gathering.gatheringId
+                            unitId: o.unit.unitId
                         }
                     };
                     features.push(f);
