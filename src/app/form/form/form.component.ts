@@ -4,14 +4,15 @@ import {
     ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges, OnInit
 } from '@angular/core';
 import { FormService } from '../../shared/service/form.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import LajiForm from 'laji-form/lib/laji-form';
 import { FormApiClient } from '../../shared/api/FormApiClient';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService, Role } from '../../shared/service/user.service';
 import { DocumentService } from '../../shared/service/document.service';
-import { AlertService } from '../../shared/service/alert.service';
+import { FormFacade } from './form.facade';
+import { filter, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'vrs-form',
@@ -20,10 +21,10 @@ import { AlertService } from '../../shared/service/alert.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
+  unsubscribe$ = new Subject<void>()
+
   @ViewChild('lajiform') formElem: ElementRef;
 
-  private sub: Subscription;
-  private onLangChange: Subscription;
   private id: string;
   private documentId: string;
   private personToken: string;
@@ -32,16 +33,22 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
   formData: any;
   documentData: any;
   lajiFormWrapper: any;
-  lang: string;
   loggedIn = false;
   loginUrl: string;
   saving = false;
 
   constructor(@Inject(ElementRef) elementRef: ElementRef,
-    private formService: FormService, private apiClient: FormApiClient, private docService: DocumentService,
-    private route: ActivatedRoute, private router: Router, private translate: TranslateService,
-    private userService: UserService, private ngZone: NgZone, private cd: ChangeDetectorRef,
-    private el: ElementRef, private alertService: AlertService) {
+              private facade: FormFacade,
+              private formService: FormService,
+              private apiClient: FormApiClient,
+              private docService: DocumentService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private translate: TranslateService,
+              private userService: UserService,
+              private ngZone: NgZone,
+              private cd: ChangeDetectorRef,
+              private el: ElementRef) {
     this.loggedIn = UserService.loggedIn();
   }
 
@@ -50,20 +57,20 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   ngAfterViewInit() {
-    this.onLangChange = this.translate.onLangChange.subscribe(() => this.langChange());
-    if (this.loggedIn) {
-      this.personToken = UserService.getToken();
-      this.sub = this.route.params.subscribe(params => {
-        this.id = params['formId'];
-        this.documentId = params['documentId'];
-        if (this.documentId) {
-          this.edit = true;
-          this.initFormWithDocument();
-        } else {
-          this.initNewDocument();
-        }
-      });
-    }
+    if (!this.loggedIn) return
+
+    this.personToken = UserService.getToken();
+
+    this.facade.data$.pipe(takeUntil(this.unsubscribe$), filter(a => a)).subscribe(this.initForm.bind(this));
+    this.route.params.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
+      this.id = params['formId'];
+      this.documentId = params['documentId'];
+      this.facade.loadData(this.id, this.documentId)
+      if (this.documentId) this.edit = true;
+    });
+
+    // TODO: not working rn
+    this.translate.onLangChange.pipe(takeUntil(this.unsubscribe$)).subscribe(() => this.facade.loadData(this.id, this.documentId));
   }
 
   initForm(data) {
@@ -96,44 +103,11 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
       });
   }
 
-  initNewDocument() {
-    this.formService.getFormById(this.id, this.translate.currentLang).subscribe(data => {
-      this.initForm({...data, formData: this.initFormData()});
-    });
-  }
-
-  initFormWithDocument() {
-    this.formService.loadFormWithDocument(this.id, this.translate.currentLang, this.documentId, this.personToken).subscribe((formData) => {
-      this.initForm(formData);
-    });
-  }
-
-  langChange() {
-    this.lajiFormWrapper.setState({ lang: this.translate.currentLang });
-    this.formService
-      .getFormById(this.id, this.translate.currentLang)
-      .subscribe(form => {
-        form['formData'] = this.formData.formData;
-        this.lang = this.translate.currentLang;
-        this.formData = form;
-        this.setFormDescription();
-        this.lajiFormWrapper.setState({
-          schema: this.formData.schema,
-          uiSchema: this.formData.uiSchema,
-          validators: this.formData.validators,
-          warnings: this.formData.warnings
-        });
-      });
-  }
   private initSchemaContext() {
     this.formData.uiSchemaContext = {};
     this.formData.uiSchemaContext.formID = this.id;
     this.formData.uiSchemaContext['creator'] = UserService.getUserId();
     this.formData.uiSchemaContext.isAdmin = UserService.hasRole(Role.CMS_ADMIN);
-  }
-
-  private initFormData() {
-    return { gatheringEvent: { leg: [UserService.getUserId()] } };
   }
 
   private setFormDescription() {
@@ -172,7 +146,6 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
         this.docService.createDocument(this.personToken, formData);
       doc$.subscribe(
         (result) => {
-          this.alertService.sendAlert(true);
           this.router.navigate(['ilmoita'], {
               queryParams: {
                 user: true
@@ -180,8 +153,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
           });
         },
         (error) => {
-          console.log('Error');
-          console.log(error);
+          console.log('Error: ', error);
           alert(error);
           this.saving = false;
         }
@@ -190,8 +162,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.onLangChange ? this.onLangChange.unsubscribe() : null;
-    this.sub ? this.sub.unsubscribe() : null;
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
-
 }
