@@ -65,10 +65,16 @@
 
 .mosaic-child-established {
     box-shadow: 0 0 0 2px hsl(0, 40, 70), 0px 2px 5px 1px rgba(#000, 0.25);
+    &:hover {
+        box-shadow: 0 0 0 2px hsl(0, 40, 70), 0px 7px 30px rgba(#000, 0.25);
+    }
 }
 
 .mosaic-child-sporadic {
     box-shadow: 0 0 0 2px hsl(50, 60, 70), 0px 2px 5px 1px rgba(#000, 0.25);
+    &:hover {
+        box-shadow: 0 0 0 2px hsl(50, 60, 70), 0px 7px 30px rgba(#000, 0.25);
+    }
 }
 
 .mosaic-img {
