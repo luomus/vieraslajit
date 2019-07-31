@@ -14,24 +14,24 @@ interface State {
 
 @Injectable()
 export class TaxonCardFacade {
-    private store = new BehaviorSubject<State>({
+    private store$ = new BehaviorSubject<State>({
       taxon: undefined,
       description: undefined,
       media: [],
       quarantinePlantPest: false
     })
 
-    state$: Observable<State> = this.store.asObservable()
+    state$: Observable<State> = this.store$.asObservable()
 
-    taxon$: Observable<Taxonomy> = this.store.asObservable().pipe(
+    taxon$: Observable<Taxonomy> = this.store$.asObservable().pipe(
         map(state => state.taxon),
         distinctUntilChanged()
     );
-    description$: Observable<TaxonomyDescription> = this.store.asObservable().pipe(
+    description$: Observable<TaxonomyDescription> = this.store$.asObservable().pipe(
         map(state => state.description),
         distinctUntilChanged()
     );
-    media$: Observable<TaxonomyImage[]> = this.store.asObservable().pipe(
+    media$: Observable<TaxonomyImage[]> = this.store$.asObservable().pipe(
         map(state => state.media),
         distinctUntilChanged()
     );
@@ -45,24 +45,24 @@ export class TaxonCardFacade {
     private updateTaxon(taxon: Taxonomy) {
         let quarantinePlantPest = taxon.administrativeStatuses.includes('MX.quarantinePlantPest');
         this.updateState(
-            {...this.store.getValue(), taxon, quarantinePlantPest}
+            {...this.store$.getValue(), taxon, quarantinePlantPest}
         )
     }
 
     private updateDescription(description: TaxonomyDescription) {
         this.updateState(
-            {...this.store.getValue(), description}
+            {...this.store$.getValue(), description}
         )
     }
 
     private updateMedia(media: any) {
         this.updateState(
-            {...this.store.getValue(), media}
+            {...this.store$.getValue(), media}
         )
     }
 
     private updateState(state: State) {
-        this.store.next(state)
+        this.store$.next(state)
     }
 
     ///////////////////

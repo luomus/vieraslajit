@@ -5,6 +5,7 @@ import { FormComponent } from './form/form.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsComponent } from './forms.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { FormsFacade } from './forms.facade';
 
 /**
  * Declares routes and components for rendering laji-forms
@@ -16,6 +17,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     SharedModule,
     NgxDatatableModule
   ],
+  providers: [FormsFacade],
   declarations: [FormComponent, FormsComponent]
 })
 export class FormModule { }
