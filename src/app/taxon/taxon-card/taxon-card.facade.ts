@@ -5,7 +5,7 @@ import { map, distinctUntilChanged, tap } from "rxjs/operators";
 import { TaxonService } from "app/shared/service/taxon.service";
 import { TranslateService } from "@ngx-translate/core";
 
-class State {
+interface State {
     taxon: Taxonomy
     description: TaxonomyDescription
     media: TaxonomyImage[]
@@ -14,20 +14,24 @@ class State {
 
 @Injectable()
 export class TaxonCardFacade {
-    private state = new State()
-    private dispatch = new BehaviorSubject<State>(this.state)
+    private store = new BehaviorSubject<State>({
+      taxon: undefined,
+      description: undefined,
+      media: [],
+      quarantinePlantPest: false
+    })
 
-    state$: Observable<State> = this.dispatch.asObservable()
+    state$: Observable<State> = this.store.asObservable()
 
-    taxon$: Observable<Taxonomy> = this.dispatch.asObservable().pipe(
+    taxon$: Observable<Taxonomy> = this.store.asObservable().pipe(
         map(state => state.taxon),
         distinctUntilChanged()
     );
-    description$: Observable<TaxonomyDescription> = this.dispatch.asObservable().pipe(
+    description$: Observable<TaxonomyDescription> = this.store.asObservable().pipe(
         map(state => state.description),
         distinctUntilChanged()
     );
-    media$: Observable<TaxonomyImage[]> = this.dispatch.asObservable().pipe(
+    media$: Observable<TaxonomyImage[]> = this.store.asObservable().pipe(
         map(state => state.media),
         distinctUntilChanged()
     );
@@ -41,25 +45,24 @@ export class TaxonCardFacade {
     private updateTaxon(taxon: Taxonomy) {
         let quarantinePlantPest = taxon.administrativeStatuses.includes('MX.quarantinePlantPest');
         this.updateState(
-            {...this.state, taxon, quarantinePlantPest}
+            {...this.store.getValue(), taxon, quarantinePlantPest}
         )
     }
 
     private updateDescription(description: TaxonomyDescription) {
         this.updateState(
-            {...this.state, description}
+            {...this.store.getValue(), description}
         )
     }
 
     private updateMedia(media: any) {
         this.updateState(
-            {...this.state, media}
+            {...this.store.getValue(), media}
         )
     }
 
     private updateState(state: State) {
-        this.state = state
-        this.dispatch.next(state)
+        this.store.next(state)
     }
 
     ///////////////////
