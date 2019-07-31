@@ -3,7 +3,6 @@ import { NgModule } from '../../../../node_modules/@angular/core';
 import { TaxonBrowserComponent } from './taxon-browser.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { TaxonCardGridComponent } from './taxoncard-grid/taxoncard-grid.component';
 import { RouterModule } from '../../../../node_modules/@angular/router';
 import { CommonModule } from '../../../../node_modules/@angular/common';
 import { TranslateModule } from '../../../../node_modules/@ngx-translate/core';
@@ -21,7 +20,7 @@ import { OptionsAccordionComponent } from './options-accordion.component';
 @NgModule({
     imports: [NgxPaginationModule, TabsModule, NgxDatatableModule, RouterModule,
         CommonModule, TranslateModule, FormsModule, SpinnerModule, SharedModule, InfiniteScrollModule],
-    declarations: [GroupDropdownComponent, TaxonCardGridComponent, TaxonMosaicComponent, TaxonBrowserComponent, TaxonBrowserListComponent, InformalGroupComponent, InformalGroupGridComponent, OptionsAccordionComponent ],
+    declarations: [GroupDropdownComponent, TaxonMosaicComponent, TaxonBrowserComponent, TaxonBrowserListComponent, InformalGroupComponent, InformalGroupGridComponent, OptionsAccordionComponent ],
     exports: [TaxonBrowserComponent]
 })
 export class TaxonBrowserModule {}
