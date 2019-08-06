@@ -37,6 +37,7 @@ export class FormsFacade {
                 "gatherings.municipality",
                 "gatherings.dateBegin",
                 "gatherings.units.identifications.taxon",
+                "id"
             ],
             pageSize: 10
         }
@@ -49,6 +50,7 @@ export class FormsFacade {
                     o['municipality'] = r.gatherings[0].municipality
                     o['dateBegin'] = r.gatherings[0].dateBegin
                     o['vernacularName'] = r.gatherings[0].units[0].identifications[0].taxon
+                    o['id'] = r.id
                     output.push(o);
                 }
                 return output;

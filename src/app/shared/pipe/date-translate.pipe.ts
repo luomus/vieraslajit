@@ -6,7 +6,7 @@ import { TimeAgoPipe } from 'angular2-moment';
 
 
 @Pipe({
-  name: 'label'
+  name: 'dateTranslate'
 })
 export class DateTranslatePipe implements PipeTransform {
   constructor(private cdr: ChangeDetectorRef, private zone: NgZone) { }

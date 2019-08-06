@@ -14,26 +14,31 @@
             <a class="btn vrs-button primary" routerLink="./MHL.53" translate>forms.list.formButton</a>
         </div>
     </div>
-    <ngx-datatable class="material"
-    [rows]="documents$ | async"
-    [columnMode]="'force'"
-    [columns]="columns"
-    [headerHeight]="50"
-    [rowHeight]="50"
-    [reorderable]='false'
-    [scrollbarV]="false"
-    [sorts]="[{
-        prop: 'dateEdited',
-        dir: 'desc'
-    }]"
-    [messages]="{
-        emptyMessage: getEmptyMessage()
-    }"
-    >
+
+    <ngx-datatable  class="material"
+                    [rows]="documents$ | async"
+                    [columnMode]="'force'"
+                    [columns]="columns"
+                    [headerHeight]="50"
+                    [rowHeight]="50"
+                    [reorderable]='false'
+                    [scrollbarV]="false"
+                    [sorts]="[{
+                        prop: 'dateEdited',
+                        dir: 'desc'
+                    }]"
+                    [messages]="{
+                        emptyMessage: getEmptyMessage()
+                    }">
     </ngx-datatable>
+
     </div>
 </div>
 
 <ng-template #loginError>
     <h1><a href="{{loginUrl}}" translate>form.login</a></h1>
+</ng-template>
+
+<ng-template #editCell let-row="row" let-value="value" let-i="index">
+    {{row.dateEdited | dateTranslate}} <a class="edit-btn oi oi-document" href="" [routerLink]="'./MHL.53/' + row.id"></a>
 </ng-template>

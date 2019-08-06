@@ -1,45 +1,24 @@
 import { Headers, Http, RequestOptionsArgs, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { TranslateService } from '@ngx-translate/core';
+import { UserService } from '../service/user.service';
 
 
 @Injectable()
 export class FormApiClient {
   protected basePath = environment.lajiApi.url;
   public defaultHeaders: Headers = new Headers();
-  private _lang: string;
-  private _personToken: string;
 
-  constructor(protected http: Http) {
-  }
-
-  public set lang(lang) {
-    this._lang = lang;
-  }
-
-  public get lang() {
-    return this._lang;
-  }
-
-  public set personToken(token) {
-    this._personToken = token;
-  }
-
-  public get personToken() {
-    return this._personToken;
-  }
+  constructor(protected http: Http, private translate: TranslateService) {}
 
   public fetch(resource: string, query: any, options?: RequestOptionsArgs): Promise<any> {
     const path = this.basePath + resource;
 
     const queryParameters = new URLSearchParams();
 
-    if (this._lang !== undefined) {
-      queryParameters.set('lang', this._lang);
-    }
-    if (this._personToken !== undefined) {
-      queryParameters.set('personToken', this._personToken);
-    }
+    queryParameters.set('lang', this.translate.currentLang);
+    queryParameters.set('personToken', UserService.getToken());
 
     for (const param in query) {
       if (!query.hasOwnProperty(param)) {
