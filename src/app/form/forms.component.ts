@@ -1,9 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, NgZone, ViewChild, TemplateRef } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { map } from "rxjs/operators";
 import { UserService } from "app/shared/service/user.service";
-import { DocumentService } from "app/shared/service/document.service";
-import { DateTranslatePipe } from "app/shared/pipe/date-translate.pipe";
 import { FormsFacade } from "./forms.facade";
 
 @Component({
@@ -21,17 +18,14 @@ export class FormsComponent implements OnInit {
     loginUrl = '';
 
     constructor(private translate: TranslateService,
-                private facade: FormsFacade,
-                private cdr: ChangeDetectorRef,
-                private zone: NgZone) {
-    }
+                private facade: FormsFacade) {}
 
     ngOnInit() {
         this.columns = [
             { prop: 'vernacularName', name: this.translate.instant('taxon.name'), draggable: false, resizeable: false },
             { prop: 'municipality', name: this.translate.instant('document.location'), draggable: false, resizeable: false },
             { prop: 'dateBegin', name: this.translate.instant('gathering.eventDate.begin'), draggable: false, resizeable: false },
-            { prop: 'dateEdited', name: this.translate.instant('document.modifiedDate'), draggable: false, resizeable: false, cellTemplate: this.editCell, pipe: new DateTranslatePipe(this.cdr, this.zone) }
+            { prop: 'dateEdited', name: this.translate.instant('document.modifiedDate'), draggable: false, resizeable: false, cellTemplate: this.editCell}
           ];
         this.loggedIn = UserService.loggedIn()
         this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname))

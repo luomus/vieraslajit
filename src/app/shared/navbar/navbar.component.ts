@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.loggedIn = UserService.loggedIn();
       if(this.loggedIn == false) {
         // Use reload hack to force re-render of the component
-        this.router.navigate(["reload/" + this.router.url]);
+        this.router.navigate(["reload/" + this.router.url], {skipLocationChange: true});
       }
     })
   }
