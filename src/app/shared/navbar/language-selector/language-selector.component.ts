@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./language-selector.component.scss']
 })
 export class LanguageSelectorComponent implements OnInit {
-  constructor(private translate: TranslateService, private router: Router) {}
+  constructor(public translate: TranslateService, private router: Router) {}
 
   switchLanguage(language: string) {
     this.translate.use(language);
