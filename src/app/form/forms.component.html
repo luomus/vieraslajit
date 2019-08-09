@@ -39,6 +39,10 @@
     <h1><a href="{{loginUrl}}" translate>form.login</a></h1>
 </ng-template>
 
+<ng-template #modifiedCell let-row="row" let-value="value" let-i="index">
+    {{row.dateEdited | dateTranslate}}
+</ng-template>
+
 <ng-template #editCell let-row="row" let-value="value" let-i="index">
-    {{row.dateEdited | dateTranslate}} <a class="edit-btn oi oi-document" href="" [routerLink]="'./MHL.53/' + row.id"></a>
+    <a class="edit-btn" [routerLink]="'./MHL.53/' + row.id"><span class="oi oi-document"></span> Muokkaa</a>
 </ng-template>

@@ -53,6 +53,9 @@ h4 {
 }
 
 .edit-btn {
-    color: $primary-6;
+    color: $primary-5;
     margin-left: 0.5em;
+    &:hover {
+        color: $primary-8;
+    }
 }
