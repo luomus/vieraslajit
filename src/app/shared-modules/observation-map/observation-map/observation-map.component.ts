@@ -1,5 +1,7 @@
 import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef, Renderer2, OnDestroy } from '@angular/core';
 
+import * as moment from 'moment';
+
 import { UserService } from '../../../shared/service/user.service';
 import { ObsMapOptions, ObsMapOption } from './services/data/ObsMapOptions';
 import { MapApiService } from './services/MapApiService';
@@ -207,8 +209,12 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
     temp ? this.obsMapOptions.setOptionSilent(option, optionValue) : this.obsMapOptions.setOptionSilent(option, null);
   }
 
-  onTimeChange(event) {
-    this.updateQueryParam('time', event);
+  onTimeChange(event: any[]) {
+    const startMoment = moment(event[0])
+    const endMoment = moment(event[1])
+    const start = startMoment.format("YYYY-MM-DD");
+    const end = endMoment.format("YYYY-MM-DD");
+    this.updateQueryParam('time', start + '/' + end);
   }
 
   onTaxonChange(event) {

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ObservationMapComponent } from './observation-map/observation-map.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { RouterModule } from '@angular/router';
 import { TaxonSearchComponent } from './observation-map/taxon-search/taxon-search.component';
 import { ObsMapListComponent } from './observation-map/obs-map-list/obs-map-list';
@@ -27,7 +28,9 @@ import { FilterMenuComponent } from './observation-map/filter-menu/filter-menu.c
     SpinnerModule,
     ModalModule,
     TranslateModule,
-    SharedModule
+    SharedModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   declarations: [
     ObservationMapComponent,

@@ -3,32 +3,22 @@ import { Component, Output, EventEmitter, Renderer2, ViewChild, ElementRef, Inpu
 @Component({
     selector: 'vrs-time-selector',
     template: `
-<div class="time-selector">
-    <input #startTime type='text' placeholder="YYYY-MM-DD" (blur)="onTimeChange($event)">
-    –
-    <input #endTime type='text' placeholder="YYYY-MM-DD" (blur)="onTimeChange($event)">
-</div>
+    <input #timeInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [selectMode]="'range'" (dateTimeChange)="onTimeChange($event)">
+    <owl-date-time #dt1 [pickerType]="'calendar'" [firstDayOfWeek]="1"></owl-date-time>
     `, styleUrls: ['./time-selector.component.scss']
 })
 export class TimeSelectorComponent {
     @Output() timeChangeEvent = new EventEmitter();
 
-    @ViewChild('startTime') startTimeInput: ElementRef;
-    @ViewChild('endTime') endTimeInput: ElementRef;
+    @ViewChild('timeInput') timeInput: ElementRef;
 
-    constructor(private renderer: Renderer2) {
+    constructor(private renderer: Renderer2) {}
 
-    }
-
-    setTimeValue(input: string) {
-        const split = input.split('/');
-        this.startTimeInput.nativeElement.value = split[0] || '';
-        split[1] !== '0' ? this.endTimeInput.nativeElement.value = split[1] : this.endTimeInput.nativeElement.value = '';
+    setTimeValue(time: string) {
+        this.renderer.setAttribute(this.timeInput.nativeElement, 'placeholder', time);
     }
 
     onTimeChange(event) {
-        let endTimeValue = this.endTimeInput.nativeElement.value || 0;
-        let output = this.startTimeInput.nativeElement.value + '/' + endTimeValue;
-        this.timeChangeEvent.emit(output);
+        this.timeChangeEvent.emit(event.value);
     }
 }
