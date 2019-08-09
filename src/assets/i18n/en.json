@@ -126,6 +126,11 @@
   "forms.list.mapButton": "View on the map of observations",
   "forms.list.formButton": "New observation",
 
+  "forms.list.vernacularName": "Vernacular name",
+  "forms.list.municipality": "Location",
+  "forms.list.dateTime": "Date",
+  "forms.list.edited": "Edited",
+
   "form.login": "Log in first.",
   "form.send": "Send",
 

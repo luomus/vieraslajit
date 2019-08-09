@@ -126,6 +126,11 @@
   "forms.list.mapButton": "Visa på kartan över observationer",
   "forms.list.formButton": "Ny observation",
 
+  "forms.list.vernacularName": "Allmänspråkligt namn",
+  "forms.list.municipality": "Läge",
+  "forms.list.dateTime": "Datum",
+  "forms.list.edited": "Ändrad",
+
   "form.login": "Logga in först.",
   "form.send": "Sänd",
 

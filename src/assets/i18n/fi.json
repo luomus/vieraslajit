@@ -126,6 +126,11 @@
   "forms.list.mapButton": "Tarkastele havaintokartalla",
   "forms.list.formButton": "Uusi havainto",
 
+  "forms.list.vernacularName": "Yleiskielinen nimi",
+  "forms.list.municipality": "Paikka",
+  "forms.list.dateTime": "Havaintoaika",
+  "forms.list.edited": "Muokattu",
+
   "form.login": "Kirjaudu ensin sisään." ,
   "form.send": "Lähetä",
 

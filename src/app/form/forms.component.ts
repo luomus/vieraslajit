@@ -23,10 +23,10 @@ export class FormsComponent implements OnInit {
 
     ngOnInit() {
         this.columns = [
-            { prop: 'vernacularName', name: this.translate.instant('taxon.name'), draggable: false, resizeable: false },
-            { prop: 'municipality', name: this.translate.instant('document.location'), draggable: false, resizeable: false },
-            { prop: 'dateBegin', name: this.translate.instant('gathering.eventDate.begin'), draggable: false, resizeable: false },
-            { prop: 'dateEdited', name: this.translate.instant('document.modifiedDate'), draggable: false, resizeable: false, cellTemplate: this.modifiedCell},
+            { prop: 'vernacularName', name: this.translate.instant('forms.list.vernacularName'), draggable: false, resizeable: false },
+            { prop: 'municipality', name: this.translate.instant('forms.list.municipality'), draggable: false, resizeable: false },
+            { prop: 'dateBegin', name: this.translate.instant('forms.list.dateTime'), draggable: false, resizeable: false },
+            { prop: 'dateEdited', name: this.translate.instant('forms.list.edited'), draggable: false, resizeable: false, cellTemplate: this.modifiedCell},
             { name: '', draggable: false, resizeable: false, cellTemplate: this.editCell}
           ];
         this.loggedIn = UserService.loggedIn()
