@@ -43,11 +43,7 @@ export class TaxonSearchComponent implements OnInit {
         const val = event.target.value;
         const el: HTMLElement = this.renderer.selectRootElement('#autocomplete-items');
         this.taxonService.getAutocomplete('taxon', val, this.translate.currentLang).subscribe((r)=>{
-            console.dir(el);
-            console.log(el.children);
             for (let child of Array.from(el.children)) {
-                console.log('iterating right now !!!!!!!!!');
-                console.dir(child);
                 child.remove();
             }
             $('#autocomplete-items').children().each((a, b)=>{
@@ -81,6 +77,11 @@ export class TaxonSearchComponent implements OnInit {
     }
 
     fillValue(id:string, emit = true) {
+        if (!id) {
+            this.taxonId = '';
+            $('.selected-taxon').hide();
+            return
+        }
         this.taxonId = id;
         $('#vrs-taxon-search-textarea').val('');
         $('.selected-taxon').show();
@@ -119,6 +120,6 @@ export class TaxonSearchComponent implements OnInit {
             current.click();
             current.removeClass('vrs-taxon-search-active');
         }
-    
+
       }
 }

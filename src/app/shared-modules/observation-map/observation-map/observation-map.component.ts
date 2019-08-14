@@ -113,6 +113,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
         this.filterMenu.updateTaxon(res['taxonId']);
         this.obsMapOptions.setOptionSilent("id", res['taxonId']);
       } else {
+        this.filterMenu.updateTaxon(null);
         this.obsMapOptions.setOptionSilent("id", null);
       }
       if (res['municipality']) {
