@@ -1,5 +1,5 @@
 <nav>
-    <section class="laji-toolbar" [ngClass]="{'heightFix': fixedTop, 'loading': loading}">
+    <section class="laji-toolbar" [ngClass]="{'heightFix': fixedTop}">
         <div class="container">
             <a target="_blank" href="https://foorumi.laji.fi/c/muut/vieraslajit" translate>navigation.top.forum</a>
             <a target="_blank" href="https://laji.fi" translate>navigation.top.laji</a>
@@ -26,6 +26,7 @@
         </div>
     </section>
     <section class="nav-bottom" [ngClass]="{'fixed-top': fixedTop}">
+        <div class="loader" [ngClass]="{'loading': loading}"></div>
         <div class="container">
             <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
             <div class="nav-links">
