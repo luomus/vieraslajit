@@ -224,6 +224,34 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
   updateCheckbox(checkboxUpdateCallback:Function, checked:boolean) {
     checkboxUpdateCallback(checked);
   }
+
+  getLajiLink() {
+    const mapToLajiParam = {
+        'taxonId': 'target',
+        'time': 'time',
+        'municipality': 'finnishMunicipalityId',
+        'fiList': 'administrativeStatusId',
+        'euList': 'administrativeStatusId',
+        'plantPest': 'administrativeStatusId'
+    }
+    const mapToAdministrativeId = {
+        'fiList': 'MX.nationallySignificantInvasiveSpecies',
+        'euList': 'MX.euInvasiveSpeciesList',
+        'plantPest': 'MX.quarantinePlantPest'
+    }
+    const params = this.route.snapshot.queryParams;
+    let link = 'https://laji.fi/observation/map?invasive=true';
+    for (const param in params) {
+        if (!mapToLajiParam[param]) continue;
+        const key = mapToLajiParam[param]
+        let value = params[param]
+        if (Object.keys(mapToAdministrativeId).includes(param)) {
+            value = mapToAdministrativeId[param]
+        }
+        link += `&${key}=${value}`;
+    }
+    return link;
+  }
 }
 
 function strToBool(str:string): boolean {

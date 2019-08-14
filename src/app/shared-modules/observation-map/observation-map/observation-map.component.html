@@ -25,5 +25,5 @@
       <p translate>observation-map.instructions</p>
     </div>
   </div>
-  <a *ngIf="lajiLinkEnabled" href="https://laji.fi/observation/map?invasive=true" target="_blank" rel="noopener noreferrer" class="laji-link" translate>observation-map.laji</a>
+  <a *ngIf="lajiLinkEnabled" [href]="getLajiLink()" target="_blank" rel="noopener noreferrer" class="laji-link" translate>observation-map.laji</a>
 </div>

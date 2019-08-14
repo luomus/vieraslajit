@@ -72,10 +72,13 @@ a.laji-link {
   position: absolute;
   bottom: 10px;
   left: 10px;
-  color: $neutral-6;
+  color: $accent-5;
   z-index: 400;
-  background: rgba($neutral-1, 0.5);
+  background: rgba(#fff, 0.5);
   padding: 5px;
+  &:hover {
+      color: $accent-6;
+  }
 }
 
 
