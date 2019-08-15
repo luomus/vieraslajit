@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef, Renderer2, OnDestroy } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef, Renderer2, OnDestroy, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 
 import * as moment from 'moment';
 
@@ -10,7 +10,6 @@ import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
 import { ObsMapData } from './services/data/ObsMapData';
 import { BsModalRef } from 'ngx-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TimeSelectorComponent } from './time-selector/time-selector.component';
 import { MapService } from './services/MapService';
 import { FilterMenuComponent } from './filter-menu/filter-menu.component';
 
@@ -20,7 +19,7 @@ import { FilterMenuComponent } from './filter-menu/filter-menu.component';
   styleUrls: ['./observation-map.component.scss']
 })
 
-export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy{
+export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy, OnChanges {
   @Input() id?: string;
   @Input() listMenuEnabled?: boolean = false;
   @Input() filterMenuEnabled?: boolean = false;
@@ -112,7 +111,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
       if (res['taxonId']) {
         this.filterMenu.updateTaxon(res['taxonId']);
         this.obsMapOptions.setOptionSilent("id", res['taxonId']);
-      } else {
+      } else if (this.filterMenu) {
         this.filterMenu.updateTaxon(null);
         this.obsMapOptions.setOptionSilent("id", null);
       }
@@ -152,6 +151,16 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
     if(this.mapTaxonList) this.mapTaxonList.eventEmitter.addListener("change", (e)=>{
       this.onTableActivate(e);
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    for (const prop in changes) {
+      const change = changes[prop]
+      if (prop == 'id' && !change.firstChange) {
+        if (this.taxonSearch) this.taxonSearch.fillValue(this.id);
+        this.obsMapOptions.setOption('id', this.id);
+      }
+    }
   }
 
   ngOnDestroy() {
