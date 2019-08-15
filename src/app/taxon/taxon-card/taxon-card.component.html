@@ -89,7 +89,7 @@
           <vrs-observation-map [id]="taxon.id" [mapHeight]="600" [lajiLinkEnabled]="false"></vrs-observation-map>
           <div class="row">
             <div class="col-12">
-                <button [routerLink]="['/havainnot']" [queryParams]="{id: id}" class="btn vrs-button">Havaintokarttanäkymään</button>
+                <button [routerLink]="['/havainnot']" [queryParams]="{taxonId: taxon.id}" class="btn vrs-button">Havaintokarttanäkymään</button>
             </div>
           </div>
         </div>
