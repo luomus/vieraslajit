@@ -52,8 +52,8 @@
               <em>{{taxon?.scientificName}}</em>
             </div>
             <div>
-              <strong>{{'taxon.establishedFin' | translate}}</strong>
-              <span translate>{{taxon?.stableInFinland == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
+              <strong>Vakiintuneisuus: </strong>
+              <span>{{taxon?.invasiveSpeciesEstablishment | metadatalabel: 'MX.invasiveSpeciesEstablishmentStatuses' | async}}</span>
             </div>
             <div>
               <strong>{{'taxon.occurrence' | translate}}</strong>
