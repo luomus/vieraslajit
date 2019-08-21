@@ -62,7 +62,7 @@
     }
 
     .hero-overlap {
-        background: $neutral-2;
+        background: $neutral-1;
         z-index: 1;
         border-radius: 15px;
         padding: 50px;
@@ -152,8 +152,8 @@
     }
 
     .topical-species {
-        box-shadow: inset 0 0 25px rgba(#000, 0.25);
-        background-color: hsl(40, 15, 70);
+        box-shadow: inset 0 0 25px rgba(#000, 0.15);
+        background-color: hsl(40, 15, 77);
 
         @include background-blended;
 
@@ -167,10 +167,15 @@
         }
     }
 
+    .section-divider {
+        width: 95%;
+        margin-bottom: 3rem;
+    }
+
     .what-is {
         background: $neutral-3;
-        padding-top: 150px;
-        padding-bottom: 175px;
+        padding-top: 125px;
+        padding-bottom: 100px;
         @include media-breakpoint-down(xs) {
             padding: 25px 0;
         }
@@ -180,10 +185,10 @@
             font-weight: 600;
             margin-bottom: 0.5em;
         }
-        .eradication {
+        .info {
             background: $neutral-1;
             border-radius: 15px;
-            padding: 25px;
+            padding: 2rem;
             box-shadow: 0 1px 3px rgba($neutral-8, 0.2);
         }
     }

@@ -1,47 +1,26 @@
 <div class="home-v3">
     <div class="hero">
-<!--         <h1>Kansallinen vieraslajiportaali</h1>
-        <div class="hero-overlap">
-            <div>
-                <p translate>home.description</p>
-                <button class="btn vrs-button primary">Ilmoita vieraslajihavainto</button>
-            </div>
-        </div> -->
-        <h1 translate>home.viekas.title</h1>
+        <h1>Kansallinen vieraslajiportaali</h1>
         <div class="hero-overlap-cont">
             <div class="hero-overlap">
                 <div>
-                    <p translate>home.viekas.description</p>
+                    <p translate>home.description</p>
                     <div class="viekas-buttons">
-                        <a routerLink="/ilmoita" class="btn vrs-button primary" translate>home.viekas.report</a>
-                        <a routerLink="/kansalaistoiminta" class="btn vrs-button borderless" translate>home.viekas.viekasLink</a>
-                        <a routerLink="/kansalaistoiminta/i-399" class="btn vrs-button borderless" translate>home.viekas.calendar</a>
+                        <a routerLink="/ilmoita" class="btn vrs-button primary" translate>Ilmoita vieraslajihavainnosta</a>
+                        <a routerLink="/kansalaistoiminta" class="btn vrs-button borderless" translate>Osallistu kansalaistoimintaan</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="mission-statement-wrapper py-5">
-<!--         <div class="mission-statement container">
-            <div class="img-container">
-                <img src="../../assets/images/bgs/piisami_cropped.png" alt="">
-            </div>
-            <div class="text-container">
-                <h2>Suojellaan Suomen luonnon monimuotoisuutta</h2>
-                <p>Vieraslajit ovat lajeja, jotka ovat levinneet luontaiselta levinneisyysalueeltaan uudelle alueelle ihmisen mukana joko tahattomasti tai tarkoituksella. Vieraslajit voivat aiheuttaa suurta vahinkoa luonnolliselle ekosysteemille.</p>
-            </div>
-        </div> -->
-    </div>
-<!--     <div class="topical-species">
-        <div class="container">
-            <vrs-topical-species [taxa]="topical"></vrs-topical-species>
-        </div>
-    </div>
     <div class="what-is">
         <div class="container">
+            <hr class="section-divider">
             <div class="row">
                 <div class="col-xs-12 col-sm-8">
-                    <div class="eradication">
+                    <div class="info">
+                        <h2>Vieraslajit</h2>
+                        <p>Vieraslajit ovat tahallisesti tai tahattomasti ihmisen vaikutuksesta levinneitä...</p>
                         <h2>Vieraslajitoiminta</h2>
                         <p>Vieraslajeja torjutaan sekä kunnallisella, että valtiollisella tasolla, kuin myös yksityisten järjestöjen toimin...</p>
                         <p>Torjuntaa harjoitetaan ennaltaehkäisemällä vieraslajien leviämistä, levinneiden vieraslajien hävittämisellä ja ympäristön sopeuttamisella jo läsnäoleviin vieraslajeihin.</p>
@@ -60,5 +39,10 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
+    <div class="topical-species">
+        <div class="container">
+            <vrs-topical-species [taxa]="topical"></vrs-topical-species>
+        </div>
+    </div>
 </div>
