@@ -47,6 +47,9 @@
         @include media-breakpoint-down(xs) {
             top: 25%;
         }
+        @media screen and (max-width: 376px) {
+            top: 15%;
+        }
     }
 
     .hero-overlap-cont {
