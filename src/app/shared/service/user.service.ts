@@ -61,7 +61,7 @@ export class UserService {
     UserService.clearUserProperties();
     UserService.clearUserToken();
     this.setUserProperty(userProperty.LOGIN, false);
-    this.loginStateChange.next();
+    this.loginStateChange.next(null);
   }
 
   private static clearUserProperties() {
@@ -89,7 +89,7 @@ export class UserService {
         this.setUserProperty(userProperty.PERSON, data);
 
         this.setUserProperty(userProperty.LOGIN, "true");
-        this.loginStateChange.next();
+        this.loginStateChange.next(null);
         s.next();
       }, (error) => {
         s.next(error);
