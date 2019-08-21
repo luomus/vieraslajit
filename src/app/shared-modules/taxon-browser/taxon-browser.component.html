@@ -9,6 +9,23 @@
 <!--         <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid> -->
 <!--             <vrs-group-dropdown [groups]="['MVL.232', 'MVL.27', 'MVL.343', 'MVL.1', 'MVL.28', 'MVL.26', 'MVL.40', 'MVL.2', 'MVL.233', 'MVL.37', 'MVL.39', 'MVL.41']"
             (selected)="onGroupSelected($event)"></vrs-group-dropdown> -->
+            <options-accordion header="{{'taxonomy.filters.harmful' | translate}}">
+                <div class="checkbox">
+                    <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList" #fiCheckbox>
+                    <label for="finnishList" translate>taxonomy.filters.finnishList</label>
+                    <vrs-help>{{'tooltip.fiList' | translate}}</vrs-help>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList" #euCheckbox>
+                    <label for="euList" translate>taxonomy.filters.euList</label>
+                    <vrs-help>{{'tooltip.euList' | translate}}</vrs-help>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest" #plantPestCheckbox>
+                    <label for="plantPest" translate>taxonomy.filters.plantPests</label>
+                    <vrs-help>{{'tooltip.quarantine' | translate}}</vrs-help>
+                </div>
+            </options-accordion>
             <options-accordion header="{{'taxonomy.filters.iasGroups' | translate}}">
                 <div class="checkbox">
                     <input type="checkbox" id="plants" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG2')" #plantsCheckbox>
@@ -39,23 +56,6 @@
                     <label for="agricultural-pests" translate>iasGroupName.agricultural</label>
                 </div>
             </options-accordion>
-            <options-accordion header="{{'taxonomy.filters.harmful' | translate}}">
-                <div class="checkbox">
-                    <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList" #fiCheckbox>
-                    <label for="finnishList" translate>taxonomy.filters.finnishList</label>
-                    <vrs-help>{{'tooltip.fiList' | translate}}</vrs-help>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList" #euCheckbox>
-                    <label for="euList" translate>taxonomy.filters.euList</label>
-                    <vrs-help>{{'tooltip.euList' | translate}}</vrs-help>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest" #plantPestCheckbox>
-                    <label for="plantPest" translate>taxonomy.filters.plantPests</label>
-                    <vrs-help>{{'tooltip.quarantine' | translate}}</vrs-help>
-                </div>
-            </options-accordion>
         </div>
     </div>
     <div class="browser-content-wrapper">
@@ -67,7 +67,9 @@
         </div>
         <div class="cards-container" #cardscont [ngStyle]="{'height': maxHeight+'px'}">
             <div *ngIf="viewMode == 'grid'" class="cards-wrapper">
-                <vrs-taxon-mosaic [taxa]="taxa" [total]="total" (scrolled)="onScroll()"></vrs-taxon-mosaic>
+                <vrs-taxon-grid [taxa]="taxa" [total]="total" (scrolled)="onScroll()">
+                    <vrs-filter-info [filters]="filterInfo$ | async"></vrs-filter-info>
+                </vrs-taxon-grid>
             </div>
             <div *ngIf="viewMode == 'list'" class="cards-wrapper">
                 <vrs-taxon-browser-list [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxon-browser-list>

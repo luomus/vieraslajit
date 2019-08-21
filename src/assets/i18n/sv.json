@@ -82,6 +82,13 @@
   "taxonomy.filters.plantPests": "Farlig växtskadegörare",
   "taxonomy.listMode.grid": "Rutnät",
   "taxonomy.listMode.list": "Lista",
+
+  "taxonomy.filterInfo.fiList.title": null,
+  "taxonomy.filterInfo.fiList.description": null,
+  "taxonomy.filterInfo.euList.title": null,
+  "taxonomy.filterInfo.euList.description": null,
+  "taxonomy.filterInfo.plantPest.title": null,
+  "taxonomy.filterInfo.plantPest.description": null,
   
   "iasGroupName.plants": "Växter",
   "iasGroupName.mammals": "Däggdjur och fåglar",

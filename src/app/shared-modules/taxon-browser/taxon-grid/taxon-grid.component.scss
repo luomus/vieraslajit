@@ -22,7 +22,6 @@
 
 .total-taxa {
     flex: 1 1 100%;
-    padding-left: 2em;
     padding-top: 1em;
     font-size: 1.2rem;
     color: hsl(40, 10, 45);
@@ -31,6 +30,10 @@
         padding-left: 0;
         font-size: 1rem;
     }
+}
+
+.ng-content {
+    flex: 1 1 100%;
 }
 
 .mosaic-babysitter {

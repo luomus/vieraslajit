@@ -82,6 +82,13 @@
   "taxonomy.filters.plantPests": "Vaaralliset kasvintuhoojat",
   "taxonomy.listMode.grid": "Ruudukko",
   "taxonomy.listMode.list": "Luettelo",
+
+  "taxonomy.filterInfo.fiList.title": "Kansallinen haitallisten vieraslajien luettelo",
+  "taxonomy.filterInfo.fiList.description": "Laji kuuluu kansallisesti haitallisten vieraslajien luetteloon. EU:n säädökset antavat valtioille mahdollisuuden määrittää kansallisesti haitallisia vieraslajeja. Suomi on toistaiseksi sisällyttänyt kansalliseen luetteloon 16 lajia, kahdeksan lajiryhmää ja yhden risteymän. Jäsenvaltiot voivat määrittää näille lajeille omia rajoituksiaan.",
+  "taxonomy.filterInfo.euList.title": "EU:n haitallisten vieraslajien luettelo",
+  "taxonomy.filterInfo.euList.description": "Laji on säädetty haitalliseksi vieraslajiksi koko EU:n tasolla, minkä johdosta lajien maahantuonti, kasvatus, myynti ja muu hallussapito sekä ympäristöön päästäminen on kielletty.",
+  "taxonomy.filterInfo.plantPest.title": "Vaaralliset kasvintuhoojat",
+  "taxonomy.filterInfo.plantPest.description": "Laji on luokiteltu vaaralliseksi kasvintuhoojaksi. Kaikki havainnot näistä lajeista on ilmoitettava Ruokavirastoon.",
   
   "iasGroupName.plants": "Kasvit",
   "iasGroupName.mammals": "Nisäkkäät ja linnut",

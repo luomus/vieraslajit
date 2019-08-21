@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, AfterViewInit, Renderer2 } from "../../../../node_modules/@angular/core";
 import { TranslateService } from "../../../../node_modules/@ngx-translate/core";
-import { Subscription } from "rxjs";
+import { Subscription, Observable, BehaviorSubject } from "rxjs";
 
 import { TaxonBrowserApiService } from "./services/taxon-browser-api.service";
 import { TaxonBrowserApiSettingsService } from "./services/taxon-browser-api-settings.service";
 import { Taxonomy } from "../../shared/model";
 import { TaxonBrowserParameterService, TaxonBrowserQuery } from "./services/taxon-browser-parameter.service";
+import { FilterInfoType } from "./filter-info/filter-info.component";
+import { tap, map } from "rxjs/operators";
 
 @Component({
     selector: "vrs-taxon-browser",
@@ -16,6 +18,7 @@ import { TaxonBrowserParameterService, TaxonBrowserQuery } from "./services/taxo
 export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     taxa:Taxonomy[] = [];
     total: number = 0;
+    filterInfo$: Observable<FilterInfoType[]>;
 
     private langChangeSub:Subscription;
 
@@ -68,7 +71,19 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
             this.loading=false;
         });
 
-        this.parameterService.queryEventEmitter.subscribe((event: TaxonBrowserQuery) => {
+        this.filterInfo$ = this.parameterService.queryEventEmitter
+        .pipe(
+            map((query: TaxonBrowserQuery) => {
+                let infoTypes: FilterInfoType[] = []
+                query.FiList ? infoTypes.push('fiList') : null;
+                query.EuList ? infoTypes.push('euList') : null;
+                query.PlantPest ? infoTypes.push('plantPest') : null;
+                return infoTypes;
+            })
+        )
+
+        this.parameterService.queryEventEmitter
+        .subscribe((event: TaxonBrowserQuery) => {
             if (event.hasOwnProperty('invasiveSpeciesMainGroups')) {
                 const groups: string[] = event.invasiveSpeciesMainGroups;
                 groups.includes("HBE.MG2") ? this.plantsCheckbox.nativeElement.checked = true : this.plantsCheckbox.nativeElement.checked = false;

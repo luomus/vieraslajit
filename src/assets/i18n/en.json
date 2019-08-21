@@ -83,6 +83,13 @@
   "taxonomy.listMode.grid": "Grid",
   "taxonomy.listMode.list": "List",
 
+  "taxonomy.filterInfo.fiList.title": null,
+  "taxonomy.filterInfo.fiList.description": null,
+  "taxonomy.filterInfo.euList.title": null,
+  "taxonomy.filterInfo.euList.description": null,
+  "taxonomy.filterInfo.plantPest.title": null,
+  "taxonomy.filterInfo.plantPest.description": null,
+
   "iasGroupName.plants": "Plants",
   "iasGroupName.mammals": "Mammals and birds",
   "iasGroupName.freshwater": "Freshwater",

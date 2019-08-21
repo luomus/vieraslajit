@@ -6,6 +6,7 @@
     (scrolled)="onScroll()">
     <div class="mosaic-babysitter">
         <div class="total-taxa">{{'taxonomy.grid.results.1' | translate}} {{total}} {{'taxonomy.grid.results.2' | translate}}</div>
+        <div class="ng-content"><ng-content></ng-content></div>
         <a class="mosaic-child"
             *ngFor="let taxon of taxa"
             [routerLink]="'/lajit/' + taxon.id"
