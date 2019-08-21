@@ -15,7 +15,7 @@ import {
   Renderer2
 } from '@angular/core';
 import { Subscription, of } from 'rxjs'
-import { tap, combineLatest } from 'rxjs/operators'
+import { tap, combineLatest, debounceTime } from 'rxjs/operators'
 import { FormControl } from '@angular/forms'
 import { TaxonService } from '../../shared/service/taxon.service'
 import { ApiService } from '../../shared/api/api.service';
@@ -92,7 +92,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
       } else {
         this.open = false;
       }
-    })).subscribe(()=>{
+    }), debounceTime(500)).subscribe(()=>{
       this.updateTaxa();
     })
   }
