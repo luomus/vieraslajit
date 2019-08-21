@@ -57,7 +57,7 @@
         position: absolute;
         bottom: -75px;
         @include media-breakpoint-down(sm) {
-            bottom: -150px;
+            bottom: -50px;
         }
     }
 
