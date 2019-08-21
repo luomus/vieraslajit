@@ -127,16 +127,12 @@ nav {
 .administrative-list {
     font-size: 0.9rem;
     margin-right: 0.5em;
-    padding: 0 5px;
+    padding: 0 10px;
+    color: $neutral-7;
     img {
         margin-right: 0.25em;
         height: 1rem;
         width: auto;
-    }
-    &:hover {
-        background: $accent-5;
-        color: $accent-1;
-        cursor: pointer;
     }
 }
 
