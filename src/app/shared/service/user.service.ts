@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../api/api.service';
-import { Observable ,  Subject } from 'rxjs';
+import { Observable ,  Subject, BehaviorSubject } from 'rxjs';
 
 export enum userProperty {
   PERSON = 'person',
@@ -16,7 +16,7 @@ export enum Role {
 @Injectable()
 export class UserService {
 
-  public loginStateChange: Subject<any> = new Subject<any>();
+  public loginStateChange: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(private apiService: ApiService) { }
 
