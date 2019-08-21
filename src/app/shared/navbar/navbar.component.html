@@ -16,11 +16,13 @@
                     <span class="heading">Vieraslajit.fi</span>
                 </a>
             </div>
-            <div class="login">
+            <div class="nav-top-right-wrapper">
+                <div [routerLink]="['./lajit']" [queryParams]="{'FiList': 'true'}" class="administrative-list"><img src="./assets/images/logos/flag-fi.png">Suomen haitalliset vieraslajit</div>
+                <div [routerLink]="['./lajit']" [queryParams]="{'EuList': 'true'}" class="administrative-list"><img src="./assets/images/logos/flag-eu.png">EU:n haitalliset vieraslajit</div>
                 <vrs-user-menu [loginUrl]="loginUrl"
-                               [loggedIn]="loggedIn"
-                               [personName]="userPropertiesWrapper().person.fullName"
-                               (onLogout)="logout()"></vrs-user-menu>
+                            [loggedIn]="loggedIn"
+                            [personName]="userPropertiesWrapper().person.fullName"
+                            (onLogout)="logout()"></vrs-user-menu>
             </div>
         </div>
     </section>
