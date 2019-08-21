@@ -28,25 +28,25 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren(BsDropdownDirective) d : QueryList<BsDropdownDirective>;
 
   constructor(private router: Router, private userService: UserService,
-     private informationService: InformationService, private translate:TranslateService,
-     private zone: NgZone,
-     private renderer: Renderer2,
-     private cd: ChangeDetectorRef,
-     private loaderService: LoaderService) {
-      this.loginSub = userService.loginStateChange.subscribe(() => {
-        this.loggedIn = UserService.loggedIn();
-      if(this.loggedIn == false) {
-        // Use reload hack to force re-render of the component
-        this.router.navigate(["reload/" + this.router.url], {skipLocationChange: true});
-      }
-    })
-  }
+              private translate:TranslateService,
+              private zone: NgZone,
+              private renderer: Renderer2,
+              private cd: ChangeDetectorRef,
+              private loaderService: LoaderService) {}
 
   getCurrentLang() {
     return this.translate.currentLang;
   }
 
   ngOnInit() {
+    this.loginSub = this.userService.loginStateChange.subscribe(() => {
+      this.loggedIn = UserService.loggedIn();
+      if(this.loggedIn == false) {
+        // Use reload hack to force re-render of the component
+        this.router.navigate(["reload/" + this.router.url], {skipLocationChange: true});
+      }
+    });
+
     this.zone.runOutsideAngular(() => {
       this.scrollListener = this.renderer.listen(window, 'scroll', () => {
         this.updateFixedTop();
