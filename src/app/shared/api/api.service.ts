@@ -176,6 +176,14 @@ export class ApiService {
     );
   }
 
+  newsFindById(endpoint: LajiApi.Endpoints.newsElement, id: string): Observable<NewsElement>;
+  newsFindById(endpoint: LajiApi.Endpoints, id: string): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
+    return this.httpClient.get(
+      url
+    );
+  }
+
   /**
   * Information API
   * @param endpoint Target API endpoint

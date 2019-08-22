@@ -1,0 +1,6 @@
+<div class="container" *ngIf="article$ | async; let article">
+    <div class="content">
+        <h3>{{article.title}}</h3>
+        <div  [innerHTML]="article.content | parsewp"></div>
+    </div>
+</div>

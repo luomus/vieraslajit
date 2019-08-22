@@ -1,0 +1,19 @@
+@import '../../../assets/styles/vars.scss';
+
+.container {
+    background: $neutral-2;
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    z-index: 11;
+    padding: 2rem;
+    margin-bottom: -50px;
+    box-shadow: 2px 2px 25px rgba(#000, 0.3);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.content {
+    max-width: 40em;
+}
