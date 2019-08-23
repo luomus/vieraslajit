@@ -8,6 +8,7 @@ import { Taxonomy } from "../../shared/model";
 import { TaxonBrowserParameterService, TaxonBrowserQuery } from "./services/taxon-browser-parameter.service";
 import { FilterInfoType } from "./filter-info/filter-info.component";
 import { tap, map } from "rxjs/operators";
+import { SpreadSheetService } from "app/shared/service/spread-sheet.service";
 
 @Component({
     selector: "vrs-taxon-browser",
@@ -51,11 +52,12 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     @ViewChild('plantPestCheckbox')     plantPestCheckbox: ElementRef;
 
     constructor(private settingsService:TaxonBrowserApiSettingsService,
-        private apiService: TaxonBrowserApiService,
-        private translate: TranslateService,
-        private parameterService: TaxonBrowserParameterService,
-        private cd: ChangeDetectorRef,
-        private renderer: Renderer2) {}
+                private apiService: TaxonBrowserApiService,
+                private translate: TranslateService,
+                private parameterService: TaxonBrowserParameterService,
+                private cd: ChangeDetectorRef,
+                private renderer: Renderer2,
+                private spreadSheetService: SpreadSheetService) {}
 
     ngOnInit() {
         this.settingsService.lang = this.translate.currentLang;
@@ -196,5 +198,29 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
             this.renderer.removeClass(this.sidebarToggle.nativeElement, "oi-arrow-thick-right");
             this.renderer.addClass(this.sidebarToggle.nativeElement, "oi-arrow-thick-left");
         }
+    }
+
+    onExport() {
+        // create 2d array from data
+        const columns = [
+            { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname')},
+            { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname')},
+            { prop: 'stableString', name: this.translate.instant('taxonomy.established')},
+            { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList')},
+            { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList')},
+            { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest')}
+        ]
+        const rows = []
+        // first row: column names
+        rows.push(columns.map(obj => obj["name"]))
+        // rows
+        for (const taxon of this.taxa) {
+            const row = []
+            for (const column of columns) {
+                row.push(taxon[column.prop])
+            }
+            rows.push(row)
+        }
+        this.spreadSheetService.export(rows)
     }
 }

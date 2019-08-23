@@ -60,9 +60,12 @@
     </div>
     <div class="browser-content-wrapper">
         <div class="browser-content-menu">
-            <div class="viewModeSwitch" (click)="onSwitchViewMode()">
-                <div class="list-toggle" *ngIf="viewMode === 'grid'" translate>taxonomy.listMode.list<span class="oi oi-list"></span></div>
-                <div class="list-toggle" *ngIf="viewMode === 'list'" translate>taxonomy.listMode.grid<span class="oi oi-grid-three-up"></span></div>
+            <div class="toolbar-btn" (click)="onExport()">
+                {{'taxonomy.export' | translate}}<span class="oi oi-data-transfer-download"></span>
+            </div>
+            <div class="toolbar-btn" (click)="onSwitchViewMode()">
+                <div *ngIf="viewMode === 'grid'" translate>taxonomy.listMode.list<span class="oi oi-list"></span></div>
+                <div *ngIf="viewMode === 'list'" translate>taxonomy.listMode.grid<span class="oi oi-grid-three-up"></span></div>
             </div>
         </div>
         <div class="cards-container" #cardscont [ngStyle]="{'height': maxHeight+'px'}">

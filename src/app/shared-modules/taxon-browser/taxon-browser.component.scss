@@ -145,8 +145,15 @@
     border-bottom: 1px solid hsl(40, 20, 50);
 }
 
-.viewModeSwitch {
+.toolbar-btn {
     cursor: pointer;
+    padding: 5px 0;
+    margin-left: 15px;
+    font-size: 0.8rem;
+    .oi {
+        font-size: 0.9rem;
+        margin-left: 5px;
+    }
 }
 
 .sidebar-toggle {
@@ -164,14 +171,5 @@
     .oi {
         top: 3px;
         left: 4px;
-    }
-}
-
-.list-toggle {
-    padding: 5px 0;
-    font-size: 0.8rem;
-    .oi {
-        font-size: 0.9rem;
-        margin-left: 5px;
     }
 }

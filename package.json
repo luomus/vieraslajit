@@ -63,6 +63,7 @@
     "npm": "^6.3.0",
     "open-iconic": "^1.1.1",
     "rxjs": "^6.4.0",
+    "xlsx": "^0.15.1",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {

@@ -40,6 +40,7 @@ import { TaxonNamePipe } from './pipe/taxonName.pipe';
 import { HtmlSanitizerPipe } from './pipe/html-sanitizer.pipe';
 import { LoaderService } from './service/loader.service';
 import { DateTranslatePipe } from './pipe/date-translate.pipe';
+import { SpreadSheetService } from './service/spread-sheet.service';
 /**
  * Provides common utilities for other modules
  */
@@ -83,7 +84,8 @@ export class SharedModule {
         DocumentService,
         AlertService,
         AreaService,
-        LoaderService
+        LoaderService,
+        SpreadSheetService
       ]
     };
   }

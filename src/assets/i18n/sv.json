@@ -82,6 +82,7 @@
   "taxonomy.filters.plantPests": "Farlig växtskadegörare",
   "taxonomy.listMode.grid": "Rutnät",
   "taxonomy.listMode.list": "Lista",
+  "taxonomy.export": null,
 
   "taxonomy.filterInfo.fiList.title": null,
   "taxonomy.filterInfo.fiList.description": null,
