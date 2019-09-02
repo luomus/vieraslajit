@@ -102,7 +102,7 @@ export class TaxonBrowserListComponent {
 
     onDatatableActivate(e) {
         if(e.type=="click") {
-            this.router.navigate(['/taxon', e.row.id]);
+            this.router.navigate(['/lajit', e.row.id]);
         }
     }
 
