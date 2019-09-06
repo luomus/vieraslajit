@@ -61,7 +61,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.settingsService.lang = this.translate.currentLang;
-        
+
         this.apiService.initialize();
 
         this.apiService.eventEmitter.addListener('change', ()=>{
@@ -86,6 +86,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
 
         this.parameterService.queryEventEmitter
         .subscribe((event: TaxonBrowserQuery) => {
+            console.log(event);
             if (event.hasOwnProperty('invasiveSpeciesMainGroups')) {
                 const groups: string[] = event.invasiveSpeciesMainGroups;
                 groups.includes("HBE.MG2") ? this.plantsCheckbox.nativeElement.checked = true : this.plantsCheckbox.nativeElement.checked = false;
@@ -96,9 +97,9 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
                 groups.includes("HBE.MG6") ? this.forestryCheckbox.nativeElement.checked = true : this.forestryCheckbox.nativeElement.checked = false;
                 groups.includes("HBE.MG7") ? this.agriculturalCheckbox.nativeElement.checked = true : this.agriculturalCheckbox.nativeElement.checked = false;
             }
-            if (event.hasOwnProperty('FiList')) this.fiCheckbox.nativeElement.checked = event.FiList;
-            if (event.hasOwnProperty('EuList')) this.euCheckbox.nativeElement.checked = event.EuList;
-            if (event.hasOwnProperty('PlantPest')) this.plantPestCheckbox.nativeElement.checked = event.PlantPest;
+            event.hasOwnProperty('FiList') ? this.fiCheckbox.nativeElement.checked = event.FiList: this.fiCheckbox.nativeElement.checked = false;
+            event.hasOwnProperty('EuList') ? this.euCheckbox.nativeElement.checked = event.EuList: this.euCheckbox.nativeElement.checked = false;
+            event.hasOwnProperty('PlantPest') ? this.plantPestCheckbox.nativeElement.checked = event.PlantPest: this.plantPestCheckbox.nativeElement.checked = false;
         });
 
         this.parameterService.init();
@@ -169,7 +170,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     onPlantPestCheckbox(event) {
         this.parameterService.updateQuery({PlantPest: event.target.checked});
     }
-    
+
     onScroll() {
         this.apiService.loadMore();
     }
