@@ -18,7 +18,8 @@ import { filter, takeUntil } from 'rxjs/operators';
     selector: 'vrs-form',
     templateUrl: './form.component.html',
     styleUrls: ['./form.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [FormFacade]
 })
 export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
     unsubscribe$ = new Subject<void>()

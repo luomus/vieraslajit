@@ -18,7 +18,6 @@ import { FormFacade } from './form/form.facade';
     SharedModule,
     NgxDatatableModule
   ],
-  providers: [FormsFacade, FormFacade],
   declarations: [FormComponent, FormsComponent]
 })
 export class FormModule { }

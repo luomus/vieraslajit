@@ -6,7 +6,8 @@ import { FormsFacade } from "./forms.facade";
 @Component({
     selector: 'vrs-forms',
     templateUrl: './forms.component.html',
-    styleUrls: ['./forms.component.scss']
+    styleUrls: ['./forms.component.scss'],
+    providers: [FormsFacade]
 })
 export class FormsComponent implements OnInit {
     columns = [];
