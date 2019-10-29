@@ -84,7 +84,7 @@ export class MapApiService {
             page: 1,
             pageSize: 10000,
             selected: [
-                "unit.linkings.taxon.scientificName", "unit.linkings.taxon.vernacularName", "unit.linkings.taxon.qname",
+                "unit.linkings.taxon.scientificName", "unit.linkings.taxon.vernacularName",
                 "unit.linkings.taxon.id", "gathering.conversions.wgs84CenterPoint.lat",
                 "gathering.conversions.wgs84CenterPoint.lon", "gathering.displayDateTime",
                 "gathering.interpretations.municipalityDisplayname", "gathering.team",

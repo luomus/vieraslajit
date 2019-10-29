@@ -86,7 +86,6 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
 
         this.parameterService.queryEventEmitter
         .subscribe((event: TaxonBrowserQuery) => {
-            console.log(event);
             if (event.hasOwnProperty('invasiveSpeciesMainGroups')) {
                 const groups: string[] = event.invasiveSpeciesMainGroups;
                 groups.includes("HBE.MG2") ? this.plantsCheckbox.nativeElement.checked = true : this.plantsCheckbox.nativeElement.checked = false;
