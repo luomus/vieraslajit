@@ -21,7 +21,7 @@ export class TaxonCardFacade {
       quarantinePlantPest: false
     })
 
-    state$: Observable<State> = this.store$.asObservable().pipe(tap(console.log))
+    state$: Observable<State> = this.store$.asObservable()
 
     taxon$: Observable<Taxonomy> = this.state$.pipe(
         map(state => state.taxon),
