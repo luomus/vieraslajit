@@ -112,6 +112,8 @@
   "taxon.occurrence": "Occurrence: ",
   "taxon.unknown": "Unknown",
   "taxon.report": "Report your observations",
+  "taxon.map": "Observation map",
+  "taxon.viewOnMap": "View on observation map",
 
   "comparison.title": "Species comparison",
   "comparison.return": "Return to species card",

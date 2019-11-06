@@ -90,7 +90,7 @@
   "taxonomy.filterInfo.euList.description": "Laji on säädetty haitalliseksi vieraslajiksi koko EU:n tasolla, minkä johdosta lajien maahantuonti, kasvatus, myynti ja muu hallussapito sekä ympäristöön päästäminen on kielletty.",
   "taxonomy.filterInfo.plantPest.title": "Vaaralliset kasvintuhoojat",
   "taxonomy.filterInfo.plantPest.description": "Laji on luokiteltu vaaralliseksi kasvintuhoojaksi. Kaikki havainnot näistä lajeista on ilmoitettava Ruokavirastoon.",
-  
+
   "iasGroupName.plants": "Kasvit",
   "iasGroupName.mammals": "Nisäkkäät ja linnut",
   "iasGroupName.freshwater": "Sisävesien lajit",
@@ -112,6 +112,8 @@
   "taxon.occurrence": "Esiintyminen: ",
   "taxon.unknown": "Tuntematon",
   "taxon.report": "Ilmoita omat havaintosi",
+  "taxon.map": "Havaintokartta",
+  "taxon.viewOnMap": "Havaintokarttanäkymään",
 
   "comparison.title": "Lajivertailu",
   "comparison.return": "Palaa lajikortille",
