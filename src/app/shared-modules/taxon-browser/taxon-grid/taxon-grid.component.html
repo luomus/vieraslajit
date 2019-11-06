@@ -26,7 +26,6 @@
                 <ul>
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.euInvasiveSpeciesList')" class="administrative-status" translate>administrativeStatus.euInvasiveSpeciesList</li>
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.controllingRisksOfInvasiveAlienSpecies')" class="administrative-status" translate>administrativeStatus.nationallySignificantInvasiveSpecies</li>
-                    <li *ngIf="taxon.administrativeStatuses.includes('MX.nationalInvasiveSpeciesStrategy')" class="administrative-status" translate>administrativeStatus.nationalInvasiveSpeciesStrategy</li>
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.quarantinePlantPest')" class="administrative-status" translate>administrativeStatus.quarantinePlantPest</li>
                 </ul>
                 <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveEstablished'" class="establishment establishment-established"><span class="oi oi-home"></span>{{'establishment.established' | translate}}</div>
