@@ -69,7 +69,7 @@ export class TaxonBrowserListComponent {
             taxon.isQuarantinePlantPest = false;
             if(taxon.administrativeStatuses){
                 taxon.onEUList = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.euInvasiveSpeciesList')));
-                taxon.onNationalList = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.nationalInvasiveSpeciesStrategy')));
+                taxon.onNationalList = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.controllingRisksOfInvasiveAlienSpecies')));
                 taxon.isQuarantinePlantPest = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.quarantinePlantPest')));
             }
             switch(taxon.invasiveSpeciesEstablishment) {
