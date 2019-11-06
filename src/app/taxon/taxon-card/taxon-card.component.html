@@ -51,7 +51,7 @@
               <strong>{{'taxon.scientific' | translate}}</strong>
               <em>{{taxon?.scientificName}}</em>
             </div>
-            <div>
+            <div *ngIf="taxon?.invasiveSpeciesEstablishment">
               <strong>{{'taxon.establishedFin' | translate}}</strong>
               <span>{{taxon?.invasiveSpeciesEstablishment | metadatalabel: 'MX.invasiveSpeciesEstablishmentStatuses' | async}}</span>
             </div>
