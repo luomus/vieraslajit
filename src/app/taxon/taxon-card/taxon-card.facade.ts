@@ -21,17 +21,17 @@ export class TaxonCardFacade {
       quarantinePlantPest: false
     })
 
-    state$: Observable<State> = this.store$.asObservable()
+    state$: Observable<State> = this.store$.asObservable().pipe(tap(console.log))
 
-    taxon$: Observable<Taxonomy> = this.store$.asObservable().pipe(
+    taxon$: Observable<Taxonomy> = this.state$.pipe(
         map(state => state.taxon),
         distinctUntilChanged()
     );
-    description$: Observable<TaxonomyDescription> = this.store$.asObservable().pipe(
+    description$: Observable<TaxonomyDescription> = this.state$.pipe(
         map(state => state.description),
         distinctUntilChanged()
     );
-    media$: Observable<TaxonomyImage[]> = this.store$.asObservable().pipe(
+    media$: Observable<TaxonomyImage[]> = this.state$.pipe(
         map(state => state.media),
         distinctUntilChanged()
     );
@@ -103,7 +103,7 @@ const descriptionGroupSortPosition = {
 
 /**
  * IN PLACE
- * @param desc 
+ * @param desc
  */
 function sortDescriptionGroups(desc: TaxonomyDescription) {
   if (desc && desc.groups) {
