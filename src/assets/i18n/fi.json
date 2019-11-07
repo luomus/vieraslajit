@@ -2,7 +2,9 @@
   "true": "Kyllä",
   "false": "Ei",
 
-  "swupdate": "Uusi versio sivustosta saatavilla. Ladataanko uusi versio?",
+  "swUpdate": "Uusi versio sivustosta saatavilla. Ladataanko uusi versio?",
+  "swUpdate.accept": "Lataa uudelleen",
+  "swUpdate.ignore": "Ei nyt",
 
   "navigation.home": "Etusivu",
   "navigation.taxonomy": "Lajit",

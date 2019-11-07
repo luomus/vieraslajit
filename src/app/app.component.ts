@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   translate: TranslateService;
   isPopState = false;
   hideFooter = false;
+  displaySwUpdate = false;
 
   /**
   * Initializes TranslateService
@@ -64,10 +65,11 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.subscribe(() => {
-        if (confirm(this.translate.instant('swupdate'))) {
-          window.location.reload();
-        }
+          this.displaySwUpdate = true;
       });
     }
+  }
+  onAcceptUpdate() {
+    window.location.reload();
   }
 }

@@ -3,6 +3,8 @@
   "false": "Nej",
 
   "swupdate": " Ny version av webbplatsen tillgänglig. Vill du ladda ner den nya versionen?",
+  "swUpdate.accept": null,
+  "swUpdate.ignore": null,
 
   "navigation.home": "Framsida",
   "navigation.taxonomy": "Arter",
