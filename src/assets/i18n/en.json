@@ -2,7 +2,7 @@
   "true": "Yes",
   "false": "No",
 
-  "swupdate": "New version of the website available. Do you want to download the new version?",
+  "swUpdate": "New version of the website available. Do you want to download the new version?",
   "swUpdate.accept": "Reload",
   "swUpdate.ignore": "Not now",
 
