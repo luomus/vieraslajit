@@ -113,6 +113,7 @@
   "taxon.occurrence": "Förekomst: ",
   "taxon.unknown": "Okänd",
   "taxon.report": "Rapportera dina observationer",
+  "taxon.report.quarantine": null,
   "taxon.map": null,
   "taxon.viewOnMap": null,
 
