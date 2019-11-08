@@ -2,7 +2,9 @@
   "true": "Kyllä",
   "false": "Ei",
 
-  "swupdate": "Uusi versio sivustosta saatavilla. Ladataanko uusi versio?",
+  "swUpdate": "Uusi versio sivustosta saatavilla. Ladataanko uusi versio?",
+  "swUpdate.accept": "Lataa uudelleen",
+  "swUpdate.ignore": "Ei nyt",
 
   "navigation.home": "Etusivu",
   "navigation.taxonomy": "Lajit",
@@ -18,13 +20,12 @@
   "navigation.observations.map": "Havaintokartta",
   "navigation.observations.report": "Ilmoita havainto",
   "navigation.viekas": "Kansalaistoiminta",
-  "navigation.top.forum": "Vieraslajifoorumi",
+  "navigation.top.facebook": "Facebook",
   "navigation.top.laji": "Suomen Lajitietokeskus",
   "navigation.back": "Takaisin",
 
   "footer.laji": "Lajitietokeskus",
   "footer.feedback": "Palaute",
-  "footer.facebook": "Facebook",
   "footer.privacy": "Tietosuojaseloste",
   "footer.viekas.coordinator": "Tätä hanketta koordinoi Suomen luonnonsuojeluliitto.",
   "footer.viekas.disclaimer": "Tämän sivuston sisältö ja hankkeen viestintä edustaa ainoastaan VieKas LIFE -hankkeen näkemyksiä. EASME/Euroopan komissio ei ole vastuussa sivuston sisältämän informaation mahdollisesta käytöstä",
@@ -90,7 +91,7 @@
   "taxonomy.filterInfo.euList.description": "Laji on säädetty haitalliseksi vieraslajiksi koko EU:n tasolla, minkä johdosta lajien maahantuonti, kasvatus, myynti ja muu hallussapito sekä ympäristöön päästäminen on kielletty.",
   "taxonomy.filterInfo.plantPest.title": "Vaaralliset kasvintuhoojat",
   "taxonomy.filterInfo.plantPest.description": "Laji on luokiteltu vaaralliseksi kasvintuhoojaksi. Kaikki havainnot näistä lajeista on ilmoitettava Ruokavirastoon.",
-  
+
   "iasGroupName.plants": "Kasvit",
   "iasGroupName.mammals": "Nisäkkäät ja linnut",
   "iasGroupName.freshwater": "Sisävesien lajit",
@@ -112,6 +113,8 @@
   "taxon.occurrence": "Esiintyminen: ",
   "taxon.unknown": "Tuntematon",
   "taxon.report": "Ilmoita omat havaintosi",
+  "taxon.map": "Havaintokartta",
+  "taxon.viewOnMap": "Havaintokarttanäkymään",
 
   "comparison.title": "Lajivertailu",
   "comparison.return": "Palaa lajikortille",

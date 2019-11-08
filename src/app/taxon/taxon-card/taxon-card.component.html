@@ -10,7 +10,7 @@
       </div>
       <div class="col-auto">
 <!--           <button class="btn vrs-button" routerLink='/taxon/{{id}}/comparison' translate>comparison.title</button> -->
-        <button routerLink="/ilmoita" id="report" class="btn vrs-button primary" translate>taxon.report</button>
+        <button routerLink="/ilmoita/MHL.53" id="report" class="btn vrs-button primary" translate>taxon.report</button>
       </div>
     </div>
   </div>
@@ -51,7 +51,7 @@
               <strong>{{'taxon.scientific' | translate}}</strong>
               <em>{{taxon?.scientificName}}</em>
             </div>
-            <div>
+            <div *ngIf="taxon?.invasiveSpeciesEstablishment">
               <strong>{{'taxon.establishedFin' | translate}}</strong>
               <span>{{taxon?.invasiveSpeciesEstablishment | metadatalabel: 'MX.invasiveSpeciesEstablishmentStatuses' | async}}</span>
             </div>
@@ -60,10 +60,6 @@
               <span>{{(taxon?.occurrenceInFinland | metadatalabel: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate
                 }}
               </span>
-            </div>
-            <div>
-              <strong>{{'taxonomy.quarantinePlantPest' | translate}}</strong>
-              <span translate>{{quarantinePlantPest == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
             </div>
             <hr/>
             <ng-container *ngIf="taxon?.administrativeStatuses">
@@ -82,14 +78,14 @@
 
       <div class="taxon-card-map" *ngIf="taxon">
         <div class="taxon-card-map-title" (click)="mapToggle = !mapToggle">
-          <h5>Havaintokartta</h5>
+          <h5 translate>taxon.map</h5>
           <span class="oi oi-chevron-bottom" [ngClass]="{'oi-chevron-bottom': mapToggle, 'oi-chevron-left': !mapToggle}"></span>
         </div>
         <div [ngStyle]="!mapToggle && {'display': 'none'}">
           <vrs-observation-map [id]="taxon.id" [mapHeight]="600" [lajiLinkEnabled]="false"></vrs-observation-map>
           <div class="row">
             <div class="col-12">
-                <button [routerLink]="['/havainnot']" [queryParams]="{taxonId: taxon.id}" class="btn vrs-button">Havaintokarttanäkymään</button>
+                <button [routerLink]="['/havainnot']" [queryParams]="{taxonId: taxon.id}" class="btn vrs-button" translate>taxon.viewOnMap</button>
             </div>
           </div>
         </div>
@@ -97,6 +93,8 @@
     </div>
 
     <ng-template #infoAndLajifiTemplate>
+      <h3>{{desc?.speciesCardAuthors?.title}}</h3>
+      <div [innerHTML]="desc?.speciesCardAuthors?.content"></div>
       <a *ngIf="taxon" class='laji-fi-link' href='http://tun.fi/{{taxon.id}}' target="_blank" rel="noopener noreferrer">Tarkastele lajia laji.fi sivustolla</a>
     </ng-template>
   </div>
@@ -106,4 +104,5 @@
 
 <ng-template #imageModal>
   <img class="img-fluid modal-image" [src]="selectedImage.fullURL || selectedImage.largeURL" />
+  <label class="modal-label">{{selectedImage.author}}, {{selectedImage.copyrightOwner}}, <span [innerHTML]="selectedImage.licenseAbbreviation"></span></label>
 </ng-template>

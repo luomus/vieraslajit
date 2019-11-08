@@ -128,3 +128,10 @@
     width: 100%;
     height: auto;
 }
+
+.modal-label {
+    position: absolute;
+    bottom: -2em;
+    background: rgba(#000, 0.5);
+    color: $neutral-2;
+}

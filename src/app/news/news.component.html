@@ -21,11 +21,11 @@
   <div *ngFor="let newsElement of (asyncNews | async | paginate: { id: 'pagination-controls', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems })" class="news-post row">
     <div class="news-section">
       <vrs-news-header [newsElement]="newsElement"></vrs-news-header>
-      
+
       <div class="news-content">
-        <p [innerHTML]="newsElement.content | parsewp">Post content</p>
+        <p [innerHTML]="newsElement.content | parsewp | truncate:300">Post content</p>
         <div class="text-right news-modified p-2">
-          <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span> 
+          <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span>
           {{newsElement.modified | date: 'dd.MM.yyyy HH:MM'}}
           <span *ngIf= "newsElement.modified">)</span>
         </div>

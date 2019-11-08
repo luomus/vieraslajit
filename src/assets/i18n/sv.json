@@ -2,7 +2,9 @@
   "true": "Ja",
   "false": "Nej",
 
-  "swupdate": " Ny version av webbplatsen tillgänglig. Vill du ladda ner den nya versionen?",
+  "swUpdate": " Ny version av webbplatsen tillgänglig. Vill du ladda ner den nya versionen?",
+  "swUpdate.accept": null,
+  "swUpdate.ignore": null,
 
   "navigation.home": "Framsida",
   "navigation.taxonomy": "Arter",
@@ -18,13 +20,12 @@
   "navigation.observations.map": "Kartan av observationer",
   "navigation.observations.report": "Rapportera en observation",
   "navigation.viekas": "Samhällsaktivitet",
-  "navigation.top.forum": "Forum",
+  "navigation.top.facebook": "Facebook",
   "navigation.top.laji": "Finlands Artdatacenter",
   "navigation.back": "Tillbaka",
 
   "footer.laji": "FinBIF",
   "footer.feedback": "Feedback",
-  "footer.facebook": "Facebook",
   "footer.privacy": "Dataskyddsbeskrivning",
   "footer.viekas.coordinator": "Detta projekt koordineras av Finlands naturskyddsförbund (FNF).",
   "footer.viekas.disclaimer": "Materialet återspeglar åsikterna från VieKas LIFE-projektet, och Europeiska kommissionen eller EASME ansvarar inte för någon användning som kan göras av den information som den innehåller.",
@@ -90,7 +91,7 @@
   "taxonomy.filterInfo.euList.description": null,
   "taxonomy.filterInfo.plantPest.title": null,
   "taxonomy.filterInfo.plantPest.description": null,
-  
+
   "iasGroupName.plants": "Växter",
   "iasGroupName.mammals": "Däggdjur och fåglar",
   "iasGroupName.freshwater": "Sötvatten",
@@ -112,6 +113,8 @@
   "taxon.occurrence": "Förekomst: ",
   "taxon.unknown": "Okänd",
   "taxon.report": "Rapportera dina observationer",
+  "taxon.map": null,
+  "taxon.viewOnMap": null,
 
   "comparison.title": "Artjämförelse",
   "comparison.return": "Tillbaka till artkort",
