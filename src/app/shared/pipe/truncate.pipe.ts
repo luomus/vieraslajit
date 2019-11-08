@@ -26,7 +26,8 @@ export class TruncatePipe implements PipeTransform {
             } else {
                 if (count < length) {
                     outputString += char;
-                } else if (count === length - 1) {
+                }
+                if (count === length - 1) {
                     outputString += '...';
                 }
                 count++;
