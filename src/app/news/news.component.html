@@ -23,7 +23,7 @@
       <vrs-news-header [newsElement]="newsElement"></vrs-news-header>
 
       <div class="news-content">
-        <p [innerHTML]="newsElement.content | parsewp | truncate:300">Post content</p>
+        <div [innerHTML]="newsElement.content | parsewp | truncate:300">Post content</div>
         <div class="text-right news-modified p-2">
           <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span>
           {{newsElement.modified | date: 'dd.MM.yyyy HH:MM'}}
