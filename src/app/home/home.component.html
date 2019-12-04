@@ -1,3 +1,4 @@
+<!--
 <div class="home-v3">
     <div class="hero">
         <h1>Kansallinen vieraslajiportaali</h1>
@@ -46,3 +47,43 @@
         </div>
     </div>
 </div>
+ -->
+
+<div class="hero"></div>
+<header class="container">
+    <h1>Kansallinen vieraslajiportaali</h1>
+    <div>
+        <div class="description-container">
+            <p translate>home.description</p>
+            <div class="description-buttons">
+                <a routerLink="/ilmoita" class="btn vrs-button primary" translate>Ilmoita vieraslajihavainnosta</a>
+                <a routerLink="/kansalaistoiminta" class="btn vrs-button borderless" translate>Osallistu kansalaistoimintaan</a>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="container">
+    <ul>
+        <li>
+            <h3>News item 1</h3>
+            <div>News content 1</div>
+        </li>
+        <li>
+            <h3>News item 2</h3>
+            <div>News content 2</div>
+        </li>
+        <li>
+            <h3>News item 3</h3>
+            <div>News content 3</div>
+        </li>
+    </ul>
+    <div class="topical-species-container">
+        <h3>Ajankohtaiset lajit</h3>
+        <ul>
+            <li *ngFor="let ts of topical">
+                <img [src]="ts.multimedia[0].fullURL" alt="">
+                <div class="image-label">{{ ts.vernacularName | capitalize }}</div>
+            </li>
+        </ul>
+    </div>
+</main>
