@@ -64,18 +64,14 @@
 </header>
 <main class="container">
     <ul>
-        <li>
-            <h3>News item 1</h3>
-            <div>News content 1</div>
-        </li>
-        <li>
-            <h3>News item 2</h3>
-            <div>News content 2</div>
-        </li>
-        <li>
-            <h3>News item 3</h3>
-            <div>News content 3</div>
-        </li>
+        <ng-container *ngFor="let story of news">
+            <li>
+                <h3>{{ story.title }}</h3>
+                <div class="story-posted">{{ story.posted | date: 'dd.MM.yyyy' }}</div>
+                <div [innerHTML]="story.content | parsewp | truncate:300"></div>
+            </li>
+            <hr>
+        </ng-container>
     </ul>
     <div class="topical-species-container">
         <h3>Ajankohtaiset lajit</h3>
