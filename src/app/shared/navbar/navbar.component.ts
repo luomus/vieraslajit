@@ -70,9 +70,9 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private updateFixedTop() {
     const _fixedTop = this.fixedTop;
-    let breakpoint = 162 - 63;
+    let breakpoint = 149 - 63;
     if (window.innerWidth < 1200) {
-      breakpoint = 139 - 42;
+      breakpoint = 124 - 42;
     }
     if (window.scrollY < breakpoint) {
         this.fixedTop = false;
