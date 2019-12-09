@@ -1,13 +1,14 @@
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, AfterViewInit, Renderer2 } from "../../../../node_modules/@angular/core";
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, AfterViewInit, Renderer2, Inject, PLATFORM_ID } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
 import { TranslateService } from "../../../../node_modules/@ngx-translate/core";
-import { Subscription, Observable, BehaviorSubject } from "rxjs";
+import { Subscription, Observable } from "rxjs";
 
 import { TaxonBrowserApiService } from "./services/taxon-browser-api.service";
 import { TaxonBrowserApiSettingsService } from "./services/taxon-browser-api-settings.service";
 import { Taxonomy } from "../../shared/model";
 import { TaxonBrowserParameterService, TaxonBrowserQuery } from "./services/taxon-browser-parameter.service";
 import { FilterInfoType } from "./filter-info/filter-info.component";
-import { tap, map } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { SpreadSheetService } from "app/shared/service/spread-sheet.service";
 
 @Component({
@@ -57,6 +58,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
                 private parameterService: TaxonBrowserParameterService,
                 private cd: ChangeDetectorRef,
                 private renderer: Renderer2,
+                @Inject(PLATFORM_ID) private platformId: object,
                 private spreadSheetService: SpreadSheetService) {}
 
     ngOnInit() {
@@ -111,6 +113,9 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        if(!isPlatformBrowser(this.platformId)) {
+            return;
+        }
         if (window.innerWidth < 768) {
             this.sidebarActive = false;
             this.renderer.setStyle(this.sidebar.nativeElement, "width", "16px");
@@ -123,10 +128,12 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
             this.optionsHeight = window.innerHeight - viewportOffset.top
             this.cd.detectChanges();
         });
-        this.maxHeight = window.innerHeight - this.cardsContainer.nativeElement.offsetTop;
-        const viewportOffset = this.optionsMenu.nativeElement.getBoundingClientRect();
-        this.optionsHeight = window.innerHeight - viewportOffset.top
-        this.cd.detectChanges();
+        setTimeout(() => {
+            this.maxHeight = window.innerHeight - this.cardsContainer.nativeElement.offsetTop;
+            const viewportOffset = this.optionsMenu.nativeElement.getBoundingClientRect();
+            this.optionsHeight = window.innerHeight - viewportOffset.top
+            this.cd.detectChanges();
+        }, 100);
     }
 
     ngOnDestroy() {
