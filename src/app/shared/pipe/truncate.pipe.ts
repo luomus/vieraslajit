@@ -43,7 +43,7 @@ export class TruncatePipe implements PipeTransform {
                     if (closingTag) {
                         // previous tag was closed
                         tagStack.pop();
-                    } else {
+                    } else if (tagString !== 'br' && tagString !== 'hr') {
                         // an open tag was added
                         tagStack.push(tagString)
                     }
