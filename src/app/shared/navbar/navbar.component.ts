@@ -1,9 +1,8 @@
 import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ChangeDetectorRef, Input, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { UserService } from '../service/user.service';
-import {Router, NavigationEnd} from '@angular/router';
-import { InformationService } from '../service/information.service';
+import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription, of } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';
 import { LoaderService, LoadingEvent } from '../service/loader.service';
 

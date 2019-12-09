@@ -51,7 +51,7 @@
 
 <div class="hero"></div>
 <header class="container">
-    <h1>Kansallinen vieraslajiportaali</h1>
+    <h1>Kansallinen<br>vieraslajiportaali</h1>
     <div>
         <div class="description-container">
             <p translate>home.description</p>
@@ -66,9 +66,10 @@
     <ul>
         <ng-container *ngFor="let story of news">
             <li>
-                <h3>{{ story.title }}</h3>
+                <a class="story-title" [routerLink]="'/ajankohtaista/' + story.id">{{ story.title }}</a>
                 <div class="story-posted">{{ story.posted | date: 'dd.MM.yyyy' }}</div>
-                <div [innerHTML]="story.content | parsewp | truncate:300"></div>
+                <div [innerHTML]="story.content | parsewp | truncate:900"></div>
+                <a [routerLink]="'/ajankohtaista/' + story.id">Lue lisää...</a>
             </li>
             <hr>
         </ng-container>
@@ -78,7 +79,7 @@
         <ul>
             <li *ngFor="let ts of topical">
                 <img [src]="ts.multimedia[0].fullURL" alt="">
-                <div class="image-label">{{ ts.vernacularName | capitalize }}</div>
+                <a [routerLink]="'/lajit/' + ts.id" class="image-label">{{ ts.vernacularName | capitalize }}</a>
             </li>
         </ul>
     </div>

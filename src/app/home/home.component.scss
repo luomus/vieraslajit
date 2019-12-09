@@ -259,11 +259,15 @@
 
 header {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
 
     position: relative;
     z-index: 1;
+
+    @include media-breakpoint-down(xs) {
+        flex-flow: column nowrap;
+    }
 }
 
 header.container {
@@ -273,13 +277,14 @@ header.container {
 header h1 {
     color: $neutral-1;
     font-weight: 600;
-    text-shadow: 0 1px 4px rgba(#000, 0.5);
+    font-size: 2.2rem;
+    text-shadow: 0 1px 10px rgba(#000, 0.7);
     align-self: center;
 
-    background: rgba(#000, 0.4);
-    padding: 60px 30px;
     margin: 0;
     margin-right: 30px;
+    margin-bottom: 10px;
+    padding-left: 35px;
 }
 
 .description-container {
@@ -287,6 +292,9 @@ header h1 {
     padding: 30px 40px 25px 40px;
     border-radius: 15px;
     box-shadow: 0 2px 25px 0 rgba($neutral-8, 0.25);
+    @include media-breakpoint-down(xs) {
+        border-radius: 0;
+    }
 }
 
 .description-container p {
@@ -296,6 +304,12 @@ header h1 {
 .description-buttons {
     display: flex;
     flex-flow: row nowrap;
+    @include media-breakpoint-down(xs) {
+        flex-wrap: wrap;
+    }
+    a {
+        margin-right: 10px;
+    }
 }
 
 main {
@@ -311,6 +325,16 @@ main {
     border-radius: 15px;
     margin-bottom: -75px;
     box-shadow: 0 2px 25px 0 rgba($neutral-8, 0.25);
+
+    @include media-breakpoint-down(sm) {
+        flex-wrap: wrap;
+    }
+    @include media-breakpoint-down(xs) {
+        border-radius: 0;
+        padding: 0;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
 }
 
 main ul {
@@ -325,22 +349,48 @@ main > ul > li {
     border-radius: 15px;
     padding: 30px;
     margin: 15px;
-
-    cursor: pointer;
-
-    &:hover {
-        background: $neutral-1;
+    .story-title {
+        font-size: 1.2rem;
+        font-family: $font-heading;
+        line-height: 1;
+        color: $neutral-7;
+        display: block;
+        margin-bottom: 10px;
+    }
+    .story-posted {
+        font-size: .8rem;
+        color: $neutral-5;
+        margin-bottom: 5px;
     }
 }
 
 .topical-species-container {
     margin: 15px;
-
-    background: $neutral-3;
-    border-radius: 15px;
     padding: 30px;
+    h3 {
+        font-size: 1rem;
+    }
 }
 
 .topical-species-container img {
+    display: inline-block;
     height: 150px;
+    @include media-breakpoint-down(sm) {
+        display: block;
+    }
+}
+
+.topical-species-container li {
+    margin-bottom: 20px;
+    text-align: center;
+    @include media-breakpoint-down(sm) {
+        text-align: unset;
+    }
+    a {
+        font-weight: 400;
+        color: $neutral-6;
+        &:hover {
+            color: $neutral-8;
+        }
+    }
 }
