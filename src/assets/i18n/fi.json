@@ -69,7 +69,7 @@
   "taxonomy.list.quarantinePlantPest": "Kasvintuhooja",
   "taxonomy.yes": "Kyllä",
   "taxonomy.no": "Ei",
-  "taxonomy.nonspecies": "(ei kotoperäiset)",
+  "taxonomy.nonspecies": "(ei alkuperäiset)",
   "tooltip.fiList": "Laji kuuluu kansallisesti haitallisten vieraslajien luetteloon. EU:n säädökset antavat valtioille mahdollisuuden määrittää kansallisesti haitallisia vieraslajeja. Suomi on toistaiseksi sisällyttänyt kansalliseen luetteloon 16 lajia, kahdeksan lajiryhmää ja yhden risteymän. Jäsenvaltiot voivat määrittää näille lajeille omia rajoituksiaan.",
   "tooltip.euList": "Laji on säädetty haitalliseksi vieraslajiksi koko EU:n tasolla, minkä johdosta lajien maahantuonti, kasvatus, myynti ja muu hallussapito sekä ympäristöön päästäminen on kielletty.",
   "tooltip.quarantine": "Laji on luokiteltu vaaralliseksi kasvintuhoojaksi. Kaikki havainnot näistä lajeista on ilmoitettava Ruokavirastoon.",

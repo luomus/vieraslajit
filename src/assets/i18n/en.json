@@ -69,7 +69,7 @@
   "taxonomy.list.quarantinePlantPest": "Plant pest",
   "taxonomy.yes": "Yes",
   "taxonomy.no": "No",
-  "taxonomy.nonspecies": "(ei kotoperäiset)",
+  "taxonomy.nonspecies": "(non-native)",
   "tooltip.fiList": "The species is on the list of invasive alien species of national importance. The EU regulations allow the states to determine invasive alien species of national importance. So far, Finland has included 16 species, eight species groups and one hybrid in the national list. Member states may set their own restrictions on these species.",
   "tooltip.euList": " Since this species is classified as an invasive alien species throughout the EU, its importation, cultivation or breeding, sales and other possession and release into the environment are prohibited.",
   "tooltip.quarantine": " The species is classified as a quarantined plant pest. All observations of these species must be reported to Finnish Food Authority.",
