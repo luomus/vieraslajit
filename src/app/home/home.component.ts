@@ -62,21 +62,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getNews(page){
-    this.newsService.getPage('1', '20', this.translate.currentLang, this.newsTag+",technical")
+    // TECHNICAL NEWS / alerts REMOVED TEMPORARILY (may be reintroduced at some point ...)
+    this.newsService.getPage('1', '5', this.translate.currentLang, this.newsTag/* +",technical" */)
     .subscribe((data) => {
-      let technical: Array<any> = [0];
-      this.news=[];
-      for(let d of data.results) {
+/*       let technical: Array<any> = [0]; */
+      this.news = data.results;
+/*       for(let d of data.results) {
         if (d.tag.includes("technical")) {
           technical.push(d);
         }
         if (d.tag.includes(this.newsTag)&&this.news.length<5) {
-          d.content = d.content.replace(/<\/p>/mg, '<br>')
-          d.content = d.content.replace(/<(?:(?!br).)+>/mg, '');
+          //d.content = d.content.replace(/<\/p>/mg, '<br>')
+          //d.content = d.content.replace(/<(?:(?!br).)+>/mg, '');
           this.news.push(d);
-        }  
+        }
       } 
-      this.filterTechnicalNews(technical);
+      this.filterTechnicalNews(technical); */
     });
     
   }

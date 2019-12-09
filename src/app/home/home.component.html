@@ -63,17 +63,22 @@
     </div>
 </header>
 <main class="container">
-    <ul>
-        <ng-container *ngFor="let story of news">
-            <li>
-                <a class="story-title" [routerLink]="'/ajankohtaista/' + story.id">{{ story.title }}</a>
-                <div class="story-posted">{{ story.posted | date: 'dd.MM.yyyy' }}</div>
-                <div [innerHTML]="story.content | parsewp | truncate:900"></div>
-                <a [routerLink]="'/ajankohtaista/' + story.id">Lue lisää...</a>
-            </li>
-            <hr>
-        </ng-container>
-    </ul>
+    <div class="news">
+        <ul>
+            <ng-container *ngFor="let story of news">
+                <li>
+                    <a class="story-title" [routerLink]="'/ajankohtaista/' + story.id">{{ story.title }}</a>
+                    <div class="story-posted">{{ story.posted | date: 'dd.MM.yyyy' }}</div>
+                    <div [innerHTML]="story.content | parsewp | truncate:900"></div>
+                    <a [routerLink]="'/ajankohtaista/' + story.id">Lue lisää...</a>
+                </li>
+                <hr>
+            </ng-container>
+        </ul>
+        <div class="more-news-container">
+            <a routerLink="/ajankohtaista/">Lisää uutisia</a>
+        </div>
+    </div>
     <div class="topical-species-container">
         <h3>Ajankohtaiset lajit</h3>
         <ul>

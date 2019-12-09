@@ -345,8 +345,7 @@ main ul {
     margin: 0;
 }
 
-main > ul > li {
-    border-radius: 15px;
+.news ul li {
     padding: 30px;
     margin: 15px;
     .story-title {
@@ -361,6 +360,18 @@ main > ul > li {
         font-size: .8rem;
         color: $neutral-5;
         margin-bottom: 5px;
+    }
+}
+
+.more-news-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    a {
+        color: $neutral-6;
+        &:hover {
+            color: $neutral-8;
+        }
     }
 }
 
