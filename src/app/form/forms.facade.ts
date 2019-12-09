@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Document } from "app/shared/model";
 import { DocumentService } from "app/shared/service/document.service";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, of } from "rxjs";
 import { UserService } from "app/shared/service/user.service";
-import { map, distinctUntilChanged } from "rxjs/operators";
+import { map, distinctUntilChanged, filter, switchMap } from "rxjs/operators";
 
 interface State {
     documents: Document[]
@@ -41,7 +41,9 @@ export class FormsFacade {
             ],
             pageSize: 10
         }
-        this.documentService.getDocuments(UserService.getToken(), query).pipe(
+        of().pipe(
+            filter(() => UserService.loggedIn()),
+            switchMap(() => this.documentService.getDocuments(UserService.getToken(), query)),
             map((res) => {
                 const output: Document[] = []
                 for (const r of res.results) {
