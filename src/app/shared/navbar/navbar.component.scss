@@ -542,3 +542,10 @@ a {
         right: 80vw;
     }
 }
+
+.static-active {
+    color: $primary-4 !important;
+    background-color: $focus-link-background !important;
+    border-radius: 5px;
+    cursor: default;
+}

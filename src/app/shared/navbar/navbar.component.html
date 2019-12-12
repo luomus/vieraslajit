@@ -47,8 +47,8 @@
                         <div class="container">
                             <div class="row">
                                 <div *ngFor="let item of menu" class="col-3">
-                                    <h5><a routerLink="/info/{{item.id}}">{{item.title}}</a></h5>
-                                    <ng-container *ngIf="item.hasOwnProperty('children')"><a *ngFor="let child of item.children" routerLink="/info/{{child.id}}">{{child.title}}</a></ng-container>
+                                    <h5><a routerLink="/info/{{item.id}}" routerLinkActive="static-active">{{item.title}}</a></h5>
+                                    <ng-container *ngIf="item.hasOwnProperty('children')"><a *ngFor="let child of item.children" routerLink="/info/{{child.id}}" routerLinkActive="static-active">{{child.title}}</a></ng-container>
                                 </div>
                             </div>
                         </div>
