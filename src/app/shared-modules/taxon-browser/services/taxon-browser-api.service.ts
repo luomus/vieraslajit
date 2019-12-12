@@ -35,7 +35,7 @@ export class TaxonBrowserApiService {
                                 'species',
                                 'finnish'
                             ],
-            sortOrder: 'finnish_name'
+            sortOrder: 'taxonomic'
         };
     }
 
