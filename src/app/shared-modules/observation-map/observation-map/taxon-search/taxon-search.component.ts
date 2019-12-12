@@ -40,8 +40,9 @@ export class TaxonSearchComponent implements OnInit {
     }
 
     onSearchAreaInput(event) {
-        const val = event.target.value;
+        const val: string = event.target.value;
         const el: HTMLElement = this.renderer.selectRootElement('#autocomplete-items');
+        if (val.length < 3) return;
         this.taxonService.getAutocomplete('taxon', val, this.translate.currentLang).subscribe((r)=>{
             for (let child of Array.from(el.children)) {
                 child.remove();
