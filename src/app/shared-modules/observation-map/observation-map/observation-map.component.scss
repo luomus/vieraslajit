@@ -133,19 +133,24 @@ vrs-map-filters {
     width: 200px;
     color: $neutral-2;
     font-size: 0.8rem;
-    .popup-link-row {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
+    .popup {
+      td {
+        padding-top: 5px;
+      }
+      .header-row {
+        border-bottom: 1px solid $neutral-6;
+      }
+      .icon-container {
+        text-align: center;
+        padding-right: 5px;
+      }
       .oi {
         color: $neutral-2;
         cursor: pointer;
       }
       .oi-eye {
-        margin-right: 10px;
       }
       .oi-info {
-        margin-right: 13px;
       }
     }
     h5 {

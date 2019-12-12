@@ -4,19 +4,48 @@ import { ObservationModalComponent } from "./observation-modal.component";
 
 @Component({
     template: `
-<div class="popup-link-row">
-    <h5 translate>observation-map.popup.title</h5>
-    <a (click)="openModal(observationId, unitId)" class="oi oi-eye"></a>
-</div>
-<hr>
-<div class="popup-link-row">
-    {{name.charAt(0).toUpperCase() + name.substr(1)}}
-    <a [routerLink]="['./lajit/', taxonId]" class="oi oi-info"></a>
-</div>
-{{municipality}}<br>
-{{date.substring(8, 10) + "." + date.substring(5, 7) + "." + date.substring(0, 4)}}<br>
-{{reliability}}<br>
-{{notes}}<br>
+<table class="popup">
+    <tr class="header-row">
+        <td class="icon-container">
+            <a (click)="openModal(observationId, unitId)" class="oi oi-eye"></a>
+        </td>
+        <td>
+            <h5 translate>observation-map.popup.title</h5>
+        </td>
+    </tr>
+    <tr>
+        <td class="icon-container">
+            <a [routerLink]="['./lajit/', taxonId]" class="oi oi-info"></a>
+        </td>
+        <td>
+            {{name.charAt(0).toUpperCase() + name.substr(1)}}
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            {{municipality}}
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            {{date.substring(8, 10) + "." + date.substring(5, 7) + "." + date.substring(0, 4)}}
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            {{reliability}}
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            {{notes}}
+        </td>
+    </tr>
+</table>
 `
 })
 export class ObservationMapPopupComponent {
