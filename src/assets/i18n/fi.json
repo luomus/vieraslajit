@@ -146,6 +146,8 @@
   "form.login": "Kirjaudu ensin sisään." ,
   "form.send": "Lähetä",
 
+  "observation-map.filters": "Rajaukset",
+  "observation-map.list": "Luettelo",
   "observation-map.count": "havaintoa.",
   "observation-map.instructions": "Rajaa hakua nähdäksesi listan tarkoista havainnoista.",
   "observation-map.laji": "Tarkastele Laji.fi-kartalla",

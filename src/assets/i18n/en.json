@@ -146,6 +146,8 @@
   "form.login": "Log in first.",
   "form.send": "Send",
 
+  "observation-map.filters": "Filters",
+  "observation-map.list": "List",
   "observation-map.count": "observations.",
   "observation-map.instructions": "Narrow your search criteria to see the list of observations.",
   "observation-map.laji": "View on Species.fi map",

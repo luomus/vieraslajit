@@ -72,12 +72,12 @@ a.laji-link {
   position: absolute;
   bottom: 10px;
   left: 10px;
-  color: $accent-5;
+  color: $neutral-6;
   z-index: 400;
   background: rgba(#fff, 0.5);
   padding: 5px;
   &:hover {
-      color: $accent-6;
+      color: $neutral-8;
   }
 }
 
@@ -188,6 +188,9 @@ vrs-map-filters {
     &:focus {
       outline: unset;
     }
+  }
+  .oi {
+    margin-right: 5px;
   }
 }
 

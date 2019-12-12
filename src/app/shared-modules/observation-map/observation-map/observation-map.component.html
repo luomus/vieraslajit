@@ -1,8 +1,8 @@
 <div class="map-container" #maprow>
   <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
   <div id="view-buttons" *ngIf="listMenuEnabled && filterMenuEnabled">
-    <button (click)="filterMenuHidden = !filterMenuHidden" [ngClass]="{'active': !filterMenuHidden}"><span class="oi oi-beaker"></span></button>
-    <button (click)="listHidden = !listHidden" [ngClass]="{'active': !listHidden}"><span class="oi oi-list"></span></button>
+    <button (click)="filterMenuHidden = !filterMenuHidden" [ngClass]="{'active': !filterMenuHidden}"><span class="oi oi-beaker"></span>{{ 'observation-map.filters' | translate }}</button>
+    <button (click)="listHidden = !listHidden" [ngClass]="{'active': !listHidden}"><span class="oi oi-list"></span>{{ 'observation-map.list' | translate }}</button>
   </div>
   <vrs-map-filters *ngIf="filterMenuEnabled"
     [hidden]="filterMenuHidden"

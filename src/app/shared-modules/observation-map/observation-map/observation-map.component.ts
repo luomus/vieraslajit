@@ -43,8 +43,8 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
   municipalities:Array<any> = [];
   isLoggedIn = UserService.loggedIn();
 
-  filterMenuHidden = false;
-  listHidden = false;
+  filterMenuHidden = true;
+  listHidden = true;
 
   resizeUnlisten = () => {}
 

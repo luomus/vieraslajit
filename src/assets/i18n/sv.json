@@ -146,6 +146,8 @@
   "form.login": "Logga in först.",
   "form.send": "Sänd",
 
+  "observation-map.filters": null,
+  "observation-map.list": null,
   "observation-map.count": "observationer.",
   "observation-map.instructions": "Begränsa dina sökkriterier för att se listan över observationer.",
   "observation-map.laji": "Visa på Arterna.fi-karta",
