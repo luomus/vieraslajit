@@ -49,7 +49,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
   resizeUnlisten = () => {}
 
   constructor(private obsMapOptions:ObsMapOptions,
-              private mapApiController:MapApiService,
+              private mapApiService:MapApiService,
               private mapService:MapService,
               private obsMapData: ObsMapData,
               private route: ActivatedRoute,
@@ -58,8 +58,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
               private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.mapApiController.initialize();
-    this.mapApiController.getAreas().subscribe((r)=>{
+    this.mapApiService.getAreas().subscribe((r)=>{
       r.results.forEach(element => {
         this.municipalities.push(element);
       });

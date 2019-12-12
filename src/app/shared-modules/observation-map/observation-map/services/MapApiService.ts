@@ -19,9 +19,8 @@ export class MapApiService {
                 private observationService: ObservationService,
                 private areaService: AreaService,
                 private ykjService: YkjService,
-                private apiService: ApiService) {}
-
-    initialize() {
+                private apiService: ApiService)
+    {
         /* Update observation list whenever there's a change in options */
         this.obsMapOptions.eventEmitter.addListener("change", ()=>{
             this.getObservationCount().subscribe(res => {
