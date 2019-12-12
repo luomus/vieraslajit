@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, TemplateRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef, Renderer2, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TaxonomyDescription, TaxonomyImage, Taxonomy } from '../../shared/model/Taxonomy';
 import { Subject } from 'rxjs';
@@ -15,6 +15,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class TaxonCardComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
+  private destroyResizeListener: () => void;
 
   mapToggle = true;
 
@@ -31,20 +32,37 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
               private translate: TranslateService,
               private modalService: BsModalService,
               private renderer: Renderer2,
-              private facade: TaxonCardFacade) {}
+              private facade: TaxonCardFacade,
+              private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.facade.state$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((state) => {
-        this.taxon = state.taxon
-        this.desc = state.description
-        this.media = state.media
         this.quarantinePlantPest = state.quarantinePlantPest
+      });
+    this.facade.taxon$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((taxon) => {
+        this.taxon = taxon
+      });
+    this.facade.description$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((description) => {
+        this.desc = description
+      });
+    this.facade.media$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((media) => {
+        this.media = media
       });
     this.route.params
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(params => {
+        this.taxon = undefined;
+        this.desc = undefined;
+        this.media = undefined;
+        this.quarantinePlantPest = undefined;
         this.facade.loadTaxon(params['id'])
         this.scrollTop();
       });
@@ -52,7 +70,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(() => this.facade.loadTaxon(this.route.snapshot.params['id']));
 
-    this.renderer.listen(window, 'resize', () => {
+    this.destroyResizeListener = this.renderer.listen(window, 'resize', () => {
       this.onResize();
     })
     this.onResize();
@@ -77,6 +95,9 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    if (this.destroyResizeListener) {
+      this.destroyResizeListener();
+    }
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }

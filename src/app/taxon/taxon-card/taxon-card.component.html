@@ -33,49 +33,46 @@
     </div>
 
     <div class="col-sm-12 order-1 col-md-5 order-md-2">
-
-      <ng-container *ngIf="media != null && media.length > 0">
-        <div class="card taxon-info-card" id="taxoncard-right">
-          <div class="card-block">
-            <carousel id="image-carousel" [interval]="false">
-              <slide class="card-slide slide" *ngFor="let image of media">
-                <img class="img-fluid center-block" src="{{image.fullURL}}" (click)="openImage(imageModal, image)">
-              </slide>
-            </carousel>
+      <div class="card taxon-info-card" id="taxoncard-right">
+        <div class="card-block">
+          <carousel *ngIf="media && media.length > 0" id="image-carousel" [interval]="false">
+            <slide class="card-slide slide" *ngFor="let image of media">
+              <img class="img-fluid center-block" src="{{image.fullURL}}" (click)="openImage(imageModal, image)">
+            </slide>
+          </carousel>
+        </div>
+        <div class="taxon-info">
+          <div>
+            <strong>{{'taxon.name' | translate}}</strong>
+            {{taxon?.vernacularName}}
           </div>
-          <div class="taxon-info">
-            <div>
-              <strong>{{'taxon.name' | translate}}</strong>
-              {{taxon?.vernacularName}}
-            </div>
-            <div>
-              <strong>{{'taxon.scientific' | translate}}</strong>
-              <em>{{taxon?.scientificName}}</em>
-            </div>
-            <div *ngIf="taxon?.invasiveSpeciesEstablishment">
-              <strong>{{'taxon.establishedFin' | translate}}</strong>
-              <span>{{taxon?.invasiveSpeciesEstablishment | metadatalabel: 'MX.invasiveSpeciesEstablishmentStatuses' | async}}</span>
-            </div>
-            <div>
-              <strong>{{'taxon.occurrence' | translate}}</strong>
-              <span>{{(taxon?.occurrenceInFinland | metadatalabel: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate
-                }}
-              </span>
-            </div>
-            <hr/>
-            <ng-container *ngIf="taxon?.administrativeStatuses">
-              <div>
-                <!-- <strong translate>taxon.administrative</strong> -->
-                <ul>
-                  <li *ngFor="let status of taxon.administrativeStatuses">
-                    {{status | metadatalabel:'MX.adminStatusEnum' | async}}
-                  </li>
-                </ul>
-              </div>
-            </ng-container>
+          <div>
+            <strong>{{'taxon.scientific' | translate}}</strong>
+            <em>{{taxon?.scientificName}}</em>
           </div>
-        </div> <!-- /card -->
-      </ng-container>
+          <div *ngIf="taxon?.invasiveSpeciesEstablishment">
+            <strong>{{'taxon.establishedFin' | translate}}</strong>
+            <span>{{taxon?.invasiveSpeciesEstablishment | metadatalabel: 'MX.invasiveSpeciesEstablishmentStatuses' | async}}</span>
+          </div>
+          <div>
+            <strong>{{'taxon.occurrence' | translate}}</strong>
+            <span>{{(taxon?.occurrenceInFinland | metadatalabel: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate
+              }}
+            </span>
+          </div>
+          <hr/>
+          <ng-container *ngIf="taxon?.administrativeStatuses">
+            <div>
+              <!-- <strong translate>taxon.administrative</strong> -->
+              <ul>
+                <li *ngFor="let status of taxon.administrativeStatuses">
+                  {{status | metadatalabel:'MX.adminStatusEnum' | async}}
+                </li>
+              </ul>
+            </div>
+          </ng-container>
+        </div>
+      </div> <!-- /card -->
 
       <div class="taxon-card-map" *ngIf="taxon">
         <div class="taxon-card-map-title" (click)="mapToggle = !mapToggle">
