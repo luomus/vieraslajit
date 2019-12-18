@@ -75,7 +75,7 @@
                 <hr>
             </ng-container>
         </ul>
-        <div class="more-news-container">
+        <div class="more-news-container" *ngIf="news?.length > 0">
             <a routerLink="/ajankohtaista/">Lisää uutisia</a>
         </div>
     </div>
