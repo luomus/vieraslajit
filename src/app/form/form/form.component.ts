@@ -140,6 +140,6 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
     ngOnDestroy() {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();
-        this.lajiFormWrapper.destroy();
+        if (this.lajiFormWrapper) this.lajiFormWrapper.destroy();
     }
 }
