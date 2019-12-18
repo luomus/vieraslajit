@@ -41,7 +41,7 @@ export class FormsFacade {
             ],
             pageSize: 10
         }
-        of().pipe(
+        of({}).pipe(
             filter(() => UserService.loggedIn()),
             switchMap(() => this.documentService.getDocuments(UserService.getToken(), query)),
             map((res) => {
