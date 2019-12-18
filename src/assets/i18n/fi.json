@@ -47,6 +47,7 @@
   "home.viekas.calendar": "Tapahtumakalenteri",
 
   "home.description": "Vieraslajiportaali palvelee sinua kattavasti vieraslajeihin liittyvissä kysymyksissä. Palvelun avulla voit mm. tutustua maamme vieraslajeihin, niiden asemaan ja mahdollisiin torjuntatoimiin. Lisäksi voit ilmoittaa omat vieraslajihavaintosi lomakkeilla, joiden kautta tieto kulkeutuu osaksi tutkimukselle ja viranomaistoiminnalle tarpeellisia tietokantoja.",
+  "home.topicalSpecies": "Ajankohtaiset lajit",
 
   "taxonomy.grid.results.1": "Rajauksilla löytyi yhteensä",
   "taxonomy.grid.results.2": "vieraslajia",

@@ -79,13 +79,13 @@
             <a routerLink="/ajankohtaista/">Lisää uutisia</a>
         </div>
     </div>
-    <div class="topical-species-container">
-        <h3>Ajankohtaiset lajit</h3>
-        <ul>
-            <li *ngFor="let ts of topical">
+    <div>
+        <div class="topical-species-container">
+            <h3>{{ 'home.topicalSpecies' | translate }}</h3>
+            <a [routerLink]="'/lajit/' + ts.id" *ngFor="let ts of topical">
                 <img [src]="ts.multimedia[0].fullURL" alt="">
-                <a [routerLink]="'/lajit/' + ts.id" class="image-label">{{ ts.vernacularName | capitalize }}</a>
-            </li>
-        </ul>
+                <div class="image-label">{{ ts.vernacularName | capitalize }}</div>
+            </a>
+        </div>
     </div>
 </main>

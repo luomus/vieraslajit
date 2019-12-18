@@ -1,6 +1,6 @@
 @import '../../assets/styles/vars';
 @import '~bootstrap/scss/bootstrap-grid';
-/* 
+/*
 @mixin background-blended {
     @supports not (-webkit-overflow-scrolling: touch) {
         @supports (background-blend-mode: soft-light) {
@@ -32,7 +32,7 @@
             height: 350px;
         }
     }
-    
+
     h1 {
         display: block;
         text-align: center;
@@ -287,6 +287,12 @@ header h1 {
     padding-left: 35px;
 }
 
+header > div {
+    @include media-breakpoint-up(xl) {
+        margin-right: 30px;
+    }
+}
+
 .description-container {
     background: $neutral-2;
     padding: 30px 40px 25px 40px;
@@ -312,6 +318,14 @@ header h1 {
     }
 }
 
+@mixin main-container-style {
+    background: $neutral-2;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 25px 0 rgba($neutral-8, 0.25);
+    margin: 15px;
+}
+
 main {
     display: flex;
     flex-flow: row nowrap;
@@ -319,12 +333,6 @@ main {
 
     position: relative;
     z-index: 1;
-
-    background: $neutral-2;
-    padding: 30px;
-    border-radius: 15px;
-    margin-bottom: -75px;
-    box-shadow: 0 2px 25px 0 rgba($neutral-8, 0.25);
 
     @include media-breakpoint-down(sm) {
         flex-wrap: wrap;
@@ -345,9 +353,19 @@ main ul {
     margin: 0;
 }
 
+.news {
+    width: 100%;
+    @include main-container-style();
+}
+
 .news ul li {
     padding: 30px;
     margin: 15px;
+
+    @include media-breakpoint-down(sm) {
+        padding: 10px;
+        margin: 0;
+    }
     .story-title {
         font-size: 1.2rem;
         font-family: $font-heading;
@@ -376,8 +394,11 @@ main ul {
 }
 
 .topical-species-container {
-    margin: 15px;
-    padding: 30px;
+    @include main-container-style();
+    text-align: center;
+    @include media-breakpoint-down(sm) {
+        text-align: unset;
+    }
     h3 {
         font-size: 1rem;
     }
@@ -391,17 +412,25 @@ main ul {
     }
 }
 
-.topical-species-container li {
+.topical-species-container a {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
     margin-bottom: 20px;
-    text-align: center;
-    @include media-breakpoint-down(sm) {
-        text-align: unset;
-    }
-    a {
+    color: $neutral-3;
+    font-size: 0.8rem;
+    cursor: pointer;
+    .image-label {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: right;
+        padding-right: 10px;
+
+        background: rgba(#000, 0.5);
         font-weight: 400;
-        color: $neutral-6;
-        &:hover {
-            color: $neutral-8;
-        }
+    }
+    &:hover {
+        color: $neutral-5;
     }
 }
