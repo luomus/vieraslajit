@@ -43,6 +43,7 @@ export class NavbarContainer implements OnInit, OnDestroy {
          */
         this.router.events.subscribe((val) => {
             this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
+            this.cd.detectChanges();
         });
     }
 
