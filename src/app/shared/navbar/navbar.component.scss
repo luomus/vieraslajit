@@ -2,17 +2,7 @@
 @import '../../../assets/styles/buttons';
 @import '~bootstrap/scss/bootstrap-grid';
 
-$focus-link-background: hsl(118, 20, 41);
-
-@mixin nav-background-blended {
-    @supports not (-webkit-overflow-scrolling: touch) {
-        @supports (background-blend-mode: soft-light) {
-            background-blend-mode: soft-light;
-            /* Texture pattern from https://www.transparenttextures.com/ */
-            background-image: url("/assets/images/patterns/billie-holiday.png");
-        }
-    }
-}
+$focus-link-background: $primary-6;
 
 .container.container-navbar {
     padding: 0;
@@ -153,7 +143,7 @@ nav {
 }
 
 .nav-bottom {
-    background-color: hsl(40, 15, 93);
+    background-color: $neutral-2;
     color: $neutral-7;
     .container {
         display: flex;
@@ -178,7 +168,6 @@ nav {
             &:hover {
                 color: $neutral-2;
                 background-color: $focus-link-background;
-                @include nav-background-blended;
             }
             @include media-breakpoint-down(lg) {
                 padding: 0.5em 1em;
@@ -191,7 +180,6 @@ nav {
         .active {
             cursor: default;
             background-color: $focus-link-background;
-            @include nav-background-blended;
             color: $neutral-2;
             box-shadow: inset 0 0 20px 0 $primary-7;
         }
@@ -301,7 +289,6 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 .vrs-dropdown {
     .dropdown-menu {
         background-color: $focus-link-background;
-        @include nav-background-blended;
         border-radius: 10px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -312,8 +299,6 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 
     .dropdown-item:focus {
         background-color: $focus-link-background;
-
-        @include nav-background-blended;
     }
 
     .dropdown-item {
@@ -323,15 +308,14 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     .dropdown-item:hover {
         background-color: initial;
         color: $neutral-1;
-        background: $primary-6;
+        background: $primary-5;
     }
 }
 
 .dropdown.link.vrs-dropdown {
     &:hover {
         color: $neutral-2 !important;
-        background-color: $focus-link-background;
-        @include nav-background-blended;
+        background-color: $primary-5;
     }
 }
 
@@ -341,7 +325,6 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
         padding: 2em;
         box-shadow: 0px 10px 25px -5px rgba(0, 0, 0, 0.25);
         background-color: $focus-link-background;
-        @include nav-background-blended;
         width: 100%;
         margin-top: 0px;
         border-radius: 0px;
@@ -369,7 +352,7 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
             padding: 2px 5px;
             &:hover {
                 color: hsl(140, 30, 95);
-                background: $primary-6;
+                background: $primary-5;
                 border-radius: 5px;
             }
         }
@@ -544,8 +527,8 @@ a {
 }
 
 .static-active {
-    color: $primary-4 !important;
-    background-color: $focus-link-background !important;
+    color: $primary-7 !important;
+    background-color: $primary-4 !important;
     border-radius: 5px;
     cursor: default;
 }

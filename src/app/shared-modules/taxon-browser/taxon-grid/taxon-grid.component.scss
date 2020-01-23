@@ -24,7 +24,7 @@
     flex: 1 1 100%;
     padding-top: 1em;
     font-size: 1.2rem;
-    color: hsl(40, 10, 45);
+    color: $neutral-6;
     @include media-breakpoint-down(xs) {
         padding-top: 10px;
         padding-left: 0;
@@ -85,7 +85,7 @@
     overflow: hidden;
     width: 300px;
     text-align: center;
-    background: $neutral-3;
+    background: $neutral-2;
     box-shadow: 0px 0px 2px #ccc;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;

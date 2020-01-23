@@ -15,8 +15,8 @@
 .options-menu-wrapper {
     position: relative;
     z-index: 2;
-    background: hsl(40, 15, 90);
-    border-right: 2px solid hsl(40, 15, 60);
+    background: $neutral-2;
+    border-right: 2px solid $neutral-5;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -54,7 +54,7 @@
     h5 {
         font-size: 0.8rem;
         font-weight: 600;
-        color: hsl(40, 10, 40);
+        color: $neutral-6;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin: 0;
@@ -141,8 +141,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
-    background: hsl(40, 15, 83);
-    border-bottom: 1px solid hsl(40, 20, 50);
+    border-bottom: 1px solid $neutral-5;
 }
 
 .toolbar-btn {
@@ -160,13 +159,13 @@
     position: absolute;
     right: -12px;
     top: 50%;
-    background-color: $neutral-4;
+    background-color: $neutral-3;
     border-radius: 50%;
     width: 26px;
     height: 26px;
     font-size: 16px;
-    border: 1px solid hsl(40, 15, 40);
-    color: hsl(40, 15, 40);
+    border: 1px solid $neutral-5;
+    color: $neutral-6;
     cursor:pointer;
     .oi {
         top: 3px;

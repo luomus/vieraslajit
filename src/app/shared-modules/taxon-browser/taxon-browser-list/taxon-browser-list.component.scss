@@ -2,12 +2,12 @@
 
 ngx-datatable {
     height: 100%;
-    background: hsl(40, 15, 80) !important;
+    background: $neutral-3 !important;
 }
 
 :host ::ng-deep {
     .ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover, .ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover .datatable-row-group {
-        background-color: hsl(40, 15, 70);
+        background-color: $neutral-4;
     }
     .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
         color: $neutral-8;
@@ -17,6 +17,6 @@ ngx-datatable {
         font-size: 1.2em;
     }
     .ngx-datatable.material .datatable-header .resize-handle {
-        border-right: solid 1px hsl(40, 15, 65);
+        border-right: solid 1px $neutral-5;
     }
 }
