@@ -75,7 +75,7 @@
       </div> <!-- /card -->
 
       <div class="taxon-card-map" *ngIf="taxon">
-        <div class="taxon-card-map-title" (click)="mapToggle = !mapToggle">
+        <div class="taxon-card-map-title" (click)="toggleMap()">
           <h5 translate>taxon.map</h5>
           <span class="oi oi-chevron-bottom" [ngClass]="{'oi-chevron-bottom': mapToggle, 'oi-chevron-left': !mapToggle}"></span>
         </div>

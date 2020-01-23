@@ -70,17 +70,31 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(() => this.facade.loadTaxon(this.route.snapshot.params['id']));
 
-    this.destroyResizeListener = this.renderer.listen(window, 'resize', () => {
-      this.onResize();
-    })
-    this.onResize();
+    this.destroyResizeListener = this.renderer.listen(window, 'resize', this.onResize.bind(this))
+    this.onResize(undefined);
   }
 
-  onResize() {
+  onResize(evt) {
+    if (evt && evt['ignore-map-resize']) { return; }
     if (window.innerWidth < 768) {
       this.mapToggle = false;
     } else {
       this.mapToggle = true;
+    }
+  }
+
+  toggleMap() {
+    this.mapToggle = !this.mapToggle;
+    try {
+      const event = new Event('resize');
+      event['ignore-map-resize'] = true;
+      window.dispatchEvent(event);
+    } catch (e) {
+      const evt = window.document.createEvent('UIEvents');
+      evt['ignore-map-resize'] = true;
+      // @ts-ignore
+      evt.initUIEvent('resize', true, false, window, 0);
+      window.dispatchEvent(evt);
     }
   }
 
