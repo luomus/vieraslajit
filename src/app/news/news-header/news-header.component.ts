@@ -7,7 +7,7 @@ import { NewsElement } from '../../shared/model';
     <div *ngIf='newsElement.featuredImage' class="row news-header">
         <img class="news-thumbnail rounded" src="{{newsElement.featuredImage}}">
         <div>
-            <h2 class="news-title py-2 py-sm-0">{{newsElement.title}}</h2>
+            <h2 class="news-title py-2 py-sm-0" [routerLink]="['./', newsElement.id]">{{newsElement.title}}</h2>
             <div class="news-posted p-0 p-sm-2">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }} <span class="news-tag">{{newsElement.tag | translate}}</span></div>
         </div>
         <div>
@@ -20,7 +20,7 @@ import { NewsElement } from '../../shared/model';
     <!-- No feature image header -->
     <div *ngIf='!newsElement.featuredImage' class="news-header justify-content-between">
         <div>
-            <h2 class="news-title">{{newsElement.title}}</h2>
+            <h2 class="news-title" [routerLink]="['./', newsElement.id]">{{newsElement.title}}</h2>
             <div class="news-posted">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }} <span class="news-tag">{{newsElement.tag | translate}}</span></div>
         </div>
         <div>

@@ -18,12 +18,13 @@
 </div>
 <div class="container">
   <laji-spinner [ngClass]="{'news-spinner': newsLoading}" [spinning]="newsLoading" [hideContentWhileLoading]='true' [fullViewport]='false'>
-  <div *ngFor="let newsElement of (asyncNews | async | paginate: { id: 'pagination-controls', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems })" class="news-post row" [routerLink]="['./', newsElement.id]">
+  <div *ngFor="let newsElement of (asyncNews | async | paginate: { id: 'pagination-controls', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems })" class="news-post row">
     <div class="news-section">
       <vrs-news-header [newsElement]="newsElement"></vrs-news-header>
 
       <div class="news-content">
         <div [innerHTML]="newsElement.content | parsewp | truncate:300">Post content</div>
+      <a [routerLink]="['./', newsElement.id]">{{ 'news.readMore' | translate }}</a>
         <div class="text-right news-modified p-2">
           <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span>
           {{newsElement.modified | date: 'dd.MM.yyyy HH:MM'}}
