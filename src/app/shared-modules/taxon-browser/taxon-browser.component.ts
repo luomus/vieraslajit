@@ -194,6 +194,16 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
         this.parameterService.updateQuery({mode: this.viewMode});
     }
 
+    getSortOrder() {
+        return this.settingsService.apiSettings.sortOrder;
+    }
+
+    onChangeSortOrder() {
+        this.parameterService.updateQuery({
+            sortOrder: this.getSortOrder() === 'taxonomic' ? 'finnish_name' : 'taxonomic'
+        });
+    }
+
     onToggleSidebar() {
         this.sidebarActive = !this.sidebarActive;
         if (!this.sidebarActive) {

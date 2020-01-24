@@ -85,6 +85,8 @@
   "taxonomy.listMode.grid": "Ruudukko",
   "taxonomy.listMode.list": "Luettelo",
   "taxonomy.export": "Lataa taulukko",
+  "taxonomy.sortOrder.alphabetic": "Taksonomiseen järjestykseen",
+  "taxonomy.sortOrder.taxonomic": "Aakkosjärjestykseen",
 
   "taxonomy.filterInfo.fiList.title": "Kansallinen haitallisten vieraslajien luettelo",
   "taxonomy.filterInfo.fiList.description": "Laji kuuluu kansallisesti haitallisten vieraslajien luetteloon. EU:n säädökset antavat valtioille mahdollisuuden määrittää kansallisesti haitallisia vieraslajeja. Suomi on toistaiseksi sisällyttänyt kansalliseen luetteloon 16 lajia, kahdeksan lajiryhmää ja yhden risteymän. Jäsenvaltiot voivat määrittää näille lajeille omia rajoituksiaan.",

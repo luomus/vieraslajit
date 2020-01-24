@@ -85,6 +85,8 @@
   "taxonomy.listMode.grid": "Rutnät",
   "taxonomy.listMode.list": "Lista",
   "taxonomy.export": null,
+  "taxonomy.sortOrder.alphabetic": null,
+  "taxonomy.sortOrder.taxonomic": null,
 
   "taxonomy.filterInfo.fiList.title": null,
   "taxonomy.filterInfo.fiList.description": null,

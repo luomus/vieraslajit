@@ -60,6 +60,10 @@ export class TaxonBrowserApiService {
         }
         this.query.adminStatusFilters = tempAdminStatusFilters.toString();
 
+        if (this.settingsService.apiSettings.sortOrder) {
+            this.query.sortOrder = this.settingsService.apiSettings.sortOrder;
+        }
+
         if (this.settingsService.apiSettings.informalTaxonGroups) {
             this.query.informalGroupFilters = this.settingsService.apiSettings.informalTaxonGroups.toString();
         }
@@ -74,6 +78,7 @@ export class TaxonBrowserApiService {
     }
 
     updateTaxa(append = false) {
+        console.log(this.query);
         this.apiService.taxonomyFindById(LajiApi.Endpoints.taxa, '', this.query).pipe(
             tap((res)=>{this.settingsService.apiSettings.total = res.total; this.lastPage = res.lastPage;}),
             map(res=>res.results)

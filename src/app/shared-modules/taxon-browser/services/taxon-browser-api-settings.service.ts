@@ -15,11 +15,13 @@ export interface TaxonBrowserApiSettings {
     total?:number;
 
     lang?:string;
+
+    sortOrder?:string;
 }
 
 @Injectable()
 export class TaxonBrowserApiSettingsService {
-    private _apiSettings:TaxonBrowserApiSettings = {total: 0, mode: 'grid'};
+    private _apiSettings:TaxonBrowserApiSettings = {total: 0, mode: 'grid', sortOrder: 'taxonomic'};
 
     eventEmitter:EventEmitter = new EventEmitter();
 
