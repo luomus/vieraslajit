@@ -21,8 +21,8 @@ export class FilterMenuComponent {
     @Output() taxonChange = new EventEmitter();
     @Output() onClose = new EventEmitter();
 
-    @ViewChild(TaxonSearchComponent) taxonSearch: TaxonSearchComponent;
-    @ViewChild(TimeSelectorComponent) timeSelector : TimeSelectorComponent;
+    @ViewChild(TaxonSearchComponent, { static: true }) taxonSearch: TaxonSearchComponent;
+    @ViewChild(TimeSelectorComponent, { static: true }) timeSelector : TimeSelectorComponent;
 
     updateMunicipality(val) {
         // TODO

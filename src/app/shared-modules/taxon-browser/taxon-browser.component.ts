@@ -35,22 +35,22 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
 
     resizeUnlisten = () => {}
 
-    @ViewChild('sidebar') sidebar: ElementRef;
-    @ViewChild('sidebarToggle') sidebarToggle: ElementRef;
-    @ViewChild('cardscont') cardsContainer: ElementRef;
-    @ViewChild('optionsmenu') optionsMenu: ElementRef;
+    @ViewChild('sidebar', { static: true }) sidebar: ElementRef;
+    @ViewChild('sidebarToggle', { static: true }) sidebarToggle: ElementRef;
+    @ViewChild('cardscont', { static: true }) cardsContainer: ElementRef;
+    @ViewChild('optionsmenu', { static: true }) optionsMenu: ElementRef;
 
     /* CHECKBOXES */
-    @ViewChild('plantsCheckbox')        plantsCheckbox: ElementRef;
-    @ViewChild('mammalsCheckbox')       mammalsCheckbox: ElementRef;
-    @ViewChild('freshwaterCheckbox')    freshwaterCheckbox: ElementRef;
-    @ViewChild('balticCheckbox')        balticCheckbox: ElementRef;
-    @ViewChild('interiorCheckbox')      interiorCheckbox: ElementRef;
-    @ViewChild('forestryCheckbox')      forestryCheckbox: ElementRef;
-    @ViewChild('agriculturalCheckbox')  agriculturalCheckbox: ElementRef;
-    @ViewChild('fiCheckbox')            fiCheckbox: ElementRef;
-    @ViewChild('euCheckbox')            euCheckbox: ElementRef;
-    @ViewChild('plantPestCheckbox')     plantPestCheckbox: ElementRef;
+    @ViewChild('plantsCheckbox', { static: true })        plantsCheckbox: ElementRef;
+    @ViewChild('mammalsCheckbox', { static: true })       mammalsCheckbox: ElementRef;
+    @ViewChild('freshwaterCheckbox', { static: true })    freshwaterCheckbox: ElementRef;
+    @ViewChild('balticCheckbox', { static: true })        balticCheckbox: ElementRef;
+    @ViewChild('interiorCheckbox', { static: true })      interiorCheckbox: ElementRef;
+    @ViewChild('forestryCheckbox', { static: true })      forestryCheckbox: ElementRef;
+    @ViewChild('agriculturalCheckbox', { static: true })  agriculturalCheckbox: ElementRef;
+    @ViewChild('fiCheckbox', { static: true })            fiCheckbox: ElementRef;
+    @ViewChild('euCheckbox', { static: true })            euCheckbox: ElementRef;
+    @ViewChild('plantPestCheckbox', { static: true })     plantPestCheckbox: ElementRef;
 
     constructor(private settingsService:TaxonBrowserApiSettingsService,
                 private apiService: TaxonBrowserApiService,

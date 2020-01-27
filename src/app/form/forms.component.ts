@@ -12,8 +12,8 @@ export class FormsComponent implements OnInit {
     columns = [];
     documents$;
 
-    @ViewChild('modifiedCell') modifiedCell: TemplateRef<any>;
-    @ViewChild('editCell') editCell: TemplateRef<any>;
+    @ViewChild('modifiedCell', { static: true }) modifiedCell: TemplateRef<any>;
+    @ViewChild('editCell', { static: true }) editCell: TemplateRef<any>;
 
     loggedIn = false;
     loginUrl = '';

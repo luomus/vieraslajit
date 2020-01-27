@@ -10,7 +10,7 @@ import { Component, Output, EventEmitter, Renderer2, ViewChild, ElementRef, Inpu
 export class TimeSelectorComponent {
     @Output() timeChangeEvent = new EventEmitter();
 
-    @ViewChild('timeInput') timeInput: ElementRef;
+    @ViewChild('timeInput', { static: true }) timeInput: ElementRef;
 
     constructor(private renderer: Renderer2) {}
 

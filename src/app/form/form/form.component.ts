@@ -23,9 +23,9 @@ import { filter, takeUntil } from 'rxjs/operators';
 export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
     unsubscribe$ = new Subject<void>()
 
-    @ViewChild('lajiform') formElem: ElementRef;
-    @ViewChild('formName') formName: ElementRef;
-    @ViewChild('formDesc') formDesc: ElementRef;
+    @ViewChild('lajiform', { static: false }) formElem: ElementRef;
+    @ViewChild('formName', { static: false }) formName: ElementRef;
+    @ViewChild('formDesc', { static: false }) formDesc: ElementRef;
 
     private id: string;
     private documentId: string;

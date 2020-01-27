@@ -27,15 +27,15 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
 
   @Input() mapHeight: number = 400;
 
-  @ViewChild('maprow') mapRow: ElementRef;
+  @ViewChild('maprow', { static: true }) mapRow: ElementRef;
 
-  @ViewChild(ObsMapListComponent)
+  @ViewChild(ObsMapListComponent, { static: false })
   mapTaxonList : ObsMapListComponent;
 
-  @ViewChild(TaxonSearchComponent)
+  @ViewChild(TaxonSearchComponent, { static: false })
   taxonSearch : TaxonSearchComponent;
 
-  @ViewChild(FilterMenuComponent)
+  @ViewChild(FilterMenuComponent, { static: false })
   filterMenu : FilterMenuComponent;
 
   bsModalRef: BsModalRef;
