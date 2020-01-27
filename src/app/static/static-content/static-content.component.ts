@@ -2,8 +2,8 @@ import { Input, Component, OnChanges, SimpleChanges, Renderer2, ComponentFactory
 import { Information } from "app/shared/model";
 import { parseWP } from "app/shared/pipe/parse-wp.pipe";
 import { NewsletterFormComponent } from "../newsletter-form/newsletter-form.component";
-import { DOCUMENT } from "@angular/platform-browser";
-import { isPlatformBrowser } from "@angular/common";
+
+import { isPlatformBrowser, DOCUMENT } from "@angular/common";
 
 @Component({
     selector: 'vrs-static-content',

@@ -18,7 +18,6 @@ import { BsDropdownModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
 import { FormService } from './service/form.service';
 import { FormApiClient } from './api/FormApiClient';
 import { UserService } from './service/user.service';
-import { HttpModule } from '@angular/http';
 import { InformationService } from './service/information.service';
 import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
 import { ObservationService } from './service/observation.service';
@@ -57,8 +56,7 @@ import { TruncatePipe } from './pipe/truncate.pipe';
     SpinnerModule,
     EditcmsModule,
     ModalModule.forRoot(),
-    CollapseModule.forRoot(),
-    HttpModule
+    CollapseModule.forRoot()
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
