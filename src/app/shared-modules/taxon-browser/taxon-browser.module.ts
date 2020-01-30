@@ -17,11 +17,12 @@ import { TaxonGridComponent } from './taxon-grid/taxon-grid.component';
 import { GroupDropdownComponent } from './informal-group/group-dropdown.component';
 import { OptionsAccordionComponent } from './options-accordion.component';
 import { FilterInfoComponent } from './filter-info/filter-info.component';
+import { SelectSortOrderComponent } from './select-sort-order/select-sort-order.component';
 
 @NgModule({
     imports: [NgxPaginationModule, TabsModule, NgxDatatableModule, RouterModule,
         CommonModule, TranslateModule, FormsModule, SpinnerModule, SharedModule, InfiniteScrollModule],
-    declarations: [GroupDropdownComponent, TaxonGridComponent, TaxonBrowserComponent, TaxonBrowserListComponent, InformalGroupComponent, InformalGroupGridComponent, OptionsAccordionComponent, FilterInfoComponent ],
+    declarations: [GroupDropdownComponent, TaxonGridComponent, TaxonBrowserComponent, TaxonBrowserListComponent, InformalGroupComponent, InformalGroupGridComponent, OptionsAccordionComponent, FilterInfoComponent, SelectSortOrderComponent ],
     exports: [TaxonBrowserComponent]
 })
 export class TaxonBrowserModule {}

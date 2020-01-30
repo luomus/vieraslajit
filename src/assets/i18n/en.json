@@ -85,8 +85,9 @@
   "taxonomy.listMode.grid": "Grid",
   "taxonomy.listMode.list": "List",
   "taxonomy.export": "Export",
-  "taxonomy.sortOrder.alphabetic": "Sort by taxonomy",
-  "taxonomy.sortOrder.taxonomic": "Sort by finnish name",
+  "taxonomy.sortOrder.observations": "Observation count",
+  "taxonomy.sortOrder.finnish_name": "Finnish name",
+  "taxonomy.sortOrder.taxonomic": "Taxonomy",
 
   "taxonomy.filterInfo.fiList.title": null,
   "taxonomy.filterInfo.fiList.description": null,

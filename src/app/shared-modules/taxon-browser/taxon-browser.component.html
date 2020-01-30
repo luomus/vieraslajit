@@ -60,10 +60,7 @@
     </div>
     <div class="browser-content-wrapper">
         <div class="browser-content-menu">
-            <div *ngIf="viewMode === 'grid'" class="toolbar-btn" (click)="onChangeSortOrder()">
-                {{ (getSortOrder() === 'taxonomic' ? 'taxonomy.sortOrder.taxonomic' : 'taxonomy.sortOrder.alphabetic') | translate}}
-                <span class="oi oi-sort-ascending"></span>
-            </div>
+            <vrs-select-sort-order *ngIf="viewMode === 'grid'" [current]="getSortOrder()" (sorted)="onChangeSortOrder($event)"></vrs-select-sort-order>
             <div *ngIf="viewMode === 'list'" class="toolbar-btn" (click)="onExport()">
                 {{'taxonomy.export' | translate}}<span class="oi oi-data-transfer-download"></span>
             </div>

@@ -10,6 +10,7 @@ import { TaxonBrowserParameterService, TaxonBrowserQuery } from "./services/taxo
 import { FilterInfoType } from "./filter-info/filter-info.component";
 import { map } from "rxjs/operators";
 import { SpreadSheetService } from "app/shared/service/spread-sheet.service";
+import { SortOrder } from "./select-sort-order/select-sort-order.component";
 
 @Component({
     selector: "vrs-taxon-browser",
@@ -198,10 +199,8 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
         return this.settingsService.apiSettings.sortOrder;
     }
 
-    onChangeSortOrder() {
-        this.parameterService.updateQuery({
-            sortOrder: this.getSortOrder() === 'taxonomic' ? 'finnish_name' : 'taxonomic'
-        });
+    onChangeSortOrder(sortOrder: SortOrder) {
+        this.parameterService.updateQuery({ sortOrder });
     }
 
     onToggleSidebar() {

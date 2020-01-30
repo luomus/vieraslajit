@@ -1,6 +1,7 @@
 import { Injectable } from "../../../../../node_modules/@angular/core";
 import { EventEmitter } from "events";
 import { Informal } from "../../../shared/model";
+import { SortOrder } from "../select-sort-order/select-sort-order.component";
 
 export interface TaxonBrowserApiSettings {
     EuList?:boolean;
@@ -16,12 +17,12 @@ export interface TaxonBrowserApiSettings {
 
     lang?:string;
 
-    sortOrder?:string;
+    sortOrder?:SortOrder;
 }
 
 @Injectable()
 export class TaxonBrowserApiSettingsService {
-    private _apiSettings:TaxonBrowserApiSettings = {total: 0, mode: 'grid', sortOrder: 'taxonomic'};
+    private _apiSettings:TaxonBrowserApiSettings = {total: 0, mode: 'grid', sortOrder: 'observations'};
 
     eventEmitter:EventEmitter = new EventEmitter();
 
