@@ -117,7 +117,7 @@
   "taxon.occurrence": "Occurrence: ",
   "taxon.unknown": "Unknown",
   "taxon.report": "Report your observations",
-  "taxon.report.quarantine": null,
+  "taxon.report.custom": "Report your observations",
   "taxon.map": "Observation map",
   "taxon.viewOnMap": "View on observation map",
 

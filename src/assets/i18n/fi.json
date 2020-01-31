@@ -117,7 +117,7 @@
   "taxon.occurrence": "Esiintyminen: ",
   "taxon.unknown": "Tuntematon",
   "taxon.report": "Ilmoita omat havaintosi",
-  "taxon.report.quarantine": "Ilmoita havainto ruokavirastoon",
+  "taxon.report.custom": "Ilmoita havavaintosi viranomaisille",
   "taxon.map": "Havaintokartta",
   "taxon.viewOnMap": "Havaintokarttanäkymään",
 
