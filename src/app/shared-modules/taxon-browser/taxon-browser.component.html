@@ -13,17 +13,14 @@
                 <div class="checkbox">
                     <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList" #fiCheckbox>
                     <label for="finnishList" translate>taxonomy.filters.finnishList</label>
-                    <vrs-help>{{'tooltip.fiList' | translate}}</vrs-help>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList" #euCheckbox>
                     <label for="euList" translate>taxonomy.filters.euList</label>
-                    <vrs-help>{{'tooltip.euList' | translate}}</vrs-help>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest" #plantPestCheckbox>
                     <label for="plantPest" translate>taxonomy.filters.plantPests</label>
-                    <vrs-help>{{'tooltip.quarantine' | translate}}</vrs-help>
                 </div>
             </options-accordion>
             <options-accordion header="{{'taxonomy.filters.iasGroups' | translate}}">
