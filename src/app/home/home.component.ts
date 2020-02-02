@@ -1,11 +1,12 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../environments/environment';
-import { Subscription, forkJoin } from 'rxjs';
+import { Subscription, forkJoin, from } from 'rxjs';
 import { InformationService } from '../shared/service/information.service';
 import { map, concatMap } from 'rxjs/operators';
 import { TaxonService } from '../shared/service/taxon.service';
+import { FacebookService } from 'ngx-facebook';
 
 /**
  * Renders the home-/frontpage ie. /home/ route
@@ -18,7 +19,7 @@ import { TaxonService } from '../shared/service/taxon.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   newsTag: string = environment.newsTag
   private onLangChange: Subscription;
   alerts: Array<any> = [];
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private informationService: InformationService,
               private taxonService: TaxonService,
               private newsService: NewsService,
+              private fb: FacebookService,
               private translate: TranslateService) { }
 
   /**
@@ -55,6 +57,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.topical.push(res);
         this.topical = this.topical.slice();
     })
+  }
+
+  ngAfterViewInit() {
+    from(this.fb.init({version: 'v5.0', xfbml: true})).subscribe((inst) => {
+      inst.fxbml.parse();
+    });
   }
 
   ngOnDestroy() {

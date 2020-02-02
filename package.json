@@ -58,6 +58,7 @@
     "moment": "^2.24.0",
     "ng-pick-datetime": "^7.0.0",
     "ngx-bootstrap": "^3.0.1",
+    "ngx-facebook": "^2.4.0",
     "ngx-infinite-scroll": "^7.0.1",
     "ngx-pagination": "^3.2.0",
     "npm": "^6.3.0",

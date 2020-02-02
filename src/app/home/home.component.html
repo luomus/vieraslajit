@@ -64,12 +64,13 @@
 </header>
 <main class="container">
     <div class="news">
+        <fb-page href="https://facebook.com/vieraslajit"></fb-page>
         <ul>
             <ng-container *ngFor="let story of news">
                 <li>
                     <a class="story-title" [routerLink]="'/ajankohtaista/' + story.id">{{ story.title }}</a>
                     <div class="story-posted">{{ story.posted | date: 'dd.MM.yyyy' }}</div>
-                    <div [innerHTML]="story.content | parsewp | truncate:900"></div>
+                    <div [innerHTML]="story.content | parsewp | truncate:300"></div>
                     <a [routerLink]="'/ajankohtaista/' + story.id">Lue lisää...</a>
                 </li>
                 <hr>
