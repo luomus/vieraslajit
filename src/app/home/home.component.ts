@@ -6,7 +6,6 @@ import { Subscription, forkJoin, from } from 'rxjs';
 import { InformationService } from '../shared/service/information.service';
 import { map, concatMap } from 'rxjs/operators';
 import { TaxonService } from '../shared/service/taxon.service';
-import { FacebookService } from 'ngx-facebook';
 
 /**
  * Renders the home-/frontpage ie. /home/ route
@@ -30,7 +29,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(private informationService: InformationService,
               private taxonService: TaxonService,
               private newsService: NewsService,
-              private fb: FacebookService,
               private translate: TranslateService) { }
 
   /**
@@ -60,9 +58,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    from(this.fb.init({version: 'v5.0', xfbml: true})).subscribe((inst) => {
-      inst.fxbml.parse();
-    });
+    // @ts-ignore
+    window.FB.init({version: 'v5.0', xfbml: true});
+    // @ts-ignore
+    window.twttr.widgets.load();
   }
 
   ngOnDestroy() {

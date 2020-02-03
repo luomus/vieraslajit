@@ -54,6 +54,7 @@
     <h1>Kansallinen<br>vieraslajiportaali</h1>
     <div>
         <div class="description-container">
+            <h5>Mikä vieraslaji?</h5>
             <p translate>home.description</p>
             <div class="description-buttons">
                 <a routerLink="/ilmoita" class="btn vrs-button primary" translate>Ilmoita vieraslajihavainnosta</a>
@@ -64,7 +65,6 @@
 </header>
 <main class="container">
     <div class="news">
-        <fb-page href="https://facebook.com/vieraslajit"></fb-page>
         <ul>
             <ng-container *ngFor="let story of news">
                 <li>
@@ -80,7 +80,11 @@
             <a routerLink="/ajankohtaista/">Lisää uutisia</a>
         </div>
     </div>
-    <div>
+    <div class="side">
+        <div class="fb-page" data-href="https://www.facebook.com/vieraslajit" data-tabs="timeline" data-width="340" data-height="500" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/vieraslajit" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/vieraslajit">Vieraslajit</a></blockquote></div>
+        <a class="twitter-timeline" data-lang="fi" data-width="340" data-height="500" href="https://twitter.com/Vieraslajit?ref_src=twsrc%5Etfw">Tweets by Vieraslajit</a>
+    </div>
+<!--     <div>
         <div class="topical-species-container">
             <h3>{{ 'home.topicalSpecies' | translate }}</h3>
             <a [routerLink]="'/lajit/' + ts.id" *ngFor="let ts of topical">
@@ -88,5 +92,5 @@
                 <div class="image-label">{{ ts.vernacularName | capitalize }}</div>
             </a>
         </div>
-    </div>
+    </div> -->
 </main>

@@ -4,7 +4,6 @@ import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { TopicalSpeciesComponent } from './topical-species/topical-species.component';
-import { FacebookModule } from 'ngx-facebook';
 
 /**
  * Declares routes and component for rendering the home/front -page
@@ -14,8 +13,7 @@ import { FacebookModule } from 'ngx-facebook';
   imports: [
     HomeRoutingModule,
     CommonModule,
-    SharedModule,
-    FacebookModule.forRoot()
+    SharedModule
   ],
   declarations: [HomeComponent, TopicalSpeciesComponent]
 })
