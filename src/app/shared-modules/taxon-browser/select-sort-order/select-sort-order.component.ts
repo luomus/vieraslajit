@@ -9,8 +9,8 @@ export type SortOrder = 'observations' | 'taxonomic' | 'finnish_name'
     styleUrls: ['./select-sort-order.component.scss']
 })
 export class SelectSortOrderComponent implements OnInit, OnDestroy {
-    @ViewChild('title') titleRef: ElementRef;
-    @ViewChild('dropdown') dropdownRef: ElementRef;
+    @ViewChild('title', { static:false }) titleRef: ElementRef;
+    @ViewChild('dropdown', { static: false }) dropdownRef: ElementRef;
     sortOrders: SortOrder[] = ['observations', 'taxonomic', 'finnish_name'];
     menuOpen = false;
     @Input() current: SortOrder = 'observations';

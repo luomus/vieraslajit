@@ -91,7 +91,7 @@
 }
 :host ::ng-deep .carousel-control-next-icon:before {
     @extend %glyphicon;
-    @extend %glyphicon-chevron-right:before;
+    @extend %glyphicon-chevron-right, :before;
     color: rgba(255,255,255,0.5);
 }
 
@@ -100,7 +100,7 @@
 }
 :host ::ng-deep .carousel-control-prev-icon:before {
     @extend %glyphicon;
-    @extend %glyphicon-chevron-left:before;
+    @extend %glyphicon-chevron-left, :before;
     color: rgba(255,255,255,0.5);
 }
 @font-face {
