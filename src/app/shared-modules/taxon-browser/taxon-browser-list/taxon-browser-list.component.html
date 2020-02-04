@@ -1,0 +1,17 @@
+<ngx-datatable class="material"
+                [rows]="taxa" [columnMode]="'force'" [columns]="columns"
+                [headerHeight]="50" [rowHeight]="50" [reorderable]='true'
+                [count]="taxa.length"
+                [scrollbarV]="true"
+                (activate)="onDatatableActivate($event)"
+                infiniteScroll
+                [infiniteScrollDistance]="0.1"
+                [infiniteScrollThrottle]="1000"
+                [infiniteScrollContainer]="'datatable-body'"
+                [fromRoot]="true"
+                (scrolled)="onScroll()"
+                [messages]="{
+                    emptyMessage: getEmptyMessage()
+                }"
+                >
+               </ngx-datatable>

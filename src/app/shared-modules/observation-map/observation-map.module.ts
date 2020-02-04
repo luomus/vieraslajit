@@ -5,7 +5,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { RouterModule } from '@angular/router';
 import { TaxonSearchComponent } from './observation-map/taxon-search/taxon-search.component';
-import { ObsMapListComponent } from './observation-map/obs-map-list/obs-map-list';
+import { ObsMapListComponent } from './observation-map/obs-map-list/obs-map-list.component';
 import { MapApiService } from './observation-map/services/MapApiService';
 import { MapService } from './observation-map/services/MapService';
 import { ObsMapOptions } from './observation-map/services/data/ObsMapOptions';

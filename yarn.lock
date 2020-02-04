@@ -135,9 +135,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/cdk@7.3.7":
-  version "7.3.7"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-7.3.7.tgz#ce1ad53ba04beb9c8e950acc5691ea0143753764"
+"@angular/cdk@8.2.3":
+  version "8.2.3"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-8.2.3.tgz#16b96ffa935cbf5a646757ecaf2b19c434678f72"
+  integrity sha512-ZwO5Sn720RA2YvBqud0JAHkZXjmjxM0yNzCO8RVtRE9i8Gl26Wk0j0nQeJkVm4zwv2QO8MwbKUKGTMt8evsokA==
   dependencies:
     tslib "^1.7.1"
   optionalDependencies:
@@ -1093,17 +1094,20 @@
     tree-kill "1.2.2"
     webpack-sources "1.4.3"
 
-"@nguniversal/common@^7.1.1":
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/@nguniversal/common/-/common-7.1.1.tgz#6738e9debbe0ad75a3fb397b34702f6e48d321c3"
+"@nguniversal/common@^8.2.6":
+  version "8.2.6"
+  resolved "https://registry.yarnpkg.com/@nguniversal/common/-/common-8.2.6.tgz#26b1166f2ae82960a62ad5e64947e6983fa8b7d9"
+  integrity sha512-OVnks2rEdhT3pWUJzhCwwUyIVg58BEU5GjWf69YnO74KKwakYaKZ22MNoGcfMqBl3uxtGHjhqHhov3VcDMVQ/Q==
 
-"@nguniversal/express-engine@^7.1.1":
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/@nguniversal/express-engine/-/express-engine-7.1.1.tgz#9445ccb374dabdadccc8de98ca8a79b536ae14de"
+"@nguniversal/express-engine@^8.2.6":
+  version "8.2.6"
+  resolved "https://registry.yarnpkg.com/@nguniversal/express-engine/-/express-engine-8.2.6.tgz#3930551727b5be1256f0aefa1ffd3c37cb420f9f"
+  integrity sha512-IKUKTpesgjYyB0Xg+fFhSbwbGBJhG0Wfn8MkQAi9RgSi8QsrSMkI3oUXc86Z7fpQL55D/ZIH7PekoC0Fmh/kxA==
 
-"@nguniversal/module-map-ngfactory-loader@0.0.0":
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/@nguniversal/module-map-ngfactory-loader/-/module-map-ngfactory-loader-0.0.0.tgz#2717c1fcc9aa82ec2305603111937b91ca2a36bb"
+"@nguniversal/module-map-ngfactory-loader@8.2.6":
+  version "8.2.6"
+  resolved "https://registry.yarnpkg.com/@nguniversal/module-map-ngfactory-loader/-/module-map-ngfactory-loader-8.2.6.tgz#0edc07c4437566970392c9bca1d13b8964971cb0"
+  integrity sha512-YcxXSrDZt6iDR+YbesJvprNpHd1nRLeThJwAFlcwvK/GVGSyKeWV6eqk3bRkBkgkw8OwaG/4lOQ4aofxQw+13w==
 
 "@ngx-translate/core@^10.0.2":
   version "10.0.2"
@@ -1170,9 +1174,12 @@
     semver "6.3.0"
     semver-intersect "1.4.0"
 
-"@swimlane/ngx-datatable@git+https://git@github.com/vixriihi/laji-datatable":
-  version "14.0.0"
-  resolved "git+https://git@github.com/vixriihi/laji-datatable#8125b49eacf7554a1979fed00017babc7cd6cd32"
+"@swimlane/ngx-datatable@16.0.3":
+  version "16.0.3"
+  resolved "https://registry.yarnpkg.com/@swimlane/ngx-datatable/-/ngx-datatable-16.0.3.tgz#95816dbc944679762d102d4a31b3e17674c67af3"
+  integrity sha512-SuVd89CTFhy+21SF8W+qmGoXGFeB7KB5/VwkrgvDRs0GnBC5m9u1nAyN0ypSXMmqilcem6vPmh4yVhjPL1rseg==
+  dependencies:
+    tslib "^1.9.0"
 
 "@types/events@*":
   version "3.0.0"
@@ -1666,7 +1673,7 @@ ansi-styles@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
 
-ansi-styles@^3.2.1:
+ansi-styles@^3.2.0, ansi-styles@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-3.2.1.tgz#41fbb20243e50b12be0f04b8dedbf07520ce841d"
   dependencies:
@@ -2596,7 +2603,7 @@ chalk@1.1.3, chalk@^1.0.0, chalk@^1.1.0, chalk@^1.1.1, chalk@^1.1.3:
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
 
-chalk@^2.0.0, chalk@^2.4.2:
+chalk@2.4.2, chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
   integrity sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
@@ -2835,6 +2842,15 @@ cliui@^4.0.0:
     string-width "^2.1.1"
     strip-ansi "^4.0.0"
     wrap-ansi "^2.0.0"
+
+cliui@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/cliui/-/cliui-5.0.0.tgz#deefcfdb2e800784aa34f46fa08e06851c7bbbc5"
+  integrity sha512-PYeGSEmmHM6zvoef2w8TPzlrnNpXIjTipYK780YswmIP9vjxmd6Y2a3CB2Ks6/AU8NHjZugXvo8w3oWM2qnwXA==
+  dependencies:
+    string-width "^3.1.0"
+    strip-ansi "^5.2.0"
+    wrap-ansi "^5.1.0"
 
 clone-deep@^4.0.1:
   version "4.0.1"
@@ -3270,21 +3286,21 @@ create-react-context@^0.2.1:
     fbjs "^0.8.0"
     gud "^1.0.0"
 
-cross-spawn@^5.0.1:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
-  dependencies:
-    lru-cache "^4.0.1"
-    shebang-command "^1.2.0"
-    which "^1.2.9"
-
-cross-spawn@^6.0.0, cross-spawn@^6.0.5:
+cross-spawn@6.0.5, cross-spawn@^6.0.0:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
   dependencies:
     nice-try "^1.0.4"
     path-key "^2.0.1"
     semver "^5.5.0"
+    shebang-command "^1.2.0"
+    which "^1.2.9"
+
+cross-spawn@^5.0.1:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
+  dependencies:
+    lru-cache "^4.0.1"
     shebang-command "^1.2.0"
     which "^1.2.9"
 
@@ -4439,12 +4455,13 @@ findit2@^2.2.3:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/findit2/-/findit2-2.2.3.tgz#58a466697df8a6205cdfdbf395536b8bd777a5f6"
 
-findup-sync@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/findup-sync/-/findup-sync-2.0.0.tgz#9326b1488c22d1a6088650a86901b2d9a90a2cbc"
+findup-sync@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/findup-sync/-/findup-sync-3.0.0.tgz#17b108f9ee512dfb7a5c7f3c8b27ea9e1a9c08d1"
+  integrity sha512-YbffarhcicEhOrm4CtrwdKBdCuz576RLdhJDsIfvNtxUuhdRet1qZcsMjqbePtAseKdAnDyM/IyXbu7PRPRLYg==
   dependencies:
     detect-file "^1.0.0"
-    is-glob "^3.1.0"
+    is-glob "^4.0.0"
     micromatch "^3.0.4"
     resolve-dir "^1.0.1"
 
@@ -4818,6 +4835,13 @@ global-dirs@^0.1.0:
   dependencies:
     ini "^1.3.4"
 
+global-modules@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/global-modules/-/global-modules-2.0.0.tgz#997605ad2345f27f51539bea26574421215c7780"
+  integrity sha512-NGbfmJBp9x8IxyJSd1P+otYK8vonoJactOogrVfFRIAEY1ukil8RSKDz2Yo7wh1oihl51l/r6W4epkeKJHqL8A==
+  dependencies:
+    global-prefix "^3.0.0"
+
 global-modules@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/global-modules/-/global-modules-1.0.0.tgz#6d770f0eb523ac78164d72b5e71a8877265cc3ea"
@@ -4835,6 +4859,15 @@ global-prefix@^1.0.1:
     ini "^1.3.4"
     is-windows "^1.0.1"
     which "^1.2.14"
+
+global-prefix@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/global-prefix/-/global-prefix-3.0.0.tgz#fc85f73064df69f50421f47f883fe5b913ba9b97"
+  integrity sha512-awConJSVCHVGND6x3tmMaKcQvwXLhjdkmomy2W+Goaui8YPgYgXJZewhg3fWC+DlfqqQuWg8AwqjGTD2nAPVWg==
+  dependencies:
+    ini "^1.3.5"
+    kind-of "^6.0.2"
+    which "^1.3.1"
 
 globals@^11.1.0:
   version "11.12.0"
@@ -5356,7 +5389,7 @@ import-lazy@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-lazy/-/import-lazy-2.1.0.tgz#05698e3d45c88e8d7e9d92cb0584e77f096f3e43"
 
-import-local@^2.0.0:
+import-local@2.0.0, import-local@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/import-local/-/import-local-2.0.0.tgz#55070be38a5993cf18ef6db7e961f5bee5c5a09d"
   dependencies:
@@ -5470,7 +5503,7 @@ internal-ip@^4.3.0:
     default-gateway "^4.2.0"
     ipaddr.js "^1.9.0"
 
-interpret@^1.1.0:
+interpret@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
   integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
@@ -6256,9 +6289,33 @@ laji-form@^0.0.626:
     react-transition-group "^1.1.1"
     react-widgets "^3.4.8"
 
-laji-map@1.0.494, laji-map@^1.0.395, laji-map@^1.0.506:
+laji-map@1.0.494:
   version "1.0.494"
   resolved "https://registry.yarnpkg.com/laji-map/-/laji-map-1.0.494.tgz#5f0db760314866d15e0ec6fb220789ddbcd1ee1a"
+  dependencies:
+    Leaflet.vector-markers "git+https://git@github.com/olzraiti/Leaflet.vector-markers.git#17601bee91f2dae098a0a76e96714d59ec958fe6"
+    leaflet "1.4.0"
+    leaflet-contextmenu "1.4.0"
+    leaflet-draw "1.0.3"
+    leaflet-geometryutil "0.8.0"
+    leaflet-geosearch "git+https://git@github.com/olzraiti/leaflet-geosearch.git#d0fb4384742e22799074355a99094adcc2416577"
+    leaflet-mml-layers "2.0.1"
+    leaflet-textpath "git+https://git@github.com/olzraiti/Leaflet.textPath.git#7fd168f22e2b1a52bdf62d473237f01caaa01e95"
+    leaflet.markercluster "1.3.0"
+    nouislider "13.1.0"
+    proj4 "2.3.16"
+    proj4leaflet "1.0.2"
+  optionalDependencies:
+    "@types/geojson" "*"
+    "@types/leaflet" "*"
+    "@types/leaflet-draw" "*"
+    "@types/leaflet.markercluster" "*"
+    "@types/node" "*"
+
+laji-map@1.0.506, laji-map@^1.0.395, laji-map@^1.0.506:
+  version "1.0.506"
+  resolved "https://registry.yarnpkg.com/laji-map/-/laji-map-1.0.506.tgz#4d64b802dd1481a0eb7709fe5bca28ad073a9a13"
+  integrity sha512-XjwjQAjqs0ZjzhecEAXOew3tWAM0vhYrLWVHWTQdxOCNPG9z5EOTujy8kJEIJWA1Xc3KGi0rPEpixkYdOpTYWw==
   dependencies:
     Leaflet.vector-markers "git+https://git@github.com/olzraiti/Leaflet.vector-markers.git#17601bee91f2dae098a0a76e96714d59ec958fe6"
     leaflet "1.4.0"
@@ -7160,11 +7217,12 @@ ngx-bootstrap@^5.3.2:
   resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-5.3.2.tgz#0668b01202610657e998b3ca87669645e0b31dc9"
   integrity sha512-gSMf8EXYl99Q3gqkq4RVhoTNSTYHz2Or6Cig2BJRbLJyqk15ZQE5qcq/ldHS8zzx/wgCA3HQeI63t2j2mEU9PA==
 
-ngx-infinite-scroll@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/ngx-infinite-scroll/-/ngx-infinite-scroll-7.0.1.tgz#59472108f5b6960519c269d6997fe3ae0961be07"
+ngx-infinite-scroll@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-infinite-scroll/-/ngx-infinite-scroll-8.0.1.tgz#95b9d7e51f8ed5ee6821889b4e4e3cfe8ddb5838"
+  integrity sha512-YpgkTPDNT7UCEp0GRX178V1nF+M2slCPJ2TX3CpvPZb5AR99JYwj/fNivcue5lN51oUaTySEG27qjVU73vKhjw==
   dependencies:
-    opencollective "^1.0.3"
+    opencollective-postinstall "^2.0.2"
 
 ngx-pagination@^3.2.0:
   version "3.2.1"
@@ -7786,6 +7844,11 @@ open@6.4.0:
   integrity sha512-IFenVPgF70fSm1keSd2iDBIDIBZkroLeuffXq+wKTzTJlBpesFWojV9lb8mzOfaAzM1sr7HQHuO0vtV0zYekGg==
   dependencies:
     is-wsl "^1.1.0"
+
+opencollective-postinstall@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.2.tgz#5657f1bede69b6e33a45939b061eb53d3c6c3a89"
+  integrity sha512-pVOEP16TrAO2/fjej1IdOyupJY8KDUM1CvsaScRbw6oddvpQoOfGk4ywha0HKKVAD6RkW4x6Q+tNBwhf3Bgpuw==
 
 opencollective@^1.0.3:
   version "1.0.3"
@@ -10174,7 +10237,7 @@ string-width@^1.0.1:
     is-fullwidth-code-point "^2.0.0"
     strip-ansi "^4.0.0"
 
-string-width@^3.0.0:
+string-width@^3.0.0, string-width@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-3.1.0.tgz#22767be21b62af1081574306f69ac51b62203961"
   integrity sha512-vafcv6KjVZKSgz06oM/H6GDBrAtz8vdhQakGjFIvNrHA6y3HCF1CInLy+QLq8dTJPQ1b+KDUqDFctkdRW44e1w==
@@ -10228,7 +10291,7 @@ strip-ansi@^4.0.0:
   dependencies:
     ansi-regex "^3.0.0"
 
-strip-ansi@^5.1.0:
+strip-ansi@^5.0.0, strip-ansi@^5.1.0, strip-ansi@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-5.2.0.tgz#8c9a536feb6afc962bdfa5b104a5091c1ad9c0ae"
   integrity sha512-DuRs1gKbBqsMKIZlrffwlug8MHkcnpjs5VPmL1PAh+mA30U0DTotfDZ0d2UUsXpPmPmMMJ6W773MaA3J+lbiWA==
@@ -10293,6 +10356,13 @@ stylus@0.54.5:
     sax "0.5.x"
     source-map "0.1.x"
 
+supports-color@6.1.0, supports-color@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-6.1.0.tgz#0764abc69c63d5ac842dd4867e8d025e880df8f3"
+  integrity sha512-qe1jfm1Mg7Nq/NSh6XE24gPXROEVsWHxC1LIx//XNlD9iw7YZQGjZNjYN7xGaEG6iKdA8EtNFW6R0gjnVXp+wQ==
+  dependencies:
+    has-flag "^3.0.0"
+
 supports-color@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"
@@ -10304,16 +10374,9 @@ supports-color@^3.1.2:
   dependencies:
     has-flag "^1.0.0"
 
-supports-color@^5.3.0, supports-color@^5.5.0:
+supports-color@^5.3.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
-  dependencies:
-    has-flag "^3.0.0"
-
-supports-color@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-6.1.0.tgz#0764abc69c63d5ac842dd4867e8d025e880df8f3"
-  integrity sha512-qe1jfm1Mg7Nq/NSh6XE24gPXROEVsWHxC1LIx//XNlD9iw7YZQGjZNjYN7xGaEG6iKdA8EtNFW6R0gjnVXp+wQ==
   dependencies:
     has-flag "^3.0.0"
 
@@ -10931,9 +10994,10 @@ uws@~9.14.0:
   version "9.14.0"
   resolved "https://registry.yarnpkg.com/uws/-/uws-9.14.0.tgz#fac8386befc33a7a3705cbd58dc47b430ca4dd95"
 
-v8-compile-cache@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.0.2.tgz#a428b28bb26790734c4fc8bc9fa106fccebf6a6c"
+v8-compile-cache@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.0.3.tgz#00f7494d2ae2b688cfe2899df6ed2c54bef91dbe"
+  integrity sha512-CNmdbwQMBjwr9Gsmohvm0pbL954tJrNzf6gWL3K+QMQf00PF7ERGrEiLgjuU3mKreLC2MeGhUsNV9ybTbLgd3w==
 
 validate-npm-package-license@^3.0.1, validate-npm-package-license@^3.0.4:
   version "3.0.4"
@@ -11057,21 +11121,22 @@ webpack-bundle-analyzer@^3.1.0:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-cli@^3.1.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.0.tgz#55c8a74cae1e88117f9dda3a801c7272e93ca318"
+webpack-cli@^3.3.10:
+  version "3.3.10"
+  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.10.tgz#17b279267e9b4fb549023fae170da8e6e766da13"
+  integrity sha512-u1dgND9+MXaEt74sJR4PR7qkPxXUSQ0RXYq8x1L6Jg1MYVEmGPrH6Ah6C4arD4r0J1P5HKjRqpab36k0eIzPqg==
   dependencies:
-    chalk "^2.4.1"
-    cross-spawn "^6.0.5"
-    enhanced-resolve "^4.1.0"
-    findup-sync "^2.0.0"
-    global-modules "^1.0.0"
-    import-local "^2.0.0"
-    interpret "^1.1.0"
-    loader-utils "^1.1.0"
-    supports-color "^5.5.0"
-    v8-compile-cache "^2.0.2"
-    yargs "^12.0.5"
+    chalk "2.4.2"
+    cross-spawn "6.0.5"
+    enhanced-resolve "4.1.0"
+    findup-sync "3.0.0"
+    global-modules "2.0.0"
+    import-local "2.0.0"
+    interpret "1.2.0"
+    loader-utils "1.2.3"
+    supports-color "6.1.0"
+    v8-compile-cache "2.0.3"
+    yargs "13.2.4"
 
 webpack-core@^0.6.8:
   version "0.6.9"
@@ -11313,6 +11378,15 @@ wrap-ansi@^2.0.0:
     string-width "^1.0.1"
     strip-ansi "^3.0.1"
 
+wrap-ansi@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-5.1.0.tgz#1fd1f67235d5b6d0fee781056001bfb694c03b09"
+  integrity sha512-QC1/iN/2/RPVJ5jYK8BGttj5z83LmSKmvbvrXPNCLZSEb32KKVDJDl/MOt2N01qU2H/FkzEa9PKto1BqDjtd7Q==
+  dependencies:
+    ansi-styles "^3.2.0"
+    string-width "^3.0.0"
+    strip-ansi "^5.0.0"
+
 wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
@@ -11413,7 +11487,7 @@ yargs-parser@^11.1.1:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
 
-yargs-parser@^13.0.0:
+yargs-parser@^13.0.0, yargs-parser@^13.1.0:
   version "13.1.1"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-13.1.1.tgz#d26058532aa06d365fe091f6a1fc06b2f7e5eca0"
   integrity sha512-oVAVsHz6uFrg3XQheFII8ESO2ssAf9luWuAd6Wexsu4F3OtIW0o8IribPXYrD4WC24LWtPrJlGy87y5udK+dxQ==
@@ -11427,7 +11501,7 @@ yargs-parser@^9.0.2:
   dependencies:
     camelcase "^4.1.0"
 
-yargs@12.0.5, yargs@^12.0.5:
+yargs@12.0.5:
   version "12.0.5"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-12.0.5.tgz#05f5997b609647b64f66b81e3b4b10a368e7ad13"
   integrity sha512-Lhz8TLaYnxq/2ObqHDql8dX8CJi97oHxrjUcYtzKbbykPtVW9WB+poxI+NM2UIzsMgNCZTIf0AQwsjK5yMAqZw==
@@ -11461,6 +11535,23 @@ yargs@13.1.0:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^13.0.0"
+
+yargs@13.2.4:
+  version "13.2.4"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-13.2.4.tgz#0b562b794016eb9651b98bd37acf364aa5d6dc83"
+  integrity sha512-HG/DWAJa1PAnHT9JAhNa8AbAv3FPaiLzioSjCcmuXXhP8MlpHO5vwls4g4j6n30Z74GVQj8Xa62dWVx1QCGklg==
+  dependencies:
+    cliui "^5.0.0"
+    find-up "^3.0.0"
+    get-caller-file "^2.0.1"
+    os-locale "^3.1.0"
+    require-directory "^2.1.1"
+    require-main-filename "^2.0.0"
+    set-blocking "^2.0.0"
+    string-width "^3.0.0"
+    which-module "^2.0.0"
+    y18n "^4.0.0"
+    yargs-parser "^13.1.0"
 
 yargs@^11.0.0:
   version "11.1.0"

@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import { UserService } from '../../../shared/service/user.service';
 import { ObsMapOptions, ObsMapOption } from './services/data/ObsMapOptions';
 import { MapApiService } from './services/MapApiService';
-import { ObsMapListComponent } from './obs-map-list/obs-map-list';
+import { ObsMapListComponent } from './obs-map-list/obs-map-list.component';
 import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
 import { ObsMapData } from './services/data/ObsMapData';
 import { BsModalRef } from 'ngx-bootstrap';

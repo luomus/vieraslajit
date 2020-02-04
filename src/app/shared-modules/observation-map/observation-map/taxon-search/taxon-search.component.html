@@ -1,0 +1,11 @@
+<div class='autocomplete' (keyup)="keyEvent($event)">
+    <span class="oi oi-magnifying-glass"></span>
+    <input type='text' id='vrs-taxon-search-textarea' (blur)="onSearchAreaBlur($event)"
+           (input)="onSearchAreaInput($event)" (focusin)="onSearchAreaInput($event)"
+           class='form-control' placeholder="{{'observation-map.filterMenu.species.placeholder' | translate}}">
+</div>
+
+<div class="selected-taxon">
+    <span>{{taxonId | taxonname:translate.currentLang | async}}</span>
+    <a class='oi oi-x icon' (click)="removeSelected()"></a>
+</div>

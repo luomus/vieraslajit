@@ -1,28 +1,13 @@
-import { Component, Input, OnInit } from "../../../../../../node_modules/@angular/core";
-import { TranslateService } from "../../../../../../node_modules/@ngx-translate/core";
+import { Component, Input, OnInit } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
 import { ObsMapData, VrsObservation, ObsMapDataMeta } from "../services/data/ObsMapData";
 import { EventEmitter } from "events";
 import { ObsMapOptions } from "../services/data/ObsMapOptions";
 
 @Component({
     selector: 'vrs-obs-map-list',
-    template: `
-    <laji-spinner [ngClass]="{'list-spinner': loading}" [spinning]="loading" [fullViewport]="false"></laji-spinner>
-    <ngx-datatable class="material"
-    [rows]="observations"
-    [columnMode]="'force'"
-    [columns]="columns"
-    [headerHeight]="50"
-    [rowHeight]="50"
-    [reorderable]='false'
-    scrollbarV="true"
-    (activate)="onTableActivate($event)"
-    [messages]="{
-        emptyMessage: getEmptyMessage()
-    }"
-    >
-    </ngx-datatable>`,
-    styleUrls: [`obs-map-list.component.scss`]
+    templateUrl: './obs-map-list.component.html',
+    styleUrls: ['./obs-map-list.component.scss']
 })
 export class ObsMapListComponent implements OnInit {
     observations:Array<VrsObservation> = [];

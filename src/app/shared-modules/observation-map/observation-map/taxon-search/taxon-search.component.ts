@@ -1,23 +1,12 @@
 import { TaxonService } from "../../../../shared/service/taxon.service";
-import { Component, OnInit, Renderer2, Inject, PLATFORM_ID, Output, EventEmitter } from "../../../../../../node_modules/@angular/core";
+import { Component, OnInit, Renderer2, Inject, PLATFORM_ID, Output, EventEmitter } from "@angular/core";
 import * as $ from 'jquery';
-import { TranslateService } from "../../../../../../node_modules/@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
 import { isPlatformBrowser } from "@angular/common";
 
 @Component({
     selector: "vrs-taxon-search",
-    template: `
-<div class='autocomplete' (keyup)="keyEvent($event)">
-    <span class="oi oi-magnifying-glass"></span>
-    <input type='text' id='vrs-taxon-search-textarea' (blur)="onSearchAreaBlur($event)"
-           (input)="onSearchAreaInput($event)" (focusin)="onSearchAreaInput($event)"
-           class='form-control' placeholder="{{'observation-map.filterMenu.species.placeholder' | translate}}">
-</div>
-
-<div class="selected-taxon">
-    <span>{{taxonId | taxonname:translate.currentLang | async}}</span>
-    <a class='oi oi-x icon' (click)="removeSelected()"></a>
-</div>`,
+    templateUrl: './taxon-search.component.html',
     styleUrls: ["./taxon-search.component.scss"]
 })
 export class TaxonSearchComponent implements OnInit {
