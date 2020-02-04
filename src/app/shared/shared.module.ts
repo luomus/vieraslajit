@@ -41,6 +41,7 @@ import { LoaderService } from './service/loader.service';
 import { DateTranslatePipe } from './pipe/date-translate.pipe';
 import { SpreadSheetService } from './service/spread-sheet.service';
 import { TruncatePipe } from './pipe/truncate.pipe';
+import { HttpModule } from '@angular/http';
 /**
  * Provides common utilities for other modules
  */
@@ -56,7 +57,8 @@ import { TruncatePipe } from './pipe/truncate.pipe';
     SpinnerModule,
     EditcmsModule,
     ModalModule.forRoot(),
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    HttpModule
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
