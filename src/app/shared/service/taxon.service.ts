@@ -33,9 +33,9 @@ export class TaxonService {
   }
 
   // Get one taxon
-  getTaxon(taxonId: string, lang?: string): Observable<Taxonomy> {
+  getTaxon(taxonId: string, lang?: string, query?: Object): Observable<Taxonomy> {
     return this.apiService
-      .taxonomyFindById(LajiApi.Endpoints.taxon, taxonId, { lang: lang, langFallback: false });
+      .taxonomyFindById(LajiApi.Endpoints.taxon, taxonId, { lang: lang, langFallback: false, ...query });
   }
   getTaxonWithMedia(taxonId: string, lang?: string): Observable<Taxonomy> {
     return this.apiService

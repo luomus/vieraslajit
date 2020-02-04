@@ -70,7 +70,10 @@ export class TaxonCardFacade {
     ///////////////////
 
     private subscribeTaxon(taxonId: string) {
-        return this.taxonService.getTaxon(taxonId, this.translate.currentLang).subscribe(this.updateTaxon.bind(this))
+        const query = {
+          selectedFields: 'administrativeStatuses,vernacularName,scientificName,invasiveSpeciesEstablishment,occurrence,id,customReportFormLink'
+        };
+        return this.taxonService.getTaxon(taxonId, this.translate.currentLang, query).subscribe(this.updateTaxon.bind(this))
     }
 
     private subscribeDescription(taxonId: string) {

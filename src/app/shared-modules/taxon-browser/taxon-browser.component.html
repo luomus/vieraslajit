@@ -13,17 +13,14 @@
                 <div class="checkbox">
                     <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList" #fiCheckbox>
                     <label for="finnishList" translate>taxonomy.filters.finnishList</label>
-                    <vrs-help>{{'tooltip.fiList' | translate}}</vrs-help>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList" #euCheckbox>
                     <label for="euList" translate>taxonomy.filters.euList</label>
-                    <vrs-help>{{'tooltip.euList' | translate}}</vrs-help>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest" #plantPestCheckbox>
                     <label for="plantPest" translate>taxonomy.filters.plantPests</label>
-                    <vrs-help>{{'tooltip.quarantine' | translate}}</vrs-help>
                 </div>
             </options-accordion>
             <options-accordion header="{{'taxonomy.filters.iasGroups' | translate}}">
@@ -60,10 +57,7 @@
     </div>
     <div class="browser-content-wrapper">
         <div class="browser-content-menu">
-            <div *ngIf="viewMode === 'grid'" class="toolbar-btn" (click)="onChangeSortOrder()">
-                {{ (getSortOrder() === 'taxonomic' ? 'taxonomy.sortOrder.taxonomic' : 'taxonomy.sortOrder.alphabetic') | translate}}
-                <span class="oi oi-sort-ascending"></span>
-            </div>
+            <vrs-select-sort-order *ngIf="viewMode === 'grid'" [current]="getSortOrder()" (sorted)="onChangeSortOrder($event)"></vrs-select-sort-order>
             <div *ngIf="viewMode === 'list'" class="toolbar-btn" (click)="onExport()">
                 {{'taxonomy.export' | translate}}<span class="oi oi-data-transfer-download"></span>
             </div>

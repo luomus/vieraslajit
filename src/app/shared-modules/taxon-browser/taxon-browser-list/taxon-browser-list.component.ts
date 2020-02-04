@@ -9,7 +9,6 @@ import { Taxonomy } from "../../../shared/model";
                 [rows]="taxa" [columnMode]="'force'" [columns]="columns"
                 [headerHeight]="50" [rowHeight]="50" [reorderable]='true'
                 [count]="taxa.length"
-                [sorts]="[{prop: 'vernacularName', dir: 'asc'}]"
                 [scrollbarV]="true"
                 (activate)="onDatatableActivate($event)"
                 infiniteScroll

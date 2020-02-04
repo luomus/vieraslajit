@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../environments/environment';
-import { Subscription, forkJoin } from 'rxjs';
+import { Subscription, forkJoin, from } from 'rxjs';
 import { InformationService } from '../shared/service/information.service';
 import { map, concatMap } from 'rxjs/operators';
 import { TaxonService } from '../shared/service/taxon.service';
@@ -18,7 +18,7 @@ import { TaxonService } from '../shared/service/taxon.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   newsTag: string = environment.newsTag
   private onLangChange: Subscription;
   alerts: Array<any> = [];
@@ -55,6 +55,13 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.topical.push(res);
         this.topical = this.topical.slice();
     })
+  }
+
+  ngAfterViewInit() {
+    // @ts-ignore
+    window.FB.init({version: 'v5.0', xfbml: true});
+    // @ts-ignore
+    window.twttr.widgets.load();
   }
 
   ngOnDestroy() {

@@ -35,7 +35,7 @@ export class TaxonBrowserApiService {
                                 'species',
                                 'finnish'
                             ],
-            sortOrder: 'taxonomic'
+            sortOrder: 'observationCountFinland DESC'
         };
     }
 
@@ -61,7 +61,8 @@ export class TaxonBrowserApiService {
         this.query.adminStatusFilters = tempAdminStatusFilters.toString();
 
         if (this.settingsService.apiSettings.sortOrder) {
-            this.query.sortOrder = this.settingsService.apiSettings.sortOrder;
+            const s = this.settingsService.apiSettings.sortOrder;
+            this.query.sortOrder = s === 'observations' ? 'observationCountFinland DESC' : s;
         }
 
         if (this.settingsService.apiSettings.informalTaxonGroups) {
@@ -74,7 +75,10 @@ export class TaxonBrowserApiService {
 
         this.settingsService.apiSettings.lang? this.query.lang = this.settingsService.apiSettings.lang : null;
 
-        this.settingsService.apiSettings.mode === 'list' ? this.query.pageSize = 2000 : this.query.pageSize = 12;
+        if (this.settingsService.apiSettings.mode === 'list') {
+            this.query.pageSize = 2000;
+            this.query.sortOrder = 'taxonomic';
+        } else this.query.pageSize = 12;
     }
 
     updateTaxa(append = false) {

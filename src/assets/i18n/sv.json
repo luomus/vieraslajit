@@ -85,7 +85,8 @@
   "taxonomy.listMode.grid": "Rutnät",
   "taxonomy.listMode.list": "Lista",
   "taxonomy.export": null,
-  "taxonomy.sortOrder.alphabetic": null,
+  "taxonomy.sortOrder.observations": null,
+  "taxonomy.sortOrder.finnish_name": null,
   "taxonomy.sortOrder.taxonomic": null,
 
   "taxonomy.filterInfo.fiList.title": null,
@@ -116,7 +117,7 @@
   "taxon.occurrence": "Förekomst: ",
   "taxon.unknown": "Okänd",
   "taxon.report": "Rapportera dina observationer",
-  "taxon.report.quarantine": null,
+  "taxon.report.custom": "Rapportera dina observationer",
   "taxon.map": null,
   "taxon.viewOnMap": null,
 
