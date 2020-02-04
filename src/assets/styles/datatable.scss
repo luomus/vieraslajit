@@ -29,4 +29,8 @@
     .datatable-body-row {
         transform: translateZ(0);
     }
+
+    &.material .datatable-header .datatable-header-cell {
+        background-color: unset;
+    }
 }
