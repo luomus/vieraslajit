@@ -26,7 +26,7 @@
               "node_modules/laji-map/dist/styles.css",
               "node_modules/laji-form/dist/styles.css"
             ],
-            "scripts": []
+            "scripts": ["./src/assets/scripts/fb.js", "./src/assets/scripts/twitter.js"]
           },
           "configurations": {
             "production": {
