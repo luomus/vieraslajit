@@ -3,10 +3,9 @@ import {
     ViewChild, AfterViewInit, Output, NgZone, EventEmitter,
     ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges, OnInit, Renderer2
 } from '@angular/core';
-import { FormService } from '../../shared/service/form.service';
 import { Subscription, Subject } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import LajiForm from 'laji-form/lib/laji-form';
+import LajiForm from 'laji-form/dist/laji-form';
 import { FormApiClient } from '../../shared/api/FormApiClient';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService, Role } from '../../shared/service/user.service';

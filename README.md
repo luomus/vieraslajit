@@ -4,22 +4,19 @@ Currently the [VieKas Portal](https://viekas.laji.fi)
 
 ## Local development environment
 ```
-yarn install --frozen-lockfile
-yarn start
+npm start
 ```
 
 ## Production build
 ```
-yarn install --frozen-lockfile
-yarn build:ssr:viekas
+npm run build:ssr:viekas
 ```
 serve from dist/browser
 
 ## Server side rendering
 (not currently in use)
 ```
-yarn install --frozen-lockfile
-yarn ssr:run:local
+npm run ssr:run:local
 ```
 
 ## Laji API
