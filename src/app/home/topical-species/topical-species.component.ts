@@ -5,7 +5,7 @@ import { Component, Input } from "@angular/core";
     template: `
 <div id="important">
 <div class="desc">
-<h2>Silmä tarkkana</h2>
+<h3>Silmä tarkkana</h3>
 <p>Seuraavien Suomessa tavattujen vieraslajien havainnoista olisi erityisen tärkeää ilmoittaa:</p>
 </div>
 <div class="list-container">

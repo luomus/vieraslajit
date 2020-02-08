@@ -51,8 +51,11 @@
 
 <div class="hero"></div>
 <header class="container">
-    <h1>Kansallinen<br>vieraslajiportaali</h1>
-    <div>
+    <div class="header-heading">
+        <h1>Kansallinen vieraslajiportaali</h1>
+        <div class="header-description" translate>home.description</div>
+    </div>
+<!--     <div>
         <div class="description-container">
             <h5>Mikä vieraslaji?</h5>
             <p translate>home.description</p>
@@ -61,7 +64,7 @@
                 <a routerLink="/kansalaistoiminta" class="btn vrs-button borderless" translate>Osallistu kansalaistoimintaan</a>
             </div>
         </div>
-    </div>
+    </div> -->
 </header>
 <main class="container">
     <div class="news">
@@ -79,6 +82,7 @@
         <div class="more-news-container" *ngIf="news?.length > 0">
             <a routerLink="/ajankohtaista/">Lisää uutisia</a>
         </div>
+        <vrs-topical-species [taxa]="topical"></vrs-topical-species>
     </div>
     <div class="side">
         <div class="fb-page" data-href="https://www.facebook.com/vieraslajit" data-tabs="timeline" data-width="340" data-height="500" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/vieraslajit" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/vieraslajit">Vieraslajit</a></blockquote></div>

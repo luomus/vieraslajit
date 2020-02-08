@@ -274,17 +274,25 @@ header.container {
     padding: 50px 0;
 }
 
+.header-heading {
+    padding: 25px;
+    background: rgba(#000, 0.4);
+    width: 100%;
+}
+
 header h1 {
-    color: $neutral-1;
+    color: $neutral-4;
     font-weight: 600;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     text-shadow: 0 1px 10px rgba(#000, 0.7);
-    align-self: center;
 
     margin: 0;
-    margin-right: 30px;
     margin-bottom: 10px;
-    padding-left: 35px;
+}
+
+.header-description {
+    color: $neutral-3;
+    max-width: 40em;
 }
 
 header > div {
