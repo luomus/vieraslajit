@@ -7,8 +7,8 @@
   "swUpdate.ignore": null,
 
   "navigation.home": "Framsida",
-  "navigation.taxonomy": "Arter",
-  "navigation.removal": "Bekämpning",
+  "navigation.taxonomy": null,
+  "navigation.static": null,
   "navigation.list": "Lista",
   "navigation.grid": "Bilder",
   "navigation.about": "Information",

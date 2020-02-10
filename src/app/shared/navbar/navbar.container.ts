@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit, ChangeDetectorRef, OnDestroy, Renderer2 } from "@angular/core";
 import { InformationService } from "../service/information.service";
-import { mergeMap, concatMap, tap } from "rxjs/operators";
+import { mergeMap, concatMap, tap, startWith } from "rxjs/operators";
 import { of, Subscription, BehaviorSubject } from "rxjs";
 import { findContentID, StaticContent } from "../../../assets/i18n/cms-content";
 import { TranslateService } from "@ngx-translate/core";
@@ -27,7 +27,9 @@ export class NavbarContainer implements OnInit, OnDestroy {
                 private router: Router) {}
 
     ngOnInit() {
-        this.translateSub = new BehaviorSubject(this.translate.onLangChange).subscribe((lang) => {
+        this.translateSub = this.translate.onLangChange.pipe(
+            startWith(() => this.translate.currentLang)
+        ).subscribe((lang) => {
             this.setCMSRootId(this.translate.currentLang);
             this.updateInformation();
         })

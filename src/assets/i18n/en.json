@@ -7,8 +7,8 @@
   "swUpdate.ignore": "Not now",
 
   "navigation.home": "Frontpage",
-  "navigation.taxonomy": "Species",
-  "navigation.removal": "Prevention",
+  "navigation.taxonomy": "Alien Species",
+  "navigation.static": null,
   "navigation.list": "List",
   "navigation.grid": "Images",
   "navigation.about": "Information",
