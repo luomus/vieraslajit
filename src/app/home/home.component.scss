@@ -263,7 +263,7 @@ header {
     justify-content: space-between;
 
     position: relative;
-    z-index: 1;
+    z-index: 2;
 
     @include media-breakpoint-down(xs) {
         flex-flow: column nowrap;
@@ -275,8 +275,8 @@ header.container {
 }
 
 .header-heading {
-    padding: 25px;
-    background: rgba(#000, 0.4);
+    padding: 40px 60px;
+    background: rgba(#000, 0.6);
     width: 100%;
 }
 
@@ -293,12 +293,7 @@ header h1 {
 .header-description {
     color: $neutral-3;
     max-width: 40em;
-}
-
-header > div {
-    @include media-breakpoint-up(xl) {
-        margin-right: 30px;
-    }
+    margin-bottom: 20px;
 }
 
 .description-container {

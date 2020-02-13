@@ -1,1 +1,3 @@
-<vrs-taxon-search></vrs-taxon-search>
+<vrs-taxon-search (taxonChange)="onTaxonChange($event)"></vrs-taxon-search>
+<a *ngIf="customReportFormLink; else report" [href]="customReportFormLink" id="report-button" class="btn vrs-button primary" [ngClass]="{'disabled': !linkEnabled}" target="_blank" translate>taxon.report.custom</a>
+<ng-template #report><a routerLink="/ilmoita/MHL.53" id="report-button" [ngClass]="{'disabled': !linkEnabled}" translate>taxon.report</a></ng-template>

@@ -26,8 +26,8 @@ input {
 }
 
 :host ::ng-deep #autocomplete-items {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.05);
     position: absolute;
-    border: 1px solid #d4d4d4;
     border-bottom: none;
     border-top: none;
     z-index: 475;
