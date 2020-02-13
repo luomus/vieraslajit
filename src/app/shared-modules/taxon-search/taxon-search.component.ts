@@ -1,8 +1,8 @@
-import { TaxonService } from "../../../../shared/service/taxon.service";
 import { Component, OnInit, Renderer2, Inject, PLATFORM_ID, Output, EventEmitter } from "@angular/core";
 import * as $ from 'jquery';
 import { TranslateService } from "@ngx-translate/core";
 import { isPlatformBrowser } from "@angular/common";
+import { TaxonService } from "app/shared/service/taxon.service";
 
 @Component({
     selector: "vrs-taxon-search",

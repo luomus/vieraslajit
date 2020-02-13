@@ -6,12 +6,12 @@ import { UserService } from '../../../shared/service/user.service';
 import { ObsMapOptions, ObsMapOption } from './services/data/ObsMapOptions';
 import { MapApiService } from './services/MapApiService';
 import { ObsMapListComponent } from './obs-map-list/obs-map-list.component';
-import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
 import { ObsMapData } from './services/data/ObsMapData';
 import { BsModalRef } from 'ngx-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MapService } from './services/MapService';
 import { FilterMenuComponent } from './filter-menu/filter-menu.component';
+import { TaxonSearchComponent } from 'app/shared-modules/taxon-search/taxon-search.component';
 
 @Component({
   selector: 'vrs-observation-map',

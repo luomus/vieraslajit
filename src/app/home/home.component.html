@@ -54,6 +54,7 @@
     <div class="header-heading">
         <h1>Kansallinen vieraslajiportaali</h1>
         <div class="header-description" translate>home.description</div>
+        <vrs-pre-report-form></vrs-pre-report-form>
     </div>
 <!--     <div>
         <div class="description-container">
@@ -68,6 +69,7 @@
 </header>
 <main class="container">
     <div class="news">
+        <vrs-topical-species [taxa]="topical"></vrs-topical-species>
         <ul>
             <ng-container *ngFor="let story of news">
                 <li>
@@ -82,7 +84,6 @@
         <div class="more-news-container" *ngIf="news?.length > 0">
             <a routerLink="/ajankohtaista/">Lisää uutisia</a>
         </div>
-        <vrs-topical-species [taxa]="topical"></vrs-topical-species>
     </div>
     <div class="side">
         <div class="fb-page" data-href="https://www.facebook.com/vieraslajit" data-tabs="timeline" data-width="340" data-height="500" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/vieraslajit" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/vieraslajit">Vieraslajit</a></blockquote></div>

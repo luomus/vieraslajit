@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, Input, ViewChild, ElementRef } from "@angular/core";
-import { TaxonSearchComponent } from "../taxon-search/taxon-search.component";
 import { TimeSelectorComponent } from "../time-selector/time-selector.component";
+import { TaxonSearchComponent } from "app/shared-modules/taxon-search/taxon-search.component";
 
 @Component({
     selector: 'vrs-map-filters',
