@@ -271,13 +271,15 @@ header {
 }
 
 header.container {
-    padding: 50px 0;
+    padding: 20px 0;
+    padding-top: 30px;
 }
 
 .header-heading {
     padding: 40px 60px;
     background: rgba(#000, 0.6);
     width: 100%;
+    border-radius: 15px;
 }
 
 header h1 {
@@ -381,9 +383,14 @@ main ul {
         font-size: 1.2rem;
         font-family: $font-heading;
         line-height: 1;
-        color: $neutral-7;
+        color: $neutral-6;
         display: block;
         margin-bottom: 10px;
+        font-weight: 600;
+
+        &:hover {
+            color: $neutral-7;
+        }
     }
     .story-posted {
         font-size: .8rem;

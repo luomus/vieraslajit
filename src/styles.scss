@@ -53,10 +53,10 @@ html, body {
 }
 
 a {
-    color: $accent-5;
-    font-weight: 500;
+    color: $primary-5;
+    font-weight: 600;
     &:hover {
-        color: $accent-7;
+        color: $primary-6;
         text-decoration: none;
     }
 }

@@ -1,7 +1,5 @@
 @import '../../../../assets/styles/vars';
 
-$highlight: $accent-5;
-
 .language-selector {
     background: none;
     color: $neutral-6;
@@ -9,11 +7,9 @@ $highlight: $accent-5;
     font-weight: 400;
 }
 
-.language-selector a{
-    color: unset;
+a {
+    cursor: pointer;
+    &:hover {
+        color: $neutral-7;
+    }
 }
-
-.language-selector a:hover {
-   color: $highlight;
-   cursor:pointer;
- }

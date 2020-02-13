@@ -4,10 +4,6 @@ import { Component, Input } from "@angular/core";
     selector: `vrs-topical-species`,
     template: `
 <div id="important">
-<div class="desc">
-<h3>Silmä tarkkana</h3>
-<p>Seuraavien Suomessa tavattujen vieraslajien havainnoista olisi erityisen tärkeää ilmoittaa:</p>
-</div>
 <div class="list-container">
     <span class="oi oi-chevron-left" [ngClass]="{'disabled': this.currentPage <= 0}" (click)="backward()"></span>
     <ul>

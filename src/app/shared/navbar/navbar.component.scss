@@ -78,11 +78,12 @@ nav {
     justify-content: flex-end;
     margin-right: 2em;
     .heading {
-        margin-left: 55px;
+        //margin-left: 55px;
         font-size: 1.25em;
-        color: $neutral-8;
+        color: $neutral-7;
         &:hover {
-            color: $accent-5;
+            color: $neutral-9;
+            text-decoration: underline;
         }
     }
     .header-link {
