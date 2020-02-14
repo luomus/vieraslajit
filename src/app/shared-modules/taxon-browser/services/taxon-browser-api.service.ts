@@ -35,7 +35,7 @@ export class TaxonBrowserApiService {
                                 'species',
                                 'finnish'
                             ],
-            sortOrder: 'observationCountFinland DESC'
+            sortOrder: 'observationCountInvasiveFinland DESC'
         };
     }
 
@@ -62,7 +62,7 @@ export class TaxonBrowserApiService {
 
         if (this.settingsService.apiSettings.sortOrder) {
             const s = this.settingsService.apiSettings.sortOrder;
-            this.query.sortOrder = s === 'observations' ? 'observationCountFinland DESC' : s;
+            this.query.sortOrder = s === 'observations' ? 'observationCountInvasiveFinland DESC' : s;
         }
 
         if (this.settingsService.apiSettings.informalTaxonGroups) {
