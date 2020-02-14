@@ -117,7 +117,7 @@ function sortDescriptionGroups(desc: TaxonomyDescription) {
         pos1 = descriptionGroupSortPosition[group1.group]
       }
       if (group2.group in descriptionGroupSortPosition) {
-        pos2 = descriptionGroupSortPosition[group1.group]
+        pos2 = descriptionGroupSortPosition[group2.group]
       }
       if (pos1 < pos2) {
         return -1;
