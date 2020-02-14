@@ -33,6 +33,7 @@ export class SelectSortOrderComponent implements OnInit, OnDestroy {
     changeSortOrder(s: SortOrder) {
         this.current = s;
         this.sorted$.next(s);
+        this.menuOpen = false;
     }
 
     ngOnDestroy() {
