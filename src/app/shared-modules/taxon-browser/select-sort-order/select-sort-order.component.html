@@ -1,5 +1,5 @@
 <span class="title" (click)="menuOpen = !menuOpen" #title>
-    {{ 'taxonomy.sortOrder.' + current | translate }} <span class="oi oi-sort-ascending"></span>
+{{ 'taxonomy.sortOrder' | translate }} {{ 'taxonomy.sortOrder.' + current | translate }} <span class="oi oi-sort-ascending"></span>
 </span>
 <div class="dropdown" [ngClass]="{'hidden': !menuOpen}" #dropdown>
     <ul>

@@ -58,12 +58,14 @@
     <div class="browser-content-wrapper">
         <div class="browser-content-menu">
             <vrs-select-sort-order *ngIf="viewMode === 'grid'" [current]="getSortOrder()" (sorted)="onChangeSortOrder($event)"></vrs-select-sort-order>
-            <div *ngIf="viewMode === 'list'" class="toolbar-btn" (click)="onExport()">
-                {{'taxonomy.export' | translate}}<span class="oi oi-data-transfer-download"></span>
-            </div>
-            <div class="toolbar-btn" (click)="onSwitchViewMode()">
-                <div *ngIf="viewMode === 'grid'" translate>taxonomy.listMode.list<span class="oi oi-list"></span></div>
-                <div *ngIf="viewMode === 'list'" translate>taxonomy.listMode.grid<span class="oi oi-grid-three-up"></span></div>
+            <div>
+                <div *ngIf="viewMode === 'list'" class="toolbar-btn" (click)="onExport()">
+                    {{'taxonomy.export' | translate}}<span class="oi oi-data-transfer-download"></span>
+                </div>
+                <div class="toolbar-btn" (click)="onSwitchViewMode()">
+                    <div *ngIf="viewMode === 'grid'" translate>taxonomy.listMode.list<span class="oi oi-list"></span></div>
+                    <div *ngIf="viewMode === 'list'" translate>taxonomy.listMode.grid<span class="oi oi-grid-three-up"></span></div>
+                </div>
             </div>
         </div>
         <div class="cards-container" #cardscont [ngStyle]="{'height': maxHeight+'px'}">

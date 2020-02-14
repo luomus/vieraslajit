@@ -85,6 +85,7 @@
   "taxonomy.listMode.grid": "Grid",
   "taxonomy.listMode.list": "List",
   "taxonomy.export": "Export",
+  "taxonomy.sortOrder": "Sort order:",
   "taxonomy.sortOrder.observations": "Observation count",
   "taxonomy.sortOrder.finnish_name": "Finnish name",
   "taxonomy.sortOrder.scientific_name": "Scientific name",
