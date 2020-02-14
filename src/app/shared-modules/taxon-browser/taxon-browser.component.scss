@@ -144,6 +144,11 @@
     border-bottom: 1px solid $neutral-5;
 }
 
+.browser-content-menu > div {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
 .toolbar-btn {
     cursor: pointer;
     padding: 5px 0;

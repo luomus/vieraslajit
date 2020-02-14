@@ -57,7 +57,9 @@
     </div>
     <div class="browser-content-wrapper">
         <div class="browser-content-menu">
-            <vrs-select-sort-order *ngIf="viewMode === 'grid'" [current]="getSortOrder()" (sorted)="onChangeSortOrder($event)"></vrs-select-sort-order>
+            <div>
+                <vrs-select-sort-order *ngIf="viewMode === 'grid'" [current]="getSortOrder()" (sorted)="onChangeSortOrder($event)"></vrs-select-sort-order>
+            </div>
             <div>
                 <div *ngIf="viewMode === 'list'" class="toolbar-btn" (click)="onExport()">
                     {{'taxonomy.export' | translate}}<span class="oi oi-data-transfer-download"></span>
