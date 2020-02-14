@@ -87,6 +87,7 @@
   "taxonomy.export": "Export",
   "taxonomy.sortOrder.observations": "Observation count",
   "taxonomy.sortOrder.finnish_name": "Finnish name",
+  "taxonomy.sortOrder.scientific_name": "Scientific name",
   "taxonomy.sortOrder.taxonomic": "Taxonomy",
 
   "taxonomy.filterInfo.fiList.title": null,

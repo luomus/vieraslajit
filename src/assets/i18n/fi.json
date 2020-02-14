@@ -87,6 +87,7 @@
   "taxonomy.export": "Lataa taulukko",
   "taxonomy.sortOrder.observations": "Järjestys: Havaintojen määrä",
   "taxonomy.sortOrder.finnish_name": "Suomenkielinen nimi",
+  "taxonomy.sortOrder.scientific_name": "Tieteellinen nimi",
   "taxonomy.sortOrder.taxonomic": "Taksonomia",
 
   "taxonomy.filterInfo.fiList.title": "Kansallinen haitallisten vieraslajien luettelo",

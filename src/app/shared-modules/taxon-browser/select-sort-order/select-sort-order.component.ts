@@ -1,7 +1,7 @@
 import { Component, Output, Input, OnInit, Renderer2, EventEmitter, OnDestroy, ViewChild, ElementRef, destroyPlatform } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 
-export type SortOrder = 'observations' | 'taxonomic' | 'finnish_name'
+export type SortOrder = 'observations' | 'taxonomic' | 'finnish_name' | 'scientific_name'
 
 @Component({
     selector: 'vrs-select-sort-order',
@@ -11,7 +11,7 @@ export type SortOrder = 'observations' | 'taxonomic' | 'finnish_name'
 export class SelectSortOrderComponent implements OnInit, OnDestroy {
     @ViewChild('title', { static:false }) titleRef: ElementRef;
     @ViewChild('dropdown', { static: false }) dropdownRef: ElementRef;
-    sortOrders: SortOrder[] = ['observations', 'taxonomic', 'finnish_name'];
+    sortOrders: SortOrder[] = ['observations', 'taxonomic', 'finnish_name', 'scientific_name'];
     menuOpen = false;
     @Input() current: SortOrder = 'observations';
     private sorted$ = new Subject<SortOrder>();
