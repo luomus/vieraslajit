@@ -1,11 +1,5 @@
 <nav>
-    <section class="laji-toolbar" [ngClass]="{'heightFix': fixedTop}">
-        <div class="container">
-            <a target="_blank" href="https://www.facebook.com/vieraslajit/" translate>navigation.top.facebook</a>
-            <a target="_blank" href="https://laji.fi" translate>navigation.top.laji</a>
-            <vrs-language-selector></vrs-language-selector>
-        </div>
-    </section>
+    <section *ngIf="fixedTop" class="heightFix"></section>
     <section class="nav-top">
         <div class="container">
             <div class="header">
@@ -23,6 +17,7 @@
                             [loggedIn]="loggedIn"
                             [personName]="userPropertiesWrapper().person.fullName"
                             (onLogout)="logout()"></vrs-user-menu>
+                <vrs-language-selector></vrs-language-selector>
             </div>
         </div>
     </section>
