@@ -8,10 +8,10 @@
             <div class="nav-links">
                 <a class="link" routerLink="/" routerLinkActive="active" translate>navigation.home</a>
                 <a class="link" routerLink="/lajit" routerLinkActive="active" translate>navigation.taxonomy</a>
-                <a class="link" routerLink="/ajankohtaista" routerLinkActive="active" translate>navigation.news</a>
-                <a class="link" routerLink="/kansalaistoiminta" routerLinkActive="active" translate>navigation.viekas</a>
+<!--                 <a class="link" routerLink="/ajankohtaista" routerLinkActive="active" translate>navigation.news</a> -->
+<!--                 <a class="link" routerLink="/kansalaistoiminta" routerLinkActive="active" translate>navigation.viekas</a> -->
                 <a (click)="translateLeft = !translateLeft; observations = true" class="link" translate>navigation.observations <span class="oi oi-caret-right"></span></a>
-<!--                 <a (click)="translateLeft = !translateLeft; about = true" class="link" translate>navigation.about <span class="oi oi-caret-right"></span></a> -->
+                <a (click)="translateLeft = !translateLeft; about = true" class="link" translate>navigation.about <span class="oi oi-caret-right"></span></a>
             </div>
             <div *ngIf="observations" class="nav-links submenu">
                 <a class="link" (click)="translateLeft = !translateLeft; toggleObservations()"><span class="oi oi-caret-left"></span> {{'navigation.back' | translate}}</a>
