@@ -280,6 +280,10 @@ header.container {
     background: rgba(#000, 0.6);
     width: 100%;
     border-radius: 15px;
+    @include media-breakpoint-down(xs) {
+        padding: 20px 30px;
+        border-radius: 0;
+    }
 }
 
 header h1 {
@@ -353,9 +357,6 @@ main {
     }
     @include media-breakpoint-down(xs) {
         border-radius: 0;
-        padding: 0;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
     }
 }
 
@@ -369,6 +370,9 @@ main ul {
 
 .news {
     width: 100%;
+    @include media-breakpoint-down(xs) {
+        padding-bottom: 30px;
+    }
 }
 
 .news ul li {
@@ -415,6 +419,9 @@ main ul {
     display: flex;
     flex-flow: column nowrap;
     padding: 20px;
+    @include media-breakpoint-down(xs) {
+        padding: 0;
+    }
     * {
         padding-bottom: 20px;
     }
