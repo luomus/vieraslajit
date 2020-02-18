@@ -4,6 +4,7 @@ import { parseWP } from "app/shared/pipe/parse-wp.pipe";
 import { NewsletterFormComponent } from "../newsletter-form/newsletter-form.component";
 
 import { isPlatformBrowser, DOCUMENT } from "@angular/common";
+import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
     selector: 'vrs-static-content',
@@ -19,7 +20,21 @@ export class StaticContentComponent implements OnChanges {
     constructor(private renderer: Renderer2,
                 private resolver: ComponentFactoryResolver,
                 @Inject(PLATFORM_ID) private platformId: object,
+                private router: Router,
                 private injector: Injector) {}
+
+    ngOnInit() {
+        this.router.events.subscribe(s => {
+            if (s instanceof NavigationEnd && isPlatformBrowser(this.platformId)) {
+                const tree = this.router.parseUrl(this.router.url);
+                if (tree.fragment) {
+                    const element = document.querySelector("#" + tree.fragment);
+                    if (element) { element.scrollIntoView(true); }
+                }
+            }
+        });
+    }
+
     ngOnChanges(changes: SimpleChanges) {
         if (changes.information && changes.information.currentValue) {
             this.content = parseWP(changes.information.currentValue.content);
