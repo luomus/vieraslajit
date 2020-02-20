@@ -14,6 +14,7 @@ export class PreReportFormComponent implements OnInit, OnDestroy {
 
   linkEnabled = false;
   customReportFormLink: string
+  taxonId: string
 
   constructor(private taxonService: TaxonService, private translate: TranslateService) { }
 
@@ -21,6 +22,7 @@ export class PreReportFormComponent implements OnInit, OnDestroy {
   }
 
   onTaxonChange(id: string) {
+    this.taxonId = id
     this.linkEnabled = false;
     if (id) {
       this.taxonService.getTaxon(id, this.translate.currentLang, {

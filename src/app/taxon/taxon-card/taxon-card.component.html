@@ -11,7 +11,7 @@
       <div class="col-auto">
 <!--           <button class="btn vrs-button" routerLink='/taxon/{{id}}/comparison' translate>comparison.title</button> -->
         <a *ngIf="taxon?.customReportFormLink; else report" [href]="taxon.customReportFormLink" class="btn vrs-button primary" target="_blank" translate>taxon.report.custom</a>
-        <ng-template #report><button routerLink="/ilmoita/MHL.53" class="btn vrs-button primary" translate>taxon.report</button></ng-template>
+        <ng-template #report><button [routerLink]="'/ilmoita/MHL.53/' + taxon?.id" class="btn vrs-button primary" translate>taxon.report</button></ng-template>
       </div>
     </div>
   </div>
