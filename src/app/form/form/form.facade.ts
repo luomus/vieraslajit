@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, forkJoin } from "rxjs";
 import { FormService } from "app/shared/service/form.service";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "app/shared/service/user.service";
-import { map, distinctUntilChanged } from "rxjs/operators";
+import { map, distinctUntilChanged, tap } from "rxjs/operators";
+import { ApiService, LajiApi } from "app/shared/api/api.service";
 
 interface State {
     data: any
@@ -22,6 +23,7 @@ export class FormFacade {
     );
 
     constructor(private formService: FormService,
+                private apiService: ApiService,
                 private translate: TranslateService) {}
     
     private dataReducer(data: any) {
@@ -43,17 +45,56 @@ export class FormFacade {
         })
     }
 
-    loadData(formId: string, documentId?: string) {
-        if (documentId) {
-            this.formService.loadFormWithDocument(
-                formId,
-                this.translate.currentLang,
-                documentId,
-                UserService.getToken()
-            ).subscribe(this.dataReducerWithFormData.bind(this))
-        } else {
+    private getDataReducerWithTaxon(taxonId, taxonName) {
+        return (data: any) => this.store$.next({
+            data: {
+                ...data,
+                formData: {
+                    gatheringEvent: {
+                        leg: [UserService.getUserId()]
+                    },
+                    gatherings: [
+                        {
+                            units: [
+                                {
+                                    identifications: [
+                                        {
+                                            taxon: taxonName
+                                        }
+                                    ],
+                                    unitFact: {
+                                        autocompleteSelectedTaxonID: taxonId
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        })
+    }
+
+    loadData(formId: string) {
+        this.formService.getFormById(formId, this.translate.currentLang)
+        .subscribe(this.dataReducer.bind(this))
+    }
+
+    loadDataWithDocument(formId: string, documentId: string) {
+        this.formService.loadFormWithDocument(
+            formId,
+            this.translate.currentLang,
+            documentId,
+            UserService.getToken()
+        ).subscribe(this.dataReducerWithFormData.bind(this))
+    }
+
+    loadDataWithTaxon(formId: string, taxonId: string) {
+        forkJoin(
+            this.apiService.autocompleteFindByField(LajiApi.Endpoints.autocomplete, "taxon", {
+                q: taxonId
+            }),
             this.formService.getFormById(formId, this.translate.currentLang)
-            .subscribe(this.dataReducer.bind(this))
-        }
+        )
+        .subscribe((data) => this.getDataReducerWithTaxon(taxonId, data[0][0].value)(data[1]))
     }
 }

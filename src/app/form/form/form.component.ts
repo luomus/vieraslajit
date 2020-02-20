@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserService, Role } from '../../shared/service/user.service';
 import { DocumentService } from '../../shared/service/document.service';
 import { FormFacade } from './form.facade';
-import { filter, takeUntil } from 'rxjs/operators';
+import { filter, takeUntil, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'vrs-form',
@@ -56,15 +56,23 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
 
         this.personToken = UserService.getToken();
 
-        this.facade.data$.pipe(takeUntil(this.unsubscribe$), filter(a => a)).subscribe(this.initForm.bind(this));
+        this.facade.data$.pipe(takeUntil(this.unsubscribe$), filter(a => a)).pipe(tap(console.log)).subscribe(this.initForm.bind(this));
         this.route.params.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
             this.id = params['formId'];
             this.documentId = params['documentId'];
-            this.facade.loadData(this.id, this.documentId)
+            const id2: string = params['documentId']
+            if (id2 && id2.substr(0, 2) === 'JX') {
+                this.documentId = params['documentId']
+                this.facade.loadDataWithDocument(this.id, this.documentId)
+            } else if (id2 && id2.substr(0, 2) === 'MX') {
+                this.facade.loadDataWithTaxon(this.id, id2)
+            } else {
+                this.facade.loadData(this.id)
+            }
         });
 
         // TODO: not working rn
-        this.translate.onLangChange.pipe(takeUntil(this.unsubscribe$)).subscribe(() => this.facade.loadData(this.id, this.documentId));
+        // this.translate.onLangChange.pipe(takeUntil(this.unsubscribe$)).subscribe(() => this.facade.loadData(this.id, this.documentId));
     }
 
     initForm(data) {
