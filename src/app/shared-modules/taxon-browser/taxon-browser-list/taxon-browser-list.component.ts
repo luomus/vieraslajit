@@ -24,10 +24,10 @@ export class TaxonBrowserListComponent {
         this.columns = [
             { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), comparator: this.comparator},
             { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), comparator: this.comparator },
-            { prop: 'stableString', name: this.translate.instant('taxonomy.established'), comparator: this.comparator },
-            { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), comparator: this.comparatorReverse },
-            { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), comparator: this.comparatorReverse },
-            { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), comparator: this.comparatorReverse }
+            { prop: 'stableString', name: this.translate.instant('taxonomy.established'), comparator: this.comparator, maxWidth: 180 },
+            { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), comparator: this.comparatorReverse, maxWidth: 180 },
+            { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), comparator: this.comparatorReverse, maxWidth: 180 },
+            { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), comparator: this.comparatorReverse, maxWidth: 180 }
         ];
     }
 
