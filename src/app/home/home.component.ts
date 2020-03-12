@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from "@angular/common";
 import { NewsService } from '../shared/service/news.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../environments/environment';
@@ -9,7 +10,7 @@ import { TaxonService } from '../shared/service/taxon.service';
 
 /**
  * Renders the home-/frontpage ie. /home/ route
- * 
+ *
  * NewsService is used for loading news and alerts from laji.fi API
  */
 
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(private informationService: InformationService,
               private taxonService: TaxonService,
               private newsService: NewsService,
+              @Inject(PLATFORM_ID) private platformId: object,
               private translate: TranslateService) { }
 
   /**
@@ -58,10 +60,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // @ts-ignore
-    window.FB.init({version: 'v5.0', xfbml: true});
-    // @ts-ignore
-    window.twttr.widgets.load();
+    if (isPlatformBrowser(this.platformId)) {
+        // @ts-ignore
+        window.FB.init({version: 'v5.0', xfbml: true});
+        // @ts-ignore
+        window.twttr.widgets.load();
+    }
   }
 
   ngOnDestroy() {
@@ -83,10 +87,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           //d.content = d.content.replace(/<(?:(?!br).)+>/mg, '');
           this.news.push(d);
         }
-      } 
+      }
       this.filterTechnicalNews(technical); */
     });
-    
+
   }
 
   filterTechnicalNews(technical: Array<any>){

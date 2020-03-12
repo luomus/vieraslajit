@@ -20,9 +20,9 @@
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
     "build:ssr:viekas": "npm run build:client-and-server-bundles:viekas && npm run compile:server",
     "build:ssr:local": "npm run build:client-and-server-bundles:local && npm run compile:server",
-    "build:client-and-server-bundles": "npm run ng-high-memory build --prod --base-href=https://vieraslajit-dev.laji.fi/ && npm run ng-high-memory run vieraslajit:server:production",
-    "build:client-and-server-bundles:viekas": "npm run ng-high-memory --  build --prod --configuration=viekas --base-href=https://viekas.laji.fi/ && npm run ng-high-memory run vieraslajit:server:viekas",
-    "build:client-and-server-bundles:local": "npm run ng-high-memory --  build --prod --base-href=http://localhost:4000/ && npm run ng-high-memory run vieraslajit:server:production",
+    "build:client-and-server-bundles": "npm run ng-high-memory -- build --prod --configuration=production --base-href=https://vieraslajit-dev.laji.fi/ && npm run ng-high-memory run vieraslajit:server:production",
+    "build:client-and-server-bundles:viekas": "npm run ng-high-memory -- build --prod --configuration=viekas --base-href=https://viekas.laji.fi/ && npm run ng-high-memory run vieraslajit:server:viekas",
+    "build:client-and-server-bundles:local": "npm run ng-high-memory -- build --prod --base-href=http://localhost:4000/ && npm run ng-high-memory run vieraslajit:server:production",
     "bundle-report": "ng build --prod --aot --stats-json --named-chunks=true && webpack-bundle-analyzer dist/browser/stats.json"
   },
   "private": true,
