@@ -82,7 +82,11 @@ export class TaxonBrowserApiService {
     }
 
     updateTaxa(append = false) {
-        this.apiService.taxonomyFindById(LajiApi.Endpoints.taxa, '', this.query).pipe(
+        const fn = (this.settingsService.apiSettings.sortOrder === 'observations'
+            ? () => this.apiService.taxonomyFindById(LajiApi.Endpoints.taxonSpecies, '', this.query)
+            : () => this.apiService.taxonomyFindById(LajiApi.Endpoints.taxa, '', this.query)
+        );
+        fn().pipe(
             tap((res)=>{this.settingsService.apiSettings.total = res.total; this.lastPage = res.lastPage;}),
             map(res=>res.results)
         ).subscribe(res=>{
