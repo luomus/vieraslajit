@@ -48,6 +48,8 @@
 
   "home.description": "Portalen serverar dig i stor utsträckning i frågor som rör invasiva främmande arter. Med hjälp av den här tjänsten kan du t.ex. lära känna Finlands invasiva främmande arter, deras status och möjliga bekämpningsmetoder. Dessutom kan du rapportera dina egna observationer till databasen och hjälpa till med forskning och myndighetsaktiviteter.",
   "home.topicalSpecies": null,
+  "topicalSpecies.header.title": null,
+  "topicalSpecies.header.description": null,
 
   "taxonomy.grid.results.1": "Med dessa filter hittades totalt ",
   "taxonomy.grid.results.2": "invasiva främmande arter",

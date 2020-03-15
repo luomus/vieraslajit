@@ -4,6 +4,10 @@ import { Component, Input } from "@angular/core";
     selector: `vrs-topical-species`,
     template: `
 <div id="important">
+<header>
+    <h3 translate>topicalSpecies.header.title</h3>
+    <p translate>topicalSpecies.header.description</p>
+</header>
 <div class="list-container">
     <span class="oi oi-chevron-left" [ngClass]="{'disabled': this.currentPage <= 0}" (click)="backward()"></span>
     <ul>

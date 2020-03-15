@@ -48,6 +48,8 @@
 
   "home.description": "The Invasive Alien Species Portal serves you extensively on issues related to invasive alien species. With the help of this service you can eg. get to know Finland’s invasive alien species, their status and possible prevention measures. In addition, you can report your own observations to the database and help research and authority activities.",
   "home.topicalSpecies": "Topical species",
+  "topicalSpecies.header.title": null,
+  "topicalSpecies.header.description": null,
 
   "taxonomy.grid.results.1": "With these filters found in total ",
   "taxonomy.grid.results.2": "invasive alien species",
