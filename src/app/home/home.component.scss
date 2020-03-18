@@ -249,7 +249,7 @@
 
 .hero {
     position: absolute;
-    background-image: linear-gradient(rgba(#000, 0.2), rgba(#000, 0.2)), url('/assets/images/bgs/herman_CC-BY-SA-20_MJRichardson.jpg');
+    background-image: linear-gradient(rgba(#000, 0.2), rgba(#000, 0.2)), url('/assets/images/bgs/vieraslajiportaali_banneri.jpg');
     height: 500px;
     width: 100%;
     background-position: center;
@@ -277,7 +277,8 @@ header.container {
 
 .header-heading {
     padding: 40px 60px;
-    background: rgba(#000, 0.6);
+    background: $neutral-2;
+    box-shadow: 0 2px 25px 0 rgba($neutral-8, 0.25);
     width: 100%;
     border-radius: 15px;
     @include media-breakpoint-down(xs) {
@@ -287,17 +288,16 @@ header.container {
 }
 
 header h1 {
-    color: $neutral-4;
+    color: $neutral-7;
     font-weight: 600;
-    font-size: 1.8rem;
-    text-shadow: 0 1px 10px rgba(#000, 0.7);
+    font-size: 1.5rem;
 
     margin: 0;
     margin-bottom: 10px;
 }
 
 .header-description {
-    color: $neutral-3;
+    color: $neutral-7;
     max-width: 40em;
     margin-bottom: 20px;
 }

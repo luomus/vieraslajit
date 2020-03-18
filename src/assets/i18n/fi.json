@@ -46,7 +46,8 @@
   "home.viekas.viekasLink": "Hankesivuille",
   "home.viekas.calendar": "Tapahtumakalenteri",
 
-  "home.description": "Vieraslajit ovat levinneet luontaiselta levinneisyysalueeltaan uudelle alueelle ihmisen myötävaikutuksella. Tulokaslajit saapuvat puolestaan omin voimin luonnollisesti leviämällä. Osa vieraslajeista menestyy erityisen hyvin ja vakiintuu osaksi uutta elinympäristöään aiheuttaen vahinkoa mm.  alkuperäislajeille, viljelykasveille ja metsätaloudelle. Tällaisia lajeja kutsutaan haitallisiksi vieraslajeiksi.",
+  "home.title": "Vieraslajit hallintaan",
+  "home.description": "Vieraslaji on ihmisen myötävaikutuksella uudella alueella ilmestynyt laji. Haitalliseksi vieraslaji luokitellaan, kun se uhkaa luonnon monimuotoisuutta, aiheuttaa haittaa alkuperäisille lajeille, terveydelle tai taloudelle.",
   "home.topicalSpecies": "Ajankohtaiset lajit",
   "topicalSpecies.header.title": "Silmä tarkkana",
   "topicalSpecies.header.description": "Seuraavien Suomessa tavattujen vieraslajien havainnoista olisi erityisen tärkeää ilmoittaa.",
