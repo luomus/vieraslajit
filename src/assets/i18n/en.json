@@ -120,8 +120,8 @@
   "taxon.establishedFin": "Establishment in Finland: ",
   "taxon.occurrence": "Occurrence: ",
   "taxon.unknown": "Unknown",
-  "taxon.report": "Report your observations",
-  "taxon.report.custom": "Report your observations",
+  "taxon.report": "Report observation",
+  "taxon.report.custom": "Report observation",
   "taxon.map": "Observation map",
   "taxon.viewOnMap": "View on observation map",
 

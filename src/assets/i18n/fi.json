@@ -120,8 +120,8 @@
   "taxon.establishedFin": "Vakiintuneisuus: ",
   "taxon.occurrence": "Esiintyminen: ",
   "taxon.unknown": "Tuntematon",
-  "taxon.report": "Ilmoita omat havaintosi",
-  "taxon.report.custom": "Ilmoita havavaintosi viranomaisille",
+  "taxon.report": "Ilmoita havainto",
+  "taxon.report.custom": "Ilmoita havainto",
   "taxon.map": "Havaintokartta",
   "taxon.viewOnMap": "Havaintokarttanäkymään",
 

@@ -3,14 +3,19 @@
 
 
 .form-login {
-    padding: 2em;
-    font-size: 3rem;
+    padding: 15px;
+    font-size: 2rem;
 }
 
 :host {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+}
+
+.form-desc-cont {
+    max-width: 800px;
+    padding: 15px;
 }
 
 .vrs-form {

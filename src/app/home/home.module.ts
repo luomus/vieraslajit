@@ -4,7 +4,6 @@ import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { TopicalSpeciesComponent } from './topical-species/topical-species.component';
-import { PreReportFormComponent } from './pre-report-form/pre-report-form.component';
 import { TaxonSearchModule } from 'app/shared-modules/taxon-search/taxon-search.module';
 
 /**
@@ -15,10 +14,9 @@ import { TaxonSearchModule } from 'app/shared-modules/taxon-search/taxon-search.
   imports: [
     HomeRoutingModule,
     CommonModule,
-    SharedModule,
-    TaxonSearchModule
+    SharedModule
   ],
-  declarations: [HomeComponent, TopicalSpeciesComponent, PreReportFormComponent]
+  declarations: [HomeComponent, TopicalSpeciesComponent]
 })
 
 export class HomeModule { }
