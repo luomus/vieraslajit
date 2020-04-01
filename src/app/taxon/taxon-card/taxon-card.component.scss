@@ -10,7 +10,7 @@
     position: relative;
     z-index: 11;
     background: $neutral-2;
-    box-shadow: 0 2px 25px rgba(#000, 0.15);
+    box-shadow: 0 2px 25px 0 rgba($neutral-8, 0.15);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     @include media-breakpoint-up(md) {
