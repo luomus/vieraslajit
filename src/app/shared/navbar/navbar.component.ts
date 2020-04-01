@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';
 import { LoaderService, LoadingEvent } from '../service/loader.service';
+import { findContentID, StaticContent } from 'assets/i18n/cms-content';
 
 @Component({
   selector: 'vrs-navbar',
@@ -116,5 +117,9 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.scrollListener) {
       this.scrollListener();
     }
+  }
+
+  getFAQId() {
+    return findContentID(StaticContent.FAQ, this.translate.currentLang);
   }
 }

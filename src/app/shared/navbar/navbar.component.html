@@ -36,6 +36,7 @@
                         routerLink="/ilmoita" translate>navigation.observations.report</a></li>
                 </ul>
                 </div>
+                <a class="link" [routerLink]="['/info/', getFAQId()]" routerLinkActive="active" translate>navigation.FAQ</a>
                 <div class="dropdown link vrs-dropdown" id="dropdown-about" dropdown>
                     <a class="dropdown-toggle" translate>navigation.static<span class="caret"></span></a>
                     <div *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
