@@ -23,6 +23,9 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
   @Input() id?: string;
   @Input() listMenuEnabled?: boolean = false;
   @Input() filterMenuEnabled?: boolean = false;
+  @Input() set controls(c: boolean) {
+    this.mapService.setControls(c)
+  }
   @Input() lajiLinkEnabled?: boolean = true;
 
   @Input() mapHeight: number = 400;

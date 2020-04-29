@@ -203,3 +203,12 @@ vrs-map-filters {
     margin-top: -15px;
     margin-right: -12px;
 }
+
+:host ::ng-deep .leaflet-top.leaflet-left {
+  margin-top: 80px;
+  margin-left: 10px;
+  @include media-breakpoint-down(xs) {
+    margin-top: 50px;
+    margin-left: 0px;
+  }
+}

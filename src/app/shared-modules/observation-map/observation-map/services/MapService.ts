@@ -1,6 +1,6 @@
 import * as LM from 'laji-map';
 import LajiMap from 'laji-map/lib/map';
-import { TileLayerName, Data, DataOptions, GetFeatureStyleOptions, GetPopupOptions } from 'laji-map/lib/map.defs';
+import { TileLayerName, Data, DataOptions, GetFeatureStyleOptions, GetPopupOptions, Options } from 'laji-map/lib/map.defs';
 
 import { ObsMapData, VrsObservation, ObsMapDataMeta } from "./data/ObsMapData";
 import { ObsMapOptions } from './data/ObsMapOptions';
@@ -18,6 +18,7 @@ export class MapService {
 
     private map:LajiMap;
     private modalRef: BsModalRef;
+    private mapOptions: Options = {};
 
     eventEmitter:EventEmitter = new EventEmitter();
 
@@ -35,7 +36,8 @@ export class MapService {
             zoom: 2,
             zoomToData: false,
             tileLayerName: TileLayerName.maastokartta,
-            tileLayerOpacity: 0.4
+            draw: false,
+            ...this.mapOptions
         });
         this.map.tileLayer.setOpacity(0.4);
         this.obsMapData.eventEmitter.subscribe((data: ObsMapDataMeta) => {
@@ -51,6 +53,11 @@ export class MapService {
                 this.map.setData(<any>this.getAggregateMapData(data.payload));
             }
         })
+    }
+
+    setControls(c: boolean) {
+        // @ts-ignore
+        this.mapOptions.controls = c;
     }
 
     zoomAt(center:[number, number], zoomLevel:number) {
