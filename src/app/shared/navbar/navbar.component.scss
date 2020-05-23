@@ -266,13 +266,21 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 
 .vrs-dropdown {
     .dropdown-menu {
-        background-color: $focus-link-background;
-        border-radius: 10px;
+        background-color: $neutral-1;
+        border-radius: 5px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         border: none;
+        border-top: 4px solid $primary-6;
         font-size: 1em;
         margin-top: 0;
+        a {
+            color: $neutral-7;
+            &:hover {
+                color: $primary-1;
+                background: $primary-5;
+            }
+        }
     }
 
     .dropdown-item:focus {
