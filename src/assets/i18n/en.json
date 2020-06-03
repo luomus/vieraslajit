@@ -155,6 +155,8 @@
   "forms.list.edited": "Edited",
 
   "form.login": "Log in first.",
+  "form.login.continue.1": "Or",
+  "form.login.continue.2": "continue without logging in",
   "form.send": "Send",
 
   "observation-map.filters": "Filters",

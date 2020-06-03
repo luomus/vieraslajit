@@ -154,7 +154,9 @@
   "forms.list.dateTime": "Havaintoaika",
   "forms.list.edited": "Muokattu",
 
-  "form.login": "Kirjaudu ensin sisään." ,
+  "form.login": "Kirjaudu ensin sisään.",
+  "form.login.continue.1": "Tai",
+  "form.login.continue.2": "jatka kirjautumatta sisään",
   "form.send": "Lähetä",
 
   "observation-map.filters": "Rajaukset",
