@@ -10,7 +10,10 @@
       </div>
       <div class="col-auto">
 <!--           <button class="btn vrs-button" routerLink='/taxon/{{id}}/comparison' translate>comparison.title</button> -->
-        <a *ngIf="taxon?.customReportFormLink; else report" [href]="taxon.customReportFormLink" class="btn vrs-button primary" target="_blank" translate>taxon.report.custom</a>
+        <ng-container *ngIf="taxon?.customReportFormLink; else report">
+          <a [href]="taxon.customReportFormLink" class="btn vrs-button primary float-right mb-1" target="_blank" translate>taxon.report.custom</a>
+          <div class="small">(<a href="taxon.customReportFormLink">{{ taxon.customReportFormLink }}</a>)</div>
+        </ng-container>
         <ng-template #report><button [routerLink]="'/ilmoita/MHL.53/' + taxon?.id" class="btn vrs-button primary" translate>taxon.report</button></ng-template>
       </div>
     </div>
