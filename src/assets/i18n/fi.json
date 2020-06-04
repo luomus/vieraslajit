@@ -54,7 +54,7 @@
   "topicalSpecies.header.description": "Seuraavien Suomessa tavattujen vieraslajien havainnoista olisi erityisen tärkeää ilmoittaa.",
 
   "taxonomy.grid.results.1": "Rajauksilla löytyi yhteensä",
-  "taxonomy.grid.results.2": "vieraslajia",
+  "taxonomy.grid.results.2": "hakutulosta",
   "taxonomy.grid.loading": "Ladataan lisää lajeja...",
 
   "administrativeStatus.euInvasiveSpeciesList": "Haitallinen vieraslaji (EU:n luettelo)",

@@ -59,6 +59,9 @@
         <div class="browser-content-menu">
             <div>
                 <vrs-select-sort-order *ngIf="viewMode === 'grid'" [current]="getSortOrder()" (sorted)="onChangeSortOrder($event)"></vrs-select-sort-order>
+                <div class="total-taxa" *ngIf="viewMode === 'list'">
+                    {{'taxonomy.grid.results.1' | translate}} {{total}} {{'taxonomy.grid.results.2' | translate}}
+                </div>
             </div>
             <div>
                 <div *ngIf="viewMode === 'list'" class="toolbar-btn" (click)="onExport()">

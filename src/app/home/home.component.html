@@ -76,7 +76,7 @@
                 <li>
                     <a class="story-title" [routerLink]="'/ajankohtaista/' + story.id">{{ story.title }}</a>
                     <div class="story-posted">{{ story.posted | date: 'dd.MM.yyyy' }}</div>
-                    <div [innerHTML]="story.content | parsewp | truncate:300"></div>
+                    <div *ngIf="story.content" [innerHTML]="story.content | parsewp | truncate:300"></div>
                 </li>
                 <hr>
             </ng-container>
