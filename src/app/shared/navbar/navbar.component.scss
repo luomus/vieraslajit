@@ -66,9 +66,16 @@ nav {
         }
     }
     .header-link {
-        display: block;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-end;
+
+        margin-bottom: -10px;
+
         cursor: pointer;
         outline: none;
+        max-height: 36px;
+        overflow: visible;
     }
 }
 
@@ -204,14 +211,13 @@ nav.notransition:after {
     color: $neutral-1;
 }
 
-/* Brand */
+.vrs-logo-container {
+    overflow: visible;
+}
+
 .vrs-logo {
-    position: absolute;
     max-height: 50px;
-    bottom: 80px;
-    @include media-breakpoint-down(lg) {
-        bottom: 60px;
-    }
+    display: block;
 }
 
 .viekas-logo {
