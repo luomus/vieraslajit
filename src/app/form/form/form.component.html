@@ -1,13 +1,9 @@
 <div>
-    <div class="mb-3 form-desc-cont">
-        <h3 translate>forms.title</h3>
-        <p translate>forms.desc.1</p>
-        <p translate>forms.desc.2</p>
-        <p translate>forms.desc.3</p>
-        <a target="_blank" href="https://laji.fi/vihko/terms-of-service" translate>forms.desc.4</a>
-    </div>
-
     <div class="vrs-form" *ngIf="loggedIn;else loginError">
+        <div class="info">
+            <p translate>forms.desc.3</p>
+            <a target="_blank" href="https://laji.fi/vihko/terms-of-service" translate>forms.desc.4</a>
+        </div>
         <h3 #formName></h3>
         <p #formDesc></p>
         <div class="vrs-laji-form" #lajiform></div>

@@ -1,6 +1,14 @@
 @import '../../../assets/styles/vars';
 @import '~bootstrap/scss/bootstrap-grid';
 
+.info {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid $primary-4;
+    background-color: $primary-2;
+    color: $primary-8;
+    margin-bottom: 20px;
+}
 
 .form-login {
     padding: 15px;
@@ -11,11 +19,6 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-}
-
-.form-desc-cont {
-    max-width: 800px;
-    padding: 15px;
 }
 
 .vrs-form {

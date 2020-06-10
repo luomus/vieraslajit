@@ -134,3 +134,19 @@ p {
         max-width: 95vw;
     }
 }
+
+div[role=dialog] {
+    .fade.modal-backdrop.in {
+        opacity: .2;
+        transition: unset;
+    }
+    &.fade.in.modal {
+        opacity: unset;
+        transition: unset;
+        .modal-dialog {
+            box-shadow: 0 2px 16px 0 rgba(0,0,0,.3);
+            transition: unset;
+            transform: unset;
+        }
+    }
+}
