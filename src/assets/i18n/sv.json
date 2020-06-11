@@ -155,8 +155,9 @@
   "forms.list.edited": "Ändrad",
 
   "form.login": "Logga in först.",
-  "form.login.continue.1": null,
-  "form.login.continue.2": null,
+  "form.loginError.1": null,
+  "form.loginError.2": null,
+  "form.loginError.continue": null,
   "form.send": "Sänd",
 
   "observation-map.filters": null,
