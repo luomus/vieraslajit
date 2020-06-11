@@ -1,0 +1,160 @@
+@import '../../assets/styles/vars';
+@import '~bootstrap/scss/bootstrap-grid';
+
+.hero {
+    background: url('/assets/images/bgs/vieraslajiportaali_banneri.jpg'), rgba(0,0,0,.5);
+    height: 500px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: multiply;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.hero header {
+    margin-top: -100px;
+    color: $neutral-1;
+    font-size: 2.5rem;
+    font-weight: 600;
+    padding-top: 50px;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba($neutral-9,.8);
+}
+
+.hero header h1 {
+    color: $neutral-1;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.hero header h2 {
+    color: $primary-2;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.box-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.box {
+    margin-top: -100px;
+    background-color: $neutral-2;
+    border-radius: 10px;
+    width: 800px;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.2);
+
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.box .content {
+    padding: 40px;
+    div {
+        margin-bottom: 10px;
+    }
+}
+
+.box .i-container {
+    background-color: $primary-2;
+    color: $primary-5;
+    padding: 30px;
+    border-left: 1px solid $primary-3;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    .oi-info {
+/*         text-align: center;
+        padding-top: 16px;
+        height: 50px;
+        width: 50px;
+        background-color: $primary-4;
+        color: $primary-1;
+        border-radius: 100%;
+        box-shadow: inset 0 1px 4px 0 rgba(0,0,0,.2); */
+    }
+}
+
+.section1 {
+    border-top: 2px solid $neutral-5;
+    background-color: $neutral-3;
+    padding-bottom: 40px;
+}
+
+.section1 > .container {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.news-list {
+    margin-top: 40px;
+    list-style: none;
+    padding: 0 45px;
+}
+
+.news-list li {
+    max-width: 40em;
+}
+
+.story-title {
+    font-size: 1.25rem;
+}
+
+.story-posted {
+    font-size: 0.9rem;
+    color: $neutral-6;
+}
+
+.more-news-container {
+    padding: 0 45px;
+}
+
+vrs-topical-species {
+    display: block;
+    margin-top: 50px;
+    max-width: 40em;
+}
+
+.section2 {
+    border-top: 1px solid $neutral-5;
+    padding: 40px 0;
+}
+
+.section2 .container {
+    display: flex;
+    justify-content: center;
+}
+
+.some-container {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+:host ::ng-deep .fb-page > span {
+    vertical-align: unset !important;
+}
+
+:host ::ng-deep .twitter-timeline, .fb-page {
+    height: 500px !important;
+    margin: 0 20px !important;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.3);
+}
+
+.section3 {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    background-color: $neutral-1;
+    padding-top: 40px;
+    padding-bottom: 80px;
+    border-top: 1px solid $neutral-5;
+}
