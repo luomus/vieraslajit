@@ -37,6 +37,10 @@
     }
 }
 
+:host > div {
+    max-width: 100%;
+}
+
 :host ::ng-deep .vrs-form .btn {
     background-color: $neutral-1;
     box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
@@ -60,10 +64,6 @@
 
 #formDesc {
     max-width: 35rem;
-}
-
-.vrs-laji-form {
-    width: 100%;
 }
 
 @font-face {
