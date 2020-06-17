@@ -10,11 +10,13 @@
         <a class="mosaic-child"
             *ngFor="let taxon of taxa"
             [routerLink]="'/lajit/' + taxon.id"
+            >
+            <!--
             [ngClass]= "{
                             'mosaic-child-established': taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveEstablished',
                             'mosaic-child-sporadic': taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveSporadic'
                         }"
-            >
+              -->
             <div class="mosaic-img">
                 <img *ngIf="taxon.multimedia && taxon.multimedia[0].thumbnailURL" src="{{taxon.multimedia[0].thumbnailURL}}">
                 <img *ngIf="!taxon.multimedia || !taxon.multimedia[0].thumbnailURL" src="../../../../assets/images/taxon_placeholder.png">
@@ -28,8 +30,8 @@
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.controllingRisksOfInvasiveAlienSpecies')" class="administrative-status" translate>administrativeStatus.nationallySignificantInvasiveSpecies</li>
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.quarantinePlantPest')" class="administrative-status" translate>administrativeStatus.quarantinePlantPest</li>
                 </ul>
-                <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveEstablished'" class="establishment establishment-established"><span class="oi oi-home"></span>{{'establishment.established' | translate}}</div>
-                <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveSporadic'" class="establishment establishment-sporadic">{{'establishment.sporadic' | translate}}</div>
+<!--                 <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveEstablished'" class="establishment establishment-established"><span class="oi oi-home"></span>{{'establishment.established' | translate}}</div>
+                <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveSporadic'" class="establishment establishment-sporadic">{{'establishment.sporadic' | translate}}</div> -->
                 <div *ngIf="taxon.invasiveSpeciesEstablishment && taxon.invasiveSpeciesEstablishment === 'MX.invasiveNotYetInFinland'" class="establishment">{{'establishment.none' | translate}}</div>
             </div>
         </a>
