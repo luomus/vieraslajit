@@ -119,17 +119,22 @@
 }
 
 vrs-topical-species {
-    display: block;
+    display: flex;
     margin-top: 50px;
     max-width: 40em;
 }
 
 .section2 {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    background-color: $neutral-1;
+    padding-top: 40px;
+    padding-bottom: 80px;
     border-top: 1px solid $neutral-5;
-    padding: 40px 0;
 }
 
-.section2 .container {
+.section2 > .container {
     display: flex;
     justify-content: center;
 }
@@ -153,8 +158,11 @@ vrs-topical-species {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    background-color: $neutral-1;
-    padding-top: 40px;
-    padding-bottom: 80px;
     border-top: 1px solid $neutral-5;
+    padding: 40px 0;
+}
+
+.section3 > .container {
+    display: flex;
+    justify-content: center;
 }

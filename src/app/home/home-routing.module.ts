@@ -1,7 +1,5 @@
 import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { HomeComponent } from './home.component';
 import { Homev5Component } from './homev5/homev5.component';
 
 /**
@@ -11,8 +9,7 @@ import { Homev5Component } from './homev5/homev5.component';
  */
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'v5', component: Homev5Component }
+  { path: '', component: Homev5Component },
 ];
 
 @NgModule({
