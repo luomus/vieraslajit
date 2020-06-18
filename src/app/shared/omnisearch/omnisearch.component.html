@@ -22,7 +22,7 @@
           {{'omnisearch.results.none' | translate}}
         </ng-container>
         <div class="content-item" *ngFor="let item of content.items">
-          <h4 [routerLink]="formatContentUrl(item?.formattedUrl)">{{item?.title}}</h4>
+          <a class="content-link" [routerLink]="formatContentUrl(item?.formattedUrl)">{{item?.title}}</a>
           <p [innerHTML]="item?.snippet"></p>
         </div>
         </laji-spinner>

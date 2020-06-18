@@ -147,12 +147,16 @@ input {
 
 .content-item {
   padding-top: 1em;
-  color: $neutral-6;
-  h4 {
+  color: $neutral-7;
+  .content-link {
+    font-size: 1.2rem;
     display: inline-block;
     font-weight: 600;
-    color: $neutral-7;
+    color: $neutral-6;
     cursor: pointer;
+    &:hover {
+      color: $neutral-7;
+    }
   }
 }
 
