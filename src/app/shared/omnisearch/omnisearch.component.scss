@@ -82,7 +82,7 @@ input {
     }
   }
  .matches .active {
-    color:#fa7d09;
+    color: $primary-5;
     font-weight: bold;
   }
   .first-col {
@@ -120,7 +120,7 @@ input {
 }
 
 .match:hover {
-  color: $accent-5;
+  color: $primary-5;
 }
 
 .match.active {
@@ -130,9 +130,12 @@ input {
 .mode-selector {
   padding-bottom: 1em;
   a {
-    color: $accent-5;
+    color: $primary-5;
     cursor: pointer;
     margin-right: 0.5em;
+    &:hover {
+      color: $primary-8;
+    }
   }
   a.mode-active {
     cursor: default;
