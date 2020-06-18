@@ -12,6 +12,7 @@ import { UserService, Role } from '../../shared/service/user.service';
 import { DocumentService } from '../../shared/service/document.service';
 import { FormFacade } from './form.facade';
 import { filter, takeUntil, tap } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'vrs-form',
@@ -43,11 +44,13 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
+    private title: Title,
     private ngZone: NgZone) {
         this.loggedIn = UserService.loggedIn();
     }
 
     ngOnInit() {
+        this.title.setTitle(this.translate.instant('title.form') + this.translate.instant('title.post'))
         this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
     }
 

@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -60,6 +60,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     StateService,
     UserService,
+    Title,
     { provide: LOCALE_ID, useValue: 'fi' },
     {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true},
   ],

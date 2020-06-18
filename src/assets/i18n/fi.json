@@ -189,5 +189,11 @@
 
   "datatable.observations.empty": "Ei havaintoja",
   "datatable.map.empty": "Ei havaintoja",
-  "datatable.species.empty": "Ei lajeja"
+  "datatable.species.empty": "Ei lajeja",
+
+  "title.post": " - Vieraslajiportaali",
+  "title.taxon": "Vieraslajit",
+  "title.form": "Havaintolomake",
+  "title.forms": "Omat havainnot",
+  "title.observations": "Havaintokartta"
 }

@@ -189,6 +189,12 @@
 
   "datatable.observations.empty": "No observations",
   "datatable.map.empty": "No observations found",
-  "datatable.species.empty": "No species found"
+  "datatable.species.empty": "No species found",
+
+  "title.post": " - Invasive Alien Species Portal",
+  "title.taxon": "Alien Species",
+  "title.form": "Report Form",
+  "title.forms": "My Observations",
+  "title.observations": "Observation Map"
 }
 

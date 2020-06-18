@@ -189,5 +189,11 @@
 
   "datatable.observations.empty": null,
   "datatable.map.empty": null,
-  "datatable.species.empty": null
+  "datatable.species.empty": null,
+
+  "title.post": null,
+  "title.taxon": null,
+  "title.form": null,
+  "title.forms": null,
+  "title.observations": null
 }

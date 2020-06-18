@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { TaxonCardFacade } from './taxon-card.facade';
 import { takeUntil } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'vrs-taxon-card',
@@ -30,6 +31,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private translate: TranslateService,
+              private title: Title,
               private modalService: BsModalService,
               private renderer: Renderer2,
               private facade: TaxonCardFacade,
@@ -44,6 +46,9 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     this.facade.taxon$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((taxon) => {
+        if (taxon && taxon.vernacularName) {
+          this.title.setTitle(taxon.vernacularName.charAt(0).toUpperCase() + taxon.vernacularName.slice(1) + this.translate.instant('title.post'))
+        }
         this.taxon = taxon
       });
     this.facade.description$

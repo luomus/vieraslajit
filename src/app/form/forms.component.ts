@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, NgZone, ViewChild, TemplateRef } 
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "app/shared/service/user.service";
 import { FormsFacade } from "./forms.facade";
+import { Title } from "@angular/platform-browser";
 
 @Component({
     selector: 'vrs-forms',
@@ -19,9 +20,11 @@ export class FormsComponent implements OnInit {
     loginUrl = '';
 
     constructor(private translate: TranslateService,
+                private title: Title,
                 private facade: FormsFacade) {}
 
     ngOnInit() {
+        this.title.setTitle(this.translate.instant('title.forms') + this.translate.instant('title.post'))
         this.columns = [
             { prop: 'vernacularName', name: this.translate.instant('forms.list.vernacularName'), draggable: false, resizeable: false },
             { prop: 'municipality', name: this.translate.instant('forms.list.municipality'), draggable: false, resizeable: false },
