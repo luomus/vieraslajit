@@ -7,6 +7,7 @@ import { Subscription, forkJoin, from } from 'rxjs';
 import { InformationService } from '../shared/service/information.service';
 import { map, concatMap } from 'rxjs/operators';
 import { TaxonService } from '../shared/service/taxon.service';
+import { Title } from '@angular/platform-browser';
 
 /**
  * Renders the home-/frontpage ie. /home/ route
@@ -31,7 +32,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
               private taxonService: TaxonService,
               private newsService: NewsService,
               @Inject(PLATFORM_ID) private platformId: object,
-              private translate: TranslateService) { }
+              private translate: TranslateService,
+              private title: Title) { }
 
   /**
    * 1. Create subscription for news
@@ -39,6 +41,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
    * 3. Filter only alerts from past 3 days (20 in testing)
    */
   ngOnInit() {
+    this.title.setTitle(this.translate.instant('title.home'));
     this.onLangChange = this.translate.onLangChange.subscribe((event) => {
       this.getNews(1);
     });
