@@ -1,20 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, UrlMatchResult, UrlSegment, UrlSegmentGroup, Route } from '@angular/router';
 
-const createRegexUrlMatcher = (regex) => (url: UrlSegment[]) => url.join('/').match(regex) ? { consumed: url } : null;
+export function hbeMatcher(url: UrlSegment[]) {
+  return url.join('/').match(/lajit\/HBE.*/) ? { consumed: url } : null
+}
+export function mainMatcher(url: UrlSegment[]) {
+  return url.join('/').match(/lajit\/(main|kaikki).*/) ? { consumed: url } : null
+}
 
 // Redirects from old vieraslajit.fi urls
-const redirects: Routes = [
+export const redirects: Routes = [
   {
     path: 'fi',
     loadChildren: () => import('./old-vieraslajit-redirect/redirect.module').then(m => m.RedirectModule)
   },
   {
-    matcher: createRegexUrlMatcher(/lajit\/HBE.*/),
+    matcher: hbeMatcher,
     redirectTo: 'lajit'
   },
   {
-    matcher: createRegexUrlMatcher(/lajit\/(main|kaikki).*/),
+    matcher: mainMatcher,
     redirectTo: 'lajit'
   },
   {
