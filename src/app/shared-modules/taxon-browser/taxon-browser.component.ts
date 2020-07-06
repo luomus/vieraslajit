@@ -51,7 +51,8 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     @ViewChild('agriculturalCheckbox', { static: true })  agriculturalCheckbox: ElementRef;
     @ViewChild('fiCheckbox', { static: true })            fiCheckbox: ElementRef;
     @ViewChild('euCheckbox', { static: true })            euCheckbox: ElementRef;
-    @ViewChild('plantPestCheckbox', { static: true })     plantPestCheckbox: ElementRef;
+    @ViewChild('quarantinePestsCheckbox', { static: true })     quarantinePestsCheckbox: ElementRef;
+    @ViewChild('qualityPestsCheckbox', { static: true })  qualityPestsCheckbox: ElementRef;
 
     constructor(private settingsService:TaxonBrowserApiSettingsService,
                 private apiService: TaxonBrowserApiService,
@@ -82,7 +83,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
                 let infoTypes: FilterInfoType[] = []
                 query.FiList ? infoTypes.push('fiList') : null;
                 query.EuList ? infoTypes.push('euList') : null;
-                query.PlantPest ? infoTypes.push('plantPest') : null;
+                (query.QuarantinePests || query.QualityPests) ? infoTypes.push('plantPest') : null;
                 return infoTypes;
             })
         )
@@ -101,7 +102,8 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
             }
             event.hasOwnProperty('FiList') ? this.fiCheckbox.nativeElement.checked = event.FiList: this.fiCheckbox.nativeElement.checked = false;
             event.hasOwnProperty('EuList') ? this.euCheckbox.nativeElement.checked = event.EuList: this.euCheckbox.nativeElement.checked = false;
-            event.hasOwnProperty('PlantPest') ? this.plantPestCheckbox.nativeElement.checked = event.PlantPest: this.plantPestCheckbox.nativeElement.checked = false;
+            event.hasOwnProperty('QuarantinePests') ? this.quarantinePestsCheckbox.nativeElement.checked = event.QuarantinePests: this.quarantinePestsCheckbox.nativeElement.checked = false;
+            event.hasOwnProperty('QualityPests') ? this.qualityPestsCheckbox.nativeElement.checked = event.QualityPests: this.qualityPestsCheckbox.nativeElement.checked = false;
         });
 
         this.parameterService.init();
@@ -166,16 +168,8 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
         this.parameterService.updateQuery({invasiveSpeciesMainGroups: invasiveSpeciesMainGroups});
     }
 
-    onFiListCheckbox(event) {
-        this.parameterService.updateQuery({FiList: event.target.checked});
-    }
-
-    onEuListCheckbox(event) {
-        this.parameterService.updateQuery({EuList: event.target.checked});
-    }
-
-    onPlantPestCheckbox(event) {
-        this.parameterService.updateQuery({PlantPest: event.target.checked});
+    onCheckboxChange(event, target) {
+        this.parameterService.updateQuery({[target]: event.target.checked});
     }
 
     onScroll() {
