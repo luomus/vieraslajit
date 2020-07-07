@@ -6,8 +6,7 @@ import { SortOrder } from "../select-sort-order/select-sort-order.component";
 export interface TaxonBrowserApiSettings {
     EuList?:boolean;
     FiList?:boolean;
-    QuarantinePests?:boolean;
-    QualityPests?:boolean;
+    PlantPests?:boolean;
 
     mode?:'grid'|'list';
 

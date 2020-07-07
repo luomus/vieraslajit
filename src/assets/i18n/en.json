@@ -87,8 +87,6 @@
   "taxonomy.filters.finnishList": "National list",
   "taxonomy.filters.euList": "EU list",
   "taxonomy.filters.pests": null,
-  "taxonomy.filters.quarantinePests": null,
-  "taxonomy.filters.qualityPests": null,
   "taxonomy.listMode.grid": "Grid",
   "taxonomy.listMode.list": "List",
   "taxonomy.export": "Export",

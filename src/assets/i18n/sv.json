@@ -87,8 +87,6 @@
   "taxonomy.filters.finnishList": "Nationella listan",
   "taxonomy.filters.euList": "EU-listan",
   "taxonomy.filters.pests": null,
-  "taxonomy.filters.quarantinePests": null,
-  "taxonomy.filters.qualityPests": null,
   "taxonomy.listMode.grid": "Rutnät",
   "taxonomy.listMode.list": "Lista",
   "taxonomy.export": null,

@@ -55,10 +55,8 @@ export class TaxonBrowserApiService {
         if (this.settingsService.apiSettings.FiList) {
             tempAdminStatusFilters.push('MX.controllingRisksOfInvasiveAlienSpecies');
         }
-        if (this.settingsService.apiSettings.QuarantinePests) {
+        if (this.settingsService.apiSettings.PlantPests) {
             tempAdminStatusFilters.push('MX.quarantinePlantPest');
-        }
-        if (this.settingsService.apiSettings.QualityPests) {
             tempAdminStatusFilters.push('MX.qualityPlantPest');
         }
         this.query.adminStatusFilters = tempAdminStatusFilters.toString();

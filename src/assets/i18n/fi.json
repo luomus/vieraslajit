@@ -87,8 +87,6 @@
   "taxonomy.filters.finnishList": "Kansallinen luettelo",
   "taxonomy.filters.euList": "EU:n luettelo",
   "taxonomy.filters.pests": "Säädellyt kasvintuhoojat",
-  "taxonomy.filters.quarantinePests": "Karanteenituhoojat",
-  "taxonomy.filters.qualityPests": "Laatutuhoojat",
   "taxonomy.listMode.grid": "Ruudukko",
   "taxonomy.listMode.list": "Luettelo",
   "taxonomy.export": "Lataa taulukko",

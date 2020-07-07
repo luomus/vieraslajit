@@ -18,15 +18,9 @@
                     <input type="checkbox" (change)="onCheckboxChange($event, 'EuList')" id="euList" #euCheckbox>
                     <label for="euList" translate>taxonomy.filters.euList</label>
                 </div>
-            </options-accordion>
-            <options-accordion header="{{'taxonomy.filters.pests' | translate}}">
                 <div class="checkbox">
-                    <input type="checkbox" (change)="onCheckboxChange($event, 'QuarantinePests')" id="quarantinePests" #quarantinePestsCheckbox>
-                    <label for="quarantinePests" translate>taxonomy.filters.quarantinePests</label>
-                </div>
-                <div class="checkbox">
-                    <input type="checkbox" (change)="onCheckboxChange($event, 'QualityPests')" id="qualityPests" #qualityPestsCheckbox>
-                    <label for="qualityPests" translate>taxonomy.filters.qualityPests</label>
+                    <input type="checkbox" (change)="onCheckboxChange($event, 'PlantPests')" id="plantPests" #plantPestsCheckbox>
+                    <label for="plantPests" translate>taxonomy.filters.pests</label>
                 </div>
             </options-accordion>
             <options-accordion header="{{'taxonomy.filters.iasGroups' | translate}}">
