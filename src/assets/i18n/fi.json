@@ -101,7 +101,7 @@
   "taxonomy.filterInfo.euList.title": "EU:n haitallisten vieraslajien luettelo",
   "taxonomy.filterInfo.euList.description": "Laji on säädetty haitalliseksi vieraslajiksi koko EU:n tasolla, minkä johdosta lajien maahantuonti, kasvatus, myynti ja muu hallussapito sekä ympäristöön päästäminen on kielletty.",
   "taxonomy.filterInfo.plantPest.title": "Säädellyt kasvintuhoojat",
-  "taxonomy.filterInfo.plantPest.description": null,
+  "taxonomy.filterInfo.plantPest.description": "<p>Säädeltyihin kasvintuhoojiin kuuluvat karanteenituhoojat ja laatutuhoojat.</p><p>Karanteenituhoojia ei saa esiintyä kasvintuotannossa, myytävissä tai maahantuotavissa kasveissa, viheralueilla eikä metsissä. Viranomaiset määräävät hävittämistoimenpiteet karanteenituhoojille. Karanteenituhoojien havainnot ilmoitetaan Ruokavirastoon.</p><p>Laatutuhoojia ei saa esiintyä myytävissä kasveissa ja vaatimuksia myös tuotannon aikana. Laatutuhoojien torjunnasta vastaavat pääosin kasvien viljelijät ja myyjät. Laatutuhoojien havainnoista ei ilmoiteta Ruokavirastoon.</p>",
 
   "iasGroupName.plants": "Kasvit",
   "iasGroupName.mammals": "Nisäkkäät ja linnut",
