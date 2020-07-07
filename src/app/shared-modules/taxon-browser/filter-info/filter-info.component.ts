@@ -8,7 +8,7 @@ export type FilterInfoType = 'fiList' | 'euList' | 'plantPest'
     template: `
 <div class="filter-info" *ngFor="let type of filters">
     <h2 translate>taxonomy.filterInfo.{{type}}.title</h2>
-    <p translate>taxonomy.filterInfo.{{type}}.description</p>
+    <p [innerHTML]="'taxonomy.filterInfo.' + type + '.description' | translate"></p>
 </div>
 `
 })
