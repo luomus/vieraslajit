@@ -30,7 +30,7 @@ export class StaticContainerComponent implements OnInit {
     selectedInformation: Information;
     sidebarTitle;
 
-    constructor(private route: ActivatedRoute, private informationService: InformationService) { }
+    constructor(private route: ActivatedRoute, private informationService: InformationService, private router: Router) { }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
@@ -41,6 +41,11 @@ export class StaticContainerComponent implements OnInit {
     updateInformation(id: string) {
         this.informationService.getInformation(id).subscribe(base => {
             this.selectedInformation = base;
+            const regex = /\[redirectTo:(\d+)\]/g
+            const redirects = regex.exec(base.content);
+            if (redirects && redirects.length > 0) {
+                this.router.navigate(['info', 'i-' + redirects[1]]);
+            }
             if (!base.parents) return;
             const parents$ = base.parents.map(parent => this.informationService.getInformation(parent.id));
             forkJoin(...parents$).subscribe((parents: Information[]) => {
