@@ -44,7 +44,9 @@ export class StaticContainerComponent implements OnInit {
             const regex = /\[redirectTo:(\d+)\]/g
             const redirects = regex.exec(base.content);
             if (redirects && redirects.length > 0) {
-                this.router.navigate(['info', 'i-' + redirects[1]]);
+                this.router.navigate(['info', 'i-' + redirects[1]], {
+                    replaceUrl: true
+                });
             }
             if (!base.parents) return;
             const parents$ = base.parents.map(parent => this.informationService.getInformation(parent.id));
