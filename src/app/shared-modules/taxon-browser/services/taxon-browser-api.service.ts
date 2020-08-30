@@ -91,6 +91,7 @@ export class TaxonBrowserApiService {
             tap((res)=>{this.settingsService.apiSettings.total = res.total; this.lastPage = res.lastPage;}),
             map(res=>res.results)
         ).subscribe(res=>{
+            console.log(res);
             if (append) {
                 this.taxa.push(...res);
             } else {

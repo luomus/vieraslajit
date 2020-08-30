@@ -100,6 +100,13 @@
     max-width: 40em;
 }
 
+:host ::ng-deep .news-list img {
+    max-width: 40em;
+    @include media-breakpoint-down(sm) {
+        max-width: 300px;
+    }
+}
+
 .story-title {
     font-size: 1.25rem;
 }
