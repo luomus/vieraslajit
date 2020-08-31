@@ -21,7 +21,8 @@
 }
 
 .static-content {
-    min-width: 35rem;
+    max-width: 50rem;
+/*     min-width: 35rem;
     max-width: 40rem;
     @media only screen and (max-width: 1500px) {
         max-width: 30rem;
@@ -46,7 +47,7 @@
         width: 100%;
         min-width: 15rem;
         max-width: 30rem;
-    }
+    } */
 }
 
 .link {
