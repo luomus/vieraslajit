@@ -8,16 +8,23 @@ import { Router } from '@angular/router';
 })
 export class RouteTransformerDirective {
 
+  private internalLinkRegex = /.*(vieraslajit-dev.laji.fi|vieraslajit.fi|localhost:?\d+)(.*)/;
+
   constructor(private el: ElementRef, private router: Router) { }
 
   @HostListener('click', ['$event'])
   public onClick(event) {
     if (event.target.tagName === 'A') {
-      if (event.target.getAttribute('href').startsWith('/')) {
-        this.router.navigate([event.target.getAttribute('href')]);
+      const fullLink: string = event.target.getAttribute('href');
+      const linkMatch = fullLink.match(this.internalLinkRegex);
+      if (linkMatch) {
+        this.router.navigate([linkMatch[2]]);
         event.preventDefault();
-      } else if (event.target.getAttribute('href').startsWith('#')) {
-        this.router.navigate([], { fragment: event.target.getAttribute('href').substring(1) });
+      } else if (fullLink.startsWith('/')) {
+        this.router.navigate([fullLink]);
+        event.preventDefault();
+      } else if (fullLink.startsWith('#')) {
+        this.router.navigate([], { fragment: fullLink.substring(1) });
         event.preventDefault();
       }
     } else {
