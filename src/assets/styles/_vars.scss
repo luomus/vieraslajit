@@ -63,4 +63,5 @@ $neutral-9: hsl(42, 5, 20);
 // FONTS
 
 $font-family-base: 'Libre Franklin', sans-serif;
-$font-heading: 'Montserrat', sans-serif;
+//$font-heading: 'Montserrat', sans-serif;
+$font-heading: $font-family-base;

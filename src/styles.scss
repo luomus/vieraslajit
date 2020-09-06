@@ -56,41 +56,52 @@ a {
     color: $primary-6;
     font-weight: 500;
     &:hover {
-        color: $primary-9;
+        color: $primary-8;
         text-decoration: none;
     }
 }
 
 h1, h2, h3, h4, h5 {
-    line-height: 1.1;
-    font-family: $font-heading;
-    color: $neutral-8;
-    letter-spacing: 0.02em;
-    font-weight: 500;
+    line-height: 1.5;
+    //font-family: $font-heading;
+    color: $neutral-9;
 }
 
 h1 {
-    font-size: 2rem;
+    color: $neutral-9;
     font-weight: 400;
+    font-size: 2rem;
     @include media-breakpoint-down(lg) {
         font-size: 1.75rem;
     }
 }
 
 h2 {
+    color: $neutral-8;
+    font-weight: 500;
     font-size: 1.5rem;
-    font-weight: 400;
 }
 
 h3 {
+    color: $neutral-7;
+    font-weight: 600;
     font-size: 1.25rem;
 }
 
 h4 {
+    color: $neutral-8;
+    font-weight: 400;
+    border-left: 4px solid $primary-5;
+    padding-left: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    letter-spacing: -.5px;
     font-size: 1.1rem;
 }
 
 h5 {
+    color: $neutral-7;
+    font-weight: 500;
     font-size: 1rem;
 }
 
