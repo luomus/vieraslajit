@@ -17,14 +17,14 @@ export class RouteTransformerDirective {
     if (event.target.tagName === 'A') {
       const fullLink: string = event.target.getAttribute('href');
       const linkMatch = fullLink.match(this.internalLinkRegex);
-      if (linkMatch) {
-        this.router.navigate([linkMatch[2]]);
-        event.preventDefault();
-      } else if (fullLink.startsWith('/')) {
+      if (fullLink.startsWith('/')) {
         this.router.navigate([fullLink]);
         event.preventDefault();
       } else if (fullLink.startsWith('#')) {
         this.router.navigate([], { fragment: fullLink.substring(1) });
+        event.preventDefault();
+      } else if (linkMatch) {
+        this.router.navigate([linkMatch[2]]);
         event.preventDefault();
       }
     } else {
