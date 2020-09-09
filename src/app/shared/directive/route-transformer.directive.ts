@@ -14,7 +14,6 @@ export class RouteTransformerDirective {
 
   @HostListener('click', ['$event'])
   public onClick(event) {
-    event.preventDefault();
     const href: string = this.getHref(event.target);
     if (href) {
       const linkMatch = href.match(this.internalLinkRegex);
