@@ -2,8 +2,12 @@
 // REMOVES DIVS AND IMGS THAT HAVE AN UNKNOWN SRC
 
 const removeDivs = (str: string): string => {
-  const divRegex = /<div.*?>|<\/div>/g;
-  return str.replace(divRegex, '');
+  // const divRegex = /<div.*?>|<\/div>/g;
+  const divRegexStart = /<div.*?>/g;
+  const divRegexEnd = /<\/div>/g;
+  str = str.replace(divRegexStart, '<p>');
+  str = str.replace(divRegexEnd, '</p>');
+  return str;
 }
 
 const removeBlacklistedImgs = (str: string): string => {
