@@ -14,14 +14,15 @@ export class RouteTransformerDirective {
 
   @HostListener('click', ['$event'])
   public onClick(event) {
-    if (event.target.tagName === 'A') {
-      const fullLink: string = event.target.getAttribute('href');
-      const linkMatch = fullLink.match(this.internalLinkRegex);
-      if (fullLink.startsWith('/')) {
-        this.router.navigate([fullLink]);
+    event.preventDefault();
+    const href: string = this.getHref(event.target);
+    if (href) {
+      const linkMatch = href.match(this.internalLinkRegex);
+      if (href.startsWith('/')) {
+        this.router.navigate([href]);
         event.preventDefault();
-      } else if (fullLink.startsWith('#')) {
-        this.router.navigate([], { fragment: fullLink.substring(1) });
+      } else if (href.startsWith('#')) {
+        this.router.navigate([], { fragment: href.substring(1) });
         event.preventDefault();
       } else if (linkMatch) {
         this.router.navigate([linkMatch[2]]);
@@ -30,6 +31,17 @@ export class RouteTransformerDirective {
     } else {
       return;
     }
+  }
+
+  private getHref(target: any): string {
+    if (target instanceof HTMLElement) {
+      if (target.tagName === 'A') {
+        return target.getAttribute('href');
+      } else if (target.parentElement) {
+        return this.getHref(target.parentElement);
+      }
+    }
+    return '';
   }
 
 };
