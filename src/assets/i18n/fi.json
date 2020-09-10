@@ -165,7 +165,7 @@
   "observation-map.list": "Luettelo",
   "observation-map.count": "havaintoa.",
   "observation-map.instructions": "Rajaa hakua nähdäksesi listan tarkoista havainnoista.",
-  "observation-map.laji": "Tarkastele Laji.fi-kartalla",
+  "observation-map.laji": "Rajaa hakua monipuolisemmin ja lataa tiedot käyttöösi Laji.fi-palvelussa",
 
   "observation-map.filterMenu.municipality": "KUNTA",
   "observation-map.filterMenu.municipality.all": "Kaikki kunnat",
