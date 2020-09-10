@@ -103,13 +103,16 @@ footer {
 
 .hero-credit {
     font-size: 0.7rem;
-    color: $neutral-5;
+    color: $neutral-7;
     padding: 2px;
     padding-bottom: 10px;
     text-align: center;
     a {
-        color: $neutral-5;
+        color: $neutral-6;
         font-weight: 600;
+        &:hover {
+            color: $neutral-5;
+        }
     }
 }
 
