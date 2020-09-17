@@ -5,7 +5,7 @@
     height: inherit;
 }
 
-.mosaic-parent {
+.mosaic-container {
     overflow-y: scroll;
     height: inherit;
     display: flex;
@@ -36,7 +36,7 @@
     flex: 1 1 100%;
 }
 
-.mosaic-babysitter {
+.mosaic-parent {
     display: flex;
     flex-flow: row wrap;
     max-width: 1200px;
@@ -48,6 +48,8 @@
     flex-flow: column nowrap;
     margin: 1em;
     position: relative;
+
+    text-decoration: none;
 
     box-shadow: 0px 2px 5px rgba(#000, 0.25);
     background: $neutral-1;
@@ -85,11 +87,12 @@
     overflow: hidden;
     width: 300px;
     text-align: center;
-    background: $neutral-2;
+    background: $neutral-3;
     box-shadow: 0px 0px 2px #ccc;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     img {
+        object-fit: contain;
         max-height: 200px;
         max-width: 300px;
         width: auto;

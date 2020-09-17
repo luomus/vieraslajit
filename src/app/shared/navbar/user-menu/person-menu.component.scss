@@ -46,11 +46,11 @@
     display: block;
 
     color: $neutral-6;
-    text-decoration: none;
     cursor: pointer;
 
     &:hover {
         color: $neutral-8;
+        text-decoration: underline;
     }
 }
 

@@ -22,8 +22,8 @@
   <div class="row">
     <div class="col-sm-12 order-2 col-md-7 order-md-1 left-container">
       <div id="taxoncard-cont" *ngIf="desc?.groups; else infoAndLajifiTemplate">
-        <div class="taxoncard" *ngFor="let group of desc?.groups; let first = first">
-          <div *ngFor="let variable of group.variables">
+        <div class="taxoncard" *ngFor="let variable of desc?.variables; let first = first">
+          <div>
             <h3>
               {{variable.title}}
             </h3>

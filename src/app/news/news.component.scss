@@ -71,7 +71,12 @@
 
 :host ::ng-deep .news-content {
     padding: 1em 0em;
-    width: 35em;
+    max-width: 40em;
+
+    img {
+        max-width: 100%;
+    }
+
     @include media-breakpoint-down(sm) {
         width: unset;
     }

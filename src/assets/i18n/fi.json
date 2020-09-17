@@ -19,6 +19,7 @@
   "navigation.observations": "Havainnot",
   "navigation.observations.map": "Havaintokartta",
   "navigation.observations.report": "Ilmoita havainto",
+  "navigation.observations.report2": "Ilmoita torjunnasta",
   "navigation.viekas": "Kansalaistoiminta",
   "navigation.top.facebook": "Facebook",
   "navigation.top.laji": "Suomen Lajitietokeskus",
@@ -140,6 +141,7 @@
   "vieraslajit.fi": "uutinen",
   "technical": "tekninen tiedote",
   "news.readMore": "Lue lisää...",
+  "news.back": "Takaisin uutisarkistoon",
 
   "forms.title": "Vieraslajien havaintolomake",
   "forms.desc.1": "Älypuhelimille suunniteltua vieraslajihavaintojen ilmoituslomaketta käyttämällä osallistut VieKas LIFE -hankkeen kansalaistiedetoimintaan.",
@@ -197,5 +199,8 @@
   "title.taxon": "Vieraslajit",
   "title.form": "Havaintolomake",
   "title.forms": "Omat havainnot",
-  "title.observations": "Havaintokartta"
+  "title.observations": "Havaintokartta",
+
+  "previous": "Edellinen",
+  "next": "Seuraava"
 }

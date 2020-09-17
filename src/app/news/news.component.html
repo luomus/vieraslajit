@@ -11,7 +11,7 @@
           </ul>
       </div>
       <div class="col-12 col-sm-auto">
-        <pagination-controls class="top-pagination" (pageChange)="onPageChange($event)" id="pagination-controls" maxSize='0'></pagination-controls>
+        <pagination-controls [previousLabel]="'previous' | translate" [nextLabel]="'next' | translate" class="top-pagination" (pageChange)="onPageChange($event)" id="pagination-controls" maxSize='0'></pagination-controls>
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@
 <div class="pagination-controls-container">
   <div class="container">
     <div class="pagination-controls">
-      <pagination-controls (pageChange)="onPageChange($event)" id="pagination-controls"></pagination-controls>
+      <pagination-controls [previousLabel]="'previous' | translate" [nextLabel]="'next' | translate" (pageChange)="onPageChange($event)" id="pagination-controls"></pagination-controls>
     </div>
   </div>
 </div>

@@ -4,8 +4,8 @@
     background: $neutral-2;
     position: relative;
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
+    flex-flow: column nowrap;
+    align-items: center;
     z-index: 11;
     padding: 2rem;
     box-shadow: 2px 2px 25px rgba(#000, 0.3);
@@ -15,4 +15,8 @@
 
 .content {
     max-width: 40em;
+}
+
+:host ::ng-deep img {
+    max-width: 100%;
 }

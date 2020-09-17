@@ -19,6 +19,7 @@
   "navigation.observations": "Observationer",
   "navigation.observations.map": "Kartan av observationer",
   "navigation.observations.report": "Rapportera en observation",
+  "navigation.observations.report2": null,
   "navigation.viekas": "Samhällsaktivitet",
   "navigation.top.facebook": "Facebook",
   "navigation.top.laji": "Finlands Artdatacenter",
@@ -140,6 +141,7 @@
   "vieraslajit.fi": "nyheter",
   "technical": "teknisk bulletin",
   "news.readMore": null,
+  "news.back": null,
 
   "forms.title": "Rapportformulär för invasiva främmande arter",
   "forms.desc.1": "Genom att använda den invasiva främmande arten rapportformulär för smartmobil, kommer du att delta i de samhällsaktiviteterna i VieKas LIFE projekt.",
@@ -197,5 +199,8 @@
   "title.taxon": null,
   "title.form": null,
   "title.forms": null,
-  "title.observations": null
+  "title.observations": null,
+
+  "previous": null,
+  "next": null
 }

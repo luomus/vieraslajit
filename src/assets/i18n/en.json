@@ -19,6 +19,7 @@
   "navigation.observations": "Observations",
   "navigation.observations.map": "Map of observations",
   "navigation.observations.report": "Report observation",
+  "navigation.observations.report2": null,
   "navigation.viekas": "Civic activity",
   "navigation.top.facebook": "Facebook",
   "navigation.top.laji": "Finnish Biodiversity Information Facility",
@@ -140,6 +141,7 @@
   "vieraslajit.fi": "news",
   "technical": "technical bulletin",
   "news.readMore": "Read more...",
+  "news.back": "Back to news",
 
   "forms.title": "Report form for invasive alien species",
   "forms.desc.1": "Using the invasive alien species report form for smart phones, you will participate in the civic activities of the VieKas LIFE Project.",
@@ -197,6 +199,9 @@
   "title.taxon": "Alien Species",
   "title.form": "Report Form",
   "title.forms": "My Observations",
-  "title.observations": "Observation Map"
+  "title.observations": "Observation Map",
+
+  "previous": "Previous",
+  "next": "Next"
 }
 

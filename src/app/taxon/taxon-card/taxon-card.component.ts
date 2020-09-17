@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy, TemplateRef, Renderer2, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TaxonomyDescription, TaxonomyImage, Taxonomy } from '../../shared/model/Taxonomy';
+import { TaxonomyDescription, TaxonomyImage, Taxonomy, TaxonomyDescriptionVariable } from '../../shared/model/Taxonomy';
 import { Subject } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-import { TaxonCardFacade } from './taxon-card.facade';
+import { TaxonCardFacade, TaxonomyDescriptionFlattened } from './taxon-card.facade';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 
@@ -24,7 +24,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   selectedImage: TaxonomyImage;
 
   taxon: Taxonomy;
-  desc: TaxonomyDescription;
+  desc: TaxonomyDescriptionFlattened;
   media: Array<TaxonomyImage>;
 
   quarantinePlantPest = false;

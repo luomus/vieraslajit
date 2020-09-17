@@ -1,10 +1,10 @@
-<div class="mosaic-parent" infiniteScroll
+<div class="mosaic-container" infiniteScroll
     [infiniteScrollDistance]="0.1"
     [infiniteScrollThrottle]="1000"
     [infiniteScrollContainer]="'.mosaic-parent'"
     [fromRoot]="true"
     (scrolled)="onScroll()">
-    <div class="mosaic-babysitter">
+    <div class="mosaic-parent">
         <div class="total-taxa">{{'taxonomy.grid.results.1' | translate}} {{total}} {{'taxonomy.grid.results.2' | translate}}</div>
         <div class="ng-content"><ng-content></ng-content></div>
         <a class="mosaic-child"
