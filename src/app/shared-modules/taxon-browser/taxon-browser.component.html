@@ -4,7 +4,7 @@
         <div class="options-menu" #optionsmenu [ngStyle]="{'height': optionsHeight+'px'}">
             <div class="filters-title">
                 <h5 translate>taxonomy.filters</h5>
-                <a class="clear-settings" (click)="onClearSettings()" translate>taxonomy.filters.clear</a>
+                <a class="clear-settings" (click)="onClearSettings()" tabindex="0" translate>taxonomy.filters.clear</a>
             </div>
 <!--         <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid> -->
 <!--             <vrs-group-dropdown [groups]="['MVL.232', 'MVL.27', 'MVL.343', 'MVL.1', 'MVL.28', 'MVL.26', 'MVL.40', 'MVL.2', 'MVL.233', 'MVL.37', 'MVL.39', 'MVL.41']"
@@ -64,10 +64,10 @@
                 </div>
             </div>
             <div>
-                <div *ngIf="viewMode === 'list'" class="toolbar-btn" (click)="onExport()">
+                <div *ngIf="viewMode === 'list'" class="toolbar-btn" (click)="onExport()" (keyup.enter)="onExport()" tabindex="0">
                     {{'taxonomy.export' | translate}}<span class="oi oi-data-transfer-download"></span>
                 </div>
-                <div class="toolbar-btn" (click)="onSwitchViewMode()">
+                <div class="toolbar-btn" (click)="onSwitchViewMode()" (keyup.enter)="onSwitchViewMode()" tabindex="0">
                     <div *ngIf="viewMode === 'grid'" translate>taxonomy.listMode.list<span class="oi oi-list"></span></div>
                     <div *ngIf="viewMode === 'list'" translate>taxonomy.listMode.grid<span class="oi oi-grid-three-up"></span></div>
                 </div>

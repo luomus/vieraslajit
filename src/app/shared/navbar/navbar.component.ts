@@ -21,6 +21,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   private scrollListener;
   loading = false;
 
+  private destroyListeners: Function[] = []
+
   @Input() menu;
   @Input() loginUrl = '#';
   @Output() onLogout = new EventEmitter();
@@ -90,12 +92,25 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
       // hacking into private property (of dropdown directive) because we are above the law
       // @ts-ignore
       let el = dropdown._elementRef.nativeElement;
-      this.renderer.listen(el, "mouseenter", ()=>{
-        dropdown.toggle(true);
-      })
-      this.renderer.listen(el, "mouseleave", ()=>{
-        dropdown.toggle(false);
-      })
+      this.destroyListeners.push(
+        this.renderer.listen(el, "mouseenter", ()=>{
+          dropdown.toggle(true);
+        })
+      );
+      this.destroyListeners.push(
+        this.renderer.listen(el, "mouseleave", ()=>{
+          dropdown.toggle(false);
+        })
+      );
+      this.destroyListeners.push(
+        this.renderer.listen(el, "keyup", (e)=>{
+          if (e.keyCode === 13) {
+            dropdown.toggle(true);
+          } else if (e.keyCode === 27) {
+            dropdown.toggle(false);
+          }
+        }
+      ));
     })
   }
 
@@ -117,6 +132,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.scrollListener) {
       this.scrollListener();
     }
+    this.destroyListeners.forEach(f => f());
   }
 
   getFAQId() {

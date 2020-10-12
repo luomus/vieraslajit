@@ -12,4 +12,7 @@ a {
     &:hover {
         color: $neutral-8;
     }
+    &:focus {
+        outline: black auto 1px;
+    }
 }

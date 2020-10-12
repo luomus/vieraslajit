@@ -6,7 +6,6 @@
     text-align: center;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
     text-align:center;
-    outline: none;
 
     &.borderless {
         box-shadow: none;
@@ -34,6 +33,10 @@
         &:hover {
             background: $primary-7;
         }
+    }
+
+    &:focus {
+        outline: black auto 2px;
     }
 }
 

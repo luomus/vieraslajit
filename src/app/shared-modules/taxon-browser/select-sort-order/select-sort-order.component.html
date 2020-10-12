@@ -1,9 +1,9 @@
-<span class="title" (click)="menuOpen = !menuOpen" #title>
+<span class="title" (click)="menuOpen = !menuOpen" (keyup.enter)="menuOpen = !menuOpen" tabindex="0" #title>
 {{ 'taxonomy.sortOrder' | translate }} {{ 'taxonomy.sortOrder.' + current | translate }} <span class="oi oi-sort-ascending"></span>
 </span>
 <div class="dropdown" [ngClass]="{'hidden': !menuOpen}" #dropdown>
     <ul>
-        <li *ngFor="let s of sortOrders" (click)="changeSortOrder(s)">
+        <li *ngFor="let s of sortOrders" (click)="changeSortOrder(s)" (keyup.enter)="changeSortOrder(s)" tabindex="0">
             <span [ngClass]="s === current ? 'oi oi-check': 'placeholder'"></span> {{  'taxonomy.sortOrder.' + s | translate  }}
         </li>
     </ul>

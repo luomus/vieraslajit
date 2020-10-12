@@ -77,7 +77,6 @@ nav {
         margin-bottom: -10px;
 
         cursor: pointer;
-        outline: none;
         max-height: 36px;
         overflow: visible;
     }
@@ -153,7 +152,6 @@ nav {
             display: inline-block;
             padding: 1em 2em;
             cursor: pointer;
-            outline: none;
             &:hover {
                 color: $neutral-2;
                 background-color: $focus-link-background;
@@ -243,7 +241,6 @@ nav .navbar-brand {
     color: rgba($neutral-1, 0.9);
     font-size: 1.2em;
     font-weight: 600;
-    outline: none;
 
     &:hover {
         color: $accent-5;

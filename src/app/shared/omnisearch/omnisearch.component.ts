@@ -12,7 +12,8 @@ import {
   AfterViewInit,
   ElementRef,
   ViewChild,
-  Renderer2
+  Renderer2,
+  HostListener
 } from '@angular/core';
 import { Subscription, of } from 'rxjs'
 import { tap, combineLatest, debounceTime } from 'rxjs/operators'
@@ -181,7 +182,15 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
 
   }
 
-  keyEvent(e) {
+  @HostListener('window:keyup', ['$event'])
+  onWindowKeyUp(e) {
+    // ESC
+    if (e.keyCode === 27) {
+      this.close();
+    }
+  }
+
+  onInputKeyUp(e) {
     // up key
     if (e.keyCode === 38) {
       if (this.taxa[this.active - 1]) {
@@ -201,7 +210,6 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
         this.close();
       }
     }
-
   }
 
   contentSearch() {

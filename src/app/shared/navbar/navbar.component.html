@@ -29,7 +29,7 @@
             <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
             <div class="nav-links">
                 <a class="link" routerLink="/lajit" routerLinkActive="active" translate>navigation.taxonomy</a>
-                <div class="dropdown link vrs-dropdown" dropdown>
+                <div class="dropdown link vrs-dropdown" tabindex="0" dropdown>
                 <a class="dropdown-toggle" translate>navigation.observations<span class="caret"></span></a>
                 <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
                     <li role="menuitem"><a class="dropdown-item"
@@ -41,7 +41,7 @@
                 </ul>
                 </div>
                 <a class="link" [routerLink]="['/info/', getFAQId()]" routerLinkActive="active" translate>navigation.FAQ</a>
-                <div class="dropdown link vrs-dropdown" id="dropdown-about" dropdown>
+                <div class="dropdown link vrs-dropdown" id="dropdown-about" tabindex="0" dropdown>
                     <a class="dropdown-toggle" translate>navigation.static<span class="caret"></span></a>
                     <div *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
                         <div class="container">

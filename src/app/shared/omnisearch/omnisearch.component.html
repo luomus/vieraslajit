@@ -1,9 +1,9 @@
-<div class="form-group omni-search" #omniElement *ngIf="visible" (keyup)="keyEvent($event)">
+<div class="form-group omni-search" #omniElement *ngIf="visible">
   <div>
     <span class="oi oi-magnifying-glass"></span>
     <input #omniInput type="text" class="form-control input-sm omni" id="search-box"
       [formControl]="searchControl" placeholder="{{'omnisearch.search' | translate}}"
-      autoComplete="off" />
+      autoComplete="off" (keyup)="onInputKeyUp($event)" />
   </div>
 
   <div style="clear: both"></div>
@@ -11,9 +11,9 @@
     <div class="omni-search-results" #omniSearchResults [ngClass]='resultsDirection'>
       <div class="row mode-selector">
         <div class="col-12">
-          <a (click)="contentMode = 'taxon'" [ngClass]="{'mode-active': contentMode === 'taxon'}" translate>omnisearch.contentMode.taxon</a>
-          <a (click)="contentMode = 'content'; contentSearch()" [ngClass]="{'mode-active': contentMode === 'content'}" translate>omnisearch.contentMode.content</a>
-          <span *ngIf="contentMode === 'content'" class="oi oi-reload" (click)="contentSearch()"></span>
+          <a (click)="contentMode = 'taxon'" (keyup.enter)="contentMode = 'taxon'" [ngClass]="{'mode-active': contentMode === 'taxon'}" [tabindex]="contentMode === 'taxon' ? -1 : 0" translate>omnisearch.contentMode.taxon</a>
+          <a (click)="contentMode = 'content'; contentSearch()" (keyup.enter)="contentMode = 'content'; contentSearch()" [ngClass]="{'mode-active': contentMode === 'content'}" [tabindex]="contentMode === 'content' ? -1 : 0" translate>omnisearch.contentMode.content</a>
+          <span *ngIf="contentMode === 'content'" class="oi oi-reload" (click)="contentSearch()" tabindex="0"></span>
         </div>
       </div>
       <div class="content-results" *ngIf="contentMode === 'content'">
@@ -29,7 +29,7 @@
       </div>
       <div class="row" *ngIf="contentMode === 'taxon'">
         <div class="col-12 col-md-3 matches">
-          <span class="match" *ngFor="let taxon of taxa | slice:0:8; let i=index" [ngClass]="{active: i === active, link: i !== active}" (click)="activate(i)">
+          <span class="match" *ngFor="let taxon of taxa | slice:0:8; let i=index" [ngClass]="{active: i === active, link: i !== active}" (click)="activate(i)" (keyup.enter)="activate(i)" [tabindex]="i !== active ? 0 : -1">
             {{taxon.value}}
           </span>
         </div>
