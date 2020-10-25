@@ -5,7 +5,7 @@ import { Subscription } from "rxjs";
     selector: 'vrs-informal-group',
     template: `
         <div [ngClass]="{'activated': activeState}" class="informal-group raised-1">
-            <img class="" src="assets/images/taxon-groups/{{groupId}}.svg">
+            <img alt="" src="assets/images/taxon-groups/{{groupId}}.svg">
             <span>{{name}}</span>
         </div>
     `,

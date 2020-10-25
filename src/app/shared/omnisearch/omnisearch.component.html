@@ -38,7 +38,7 @@
           <div translate>omnisearch.information</div>
           <div class="row">
             <div class="col-2" *ngIf="groupId">
-              <img [src]="'assets/images/taxon-groups/'+groupId+'.svg'">
+              <img [src]="'assets/images/taxon-groups/'+groupId+'.svg'" alt="">
             </div>
             <div class="col-10 taxon-match" *ngIf="!comparisonView;else comparisonTemplate">
               <a [routerLink]="['/lajit/' + taxon?.key]" (click)="close()">

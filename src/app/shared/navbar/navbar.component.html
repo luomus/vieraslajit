@@ -7,13 +7,13 @@
 <!--                     <img class="viekas-logo" src="./assets/images/logos/VieKas-logo-RGB-cutout.png">
                     <img class="life-logo" src="./assets/images/logos/life.png"> -->
                     <div class="vrs-logo-container">
-                        <img class="vrs-logo" src="./assets/images/logos/vieraslajit_monochrome.svg">
+                        <img alt="Vieraslajit.fi" class="vrs-logo" src="./assets/images/logos/vieraslajit_monochrome.svg">
                     </div>
                 </a>
             </div>
             <div class="nav-top-right-wrapper">
-                <a [routerLink]="['./lajit']" [queryParams]="{'FiList': 'true'}" class="administrative-list btn vrs-button borderless"><img src="./assets/images/logos/flag-fi.png">Suomen haitalliset vieraslajit</a>
-                <a [routerLink]="['./lajit']" [queryParams]="{'EuList': 'true'}" class="administrative-list btn vrs-button borderless"><img src="./assets/images/logos/flag-eu.png">EU:n haitalliset vieraslajit</a>
+                <a [routerLink]="['./lajit']" [queryParams]="{'FiList': 'true'}" class="administrative-list btn vrs-button borderless"><img alt="" src="./assets/images/logos/flag-fi.png">Suomen haitalliset vieraslajit</a>
+                <a [routerLink]="['./lajit']" [queryParams]="{'EuList': 'true'}" class="administrative-list btn vrs-button borderless"><img alt="" src="./assets/images/logos/flag-eu.png">EU:n haitalliset vieraslajit</a>
                 <vrs-user-menu [loginUrl]="loginUrl"
                             [loggedIn]="loggedIn"
                             [personName]="userPropertiesWrapper().person.fullName"

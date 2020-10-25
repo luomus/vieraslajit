@@ -5,7 +5,7 @@ import { NewsElement } from '../../shared/model';
     template: `
     <!-- Feature image header -->
     <div *ngIf='newsElement.featuredImage' class="row news-header">
-        <img class="news-thumbnail rounded" src="{{newsElement.featuredImage}}">
+        <img class="news-thumbnail rounded" src="{{newsElement.featuredImage}}" alt="">
         <div>
             <h2 class="py-2 py-sm-0 news-title-container"><a class="news-title" [routerLink]="['./', newsElement.id]">{{newsElement.title}}</a></h2>
             <div class="news-posted p-0 p-sm-2">{{newsElement.posted | date: 'dd.MM.yyyy HH:MM' }} <span class="news-tag">{{newsElement.tag | translate}}</span></div>

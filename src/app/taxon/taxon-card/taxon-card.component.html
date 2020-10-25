@@ -40,7 +40,7 @@
         <div class="card-block">
           <carousel *ngIf="media && media.length > 0" id="image-carousel" [interval]="false">
             <slide class="card-slide slide" *ngFor="let image of media">
-              <img class="img-fluid center-block" src="{{image.fullURL}}" (click)="openImage(imageModal, image)">
+              <img alt="" class="img-fluid center-block" src="{{image.fullURL}}" (click)="openImage(imageModal, image)">
             </slide>
           </carousel>
         </div>
@@ -104,6 +104,6 @@
 </div>
 
 <ng-template #imageModal>
-  <img class="img-fluid modal-image" [src]="selectedImage.fullURL || selectedImage.largeURL" />
+  <img alt="" class="img-fluid modal-image" [src]="selectedImage.fullURL || selectedImage.largeURL" />
   <label class="modal-label">{{selectedImage.author}}, {{selectedImage.copyrightOwner}}, <span [innerHTML]="selectedImage.licenseAbbreviation"></span></label>
 </ng-template>
