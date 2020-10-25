@@ -1,9 +1,9 @@
 <div class="form-group omni-search" #omniElement *ngIf="visible">
   <div>
     <span class="oi oi-magnifying-glass"></span>
-    <input #omniInput type="text" class="form-control input-sm omni" id="search-box"
+    <input autocomplete="off" #omniInput type="text" class="form-control input-sm omni" id="search-box"
       [formControl]="searchControl" placeholder="{{'omnisearch.search' | translate}}"
-      autoComplete="off" (keyup)="onInputKeyUp($event)" />
+      (keyup)="onInputKeyUp($event)" />
   </div>
 
   <div style="clear: both"></div>
