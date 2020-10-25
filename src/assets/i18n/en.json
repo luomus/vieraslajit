@@ -189,6 +189,7 @@
   "observation.datetime": "Date",
   "observations.modal.title": "Observation",
   "observations.modal.close": "Close",
+  "observations.modal.iframe": null,
 
   "datatable.observations.empty": "No observations",
   "datatable.map.empty": "No observations found",

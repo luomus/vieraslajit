@@ -189,6 +189,7 @@
   "observation.datetime":"Päivämäärä",
   "observations.modal.title": "Havainto",
   "observations.modal.close": "Sulje",
+  "observations.modal.iframe": "Laji.fi havainnon tarkastelu",
 
   "datatable.observations.empty": "Ei havaintoja",
   "datatable.map.empty": "Ei havaintoja",
