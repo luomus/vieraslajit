@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   loading = false;
 
   private destroyListeners: Function[] = []
+  private dropdownMouseOverListeners: Function[] = []
 
   @Input() menu;
   @Input() loginUrl = '#';
@@ -89,28 +90,35 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.d.forEach((dropdown) => {
-      // hacking into private property (of dropdown directive) because we are above the law
       // @ts-ignore
       let el = dropdown._elementRef.nativeElement;
       this.destroyListeners.push(
         this.renderer.listen(el, "mouseenter", ()=>{
           dropdown.toggle(true);
+          this.dropdownMouseOverListeners.push(
+            this.addKeyUpListener(document, dropdown)
+          )
         })
       );
       this.destroyListeners.push(
         this.renderer.listen(el, "mouseleave", ()=>{
           dropdown.toggle(false);
+          this.dropdownMouseOverListeners.forEach(f => f());
         })
       );
       this.destroyListeners.push(
-        this.renderer.listen(el, "keyup", (e)=>{
-          if (e.keyCode === 13) {
-            dropdown.toggle(true);
-          } else if (e.keyCode === 27) {
-            dropdown.toggle(false);
-          }
-        }
-      ));
+        this.addKeyUpListener(el, dropdown)
+      );
+    })
+  }
+
+  addKeyUpListener(el, dropdown) {
+    return this.renderer.listen(el, "keyup", (e)=>{
+      if (e.keyCode === 13) {
+        dropdown.toggle(true);
+      } else if (e.keyCode === 27) {
+        dropdown.toggle(false);
+      }
     })
   }
 
