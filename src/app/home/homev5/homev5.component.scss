@@ -1,19 +1,26 @@
 @import '../../assets/styles/vars';
 @import '~bootstrap/scss/bootstrap-grid';
 
+$raised-1: 0 2px 6px rgba(#000, .2);
+
 .hero {
-    background: url('/assets/images/bgs/vieraslajiportaali_banneri.jpg'), rgba(0,0,0,.5);
-    height: 500px;
+    background: url('/assets/images/bgs/vieraslajiportaali_banneri.jpg');
+    height: 300px;
     width: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-blend-mode: multiply;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-}
 
+    box-shadow: $raised-1;
+
+    @include media-breakpoint-down(sm) {
+        height: 150px;
+    }
+}
+/* 
 .hero header {
     margin-top: -100px;
     color: $neutral-1;
@@ -126,6 +133,37 @@ vrs-topical-species {
     max-width: 40em;
 }
 
+.topical-species-container img {
+    display: inline-block;
+    height: 150px;
+    @include media-breakpoint-down(sm) {
+        display: block;
+    }
+}
+
+.topical-species-container a {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-bottom: 20px;
+    color: $neutral-3;
+    font-size: 0.8rem;
+    cursor: pointer;
+    .image-label {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: right;
+        padding-right: 10px;
+
+        background: rgba(#000, 0.5);
+        font-weight: 400;
+    }
+    &:hover {
+        color: $neutral-5;
+    }
+}
+
 .section2 {
     display: flex;
     flex-flow: row nowrap;
@@ -169,3 +207,141 @@ vrs-topical-species {
     display: flex;
     justify-content: center;
 }
+ */
+
+
+
+/*  */
+
+.heading-section {
+    padding: 20px 0;
+}
+
+.heading-box-wrapper {
+    @include media-breakpoint-down(xs) {
+        padding: 0;
+    }
+}
+
+.heading-box {
+    background: $neutral-2;
+    display: flex;
+    padding: 20px 40px;
+    box-shadow: $raised-1;
+    @include media-breakpoint-down(xs) {
+        flex-direction: column;
+    }
+}
+
+.vrs-logo {
+    height: 200px;
+    width: auto;
+    padding: 20px;
+}
+
+.topical-species-header {
+    @include media-breakpoint-down(sm) {
+        display: none;
+    }
+}
+
+.topical-species-header-container {
+    display: flex;
+    align-items: flex-end;
+}
+
+.caret-bottom {
+    display: flex;
+    justify-content: center;
+}
+
+.oi-caret-bottom {
+    font-size: 32px;
+    color: $accent-5;
+    text-shadow: 0 1px 3px rgba(#000, .3);
+}
+
+
+.news-section {
+    background: $neutral-2;
+    padding: 20px 0;
+    box-shadow: $raised-1;
+}
+
+.news-list {
+    padding: 0;
+    list-style: none;
+}
+
+.story-title {
+}
+
+.story-posted {
+    font-size: 0.9rem;
+    color: $neutral-6;
+}
+
+:host ::ng-deep .news-list img {
+    max-width: min(500px, 100%);
+}
+:host ::ng-deep .news-list figcaption {
+    color: $neutral-6;
+    font-size: .9rem;
+}
+
+.topical-species-container {
+    @include media-breakpoint-down(sm) {
+        padding: 20px 0;
+    }
+}
+
+.topical-species-container > a {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.topical-species-mobile-header {
+    display: none;
+    @include media-breakpoint-down(sm) {
+        display: block;
+    }
+}
+
+
+
+
+.some-section {
+    padding: 20px 0;
+}
+
+.some-section > .container {
+    @include media-breakpoint-down(sm) {
+        padding: 0;
+    }
+}
+
+.some-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+:host ::ng-deep .fb-page > span {
+    vertical-align: unset !important;
+}
+
+:host ::ng-deep .twitter-timeline, .fb-page {
+    height: 500px !important;
+    margin: 0 20px !important;
+    margin-top: 20px !important;
+    box-shadow: $raised-1;
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,3 +1,72 @@
+<div class="hero"></div>
+<section class="heading-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-9 heading-box-wrapper">
+                <div class="heading-box">
+                    <img class="vrs-logo" src="../../../assets/images/logos/vieraslajit_logo.svg" alt="">
+                    <div>
+                        <h1 class="mb-0">Havaitse, tunnista, ilmoita ja torju!</h1>
+                        <h2>Tietoja vieraslajeista Suomessa</h2>
+                        <p><b>Mikä on vieraslaji?</b> Vieraslaji on ihmisen myötävaikutuksella uudella alueella ilmestynyt laji. <a [routerLink]="">Lue lisää vieraslajien määritelmistä</a></p>
+                        <a class="btn vrs-button accent float-right" routerLink="/ilmoita" translate>navigation.observations.report</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 topical-species-header-container">
+                <div class="topical-species-header">
+                    <h3>Silmä tarkkana!</h3>
+                    <p>Seuraavien suomessa tavattujen vieraslajien havainnoista olisi erityisen tärkeä ilmoittaa.</p>
+                    <div class="caret-bottom"><span class="oi oi-caret-bottom"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="news-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-9">
+                <ul class="news-list">
+                    <ng-container *ngFor="let story of news">
+                        <li>
+                            <a class="story-title" [routerLink]="'/ajankohtaista/' + story.id">{{ story.title }}</a>
+                            <div class="story-posted">{{ story.posted | date: 'dd.MM.yyyy' }}</div>
+                            <div *ngIf="story.content" [innerHTML]="story.content | parsewp | truncate:300"></div>
+                        </li>
+                        <hr>
+                    </ng-container>
+                </ul>
+                <div class="more-news-container" *ngIf="news?.length > 0">
+                    <a routerLink="/ajankohtaista/">Lisää uutisia</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="topical-species-container">
+                    <div class="topical-species-mobile-header">
+                        <hr class="mb-5">
+                        <h3>Silmä tarkkana!</h3>
+                        <p>Seuraavien suomessa tavattujen vieraslajien havainnoista olisi erityisen tärkeä ilmoittaa.</p>
+                    </div>
+                    <a [routerLink]="'/lajit/' + ts.id" *ngFor="let ts of topical">
+                        <img [src]="ts.multimedia[0].thumbnailURL" alt="">
+                        <div class="image-label">{{ ts.vernacularName | capitalize }}</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="some-section">
+    <div class="container">
+        <div class="some-container">
+            <div class="fb-page" data-href="https://www.facebook.com/vieraslajit" data-tabs="timeline" data-width="340" data-height="500" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/vieraslajit" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/vieraslajit">Vieraslajit</a></blockquote></div>
+            <a class="twitter-timeline" data-lang="fi" data-width="340" data-height="500" href="https://twitter.com/Vieraslajit?ref_src=twsrc%5Etfw">Tweets by Vieraslajit</a>
+        </div>
+    </div>
+</section>
+
+<!-- 
 <div class="hero">
     <header class="container">
         <h1>Vieraslajit hallintaan</h1>
@@ -47,3 +116,4 @@
         </div>
     </div>
 </section>
+ -->

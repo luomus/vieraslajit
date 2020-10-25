@@ -30,35 +30,35 @@ $container-max-widths: (
 // https://refactoringui.com/previews/building-your-color-palette/
 // TODO: ONLY use these colors in the app
 
-$primary-1: hsl(120, 50, 95);
-$primary-2: hsl(129, 30, 91);
-$primary-3: hsl(120, 20, 77);
-$primary-4: hsl(127, 30, 64);
-$primary-5: hsl(120, 30, 54);
-$primary-6: hsl(118, 30, 44);
-$primary-7: hsl(133, 30, 35);
-$primary-8: hsl(130, 60, 20);
-$primary-9: hsl(130, 80, 10);
+$primary-1: hsl(120, 40, 95);
+$primary-2: hsl(129, 40, 91);
+$primary-3: hsl(120, 40, 77);
+$primary-4: hsl(127, 40, 64);
+$primary-5: hsl(120, 40, 54);
+$primary-6: hsl(118, 40, 44);
+$primary-7: hsl(133, 40, 35);
+$primary-8: hsl(130, 40, 20);
+$primary-9: hsl(130, 40, 10);
 
-$accent-1: #fff6e5;
-$accent-2: #ffdb99;
-$accent-3: #ffc966;
-$accent-4: #ffb732;
-$accent-5: #FFA500;
-$accent-6: #cc8400;
-$accent-7: #996300;
-$accent-8: #664200;
-$accent-9: #332100;
+$accent-1: hsl(7, 50, 95);
+$accent-2: hsl(7, 60, 90);
+$accent-3: hsl(7, 70, 80);
+$accent-4: hsl(7, 70, 65);
+$accent-5: hsl(7, 75, 53);
+$accent-6: hsl(7, 70, 40);
+$accent-7: hsl(7, 60, 30);
+$accent-8: hsl(7, 50, 20);
+$accent-9: hsl(7, 40, 10);
 
 $neutral-1: hsl(40, 4, 99);
-$neutral-2: hsl(43, 6, 96);
-$neutral-3: hsl(40, 8, 92);
+$neutral-2: hsl(43, 6, 97);
+$neutral-3: hsl(40, 8, 93);
 $neutral-4: hsl(39, 10, 86);
-$neutral-5: hsl(41, 10, 68);
-$neutral-6: hsl(41, 10, 48);
-$neutral-7: hsl(41, 8, 35);
-$neutral-8: hsl(40, 6, 28);
-$neutral-9: hsl(42, 5, 20);
+$neutral-5: hsl(41, 10, 60);
+$neutral-6: hsl(41, 10, 45);
+$neutral-7: hsl(41, 8, 30);
+$neutral-8: hsl(40, 6, 20);
+$neutral-9: hsl(42, 5, 10);
 
 // FONTS
 

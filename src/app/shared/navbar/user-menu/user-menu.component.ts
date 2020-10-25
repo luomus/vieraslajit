@@ -6,7 +6,7 @@ import { Component, Output, Input, EventEmitter, Renderer2, ViewChild, OnInit, E
 <div *ngIf="!loggedIn;then login_content else welcome_content"></div>
 <ng-template #login_content>
     <div class="login_content">
-        <a href='{{loginUrl}}'>
+        <a class="btn vrs-button borderless" href='{{loginUrl}}'>
             <span class="oi oi-account-login"></span>
             {{ 'navigation.login' | translate}}
         </a>

@@ -20,9 +20,11 @@
 
     &.accent {
         background: $accent-5;
+        color: $accent-1;
+
         &:hover{
             cursor:pointer;
-            background:$accent-5;
+            background:$accent-6;
         }
     }
 

@@ -20,13 +20,15 @@
 
 }
 
-.news-title {
+.news-title-container {
     padding-right: 15px;
-    font-size: 1.1em;
     max-width: 35em;
+}
+
+.news-title {
+    color: $primary-6;
+    font-size: 1.1rem;
     font-weight: 600;
-    color: $neutral-8;
-    cursor: pointer;
 }
 
 .news-tag {

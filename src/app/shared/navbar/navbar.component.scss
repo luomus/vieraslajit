@@ -2,7 +2,7 @@
 @import '../../../assets/styles/buttons';
 @import '~bootstrap/scss/bootstrap-grid';
 
-$focus-link-background: $primary-5;
+$focus-link-background: $neutral-7;
 
 .container.container-navbar {
     padding: 0;
@@ -166,9 +166,9 @@ nav {
         }
         .active {
             cursor: default;
-            background-color: $primary-6;
+            background-color: $neutral-6;
             color: $neutral-2;
-            box-shadow: inset 0 0 20px 0 $primary-7;
+            box-shadow: inset 0 0 18px 0 rgba($neutral-8, .5);
         }
     }
 }
@@ -218,7 +218,7 @@ nav.notransition:after {
 }
 
 .vrs-logo {
-    max-height: 50px;
+    height: 36px;
     display: block;
 }
 
@@ -273,7 +273,7 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 
 .vrs-dropdown {
     .dropdown-menu {
-        border-top: 4px solid $primary-5 !important;
+        border-top: 4px solid $neutral-7 !important;
         background-color: $neutral-1;
         border-radius: 2px;
         border-top-left-radius: 0;
@@ -284,8 +284,8 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
         a {
             color: $neutral-7;
             &:hover {
-                color: $primary-1;
-                background: $primary-5;
+                color: $neutral-1;
+                background: $neutral-6;
             }
         }
     }
@@ -301,14 +301,14 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     .dropdown-item:hover {
         background-color: initial;
         color: $neutral-1;
-        background: $primary-5;
+        background: $neutral-6;
     }
 }
 
 .dropdown.link.vrs-dropdown {
     &:hover {
         color: $neutral-2 !important;
-        background-color: $primary-5;
+        background-color: $neutral-6;
     }
 }
 
@@ -340,7 +340,7 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
                 padding: 5px 10px;
                 margin-left: -10px;
                 &:hover {
-                    color: $primary-1;
+                    color: $neutral-1;
                 }
             }
         }
@@ -351,8 +351,8 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
             margin-left: -5px;
             padding: 2px 5px;
             &:hover {
-                color: $primary-1;
-                background: $primary-5;
+                color: $neutral-1;
+                background: $neutral-6;
                 border-radius: 5px;
             }
         }
@@ -449,8 +449,6 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 }
 
 :host ::ng-deep vrs-user-menu {
-    padding: 6px 11px;
-    padding-bottom: 3px;
 }
 
 .oi-external-link {
@@ -541,8 +539,8 @@ a {
 }
 
 .static-active {
-    color: $primary-1 !important;
-    background-color: $primary-4 !important;
+    color: $neutral-1 !important;
+    background-color: $neutral-6 !important;
     border-radius: 5px;
     cursor: default;
 }
