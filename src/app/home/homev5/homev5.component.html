@@ -15,8 +15,8 @@
             </div>
             <div class="col-12 col-md-3 topical-species-header-container">
                 <div class="topical-species-header">
-                    <h3>Silmä tarkkana!</h3>
-                    <p>Seuraavien suomessa tavattujen vieraslajien havainnoista olisi erityisen tärkeä ilmoittaa.</p>
+                    <h3 translate>topicalSpecies.header.title</h3>
+                    <p translate>topicalSpecies.header.description</p>
                     <div class="caret-bottom"><span class="oi oi-caret-bottom"></span></div>
                 </div>
             </div>
@@ -52,8 +52,8 @@
                 <div class="topical-species-container">
                     <div class="topical-species-mobile-header">
                         <hr class="mb-5">
-                        <h3>Silmä tarkkana!</h3>
-                        <p>Seuraavien suomessa tavattujen vieraslajien havainnoista olisi erityisen tärkeä ilmoittaa.</p>
+                        <h3 translate>topicalSpecies.header.title</h3>
+                        <p translate>topicalSpecies.header.description</p>
                     </div>
                     <a [routerLink]="'/lajit/' + ts.id" *ngFor="let ts of topical">
                         <img [src]="ts.multimedia[0].thumbnailURL" [alt]="ts.vernacularName | capitalize">
