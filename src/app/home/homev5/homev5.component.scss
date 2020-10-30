@@ -258,7 +258,6 @@ vrs-topical-species {
 .oi-caret-bottom {
     font-size: 32px;
     color: $accent-5;
-    text-shadow: 0 1px 3px rgba(#000, .3);
 }
 
 
@@ -273,6 +272,18 @@ vrs-topical-species {
     list-style: none;
 }
 
+.news-article-header {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 16px;
+}
+
+.news-article-header img {
+    object-fit: scale-down;
+    max-height: 100px;
+    padding: 0 1em;
+}
+
 .story-title {
 }
 
@@ -282,7 +293,7 @@ vrs-topical-species {
 }
 
 :host ::ng-deep .news-list img {
-    max-width: min(500px, 100%);
+    max-width: min(300px, 100%);
 }
 :host ::ng-deep .news-list figcaption {
     color: $neutral-6;

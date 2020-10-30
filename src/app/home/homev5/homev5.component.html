@@ -28,14 +28,21 @@
         <div class="row">
             <div class="col-12 col-md-9">
                 <ul class="news-list">
-                    <ng-container *ngFor="let story of news">
-                        <li>
-                            <a class="story-title" [routerLink]="'/ajankohtaista/' + story.id">{{ story.title }}</a>
-                            <div class="story-posted">{{ story.posted | date: 'dd.MM.yyyy' }}</div>
-                            <div *ngIf="story.content" [innerHTML]="story.content | parsewp | truncate:300"></div>
-                        </li>
+                    <li *ngFor="let story of news">
+                        <div class="news-article-header">
+                            <div *ngIf="story.featuredImage">
+                                <!-- Featured image -->
+                                <img [src]="story.featuredImage" alt="">
+                            </div>
+                            <div>
+                                <!-- Title -->
+                                <a class="story-title" [routerLink]="'/ajankohtaista/' + story.id">{{ story.title }}</a>
+                                <div class="story-posted">{{ story.posted | date: 'dd.MM.yyyy' }}</div>
+                            </div>
+                        </div>
+                        <div *ngIf="story.content" [innerHTML]="story.content | parsewp | truncate:300"></div>
                         <hr>
-                    </ng-container>
+                    </li>
                 </ul>
                 <div class="more-news-container" *ngIf="news?.length > 0">
                     <a routerLink="/ajankohtaista/">Lisää uutisia</a>

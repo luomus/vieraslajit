@@ -3,7 +3,8 @@
         <div class="mb-3">
             <a [routerLink]="['/ajankohtaista']"><span class="oi oi-chevron-left"></span> {{'news.back' | translate}}</a>
         </div>
-        <h3>{{article.title}}</h3>
+        <h1>{{article.title}}</h1>
+        <img *ngIf="article.featuredImage" src="{{article.featuredImage}}" alt="">
         <div  [innerHTML]="article.content | parsewp"></div>
     </div>
 </div>
