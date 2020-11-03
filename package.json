@@ -53,7 +53,7 @@
     "express": "^4.16.3",
     "fast-deep-equal": "^2.0.1",
     "jquery": "^3.3.1",
-    "laji-form": "^4.9.3",
+    "laji-form": "^5.7.2",
     "laji-map": "1.0.494",
     "moment": "^2.24.0",
     "ng-pick-datetime": "^7.0.0",

@@ -214,7 +214,7 @@ vrs-topical-species {
 /*  */
 
 .heading-section {
-    padding: 20px 0;
+    padding: 15px 0;
 }
 
 .heading-box-wrapper {
@@ -226,7 +226,7 @@ vrs-topical-species {
 .heading-box {
     background: $neutral-2;
     display: flex;
-    padding: 20px 40px;
+    padding: 15px;
     box-shadow: $raised-1;
     @include media-breakpoint-down(xs) {
         flex-direction: column;
@@ -256,7 +256,7 @@ vrs-topical-species {
 }
 
 .oi-caret-bottom {
-    font-size: 32px;
+    font-size: 38px;
     color: $accent-5;
 }
 
@@ -276,12 +276,18 @@ vrs-topical-species {
     display: flex;
     flex-flow: row nowrap;
     margin-bottom: 16px;
+    @include media-breakpoint-down(sm) {
+        flex-flow: row wrap;
+    }
 }
 
-.news-article-header img {
+.featured-image-container {
+    margin-right: 12px;
+}
+
+.featured-image-container img {
     object-fit: scale-down;
     max-height: 100px;
-    padding: 0 1em;
 }
 
 .story-title {
@@ -301,7 +307,10 @@ vrs-topical-species {
 }
 
 .topical-species-container {
+    text-align: center;
+
     @include media-breakpoint-down(sm) {
+        text-align: initial;
         padding: 20px 0;
     }
 }

@@ -8,7 +8,7 @@
                     <div>
                         <h1 class="mb-0">Havaitse, tunnista, ilmoita ja torju!</h1>
                         <h2>Tietoja vieraslajeista Suomessa</h2>
-                        <p><b>Mikä on vieraslaji?</b> Vieraslaji on ihmisen myötävaikutuksella uudella alueella ilmestynyt laji. <a [routerLink]="">Lue lisää vieraslajien määritelmistä</a></p>
+                        <p><b>Mikä on vieraslaji?</b> Vieraslaji on ihmisen myötävaikutuksella uudelle alueelle levinnyt laji. <a [routerLink]="">Lue lisää vieraslajien määritelmistä</a></p>
                         <a class="btn vrs-button accent float-right" routerLink="/ilmoita" translate>navigation.observations.report</a>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                 <ul class="news-list">
                     <li *ngFor="let story of news">
                         <div class="news-article-header">
-                            <div *ngIf="story.featuredImage">
+                            <div class="featured-image-container" *ngIf="story.featuredImage">
                                 <!-- Featured image -->
                                 <img [src]="story.featuredImage" alt="">
                             </div>
