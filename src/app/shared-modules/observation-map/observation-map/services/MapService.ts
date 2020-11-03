@@ -84,7 +84,11 @@ export class MapService {
                 singleMarkerMode: true,
                 maxClusterRadius: 20
             },
-            getFeatureStyle: ():PathOptions=>{
+            getFeatureStyle: (options: GetPopupOptions):PathOptions=>{
+                if (options) {
+                    const value = obs.find((v) => (v.unit.unitId == options.feature.properties.unitId))
+                    //console.log(value)
+                }
                 let p:PathOptions = {
                     color: "#f89525",
                     fillColor: "#f89525",
