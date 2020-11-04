@@ -23,7 +23,7 @@
             </div>
             <div class="mosaic-desc">
                 <div *ngIf="taxon.species || !taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}}</div>
-                <div *ngIf="!taxon.species && taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}} {{'taxonomy.nonspecies' | translate}}</div>
+                <div *ngIf="!taxon.species && taxon.finnish" class="vernacular-name">{{'taxonomy.nonspecies' | translate}} {{(taxon.vernacularName || taxon.scientificName)}}</div>
                 <div *ngIf="taxon.vernacularName" class="scientific-name" [class.cursive]="taxon?.cursiveName">{{taxon.scientificName | capitalize}}</div>
                 <ul>
                     <li *ngIf="taxon.administrativeStatuses.includes('MX.euInvasiveSpeciesList')" class="administrative-status" translate>administrativeStatus.euInvasiveSpeciesList</li>

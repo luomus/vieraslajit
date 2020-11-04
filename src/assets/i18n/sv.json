@@ -76,7 +76,7 @@
   "taxonomy.list.quarantinePlantPest": "Växtskadegörare",
   "taxonomy.yes": "Ja",
   "taxonomy.no": "Nej",
-  "taxonomy.nonspecies": "(inga inhemska arter)",
+  "taxonomy.nonspecies": null,
   "tooltip.fiList": "Arten finns på listan över invasiva främmande arter av nationell betydelse. EU: s bestämmelser tillåter stater att bestämma invasiva främmande arter av nationell betydelse. Hittills har Finland inkluderat 16 arter, åtta artgrupper och en hybrid i den nationella listan. Medlemsstaterna får bestämma sina egna restriktioner för dessa arter.",
   "tooltip.euList": "Eftersom denna art klassificeras som en invasiv främmande art i hela EU är dess import, odling eller avel, försäljning och annan besittning och utsläpp i miljön förbjuden.",
   "tooltip.quarantine": "Arten klassificeras som en farlig växtskadegörare. Alla observationer av dessa arter måste anmälas till Livsmedelverket.",
