@@ -1,5 +1,4 @@
-import * as LM from 'laji-map';
-import LajiMap from 'laji-map/lib/map';
+import LajiMap from 'laji-map';
 import { TileLayerName, Data, DataOptions, GetFeatureStyleOptions, GetPopupOptions, Options } from 'laji-map/lib/map.defs';
 
 import { ObsMapData, VrsObservation, ObsMapDataMeta } from "./data/ObsMapData";
@@ -16,7 +15,7 @@ and updates the map accordingly */
 
 export class MapService {
 
-    private map:LajiMap;
+    private map: any;
     private modalRef: BsModalRef;
     private mapOptions: Options = {};
 
@@ -29,7 +28,7 @@ export class MapService {
 
     initializeMap(e:HTMLElement, modalRef: BsModalRef) {
         this.modalRef = modalRef
-        this.map = new LM.default({
+        this.map = new LajiMap({
             rootElem: e,
             popupOnHover: false,
             center: [65.2, 27],
@@ -125,8 +124,8 @@ export class MapService {
         return mapData;
     }
 
-    getAggregateMapData(geoJSONFeatures): LM.DataOptions[] {
-        let data: LM.DataOptions[] = []
+    getAggregateMapData(geoJSONFeatures): DataOptions[] {
+        let data: DataOptions[] = []
         data.push({
             featureCollection: {
                 type: "FeatureCollection",
