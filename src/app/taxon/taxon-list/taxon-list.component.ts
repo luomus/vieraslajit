@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StateService } from '../../state.service';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'vrs-taxon-list',
@@ -9,11 +10,29 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./taxon-list.component.scss']
 })
 export class TaxonListComponent implements OnInit {
-  constructor(private state: StateService, private title: Title, private translate: TranslateService) {
+  constructor(
+    private state: StateService,
+    private title: Title,
+    private meta: Meta,
+    private translate: TranslateService
+  ) {
     state.footerEnabled = false;
   }
 
   ngOnInit() {
-    this.title.setTitle(this.translate.instant('title.taxon') + this.translate.instant('title.post'))
+    const title = this.translate.instant('title.taxon') + this.translate.instant('title.post')
+    this.title.setTitle(title)
+    this.meta.updateTag({
+        name: "og:title",
+        content: title
+    });
+    this.meta.updateTag({
+        name: "og:description",
+        content: this.translate.instant('og.taxonList.description')
+    });
+    this.meta.updateTag({
+        name: "og:image",
+        content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
+    });
   }
 }

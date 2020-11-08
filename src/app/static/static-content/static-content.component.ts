@@ -5,8 +5,9 @@ import { NewsletterFormComponent } from "../newsletter-form/newsletter-form.comp
 
 import { isPlatformBrowser, DOCUMENT } from "@angular/common";
 import { Router, NavigationEnd } from "@angular/router";
-import { Title } from "@angular/platform-browser";
+import { Title, Meta } from "@angular/platform-browser";
 import { TranslateService } from "@ngx-translate/core";
+import { environment } from "environments/environment";
 
 @Component({
     selector: 'vrs-static-content',
@@ -24,6 +25,7 @@ export class StaticContentComponent implements OnChanges {
                 @Inject(PLATFORM_ID) private platformId: object,
                 private router: Router,
                 private title: Title,
+                private meta: Meta,
                 private translate: TranslateService,
                 private injector: Injector) {}
 
@@ -41,7 +43,21 @@ export class StaticContentComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.information && changes.information.currentValue) {
-            this.title.setTitle(changes.information.currentValue.title + this.translate.instant('title.post'))
+            const title = changes.information.currentValue.title + this.translate.instant('title.post')
+            this.title.setTitle(title)
+            this.meta.updateTag({
+                name: "og:title",
+                content: title
+            });
+            this.meta.updateTag({
+                name: "og:description",
+                content: (<string>changes.information.currentValue.content).substr(0, 70)
+            });
+            this.meta.updateTag({
+                name: "og:image",
+                content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
+            });
+
             this.content = parseWP(changes.information.currentValue.content);
             // HACK: dont execute before #newsletterform is in DOM
             if(isPlatformBrowser(this.platformId)) {

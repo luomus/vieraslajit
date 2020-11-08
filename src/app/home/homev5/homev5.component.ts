@@ -7,6 +7,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { NewsService } from 'app/shared/service/news.service';
 import { Subscription } from 'rxjs';
 import { environment } from 'environments/environment';
+import { Title, Meta } from '@angular/platform-browser';
 
 /**
  * Renders the home-/frontpage ie. /home/ route
@@ -29,10 +30,27 @@ export class Homev5Component implements OnInit, AfterViewInit {
     private informationService: InformationService,
     private taxonService: TaxonService,
     private newsService: NewsService,
+    private title: Title,
+    private meta: Meta,
     @Inject(PLATFORM_ID) private platformId: object,
     private translate: TranslateService) {}
 
   ngOnInit() {
+    const title = this.translate.instant('title.home');
+    this.title.setTitle(title);
+    this.meta.updateTag({
+        name: "og:title",
+        content: title
+    });
+    this.meta.updateTag({
+        name: "og:description",
+        content: this.translate.instant('og.home.description')
+    });
+    this.meta.updateTag({
+        name: "og:image",
+        content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
+    });
+
     this.onLangChange = this.translate.onLangChange.subscribe((event) => {
       this.getNews(1);
     });

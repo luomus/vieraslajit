@@ -203,5 +203,12 @@
   "title.observations": "Havaintokartta",
 
   "previous": "Edellinen",
-  "next": "Seuraava"
+  "next": "Seuraava",
+
+  "og.forms.description": null,
+  "og.form.description": null,
+  "og.observations.description": null,
+  "og.home.description": null,
+  "og.taxonList.description": null
+
 }

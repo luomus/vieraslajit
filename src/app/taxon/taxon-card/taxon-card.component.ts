@@ -7,7 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { TaxonCardFacade, TaxonomyDescriptionFlattened } from './taxon-card.facade';
 import { takeUntil } from 'rxjs/operators';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'vrs-taxon-card',
@@ -35,7 +36,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
               private modalService: BsModalService,
               private renderer: Renderer2,
               private facade: TaxonCardFacade,
-              private cdr: ChangeDetectorRef) {}
+              private meta: Meta) {}
 
   ngOnInit() {
     this.facade.state$
@@ -46,20 +47,36 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     this.facade.taxon$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((taxon) => {
+        this.taxon = taxon
         if (taxon && taxon.vernacularName) {
           this.title.setTitle(taxon.vernacularName.charAt(0).toUpperCase() + taxon.vernacularName.slice(1) + this.translate.instant('title.post'))
+          this.meta.updateTag({
+            name: "og:title",
+            content: this.taxon.vernacularName.charAt(0).toUpperCase() + this.taxon.vernacularName.slice(1) + this.translate.instant('title.post')
+          })
         }
-        this.taxon = taxon
       });
     this.facade.description$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((description) => {
         this.desc = description
+        if (this.desc) {
+          this.meta.updateTag({
+            name: "og:description",
+            content: this.desc.variables[0].content.substr(0, 70)
+          })
+        }
       });
     this.facade.media$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((media) => {
         this.media = media
+        if (this.media && this.media.length > 0) {
+          this.meta.updateTag({
+            name: "og:image",
+            content: this.media[0].thumbnailURL
+          })
+        }
       });
     this.route.params
       .pipe(takeUntil(this.unsubscribe$))

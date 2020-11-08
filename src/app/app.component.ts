@@ -6,6 +6,8 @@ import { StateService } from './state.service';
 import { SwUpdate } from '@angular/service-worker';
 import { LoaderService } from './shared/service/loader.service';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
+import { environment } from 'environments/environment';
 
 /**
  * Main component that acts as a container for navigation, content and footer.
@@ -17,8 +19,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'vrs';
-  translate: TranslateService;
+  prefix = 'vrs';
   isPopState = false;
   hideFooter = false;
   displaySwUpdate = false;
@@ -30,11 +31,13 @@ export class AppComponent implements OnInit {
   */
   constructor(
     state: StateService,
-    translate: TranslateService,
+    private translate: TranslateService,
     private userService: UserService,
     private router: Router,
     private swUpdate: SwUpdate,
     private loaderService: LoaderService,
+    private meta: Meta,
+    private title: Title,
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: object
   ) {
@@ -49,8 +52,6 @@ export class AppComponent implements OnInit {
         this.hideFooter = !state.footerEnabled;
       }
     });
-
-    this.translate = translate;
 
     /**
     * Use English if translation is not found
@@ -76,6 +77,29 @@ export class AppComponent implements OnInit {
     if (UserService.getToken()) {
       userService.updateUserProperties(UserService.getToken());
     }
+
+    this.meta.addTags([
+/*       {
+        name: "og:url",
+        content: ""
+      }, */
+/*       {
+        name: "og:type",
+        content: ""
+      }, */
+      {
+        name: "og:title",
+        content: this.title.getTitle()
+      },
+      {
+        name: "og:description",
+        content: this.translate.instant('home.description')
+      },
+      {
+        name: "og:image",
+        content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
+      }
+    ])
   }
   ngOnInit() {
     if (this.swUpdate.isEnabled) {

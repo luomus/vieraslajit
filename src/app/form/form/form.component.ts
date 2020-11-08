@@ -12,7 +12,8 @@ import { UserService, Role } from '../../shared/service/user.service';
 import { DocumentService } from '../../shared/service/document.service';
 import { FormFacade } from './form.facade';
 import { filter, takeUntil, tap } from 'rxjs/operators';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
+import { environment } from 'environments/environment';
 
 @Component({
     selector: 'vrs-form',
@@ -45,12 +46,27 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
     private router: Router,
     private translate: TranslateService,
     private title: Title,
+    private meta: Meta,
     private ngZone: NgZone) {
         this.loggedIn = UserService.loggedIn();
     }
 
     ngOnInit() {
-        this.title.setTitle(this.translate.instant('title.form') + this.translate.instant('title.post'))
+        const title = this.translate.instant('title.form') + this.translate.instant('title.post')
+        this.title.setTitle(title)
+        this.meta.updateTag({
+            name: "og:title",
+            content: title
+        });
+        this.meta.updateTag({
+            name: "og:description",
+            content: this.translate.instant('og.form.description')
+        });
+        this.meta.updateTag({
+            name: "og:image",
+            content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
+        });
+
         this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
     }
 
