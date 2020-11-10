@@ -94,6 +94,8 @@
   "taxonomy.sortOrder": null,
   "taxonomy.sortOrder.observations": null,
   "taxonomy.sortOrder.finnish_name": null,
+  "taxonomy.sortOrder.vernacularName.en": null,
+  "taxonomy.sortOrder.vernacularName.sv": null,
   "taxonomy.sortOrder.scientific_name": null,
   "taxonomy.sortOrder.taxonomic": null,
 

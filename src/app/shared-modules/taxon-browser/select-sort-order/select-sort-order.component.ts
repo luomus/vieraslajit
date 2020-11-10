@@ -1,7 +1,9 @@
-import { Component, Output, Input, OnInit, Renderer2, EventEmitter, OnDestroy, ViewChild, ElementRef, destroyPlatform } from "@angular/core";
+import { Component, Output, Input, OnInit, Renderer2, EventEmitter, OnDestroy, ViewChild, ElementRef, destroyPlatform, ChangeDetectorRef } from "@angular/core";
 import { Observable, Subject } from "rxjs";
+import { TranslateService } from "@ngx-translate/core";
+import { startWith, map } from "rxjs/operators";
 
-export type SortOrder = 'observations' | 'taxonomic' | 'finnish_name' | 'scientific_name'
+export type SortOrder = 'observations' | 'taxonomic' | 'finnish_name' | 'scientific_name' | 'vernacularName.en' | 'vernacularName.sv'
 
 @Component({
     selector: 'vrs-select-sort-order',
@@ -19,9 +21,29 @@ export class SelectSortOrderComponent implements OnInit, OnDestroy {
 
     private destroy: Function;
 
-    constructor(private renderer: Renderer2) {}
+    constructor(
+        private renderer: Renderer2,
+        private translate: TranslateService
+    ) {}
 
     ngOnInit() {
+        this.translate.onLangChange.pipe(
+            startWith({lang: this.translate.currentLang}),
+            map(event => event.lang)
+        ).subscribe(lang => {
+            switch (lang) {
+                case 'fi':
+                    this.sortOrders = ['observations', 'taxonomic', 'finnish_name', 'scientific_name']
+                    break;
+                case 'en':
+                    this.sortOrders = ['observations', 'taxonomic', 'vernacularName.en', 'scientific_name']
+                    break;
+                case 'sv':
+                    this.sortOrders = ['observations', 'taxonomic', 'vernacularName.sv', 'scientific_name']
+                    break;
+            }
+        });
+
         this.destroy = this.renderer.listen(document, 'click', (ev) => {
             const target = ev.target;
             if (!(this.dropdownRef.nativeElement.contains(target) || this.titleRef.nativeElement.contains(target))) {
@@ -31,6 +53,7 @@ export class SelectSortOrderComponent implements OnInit, OnDestroy {
     }
 
     changeSortOrder(s: SortOrder) {
+        console.log(s);
         this.current = s;
         this.sorted$.next(s);
         this.menuOpen = false;

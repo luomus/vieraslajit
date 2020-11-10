@@ -94,6 +94,8 @@
   "taxonomy.sortOrder": "Järjestys:",
   "taxonomy.sortOrder.observations": "Havaintojen määrä",
   "taxonomy.sortOrder.finnish_name": "Suomenkielinen nimi",
+  "taxonomy.sortOrder.vernacularName.en": "Englanninkielinen nimi",
+  "taxonomy.sortOrder.vernacularName.sv": "Ruotsinkielinen nimi",
   "taxonomy.sortOrder.scientific_name": "Tieteellinen nimi",
   "taxonomy.sortOrder.taxonomic": "Taksonomia",
 
