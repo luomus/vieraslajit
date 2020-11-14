@@ -26,8 +26,6 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
   @Input() set controls(c: boolean) {
     this.mapService.setControls(c)
   }
-  @Input() lajiLinkEnabled?: boolean = true;
-
   @Input() mapHeight: number = 400;
 
   @ViewChild('maprow', { static: true }) mapRow: ElementRef;

@@ -24,7 +24,6 @@
       <h5 class="observation-count"><b>{{getObservationCount() | number}}</b> {{'observation-map.count' | translate}}</h5>
       <p translate>observation-map.instructions</p>
     </div>
-    <a [href]="getLajiLink()" target="_blank" rel="noopener noreferrer" class="right-laji-link" translate>observation-map.laji</a>
+    <a [href]="getLajiLink()" target="_blank" rel="noopener noreferrer" class="right-laji-link d-block mt-3" translate>observation-map.laji</a>
   </div>
-  <a *ngIf="lajiLinkEnabled" [href]="getLajiLink()" target="_blank" rel="noopener noreferrer" class="laji-link" translate>observation-map.laji</a>
 </div>

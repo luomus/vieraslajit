@@ -83,7 +83,7 @@
           <span class="oi oi-chevron-bottom" [ngClass]="{'oi-chevron-bottom': mapToggle, 'oi-chevron-left': !mapToggle}"></span>
         </div>
         <div [ngStyle]="!mapToggle && {'display': 'none'}">
-          <vrs-observation-map [id]="taxon.id" [mapHeight]="600" [lajiLinkEnabled]="false"></vrs-observation-map>
+          <vrs-observation-map [id]="taxon.id" [mapHeight]="600"></vrs-observation-map>
           <div class="row">
             <div class="col-12">
                 <button [routerLink]="['/havainnot']" [queryParams]="{taxonId: taxon.id}" class="btn vrs-button" translate>taxon.viewOnMap</button>
