@@ -48,8 +48,7 @@ export class MapService {
                     }
                     this.map.setData(this.getObservationMapData(this.getGeoJSONFromObservations(data.payload)));
             } else if (data.type == 'geojson') {
-                // theres a type error here. avoiding it by casting any type
-                this.map.setData(<any>this.getAggregateMapData(data.payload));
+                this.map.setData(this.getAggregateMapData(data.payload));
             }
         })
     }
@@ -74,6 +73,11 @@ export class MapService {
     private getObservationMapData(geoJSON):Data[] {
         let mapData=[];
         const obs: any[] = this.obsMapData.getData().payload
+        const featureIndexToObservation = geoJSON.features.map(
+            feature => obs.find(
+                (v) => v.unit.unitId == feature.properties.unitId
+            )
+        );
 
         let dataOptions: DataOptions = {
             featureCollection: geoJSON,
@@ -83,24 +87,31 @@ export class MapService {
                 singleMarkerMode: true,
                 maxClusterRadius: 20
             },
-            getFeatureStyle: (options: GetPopupOptions):PathOptions=>{
-                if (options) {
-                    const value = obs.find((v) => (v.unit.unitId == options.feature.properties.unitId))
-                    //console.log(value)
+            getClusterStyle: (childCount: number, featureIdxs: number[], cluster): PathOptions => {
+                let color = '#cccccc';
+                let fillColor = '#cccccc';
+                if (childCount === 1) {
+                    const recordQuality = featureIndexToObservation[featureIdxs[0]].unit.interpretations.recordQuality;
+                    if (recordQuality === 'EXPERT_VERIFIED' || recordQuality === 'COMMUNITY_VERIFIED') {
+                        color = '#f89525';
+                        fillColor = '#f89525';
+                    }
                 }
-                let p:PathOptions = {
-                    color: "#f89525",
-                    fillColor: "#f89525",
-                }
-                return p;
+                return {
+                    color,
+                    fillColor,
+                    opacity: 1,
+                    fillOpacity: 1
+                };
             },
             getPopup: (options: GetPopupOptions):string=>{
-                const value = obs.find((v) => (v.unit.unitId == options.feature.properties.unitId))
+                const value = featureIndexToObservation[options.featureIdx]
                 const name = value.unit.linkings.taxon.vernacularName.fi ? value.unit.linkings.taxon.vernacularName.fi : "";
                 const municipality = value.gathering.interpretations ? value.gathering.interpretations.municipalityDisplayname : "";
                 const date = value.gathering.displayDateTime ? value.gathering.displayDateTime : "";
                 const notes = value.unit.notes ? value.unit.notes : "";
-                const reliability = value.unit.quality.reliable ? "Luotettava" : "";
+                const recordQuality = value.unit.interpretations.recordQuality;
+                const reliability = (recordQuality === 'EXPERT_VERIFIED' || recordQuality === 'COMMUNITY_VERIFIED') ? "Luotettava" : "";
 
                 this.eventEmitter.emit('onPopup', value);
 
