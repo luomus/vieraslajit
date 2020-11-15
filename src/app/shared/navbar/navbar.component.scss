@@ -16,7 +16,7 @@ a:hover {
 /* Background */
 nav {
     position: relative;
-    z-index: 1000;
+    z-index: 1002;
 
     /* COMPONENT BASE FONT SIZE */
     /* font-size: 0.8rem; */
@@ -281,6 +281,7 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
         border: none;
         font-size: 1em;
         margin-top: 0;
+        z-index: 1002;
         a {
             color: $neutral-7;
             &:hover {
