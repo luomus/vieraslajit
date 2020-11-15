@@ -78,6 +78,9 @@ export class MapService {
                 (v) => v.unit.unitId == feature.properties.unitId
             )
         );
+        const featureIndexIsReliable = featureIndexToObservation.map(
+            obs => obs.unit.interpretations.recordQuality === 'EXPERT_VERIFIED' || obs.unit.interpretations.recordQuality === 'COMMUNITY_VERIFIED'
+        );
 
         let dataOptions: DataOptions = {
             featureCollection: geoJSON,
@@ -90,12 +93,9 @@ export class MapService {
             getClusterStyle: (childCount: number, featureIdxs: number[], cluster): PathOptions => {
                 let color = '#cccccc';
                 let fillColor = '#cccccc';
-                if (childCount === 1) {
-                    const recordQuality = featureIndexToObservation[featureIdxs[0]].unit.interpretations.recordQuality;
-                    if (recordQuality === 'EXPERT_VERIFIED' || recordQuality === 'COMMUNITY_VERIFIED') {
-                        color = '#f89525';
-                        fillColor = '#f89525';
-                    }
+                if (featureIdxs.find(idx => featureIndexIsReliable[idx])) {
+                    color = '#f89525';
+                    fillColor = '#f89525';
                 }
                 return {
                     color,
