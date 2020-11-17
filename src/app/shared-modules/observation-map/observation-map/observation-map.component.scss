@@ -3,8 +3,9 @@
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 @import '../../../../assets/styles/datatable';
 @import '~bootstrap/scss/bootstrap-grid';
+@import '~laji-map/dist/styles.css';
 
-$zIndex: 1001;
+$zIndex: 800;
 
 #map {
   height: 400px;
@@ -229,4 +230,8 @@ vrs-map-filters {
     -moz-osx-font-smoothing: grayscale;
 }
 .glyphicon-screenshot { &:before { content: "\e087"; } }
+}
+
+:host ::ng-deep .laji-map .leaflet-top {
+  z-index: 600;
 }
