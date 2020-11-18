@@ -1,30 +1,35 @@
 import LajiMap from 'laji-map';
-import { TileLayerName, Data, DataOptions, GetFeatureStyleOptions, GetPopupOptions, Options } from 'laji-map/lib/map.defs';
+import { TileLayerName, Data, DataOptions, GetFeatureStyleOptions, GetPopupOptions, Options, Lang } from 'laji-map/lib/map.defs';
 
 import { ObsMapData, VrsObservation, ObsMapDataMeta } from "./data/ObsMapData";
 import { ObsMapOptions } from './data/ObsMapOptions';
 import { PathOptions } from 'leaflet';
-import { Injectable, TemplateRef, ElementRef, ComponentFactoryResolver, Injector } from '@angular/core';
+import { Injectable, TemplateRef, ElementRef, ComponentFactoryResolver, Injector, OnDestroy } from '@angular/core';
 import { EventEmitter } from 'events';
 import { ObservationMapPopupComponent } from '../observation-map-popup.component';
 import { BsModalRef } from 'ngx-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+import { takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 /* Listens to updates in obsMapObservations
 and updates the map accordingly */
 
 @Injectable()
 
-export class MapService {
+export class MapService implements OnDestroy{
 
     private map: any;
     private modalRef: BsModalRef;
     private mapOptions: Options = {};
+    private unsubscribe$ = new Subject<void>();
 
     eventEmitter:EventEmitter = new EventEmitter();
 
     constructor(private obsMapOptions:ObsMapOptions,
                 private obsMapData:ObsMapData,
                 private resolver: ComponentFactoryResolver,
-                private injector: Injector) {}
+                private injector: Injector,
+                private translate: TranslateService) {}
 
     initializeMap(e:HTMLElement, modalRef: BsModalRef) {
         this.modalRef = modalRef
@@ -36,6 +41,7 @@ export class MapService {
             zoomToData: false,
             tileLayerName: TileLayerName.maastokartta,
             draw: false,
+            lang: this.translate.currentLang as Lang,
             ...this.mapOptions
         });
         this.map.tileLayer.setOpacity(0.4);
@@ -51,6 +57,9 @@ export class MapService {
                 this.map.setData(this.getAggregateMapData(data.payload));
             }
         })
+        this.translate.onLangChange.pipe(
+            takeUntil(this.unsubscribe$)
+        ).subscribe(lang => this.map.lang = lang)
     }
 
     setControls(c: boolean) {
@@ -175,6 +184,13 @@ export class MapService {
                     unitId: o.unit.unitId
                 }
             }))
+        }
+    }
+
+    ngOnDestroy() {
+        if (this.unsubscribe$) {
+            this.unsubscribe$.next();
+            this.unsubscribe$.complete();
         }
     }
 }
