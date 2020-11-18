@@ -135,9 +135,9 @@ export class MapService {
         return mapData;
     }
 
-    getAggregateMapData(geoJSONFeatures): DataOptions[] {
-        let data: DataOptions[] = []
-        data.push({
+    getAggregateMapData(geoJSONFeatures): DataOptions {
+        return {
+            cluster: false,
             featureCollection: {
                 type: "FeatureCollection",
                 features: geoJSONFeatures
@@ -155,33 +155,26 @@ export class MapService {
             getPopup: (options: GetPopupOptions):string=>{
                 return "Havaintoja: " + geoJSONFeatures[options.featureIdx].properties.count;
             }
-        })
-        return data;
+        }
     }
 
     getGeoJSONFromObservations(obs: VrsObservation[]) {
-        let features = [];
-        obs.forEach((o)=>{
-            if(o.gathering && o.gathering.conversions) {
-                let f = {
-                    type: "Feature",
-                    geometry: {
-                        type: "Point",
-                        coordinates:
-                        [o.gathering.conversions.wgs84CenterPoint.lon,
-                            o.gathering.conversions.wgs84CenterPoint.lat]
-                        },
-                        properties: {
-                            unitId: o.unit.unitId
-                        }
-                    };
-                    features.push(f);
-                }
-            }
-        );
         return {
             type: "FeatureCollection",
-            features: features
-        };
+            features: obs.filter(
+                o => o.gathering && o.gathering.conversions
+            ).map(o => ({
+                type: "Feature",
+                geometry: {
+                    type: "Point",
+                    coordinates:
+                    [o.gathering.conversions.wgs84CenterPoint.lon,
+                        o.gathering.conversions.wgs84CenterPoint.lat]
+                    },
+                properties: {
+                    unitId: o.unit.unitId
+                }
+            }))
+        }
     }
 }
