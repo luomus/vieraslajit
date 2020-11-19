@@ -128,6 +128,12 @@ vrs-map-filters {
 :host ::ng-deep {
   .leaflet-rrose-content-wrapper {
     background: rgba(#333, 0.8);
+    border-radius: 5px;
+  }
+  .leaflet-rrose-close-button {
+    font-size: 22px;
+    right: 6px;
+    top: 2px;
   }
   .leaflet-rrose-tip.leaflet-rrose-tip-n {
     background: rgba(#333,0.8);
