@@ -6,9 +6,9 @@
                 <div class="heading-box">
                     <img alt="Vieraslajit logo" class="vrs-logo" src="../../../assets/images/logos/vieraslajit_logo.svg" alt="">
                     <div>
-                        <h1 class="mb-0">Havaitse, tunnista, ilmoita ja torju!</h1>
-                        <h2>Tietoja vieraslajeista Suomessa</h2>
-                        <p><b>Mikä on vieraslaji?</b> Vieraslaji on ihmisen myötävaikutuksella uudelle alueelle levinnyt laji. <a [routerLink]="">Lue lisää vieraslajien määritelmistä</a></p>
+                        <h1 class="mb-0" translate>home.h1</h1>
+                        <h2 translate>home.h2</h2>
+                        <p><b translate>home.desc.1</b> {{'home.desc.2' | translate}} <a [routerLink]="['about', getReadMoreId()]" translate>home.desc.3</a></p>
                         <a class="btn vrs-button accent float-right" routerLink="/ilmoita" translate>navigation.observations.report</a>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                     </li>
                 </ul>
                 <div class="more-news-container" *ngIf="news?.length > 0">
-                    <a routerLink="/ajankohtaista/">Lisää uutisia</a>
+                    <a routerLink="/ajankohtaista/" translate>home.moreNews</a>
                 </div>
             </div>
             <div class="col-12 col-md-3">
@@ -67,8 +67,8 @@
 <section class="some-section">
     <div class="container">
         <div class="some-container">
-            <div class="fb-page" data-href="https://www.facebook.com/vieraslajit" data-tabs="timeline" data-width="340" data-height="500" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/vieraslajit" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/vieraslajit">Vieraslajit</a></blockquote></div>
-            <a class="twitter-timeline" data-lang="fi" data-width="340" data-height="500" href="https://twitter.com/Vieraslajit?ref_src=twsrc%5Etfw">Tweets by Vieraslajit</a>
+            <div class="fb-page" data-href="https://www.facebook.com/vieraslajit" data-tabs="timeline" data-width="340" data-height="500" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/vieraslajit" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/vieraslajit">Facebook</a></blockquote></div>
+            <a class="twitter-timeline" data-lang="fi" data-width="340" data-height="500" href="https://twitter.com/Vieraslajit?ref_src=twsrc%5Etfw">Twitter</a>
         </div>
     </div>
 </section>

@@ -1,5 +1,5 @@
 export enum StaticContent {
-    Viekas, Root, FAQ, Contact
+    Viekas, Root, FAQ, Contact, Info
 }
 
 export function findContentID(target: StaticContent, lang: string) {
@@ -24,6 +24,11 @@ export function findContentID(target: StaticContent, lang: string) {
             if (lang == "fi") r = "i-102";
             if (lang == "en") r = "i-525";
             if (lang == "sv") r = "i-2292";
+            break;
+        case StaticContent.Info:
+            if (lang == "fi") r = "i-933";
+            if (lang == "en") r = "i-155";
+            if (lang == "sv") r = "i-163";
             break;
     }
     return r;

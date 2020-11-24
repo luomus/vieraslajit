@@ -8,6 +8,7 @@ import { NewsService } from 'app/shared/service/news.service';
 import { Subscription } from 'rxjs';
 import { environment } from 'environments/environment';
 import { Title, Meta } from '@angular/platform-browser';
+import { findContentID, StaticContent } from 'assets/i18n/cms-content';
 
 /**
  * Renders the home-/frontpage ie. /home/ route
@@ -84,5 +85,9 @@ export class Homev5Component implements OnInit, AfterViewInit {
     .subscribe((data) => {
       this.news = data.results;
     });
+  }
+
+  getReadMoreId() {
+    return findContentID(StaticContent.Info, this.translate.currentLang);
   }
 }
