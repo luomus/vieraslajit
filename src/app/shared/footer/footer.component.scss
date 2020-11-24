@@ -13,17 +13,18 @@ footer {
 
 .sitemap {
     border-top: 1px solid $neutral-5;
-    padding-top: 2em;
-    padding-bottom: 2em;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 10px;
     h6 {
-        font-size: 0.8rem;
+        font-size: .9rem;
         font-weight: 600;
     }
     p {
-        font-size: .8rem;
+        font-size: .9rem;
     }
     li {
-        font-size: .8rem;
+        font-size: .9rem;
     }
 }
 
@@ -81,7 +82,7 @@ footer {
     color: $neutral-7;
     a {
         color: $neutral-7;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         &:hover {
             color: $neutral-9;
         }
@@ -89,70 +90,15 @@ footer {
 }
 
 .hero-credit {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: $neutral-7;
     padding: 2px;
     padding-bottom: 10px;
     text-align: center;
     a {
         color: $neutral-6;
-        font-weight: 600;
         &:hover {
-            color: $neutral-5;
+            color: $neutral-9;
         }
     }
-}
-
-.vrs-container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.vrs-portal {
-    padding: 25px 0;
-    padding-bottom: 5px;
-}
-
-.vrs-logo {
-    vertical-align: bottom;
-    height: 2rem;
-    width: auto;
-}
-
-.vrs-title {
-    font-size: 1.2rem;
-    color: $neutral-6;
-    &:hover {
-        color: $neutral-8;
-    }
-}
-
-.vrs-description {
-    font-size: 0.9rem;
-    max-width: 35em;
-    margin: 0;
-    color: $neutral-6;
-}
-
-.laji-logo {
-    height: 80px;
-    width: auto;
-}
-
-.sll-desc {
-    flex: 1 0 100%;
-    & > a > img {
-        max-height: 2.5rem;
-        margin-right: 20px;
-    }
-    & > .desc {
-        color: $neutral-6;
-        padding-bottom: 50px;
-    }
-}
-
-#viekas-logo {
-    max-height: 2rem;
 }

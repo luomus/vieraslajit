@@ -2,24 +2,24 @@
 <section class="heading-section">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-9 heading-box-wrapper">
+            <div class="col-12 heading-box-wrapper">
                 <div class="heading-box">
                     <img alt="Vieraslajit logo" class="vrs-logo" src="../../../assets/images/logos/vieraslajit_logo.svg" alt="">
                     <div>
-                        <h1 class="mb-0" translate>home.h1</h1>
+                        <h1 class="mb-1" translate>home.h1</h1>
                         <h2 translate>home.h2</h2>
                         <p><b translate>home.desc.1</b> {{'home.desc.2' | translate}} <a [routerLink]="['about', getReadMoreId()]" translate>home.desc.3</a></p>
-                        <a class="btn vrs-button accent float-right" routerLink="/ilmoita" translate>navigation.observations.report</a>
+                        <a class="btn vrs-button accent" routerLink="/ilmoita" translate>navigation.observations.report</a>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-3 topical-species-header-container">
+<!--             <div class="col-12 col-md-3 topical-species-header-container">
                 <div class="topical-species-header">
                     <h3 translate>topicalSpecies.header.title</h3>
                     <p translate>topicalSpecies.header.description</p>
                     <div class="caret-bottom"><span class="oi oi-caret-bottom"></span></div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -40,7 +40,7 @@
                                 <div class="story-posted">{{ story.posted | date: 'dd.MM.yyyy' }}</div>
                             </div>
                         </div>
-                        <div *ngIf="story.content" [innerHTML]="story.content | parsewp | truncate:300"></div>
+                        <div *ngIf="story.content" [innerHTML]="story.content | parsewp | truncate:500"></div>
                         <hr>
                     </li>
                 </ul>
@@ -51,7 +51,6 @@
             <div class="col-12 col-md-3">
                 <div class="topical-species-container">
                     <div class="topical-species-mobile-header">
-                        <hr class="mb-5">
                         <h3 translate>topicalSpecies.header.title</h3>
                         <p translate>topicalSpecies.header.description</p>
                     </div>
