@@ -21,4 +21,8 @@ export class TaxonGridComponent implements OnInit {
     onScroll() {
         this.scrolled.emit();
     }
+
+    taxonHasImage(taxon: Taxonomy) {
+        return taxon.multimedia && taxon.multimedia[0].thumbnailURL && taxon.species;
+    }
 }

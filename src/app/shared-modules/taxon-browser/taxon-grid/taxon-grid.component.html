@@ -18,8 +18,8 @@
                         }"
               -->
             <div class="mosaic-img">
-                <img alt="" *ngIf="taxon.multimedia && taxon.multimedia[0].thumbnailURL" src="{{taxon.multimedia[0].thumbnailURL}}">
-                <img alt="" *ngIf="!taxon.multimedia || !taxon.multimedia[0].thumbnailURL" src="../../../../assets/images/taxon_placeholder.png">
+                <img alt="" *ngIf="taxonHasImage(taxon)" src="{{taxon.multimedia[0].thumbnailURL}}">
+                <img alt="" *ngIf="!taxonHasImage(taxon)" src="../../../../assets/images/taxon_placeholder.png">
             </div>
             <div class="mosaic-desc">
                 <div *ngIf="taxon.species || !taxon.finnish" class="vernacular-name">{{(taxon.vernacularName || taxon.scientificName) | capitalize}}</div>
