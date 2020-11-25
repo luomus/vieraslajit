@@ -32,6 +32,11 @@ export class TaxonService {
         });
   }
 
+  getSpecies(taxonId: string, query: LajiApi.Query): Observable<PagedResult<Taxonomy>> {
+    return this.apiService
+      .taxonomyFindById(LajiApi.Endpoints.taxonSpecies, taxonId, query);
+  }
+
   // Get one taxon
   getTaxon(taxonId: string, lang?: string, query?: Object): Observable<Taxonomy> {
     return this.apiService

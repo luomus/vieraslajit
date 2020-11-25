@@ -94,7 +94,17 @@ export class TaxonCardFacade {
     }
 
     private subscribeMedia(taxonId: string) {
-        return this.taxonService.getTaxonMedia(taxonId, this.translate.currentLang).subscribe(this.updateMedia.bind(this));
+        return this.taxonService.getSpecies(taxonId, {
+          invasiveSpeciesFilter: true,
+          lang: this.translate.currentLang,
+          includeMedia: true
+        }).pipe(
+          map(res => res.results.filter(
+            taxon => taxon.multimedia && taxon.multimedia.length > 0
+          ).map(
+            taxon => taxon.multimedia[0]
+          ))
+        ).subscribe(this.updateMedia.bind(this));
     }
 
     /////////////
