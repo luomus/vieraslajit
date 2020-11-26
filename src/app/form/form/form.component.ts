@@ -4,7 +4,7 @@ import {
     ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges, OnInit, Renderer2
 } from '@angular/core';
 import { Subscription, Subject } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import LajiForm from 'laji-form/dist/laji-form';
 import { FormApiClient } from '../../shared/api/FormApiClient';
 import { TranslateService } from '@ngx-translate/core';
@@ -38,6 +38,8 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
     loginUrl: string;
     saving = false;
 
+    public prepopulatedScientificName: string | undefined;
+
     constructor(@Inject(ElementRef) elementRef: ElementRef,
     private facade: FormFacade,
     private renderer: Renderer2,
@@ -50,6 +52,10 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
     private meta: Meta,
     private ngZone: NgZone) {
         this.loggedIn = UserService.loggedIn();
+        const nav = this.router.getCurrentNavigation()
+        if (nav.extras.state && nav.extras.state.scientificName) {
+            this.prepopulatedScientificName = nav.extras.state.scientificName
+        }
     }
 
     ngOnInit() {
