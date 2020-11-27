@@ -82,6 +82,7 @@ export class MapApiService {
             invasive: true,
             page: 1,
             pageSize: 10000,
+            countryId: "ML.206",
             selected: [
                 "unit.linkings.taxon.scientificName", "unit.linkings.taxon.vernacularName",
                 "unit.linkings.taxon.id", "gathering.conversions.wgs84CenterPoint.lat",
