@@ -76,13 +76,12 @@ input {
     width: 95vw;
   }
   .matches {
-    min-height: 14em;
     @include media-breakpoint-down(sm) {
       padding-bottom: 1em;
     }
   }
  .matches .active {
-    color: $primary-5;
+    color: $primary-6;
     font-weight: bold;
   }
   .first-col {
@@ -120,7 +119,7 @@ input {
 }
 
 .match:hover {
-  color: $primary-5;
+  color: $primary-6;
 }
 
 .match.active {
@@ -130,7 +129,7 @@ input {
 .mode-selector {
   padding-bottom: 1em;
   a {
-    color: $primary-5;
+    color: $primary-6;
     cursor: pointer;
     margin-right: 0.5em;
     &:hover {
