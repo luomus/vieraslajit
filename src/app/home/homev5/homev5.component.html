@@ -32,7 +32,7 @@
                         <div class="news-article-header">
                             <div class="featured-image-container" *ngIf="story.featuredImage">
                                 <!-- Featured image -->
-                                <img [src]="story.featuredImage.url" [alt]="story.featuredImage.alt">
+                                <img [src]="story.featuredImage.url" [alt]="story.featuredImage.alt" [title]="story.featuredImage.caption">
                             </div>
                             <div>
                                 <!-- Title -->

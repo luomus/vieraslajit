@@ -19,7 +19,7 @@
 <div class="container">
   <laji-spinner [ngClass]="{'news-spinner': newsLoading}" [spinning]="newsLoading" [hideContentWhileLoading]='true' [fullViewport]='false'>
   <div *ngFor="let newsElement of (asyncNews | async | paginate: { id: 'pagination-controls', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems })" class="news-post row">
-    <div class="news-section">
+    <div class="col-12 news-section">
       <vrs-news-header [newsElement]="newsElement"></vrs-news-header>
 
       <div class="news-content">

@@ -4,7 +4,10 @@
             <a [routerLink]="['/ajankohtaista']"><span class="oi oi-chevron-left"></span> {{'news.back' | translate}}</a>
         </div>
         <h1>{{article.title}}</h1>
-        <img *ngIf="article.featuredImage" [src]="article.featuredImage.url" [alt]="article.featuredImage.alt">
+        <figure *ngIf="article.featuredImage">
+            <img [src]="article.featuredImage.url" [alt]="article.featuredImage.alt">
+            <figcaption *ngIf="article.featuredImage.caption">{{article.featuredImage.caption}}</figcaption>
+        </figure>
         <div  [innerHTML]="article.content | parsewp"></div>
     </div>
 </div>

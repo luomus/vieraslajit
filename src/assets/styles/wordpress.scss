@@ -19,16 +19,12 @@
 :host ::ng-deep {
     figure {
         display: table;
-        font-style: italic;
-        color: $neutral-6;
-        font-size: 0.7em;
+        color: $neutral-7;
+        font-size: .8rem;
         text-indent: 0;
-        margin: 0.5em;
-        &:hover figcaption {
-            visibility: visible;
-        }
+        margin-top: 10px;
+        margin-bottom: 20px;
         figcaption {
-            visibility: hidden;
             margin-top: 10px;
             display: table-caption;
             caption-side: bottom;
