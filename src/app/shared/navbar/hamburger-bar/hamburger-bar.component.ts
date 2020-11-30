@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from "@angular/core";
 import { Router, NavigationStart } from "@angular/router";
 import { UserService } from "../../service/user.service";
+import { findContentID, StaticContent } from "assets/i18n/cms-content";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: 'vrs-hamburger-bar',
@@ -17,7 +19,11 @@ export class HamburgerBarComponent {
     observations = false;
     about = false;
 
-    constructor(private router: Router, private cd: ChangeDetectorRef) {}
+    constructor(
+        private router: Router,
+        private cd: ChangeDetectorRef,
+        private translate: TranslateService
+    ) {}
 
     ngOnInit() {
         this.router.events.subscribe((event)=> {
@@ -62,6 +68,10 @@ export class HamburgerBarComponent {
 
     getLoggedIn() {
         return UserService.loggedIn();
+    }
+
+    getFAQId() {
+        return findContentID(StaticContent.FAQ, this.translate.currentLang);
     }
 
     logout() {
