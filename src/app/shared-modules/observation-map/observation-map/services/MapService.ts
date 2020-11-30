@@ -14,6 +14,8 @@ import { Observable, Subject } from 'rxjs';
 /* Listens to updates in obsMapObservations
 and updates the map accordingly */
 
+const countToOpacityMap = (a: number): number => .2 + .4 * (Math.min(500, a) / 500)
+
 @Injectable()
 
 export class MapService implements OnDestroy{
@@ -152,7 +154,8 @@ export class MapService implements OnDestroy{
                 features: geoJSONFeatures
             },
             getFeatureStyle: (options: GetFeatureStyleOptions):PathOptions=>{
-                const opacity = Math.min(0.5, Math.max(0.1, options.feature.properties.count * 0.0025))
+
+                const opacity = countToOpacityMap(options.feature.properties.count);
                 let p:PathOptions = {
                     color: "#f89525",
                     fillColor: "#f89525",
