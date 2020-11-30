@@ -242,6 +242,9 @@ vrs-topical-species {
     width: auto;
     padding: 20px;
     margin-right: 30px;
+    @include media-breakpoint-down(xs) {
+        height: 150px;
+    }
 }
 
 .topical-species-header {
@@ -318,6 +321,9 @@ vrs-topical-species {
     @include media-breakpoint-down(sm) {
         padding: 20px 0;
     }
+    @include media-breakpoint-down(xs) {
+        border-left: unset;
+    }
 }
 
 .topical-species-container > a {
@@ -348,6 +354,13 @@ vrs-topical-species {
 .some-container {
     display: flex;
     flex-flow: row wrap;
+}
+
+ul.news-list > li > hr {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    @include media-breakpoint-down(xs) {
+        margin: 30px 0;
+    }
 }
 
 :host ::ng-deep .fb-page > span {
