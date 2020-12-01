@@ -89,7 +89,7 @@ export class MapApiService {
                 "gathering.conversions.wgs84CenterPoint.lon", "gathering.displayDateTime",
                 "gathering.interpretations.municipalityDisplayname", "gathering.team",
                 "unit.quality", "gathering.gatheringId", "document.documentId", "unit.unitId",
-                "unit.interpretations.recordQuality"
+                "unit.interpretations.recordQuality", "document.linkings.collectionQuality"
             ]
         };
         if(this.obsMapOptions.getOption("id")) query["taxonId"] = this.obsMapOptions.getOption("id")
