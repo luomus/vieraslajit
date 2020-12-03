@@ -101,9 +101,18 @@ export class TaxonCardFacade {
         }).pipe(
           map(res => res.results.filter(
             taxon => taxon.multimedia && taxon.multimedia.length > 0
-          ).map(
-            taxon => taxon.multimedia[0]
-          ))
+          )),
+          map(taxa => {
+            if (taxa.length > 1) {
+              return taxa.map(
+                taxon => {
+                  return taxon.multimedia[0]
+                }
+              )
+            } else {
+              return taxa[0].multimedia
+            }
+          })
         ).subscribe(this.updateMedia.bind(this));
     }
 
