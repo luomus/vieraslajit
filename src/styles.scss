@@ -26,7 +26,7 @@ html, body {
     padding: 0px;
     overflow-x: hidden;
     font-family: $font-family-base;
-    background-color: $neutral-4;
+
     color: $neutral-7;
     font-size: 16px;
 
@@ -45,6 +45,12 @@ html, body {
     @include media-breakpoint-up(xl) {
         font-size: 17px;
     }
+}
+body {
+    background: url("/assets/images/bg_icon.png"), $neutral-4;
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: bottom right;
 }
 
 a {
