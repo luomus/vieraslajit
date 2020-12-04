@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 export class TruncatePipe implements PipeTransform {
     constructor() {}
     transform(value: string, length: number): string {
-        return this.truncateHTML(value, length);
+        return TruncatePipe.truncateHTML(value, length);
     }
 
     /**
@@ -14,7 +14,7 @@ export class TruncatePipe implements PipeTransform {
      * @param html 
      * @param maxLength Maximum length of content (text inside tags). Tags, attributes etc. are unaffected.
      */
-    truncateHTML(html: string, maxLength: number) {
+    static truncateHTML(html: string, maxLength: number) {
         const trimmedHtml = html.replace(/(\r\n|\n|\r|\t)/gm, "");
 
         let outString = '';

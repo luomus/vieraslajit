@@ -4,6 +4,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { parseWP } from '../shared/pipe/parse-wp.pipe';
 import { InformationItem, Information } from 'app/shared/model';
 import { forkJoin } from 'rxjs';
+import { Title, Meta } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
+import { environment } from 'environments/environment';
+import { removeHTMLTagFragments } from 'app/utils';
 
 export interface StaticNavItem {
     title: string,
@@ -30,7 +34,14 @@ export class StaticContainerComponent implements OnInit {
     selectedInformation: Information;
     sidebarTitle;
 
-    constructor(private route: ActivatedRoute, private informationService: InformationService, private router: Router) { }
+    constructor(
+        private route: ActivatedRoute,
+        private informationService: InformationService,
+        private router: Router,
+        private title: Title,
+        private meta: Meta,
+        private translate: TranslateService
+    ) { }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
@@ -99,6 +110,21 @@ export class StaticContainerComponent implements OnInit {
                     })
                 });
                 this.navLevels = unsortedLevels;
+            });
+
+            const title = this.selectedInformation.title + this.translate.instant('title.post');
+            this.title.setTitle(title);
+            this.meta.updateTag({
+                name: "og:title",
+                content: title
+            });
+            this.meta.updateTag({
+                name: "og:description",
+                content: removeHTMLTagFragments(this.selectedInformation.content.substr(0, 70))
+            });
+            this.meta.updateTag({
+                name: "og:image",
+                content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
             });
         });
     }

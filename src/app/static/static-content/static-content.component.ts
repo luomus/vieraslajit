@@ -24,9 +24,6 @@ export class StaticContentComponent implements OnChanges {
                 private resolver: ComponentFactoryResolver,
                 @Inject(PLATFORM_ID) private platformId: object,
                 private router: Router,
-                private title: Title,
-                private meta: Meta,
-                private translate: TranslateService,
                 private injector: Injector) {}
 
     ngOnInit() {
@@ -43,21 +40,6 @@ export class StaticContentComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.information && changes.information.currentValue) {
-            const title = changes.information.currentValue.title + this.translate.instant('title.post')
-            this.title.setTitle(title)
-            this.meta.updateTag({
-                name: "og:title",
-                content: title
-            });
-            this.meta.updateTag({
-                name: "og:description",
-                content: (<string>changes.information.currentValue.content).substr(0, 70)
-            });
-            this.meta.updateTag({
-                name: "og:image",
-                content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
-            });
-
             this.content = parseWP(changes.information.currentValue.content);
             // HACK: dont execute before #newsletterform is in DOM
             if(isPlatformBrowser(this.platformId)) {

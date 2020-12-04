@@ -4,6 +4,10 @@ import { NewsElement } from "app/shared/model";
 import { Observable, Subject } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { switchMap, takeUntil } from "rxjs/operators";
+import { TranslateService } from "@ngx-translate/core";
+import { Meta, Title } from "@angular/platform-browser";
+import { environment } from "environments/environment";
+import { removeHTMLTagFragments } from "app/utils";
 
 @Component({
     selector: 'vrs-news-article',
@@ -13,10 +17,37 @@ import { switchMap, takeUntil } from "rxjs/operators";
 export class NewsArticleComponent implements OnInit, OnDestroy {
     private unsubscribe$: Subject<void> = new Subject<void>()
 
-    article$: Observable<NewsElement>
-    constructor(private facade: NewsArticleFacade, private route: ActivatedRoute) {}
+    article: NewsElement
+
+    constructor(
+        private facade: NewsArticleFacade,
+        private route: ActivatedRoute,
+        private title: Title,
+        private meta: Meta,
+        private translate: TranslateService
+    ) {}
+
     ngOnInit() {
-        this.article$ = this.facade.article$;
+        this.facade.article$.subscribe(article => {
+            if (!article) return;
+            this.article = article;
+            const title = article.title + this.translate.instant('title.post');
+            this.title.setTitle(title);
+            this.meta.updateTag({
+                name: "og:title",
+                content: title
+            });
+            this.meta.updateTag({
+                name: "og:description",
+                content: removeHTMLTagFragments(article.content.substr(0, 70))
+            });
+            this.meta.updateTag({
+                name: "og:image",
+                content: article.featuredImage
+                         ? article.featuredImage.url
+                         : environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
+            });
+        });
 
         this.route.params.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
             this.facade.loadArticle(params['id'])

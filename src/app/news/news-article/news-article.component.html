@@ -1,13 +1,13 @@
-<div class="container" *ngIf="article$ | async; let article">
+<div class="container">
     <div class="content">
         <div class="mb-3">
             <a [routerLink]="['/ajankohtaista']"><span class="oi oi-chevron-left"></span> {{'news.back' | translate}}</a>
         </div>
-        <h1>{{article.title}}</h1>
-        <figure *ngIf="article.featuredImage">
+        <h1>{{article?.title}}</h1>
+        <figure *ngIf="article?.featuredImage">
             <img [src]="article.featuredImage.url" [alt]="article.featuredImage.alt">
             <figcaption *ngIf="article.featuredImage.caption">{{article.featuredImage.caption}}</figcaption>
         </figure>
-        <div  [innerHTML]="article.content | parsewp"></div>
+        <div [innerHTML]="article?.content | parsewp"></div>
     </div>
 </div>
