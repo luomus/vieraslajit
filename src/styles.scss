@@ -46,11 +46,14 @@ html, body {
         font-size: 17px;
     }
 }
-body {
+.body {
     background: url("/assets/images/bg_icon.png"), $neutral-4;
     background-repeat: no-repeat;
     background-size: auto;
     background-position: bottom right;
+}
+.vrs-body {
+    background: none;
 }
 
 a {
