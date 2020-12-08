@@ -82,7 +82,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
 
         this.personToken = UserService.getToken();
 
-        this.facade.data$.pipe(takeUntil(this.unsubscribe$), filter(a => a)).pipe(tap(console.log)).subscribe(this.initForm.bind(this));
+        this.facade.data$.pipe(takeUntil(this.unsubscribe$), filter(a => a)).subscribe(this.initForm.bind(this));
         this.route.params.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
             this.id = params['formId'];
             this.documentId = params['documentId'];
