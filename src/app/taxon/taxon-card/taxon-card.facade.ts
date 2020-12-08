@@ -33,8 +33,7 @@ export class TaxonCardFacade {
     );
     description$: Observable<TaxonomyDescriptionFlattened> = this.state$.pipe(
         map(state => state.description),
-        distinctUntilChanged(),
-        tap(console.log)
+        distinctUntilChanged()
     );
     media$: Observable<TaxonomyImage[]> = this.state$.pipe(
         map(state => state.media),
