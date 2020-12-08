@@ -33,7 +33,8 @@ export class TaxonCardFacade {
     );
     description$: Observable<TaxonomyDescriptionFlattened> = this.state$.pipe(
         map(state => state.description),
-        distinctUntilChanged()
+        distinctUntilChanged(),
+        tap(console.log)
     );
     media$: Observable<TaxonomyImage[]> = this.state$.pipe(
         map(state => state.media),
@@ -134,11 +135,12 @@ const descriptionGroupSortPosition = {
 const descriptionVariableSortPosition = {
   "MX.invasiveSpeciesClassificationDescription": 0,
   "MX.descriptionText": 1,
-  "MX.originAndDistributionText": 2,
-  "MX.distributionFinland": 3,
-  "MX.invasiveEffectText": 4,
-  "MX.invasivePreventionMethodsText": 5,
-  "MX.invasiveCitizenActionsText": 6,
+  "MX.identificationText": 2,
+  "MX.originAndDistributionText": 3,
+  "MX.distributionFinland": 4,
+  "MX.invasiveEffectText": 5,
+  "MX.invasivePreventionMethodsText": 6,
+  "MX.invasiveCitizenActionsText": 7,
   "MX.miscText": Infinity
 }
 
