@@ -19,8 +19,7 @@ import { environment } from 'environments/environment';
     selector: 'vrs-form',
     templateUrl: './form.component.html',
     styleUrls: ['./form.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.ShadowDom
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
     unsubscribe$ = new Subject<void>()
