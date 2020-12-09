@@ -15,7 +15,7 @@
           <a [href]="taxon.customReportFormLink" class="btn vrs-button primary float-right mb-1" target="_blank" translate>taxon.report.custom</a>
           <div class="small">(<a [href]="taxon.customReportFormLink" target="_blank">{{ taxon.customReportFormLink }}</a>)</div>
         </ng-container>
-        <ng-template #report><a [routerLink]="'/ilmoita/MHL.53/' + taxon?.id" [state]="{ scientificName: taxon?.scientificName }" class="btn vrs-button primary" translate>taxon.report</a></ng-template>
+        <ng-template #report><a [routerLink]="'/ilmoita/MHL.85/' + taxon?.id" [state]="{ scientificName: taxon?.scientificName }" class="btn vrs-button primary" translate>taxon.report</a></ng-template>
       </div>
     </div>
   </div>
@@ -84,7 +84,8 @@
           <span class="oi oi-chevron-bottom" [ngClass]="{'oi-chevron-bottom': mapToggle, 'oi-chevron-left': !mapToggle}"></span>
         </div>
         <div [ngStyle]="!mapToggle && {'display': 'none'}">
-          <vrs-observation-map [id]="taxon.id" [mapHeight]="600"></vrs-observation-map>
+          <vrs-observation-map [id]="taxon.id" [mapHeight]="600" [showLegend]="false"></vrs-observation-map>
+          <vrs-map-legend></vrs-map-legend>
           <div class="row">
             <div class="col-12">
                 <button [routerLink]="['/havainnot']" [queryParams]="{taxonId: taxon.id}" class="btn vrs-button" translate>taxon.viewOnMap</button>

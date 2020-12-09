@@ -19,6 +19,7 @@ import { TimeSelectorComponent } from './observation-map/time-selector/time-sele
 import { SharedModule } from '../../shared/shared.module';
 import { FilterMenuComponent } from './observation-map/filter-menu/filter-menu.component';
 import { TaxonSearchModule } from '../taxon-search/taxon-search.module';
+import { MapLegendComponent } from './observation-map/legend/map-legend.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { TaxonSearchModule } from '../taxon-search/taxon-search.module';
     ObservationModalComponent,
     ObservationMapPopupComponent,
     TimeSelectorComponent,
-    FilterMenuComponent
+    FilterMenuComponent,
+    MapLegendComponent
   ],
   providers: [
     MapApiService,
@@ -49,7 +51,8 @@ import { TaxonSearchModule } from '../taxon-search/taxon-search.module';
     YkjService
   ],
   exports: [
-    ObservationMapComponent
+    ObservationMapComponent,
+    MapLegendComponent
   ],
   entryComponents: [
     ObservationModalComponent, ObservationMapPopupComponent

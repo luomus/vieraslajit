@@ -26,4 +26,7 @@
     </div>
     <a [href]="getLajiLink()" target="_blank" rel="noopener noreferrer" class="right-laji-link d-block mt-3" translate>observation-map.laji</a>
   </div>
+  <div class="legend" *ngIf="showLegend">
+    <vrs-map-legend></vrs-map-legend>
+  </div>
 </div>

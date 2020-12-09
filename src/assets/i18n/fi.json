@@ -107,6 +107,8 @@
   "observation-map.laji": "Rajaa hakua monipuolisemmin ja lataa tiedot käyttöösi Laji.fi-palvelussa",
   "observation-map.list": "Luettelo",
   "observation-map.popup.title": "Havainto",
+  "observation-map.legend.unreliable": "havaintoja, joita ei ole varmistettu",
+  "observation-map.legend.reliable": "havaintoja, joista ainakin osa varmistettu",
   "observation.datetime": "Päivämäärä",
   "observations.modal.close": "Sulje",
   "observations.modal.iframe": "Laji.fi havainnon tarkastelu",
