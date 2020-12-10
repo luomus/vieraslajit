@@ -12,8 +12,8 @@
                 </a>
             </div>
             <div class="nav-top-right-wrapper">
-                <a [routerLink]="['./lajit']" [queryParams]="{'FiList': 'true'}" class="administrative-list btn vrs-button borderless"><img alt="" src="./assets/images/logos/flag-fi.png">Suomen haitalliset vieraslajit</a>
-                <a [routerLink]="['./lajit']" [queryParams]="{'EuList': 'true'}" class="administrative-list btn vrs-button borderless"><img alt="" src="./assets/images/logos/flag-eu.png">EU:n haitalliset vieraslajit</a>
+                <a [routerLink]="['./lajit']" [queryParams]="{'FiList': 'true'}" class="administrative-list btn vrs-button borderless"><img alt="" src="./assets/images/logos/flag-fi.png">{{ 'navigation.fiList' | translate }}</a>
+                <a [routerLink]="['./lajit']" [queryParams]="{'EuList': 'true'}" class="administrative-list btn vrs-button borderless"><img alt="" src="./assets/images/logos/flag-eu.png">{{ 'navigation.euList' | translate }}</a>
                 <vrs-user-menu [loginUrl]="loginUrl"
                             [loggedIn]="loggedIn"
                             [personName]="userPropertiesWrapper().person.fullName"
