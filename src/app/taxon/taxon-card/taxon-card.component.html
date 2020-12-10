@@ -98,7 +98,7 @@
     <ng-template #infoAndLajifiTemplate>
       <h3>{{desc?.speciesCardAuthors?.title}}</h3>
       <div [innerHTML]="desc?.speciesCardAuthors?.content"></div>
-      <a *ngIf="taxon" href='http://tun.fi/{{taxon.id}}' target="_blank" rel="noopener noreferrer">Tarkastele lajia laji.fi sivustolla</a>
+      <a *ngIf="taxon" href='http://tun.fi/{{taxon.id}}' target="_blank" rel="noopener noreferrer">{{'taxon.lajilink' | translate}}</a>
     </ng-template>
   </div>
   <br>

@@ -21,15 +21,14 @@
       </div>
       <div class="col-12 col-sm-4 mb-4">
         <h6>{{'footer.sitemap.2' | translate}}</h6>
-        <p>{{'footer.sitemap.2.1' | translate}}
-          <br>(<a href="mailto:ympariston.asiakaspalvelu@ely-keskus.fi">ympariston.asiakaspalvelu@ely-keskus.fi</a>)
-        </p>
+        <ul>
+          <li><a href="https://www.ely-keskus.fi/ymparistoasiakaspalvelu" target="_blank">{{'footer.sitemap.2.1' | translate}}</a></li>
+        </ul>
       </div>
       <div class="col-12 col-sm-4 mb-4">
         <h6>{{'footer.sitemap.3' | translate}}</h6>
         <ul>
-          <li><a href="">{{'footer.sitemap.3.1' | translate}}</a></li>
-          <li><a href="">{{'footer.sitemap.3.2' | translate}}</a></li>
+          <li><a [routerLink]="['info', findContentId(StaticContent.Contact)]">{{'footer.sitemap.3.1' | translate}}</a></li>
         </ul>
       </div>
     </div>
