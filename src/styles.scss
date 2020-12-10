@@ -47,9 +47,9 @@ html, body {
     }
 }
 .body {
-    background: url("/assets/images/bg_icon.png"), $neutral-4;
+    background: url("/assets/images/bg_icon.svg"), $neutral-4;
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: 600px;
     background-position: bottom right;
 }
 .vrs-body {
