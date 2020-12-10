@@ -12,6 +12,9 @@ import { findContentID, StaticContent } from 'assets/i18n/cms-content';
 })
 export class FooterComponent implements OnInit {
   onHomePage$: Observable<boolean>;
+  
+  findContentId = (sc: StaticContent) => findContentID(sc, this.translate.currentLang)
+  StaticContent = StaticContent
 
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService) { }
   ngOnInit() {
@@ -21,8 +24,5 @@ export class FooterComponent implements OnInit {
         return event.url.length <= 1
       })
     )
-  }
-  getContactPageId() {
-    return findContentID(StaticContent.Contact, this.translate.currentLang)
   }
 }

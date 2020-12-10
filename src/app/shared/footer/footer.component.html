@@ -1,7 +1,7 @@
 <footer>
   <div class="container">
     <ul class="list-inline links">
-      <li class="list-inline-item"><a [routerLink]="['info', getContactPageId()]" translate>footer.contact</a></li>
+      <li class="list-inline-item"><a [routerLink]="['info', findContentId(StaticContent.Contact)]" translate>footer.contact</a></li>
       <li class="list-inline-item">|</li>
 <!--  TODO kun saavutettavuusseloste saatavilla
       <li class="list-inline-item"><a [routerLink]="" translate>Saavutettavuusseloste</a></li>
@@ -12,21 +12,24 @@
       <li class="list-inline-item"><a href="mailto:helpdesk@laji.fi?subject=Vieraslajit.fi" translate>footer.feedback</a></li>
     </ul>
     <div class="row mb-5 sitemap">
-      <div class="col-4">
-        <h6>Palaute ja tiedustelut</h6>
-        <p>Portaalin toiminnallisuuteen liittyvät tiedustelut. Tekninen palautelomake (ei havaintojen ilmoittamiseen)</p>
+      <div class="col-12 col-sm-4 mb-4">
+        <h6>{{'footer.sitemap.1' | translate}}</h6>
+        <ul>
+          <li><a [routerLink]="['info', findContentId(StaticContent.SiteInfo)]">{{'footer.sitemap.1.1' | translate}}</a></li>
+          <li><a [routerLink]="['info', findContentId(StaticContent.Info)]">{{'footer.sitemap.1.2' | translate}}</a></li>
+        </ul>
       </div>
-      <div class="col-4">
-        <h6>Vieraslajineuvonta</h6>
-        <p>ELY-keskuksen valtakunnallinen ympäristöasioiden asiakaspalvelu, puh. <strong>0295 020 900</strong>
+      <div class="col-12 col-sm-4 mb-4">
+        <h6>{{'footer.sitemap.2' | translate}}</h6>
+        <p>{{'footer.sitemap.2.1' | translate}}
           <br>(<a href="mailto:ympariston.asiakaspalvelu@ely-keskus.fi">ympariston.asiakaspalvelu@ely-keskus.fi</a>)
         </p>
       </div>
-      <div class="col-4">
-        <h6>Yhteistyössä toimivat vieraslajisivustot</h6>
+      <div class="col-12 col-sm-4 mb-4">
+        <h6>{{'footer.sitemap.3' | translate}}</h6>
         <ul>
-          <li><a href="">Maa- ja metsätalousministeriön vieraslajisivusto</a></li>
-          <li><a href="">Ruokaviraston tietosivut kasvintuhoojista</a></li>
+          <li><a href="">{{'footer.sitemap.3.1' | translate}}</a></li>
+          <li><a href="">{{'footer.sitemap.3.2' | translate}}</a></li>
         </ul>
       </div>
     </div>
