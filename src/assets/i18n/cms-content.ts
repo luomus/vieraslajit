@@ -36,6 +36,5 @@ export function findContentID(target: StaticContent, lang: string) {
             if (lang == "sv") r = "i-2322";
             break;
     }
-    console.log(target, r)
     return r;
 }
