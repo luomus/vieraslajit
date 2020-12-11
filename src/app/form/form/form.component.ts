@@ -84,10 +84,9 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
         this.facade.data$.pipe(takeUntil(this.unsubscribe$), filter(a => a)).subscribe(this.initForm.bind(this));
         this.route.params.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
             this.id = params['formId'];
-            this.documentId = params['documentId'];
             const id2: string = params['documentId']
             if (id2 && id2.substr(0, 2) === 'JX') {
-                this.documentId = params['documentId']
+                this.documentId = id2
                 this.facade.loadDataWithDocument(this.id, this.documentId)
             } else if (id2 && id2.substr(0, 2) === 'MX') {
                 this.facade.loadDataWithTaxon(this.id, id2)
