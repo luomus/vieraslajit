@@ -3,27 +3,28 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "ng-high-memory": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng",
-    "webpack-high-memory": "node --max_old_space_size=4096 ./node_modules/webpack/bin/webpack.js",
     "ng": "ng",
     "update": "ng update @angular/cli @angular/core",
     "start": "ng serve",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "doc:build": "compodoc -p src/tsconfig.app.json",
-    "doc:serve": "compodoc -s",
-    "doc:buildandserve": "compodoc -p src/tsconfig.app.json -s",
-    "compile:server": "npm run webpack-high-memory -- --config=webpack.server.config.js --progress --colors",
-    "ssr:run:local": "npm run build:ssr:local && npm run serve:ssr",
+
+    "bundle-report": "ng build --prod --aot --stats-json --named-chunks=true && webpack-bundle-analyzer dist/browser/stats.json",
+
     "serve:ssr": "node dist/server",
-    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
-    "build:ssr:viekas": "npm run build:client-and-server-bundles:viekas && npm run compile:server",
-    "build:ssr:local": "npm run build:client-and-server-bundles:local && npm run compile:server",
-    "build:client-and-server-bundles": "npm run ng-high-memory -- build --prod --configuration=production --base-href=https://vieraslajit-dev.laji.fi/ && npm run ng-high-memory run vieraslajit:server:production",
-    "build:client-and-server-bundles:viekas": "npm run ng-high-memory -- build --prod --configuration=viekas --base-href=https://viekas.laji.fi/ && npm run ng-high-memory run vieraslajit:server:viekas",
-    "build:client-and-server-bundles:local": "npm run ng-high-memory -- build --prod --base-href=http://localhost:4000/ && npm run ng-high-memory run vieraslajit:server:production",
-    "bundle-report": "ng build --prod --aot --stats-json --named-chunks=true && webpack-bundle-analyzer dist/browser/stats.json"
+
+    "build:local": "npm run build:local-bundles && npm run compile:server",
+    "build:beta": "npm run build:beta-bundles && npm run compile:server",
+    "build:prod": "npm run build:prod-bundles && npm run compile:server",
+
+    "build:local-bundles": "npm run ng-high-memory -- build --prod --configuration=beta --base-href=http://localhost:4000/ && npm run ng-high-memory run vieraslajit:server:beta",
+    "build:beta-bundles": "npm run ng-high-memory -- build --prod --configuration=beta --base-href=https://vieraslajit-dev.laji.fi/ && npm run ng-high-memory run vieraslajit:server:beta",
+    "build:prod-bundles": "npm run ng-high-memory -- build --prod --configuration=production --base-href=https://vieraslajit.fi/ && npm run ng-high-memory run vieraslajit:server:production",
+
+    "compile:server": "npm run webpack-high-memory -- --config=webpack.server.config.js --progress --colors",
+    "ng-high-memory": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng",
+    "webpack-high-memory": "node --max_old_space_size=4096 ./node_modules/webpack/bin/webpack.js"
   },
   "private": true,
   "dependencies": {
@@ -70,7 +71,6 @@
     "@angular-devkit/build-angular": "~0.803.23",
     "@angular/compiler-cli": "^8.2.14",
     "@angular/language-service": "^8.2.14",
-    "@compodoc/compodoc": "^1.0.9",
     "@types/jasmine": "^2.8.8",
     "@types/jasminewd2": "^2.0.3",
     "@types/jquery": "^3.3.5",

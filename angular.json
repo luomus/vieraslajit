@@ -51,7 +51,7 @@
               "serviceWorker": true,
               "ngswConfigPath": "src/ngsw-config.json"
             },
-            "viekas": {
+            "beta": {
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -64,7 +64,7 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.viekas.ts"
+                  "with": "src/environments/environment.beta.ts"
                 }
               ],
               "serviceWorker": true,
@@ -81,8 +81,8 @@
             "production": {
               "browserTarget": "vieraslajit:build:production"
             },
-            "viekas": {
-              "browserTarget": "vieraslajit:build:viekas"
+            "beta": {
+              "browserTarget": "vieraslajit:build:beta"
             }
           }
         },
@@ -145,11 +145,11 @@
                 }
               ]
             },
-            "viekas": {
+            "beta": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.viekas.ts"
+                  "with": "src/environments/environment.beta.ts"
                 }
               ]
             }

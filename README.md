@@ -1,26 +1,25 @@
 # Vieraslajit
-Currently the [VieKas Portal](https://viekas.laji.fi)
-(eventually) the new frontend for [vieraslajit.fi](https://vieraslajit-dev.laji.fi).
+The new frontend for [vieraslajit.fi](https://vieraslajit.fi.laji.fi).
+Beta environment: [vieraslajit-dev](https://vieraslajit-dev.laji.fi).
 
-## Local development environment
+## Setup
+```
+npm ci
+```
+
+Serve development mode:
 ```
 npm start
 ```
 
-## Production build
+Build local/beta/prod:
 ```
-npm run build:ssr:viekas
-```
-serve from dist/browser
-
-## Server side rendering
-(not currently in use)
-```
-npm run ssr:run:local
+npm run build:local
+npm run build:beta
+npm run build:prod
 ```
 
-## Laji API
-System id (dev): KE.741
-System id (prod): KE.861
-
-## License
+Start SSR server:
+```
+npm run serve:ssr
+```

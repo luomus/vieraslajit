@@ -1,15 +1,14 @@
 export const environment = {
   production: true,
-  vierasCollection: 'HR.2049',
   newsTag: 'vieraslajit.fi',
-  baseUrl: 'https://vieraslajit-dev.laji.fi',
-  embedUrl: 'https://dev-embedded.laji.fi',
+  baseUrl: 'https://vieraslajit.fi',
+  embedUrl: 'https://embedded.laji.fi',
   lajiApi: {
-    url: 'https://vieraslajit-dev.laji.fi/api'
+    url: 'https://vieraslajit.fi/api'
   },
   lajiAuth: {
-    authUrl: 'https://fmnh-ws-test.it.helsinki.fi/laji-auth/',
-    systemID: 'KE.781'
+    authUrl: 'https://login.laji.fi/',
+    systemID: 'KE.1161'
   },
   googleSearch: {
     url: 'https://www.googleapis.com/customsearch/v1',
