@@ -1,11 +1,17 @@
-<div class='autocomplete' (keyup)="keyEvent($event)">
+<div #autocomplete class='autocomplete'>
     <span class="oi oi-magnifying-glass"></span>
-    <input autocomplete="off" type='text' id='vrs-taxon-search-textarea' (blur)="onSearchAreaBlur($event)"
-           (input)="onSearchAreaInput($event)" (focusin)="onSearchAreaInput($event)"
-           class='form-control' placeholder="{{'observation-map.filterMenu.species.placeholder' | translate}}">
-</div>
-
-<div class="selected-taxon">
-    <span>{{taxonId | taxonname:translate.currentLang | async}}</span>
-    <a class='oi oi-x icon' (click)="removeSelected()"></a>
+    <input #input autocomplete="off" type='text'
+           (input)="onSearchAreaInput($event)"
+           (focusin)="onSearchAreaInput($event)"
+           class='form-control'
+           placeholder="{{'observation-map.filterMenu.species.placeholder' | translate}}">
+    <a *ngIf="selected" class='oi oi-x icon' (click)="removeSelected()" (keyup)="keyEventRemoveSelected($event)" tabindex="0"></a>
+    <ul class="autocomplete-items">
+        <li *ngFor="let item of autocompleteItems"
+            (click)="onSelect(item)"
+            (keyup)="keyEvent($event, item)"
+            tabindex="0">
+            {{ item.value }}
+        </li>
+    </ul>
 </div>

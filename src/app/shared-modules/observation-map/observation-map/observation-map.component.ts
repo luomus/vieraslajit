@@ -12,6 +12,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MapService } from './services/MapService';
 import { FilterMenuComponent } from './filter-menu/filter-menu.component';
 import { TaxonSearchComponent } from 'app/shared-modules/taxon-search/taxon-search.component';
+import { map, tap } from 'rxjs/operators';
+import { TaxonService } from 'app/shared/service/taxon.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'vrs-observation-map',
@@ -55,6 +58,8 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
               private mapService:MapService,
               private obsMapData: ObsMapData,
               private route: ActivatedRoute,
+              private taxonService: TaxonService,
+              private translate: TranslateService,
               private router: Router,
               private renderer: Renderer2,
               private cd: ChangeDetectorRef) {}
@@ -110,7 +115,9 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
         strToBool(res['plantPest'])
       );
       if (res['taxonId']) {
-        this.filterMenu.updateTaxon(res['taxonId']);
+        this.taxonService.getTaxon(res['taxonId'], this.translate.currentLang).subscribe(
+          res => this.filterMenu.updateTaxon(res.vernacularName)
+        )
         this.obsMapOptions.setOptionSilent("id", res['taxonId']);
       } else if (this.filterMenu) {
         this.filterMenu.updateTaxon(null);

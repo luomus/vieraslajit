@@ -28,7 +28,7 @@ export class FilterMenuComponent {
         // TODO
     }
     updateTaxon(val) {
-        this.taxonSearch.fillValue(val, false);
+        this.taxonSearch.fillValue(val);
     }
     updateTime(val) {
         this.timeSelector.setTimeValue(val);
