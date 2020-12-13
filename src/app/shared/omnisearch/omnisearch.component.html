@@ -62,10 +62,6 @@
               <a [routerLink]="['/havainnot']" [queryParams]="{taxonId: taxon.key}" (click)="close()">
                 {{taxon.count}}
               </a>
-              <br>
-              <a [routerLink]="'/ilmoita/MHL.85/' + taxon.key" (click)="close()">
-                {{'navigation.observations.report' | translate}}
-              </a>
             </div>
           </div>
         </div>
