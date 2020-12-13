@@ -63,7 +63,7 @@
                 {{taxon.count}}
               </a>
               <br>
-              <a [routerLink]="['/ilmoita']" (click)="close()">
+              <a [routerLink]="'/ilmoita/MHL.85/' + taxon.key" (click)="close()">
                 {{'navigation.observations.report' | translate}}
               </a>
             </div>
