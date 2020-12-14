@@ -5,6 +5,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "app/shared/service/user.service";
 import { map, distinctUntilChanged, tap } from "rxjs/operators";
 import { ApiService, LajiApi } from "app/shared/api/api.service";
+import { TaxonService } from "app/shared/service/taxon.service";
 
 interface State {
     data: any
@@ -23,7 +24,7 @@ export class FormFacade {
     );
 
     constructor(private formService: FormService,
-                private apiService: ApiService,
+                private taxonService: TaxonService,
                 private translate: TranslateService) {}
     
     private dataReducer(data: any) {
@@ -45,10 +46,10 @@ export class FormFacade {
         })
     }
 
-    private getDataReducerWithTaxon(taxonId, taxonName) {
+    private getDataReducerWithTaxon(taxonId) {
         return (data: any) => this.store$.next({
             data: {
-                ...data,
+                ...data[1],
                 formData: {
                     gatheringEvent: {
                         leg: [UserService.getUserId()]
@@ -59,7 +60,9 @@ export class FormFacade {
                                 {
                                     identifications: [
                                         {
-                                            taxon: taxonName
+                                            taxon: data[0].vernacularName
+                                                 ? data[0].vernacularName + " - " + data[0].scientificName
+                                                 : data[0].scientificName
                                         }
                                     ],
                                     unitFact: {
@@ -90,11 +93,11 @@ export class FormFacade {
 
     loadDataWithTaxon(formId: string, taxonId: string) {
         forkJoin(
-            this.apiService.autocompleteFindByField(LajiApi.Endpoints.autocomplete, "taxon", {
-                q: taxonId
+            this.taxonService.getTaxon(taxonId, this.translate.currentLang, {
+                selectedFields: "vernacularName,scientificName"
             }),
             this.formService.getFormById(formId, this.translate.currentLang)
         )
-        .subscribe((data) => this.getDataReducerWithTaxon(taxonId, data[0][0].value)(data[1]))
+        .subscribe((data) => this.getDataReducerWithTaxon(taxonId)(data))
     }
 }

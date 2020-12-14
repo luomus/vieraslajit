@@ -47,7 +47,7 @@
   "forms.1.3.2": "Ilmoita nisäkäshavainto",
   "forms.1.3.3": "Ilmoita karanteenituhooja- tai laatutuhoojahavainto (myös tuntematon)",
   "forms.1.3.4": "Ilmoita muun lajin havainto",
-  "forms.desc.3": "Tallennetut havainnot ja niihin liittyvät kuvat julkaistaan Laji.fi-sivuston kautta avoimena tietona Creative Commons Nimeä 4.0 -lisenssillä.<br>Halutessasi voit ilmoittaa vieraslajihavaintojasi myös muilla <a href='https://laji.fi/save-observations' target='_blank'>Lajitietokeskuksen havaintoilmoituslomakkeilla</a> ja iNaturalistFI-palvelulla.",
+  "forms.desc.3": "Tallennetut havainnot ja niihin liittyvät kuvat julkaistaan Laji.fi-sivuston kautta avoimena tietona Creative Commons Nimeä 4.0 -lisenssillä. Halutessasi voit ilmoittaa vieraslajihavaintojasi myös muilla <a href='https://laji.fi/save-observations' target='_blank'>Lajitietokeskuksen havaintoilmoituslomakkeilla</a> ja iNaturalistFI-palvelulla.",
   "forms.desc.4": "Käyttöehdot",
   "forms.edit": "Muokkaa",
   "forms.list.dateTime": "Havaintoaika",
