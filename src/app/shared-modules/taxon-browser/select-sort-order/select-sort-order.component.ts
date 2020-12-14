@@ -53,7 +53,6 @@ export class SelectSortOrderComponent implements OnInit, OnDestroy {
     }
 
     changeSortOrder(s: SortOrder) {
-        console.log(s);
         this.current = s;
         this.sorted$.next(s);
         this.menuOpen = false;

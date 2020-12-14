@@ -51,7 +51,6 @@ export class TaxonSearchComponent implements AfterViewInit, OnDestroy {
         }
         this.taxonService.getAutocomplete('taxon', val, this.translate.currentLang).subscribe(r => {
             this.autocompleteItems = r;
-            console.log(r)
         });
     }
 
