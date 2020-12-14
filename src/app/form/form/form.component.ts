@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { Subscription, Subject } from 'rxjs';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
-import LajiForm from 'laji-form/dist/laji-form';
+import LajiForm from 'laji-form';
 import { FormApiClient } from '../../shared/api/FormApiClient';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService, Role } from '../../shared/service/user.service';
