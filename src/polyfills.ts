@@ -60,6 +60,8 @@ import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 
+// Fix laji-form import
+(window as any).global = window;
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
