@@ -85,6 +85,7 @@ export class MapApiService {
             countryId: "ML.206",
             reliability: "RELIABLE,UNDEFINED",
             needsCheck: false,
+            wild: 'WILD',
             selected: [
                 "unit.linkings.taxon.scientificName", "unit.linkings.taxon.vernacularName",
                 "unit.linkings.taxon.id", "gathering.conversions.wgs84CenterPoint.lat",
