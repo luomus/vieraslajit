@@ -1,13 +1,12 @@
 <div>
     <div class="vrs-form" *ngIf="loggedIn;else loginError">
         <h3 #formName></h3>
-        <p #formDesc></p>
         <div class="vrs-laji-form" #lajiform></div>
         <button id="formSend" type="submit" class="btn btn-primary" (click)="submit()" [disabled]="saving" translate>
             form.send
         </button>
         <div class="info mt-4">
-            <p translate>forms.desc.3</p>
+            <p [innerHTML]="'forms.desc.3' | translate"></p>
             <a target="_blank" href="https://laji.fi/vihko/terms-of-service" translate>forms.desc.4</a>
         </div>
     </div>

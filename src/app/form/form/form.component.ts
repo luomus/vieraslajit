@@ -101,7 +101,6 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
 
     initForm(data) {
         this.renderer.setProperty(this.formName.nativeElement, 'innerHTML', data.title)
-        this.renderer.setProperty(this.formDesc.nativeElement, 'innerHTML', data.description)
         this.ngZone.runOutsideAngular(() => {
             data.uiSchemaContext = {};
             data.uiSchemaContext.formID = this.id;
