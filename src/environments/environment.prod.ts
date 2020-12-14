@@ -3,6 +3,7 @@ export const environment = {
   newsTag: 'vieraslajit.fi',
   baseUrl: 'https://vieraslajit.fi',
   embedUrl: 'https://embedded.laji.fi',
+  useAnalytics: true,
   lajiApi: {
     url: 'https://vieraslajit.fi/api'
   },

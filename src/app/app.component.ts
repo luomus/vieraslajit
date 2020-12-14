@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { Location } from '@angular/common';
 import { UserService } from './shared/service/user.service';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { StateService } from './state.service';
@@ -13,6 +14,8 @@ import { environment } from 'environments/environment';
  * Main component that acts as a container for navigation, content and footer.
  */
 
+declare const ga: Function;
+
 @Component({
   selector: 'vrs-root',
   templateUrl: './app.component.html',
@@ -23,6 +26,7 @@ export class AppComponent implements OnInit {
   isPopState = false;
   hideFooter = false;
   displaySwUpdate = false;
+  useAnalytics = false;
 
   /**
   * Initializes TranslateService
@@ -33,6 +37,7 @@ export class AppComponent implements OnInit {
     state: StateService,
     private translate: TranslateService,
     private userService: UserService,
+    private location: Location,
     private router: Router,
     private swUpdate: SwUpdate,
     private loaderService: LoaderService,
@@ -41,6 +46,7 @@ export class AppComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: object
   ) {
+    this.useAnalytics = environment.useAnalytics;
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
@@ -50,6 +56,14 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         this.loaderService.complete();
         this.hideFooter = !state.footerEnabled;
+
+        const path = location.path() || '/';
+        // Use analytics
+        if (this.useAnalytics && path.indexOf('/user') !== 0) {
+          try {
+            ga('send', 'pageview', path);
+          } catch (e) {}
+        }
       }
     });
 
