@@ -124,6 +124,7 @@
   "observation-map.laji": "View on Species.fi map",
   "observation-map.legend.reliable": "observations, at least some of which have been confirmed",
   "observation-map.legend.unreliable": "observations that have not been confirmed",
+  "observation-map.legend.box": "many observations",
   "observation-map.list": "List",
   "observation-map.popup.title": "Observation",
   "observation.datetime": "Date",

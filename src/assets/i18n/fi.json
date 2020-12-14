@@ -124,6 +124,7 @@
   "observation-map.laji": "Rajaa hakua monipuolisemmin ja lataa tiedot käyttöösi Laji.fi-palvelussa",
   "observation-map.legend.reliable": "havaintoja, joista ainakin osa varmistettu",
   "observation-map.legend.unreliable": "havaintoja, joita ei ole varmistettu",
+  "observation-map.legend.box": "paljon havaintoja",
   "observation-map.list": "Luettelo",
   "observation-map.popup.title": "Havainto",
   "observation.datetime": "Päivämäärä",
