@@ -24,7 +24,6 @@ export class TaxonSearchComponent implements AfterViewInit, OnDestroy {
 
     constructor(private taxonService: TaxonService,
                 public translate: TranslateService,
-                private renderer: Renderer2,
                 @Inject(PLATFORM_ID) private platformId) {}
 
     ngAfterViewInit() {
@@ -72,10 +71,7 @@ export class TaxonSearchComponent implements AfterViewInit, OnDestroy {
     keyEvent(e, item) {
         //Enter
         if (e.keyCode === 13) {
-            this.selected = item;
-            this.input.nativeElement.disabled = true;
-            this.input.nativeElement.value = item.value;
-            this.autocompleteItems = undefined;
+            this.onSelect(item)
         }
     }
 
