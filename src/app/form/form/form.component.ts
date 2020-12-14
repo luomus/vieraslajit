@@ -37,7 +37,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
     loginUrl: string;
     saving = false;
 
-    public prepopulatedScientificName: string | undefined;
+    public prepopulatedName: string | undefined;
 
     constructor(@Inject(ElementRef) elementRef: ElementRef,
     private facade: FormFacade,
@@ -52,8 +52,8 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
     private ngZone: NgZone) {
         this.loggedIn = UserService.loggedIn();
         const nav = this.router.getCurrentNavigation()
-        if (nav.extras.state && nav.extras.state.scientificName) {
-            this.prepopulatedScientificName = nav.extras.state.scientificName
+        if (nav.extras.state && nav.extras.state.name) {
+            this.prepopulatedName = nav.extras.state.name
         }
     }
 

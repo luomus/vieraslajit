@@ -15,7 +15,7 @@
           <a [href]="taxon.customReportFormLink" class="btn vrs-button primary float-right mb-1" target="_blank" translate>taxon.report.custom</a>
           <div class="small">(<a [href]="taxon.customReportFormLink" target="_blank">{{ taxon.customReportFormLink }}</a>)</div>
         </ng-container>
-        <ng-template #report><a [routerLink]="'/ilmoita/MHL.85/' + taxon?.id" [state]="{ scientificName: taxon?.scientificName }" class="btn vrs-button primary" translate>taxon.report</a></ng-template>
+        <ng-template #report><a [routerLink]="'/ilmoita/MHL.85/' + taxon?.id" [state]="{ name: taxon?.vernacularName ? taxon?.vernacularName : taxon?.scientificName }" class="btn vrs-button primary" translate>taxon.report</a></ng-template>
       </div>
     </div>
   </div>
