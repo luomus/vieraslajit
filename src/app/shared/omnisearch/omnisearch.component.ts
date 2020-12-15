@@ -162,7 +162,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
       this.taxon = this.taxa[index];
       this.subCnt = of(this.taxon.key).pipe(
       combineLatest(
-        this.taxonservice.getWareHouseQueryCount('count', 'fi', this.taxon.key),
+        this.taxonservice.getObsCount(this.taxon.key),
         (id, cnt) => {
           return { id: id, cnt: cnt.total };
         }))

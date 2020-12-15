@@ -83,4 +83,19 @@ export class TaxonService {
     return this.apiService
       .warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount, count, { cache: false, taxonId, individualCountMin: 1, });
   }
+
+  getObsCount(taxonId): Observable<any> {
+    return this.apiService.warehouseQueryCountGet(
+      LajiApi.Endpoints.warehousequerycount,
+      'count',
+      {
+        cache: false,
+        taxonId,
+        individualCountMin: 1,
+        countryId: "ML.206",
+        reliability: "RELIABLE,UNDEFINED",
+        needsCheck: false,
+      }
+    );
+  }
 }
