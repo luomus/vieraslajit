@@ -31,7 +31,7 @@ export class FormsFacade {
 
     private subscribeDocuments() {
         const query = {
-            collectionID: 'HR.3051',
+            collectionID: 'HR.3791',
             selectedFields: [
                 "dateEdited",
                 "gatherings.municipality",
