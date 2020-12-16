@@ -27,8 +27,8 @@ export function findContentID(target: StaticContent, lang: string) {
             break;
         case StaticContent.Info:
             if (lang == "fi") r = "i-933";
-            if (lang == "en") r = "i-155";
-            if (lang == "sv") r = "i-163";
+            if (lang == "en") r = "i-492";
+            if (lang == "sv") r = "i-2444";
             break;
         case StaticContent.SiteInfo:
             if (lang == "fi") r = "i-786";
