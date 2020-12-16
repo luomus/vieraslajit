@@ -35,6 +35,14 @@ export const redirects: Routes = [
     redirectTo: '/info/i-92'
   },
   {
+    path: 'content/it%C3%A4meren-vieraslajiopas',
+    redirectTo: '/info/i-346'
+  },
+  {
+    path: 'node/26',
+    redirectTo: '/info/i-783'
+  },
+  {
     path: 'content/v%C3%A4lkommen-till-portalen-f%C3%B6r-fr%C3%A4mmande-arter-i-finland',
     redirectTo: '/info/i-163'
   },
