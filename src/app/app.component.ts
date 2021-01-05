@@ -28,6 +28,8 @@ export class AppComponent implements OnInit {
   displaySwUpdate = false;
   useAnalytics = false;
 
+  private navLoaderIdx;
+
   /**
   * Initializes TranslateService
   * 1. Use English if a particular translation element is not found
@@ -51,10 +53,10 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.loaderService.reset();
-        this.loaderService.register();
+        this.navLoaderIdx = this.loaderService.register();
       }
       if (event instanceof NavigationEnd) {
-        this.loaderService.complete();
+        if (this.navLoaderIdx) this.loaderService.complete(this.navLoaderIdx);
         this.hideFooter = !state.footerEnabled;
 
         const path = location.path() || '/';

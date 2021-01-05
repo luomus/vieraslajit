@@ -9,17 +9,17 @@ export class LoaderInterceptor implements HttpInterceptor {
     constructor(private loaderService: LoaderService) {}
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(
-            catchError((error) => {
-                this.loaderService.complete();
+            catchError(error => {
+                this.loaderService.complete(req.urlWithParams);
                 return of();
             }),
             tap(
                 (event: HttpEvent<any>) => {
                     if (event.type === HttpEventType.Sent) {
-                        this.loaderService.register();
+                        this.loaderService.register(req.urlWithParams);
                     }
                     if (event.type === HttpEventType.Response) {
-                        this.loaderService.complete();
+                        this.loaderService.complete(req.urlWithParams);
                     }
                 }
             )
