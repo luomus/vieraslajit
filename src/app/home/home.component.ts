@@ -1,13 +1,14 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from "@angular/common";
-import { NewsService } from '../shared/service/news.service';
-import { TranslateService } from '@ngx-translate/core';
-import { environment } from '../../environments/environment';
-import { Subscription, forkJoin, from } from 'rxjs';
-import { InformationService } from '../shared/service/information.service';
+import { InformationService } from 'app/shared/service/information.service';
 import { map, concatMap } from 'rxjs/operators';
-import { TaxonService } from '../shared/service/taxon.service';
-import { Title } from '@angular/platform-browser';
+import { TaxonService } from 'app/shared/service/taxon.service';
+import { TranslateService } from '@ngx-translate/core';
+import { isPlatformBrowser } from '@angular/common';
+import { NewsService } from 'app/shared/service/news.service';
+import { Subscription } from 'rxjs';
+import { environment } from 'environments/environment';
+import { Title, Meta } from '@angular/platform-browser';
+import { findContentID, StaticContent } from 'assets/i18n/cms-content';
 
 /**
  * Renders the home-/frontpage ie. /home/ route
@@ -20,34 +21,42 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+  topical: Array<any> = [];
   newsTag: string = environment.newsTag
   private onLangChange: Subscription;
-  alerts: Array<any> = [];
   news: Array<any>= [];
-  topical: Array<any> = [];
-  staticPetsID:string;
 
-  constructor(private informationService: InformationService,
-              private taxonService: TaxonService,
-              private newsService: NewsService,
-              @Inject(PLATFORM_ID) private platformId: object,
-              private translate: TranslateService,
-              private title: Title) { }
+  constructor(
+    private informationService: InformationService,
+    private taxonService: TaxonService,
+    private newsService: NewsService,
+    private title: Title,
+    private meta: Meta,
+    @Inject(PLATFORM_ID) private platformId: object,
+    private translate: TranslateService) {}
 
-  /**
-   * 1. Create subscription for news
-   * 2. Update alerts and news arrays when API-request finishes
-   * 3. Filter only alerts from past 3 days (20 in testing)
-   */
   ngOnInit() {
-    this.title.setTitle(this.translate.instant('title.home'));
+    const title = this.translate.instant('title.home');
+    this.title.setTitle(title);
+    this.meta.updateTag({
+        name: "og:title",
+        content: title
+    });
+    this.meta.updateTag({
+        name: "og:description",
+        content: this.translate.instant('og.home.description')
+    });
+    this.meta.updateTag({
+        name: "og:image",
+        content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
+    });
+
     this.onLangChange = this.translate.onLangChange.subscribe((event) => {
       this.getNews(1);
     });
     this.getNews(1);
 
-    // HACK: get topical species from CMS
     this.informationService.getInformation('i-386').pipe(
       map((res) => {
         return res.content.replace(/<.*?>/g, "").split(',');
@@ -71,45 +80,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  ngOnDestroy() {
-    this.onLangChange ? this.onLangChange.unsubscribe() : null;
-  }
-
   getNews(page){
-    // TECHNICAL NEWS / alerts REMOVED TEMPORARILY (may be reintroduced at some point ...)
-    this.newsService.getPage('1', '5', this.translate.currentLang, this.newsTag/* +",technical" */)
+    this.newsService.getPage('1', '3', this.translate.currentLang, this.newsTag/* +",technical" */)
     .subscribe((data) => {
-/*       let technical: Array<any> = [0]; */
       this.news = data.results;
-/*       for(let d of data.results) {
-        if (d.tag.includes("technical")) {
-          technical.push(d);
-        }
-        if (d.tag.includes(this.newsTag)&&this.news.length<5) {
-          //d.content = d.content.replace(/<\/p>/mg, '<br>')
-          //d.content = d.content.replace(/<(?:(?!br).)+>/mg, '');
-          this.news.push(d);
-        }
-      }
-      this.filterTechnicalNews(technical); */
     });
-
   }
 
-  filterTechnicalNews(technical: Array<any>){
-    let i:number = 0;
-      for (let d of technical) {
-        let date: Date = new Date(0);
-        date.setUTCMilliseconds(Number(d.posted));
-        let now: Date = new Date();
-        // TODO: muuta tuotannossa että 3 viimeiseltä päivältä!
-        let cutoff = 30;
-        if (environment.production) cutoff = 20;
-        if (Math.ceil(Math.abs(now.getTime() - date.getTime()) / (1000 * 3600 * 24)) <= cutoff) {
-          this.alerts[i] = d;
-          i++;
-        }
-      }
+  getReadMoreId() {
+    return findContentID(StaticContent.Info, this.translate.currentLang);
   }
-
 }
