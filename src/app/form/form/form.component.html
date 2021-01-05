@@ -10,17 +10,38 @@
             <a target="_blank" href="https://laji.fi/vihko/terms-of-service" translate>forms.desc.4</a>
         </div>
     </div>
+</div>
 
-    <ng-template #loginError>
+<ng-template #loginError>
+    <div class="vrs-form">
         <h1 translate style="margin-top: 40px;">forms.title</h1>
-        <div [innerHTML]="'form.loginError.1' | translate"></div>
-        <div class="form-login"><a href="{{loginUrl}}" translate><span class="oi oi-warning"></span> form.login</a></div>
-        <div [innerHTML]="'form.loginError.2' | translate"></div>
-        <div class="form-login">
-            <a [href]="prepopulatedName
+        <p translate>form.loginError.1</p>
+
+        <div class="login-section">
+        <div class="vrs-card">
+            <div>
+            <p translate>form.loginError.2</p>
+            <ul>
+                <li translate>form.loginError.2.1</li>
+                <li translate>form.loginError.2.2</li>
+            </ul>
+            </div>
+            <a href="{{loginUrl}}" class="form-login" translate>form.login</a>
+        </div>
+        <div class="vrs-card">
+            <div>
+            <p translate>form.loginError.3</p>
+            <ul>
+                <li translate>form.loginError.3.1</li>
+                <li translate>form.loginError.3.2</li>
+            </ul>
+            </div>
+            <a class="form-login" [href]="prepopulatedName
                 ? 'https://loydos.luomus.fi/forms/vieraslaji?defaultSpecies=' + prepopulatedName
                 : 'https://loydos.luomus.fi/forms/vieraslaji'" target="_blank" translate>
-            <span class="oi oi-warning"></span> form.loginError.continue</a>
+                form.loginError.continue
+            </a>
         </div>
-    </ng-template>
-</div>
+        </div>
+    </div>
+</ng-template>

@@ -11,11 +11,6 @@
     margin-bottom: 20px;
 }
 
-.form-login {
-    margin-bottom: 20px;
-    font-size: 2rem;
-}
-
 :host {
     display: flex;
     flex-flow: row nowrap;
@@ -27,7 +22,7 @@
     z-index: 11;
     padding: 50px;
     width: 100%;
-    max-width: 50rem;
+    max-width: 1000px;
     background: $neutral-2;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -80,4 +75,29 @@
     .laji-form-medias .taxon-img.media-container {
         float: none;
     }
+}
+
+// LOGIN
+
+.login-section {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.vrs-card {
+    max-width: 400px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+
+    background-color: $neutral-1;
+    border-radius: 5px;
+    box-shadow: 2px 0 6px 0 rgba(#000, .2);
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.form-login {
 }
