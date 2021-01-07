@@ -109,11 +109,11 @@ export class AppComponent implements OnInit {
       },
       {
         name: "og:description",
-        content: this.translate.instant('home.description')
+        content: this.translate.instant('og.home.description')
       },
       {
         name: "description",
-        content: this.translate.instant('home.description')
+        content: this.translate.instant('og.home.description')
       },
       {
         name: "og:image",
