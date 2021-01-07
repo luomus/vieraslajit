@@ -37,6 +37,10 @@ export class FormsComponent implements OnInit {
             content: this.translate.instant('og.forms.description')
         });
         this.meta.updateTag({
+            name: "description",
+            content: this.translate.instant('og.forms.description')
+        });
+        this.meta.updateTag({
             name: "og:image",
             content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
         });

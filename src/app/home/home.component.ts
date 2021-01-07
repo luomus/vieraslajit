@@ -48,6 +48,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
         content: this.translate.instant('og.home.description')
     });
     this.meta.updateTag({
+        name: "description",
+        content: this.translate.instant('og.home.description')
+    });
+    this.meta.updateTag({
         name: "og:image",
         content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
     });

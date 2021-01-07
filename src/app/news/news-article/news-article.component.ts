@@ -42,6 +42,10 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
                 content: removeHTMLTagFragments(article.content.substr(0, 70))
             });
             this.meta.updateTag({
+                name: "description",
+                content: removeHTMLTagFragments(article.content.substr(0, 70))
+            });
+            this.meta.updateTag({
                 name: "og:image",
                 content: article.featuredImage
                          ? article.featuredImage.url

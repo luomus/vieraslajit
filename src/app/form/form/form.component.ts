@@ -69,6 +69,10 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
             content: this.translate.instant('og.form.description')
         });
         this.meta.updateTag({
+            name: "description",
+            content: this.translate.instant('og.form.description')
+        });
+        this.meta.updateTag({
             name: "og:image",
             content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
         });

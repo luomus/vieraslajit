@@ -31,6 +31,10 @@ export class TaxonListComponent implements OnInit {
         content: this.translate.instant('og.taxonList.description')
     });
     this.meta.updateTag({
+        name: "description",
+        content: this.translate.instant('og.taxonList.description')
+    });
+    this.meta.updateTag({
         name: "og:image",
         content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
     });

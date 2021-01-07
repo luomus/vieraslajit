@@ -112,6 +112,10 @@ export class AppComponent implements OnInit {
         content: this.translate.instant('home.description')
       },
       {
+        name: "description",
+        content: this.translate.instant('home.description')
+      },
+      {
         name: "og:image",
         content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
       }

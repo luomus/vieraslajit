@@ -65,6 +65,10 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
             name: "og:description",
             content: this.desc.variables[0].content.substr(0, 70)
           })
+          this.meta.updateTag({
+            name: "description",
+            content: this.desc.variables[0].content.substr(0, 70)
+          })
         }
       });
     this.facade.media$

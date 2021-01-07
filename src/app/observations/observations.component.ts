@@ -38,6 +38,10 @@ export class ObservationsComponent implements OnInit, OnDestroy {
         content: this.translate.instant('og.observations.description')
     });
     this.meta.updateTag({
+        name: "description",
+        content: this.translate.instant('og.observations.description')
+    });
+    this.meta.updateTag({
         name: "og:image",
         content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
     });
