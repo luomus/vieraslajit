@@ -61,19 +61,19 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
         const title = this.translate.instant('title.form') + this.translate.instant('title.post')
         this.title.setTitle(title)
         this.meta.updateTag({
-            name: "og:title",
+            property: "og:title",
             content: title
         });
         this.meta.updateTag({
-            name: "og:description",
+            property: "og:description",
             content: this.translate.instant('og.form.description')
         });
         this.meta.updateTag({
-            name: "description",
+            property: "description",
             content: this.translate.instant('og.form.description')
         });
         this.meta.updateTag({
-            name: "og:image",
+            property: "og:image",
             content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
         });
 

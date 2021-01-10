@@ -104,19 +104,19 @@ export class AppComponent implements OnInit {
         content: ""
       }, */
       {
-        name: "og:title",
+        property: "og:title",
         content: this.title.getTitle()
       },
       {
-        name: "og:description",
+        property: "og:description",
         content: this.translate.instant('og.home.description')
       },
       {
-        name: "description",
+        property: "description",
         content: this.translate.instant('og.home.description')
       },
       {
-        name: "og:image",
+        property: "og:image",
         content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
       }
     ])

@@ -34,19 +34,19 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
             const title = article.title + this.translate.instant('title.post');
             this.title.setTitle(title);
             this.meta.updateTag({
-                name: "og:title",
+                property: "og:title",
                 content: title
             });
             this.meta.updateTag({
-                name: "og:description",
+                property: "og:description",
                 content: removeHTMLTagFragments(article.content.substr(0, 70))
             });
             this.meta.updateTag({
-                name: "description",
+                property: "description",
                 content: removeHTMLTagFragments(article.content.substr(0, 70))
             });
             this.meta.updateTag({
-                name: "og:image",
+                property: "og:image",
                 content: article.featuredImage
                          ? article.featuredImage.url
                          : environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"

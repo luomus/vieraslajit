@@ -23,19 +23,19 @@ export class TaxonListComponent implements OnInit {
     const title = this.translate.instant('title.taxon') + this.translate.instant('title.post')
     this.title.setTitle(title)
     this.meta.updateTag({
-        name: "og:title",
+        property: "og:title",
         content: title
     });
     this.meta.updateTag({
-        name: "og:description",
+        property: "og:description",
         content: this.translate.instant('og.taxonList.description')
     });
     this.meta.updateTag({
-        name: "description",
+        property: "description",
         content: this.translate.instant('og.taxonList.description')
     });
     this.meta.updateTag({
-        name: "og:image",
+        property: "og:image",
         content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
     });
   }

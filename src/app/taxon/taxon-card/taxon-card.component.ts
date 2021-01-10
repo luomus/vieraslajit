@@ -51,7 +51,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
         if (taxon && taxon.vernacularName) {
           this.title.setTitle(taxon.vernacularName.charAt(0).toUpperCase() + taxon.vernacularName.slice(1) + this.translate.instant('title.post'))
           this.meta.updateTag({
-            name: "og:title",
+            property: "og:title",
             content: this.taxon.vernacularName.charAt(0).toUpperCase() + this.taxon.vernacularName.slice(1) + this.translate.instant('title.post')
           })
         }
@@ -62,11 +62,11 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
         this.desc = description
         if (this.desc) {
           this.meta.updateTag({
-            name: "og:description",
+            property: "og:description",
             content: this.desc.variables[0].content.substr(0, 70)
           })
           this.meta.updateTag({
-            name: "description",
+            property: "description",
             content: this.desc.variables[0].content.substr(0, 70)
           })
         }
@@ -77,7 +77,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
         this.media = media
         if (this.media && this.media.length > 0) {
           this.meta.updateTag({
-            name: "og:image",
+            property: "og:image",
             content: this.media[0].thumbnailURL
           })
         }

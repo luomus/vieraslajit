@@ -115,20 +115,20 @@ export class StaticContainerComponent implements OnInit {
             const title = this.selectedInformation.title + this.translate.instant('title.post');
             this.title.setTitle(title);
             this.meta.updateTag({
-                name: "og:title",
+                property: "og:title",
                 content: title
             });
             const desc = this.selectedInformation.content.substr(0, 70);
             this.meta.updateTag({
-                name: "og:description",
+                property: "og:description",
                 content: removeHTMLTagFragments(desc)
             });
             this.meta.updateTag({
-                name: "description",
+                property: "description",
                 content: removeHTMLTagFragments(desc)
             });
             this.meta.updateTag({
-                name: "og:image",
+                property: "og:image",
                 content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
             });
         });
