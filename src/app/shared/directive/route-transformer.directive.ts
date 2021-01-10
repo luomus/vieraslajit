@@ -24,7 +24,7 @@ export class RouteTransformerDirective {
         this.router.navigate([], { fragment: href.substring(1) });
         event.preventDefault();
       } else if (linkMatch) {
-        this.router.navigate([linkMatch[2]]);
+        this.router.navigateByUrl(linkMatch[2]);
         event.preventDefault();
       }
     } else {
