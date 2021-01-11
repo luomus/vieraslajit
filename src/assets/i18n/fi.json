@@ -34,7 +34,7 @@
   "footer.viekas.disclaimer": "Tämän sivuston sisältö ja hankkeen viestintä edustaa ainoastaan VieKas LIFE -hankkeen näkemyksiä. EASME/Euroopan komissio ei ole vastuussa sivuston sisältämän informaation mahdollisesta käytöstä",
   "footer.viekas.portal.1": "Tätä portaalia kehitetään Suomen Lajitietokeskuksessa korvaamaan nykyinen",
   "footer.viekas.portal.2": "-palvelu",
-  "form.login": "Kirjaudu ensin sisään.",
+  "form.login": "Kirjaudu ensin sisään",
   "form.loginError.1": "Vieraslajien havaintoilmoituslomakkeita on kaksi – kirjautuneelle ja kirjautumattomalle käyttäjälle omansa.",
   "form.loginError.2": "1. Kirjautumalla Laji.fi-tunnistuspalvelun kautta, voit ilmoittaa havaintoja helposti myös mobiililaitteella. Huomaa, että:",
   "form.loginError.2.1": "voit muuttaa ja päivittää havaintoa Laji.fi-palvelussa",
