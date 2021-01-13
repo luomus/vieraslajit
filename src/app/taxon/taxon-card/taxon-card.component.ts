@@ -9,6 +9,7 @@ import { TaxonCardFacade, TaxonomyDescriptionFlattened } from './taxon-card.faca
 import { takeUntil } from 'rxjs/operators';
 import { Title, Meta } from '@angular/platform-browser';
 import { environment } from 'environments/environment';
+import { removeHTMLTagFragments } from 'app/utils';
 
 @Component({
   selector: 'vrs-taxon-card',
@@ -61,13 +62,14 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       .subscribe((description) => {
         this.desc = description
         if (this.desc) {
+          const metaDesc = removeHTMLTagFragments(this.desc.variables[0].content).substr(0, 70)
           this.meta.updateTag({
             property: "og:description",
-            content: this.desc.variables[0].content.substr(0, 70)
+            content: metaDesc
           })
           this.meta.updateTag({
             property: "description",
-            content: this.desc.variables[0].content.substr(0, 70)
+            content: metaDesc
           })
         }
       });

@@ -118,14 +118,14 @@ export class StaticContainerComponent implements OnInit {
                 property: "og:title",
                 content: title
             });
-            const desc = this.selectedInformation.content.substr(0, 70);
+            const desc = removeHTMLTagFragments(this.selectedInformation.content).substr(0, 70);
             this.meta.updateTag({
                 property: "og:description",
-                content: removeHTMLTagFragments(desc)
+                content: desc
             });
             this.meta.updateTag({
                 property: "description",
-                content: removeHTMLTagFragments(desc)
+                content: desc
             });
             this.meta.updateTag({
                 property: "og:image",

@@ -37,13 +37,14 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
                 property: "og:title",
                 content: title
             });
+            const desc = removeHTMLTagFragments(article.content).substr(0, 70);
             this.meta.updateTag({
                 property: "og:description",
-                content: removeHTMLTagFragments(article.content.substr(0, 70))
+                content: desc
             });
             this.meta.updateTag({
                 property: "description",
-                content: removeHTMLTagFragments(article.content.substr(0, 70))
+                content: desc
             });
             this.meta.updateTag({
                 property: "og:image",
