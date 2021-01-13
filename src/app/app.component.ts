@@ -58,6 +58,12 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         if (this.navLoaderIdx) this.loaderService.complete(this.navLoaderIdx);
         this.hideFooter = !state.footerEnabled;
+        this.meta.updateTag(
+          {
+            property: "og:url",
+            content: environment.baseUrl + this.router.url
+          }
+        );
 
         const path = location.path() || '/';
         // Use analytics
@@ -95,14 +101,14 @@ export class AppComponent implements OnInit {
     }
 
     this.meta.addTags([
-/*       {
-        name: "og:url",
-        content: ""
-      }, */
-/*       {
-        name: "og:type",
-        content: ""
-      }, */
+      {
+        property: "og:url",
+        content: environment.baseUrl + this.router.url
+      },
+      {
+        property: "og:type",
+        content: "website"
+      },
       {
         property: "og:title",
         content: this.title.getTitle()
