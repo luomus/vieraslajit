@@ -23,7 +23,6 @@ import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
 import { ObservationService } from './service/observation.service';
 import {EditcmsModule} from './../shared-modules/editcms/editcms.module';
 import { DocumentService } from './service/document.service';
-import { AlertService } from './service/alert.service';
 import { AreaService } from './service/area.service';
 import { HelpComponent } from './help/help.component';
 import { HelpPopupComponent } from './help/help-popup/help-popup.component';
@@ -83,7 +82,6 @@ export class SharedModule {
         InformationService,
         ObservationService,
         DocumentService,
-        AlertService,
         AreaService,
         LoaderService,
         SpreadSheetService

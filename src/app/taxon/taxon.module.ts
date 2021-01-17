@@ -9,7 +9,6 @@ import { TaxonCardComponent } from './taxon-card/taxon-card.component';
 import { TaxonRoutingModule } from './taxon-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { TaxonComparisonComponent } from './taxon-comparison/taxon-comparison.component';
 import { TaxonBrowserModule } from '../shared-modules/taxon-browser/taxon-browser.module';
 import { ObservationMapModule } from '@observation-map/observation-map.module';
 import { TaxonCardFacade } from './taxon-card/taxon-card.facade';
@@ -34,6 +33,6 @@ import { TaxonCardFacade } from './taxon-card/taxon-card.facade';
     ObservationMapModule
   ],
   providers: [TaxonCardFacade],
-  declarations: [TaxonListComponent, TaxonCardComponent, TaxonComparisonComponent ]
+  declarations: [TaxonListComponent, TaxonCardComponent]
 })
 export class TaxonModule { }

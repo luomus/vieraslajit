@@ -11,7 +11,6 @@ import { FormServiceMock } from '../../../testing/form/FormServiceMock';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRouteStub } from '../../../testing/activated-route-stub';
-import { AlertService } from '../../shared/service/alert.service';
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -25,7 +24,7 @@ describe('FormComponent', () => {
       declarations: [FormComponent],
       providers: [{ provide: FormService, useClass: FormServiceMock }, {
         provide: ActivatedRoute, useValue: activatedRoute
-      }, ApiService, FormApiClient, TranslateService, UserService, DocumentService, AlertService]
+      }, ApiService, FormApiClient, TranslateService, UserService, DocumentService ]
     })
       .compileComponents();
   }));

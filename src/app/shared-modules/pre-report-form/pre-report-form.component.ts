@@ -26,7 +26,7 @@ export class PreReportFormComponent implements OnInit, OnDestroy {
     this.taxonId = id
     this.linkEnabled = false;
     if (id) {
-      this.taxonService.getTaxon(id, this.translate.currentLang, {
+      this.taxonService.getTaxon(id, {
         selectedFields: [
           'customReportFormLink',
           'vernacularName',

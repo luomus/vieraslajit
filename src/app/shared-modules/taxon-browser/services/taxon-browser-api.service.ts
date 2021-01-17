@@ -2,11 +2,9 @@ import { Injectable } from "../../../../../node_modules/@angular/core";
 import { EventEmitter } from "events";
 
 import { TaxonBrowserApiSettingsService } from "./taxon-browser-api-settings.service";
-import { TranslateService } from "../../../../../node_modules/@ngx-translate/core";
-import { Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
 import { Taxonomy } from "../../../shared/model";
-import { ApiService, LajiApi } from "../../../shared/api/api.service";
+import { TaxonService } from "app/shared/service/taxon.service";
 
 @Injectable()
 export class TaxonBrowserApiService {
@@ -18,7 +16,10 @@ export class TaxonBrowserApiService {
 
     eventEmitter:EventEmitter = new EventEmitter();
 
-    constructor(private settingsService:TaxonBrowserApiSettingsService, private apiService:ApiService, private translate:TranslateService) {
+    constructor(
+        private settingsService: TaxonBrowserApiSettingsService,
+        private taxonService: TaxonService
+    ) {
         this.query = {
             page: 1,
             pageSize: 12,
@@ -83,7 +84,7 @@ export class TaxonBrowserApiService {
     }
 
     updateTaxa(append = false) {
-        this.apiService.taxonomyFindById(LajiApi.Endpoints.taxa, '', this.query).pipe(
+        this.taxonService.getTaxa(this.query).pipe(
             tap((res)=>{this.settingsService.apiSettings.total = res.total; this.lastPage = res.lastPage;}),
             map(res=>res.results)
         ).subscribe(res=>{

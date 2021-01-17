@@ -77,11 +77,11 @@ export class TaxonCardFacade {
         const query = {
           selectedFields: 'administrativeStatuses,vernacularName,scientificName,invasiveSpeciesEstablishment,occurrence,id,customReportFormLink,species,finnish'
         };
-        return this.taxonService.getTaxon(taxonId, this.translate.currentLang, query).subscribe(this.updateTaxon.bind(this))
+        return this.taxonService.getTaxon(taxonId, query).subscribe(this.updateTaxon.bind(this))
     }
 
     private subscribeDescription(taxonId: string) {
-        return this.taxonService.getTaxonDescription(taxonId, this.translate.currentLang).pipe(
+        return this.taxonService.getTaxonDescription(taxonId).pipe(
             map(arr => arr[0]),
             map(desc => {
                 //sortDescriptionGroups(desc)
@@ -95,8 +95,6 @@ export class TaxonCardFacade {
 
     private subscribeMedia(taxonId: string) {
         return this.taxonService.getSpecies(taxonId, {
-          invasiveSpeciesFilter: true,
-          lang: this.translate.currentLang,
           includeMedia: true
         }).pipe(
           map(res => res.results.filter(

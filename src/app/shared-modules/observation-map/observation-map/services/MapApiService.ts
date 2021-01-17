@@ -15,12 +15,11 @@ import { WarehouseQueryInterface } from "../import-from-laji-front/WarehouseQuer
 
 export class MapApiService {
 
-    constructor(private obsMapOptions:ObsMapOptions, private obsMapData:ObsMapData,
+    constructor(private obsMapOptions:ObsMapOptions,
+                private obsMapData:ObsMapData,
                 private observationService: ObservationService,
                 private areaService: AreaService,
-                private ykjService: YkjService,
-                private apiService: ApiService)
-    {
+                private ykjService: YkjService){
         /* Update observation list whenever there's a change in options */
         this.obsMapOptions.eventEmitter.addListener("change", ()=>{
             this.getObservationCount().subscribe(res => {
@@ -39,9 +38,7 @@ export class MapApiService {
     }
 
     private getWarehouseQuery() {
-        const query: WarehouseQueryInterface = {
-            invasive: true
-        }
+        const query: WarehouseQueryInterface = {}
         if (this.obsMapOptions.getOption("id")) query["taxonId"] = this.obsMapOptions.getOption("id");
         if (this.obsMapOptions.getOption("municipality")) query["area"] = this.obsMapOptions.getOption("municipality");
         if (this.obsMapOptions.getOption("personToken")) query["observerPersonToken"] = this.obsMapOptions.getOption("personToken");
@@ -79,12 +76,6 @@ export class MapApiService {
 
     private getObservations() {
         let query = {
-            invasive: true,
-            page: 1,
-            pageSize: 10000,
-            countryId: "ML.206",
-            reliability: "RELIABLE,UNDEFINED",
-            needsCheck: false,
             selected: [
                 "unit.linkings.taxon.scientificName", "unit.linkings.taxon.vernacularName",
                 "unit.linkings.taxon.id", "gathering.conversions.wgs84CenterPoint.lat",
@@ -110,6 +101,6 @@ export class MapApiService {
 
     private getObservationCount() {
         const query: WarehouseQueryInterface = {...this.getWarehouseQuery()}
-        return this.apiService.warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount, "count", query)
+        return this.observationService.getObservationCount(query);
     }
 }

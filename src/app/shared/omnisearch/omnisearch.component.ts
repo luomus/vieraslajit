@@ -25,6 +25,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { GoogleSearchApiService } from '../api/google-search.api.service';
 import { environment } from '../../../environments/environment';
 import { isDescendant } from '../../utils';
+import { ObservationService } from '../service/observation.service';
 
 
 
@@ -74,8 +75,8 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   constructor(
 
     private changeDetector: ChangeDetectorRef,
-    private apiService: ApiService,
     private taxonservice: TaxonService,
+    private observationService: ObservationService,
     private router: Router,
     private translate: TranslateService,
     private renderer: Renderer2,
@@ -162,7 +163,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
       this.taxon = this.taxa[index];
       this.subCnt = of(this.taxon.key).pipe(
       combineLatest(
-        this.taxonservice.getObsCount(this.taxon.key),
+        this.observationService.getObservationCount({taxonId: this.taxon.key}),
         (id, cnt) => {
           return { id: id, cnt: cnt.total };
         }))
@@ -230,8 +231,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
     }
 
     this.loading = true;
-    this.subTaxa = this.taxonservice.getAutocomplete('taxon', this.search, this.translate.currentLang).subscribe(
-
+    this.subTaxa = this.taxonservice.getAutocomplete(this.search).subscribe(
       data => {
         this.taxa = data;
         this.loading = false;
@@ -239,9 +239,6 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
         this.changeDetector.markForCheck();
       }
     );
-
-
-
   }
 
   formatContentUrl(input: string) {

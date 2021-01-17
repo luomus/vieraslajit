@@ -73,7 +73,6 @@ export class ApiService {
    * @param field Field type to be autocompleted: taxon, collection, friends, unit, person
    * @param query Query as defined by LajiApi.AutocompleteQuery
    */
-  autocompleteFindByField(endpoint: LajiApi.Endpoints.autocomplete, field: string, query: LajiApi.AutocompleteQuery): Observable<Autocomplete>;
   autocompleteFindByField(endpoint: LajiApi.Endpoints.autocomplete, field: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(

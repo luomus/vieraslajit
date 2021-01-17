@@ -67,7 +67,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }), concatMap((res) => {
         return res;
       }), concatMap(res => {
-        return this.taxonService.getTaxonWithMedia(res, this.translate.currentLang);
+        return this.taxonService.getTaxon(res, {
+          includeMedia: true
+        });
       })
       ).subscribe((res) => {
         this.topical.push(res);

@@ -93,7 +93,7 @@ export class FormFacade {
 
     loadDataWithTaxon(formId: string, taxonId: string) {
         forkJoin(
-            this.taxonService.getTaxon(taxonId, this.translate.currentLang, {
+            this.taxonService.getTaxon(taxonId, {
                 selectedFields: "vernacularName,scientificName"
             }),
             this.formService.getFormById(formId, this.translate.currentLang)
