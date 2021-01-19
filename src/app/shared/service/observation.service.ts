@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ApiService, LajiApi } from '../api/api.service';
-import { WarehouseQueryInterface } from '@observation-map/observation-map/import-from-laji-front/WarehouseQueryInterface';
 
 const baseQuery = {
   invasive: true,
@@ -14,7 +13,7 @@ export class ObservationService {
 
   constructor(private apiService: ApiService) { }
 
-  getObservationCount(query: WarehouseQueryInterface) {
+  getObservationCount(query: any) {
     const _query = {
       ...baseQuery,
       cache: false,
