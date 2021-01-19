@@ -1,19 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:400,400i,500,600,600i&subset=latin-ext');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700');
-
-//-----------------//
-// DEPRECATED VARS //
-//-----------------//
-
-$alert: rgb(231, 169, 169);
-$alert-dark: rgb(204, 118, 118);
 
 $content-border-radius: 12px;
-
-$container-shadow: 2px 2px 2px 0px #ccc;
-$inset-box-shadow: inset 0 2px 4px 0 #999;
-
-$navbar-height: 0px;
 
 $container-max-widths: (
   sm: 540px,
@@ -21,14 +8,6 @@ $container-max-widths: (
   lg: 960px,
   xl: 1200px
 );
-
-//-----------------//
-// REFACTORED VARS //
-//-----------------//
-
-// COLOR PALETTE
-// https://refactoringui.com/previews/building-your-color-palette/
-// TODO: ONLY use these colors in the app
 
 $primary-1: hsl(120, 40, 95);
 $primary-2: hsl(129, 40, 91);
@@ -63,5 +42,3 @@ $neutral-9: hsl(42, 5, 10);
 // FONTS
 
 $font-family-base: 'Libre Franklin', sans-serif;
-//$font-heading: 'Montserrat', sans-serif;
-$font-heading: $font-family-base;
