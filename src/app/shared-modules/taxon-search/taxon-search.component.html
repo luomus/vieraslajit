@@ -1,8 +1,6 @@
 <div #autocomplete class='autocomplete'>
     <span class="oi oi-magnifying-glass"></span>
     <input #input autocomplete="off" type='text'
-           (input)="onSearchAreaInput($event)"
-           (focusin)="onSearchAreaInput($event)"
            class='form-control'
            placeholder="{{'observation-map.filterMenu.species.placeholder' | translate}}">
     <a *ngIf="selected" class='oi oi-x icon' (click)="removeSelected()" (keyup)="keyEventRemoveSelected($event)" tabindex="0"></a>
