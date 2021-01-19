@@ -5,7 +5,7 @@ import { isPlatformBrowser } from "@angular/common";
 import { TaxonService } from "app/shared/service/taxon.service";
 import { Taxonomy } from "app/shared/model";
 import { fromEvent, Subject } from "rxjs";
-import { debounceTime, takeUntil } from "rxjs/operators";
+import { debounceTime, takeUntil, filter, map, switchMap } from "rxjs/operators";
 
 @Component({
     selector: "vrs-taxon-search",
@@ -31,7 +31,20 @@ export class TaxonSearchComponent implements AfterViewInit, OnDestroy {
             fromEvent(this.input.nativeElement, 'input').pipe(
                 takeUntil(this.unsubscribe$),
                 debounceTime(500)
-            ).subscribe(this.onSearchAreaInput.bind(this))
+            ).pipe(
+                filter((event: any) => {
+                    if (event.target.value.length < 3) {
+                        this.autocompleteItems = undefined;
+                        return false;
+                    } else {
+                        return true
+                    }
+                }),
+                map(event => event.target.value),
+                switchMap(val => this.taxonService.getAutocomplete(val))
+            ).subscribe(r => {
+                this.autocompleteItems = r;
+            })
             fromEvent(document, 'click').pipe(
                 takeUntil(this.unsubscribe$)
             ).subscribe(event => {
@@ -40,17 +53,6 @@ export class TaxonSearchComponent implements AfterViewInit, OnDestroy {
                 }
             })
         }
-    }
-
-    onSearchAreaInput(event) {
-        const val: string = event.target.value;
-        if (val.length < 3) {
-            this.autocompleteItems = undefined;
-            return;
-        }
-        this.taxonService.getAutocomplete(val).subscribe(r => {
-            this.autocompleteItems = r;
-        });
     }
 
     onSelect(item) {
