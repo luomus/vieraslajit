@@ -14,7 +14,7 @@ import { ObservationModalComponent } from "./observation-modal.component";
 <div>{{notes}}</div>
 <hr>
 <a (click)="openModal(observationId, unitId)" class="popup-link"><span class="oi oi-eye"></span>Tarkastele havaintoa</a>
-<a [routerLink]="['./lajit/', taxonId]" class="popup-link"><span class="oi oi-info"></span>Lue lisää lajista</a>
+<a [routerLink]="['./lajit/', taxonId]" class="popup-link" target="_blank"><span class="oi oi-info"></span>Lue lisää lajista</a>
 </div>
 `
 })
