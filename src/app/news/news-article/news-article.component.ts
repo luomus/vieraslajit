@@ -29,8 +29,8 @@ export class NewsArticleComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.facade.article$.subscribe(article => {
-            if (!article) return;
             this.article = article;
+            if (!article) return;
             const title = article.title + this.translate.instant('title.post');
             this.title.setTitle(title);
             this.meta.updateTag({

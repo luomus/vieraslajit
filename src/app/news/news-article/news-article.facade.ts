@@ -24,6 +24,7 @@ export class NewsArticleFacade {
         })
     }
     loadArticle(id: string) {
+        this.store$.next({ article: undefined })
         this.newsService.getArticle(id).subscribe(this.articleReducer.bind(this))
     }
 }
