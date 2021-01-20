@@ -23,11 +23,11 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   mapToggle = true;
 
   modalRef: BsModalRef;
-  selectedImage: TaxonomyImage;
+  selectedImage: any;
 
   taxon: Taxonomy;
   desc: TaxonomyDescriptionFlattened;
-  media: Array<TaxonomyImage>;
+  media: Array<any>;
 
   quarantinePlantPest = false;
 

@@ -106,5 +106,8 @@
 
 <ng-template #imageModal>
   <img alt="" class="img-fluid modal-image" [src]="selectedImage.fullURL || selectedImage.largeURL" />
-  <label class="modal-label">{{selectedImage.author}}, {{selectedImage.copyrightOwner}}, <span [innerHTML]="selectedImage.licenseAbbreviation"></span></label>
+  <label class="modal-label">
+    <div>{{selectedImage.taxon.vernacularName}}</div>
+    <div>{{selectedImage.author}}, {{selectedImage.copyrightOwner}}, <span [innerHTML]="selectedImage.licenseAbbreviation"></span></div>
+  </label>
 </ng-template>
