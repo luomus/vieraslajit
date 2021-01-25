@@ -78,6 +78,7 @@ const routes: Routes = [
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'ilmoita', loadChildren: () => import('@form/form.module').then(m => m.FormModule) },
   { path: 'havainnot', loadChildren: () => import('./observations/observations.module').then(m => m.ObservationsModule) },
+  { path: 'palaute', loadChildren: () => import('./feedback/feedback.module').then(m => m.FeedbackModule) },
   { path: 'reload', loadChildren: () => import('./reload/reload.module').then(m => m.ReloadModule) },
   { path: '**', redirectTo: '' }
 ];

@@ -217,5 +217,24 @@
   "topicalSpecies.header.description": "Seuraavien Suomessa tavattujen vieraslajien havainnoista olisi erityisen tärkeää ilmoittaa.",
   "topicalSpecies.header.title": "Silmä tarkkana",
   "true": "Kyllä",
-  "vieraslajit.fi": "uutinen"
+  "vieraslajit.fi": "uutinen",
+
+  "feedback": "Palautelomake",
+
+  "feedback.email": "Sähköpostiosoite",
+
+  "feedback.topic": "Aihe",
+  "feedback.topic.empty": "Valitse aihe",
+  "feedback.topic.good": "kehitysehdotus",
+  "feedback.topic.bad": "vikailmoitus",
+  "feedback.topic.other": "muu",
+  "feedback.topic.description": "Kuvaus",
+
+  "feedback.message": "Viesti",
+
+  "feedback.send": "Lähetä",
+
+  "feedback.success": "Kiitos palautteesta!",
+  "feedback.invalid": "Varmista että palautteellasi on kuvaus ja viesti.",
+  "feedback.error": "Palautteen lähettämisessä tapahtui ongelma."
 }

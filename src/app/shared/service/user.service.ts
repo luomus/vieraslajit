@@ -27,7 +27,7 @@ export class UserService {
       + '&next=' + next).replace('%lang%', 'fi');
   }
 
-  public static getUserProperties() {
+  public static getUserProperties(): any {
     let res = {};
     for (let u in userProperty) {
       res[userProperty[u]] = JSON.parse(window.sessionStorage.getItem(userProperty[u]));

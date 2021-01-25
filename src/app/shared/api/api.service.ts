@@ -6,11 +6,8 @@ import { Observable } from 'rxjs';
 import { PagedResult } from '../model/PagedResult';
 import { Informal } from '../model/Informal';
 import { NewsElement } from '../model/NewsElement';
-import { Autocomplete } from '../model/Autocomplete';
-import { WarehouseQueryCount } from '../model/Warehouse';
 import { WarehouseQueryList } from '../model/Warehouse';
 import { Information } from '../model/Information';
-import { userProperty, UserService } from '../service/user.service';
 import { Document } from '../model/Document';
 
 /**
@@ -288,6 +285,15 @@ export class ApiService {
       {params: {'personToken': personToken}}
     );
   }
+
+  feedbackPost(endpoint: LajiApi.Endpoints.feedback, data: LajiApi.Feedback, personToken?: string): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`;
+    return this.httpClient.post(
+      url,
+      JSON.stringify(data),
+      {params: {'personToken': personToken}}
+    );
+  }
 }
 
 export namespace LajiApi {
@@ -301,6 +307,7 @@ export namespace LajiApi {
     taxonSpecies = 'taxa/%id%/species',
     documents = 'documents',
     description = 'taxa/%id%/descriptions',
+    feedback = 'feedback',
     media = 'taxa/%id%/media',
     metadataRange = 'metadata/ranges/%range%',
     newsArray = 'news',
@@ -356,6 +363,12 @@ export namespace LajiApi {
     page?: string;
     observerPersonToken?: string;
     invasive?:boolean;
+  }
+
+  export interface Feedback {
+    subject: string;
+    message: string;
+    meta: string;
   }
 
 }

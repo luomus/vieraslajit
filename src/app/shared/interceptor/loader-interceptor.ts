@@ -11,7 +11,7 @@ export class LoaderInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             catchError(error => {
                 this.loaderService.complete(req.urlWithParams);
-                return of();
+                throw error;
             }),
             tap(
                 (event: HttpEvent<any>) => {
