@@ -34,7 +34,7 @@
   "footer.viekas.disclaimer": "The material reflects the views by the VieKas LIFE project, and the European Commission or EASME is not responsible for any use that may be made of the information it contains.",
   "footer.viekas.portal.1": "This portal is being developed by FinBIF to replace the present",
   "footer.viekas.portal.2": "-service",
-  "form.login": "Log in first.",
+  "form.login": "Please log in first",
   "form.loginError.1": "There are two forms for reporting observations of invasive alien species – one for the logged in and one for the non-logged in user.",
   "form.loginError.2": "1. By logging in via the Laji.fi identification service, you can easily report observations also on a mobile device. Notice that:",
   "form.loginError.2.1": "you can change and update the observations in the Laji.fi service",
@@ -217,5 +217,6 @@
   "topicalSpecies.header.description": "It is especially important to report the observations of the following invasive alien species found in Finland.",
   "topicalSpecies.header.title": "Keep an eye on",
   "true": "Yes",
-  "vieraslajit.fi": "news"
+  "vieraslajit.fi": "news",
+  "home.campaign": "Take part in eradication campaign"
 }

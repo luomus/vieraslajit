@@ -96,4 +96,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   getReadMoreId() {
     return findContentID(StaticContent.Info, this.translate.currentLang);
   }
+
+  getCampaignId() {
+    return findContentID(StaticContent.Campaign, this.translate.currentLang);
+  }
 }
