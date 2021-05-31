@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   getNews(page){
-    this.newsService.getPage('1', '3', this.translate.currentLang, this.newsTag/* +",technical" */)
+    this.newsService.getPage('1', '5', this.translate.currentLang, this.newsTag/* +",technical" */)
     .subscribe((data) => {
       this.news = data.results;
     });
