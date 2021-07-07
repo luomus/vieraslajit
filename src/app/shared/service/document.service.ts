@@ -25,6 +25,6 @@ export class DocumentService {
   private prepareForSave(data: Document) {
       return data.publicityRestrictions
         ? data
-        : {...data, publicityRestrictions: Document.PublicityRestrictionsEnum.publicityRestrictionsPublic}
+        : {...data, publicityRestrictions: Document.PublicityRestrictionsEnum.publicityRestrictionsPublic};
   }
 }
