@@ -11,6 +11,9 @@ export class DocumentService {
 
 
   createDocument(personToken: string, data: Document): Observable<Document> {
+    if (!data.publicityRestrictions) {
+        data.publicityRestrictions = Document.PublicityRestrictionsEnum.publicityRestrictionsPublic;
+    }
     return this.apiService.documentPost(LajiApi.Endpoints.createDocument, personToken, data);
   }
 
