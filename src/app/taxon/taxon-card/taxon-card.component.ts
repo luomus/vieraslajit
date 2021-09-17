@@ -87,6 +87,7 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     this.route.params
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(params => {
+        if (this.taxon && params['id'] === this.taxon.id) return;
         this.taxon = undefined;
         this.desc = undefined;
         this.media = undefined;
