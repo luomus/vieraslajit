@@ -4,6 +4,8 @@ export interface Taxonomy {
 
     adminStatusFilters?:string;
 
+    alternativeVernacularName?:any;
+
     distributionMapFinland?: string;
 
     sortOrder?: number;

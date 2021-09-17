@@ -5,6 +5,7 @@
         <h1 *ngIf="taxon?.vernacularName">
           <ng-container *ngIf="taxon.species || !taxon.finnish">{{taxon.vernacularName | capitalize}}</ng-container>
           <ng-container *ngIf="!taxon.species && taxon.finnish">{{'taxonomy.nonspecies' | translate}} {{taxon.vernacularName}}</ng-container>
+          <span *ngIf="taxon?.alternativeVernacularName && taxon?.alternativeVernacularName[getCurrentLang()]" class="alternativeVernacularName"> ({{taxon.alternativeVernacularName[getCurrentLang()]}})</span>
           <img src="assets/images/logos/vieraslajit_tekstiton.png" width="40" height="40" alt="Vieraslaji" title="Vieraslaji">
         </h1>
         <h5 [class.cursive]="taxon?.cursiveName">{{taxon?.scientificName}}</h5>

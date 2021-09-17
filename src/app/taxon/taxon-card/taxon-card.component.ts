@@ -136,6 +136,10 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     this.modalRef = this.modalService.show(template, { class: 'modal-lg', animated:false });
   }
 
+  getCurrentLang() {
+    return this.translate.currentLang;
+  }
+
   ngOnDestroy() {
     if (this.destroyResizeListener) {
       this.destroyResizeListener();
