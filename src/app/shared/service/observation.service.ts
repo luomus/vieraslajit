@@ -16,7 +16,6 @@ export class ObservationService {
   getObservationCount(query: any) {
     const _query = {
       ...baseQuery,
-      cache: false,
       individualCountMin: 1,
       ...query
     };
