@@ -70,16 +70,9 @@ export class NavbarContainer implements OnInit, OnDestroy {
      */
     updateInformation(){
         this.menu = [];
-        this.informationService.getInformation(this.rootId).pipe(
-            mergeMap((base) => {
-                return of(...base.children)
-            }),
-            concatMap((header) => {
-                return this.informationService.getInformation(header.id)
-            })
-        )
+        this.informationService.getInformation(this.rootId)
         .subscribe((data) => {
-            this.menu.push(data)
+            this.menu = data.children;
         });
     }
 
