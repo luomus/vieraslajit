@@ -1,29 +1,25 @@
 # Vieraslajit
-Currently the [VieKas Portal](https://viekas.laji.fi)
-(eventually) the new frontend for [vieraslajit.fi](https://vieraslajit-dev.laji.fi).
+The new frontend for [vieraslajit.fi](https://vieraslajit.fi.laji.fi).
+Beta environment: [vieraslajit-dev](https://vieraslajit-dev.laji.fi).
 
-## Local development environment
+## Setup
 ```
-yarn install --frozen-lockfile
-yarn start
-```
-
-## Production build
-```
-yarn install --frozen-lockfile
-yarn build:ssr:viekas
-```
-serve from dist/browser
-
-## Server side rendering
-(not currently in use)
-```
-yarn install --frozen-lockfile
-yarn ssr:run:local
+npm ci
 ```
 
-## Laji API
-System id (dev): KE.741
-System id (prod): KE.861
+Serve development mode:
+```
+npm start
+```
 
-## License
+Build local/beta/prod:
+```
+npm run build:local
+npm run build:beta
+npm run build:prod
+```
+
+Start SSR server:
+```
+npm run serve:ssr
+```

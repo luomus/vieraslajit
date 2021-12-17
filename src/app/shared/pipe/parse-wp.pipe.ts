@@ -11,6 +11,8 @@ export class ParseWPPipe implements PipeTransform {
 }
 
 export function parseWP(data:string): string{
+    // no longer needed after API and CMS changes
+    return data;
     if (data) {
         // Replace captions with <figcaption>
         // with linked image

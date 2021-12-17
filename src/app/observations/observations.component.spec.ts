@@ -9,7 +9,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TabsModule } from 'ngx-bootstrap';
 import { DatePipe } from '@angular/common';
 import { AlertModule } from 'ngx-bootstrap';
-import { AlertService } from '../shared/service/alert.service';
 import { AreaService } from '../shared/service/area.service';
 import { TaxonService } from '../shared/service/taxon.service';
 
@@ -25,7 +24,7 @@ describe('AllobservationsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ObservationsComponent ],
       imports: [HttpClientModule, SharedModule, TranslateModule.forRoot(), NgxDatatableModule, RouterTestingModule,TabsModule.forRoot(),AlertModule],
-      providers: [ObservationService, ApiService,AlertService, UserService,DatePipe, AreaService, TaxonService, StateService]
+      providers: [ObservationService, ApiService, UserService,DatePipe, AreaService, TaxonService, StateService]
     })
     .compileComponents();
   }));

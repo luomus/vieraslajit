@@ -4,6 +4,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { parseWP } from '../shared/pipe/parse-wp.pipe';
 import { InformationItem, Information } from 'app/shared/model';
 import { forkJoin } from 'rxjs';
+import { Title, Meta } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
+import { environment } from 'environments/environment';
+import { removeHTMLTagFragments } from 'app/utils';
 
 export interface StaticNavItem {
     title: string,
@@ -30,7 +34,14 @@ export class StaticContainerComponent implements OnInit {
     selectedInformation: Information;
     sidebarTitle;
 
-    constructor(private route: ActivatedRoute, private informationService: InformationService) { }
+    constructor(
+        private route: ActivatedRoute,
+        private informationService: InformationService,
+        private router: Router,
+        private title: Title,
+        private meta: Meta,
+        private translate: TranslateService
+    ) { }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
@@ -41,6 +52,13 @@ export class StaticContainerComponent implements OnInit {
     updateInformation(id: string) {
         this.informationService.getInformation(id).subscribe(base => {
             this.selectedInformation = base;
+            const regex = /\[redirectTo:(\d+)\]/g
+            const redirects = regex.exec(base.content);
+            if (redirects && redirects.length > 0) {
+                this.router.navigate(['info', 'i-' + redirects[1]], {
+                    replaceUrl: true
+                });
+            }
             if (!base.parents) return;
             const parents$ = base.parents.map(parent => this.informationService.getInformation(parent.id));
             forkJoin(...parents$).subscribe((parents: Information[]) => {
@@ -92,6 +110,26 @@ export class StaticContainerComponent implements OnInit {
                     })
                 });
                 this.navLevels = unsortedLevels;
+            });
+
+            const title = this.selectedInformation.title + this.translate.instant('title.post');
+            this.title.setTitle(title);
+            this.meta.updateTag({
+                property: "og:title",
+                content: title
+            });
+            const desc = removeHTMLTagFragments(this.selectedInformation.content).substr(0, 70);
+            this.meta.updateTag({
+                property: "og:description",
+                content: desc
+            });
+            this.meta.updateTag({
+                property: "description",
+                content: desc
+            });
+            this.meta.updateTag({
+                property: "og:image",
+                content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
             });
         });
     }

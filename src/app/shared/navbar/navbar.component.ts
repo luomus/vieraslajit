@@ -1,11 +1,11 @@
 import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, NgZone, Renderer2, ChangeDetectorRef, Input, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { UserService } from '../service/user.service';
-import {Router, NavigationEnd} from '@angular/router';
-import { InformationService } from '../service/information.service';
+import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription, of } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';
 import { LoaderService, LoadingEvent } from '../service/loader.service';
+import { findContentID, StaticContent } from 'assets/i18n/cms-content';
 
 @Component({
   selector: 'vrs-navbar',
@@ -21,6 +21,9 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   private scrollListener;
   loading = false;
 
+  private destroyListeners: Function[] = []
+  private dropdownMouseOverListeners: Function[] = []
+
   @Input() menu;
   @Input() loginUrl = '#';
   @Output() onLogout = new EventEmitter();
@@ -28,25 +31,25 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren(BsDropdownDirective) d : QueryList<BsDropdownDirective>;
 
   constructor(private router: Router, private userService: UserService,
-     private informationService: InformationService, private translate:TranslateService,
-     private zone: NgZone,
-     private renderer: Renderer2,
-     private cd: ChangeDetectorRef,
-     private loaderService: LoaderService) {
-      this.loginSub = userService.loginStateChange.subscribe(() => {
-        this.loggedIn = UserService.loggedIn();
-      if(this.loggedIn == false) {
-        // Use reload hack to force re-render of the component
-        this.router.navigate(["reload/" + this.router.url], {skipLocationChange: true});
-      }
-    })
-  }
+              private translate:TranslateService,
+              private zone: NgZone,
+              private renderer: Renderer2,
+              private cd: ChangeDetectorRef,
+              private loaderService: LoaderService) {}
 
   getCurrentLang() {
     return this.translate.currentLang;
   }
 
   ngOnInit() {
+    this.loginSub = this.userService.loginStateChange.subscribe(() => {
+      this.loggedIn = UserService.loggedIn();
+      if(this.loggedIn == false) {
+        // Use reload hack to force re-render of the component
+        this.router.navigate(["reload/" + this.router.url], {skipLocationChange: true});
+      }
+    });
+
     this.zone.runOutsideAngular(() => {
       this.scrollListener = this.renderer.listen(window, 'scroll', () => {
         this.updateFixedTop();
@@ -71,9 +74,9 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private updateFixedTop() {
     const _fixedTop = this.fixedTop;
-    let breakpoint = 162 - 63;
+    let breakpoint = 110 - 54;
     if (window.innerWidth < 1200) {
-      breakpoint = 139 - 42;
+      breakpoint = 89 - 52;
     }
     if (window.scrollY < breakpoint) {
         this.fixedTop = false;
@@ -87,15 +90,35 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.d.forEach((dropdown) => {
-      // hacking into private property (of dropdown directive) because we are above the law
       // @ts-ignore
       let el = dropdown._elementRef.nativeElement;
-      this.renderer.listen(el, "mouseenter", ()=>{
+      this.destroyListeners.push(
+        this.renderer.listen(el, "mouseenter", ()=>{
+          dropdown.toggle(true);
+          this.dropdownMouseOverListeners.push(
+            this.addKeyUpListener(document, dropdown)
+          )
+        })
+      );
+      this.destroyListeners.push(
+        this.renderer.listen(el, "mouseleave", ()=>{
+          dropdown.toggle(false);
+          this.dropdownMouseOverListeners.forEach(f => f());
+        })
+      );
+      this.destroyListeners.push(
+        this.addKeyUpListener(el, dropdown)
+      );
+    })
+  }
+
+  addKeyUpListener(el, dropdown) {
+    return this.renderer.listen(el, "keyup", (e)=>{
+      if (e.keyCode === 13) {
         dropdown.toggle(true);
-      })
-      this.renderer.listen(el, "mouseleave", ()=>{
+      } else if (e.keyCode === 27) {
         dropdown.toggle(false);
-      })
+      }
     })
   }
 
@@ -117,5 +140,10 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.scrollListener) {
       this.scrollListener();
     }
+    this.destroyListeners.forEach(f => f());
+  }
+
+  getFAQId() {
+    return findContentID(StaticContent.FAQ, this.translate.currentLang);
   }
 }

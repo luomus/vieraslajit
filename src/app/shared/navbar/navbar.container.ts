@@ -1,7 +1,7 @@
 import { Component, NgZone, OnInit, ChangeDetectorRef, OnDestroy, Renderer2 } from "@angular/core";
 import { InformationService } from "../service/information.service";
-import { mergeMap, concatMap, tap } from "rxjs/operators";
-import { of, Subscription } from "rxjs";
+import { mergeMap, concatMap, tap, startWith } from "rxjs/operators";
+import { of, Subscription, BehaviorSubject } from "rxjs";
 import { findContentID, StaticContent } from "../../../assets/i18n/cms-content";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../service/user.service";
@@ -27,10 +27,13 @@ export class NavbarContainer implements OnInit, OnDestroy {
                 private router: Router) {}
 
     ngOnInit() {
-        this.translateSub = this.translate.onLangChange.subscribe((lang) => {
+        this.translateSub = this.translate.onLangChange.pipe(
+            startWith(() => this.translate.currentLang)
+        ).subscribe((lang) => {
             this.setCMSRootId(this.translate.currentLang);
             this.updateInformation();
         })
+
         this.updateMobileMode();
         this.zone.runOutsideAngular(() => {
             this.renderer.listen(window, "resize", () => {
@@ -42,6 +45,7 @@ export class NavbarContainer implements OnInit, OnDestroy {
          */
         this.router.events.subscribe((val) => {
             this.loginUrl = UserService.getLoginUrl(encodeURI(window.location.pathname));
+            this.cd.detectChanges();
         });
     }
 
@@ -66,16 +70,9 @@ export class NavbarContainer implements OnInit, OnDestroy {
      */
     updateInformation(){
         this.menu = [];
-        this.informationService.getInformation(this.rootId).pipe(
-            mergeMap((base) => {
-                return of(...base.children)
-            }),
-            concatMap((header) => {
-                return this.informationService.getInformation(header.id)
-            })
-        )
+        this.informationService.getInformation(this.rootId)
         .subscribe((data) => {
-            this.menu.push(data)
+            this.menu = data.children;
         });
     }
 

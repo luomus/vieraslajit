@@ -19,7 +19,7 @@
       "@observation-map/*": ["app/shared-modules/observation-map/*"],
       "@form/*": ["app/form/*"]
     },
-    "module": "es2015",
+    "module": "esnext",
     "baseUrl": "./src"
   }
 }

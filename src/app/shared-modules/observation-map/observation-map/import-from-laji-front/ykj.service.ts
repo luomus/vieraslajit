@@ -66,7 +66,7 @@ export class YkjService {
         10000,
         1,
         false,
-        false
+        undefined
       ).pipe(
         retryWhen(errors => errors.pipe(delay(1000), take(3), concat(observableThrowError(errors)))),
         map(data => data.results)
@@ -119,6 +119,9 @@ export class YkjService {
   convertYkjToGeoJsonFeature(lat: any, lng: any, properties: {[k: string]: any} = {}) {
     lat = parseInt(lat, 10);
     lng = parseInt(lng, 10);
+    if (isNaN(lat) || isNaN(lng)) {
+      return null;
+    }
     const latStart = this.pad(lat);
     const latEnd = this.pad(lat + 1);
     const lonStart = this.pad(lng);
@@ -134,9 +137,13 @@ export class YkjService {
           [latEnd, lonEnd],
           [latEnd, lonStart],
           [latStart, lonStart],
-        ].map(this.convertYkjToWgs)]
+        ].map(this.convertYkjLatLngToWgsLngLat)]
       }
     };
+  }
+
+  private convertYkjLatLngToWgsLngLat(latLng: [any, any]): [number, number] {
+    return MapUtil.convertLatLng(latLng, 'EPSG:2393', 'WGS84').reverse();
   }
 
   private convertWgs84ToYkj(lat: any, lng: any) {

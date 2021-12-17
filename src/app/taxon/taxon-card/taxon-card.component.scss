@@ -10,8 +10,7 @@
     position: relative;
     z-index: 11;
     background: $neutral-2;
-    margin-bottom: -50px;
-    box-shadow: 2px 2px 25px rgba(#000, 0.3);
+    box-shadow: 0 2px 25px 0 rgba($neutral-8, 0.15);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     @include media-breakpoint-up(md) {
@@ -67,7 +66,12 @@
 }
 
 .taxon-card-map {
-    padding-top: 2em;
+    padding: 15px;
+    border-radius: 5px;
+    background: $neutral-1;
+    margin: 15px 0;
+    border: 1px solid $neutral-4;
+
     button {
         margin-top: 1em;
     }
@@ -77,14 +81,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-}
-
-.laji-fi-link {
-    color: $neutral-6;
-    &:hover {
-        color: $neutral-7;
-        border-bottom: 2px solid $accent-5;
-    }
+    cursor: pointer;
 }
 
 .taxoncard {
@@ -115,6 +112,10 @@
             margin-bottom: 25px;
         }
     }
+    .alternativeVernacularName {
+        font-size: 1.2rem;
+        color: $neutral-6;
+    }
 }
 
 #report {
@@ -127,4 +128,11 @@
 .modal-image {
     width: 100%;
     height: auto;
+}
+
+.modal-label {
+    position: absolute;
+    bottom: -3.5em;
+    background: rgba(#000, 0.5);
+    color: $neutral-2;
 }

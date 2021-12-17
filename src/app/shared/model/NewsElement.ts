@@ -3,7 +3,7 @@ export interface NewsElement {
     "external": true,
     "externalURL"?: string,
     "title": string,
-    "featuredImage"?: string,
+    "featuredImage"?: any,
     "content"?: string,
     "posted": string,
     "modified"?: string,

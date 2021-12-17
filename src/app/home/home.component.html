@@ -1,64 +1,67 @@
-<div class="home-v3">
-    <div class="hero">
-<!--         <h1>Kansallinen vieraslajiportaali</h1>
-        <div class="hero-overlap">
-            <div>
-                <p translate>home.description</p>
-                <button class="btn vrs-button primary">Ilmoita vieraslajihavainto</button>
-            </div>
-        </div> -->
-        <h1 translate>home.viekas.title</h1>
-        <div class="hero-overlap-cont">
-            <div class="hero-overlap">
-                <div>
-                    <p translate>home.viekas.description</p>
-                    <div class="viekas-buttons">
-                        <a routerLink="/ilmoita" class="btn vrs-button primary" translate>home.viekas.report</a>
-                        <a routerLink="/kansalaistoiminta" class="btn vrs-button borderless" translate>home.viekas.viekasLink</a>
-                        <a routerLink="/kansalaistoiminta/i-399" class="btn vrs-button borderless" translate>home.viekas.calendar</a>
+<div class="hero"></div>
+<section class="heading-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 heading-box-wrapper">
+                <div class="heading-box">
+                    <img alt="Vieraslajit logo" class="vrs-logo" src="../../../assets/images/logos/vieraslajit_logo.svg" alt="">
+                    <div>
+                        <h1 class="mb-1" translate>home.h1</h1>
+                        <h2 translate>home.h2</h2>
+                        <p><b translate>home.desc.1</b> {{'home.desc.2' | translate}} <a [routerLink]="['/info', getReadMoreId()]" translate>home.desc.3</a></p>
+                        <a class="btn vrs-button accent mr-2" routerLink="/ilmoita" translate>navigation.observations.report</a>
+<!--                         <a class="btn vrs-button campaign" [routerLink]="['/info', getCampaignId()]" translate>home.campaign</a> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="mission-statement-wrapper py-5">
-<!--         <div class="mission-statement container">
-            <div class="img-container">
-                <img src="../../assets/images/bgs/piisami_cropped.png" alt="">
+</section>
+<section class="news-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-9">
+                <ul class="news-list">
+                    <li *ngFor="let story of news">
+                        <div class="news-article-header">
+                            <div class="featured-image-container" *ngIf="story.featuredImage">
+                                <!-- Featured image -->
+                                <img [src]="story.featuredImage.url" [alt]="story.featuredImage.alt" [title]="story.featuredImage.caption">
+                            </div>
+                            <div>
+                                <!-- Title -->
+                                <a class="story-title" [routerLink]="'/ajankohtaista/' + story.id">{{ story.title }}</a>
+                                <div class="story-posted">{{ story.posted | date: 'dd.MM.yyyy' }}</div>
+                            </div>
+                        </div>
+                        <div *ngIf="story.content" [innerHTML]="story.content | parsewp | truncate:500"></div>
+                        <hr>
+                    </li>
+                </ul>
+                <div class="more-news-container" *ngIf="news?.length > 0">
+                    <a routerLink="/ajankohtaista/" translate>home.moreNews</a>
+                </div>
             </div>
-            <div class="text-container">
-                <h2>Suojellaan Suomen luonnon monimuotoisuutta</h2>
-                <p>Vieraslajit ovat lajeja, jotka ovat levinneet luontaiselta levinneisyysalueeltaan uudelle alueelle ihmisen mukana joko tahattomasti tai tarkoituksella. Vieraslajit voivat aiheuttaa suurta vahinkoa luonnolliselle ekosysteemille.</p>
-            </div>
-        </div> -->
-    </div>
-<!--     <div class="topical-species">
-        <div class="container">
-            <vrs-topical-species [taxa]="topical"></vrs-topical-species>
-        </div>
-    </div>
-    <div class="what-is">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-8">
-                    <div class="eradication">
-                        <h2>Vieraslajitoiminta</h2>
-                        <p>Vieraslajeja torjutaan sekä kunnallisella, että valtiollisella tasolla, kuin myös yksityisten järjestöjen toimin...</p>
-                        <p>Torjuntaa harjoitetaan ennaltaehkäisemällä vieraslajien leviämistä, levinneiden vieraslajien hävittämisellä ja ympäristön sopeuttamisella jo läsnäoleviin vieraslajeihin.</p>
-                        <p>Suomen vieraslajiasioiden asiantuntijana toimii <em>Vieraslajiasioiden neuvottelukunta</em>...</p>
+            <div class="col-12 col-md-3">
+                <div class="topical-species-container">
+                    <div class="topical-species-mobile-header">
+                        <h3 translate>topicalSpecies.header.title</h3>
+                        <p translate>topicalSpecies.header.description</p>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 news">
-                    <h2>Uutiset</h2>
-                    <hr>
-                    <ul>
-                        <li *ngFor="let story of news"><a [routerLink]="['/ajankohtaista']">
-                            <h3>{{story.title}}</h3>
-                            <div class="story-posted">{{story.posted | date: 'dd.MM.yyyy'}}</div>
-                        </a></li>
-                    </ul>
+                    <a [routerLink]="'/lajit/' + ts.id" *ngFor="let ts of topical">
+                        <img [src]="ts.multimedia[0].thumbnailURL" [alt]="ts.vernacularName | capitalize">
+                        <div class="image-label">{{ ts.vernacularName | capitalize }}</div>
+                    </a>
                 </div>
             </div>
         </div>
-    </div> -->
-</div>
+    </div>
+</section>
+<section class="some-section">
+    <div class="container">
+        <div class="some-container">
+            <div class="fb-page" data-href="https://www.facebook.com/vieraslajit" data-tabs="timeline" data-width="340" data-height="500" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/vieraslajit" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/vieraslajit">Facebook</a></blockquote></div>
+            <a class="twitter-timeline" data-lang="fi" data-width="340" data-height="500" href="https://twitter.com/Vieraslajit?ref_src=twsrc%5Etfw">Twitter</a>
+        </div>
+    </div>
+</section>

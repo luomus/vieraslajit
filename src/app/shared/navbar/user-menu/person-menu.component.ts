@@ -23,7 +23,7 @@ import { Component, ViewChild, Renderer2, Output, Input, EventEmitter, AfterView
 export class PersonMenuComponent implements AfterViewInit {
     @Input() personName;
     @Output() onLogout = new EventEmitter<null>();
-    @ViewChild("hover_area") hoverArea: ElementRef;
+    @ViewChild("hover_area", { static: true }) hoverArea: ElementRef;
 
     showMenu = false;
 

@@ -15,4 +15,8 @@ export class NewsService {
           .newsFindAll(LajiApi.Endpoints.newsArray, {pageSize: pageSize, page: page, lang: lang, tag: tag});
   }
 
+  getArticle(id: string): Observable<NewsElement> {
+    return this.apiService.newsFindById(LajiApi.Endpoints.newsElement, id);
+  }
+
 }

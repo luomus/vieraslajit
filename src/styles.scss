@@ -3,22 +3,21 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import '../node_modules/bootstrap/scss/bootstrap-grid';
 @import '../node_modules/open-iconic/font/css/open-iconic-bootstrap.css';
-@import '../node_modules/laji-form/dist/styles.css';
 @import "~ng-pick-datetime/assets/style/picker.min.css";
 
 @import './assets/styles/card';
 @import './assets/styles/tabset.scss';
 @import './assets/styles/buttons.scss';
 
-@mixin background-blended {
+/* @mixin background-blended {
     @supports not (-webkit-overflow-scrolling: touch) {
         @supports (background-blend-mode: soft-light) {
             background-blend-mode: soft-light;
-            /* Texture pattern from https://www.transparenttextures.com/ */
+            // Texture pattern from https://www.transparenttextures.com/
             background-image: url("/assets/images/patterns/buried.png");
         }
     }
-}
+} */
 
 html, body {
     width: 100%;
@@ -27,73 +26,90 @@ html, body {
     padding: 0px;
     overflow-x: hidden;
     font-family: $font-family-base;
-    background-color: hsl(40, 20, 85);
+
     color: $neutral-7;
     font-size: 16px;
-
-    @include background-blended;
 
     @include media-breakpoint-up(xs) {
         font-size: 14px;
     }
     @include media-breakpoint-up(sm) {
-        font-size: 16px;
+        font-size: 15px;
     }
     @include media-breakpoint-up(md) {
-        font-size: 18px;
+        font-size: 16px;
     }
     @include media-breakpoint-up(lg) {
-        font-size: 19px;
+        font-size: 17px;
     }
     @include media-breakpoint-up(xl) {
-        font-size: 20px;
+        font-size: 17px;
     }
 }
-
-:focus {
-    outline: none;
+.body {
+    background: url("/assets/images/bg_icon.svg"), $neutral-4;
+    background-repeat: no-repeat;
+    background-size: 600px;
+    background-position: bottom right;
 }
 
 a {
-    color: $accent-5;
-    font-weight: 500;
+    color: $primary-7;
+    font-weight: 600;
     &:hover {
-        color: $accent-7;
-        text-decoration: none;
+        color: $primary-8;
     }
 }
 
 h1, h2, h3, h4, h5 {
-    line-height: 1.1;
-    font-family: $font-heading;
-    color: $neutral-8;
-    letter-spacing: 0.02em;
-    font-weight: 500;
+    line-height: 1.25;
+    color: $neutral-9;
 }
 
 h1 {
-    font-size: 2rem;
-    font-weight: 400;
+    color: $neutral-8;
+    font-weight: 600;
+    font-size: 1.6rem;
+    letter-spacing: -1px;
     @include media-breakpoint-down(lg) {
-        font-size: 1.75rem;
+        font-size: 1.6rem;
     }
 }
 
 h2 {
-    font-size: 1.5rem;
-    font-weight: 400;
+    color: $neutral-7;
+    font-weight: 500;
+    font-size: 1.3rem;
+    letter-spacing: -1px;
 }
 
 h3 {
-    font-size: 1.25rem;
+    color: $neutral-7;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: -.5px;
 }
 
 h4 {
+    color: $neutral-8;
+    font-weight: 400;
+    border-left: 4px solid $primary-5;
+    padding-left: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    letter-spacing: -.5px;
     font-size: 1.1rem;
 }
 
 h5 {
+    color: $neutral-7;
+    font-weight: 500;
     font-size: 1rem;
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: 1em;
 }
 
 .raised-1 {
@@ -109,19 +125,11 @@ h5 {
     height: 100%;
   }
 
-.laji-form .laji-form-map-container, .laji-form .popover {
-    z-index: 0;
-  }
-
-  .laji-form .blocking-loader {
-      z-index: 2;
-  }
-
 /* ngx-pagination */
 
 .ngx-pagination {
     li.current {
-        background: $accent-5;
+        background: $primary-4;
     }
 }
 
@@ -129,5 +137,21 @@ h5 {
     max-width: 80vw;
     @include media-breakpoint-down(xs) {
         max-width: 95vw;
+    }
+}
+
+div[role=dialog] {
+    .fade.modal-backdrop.in {
+        opacity: .2;
+        transition: unset;
+    }
+    &.fade.in.modal {
+        opacity: unset;
+        transition: unset;
+        .modal-dialog {
+            box-shadow: 0 2px 16px 0 rgba(0,0,0,.3);
+            transition: unset;
+            transform: unset;
+        }
     }
 }

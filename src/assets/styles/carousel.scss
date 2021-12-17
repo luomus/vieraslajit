@@ -53,10 +53,10 @@
 
 :host ::ng-deep .right.carousel-control {
     opacity: 0;
-    width: 200px;
+    width: 25%;
     &:hover {
         opacity: 1;
-        background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.3));
+        background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.4));
         transition: opacity 0.5s;
         cursor: pointer;
     }
@@ -64,10 +64,10 @@
 
 :host ::ng-deep .left.carousel-control {
     opacity: 0;
-    width: 200px;
+    width: 25%;
     &:hover {
         opacity: 1;
-        background: linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,0.3));
+        background: linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,0.4));
         transition: opacity 0.5s;
         cursor: pointer;
     }
@@ -75,15 +75,17 @@
 
 :host ::ng-deep .carousel-indicators li {
     background-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0px 0px 5px black;
+    box-shadow: 0px 0px 5px 1px black;
+    border: none;
+    margin: 10px 3px;
 }
 
-:host ::ng-deep .carousel-indicators:hover {
+:host ::ng-deep .carousel-indicators > li:hover {
     cursor: pointer;
 }
 
 :host ::ng-deep .carousel-indicators .active {
-    background-color: $accent-5;
+    background-color: $primary-4;
 }
 
 :host ::ng-deep .carousel-control-next-icon {
@@ -91,7 +93,7 @@
 }
 :host ::ng-deep .carousel-control-next-icon:before {
     @extend %glyphicon;
-    @extend %glyphicon-chevron-right:before;
+    @extend %glyphicon-chevron-right, :before;
     color: rgba(255,255,255,0.5);
 }
 
@@ -100,7 +102,7 @@
 }
 :host ::ng-deep .carousel-control-prev-icon:before {
     @extend %glyphicon;
-    @extend %glyphicon-chevron-left:before;
+    @extend %glyphicon-chevron-left, :before;
     color: rgba(255,255,255,0.5);
 }
 @font-face {

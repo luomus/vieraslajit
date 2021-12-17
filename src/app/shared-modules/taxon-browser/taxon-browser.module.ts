@@ -13,14 +13,16 @@ import { SpinnerModule } from '../../shared-modules/spinner/spinner.module';
 import { SharedModule } from '../../shared/shared.module';
 import { InformalGroupComponent } from './informal-group/informal-group.component';
 import { InformalGroupGridComponent } from './informal-group/informal-group-grid.component';
-import { TaxonMosaicComponent } from './taxon-mosaic/taxon-mosaic.component';
+import { TaxonGridComponent } from './taxon-grid/taxon-grid.component';
 import { GroupDropdownComponent } from './informal-group/group-dropdown.component';
 import { OptionsAccordionComponent } from './options-accordion.component';
+import { FilterInfoComponent } from './filter-info/filter-info.component';
+import { SelectSortOrderComponent } from './select-sort-order/select-sort-order.component';
 
 @NgModule({
     imports: [NgxPaginationModule, TabsModule, NgxDatatableModule, RouterModule,
         CommonModule, TranslateModule, FormsModule, SpinnerModule, SharedModule, InfiniteScrollModule],
-    declarations: [GroupDropdownComponent, TaxonMosaicComponent, TaxonBrowserComponent, TaxonBrowserListComponent, InformalGroupComponent, InformalGroupGridComponent, OptionsAccordionComponent ],
+    declarations: [GroupDropdownComponent, TaxonGridComponent, TaxonBrowserComponent, TaxonBrowserListComponent, InformalGroupComponent, InformalGroupGridComponent, OptionsAccordionComponent, FilterInfoComponent, SelectSortOrderComponent ],
     exports: [TaxonBrowserComponent]
 })
 export class TaxonBrowserModule {}

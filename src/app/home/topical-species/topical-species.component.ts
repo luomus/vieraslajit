@@ -4,15 +4,15 @@ import { Component, Input } from "@angular/core";
     selector: `vrs-topical-species`,
     template: `
 <div id="important">
-<div class="desc">
-<h2>Silmä tarkkana</h2>
-<p>Seuraavien Suomessa tavattujen vieraslajien havainnoista olisi erityisen tärkeää ilmoittaa:</p>
-</div>
+<header>
+    <h3 translate>topicalSpecies.header.title</h3>
+    <p translate>topicalSpecies.header.description</p>
+</header>
 <div class="list-container">
     <span class="oi oi-chevron-left" [ngClass]="{'disabled': this.currentPage <= 0}" (click)="backward()"></span>
     <ul>
         <li *ngFor="let taxon of taxa" [routerLink]="'/lajit/' + taxon.id">
-            <img [src]="taxon.multimedia[0].fullURL" alt="">
+            <img [src]="taxon.multimedia[0].thumbnailURL" [alt]="taxon.vernacularName | capitalize">
             <div>{{taxon.vernacularName | capitalize}}</div>
         </li>
     </ul>

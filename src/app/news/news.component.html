@@ -11,7 +11,7 @@
           </ul>
       </div>
       <div class="col-12 col-sm-auto">
-        <pagination-controls class="top-pagination" (pageChange)="onPageChange($event)" id="pagination-controls" maxSize='0'></pagination-controls>
+        <pagination-controls [previousLabel]="'previous' | translate" [nextLabel]="'next' | translate" class="top-pagination" (pageChange)="onPageChange($event)" id="pagination-controls" maxSize='0'></pagination-controls>
       </div>
     </div>
   </div>
@@ -19,13 +19,14 @@
 <div class="container">
   <laji-spinner [ngClass]="{'news-spinner': newsLoading}" [spinning]="newsLoading" [hideContentWhileLoading]='true' [fullViewport]='false'>
   <div *ngFor="let newsElement of (asyncNews | async | paginate: { id: 'pagination-controls', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems })" class="news-post row">
-    <div class="news-section">
+    <div class="col-12 news-section">
       <vrs-news-header [newsElement]="newsElement"></vrs-news-header>
-      
+
       <div class="news-content">
-        <p [innerHTML]="newsElement.content | parsewp">Post content</p>
+        <div [innerHTML]="newsElement.content | parsewp | truncate:300">Post content</div>
+      <a [routerLink]="['./', newsElement.id]">{{ 'news.readMore' | translate }}</a>
         <div class="text-right news-modified p-2">
-          <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span> 
+          <span *ngIf= "newsElement.modified">(<span translate>news.modified</span> </span>
           {{newsElement.modified | date: 'dd.MM.yyyy HH:MM'}}
           <span *ngIf= "newsElement.modified">)</span>
         </div>
@@ -38,7 +39,7 @@
 <div class="pagination-controls-container">
   <div class="container">
     <div class="pagination-controls">
-      <pagination-controls (pageChange)="onPageChange($event)" id="pagination-controls"></pagination-controls>
+      <pagination-controls [previousLabel]="'previous' | translate" [nextLabel]="'next' | translate" (pageChange)="onPageChange($event)" id="pagination-controls"></pagination-controls>
     </div>
   </div>
 </div>

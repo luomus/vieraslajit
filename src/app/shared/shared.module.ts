@@ -18,13 +18,11 @@ import { BsDropdownModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
 import { FormService } from './service/form.service';
 import { FormApiClient } from './api/FormApiClient';
 import { UserService } from './service/user.service';
-import { HttpModule } from '@angular/http';
 import { InformationService } from './service/information.service';
 import { SpinnerModule } from './../shared-modules/spinner/spinner.module'
 import { ObservationService } from './service/observation.service';
 import {EditcmsModule} from './../shared-modules/editcms/editcms.module';
 import { DocumentService } from './service/document.service';
-import { AlertService } from './service/alert.service';
 import { AreaService } from './service/area.service';
 import { HelpComponent } from './help/help.component';
 import { HelpPopupComponent } from './help/help-popup/help-popup.component';
@@ -40,6 +38,9 @@ import { TaxonNamePipe } from './pipe/taxonName.pipe';
 import { HtmlSanitizerPipe } from './pipe/html-sanitizer.pipe';
 import { LoaderService } from './service/loader.service';
 import { DateTranslatePipe } from './pipe/date-translate.pipe';
+import { SpreadSheetService } from './service/spread-sheet.service';
+import { TruncatePipe } from './pipe/truncate.pipe';
+import { HttpModule } from '@angular/http';
 /**
  * Provides common utilities for other modules
  */
@@ -60,10 +61,10 @@ import { DateTranslatePipe } from './pipe/date-translate.pipe';
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, NavbarContainer, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent, RouteTransformerDirective, TaxonNamePipe, HtmlSanitizerPipe, DateTranslatePipe],
+  declarations: [NavbarComponent, NavbarContainer, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent, RouteTransformerDirective, TaxonNamePipe, HtmlSanitizerPipe, DateTranslatePipe, TruncatePipe],
   providers: [],
   exports: [NavbarComponent, NavbarContainer, RouterModule, FooterComponent, SpinnerModule, EditcmsModule,
-    SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, CapitalizePipe, RouteTransformerDirective, TaxonNamePipe, HtmlSanitizerPipe, DateTranslatePipe]
+    SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, CapitalizePipe, RouteTransformerDirective, TaxonNamePipe, HtmlSanitizerPipe, DateTranslatePipe, TruncatePipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
@@ -81,9 +82,9 @@ export class SharedModule {
         InformationService,
         ObservationService,
         DocumentService,
-        AlertService,
         AreaService,
-        LoaderService
+        LoaderService,
+        SpreadSheetService
       ]
     };
   }

@@ -6,11 +6,8 @@ import { Observable } from 'rxjs';
 import { PagedResult } from '../model/PagedResult';
 import { Informal } from '../model/Informal';
 import { NewsElement } from '../model/NewsElement';
-import { Autocomplete } from '../model/Autocomplete';
-import { WarehouseQueryCount } from '../model/Warehouse';
 import { WarehouseQueryList } from '../model/Warehouse';
 import { Information } from '../model/Information';
-import { userProperty, UserService } from '../service/user.service';
 import { Document } from '../model/Document';
 
 /**
@@ -73,7 +70,6 @@ export class ApiService {
    * @param field Field type to be autocompleted: taxon, collection, friends, unit, person
    * @param query Query as defined by LajiApi.AutocompleteQuery
    */
-  autocompleteFindByField(endpoint: LajiApi.Endpoints.autocomplete, field: string, query: LajiApi.AutocompleteQuery): Observable<Autocomplete>;
   autocompleteFindByField(endpoint: LajiApi.Endpoints.autocomplete, field: string, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.get(
@@ -173,6 +169,14 @@ export class ApiService {
     return this.httpClient.get(
       url,
       { params: {...query} }
+    );
+  }
+
+  newsFindById(endpoint: LajiApi.Endpoints.newsElement, id: string): Observable<NewsElement>;
+  newsFindById(endpoint: LajiApi.Endpoints, id: string): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
+    return this.httpClient.get(
+      url
     );
   }
 
@@ -281,6 +285,15 @@ export class ApiService {
       {params: {'personToken': personToken}}
     );
   }
+
+  feedbackPost(endpoint: LajiApi.Endpoints.feedback, data: LajiApi.Feedback, personToken?: string): Observable<any> {
+    const url = `${environment.lajiApi.url}/${endpoint}`;
+    return this.httpClient.post(
+      url,
+      JSON.stringify(data),
+      {params: {'personToken': personToken}}
+    );
+  }
 }
 
 export namespace LajiApi {
@@ -294,6 +307,7 @@ export namespace LajiApi {
     taxonSpecies = 'taxa/%id%/species',
     documents = 'documents',
     description = 'taxa/%id%/descriptions',
+    feedback = 'feedback',
     media = 'taxa/%id%/media',
     metadataRange = 'metadata/ranges/%range%',
     newsArray = 'news',
@@ -349,6 +363,12 @@ export namespace LajiApi {
     page?: string;
     observerPersonToken?: string;
     invasive?:boolean;
+  }
+
+  export interface Feedback {
+    subject: string;
+    message: string;
+    meta: string;
   }
 
 }

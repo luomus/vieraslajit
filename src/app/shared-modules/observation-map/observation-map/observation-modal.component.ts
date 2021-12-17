@@ -13,7 +13,7 @@ import { environment } from "environments/environment";
     </button>
   </div>
   <div class="modal-body">
-    <iframe [src]="iframeUrl()"></iframe>
+    <iframe [title]="'observations.modal.iframe' | translate" [src]="iframeUrl()"></iframe>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" (click)="bsModalRef.hide()" translate>observations.modal.close</button>

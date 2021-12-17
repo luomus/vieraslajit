@@ -2,11 +2,9 @@ import { Injectable } from "../../../../../node_modules/@angular/core";
 import { EventEmitter } from "events";
 
 import { TaxonBrowserApiSettingsService } from "./taxon-browser-api-settings.service";
-import { TranslateService } from "../../../../../node_modules/@ngx-translate/core";
-import { Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
 import { Taxonomy } from "../../../shared/model";
-import { ApiService, LajiApi } from "../../../shared/api/api.service";
+import { TaxonService } from "app/shared/service/taxon.service";
 
 @Injectable()
 export class TaxonBrowserApiService {
@@ -18,7 +16,10 @@ export class TaxonBrowserApiService {
 
     eventEmitter:EventEmitter = new EventEmitter();
 
-    constructor(private settingsService:TaxonBrowserApiSettingsService, private apiService:ApiService, private translate:TranslateService) {
+    constructor(
+        private settingsService: TaxonBrowserApiSettingsService,
+        private taxonService: TaxonService
+    ) {
         this.query = {
             page: 1,
             pageSize: 12,
@@ -35,7 +36,7 @@ export class TaxonBrowserApiService {
                                 'species',
                                 'finnish'
                             ],
-            sortOrder: 'finnish_name'
+            sortOrder: 'observationCountInvasiveFinland DESC'
         };
     }
 
@@ -55,10 +56,16 @@ export class TaxonBrowserApiService {
         if (this.settingsService.apiSettings.FiList) {
             tempAdminStatusFilters.push('MX.controllingRisksOfInvasiveAlienSpecies');
         }
-        if (this.settingsService.apiSettings.PlantPest) {
+        if (this.settingsService.apiSettings.PlantPests) {
             tempAdminStatusFilters.push('MX.quarantinePlantPest');
+            tempAdminStatusFilters.push('MX.qualityPlantPest');
         }
         this.query.adminStatusFilters = tempAdminStatusFilters.toString();
+
+        if (this.settingsService.apiSettings.sortOrder) {
+            const s = this.settingsService.apiSettings.sortOrder;
+            this.query.sortOrder = s === 'observations' ? 'observationCountInvasiveFinland DESC' : s;
+        }
 
         if (this.settingsService.apiSettings.informalTaxonGroups) {
             this.query.informalGroupFilters = this.settingsService.apiSettings.informalTaxonGroups.toString();
@@ -70,11 +77,14 @@ export class TaxonBrowserApiService {
 
         this.settingsService.apiSettings.lang? this.query.lang = this.settingsService.apiSettings.lang : null;
 
-        this.settingsService.apiSettings.mode === 'list' ? this.query.pageSize = 2000 : this.query.pageSize = 12;
+        if (this.settingsService.apiSettings.mode === 'list') {
+            this.query.pageSize = 2000;
+            this.query.sortOrder = 'taxonomic';
+        } else this.query.pageSize = 12;
     }
 
     updateTaxa(append = false) {
-        this.apiService.taxonomyFindById(LajiApi.Endpoints.taxa, '', this.query).pipe(
+        this.taxonService.getTaxa(this.query).pipe(
             tap((res)=>{this.settingsService.apiSettings.total = res.total; this.lastPage = res.lastPage;}),
             map(res=>res.results)
         ).subscribe(res=>{

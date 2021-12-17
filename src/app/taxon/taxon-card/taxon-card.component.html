@@ -3,14 +3,19 @@
     <div class="row title-row">
       <div class="col-auto">
         <h1 *ngIf="taxon?.vernacularName">
-          {{ taxon.vernacularName[0].toUpperCase() + taxon.vernacularName.substr(1, taxon.vernacularName.length) }}
-          <img src="assets/images/logos/vieraslaji-logo-70x70.png" width="40" height="40" alt="">
+          <ng-container *ngIf="taxon.species || !taxon.finnish">{{taxon.vernacularName | capitalize}}</ng-container>
+          <ng-container *ngIf="!taxon.species && taxon.finnish">{{'taxonomy.nonspecies' | translate}} {{taxon.vernacularName}}</ng-container>
+          <span *ngIf="taxon?.alternativeVernacularName && taxon?.alternativeVernacularName[getCurrentLang()]" class="alternativeVernacularName"> ({{taxon.alternativeVernacularName[getCurrentLang()]}})</span>
+          <img src="assets/images/logos/vieraslajit_tekstiton.png" width="40" height="40" alt="Vieraslaji" title="Vieraslaji">
         </h1>
         <h5 [class.cursive]="taxon?.cursiveName">{{taxon?.scientificName}}</h5>
       </div>
       <div class="col-auto">
 <!--           <button class="btn vrs-button" routerLink='/taxon/{{id}}/comparison' translate>comparison.title</button> -->
-        <button routerLink="/ilmoita" id="report" class="btn vrs-button primary" translate>taxon.report</button>
+        <ng-container *ngIf="taxon?.customReportFormLink; else report">
+          <a [href]="taxon.customReportFormLink" class="btn vrs-button primary float-right mb-1" target="_blank" translate>taxon.report.custom</a>
+        </ng-container>
+        <ng-template #report><a [routerLink]="'/ilmoita/MHL.85/' + taxon?.id" [state]="{ name: taxon?.vernacularName ? taxon?.vernacularName : taxon?.scientificName }" class="btn vrs-button primary" translate>taxon.report</a></ng-template>
       </div>
     </div>
   </div>
@@ -18,8 +23,8 @@
   <div class="row">
     <div class="col-sm-12 order-2 col-md-7 order-md-1 left-container">
       <div id="taxoncard-cont" *ngIf="desc?.groups; else infoAndLajifiTemplate">
-        <div class="taxoncard" *ngFor="let group of desc?.groups; let first = first">
-          <div *ngFor="let variable of group.variables">
+        <div class="taxoncard" *ngFor="let variable of desc?.variables; let first = first">
+          <div>
             <h3>
               {{variable.title}}
             </h3>
@@ -32,64 +37,58 @@
     </div>
 
     <div class="col-sm-12 order-1 col-md-5 order-md-2">
-
-      <ng-container *ngIf="media != null && media.length > 0">
-        <div class="card taxon-info-card" id="taxoncard-right">
-          <div class="card-block">
-            <carousel id="image-carousel" [interval]="false">
-              <slide class="card-slide slide" *ngFor="let image of media">
-                <img class="img-fluid center-block" src="{{image.fullURL}}" (click)="openImage(imageModal, image)">
-              </slide>
-            </carousel>
+      <div class="card taxon-info-card" id="taxoncard-right">
+        <div class="card-block">
+          <carousel *ngIf="media && media.length > 0" id="image-carousel" [interval]="false">
+            <slide class="card-slide slide" *ngFor="let image of media">
+              <img alt="" class="img-fluid center-block" src="{{image.fullURL}}" (click)="openImage(imageModal, image)">
+            </slide>
+          </carousel>
+        </div>
+        <div class="taxon-info">
+          <div>
+            <strong>{{'taxon.name' | translate}}</strong>
+            {{taxon?.vernacularName}}
           </div>
-          <div class="taxon-info">
-            <div>
-              <strong>{{'taxon.name' | translate}}</strong>
-              {{taxon?.vernacularName}}
-            </div>
-            <div>
-              <strong>{{'taxon.scientific' | translate}}</strong>
-              <em>{{taxon?.scientificName}}</em>
-            </div>
-            <div>
-              <strong>{{'taxon.establishedFin' | translate}}</strong>
-              <span>{{taxon?.invasiveSpeciesEstablishment | metadatalabel: 'MX.invasiveSpeciesEstablishmentStatuses' | async}}</span>
-            </div>
-            <div>
-              <strong>{{'taxon.occurrence' | translate}}</strong>
-              <span>{{(taxon?.occurrenceInFinland | metadatalabel: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate
-                }}
-              </span>
-            </div>
-            <div>
-              <strong>{{'taxonomy.quarantinePlantPest' | translate}}</strong>
-              <span translate>{{quarantinePlantPest == true ? 'taxonomy.yes' : 'taxonomy.no' }}</span>
-            </div>
-            <hr/>
-            <ng-container *ngIf="taxon?.administrativeStatuses">
-              <div>
-                <!-- <strong translate>taxon.administrative</strong> -->
-                <ul>
-                  <li *ngFor="let status of taxon.administrativeStatuses">
-                    {{status | metadatalabel:'MX.adminStatusEnum' | async}}
-                  </li>
-                </ul>
-              </div>
-            </ng-container>
+          <div>
+            <strong>{{'taxon.scientific' | translate}}</strong>
+            <em>{{taxon?.scientificName}}</em>
           </div>
-        </div> <!-- /card -->
-      </ng-container>
+          <div *ngIf="taxon?.invasiveSpeciesEstablishment">
+            <strong>{{'taxon.establishedFin' | translate}}</strong>
+            <span>{{taxon?.invasiveSpeciesEstablishment | metadatalabel: 'MX.invasiveSpeciesEstablishmentStatuses' | async}}</span>
+          </div>
+          <div>
+            <strong>{{'taxon.occurrence' | translate}}</strong>
+            <span>{{(taxon?.occurrenceInFinland | metadatalabel: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate
+              }}
+            </span>
+          </div>
+          <hr/>
+          <ng-container *ngIf="taxon?.administrativeStatuses">
+            <div>
+              <!-- <strong translate>taxon.administrative</strong> -->
+              <ul>
+                <li *ngFor="let status of taxon.administrativeStatuses">
+                  {{status | metadatalabel:'MX.adminStatusEnum' | async}}
+                </li>
+              </ul>
+            </div>
+          </ng-container>
+        </div>
+      </div> <!-- /card -->
 
       <div class="taxon-card-map" *ngIf="taxon">
-        <div class="taxon-card-map-title" (click)="mapToggle = !mapToggle">
-          <h5>Havaintokartta</h5>
+        <div class="taxon-card-map-title" (click)="toggleMap()">
+          <h5 translate>taxon.map</h5>
           <span class="oi oi-chevron-bottom" [ngClass]="{'oi-chevron-bottom': mapToggle, 'oi-chevron-left': !mapToggle}"></span>
         </div>
         <div [ngStyle]="!mapToggle && {'display': 'none'}">
-          <vrs-observation-map [id]="taxon.id" [mapHeight]="600" [lajiLinkEnabled]="false"></vrs-observation-map>
+          <vrs-observation-map [id]="taxon.id" [mapHeight]="600" [showLegend]="false"></vrs-observation-map>
+          <vrs-map-legend></vrs-map-legend>
           <div class="row">
             <div class="col-12">
-                <button [routerLink]="['/havainnot']" [queryParams]="{taxonId: taxon.id}" class="btn vrs-button">Havaintokarttanäkymään</button>
+                <button [routerLink]="['/havainnot']" [queryParams]="{taxonId: taxon.id}" class="btn vrs-button" translate>taxon.viewOnMap</button>
             </div>
           </div>
         </div>
@@ -97,7 +96,9 @@
     </div>
 
     <ng-template #infoAndLajifiTemplate>
-      <a *ngIf="taxon" class='laji-fi-link' href='http://tun.fi/{{taxon.id}}' target="_blank" rel="noopener noreferrer">Tarkastele lajia laji.fi sivustolla</a>
+      <h3>{{desc?.speciesCardAuthors?.title}}</h3>
+      <div [innerHTML]="desc?.speciesCardAuthors?.content"></div>
+      <a *ngIf="taxon" href='http://tun.fi/{{taxon.id}}' target="_blank" rel="noopener noreferrer">{{'taxon.lajilink' | translate}}</a>
     </ng-template>
   </div>
   <br>
@@ -105,5 +106,9 @@
 </div>
 
 <ng-template #imageModal>
-  <img class="img-fluid modal-image" [src]="selectedImage.fullURL || selectedImage.largeURL" />
+  <img alt="" class="img-fluid modal-image" [src]="selectedImage.fullURL || selectedImage.largeURL" />
+  <label class="modal-label">
+    <div>{{selectedImage.taxon.vernacularName}}</div>
+    <div>{{selectedImage.author}}, {{selectedImage.copyrightOwner}}, <span [innerHTML]="selectedImage.licenseAbbreviation"></span></div>
+  </label>
 </ng-template>

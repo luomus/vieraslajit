@@ -1,29 +1,12 @@
-import { Component, Input, Output, EventEmitter } from "../../../../../node_modules/@angular/core";
-import { TranslateService } from "../../../../../node_modules/@ngx-translate/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
 import { Router } from "@angular/router";
 import { Taxonomy } from "../../../shared/model";
 
 @Component({
     selector: 'vrs-taxon-browser-list',
-    template: `<ngx-datatable class="material"
-                [rows]="taxa" [columnMode]="'force'" [columns]="columns"
-                [headerHeight]="50" [rowHeight]="50" [reorderable]='true'
-                [count]="taxa.length"
-                [sorts]="[{prop: 'vernacularName', dir: 'asc'}]"
-                [scrollbarV]="true"
-                (activate)="onDatatableActivate($event)"
-                infiniteScroll
-                [infiniteScrollDistance]="0.1"
-                [infiniteScrollThrottle]="1000"
-                [infiniteScrollContainer]="'datatable-body'"
-                [fromRoot]="true"
-                (scrolled)="onScroll()"
-                [messages]="{
-                    emptyMessage: getEmptyMessage()
-                }"
-                >
-               </ngx-datatable>`,
-    styleUrls: ['taxon-browser-list.component.scss']
+    templateUrl: './taxon-browser-list.component.html',
+    styleUrls: ['./taxon-browser-list.component.scss']
 })
 export class TaxonBrowserListComponent {
     private _taxa: Array<Taxonomy> = [];
@@ -41,10 +24,10 @@ export class TaxonBrowserListComponent {
         this.columns = [
             { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), comparator: this.comparator},
             { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), comparator: this.comparator },
-            { prop: 'stableString', name: this.translate.instant('taxonomy.established'), comparator: this.comparator },
-            { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), comparator: this.comparatorReverse },
-            { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), comparator: this.comparatorReverse },
-            { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), comparator: this.comparatorReverse }
+            { prop: 'stableString', name: this.translate.instant('taxonomy.established'), comparator: this.comparator, maxWidth: 180 },
+            { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), comparator: this.comparatorReverse, maxWidth: 180 },
+            { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), comparator: this.comparatorReverse, maxWidth: 180 },
+            { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), comparator: this.comparatorReverse, maxWidth: 180 }
         ];
     }
 
@@ -69,7 +52,7 @@ export class TaxonBrowserListComponent {
             taxon.isQuarantinePlantPest = false;
             if(taxon.administrativeStatuses){
                 taxon.onEUList = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.euInvasiveSpeciesList')));
-                taxon.onNationalList = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.nationalInvasiveSpeciesStrategy')));
+                taxon.onNationalList = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.controllingRisksOfInvasiveAlienSpecies')));
                 taxon.isQuarantinePlantPest = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.quarantinePlantPest')));
             }
             switch(taxon.invasiveSpeciesEstablishment) {
@@ -102,7 +85,7 @@ export class TaxonBrowserListComponent {
 
     onDatatableActivate(e) {
         if(e.type=="click") {
-            this.router.navigate(['/taxon', e.row.id]);
+            this.router.navigate(['/lajit', e.row.id]);
         }
     }
 

@@ -1,41 +1,63 @@
-import * as LM from 'laji-map';
-import LajiMap from 'laji-map/lib/map';
-import { TileLayerName, Data, DataOptions, GetFeatureStyleOptions, GetPopupOptions } from 'laji-map/lib/map.defs';
+import LajiMap from 'laji-map';
+import { TileLayerName, Data, DataOptions, GetFeatureStyleOptions, GetPopupOptions, Options, Lang } from 'laji-map/lib/map.defs';
 
 import { ObsMapData, VrsObservation, ObsMapDataMeta } from "./data/ObsMapData";
 import { ObsMapOptions } from './data/ObsMapOptions';
 import { PathOptions } from 'leaflet';
-import { Injectable, TemplateRef, ElementRef, ComponentFactoryResolver, Injector } from '@angular/core';
+import { Injectable, TemplateRef, ElementRef, ComponentFactoryResolver, Injector, OnDestroy } from '@angular/core';
 import { EventEmitter } from 'events';
 import { ObservationMapPopupComponent } from '../observation-map-popup.component';
 import { BsModalRef } from 'ngx-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+import { takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 /* Listens to updates in obsMapObservations
 and updates the map accordingly */
 
+const countToOpacityMap = (a: number): number => .2 + .4 * (Math.min(500, a) / 500)
+const obsIsConfirmed = obs => (
+    (
+        obs.unit.interpretations.recordQuality === 'EXPERT_VERIFIED'
+        || obs.unit.interpretations.recordQuality === 'COMMUNITY_VERIFIED'
+    )
+    || (
+        obs.document.linkings.collectionQuality === 'PROFESSIONAL'
+        && !(
+            obs.unit.interpretations.recordQuality === 'UNCERTAIN'
+            || obs.unit.interpretations.recordQuality === 'ERRONEUS'
+        )
+    )
+);
+
 @Injectable()
 
-export class MapService {
+export class MapService implements OnDestroy{
 
-    private map:LajiMap;
+    private map: any;
     private modalRef: BsModalRef;
+    private mapOptions: Options = {};
+    private unsubscribe$ = new Subject<void>();
 
     eventEmitter:EventEmitter = new EventEmitter();
 
     constructor(private obsMapOptions:ObsMapOptions,
                 private obsMapData:ObsMapData,
                 private resolver: ComponentFactoryResolver,
-                private injector: Injector) {}
+                private injector: Injector,
+                private translate: TranslateService) {}
 
     initializeMap(e:HTMLElement, modalRef: BsModalRef) {
         this.modalRef = modalRef
-        this.map = new LM.default({
+        this.map = new LajiMap({
             rootElem: e,
             popupOnHover: false,
             center: [65.2, 27],
             zoom: 2,
             zoomToData: false,
             tileLayerName: TileLayerName.maastokartta,
-            tileLayerOpacity: 0.4
+            draw: false,
+            lang: this.translate.currentLang as Lang,
+            ...this.mapOptions
         });
         this.map.tileLayer.setOpacity(0.4);
         this.obsMapData.eventEmitter.subscribe((data: ObsMapDataMeta) => {
@@ -47,10 +69,17 @@ export class MapService {
                     }
                     this.map.setData(this.getObservationMapData(this.getGeoJSONFromObservations(data.payload)));
             } else if (data.type == 'geojson') {
-                // theres a type error here. avoiding it by casting any type
-                this.map.setData(<any>this.getAggregateMapData(data.payload));
+                this.map.setData(this.getAggregateMapData(data.payload));
             }
         })
+        this.translate.onLangChange.pipe(
+            takeUntil(this.unsubscribe$)
+        ).subscribe(lang => this.map.lang = lang)
+    }
+
+    setControls(c: boolean) {
+        // @ts-ignore
+        this.mapOptions.controls = c;
     }
 
     zoomAt(center:[number, number], zoomLevel:number) {
@@ -68,6 +97,14 @@ export class MapService {
     private getObservationMapData(geoJSON):Data[] {
         let mapData=[];
         const obs: any[] = this.obsMapData.getData().payload
+        const featureIndexToObservation = geoJSON.features.map(
+            feature => obs.find(
+                (v) => v.unit.unitId == feature.properties.unitId
+            )
+        );
+        const featureIndexIsReliable = featureIndexToObservation.map(
+            obsIsConfirmed
+        );
 
         let dataOptions: DataOptions = {
             featureCollection: geoJSON,
@@ -77,20 +114,27 @@ export class MapService {
                 singleMarkerMode: true,
                 maxClusterRadius: 20
             },
-            getFeatureStyle: ():PathOptions=>{
-                let p:PathOptions = {
-                    color: "#f89525",
-                    fillColor: "#f89525",
+            getClusterStyle: (childCount: number, featureIdxs: number[], cluster): PathOptions => {
+                let color = '#cccccc';
+                let fillColor = '#cccccc';
+                if (featureIdxs.find(idx => featureIndexIsReliable[idx])) {
+                    color = '#f89525';
+                    fillColor = '#f89525';
                 }
-                return p;
+                return {
+                    color,
+                    fillColor,
+                    opacity: 1,
+                    fillOpacity: 1
+                };
             },
             getPopup: (options: GetPopupOptions):string=>{
-                const value = obs.find((v) => (v.unit.unitId == options.feature.properties.unitId))
+                const value = featureIndexToObservation[options.featureIdx]
                 const name = value.unit.linkings.taxon.vernacularName.fi ? value.unit.linkings.taxon.vernacularName.fi : "";
                 const municipality = value.gathering.interpretations ? value.gathering.interpretations.municipalityDisplayname : "";
                 const date = value.gathering.displayDateTime ? value.gathering.displayDateTime : "";
                 const notes = value.unit.notes ? value.unit.notes : "";
-                const reliability = value.unit.quality.reliable ? "Luotettava" : "";
+                const reliability = obsIsConfirmed(value) ? "Luotettava" : "";
 
                 this.eventEmitter.emit('onPopup', value);
 
@@ -114,15 +158,16 @@ export class MapService {
         return mapData;
     }
 
-    getAggregateMapData(geoJSONFeatures): LM.DataOptions[] {
-        let data: LM.DataOptions[] = []
-        data.push({
+    getAggregateMapData(geoJSONFeatures): DataOptions {
+        return {
+            cluster: false,
             featureCollection: {
                 type: "FeatureCollection",
                 features: geoJSONFeatures
             },
             getFeatureStyle: (options: GetFeatureStyleOptions):PathOptions=>{
-                const opacity = Math.min(0.5, Math.max(0.1, options.feature.properties.count * 0.0025))
+
+                const opacity = countToOpacityMap(options.feature.properties.count);
                 let p:PathOptions = {
                     color: "#f89525",
                     fillColor: "#f89525",
@@ -134,33 +179,33 @@ export class MapService {
             getPopup: (options: GetPopupOptions):string=>{
                 return "Havaintoja: " + geoJSONFeatures[options.featureIdx].properties.count;
             }
-        })
-        return data;
+        }
     }
 
     getGeoJSONFromObservations(obs: VrsObservation[]) {
-        let features = [];
-        obs.forEach((o)=>{
-            if(o.gathering && o.gathering.conversions) {
-                let f = {
-                    type: "Feature",
-                    geometry: {
-                        type: "Point",
-                        coordinates:
-                        [o.gathering.conversions.wgs84CenterPoint.lon,
-                            o.gathering.conversions.wgs84CenterPoint.lat]
-                        },
-                        properties: {
-                            unitId: o.unit.unitId
-                        }
-                    };
-                    features.push(f);
-                }
-            }
-        );
         return {
             type: "FeatureCollection",
-            features: features
-        };
+            features: obs.filter(
+                o => o.gathering && o.gathering.conversions
+            ).map(o => ({
+                type: "Feature",
+                geometry: {
+                    type: "Point",
+                    coordinates:
+                    [o.gathering.conversions.wgs84CenterPoint.lon,
+                        o.gathering.conversions.wgs84CenterPoint.lat]
+                    },
+                properties: {
+                    unitId: o.unit.unitId
+                }
+            }))
+        }
+    }
+
+    ngOnDestroy() {
+        if (this.unsubscribe$) {
+            this.unsubscribe$.next();
+            this.unsubscribe$.complete();
+        }
     }
 }

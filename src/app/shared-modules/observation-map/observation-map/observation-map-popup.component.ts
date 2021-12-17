@@ -4,19 +4,18 @@ import { ObservationModalComponent } from "./observation-modal.component";
 
 @Component({
     template: `
-<div class="popup-link-row">
-    <h5 translate>observation-map.popup.title</h5>
-    <a (click)="openModal(observationId, unitId)" class="oi oi-eye"></a>
-</div>
+<div class="popup">
+<h5 translate>observation-map.popup.title</h5>
 <hr>
-<div class="popup-link-row">
-    {{name.charAt(0).toUpperCase() + name.substr(1)}}
-    <a [routerLink]="['./lajit/', taxonId]" class="oi oi-info"></a>
+<div>{{name.charAt(0).toUpperCase() + name.substr(1)}}</div>
+<div>{{municipality}}</div>
+<div>{{date.substring(8, 10) + "." + date.substring(5, 7) + "." + date.substring(0, 4)}}</div>
+<div>{{reliability}}</div>
+<div>{{notes}}</div>
+<hr>
+<a (click)="openModal(observationId, unitId)" class="popup-link"><span class="oi oi-eye"></span>Tarkastele havaintoa</a>
+<a [routerLink]="['./lajit/', taxonId]" class="popup-link" target="_blank"><span class="oi oi-info"></span>Lue lisää lajista</a>
 </div>
-{{municipality}}<br>
-{{date.substring(8, 10) + "." + date.substring(5, 7) + "." + date.substring(0, 4)}}<br>
-{{reliability}}<br>
-{{notes}}<br>
 `
 })
 export class ObservationMapPopupComponent {

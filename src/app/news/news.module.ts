@@ -7,6 +7,8 @@ import { TabsModule } from 'ngx-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination'
 import { NewsHeaderComponent } from './news-header/news-header.component';
 import { NewsParamsService } from './news-params.service';
+import { NewsArticleComponent } from './news-article/news-article.component';
+import { NewsArticleFacade } from './news-article/news-article.facade';
 
 /**
  * Declares component and routes for the main news view of the app
@@ -19,7 +21,7 @@ import { NewsParamsService } from './news-params.service';
     TabsModule.forRoot(),
     NgxPaginationModule
   ],
-  declarations: [NewsComponent, NewsHeaderComponent],
-  providers: [NewsParamsService]
+  declarations: [NewsComponent, NewsHeaderComponent, NewsArticleComponent],
+  providers: [NewsParamsService, NewsArticleFacade]
 })
 export class NewsModule { }

@@ -1,0 +1,15 @@
+<div #autocomplete class='autocomplete'>
+    <span class="oi oi-magnifying-glass"></span>
+    <input #input autocomplete="off" type='text'
+           class='form-control'
+           placeholder="{{'observation-map.filterMenu.species.placeholder' | translate}}">
+    <a *ngIf="selected" class='oi oi-x icon' (click)="removeSelected()" (keyup)="keyEventRemoveSelected($event)" tabindex="0"></a>
+    <ul class="autocomplete-items">
+        <li *ngFor="let item of autocompleteItems"
+            (click)="onSelect(item)"
+            (keyup)="keyEvent($event, item)"
+            tabindex="0">
+            {{ item.value }}
+        </li>
+    </ul>
+</div>

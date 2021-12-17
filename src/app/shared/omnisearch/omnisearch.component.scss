@@ -22,14 +22,14 @@
 }
 
 input {
-  background: $neutral-1;
+  background: $neutral-3;
   color: $neutral-7;
   position: relative;
   z-index: 2000;
-  box-shadow: inset 1px 2px 3px hsla(0, 0, 0, 0.2);
+  box-shadow: inset 1px 2px 6px hsla(0, 0, 0, 0.2), 0px 0px 0px hsla(0, 0, 0, 0);
 
   &:focus {
-    box-shadow: inset 1px 2px 3px hsla(0, 0, 0, 0.2);
+    box-shadow: inset 0px 0px 0px hsla(0, 0, 0, 0), 1px 2px 6px hsla(0, 0, 0, 0.2);
     background: $neutral-1;
   }
 
@@ -76,13 +76,12 @@ input {
     width: 95vw;
   }
   .matches {
-    min-height: 14em;
     @include media-breakpoint-down(sm) {
       padding-bottom: 1em;
     }
   }
  .matches .active {
-    color:#fa7d09;
+    color: $primary-6;
     font-weight: bold;
   }
   .first-col {
@@ -120,7 +119,7 @@ input {
 }
 
 .match:hover {
-  color: $accent-5;
+  color: $primary-6;
 }
 
 .match.active {
@@ -130,9 +129,12 @@ input {
 .mode-selector {
   padding-bottom: 1em;
   a {
-    color: $accent-5;
+    color: $primary-6;
     cursor: pointer;
     margin-right: 0.5em;
+    &:hover {
+      color: $primary-8;
+    }
   }
   a.mode-active {
     cursor: default;
@@ -147,12 +149,16 @@ input {
 
 .content-item {
   padding-top: 1em;
-  color: $neutral-6;
-  h4 {
+  color: $neutral-7;
+  .content-link {
+    font-size: 1.2rem;
     display: inline-block;
     font-weight: 600;
-    color: $neutral-7;
+    color: $neutral-6;
     cursor: pointer;
+    &:hover {
+      color: $neutral-7;
+    }
   }
 }
 

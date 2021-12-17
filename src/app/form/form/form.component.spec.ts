@@ -4,16 +4,13 @@ import { FormService } from '../../shared/service/form.service';
 import { ApiService } from '../../shared/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormApiClient } from '../../shared/api/FormApiClient';
-import { HttpModule } from '@angular/http';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { UserService, userProperty } from '../../shared/service/user.service';
 import { DocumentService } from '../../shared/service/document.service';
-import { Inject, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormServiceMock } from '../../../testing/form/FormServiceMock';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRouteStub } from '../../../testing/activated-route-stub';
-import { AlertService } from '../../shared/service/alert.service';
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -23,11 +20,11 @@ describe('FormComponent', () => {
   beforeEach(async(() => {
     activatedRoute = new ActivatedRouteStub();
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, HttpModule, RouterTestingModule, TranslateModule.forRoot()],
+      imports: [HttpClientModule, RouterTestingModule, TranslateModule.forRoot()],
       declarations: [FormComponent],
       providers: [{ provide: FormService, useClass: FormServiceMock }, {
         provide: ActivatedRoute, useValue: activatedRoute
-      }, ApiService, FormApiClient, TranslateService, UserService, DocumentService, AlertService]
+      }, ApiService, FormApiClient, TranslateService, UserService, DocumentService ]
     })
       .compileComponents();
   }));

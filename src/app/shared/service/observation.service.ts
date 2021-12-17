@@ -1,40 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { PagedResult } from '../model/PagedResult';
-import { WarehouseQueryList } from '../model/Warehouse';
 import { ApiService, LajiApi } from '../api/api.service';
+
+const baseQuery = {
+  invasive: true,
+  countryId: "ML.206",
+  reliability: "RELIABLE,UNDEFINED",
+  needsCheck: false,
+}
 
 @Injectable()
 export class ObservationService {
 
   constructor(private apiService: ApiService) { }
 
-  
-  getObservationsById(taxonId: Array<string>, pageSize: string, page:string, observerPersonToken?:string):  Observable<PagedResult<WarehouseQueryList>> {
-    let query = {taxonId: taxonId, pageSize: pageSize, page: page, invasive:true}
-    if(observerPersonToken) query["observerPersonToken"] = observerPersonToken;
-    return this.apiService
-          .warehouseQueryListById(LajiApi.Endpoints.warehousequerylist, query);
-  }
-  /*
-  getObservationsbyPersonToken(personToken: string, pageSize: string):  Observable<any> {
-    return this.apiService
-          .documentsByPersonToken(LajiApi.Endpoints.documents, {personToken: personToken, pageSize: pageSize});
-  }
-  */
-
- getObservationsbyPersonToken(pageSize: string, page:string, personToken: string):  Observable<PagedResult<WarehouseQueryList>> {
-  return this.apiService
-        .getObservations(LajiApi.Endpoints.warehousequerylist, {pageSize: pageSize, invasive:true, page:page, observerPersonToken: personToken});
-}
-
-  getAllObservations(pageSize: string, page:string):  Observable<PagedResult<WarehouseQueryList>> {
-    return this.apiService
-          .getObservations(LajiApi.Endpoints.warehousequerylist, {pageSize: pageSize, invasive:true, page:page});
+  getObservationCount(query: any) {
+    const _query = {
+      ...baseQuery,
+      individualCountMin: 1,
+      ...query
+    };
+    return this.apiService.warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount, "count", _query);
   }
 
-  getObservations(query):  Observable<PagedResult<any>> {
-    return this.apiService
-          .getObservations(LajiApi.Endpoints.warehousequerylist, query);
+  getObservations(query: any) {
+    const _query = {
+      ...baseQuery,
+      page: 1,
+      pageSize: 10000,
+      ...query
+    }
+    return this.apiService.getObservations(LajiApi.Endpoints.warehousequerylist, _query);
   }
 }

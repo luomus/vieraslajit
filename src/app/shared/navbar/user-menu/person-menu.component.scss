@@ -1,7 +1,8 @@
 @import '../../../../assets/styles/vars';
 
 :host {
-    font-size: 0.9em;
+    display: block;
+    font-size: 0.8rem;
     position: relative;
     a {
         font-family: $font-family-base;
@@ -31,13 +32,12 @@
     content: '';
     display: block;
     position: absolute;
-    top: 0em;
-    left: 0em;
+    top: 0;
+    left: 0;
     border-radius: $content-border-radius;
     width: 100%;
     height: 100%;
-    background: $neutral-2;
-    opacity: 0.95;
+    background: $neutral-1;
 }
 
 .menu-bottom a {
@@ -45,12 +45,12 @@
     z-index: 1001;
     display: block;
 
-    color: $neutral-5;
-    text-decoration: none;
+    color: $neutral-6;
     cursor: pointer;
 
     &:hover {
         color: $neutral-8;
+        text-decoration: underline;
     }
 }
 

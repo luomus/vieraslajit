@@ -12,10 +12,11 @@ import {
   AfterViewInit,
   ElementRef,
   ViewChild,
-  Renderer2
+  Renderer2,
+  HostListener
 } from '@angular/core';
 import { Subscription, of } from 'rxjs'
-import { tap, combineLatest } from 'rxjs/operators'
+import { tap, combineLatest, debounceTime } from 'rxjs/operators'
 import { FormControl } from '@angular/forms'
 import { TaxonService } from '../../shared/service/taxon.service'
 import { ApiService } from '../../shared/api/api.service';
@@ -24,6 +25,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { GoogleSearchApiService } from '../api/google-search.api.service';
 import { environment } from '../../../environments/environment';
 import { isDescendant } from '../../utils';
+import { ObservationService } from '../service/observation.service';
 
 
 
@@ -66,15 +68,15 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   // Informal Taxon Group ID of currently selected taxon
   groupId = '';
 
-  @ViewChild('omniElement') omniElement: ElementRef;
-  @ViewChild('omniInput') omniInput: ElementRef;
+  @ViewChild('omniElement', { static: false }) omniElement: ElementRef;
+  @ViewChild('omniInput', { static: false }) omniInput: ElementRef;
 
 
   constructor(
 
     private changeDetector: ChangeDetectorRef,
-    private apiService: ApiService,
     private taxonservice: TaxonService,
+    private observationService: ObservationService,
     private router: Router,
     private translate: TranslateService,
     private renderer: Renderer2,
@@ -92,7 +94,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
       } else {
         this.open = false;
       }
-    })).subscribe(()=>{
+    }), debounceTime(500)).subscribe(()=>{
       this.updateTaxa();
     })
   }
@@ -161,7 +163,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
       this.taxon = this.taxa[index];
       this.subCnt = of(this.taxon.key).pipe(
       combineLatest(
-        this.taxonservice.getWareHouseQueryCount('count', 'fi', this.taxon.key),
+        this.observationService.getObservationCount({taxonId: this.taxon.key}),
         (id, cnt) => {
           return { id: id, cnt: cnt.total };
         }))
@@ -181,7 +183,15 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
 
   }
 
-  keyEvent(e) {
+  @HostListener('window:keyup', ['$event'])
+  onWindowKeyUp(e) {
+    // ESC
+    if (e.keyCode === 27) {
+      this.close();
+    }
+  }
+
+  onInputKeyUp(e) {
     // up key
     if (e.keyCode === 38) {
       if (this.taxa[this.active - 1]) {
@@ -201,7 +211,6 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
         this.close();
       }
     }
-
   }
 
   contentSearch() {
@@ -222,8 +231,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
     }
 
     this.loading = true;
-    this.subTaxa = this.taxonservice.getAutocomplete('taxon', this.search, this.translate.currentLang).subscribe(
-
+    this.subTaxa = this.taxonservice.getAutocomplete(this.search).subscribe(
       data => {
         this.taxa = data;
         this.loading = false;
@@ -231,13 +239,10 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
         this.changeDetector.markForCheck();
       }
     );
-
-
-
   }
 
   formatContentUrl(input: string) {
-    let output = input.replace(environment.baseUrl, '');
+    let output = input.replace(/.*(vieraslajit-dev.laji.fi|vieraslajit.fi|localhost:?\d+)/, '');
     return output;
   }
 }

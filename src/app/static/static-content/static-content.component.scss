@@ -21,7 +21,8 @@
 }
 
 .static-content {
-    min-width: 35rem;
+    max-width: 50rem;
+/*     min-width: 35rem;
     max-width: 40rem;
     @media only screen and (max-width: 1500px) {
         max-width: 30rem;
@@ -46,7 +47,7 @@
         width: 100%;
         min-width: 15rem;
         max-width: 30rem;
-    }
+    } */
 }
 
 .link {
@@ -80,114 +81,3 @@
     }
 }
 
-:host ::ng-deep {
-    img {
-        max-width: 750px;
-        height: auto;
-        @include media-breakpoint-down(lg) {
-            max-width: 600px;
-        }
-        @include media-breakpoint-down(md) {
-            max-width: 450px;
-        }
-        @include media-breakpoint-down(sm) {
-            max-width: 400px;
-        }
-        @include media-breakpoint-down(xs) {
-            max-width: 300px;
-        }
-    }
-
-    .wp-image-633 {
-        max-width: 500px;
-        margin-top: 1rem;
-        @include media-breakpoint-down(lg) {
-            max-width: 450px;
-        }
-        @include media-breakpoint-down(md) {
-            max-width: 400px;
-        }
-        @include media-breakpoint-down(sm) {
-            max-width: 350px;
-        }
-        @include media-breakpoint-down(xs) {
-            max-width: 300px;
-        }
-    }
-
-    .wp-image-566 {
-        max-width: 100px !important;
-    }
-
-    .center-child {
-        display:flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        img {
-            align-self: flex-end;
-        }
-    }
-
-    .viekas-horizontal-flex {
-        display: flex;
-        flex-flow: row nowrap;
-        margin: 10px 0;
-        @include media-breakpoint-down(sm) {
-            flex-flow: row wrap;
-        }
-
-        img {
-            max-width: 247px;
-            height: auto;
-            align-self: flex-end;
-        }
-    }
-
-    .viekas-vertical-flex {
-        display: flex;
-        flex-flow: column nowrap;
-        @include media-breakpoint-down(sm) {
-            flex-flow: column wrap;
-        }
-    }
-
-    .viekas-step-by-step {
-        h3 {
-            margin-bottom: 2rem;
-        }
-        ol li {
-            margin-bottom: 2rem;
-        }
-    }
-
-    .some-logos {
-        padding-left: 0;
-        li {
-            display: inline;
-            margin-right: 10px;
-        }
-        img {
-            max-height: 50px;
-            max-width: 50px;
-        }
-    }
-
-    .viekas-large-hr {
-        margin: 2rem 0;
-    }
-
-    .vrs-guide-container {
-        display: flex;
-        flex-flow: row wrap;
-    }
-
-    .vrs-guide {
-        flex: 1 0 50%;
-        display: flex;
-        flex-flow: column nowrap;
-        font-size: 0.9rem;
-        color: $neutral-7;
-        padding-right: 25px;
-        padding-bottom: 25px;
-    }
-}

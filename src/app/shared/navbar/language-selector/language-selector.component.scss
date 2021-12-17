@@ -1,19 +1,18 @@
 @import '../../../../assets/styles/vars';
 
-$highlight: $accent-5;
-
 .language-selector {
     background: none;
-    color: $neutral-6;
+    color: $neutral-7;
     border: none;
     font-weight: 400;
 }
 
-.language-selector a{
-    color: unset;
+a {
+    cursor: pointer;
+    &:hover {
+        color: $neutral-8;
+    }
+    &:focus {
+        outline: black auto 1px;
+    }
 }
-
-.language-selector a:hover {
-   color: $highlight;
-   cursor:pointer;
- }

@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectorRef, NgZone, ViewChild, TemplateRef } 
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "app/shared/service/user.service";
 import { FormsFacade } from "./forms.facade";
+import { Title, Meta } from "@angular/platform-browser";
+import { environment } from "environments/environment";
 
 @Component({
     selector: 'vrs-forms',
@@ -13,16 +15,37 @@ export class FormsComponent implements OnInit {
     columns = [];
     documents$;
 
-    @ViewChild('modifiedCell') modifiedCell: TemplateRef<any>;
-    @ViewChild('editCell') editCell: TemplateRef<any>;
+    @ViewChild('modifiedCell', { static: true }) modifiedCell: TemplateRef<any>;
+    @ViewChild('editCell', { static: true }) editCell: TemplateRef<any>;
 
     loggedIn = false;
     loginUrl = '';
 
     constructor(private translate: TranslateService,
+                private title: Title,
+                private meta: Meta,
                 private facade: FormsFacade) {}
 
     ngOnInit() {
+        const title = this.translate.instant('title.forms') + this.translate.instant('title.post');
+        this.title.setTitle(title)
+        this.meta.updateTag({
+            property: "og:title",
+            content: title
+        });
+        this.meta.updateTag({
+            property: "og:description",
+            content: this.translate.instant('og.forms.description')
+        });
+        this.meta.updateTag({
+            property: "description",
+            content: this.translate.instant('og.forms.description')
+        });
+        this.meta.updateTag({
+            property: "og:image",
+            content: environment.baseUrl + "/assets/images/logos/vieraslajit_logo.png"
+        });
+
         this.columns = [
             { prop: 'vernacularName', name: this.translate.instant('forms.list.vernacularName'), draggable: false, resizeable: false },
             { prop: 'municipality', name: this.translate.instant('forms.list.municipality'), draggable: false, resizeable: false },

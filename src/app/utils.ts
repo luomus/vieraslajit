@@ -9,3 +9,5 @@ export function isDescendant(parent, child) {
   }
   return false;
 }
+
+export const removeHTMLTagFragments = (s: string): string => s.replace(/<.*?(>|$)/g, '');

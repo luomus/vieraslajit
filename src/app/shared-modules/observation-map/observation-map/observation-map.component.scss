@@ -1,8 +1,11 @@
-@import '~@swimlane/ngx-datatable/release/index.css';
-@import '~@swimlane/ngx-datatable/release/themes/material.css';
-@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.css';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
 @import '../../../../assets/styles/datatable';
 @import '~bootstrap/scss/bootstrap-grid';
+@import '~laji-map/dist/styles.css';
+
+$zIndex: 800;
 
 #map {
   height: 400px;
@@ -72,12 +75,12 @@ a.laji-link {
   position: absolute;
   bottom: 10px;
   left: 10px;
-  color: $accent-5;
-  z-index: 400;
+  color: $neutral-6;
+  z-index: $zIndex;
   background: rgba(#fff, 0.5);
   padding: 5px;
   &:hover {
-      color: $accent-6;
+      color: $neutral-8;
   }
 }
 
@@ -93,7 +96,7 @@ vrs-map-filters {
   position: absolute;
   top: 75px;
   left: 50px;
-  z-index: 400;
+  z-index: $zIndex;
   @include media-breakpoint-down(xs) {
     top: 50px;
     left: 10px;
@@ -110,7 +113,7 @@ vrs-map-filters {
   box-shadow: 0 1px 3px rgba(#000, 0.3);
   padding: 20px;
   width: 500px;
-  z-index: 400;
+  z-index: $zIndex;
   @include media-breakpoint-down(md) {
     top: 70px;
     right: 0;
@@ -125,6 +128,12 @@ vrs-map-filters {
 :host ::ng-deep {
   .leaflet-rrose-content-wrapper {
     background: rgba(#333, 0.8);
+    border-radius: 5px;
+  }
+  .leaflet-rrose-close-button {
+    font-size: 22px;
+    right: 6px;
+    top: 2px;
   }
   .leaflet-rrose-tip.leaflet-rrose-tip-n {
     background: rgba(#333,0.8);
@@ -133,19 +142,22 @@ vrs-map-filters {
     width: 200px;
     color: $neutral-2;
     font-size: 0.8rem;
-    .popup-link-row {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-      .oi {
-        color: $neutral-2;
+    .popup {
+      .popup-link {
+        display: block;
+        color: $primary-4;
         cursor: pointer;
+        &:hover {
+          color: $primary-5;
+          text-decoration: underline;
+        }
+      }
+      .oi {
+        margin-right: 5px;
       }
       .oi-eye {
-        margin-right: 10px;
       }
       .oi-info {
-        margin-right: 13px;
       }
     }
     h5 {
@@ -167,7 +179,7 @@ vrs-map-filters {
   position: absolute;
   top: 25px;
   left: 50px;
-  z-index: 400;
+  z-index: $zIndex;
   @include media-breakpoint-down(xs) {
     left: 10px;
     top: 10px;
@@ -185,13 +197,55 @@ vrs-map-filters {
       background: $neutral-3;
       box-shadow: 0 1px 3px 0 rgba(black, 0), inset 0 1px 3px 0 rgba(black, 0.3);
     }
-    &:focus {
-      outline: unset;
-    }
+  }
+  .oi {
+    margin-right: 5px;
   }
 }
 
 .right-float-menu button.close {
     margin-top: -15px;
     margin-right: -12px;
+}
+
+:host ::ng-deep .leaflet-top.leaflet-left {
+  margin-top: 80px;
+  margin-left: 10px;
+  @include media-breakpoint-down(xs) {
+    margin-top: 50px;
+    margin-left: 0px;
+  }
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../../../../assets/fonts/glyphicons-halflings-regular.eot');
+  src: url('../../../../assets/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../../../../assets/fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../../../../assets/fonts/glyphicons-halflings-regular.woff') format('woff'), url('../../../../assets/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../../../../assets/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+:host ::ng-deep {
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-screenshot { &:before { content: "\e087"; } }
+}
+
+:host ::ng-deep .laji-map .leaflet-top {
+  z-index: 600;
+}
+
+.legend {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  background: rgba(white, .5);
+  z-index: 599;
 }

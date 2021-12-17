@@ -9,7 +9,8 @@ export class ObservationMapComponent {
   @Input() id?: string;
   @Input() listMenuEnabled?: boolean = false;
   @Input() filterMenuEnabled?: boolean = false;
-  @Input() lajiLinkEnabled?: boolean = true;
+  @Input() controls: boolean = false;
+  @Input() showLegend?: boolean = true;
 
   @Input() mapHeight: number = 400;
 

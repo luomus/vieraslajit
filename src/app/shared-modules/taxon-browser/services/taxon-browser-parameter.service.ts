@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TaxonBrowserApiSettingsService, TaxonBrowserApiSettings } from "./taxon-browser-api-settings.service";
+import { BehaviorSubject } from "rxjs";
 
 export interface TaxonBrowserQuery extends TaxonBrowserApiSettings {
     tab?: "grid" | "list";
@@ -10,7 +11,7 @@ export interface TaxonBrowserQuery extends TaxonBrowserApiSettings {
 export class TaxonBrowserParameterService {
 
     private query: TaxonBrowserQuery = {};
-    queryEventEmitter: EventEmitter<any> = new EventEmitter<any>();
+    queryEventEmitter: BehaviorSubject<TaxonBrowserQuery> = new BehaviorSubject<TaxonBrowserQuery>({});
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -30,7 +31,7 @@ export class TaxonBrowserParameterService {
             })
             this.query = mutated;
             this.settings.apiSettings = mutated;
-            this.queryEventEmitter.emit(mutated);
+            this.queryEventEmitter.next(mutated);
        })
     }
 

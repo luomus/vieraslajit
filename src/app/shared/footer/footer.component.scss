@@ -7,36 +7,24 @@
 }
 
 footer {
-    padding-top: 100px;
-    background: $neutral-3;
-}
-
-.footer-content {
-    font-size: 1rem;
-    color: rgba($neutral-1, 0.8);
-    border-top: 6px solid $accent-5;
-    box-shadow: 0px 0px 10px 0px $neutral-9;
-    a {
-        color: rgba($neutral-1, 0.7);
-        &:hover {
-            color: $accent-5;
-        }
-    }
+    padding-top: 20px;
 }
 
 .sitemap {
-    padding-top: 2em;
-    padding-bottom: 2em;
-    h5 {
-        color: rgba($neutral-1, 0.8);
-        margin-left: -0.5em;
-        font-size: 0.75em;
+    border-top: 1px solid rgba($neutral-5, .5);
+    border-bottom: 1px solid rgba($neutral-5, .5);
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    h6 {
+        font-size: .9rem;
         font-weight: 600;
-        text-transform: uppercase;
     }
-    ul {
-        list-style: none;
-        padding: 0;
+    p {
+        font-size: .9rem;
+    }
+    li {
+        font-size: .9rem;
     }
 }
 
@@ -80,6 +68,14 @@ footer {
     padding-left: 1vw;
 }
 
+.affiliate-img.luomus {
+    max-height: 40px;
+}
+
+.affiliate-img.laji {
+    max-height: 60px;
+}
+
 .mmm-img {
     max-height: 120px;
     height: 120px;
@@ -91,10 +87,10 @@ footer {
 
 .links {
     text-align:right;
-    color: $neutral-6;
+    color: $neutral-7;
     a {
-        color: $neutral-6;
-        font-size: 0.8em;
+        color: $neutral-7;
+        font-size: 0.9rem;
         &:hover {
             color: $neutral-9;
         }
@@ -102,67 +98,15 @@ footer {
 }
 
 .hero-credit {
-    font-size: 0.7rem;
-    color: $neutral-5;
+    font-size: 0.8rem;
+    color: $neutral-7;
     padding: 2px;
     padding-bottom: 10px;
     text-align: center;
     a {
-        color: $neutral-5;
-        font-weight: 600;
-    }
-}
-
-.vrs-container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.vrs-portal {
-    padding: 25px 0;
-    padding-bottom: 5px;
-}
-
-.vrs-logo {
-    vertical-align: bottom;
-    height: 2rem;
-    width: auto;
-}
-
-.vrs-title {
-    font-size: 1.2rem;
-    color: $neutral-6;
-    &:hover {
-        color: $neutral-8;
-    }
-}
-
-.vrs-description {
-    font-size: 0.9rem;
-    max-width: 35em;
-    margin: 0;
-    color: $neutral-6;
-}
-
-.laji-logo {
-    height: 80px;
-    width: auto;
-}
-
-.sll-desc {
-    flex: 1 0 100%;
-    & > a > img {
-        max-height: 2.5rem;
-        margin-right: 20px;
-    }
-    & > .desc {
         color: $neutral-6;
-        padding-bottom: 50px;
+        &:hover {
+            color: $neutral-9;
+        }
     }
-}
-
-#viekas-logo {
-    max-height: 2rem;
 }

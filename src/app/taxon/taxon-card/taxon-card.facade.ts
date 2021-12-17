@@ -1,15 +1,19 @@
 import { Injectable } from "@angular/core";
 import { Observable, BehaviorSubject, forkJoin } from "rxjs";
-import { Taxonomy, TaxonomyDescription, TaxonomyImage } from "app/shared/model";
+import { Taxonomy, TaxonomyDescription, TaxonomyImage, TaxonomyDescriptionGroup, TaxonomyDescriptionVariable } from "app/shared/model";
 import { map, distinctUntilChanged, tap } from "rxjs/operators";
 import { TaxonService } from "app/shared/service/taxon.service";
 import { TranslateService } from "@ngx-translate/core";
 
 interface State {
     taxon: Taxonomy
-    description: TaxonomyDescription
+    description: TaxonomyDescriptionFlattened
     media: TaxonomyImage[]
     quarantinePlantPest: boolean
+}
+
+export interface TaxonomyDescriptionFlattened extends TaxonomyDescription {
+  variables: TaxonomyDescriptionVariable2[]
 }
 
 @Injectable()
@@ -23,15 +27,15 @@ export class TaxonCardFacade {
 
     state$: Observable<State> = this.store$.asObservable()
 
-    taxon$: Observable<Taxonomy> = this.store$.asObservable().pipe(
+    taxon$: Observable<Taxonomy> = this.state$.pipe(
         map(state => state.taxon),
         distinctUntilChanged()
     );
-    description$: Observable<TaxonomyDescription> = this.store$.asObservable().pipe(
+    description$: Observable<TaxonomyDescriptionFlattened> = this.state$.pipe(
         map(state => state.description),
         distinctUntilChanged()
     );
-    media$: Observable<TaxonomyImage[]> = this.store$.asObservable().pipe(
+    media$: Observable<TaxonomyImage[]> = this.state$.pipe(
         map(state => state.media),
         distinctUntilChanged()
     );
@@ -49,7 +53,7 @@ export class TaxonCardFacade {
         )
     }
 
-    private updateDescription(description: TaxonomyDescription) {
+    private updateDescription(description: TaxonomyDescriptionFlattened) {
         this.updateState(
             {...this.store$.getValue(), description}
         )
@@ -70,20 +74,44 @@ export class TaxonCardFacade {
     ///////////////////
 
     private subscribeTaxon(taxonId: string) {
-        return this.taxonService.getTaxon(taxonId, this.translate.currentLang).subscribe(this.updateTaxon.bind(this))
+        const query = {
+          selectedFields: 'administrativeStatuses,vernacularName,scientificName,invasiveSpeciesEstablishment,occurrence,id,customReportFormLink,species,finnish,alternativeVernacularName'
+        };
+        return this.taxonService.getTaxon(taxonId, query).subscribe(this.updateTaxon.bind(this))
     }
 
     private subscribeDescription(taxonId: string) {
-        return this.taxonService.getTaxonDescription(taxonId, this.translate.currentLang).pipe(
+        return this.taxonService.getTaxonDescription(taxonId).pipe(
             map(arr => arr[0]),
-            tap(desc => {
-                sortDescriptionGroups(desc)
+            map(desc => {
+                //sortDescriptionGroups(desc)
+                return {
+                  ...desc,
+                  variables: getTaxonomyDescriptionVariables(desc)
+                }
             })
         ).subscribe(this.updateDescription.bind(this))
     }
 
     private subscribeMedia(taxonId: string) {
-        return this.taxonService.getTaxonMedia(taxonId, this.translate.currentLang).subscribe(this.updateMedia.bind(this));
+        return this.taxonService.getSpecies(taxonId, {
+          includeMedia: true
+        }).pipe(
+          map(res => res.results.filter(
+            taxon => taxon.multimedia && taxon.multimedia.length > 0
+          )),
+          map(taxa => {
+            if (taxa.length > 1) {
+              return taxa.map(
+                taxon => {
+                  return taxon.multimedia[0]
+                }
+              )
+            } else {
+              return taxa[0].multimedia
+            }
+          })
+        ).subscribe(this.updateMedia.bind(this));
     }
 
     /////////////
@@ -101,9 +129,44 @@ const descriptionGroupSortPosition = {
   "MX.SDVG13": 0
 }
 
+const descriptionVariableSortPosition = {
+  "MX.invasiveSpeciesClassificationDescription": 0,
+  "MX.descriptionText": 1,
+  "MX.identificationText": 2,
+  "MX.originAndDistributionText": 3,
+  "MX.distributionFinland": 4,
+  "MX.invasiveEffectText": 5,
+  "MX.invasivePreventionMethodsText": 6,
+  "MX.invasiveCitizenActionsText": 7,
+  "MX.miscText": Infinity
+}
+
+interface TaxonomyDescriptionVariable2 extends TaxonomyDescriptionVariable {
+  variable?: string
+}
+
+function getTaxonomyDescriptionVariables(desc: TaxonomyDescription): TaxonomyDescriptionVariable2[] {
+  if (desc && desc.groups) {
+    return desc.groups.reduce((prev: TaxonomyDescriptionVariable2[], curr) => {
+      prev.push(...curr.variables);
+      return prev;
+    }, []).sort((var1, var2) => {
+      const pos1 = var1.variable in descriptionVariableSortPosition ? descriptionVariableSortPosition[var1.variable] : 100;
+      const pos2 = var2.variable in descriptionVariableSortPosition ? descriptionVariableSortPosition[var2.variable] : 100;
+      if (pos1 < pos2) {
+        return -1;
+      } else if (pos1 > pos2) {
+        return 1;
+      } else {
+        return 0;
+      }
+    })
+  }
+}
+
 /**
- * IN PLACE
- * @param desc 
+ * Mutates desc
+ * @param desc
  */
 function sortDescriptionGroups(desc: TaxonomyDescription) {
   if (desc && desc.groups) {
@@ -114,7 +177,7 @@ function sortDescriptionGroups(desc: TaxonomyDescription) {
         pos1 = descriptionGroupSortPosition[group1.group]
       }
       if (group2.group in descriptionGroupSortPosition) {
-        pos2 = descriptionGroupSortPosition[group1.group]
+        pos2 = descriptionGroupSortPosition[group2.group]
       }
       if (pos1 < pos2) {
         return -1;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 /**
  * Hack for reloading components. Redirects back to the path given as parameter
@@ -11,15 +12,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ReloadComponent implements OnInit {
   
-  constructor(private router: Router, private route: ActivatedRoute) {
-
-  }
+  constructor(private router: Router, private route: ActivatedRoute, private location: Location) {}
 
   ngOnInit() {
-    let re: string = "";
-    for (const c of this.route.url["_value"]) {
-      re += ("/" + c.path);
-    }
-    this.router.navigate([re]);
+    const path = this.location.path().split('?')[0]
+    this.router.navigate(
+      [path],
+      {queryParams: this.route.snapshot.queryParams, skipLocationChange: true});
   }
 }

@@ -5,7 +5,6 @@ nav {
     box-shadow: 0 0 10px 0 $neutral-9;
     background: $primary-7;
     color: $neutral-2;
-    font-family: $font-heading;
     user-select: none;
 }
 
@@ -36,7 +35,7 @@ nav {
         color: $neutral-2;
         margin: 1em;
         &:hover {
-            color: $accent-5;
+            color: $primary-2;
         }
         .oi {
             font-size: 0.5em;
@@ -72,7 +71,7 @@ nav {
         color: $primary-2;
         cursor: pointer;
         &:hover {
-            color: $accent-5;
+            color: $primary-2;
         }
     }
 }
@@ -106,7 +105,7 @@ a.hamburger {
     justify-content: center;
     cursor: pointer;
     &:hover {
-        color: $accent-5;
+        color: $primary-2;
     }
     span {
         font-size: 1.4em;

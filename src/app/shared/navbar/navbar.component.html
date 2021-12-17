@@ -1,27 +1,24 @@
 <nav>
-    <section class="laji-toolbar" [ngClass]="{'heightFix': fixedTop}">
-        <div class="container">
-            <a target="_blank" href="https://foorumi.laji.fi/c/muut/vieraslajit" translate>navigation.top.forum</a>
-            <a target="_blank" href="https://laji.fi" translate>navigation.top.laji</a>
-            <vrs-language-selector></vrs-language-selector>
-        </div>
-    </section>
+    <section *ngIf="fixedTop" class="heightFix"></section>
     <section class="nav-top">
         <div class="container">
             <div class="header">
                 <a class="header-link" routerLink="/">
-                    <img class="viekas-logo" src="./assets/images/logos/VieKas-logo-RGB-cutout.png">
-                    <img class="life-logo" src="./assets/images/logos/life.png">
-<!--                Original Vieraslajit.fi heading
-                    <img class="vrs-logo-img vrs-logo" src="./assets/images/logos/vieraslaji-logo-160x160_cleaned.png">
-                    <span class="heading">Vieraslajit.fi</span> -->
+<!--                     <img class="viekas-logo" src="./assets/images/logos/VieKas-logo-RGB-cutout.png">
+                    <img class="life-logo" src="./assets/images/logos/life.png"> -->
+                    <div class="vrs-logo-container">
+                        <img alt="Vieraslajit.fi" class="vrs-logo" src="./assets/images/logos/vieraslajit_monochrome.svg">
+                    </div>
                 </a>
             </div>
-            <div class="login">
+            <div class="nav-top-right-wrapper">
+                <a [routerLink]="['./lajit']" [queryParams]="{'FiList': 'true'}" class="administrative-list btn vrs-button borderless"><img alt="" src="./assets/images/logos/flag-fi.png">{{ 'navigation.fiList' | translate }}</a>
+                <a [routerLink]="['./lajit']" [queryParams]="{'EuList': 'true'}" class="administrative-list btn vrs-button borderless"><img alt="" src="./assets/images/logos/flag-eu.png">{{ 'navigation.euList' | translate }}</a>
                 <vrs-user-menu [loginUrl]="loginUrl"
-                               [loggedIn]="loggedIn"
-                               [personName]="userPropertiesWrapper().person.fullName"
-                               (onLogout)="logout()"></vrs-user-menu>
+                            [loggedIn]="loggedIn"
+                            [personName]="userPropertiesWrapper().person.fullName"
+                            (onLogout)="logout()"></vrs-user-menu>
+                <vrs-language-selector></vrs-language-selector>
             </div>
         </div>
     </section>
@@ -31,30 +28,31 @@
             <vrs-omnisearch class="nav-omni"></vrs-omnisearch>
             <div class="nav-links">
                 <a class="link" routerLink="/lajit" routerLinkActive="active" translate>navigation.taxonomy</a>
-                <a class="link" routerLink="/ajankohtaista" routerLinkActive="active" [routerLinkActiveOptions]="{exact:false}" translate>navigation.news</a>
-                <a class="link" routerLink="/kansalaistoiminta" routerLinkActive="active" [routerLinkActiveOptions]="{exact:false}" translate>navigation.viekas</a>
-                <div class="dropdown link vrs-dropdown" dropdown>
+                <div class="dropdown link vrs-dropdown" tabindex="0" dropdown>
                 <a class="dropdown-toggle" translate>navigation.observations<span class="caret"></span></a>
                 <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
                     <li role="menuitem"><a class="dropdown-item"
                         routerLink="/havainnot" translate>navigation.observations.map</a></li>
                     <li role="menuitem"><a class="dropdown-item"
                         routerLink="/ilmoita" translate>navigation.observations.report</a></li>
+                    <li role="menuitem"><a class="dropdown-item"
+                        routerLink="/info/i-2277">{{'navigation.observations.report2' | translate}}</a></li>
                 </ul>
                 </div>
-<!--                 <div class="dropdown link vrs-dropdown" id="dropdown-about" dropdown>
-                    <a class="dropdown-toggle" translate>navigation.about<span class="caret"></span></a>
+                <a class="link" [routerLink]="['/info/', getFAQId()]" routerLinkActive="active" translate>navigation.FAQ</a>
+                <div class="dropdown link vrs-dropdown" id="dropdown-about" tabindex="0" dropdown>
+                    <a class="dropdown-toggle" translate>navigation.static<span class="caret"></span></a>
                     <div *dropdownMenu class="dropdown-menu" id="dropdown-menu" role="menu">
                         <div class="container">
                             <div class="row">
                                 <div *ngFor="let item of menu" class="col-3">
-                                    <h5><a routerLink="/info/{{item.id}}">{{item.title}}</a></h5>
-                                    <ng-container *ngIf="item.hasOwnProperty('children')"><a *ngFor="let child of item.children" routerLink="/info/{{child.id}}">{{child.title}}</a></ng-container>
+                                    <h5><a routerLink="/info/{{item.id}}" routerLinkActive="static-active">{{item.title}}</a></h5>
+                                    <ng-container *ngIf="item.hasOwnProperty('children')"><a *ngFor="let child of item.children" routerLink="/info/{{child.id}}" routerLinkActive="static-active">{{child.title}}</a></ng-container>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </section>

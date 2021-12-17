@@ -12,7 +12,7 @@ export class GroupDropdownComponent implements AfterViewInit {
 
     @Input() groups: string[];
     @Output() selected = new EventEmitter()
-    @ViewChild('elemwrapper') elementRef: ElementRef
+    @ViewChild('elemwrapper', { static: true }) elementRef: ElementRef
     constructor(private renderer: Renderer2, private changeDetector: ChangeDetectorRef) {}
     ngAfterViewInit() {
         this.renderer.listen(window, 'click', (e) => {

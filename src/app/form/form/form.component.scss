@@ -1,10 +1,14 @@
 @import '../../../assets/styles/vars';
 @import '~bootstrap/scss/bootstrap-grid';
+@import '~laji-form/dist/styles.css';
 
-
-.form-login {
-    padding: 2em;
-    font-size: 3rem;
+.info {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid $primary-4;
+    background-color: $primary-2;
+    color: $primary-8;
+    margin-bottom: 20px;
 }
 
 :host {
@@ -18,15 +22,35 @@
     z-index: 11;
     padding: 50px;
     width: 100%;
-    max-width: 50rem;
+    max-width: 1000px;
     background: $neutral-2;
-    margin-bottom: -50px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     box-shadow: 2px 2px 25px 0 rgba(0, 0, 0, 0.2);
     @include media-breakpoint-down(sm) {
         border-radius: 0;
         padding: 25px;
+    }
+}
+
+:host > div {
+    max-width: 100%;
+}
+
+:host ::ng-deep .vrs-form .btn {
+    background-color: $neutral-1;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
+    border: none;
+    color: $neutral-7;
+    &:hover {
+        background-color: $neutral-2;
+    }
+    &:active {
+        color: $neutral-7;
+        background-color: $neutral-2;
+    }
+    &:active:focus {
+        box-shadow:0 0 0 3px rgba($primary-5, 0.3);
     }
 }
 
@@ -38,6 +62,42 @@
     max-width: 35rem;
 }
 
-.vrs-laji-form {
-    width: 100%;
+
+.laji-form .laji-form-map-container, .laji-form .popover {
+    z-index: 0;
+  }
+
+.laji-form .blocking-loader {
+    z-index: 2;
+}
+
+:host ::ng-deep {
+    .laji-form-medias .taxon-img.media-container {
+        float: none;
+    }
+}
+
+// LOGIN
+
+.login-section {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.vrs-card {
+    max-width: 400px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+
+    background-color: $neutral-1;
+    border-radius: 5px;
+    box-shadow: 2px 0 6px 0 rgba(#000, .2);
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.form-login {
 }

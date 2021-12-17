@@ -12,38 +12,39 @@
 
 .news-header {
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+    flex-flow: row wrap;
 }
 
 .news-header-text {
 
 }
 
-.news-title {
+.news-title-container {
     padding-right: 15px;
-    font-size: 1.1em;
     max-width: 35em;
+}
+
+.news-title {
+    font-size: 1.1rem;
     font-weight: 600;
-    color: $neutral-8;
 }
 
 .news-tag {
-    background: $accent-1;
-    color: $accent-6;
+    background: $primary-1;
+    color: $primary-7;
     border-radius: 15px;
     font-size: .8rem;
     padding: 5px 10px;
     margin-left: 10px;
-    border: 1px solid $accent-2;
+    border: 1px solid $primary-3;
 }
 
 .news-posted {
-    color: lighten($neutral-8, 20);
+    color: $neutral-6;
 }
 
 .news-thumbnail {
     object-fit: scale-down;
-    max-height: 100px;
-    padding: 0 1em;
+    max-height: 200px;
+    max-width: 300px;
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, Input, ViewChild, ElementRef } from "@angular/core";
-import { TaxonSearchComponent } from "../taxon-search/taxon-search.component";
 import { TimeSelectorComponent } from "../time-selector/time-selector.component";
+import { TaxonSearchComponent } from "app/shared-modules/taxon-search/taxon-search.component";
 
 @Component({
     selector: 'vrs-map-filters',
@@ -21,14 +21,14 @@ export class FilterMenuComponent {
     @Output() taxonChange = new EventEmitter();
     @Output() onClose = new EventEmitter();
 
-    @ViewChild(TaxonSearchComponent) taxonSearch: TaxonSearchComponent;
-    @ViewChild(TimeSelectorComponent) timeSelector : TimeSelectorComponent;
+    @ViewChild(TaxonSearchComponent, { static: true }) taxonSearch: TaxonSearchComponent;
+    @ViewChild(TimeSelectorComponent, { static: true }) timeSelector : TimeSelectorComponent;
 
     updateMunicipality(val) {
         // TODO
     }
     updateTaxon(val) {
-        this.taxonSearch.fillValue(val, false);
+        this.taxonSearch.fillValue(val);
     }
     updateTime(val) {
         this.timeSelector.setTimeValue(val);

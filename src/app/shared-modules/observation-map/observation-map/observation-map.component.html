@@ -1,8 +1,8 @@
 <div class="map-container" #maprow>
   <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
   <div id="view-buttons" *ngIf="listMenuEnabled && filterMenuEnabled">
-    <button (click)="filterMenuHidden = !filterMenuHidden" [ngClass]="{'active': !filterMenuHidden}"><span class="oi oi-beaker"></span></button>
-    <button (click)="listHidden = !listHidden" [ngClass]="{'active': !listHidden}"><span class="oi oi-list"></span></button>
+    <button (click)="filterMenuHidden = !filterMenuHidden" [ngClass]="{'active': !filterMenuHidden}"><span class="oi oi-beaker"></span>{{ 'observation-map.filters' | translate }}</button>
+    <button (click)="listHidden = !listHidden" [ngClass]="{'active': !listHidden}"><span class="oi oi-list"></span>{{ 'observation-map.list' | translate }}</button>
   </div>
   <vrs-map-filters *ngIf="filterMenuEnabled"
     [hidden]="filterMenuHidden"
@@ -24,6 +24,9 @@
       <h5 class="observation-count"><b>{{getObservationCount() | number}}</b> {{'observation-map.count' | translate}}</h5>
       <p translate>observation-map.instructions</p>
     </div>
+    <a [href]="getLajiLink()" target="_blank" rel="noopener noreferrer" class="right-laji-link d-block mt-3" translate>observation-map.laji</a>
   </div>
-  <a *ngIf="lajiLinkEnabled" [href]="getLajiLink()" target="_blank" rel="noopener noreferrer" class="laji-link" translate>observation-map.laji</a>
+  <div class="legend" *ngIf="showLegend">
+    <vrs-map-legend></vrs-map-legend>
+  </div>
 </div>

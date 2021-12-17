@@ -2,27 +2,21 @@
 @import '../../../assets/styles/buttons';
 @import '~bootstrap/scss/bootstrap-grid';
 
-$focus-link-background: hsl(118, 20, 41);
-
-@mixin nav-background-blended {
-    @supports not (-webkit-overflow-scrolling: touch) {
-        @supports (background-blend-mode: soft-light) {
-            background-blend-mode: soft-light;
-            /* Texture pattern from https://www.transparenttextures.com/ */
-            background-image: url("/assets/images/patterns/billie-holiday.png");
-        }
-    }
-}
+$focus-link-background: $neutral-7;
 
 .container.container-navbar {
     padding: 0;
     max-width: 1400px;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 /* Background */
 nav {
     position: relative;
-    z-index: 1000;
+    z-index: 1002;
 
     /* COMPONENT BASE FONT SIZE */
     /* font-size: 0.8rem; */
@@ -41,42 +35,21 @@ nav {
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
 }
 
-.laji-toolbar {
-    position: relative;
-    background: $neutral-1;
-    font-size: 0.7em;
-    padding: 0.25em;
+.nav-top {
+    padding: 10px 10px;
+    background: $neutral-2;
     .container {
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
-        a {
-            color: $neutral-6;
-            margin-right: 1.5em;
-            &:hover {
-                color: $neutral-8;
-            }
-        }
+        justify-content: space-between;
     }
 }
 
 // compensates for lost height on scroll
 .heightFix {
-    padding-bottom: 63px;
+    padding-bottom: 54px;
     @include media-breakpoint-down(lg) {
-        padding-bottom: 42.09px;
-    }
-}
-
-.nav-top {
-    padding: 5px 0;
-    background: $neutral-1;
-    border-bottom: 1px solid $neutral-4;
-    padding-bottom: 15px;
-    .container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        padding-bottom: 52px;
     }
 }
 
@@ -88,19 +61,24 @@ nav {
     justify-content: flex-end;
     margin-right: 2em;
     .heading {
-        margin-left: 55px;
+        //margin-left: 55px;
         font-size: 1.25em;
-        font-family: $font-heading;
-        font-weight: 400;
-        color: $neutral-8;
+        color: $neutral-7;
         &:hover {
-            color: $accent-5;
+            color: $neutral-9;
+            text-decoration: underline;
         }
     }
     .header-link {
-        display: block;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-end;
+
+        margin-bottom: -10px;
+
         cursor: pointer;
-        outline: none;
+        max-height: 36px;
+        overflow: visible;
     }
 }
 
@@ -118,10 +96,25 @@ nav {
     }
 }
 
-.login {
+.nav-top-right-wrapper {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+}
+
+.administrative-list {
+    font-size: 0.8rem;
+    margin-right: 0.5em;
+    margin-bottom: -3px;
+    padding: 5px 10px;
+    color: $neutral-7;
+    white-space: normal;
+    text-align: left;
+    img {
+        margin-right: 0.25em;
+        height: 1rem;
+        width: auto;
+    }
 }
 
 .login-lang {
@@ -138,7 +131,7 @@ nav {
 }
 
 .nav-bottom {
-    background-color: hsl(40, 15, 93);
+    background-color: $neutral-2;
     color: $neutral-7;
     .container {
         display: flex;
@@ -159,11 +152,9 @@ nav {
             display: inline-block;
             padding: 1em 2em;
             cursor: pointer;
-            outline: none;
             &:hover {
                 color: $neutral-2;
                 background-color: $focus-link-background;
-                @include nav-background-blended;
             }
             @include media-breakpoint-down(lg) {
                 padding: 0.5em 1em;
@@ -175,10 +166,9 @@ nav {
         }
         .active {
             cursor: default;
-            background-color: $focus-link-background;
-            @include nav-background-blended;
+            background-color: $neutral-6;
             color: $neutral-2;
-            box-shadow: inset 0 0 20px 0 $primary-7;
+            box-shadow: inset 0 0 18px 0 rgba($neutral-8, .5);
         }
     }
 }
@@ -223,14 +213,13 @@ nav.notransition:after {
     color: $neutral-1;
 }
 
-/* Brand */
+.vrs-logo-container {
+    overflow: visible;
+}
+
 .vrs-logo {
-    position: absolute;
-    max-height: 50px;
-    bottom: 80px;
-    @include media-breakpoint-down(lg) {
-        bottom: 60px;
-    }
+    height: 36px;
+    display: block;
 }
 
 .viekas-logo {
@@ -252,7 +241,6 @@ nav .navbar-brand {
     color: rgba($neutral-1, 0.9);
     font-size: 1.2em;
     font-weight: 600;
-    outline: none;
 
     &:hover {
         color: $accent-5;
@@ -285,20 +273,26 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 
 .vrs-dropdown {
     .dropdown-menu {
-        background-color: $focus-link-background;
-        @include nav-background-blended;
-        border-radius: 10px;
+        border-top: 4px solid $neutral-7 !important;
+        background-color: $neutral-1;
+        border-radius: 2px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         border: none;
         font-size: 1em;
         margin-top: 0;
+        z-index: 1002;
+        a {
+            color: $neutral-7;
+            &:hover {
+                color: $neutral-1;
+                background: $neutral-6;
+            }
+        }
     }
 
     .dropdown-item:focus {
         background-color: $focus-link-background;
-
-        @include nav-background-blended;
     }
 
     .dropdown-item {
@@ -308,25 +302,27 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     .dropdown-item:hover {
         background-color: initial;
         color: $neutral-1;
-        background: $primary-6;
+        background: $neutral-6;
     }
 }
 
 .dropdown.link.vrs-dropdown {
     &:hover {
         color: $neutral-2 !important;
-        background-color: $focus-link-background;
-        @include nav-background-blended;
+        background-color: $neutral-6;
     }
+}
+
+#dropdown-menu {
+    box-shadow: 0px 10px 25px -5px rgba(0, 0, 0, 0.2);
 }
 
 #dropdown-about.vrs-dropdown {
     position: static;
     .dropdown-menu {
         padding: 2em;
-        box-shadow: 0px 10px 25px -5px rgba(0, 0, 0, 0.25);
-        background-color: $focus-link-background;
-        @include nav-background-blended;
+        box-shadow: 0px 10px 25px -5px rgba(0, 0, 0, 0.2);
+        background-color: $neutral-1;
         width: 100%;
         margin-top: 0px;
         border-radius: 0px;
@@ -340,21 +336,23 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
             font-size: 1em;
             margin-bottom: 0;
             a {
-                font-family: $font-heading;
-                color: hsl(95, 30, 90);
+                color: $neutral-6;
                 padding: 5px 10px;
                 margin-left: -10px;
+                &:hover {
+                    color: $neutral-1;
+                }
             }
         }
         a {
-            color: hsl(95, 30, 82);
+            color: $neutral-7;
             display: block;
             padding-left: 5px;
             margin-left: -5px;
             padding: 2px 5px;
             &:hover {
-                color: hsl(140, 30, 95);
-                background: $primary-6;
+                color: $neutral-1;
+                background: $neutral-6;
                 border-radius: 5px;
             }
         }
@@ -450,6 +448,13 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
     margin-left: 1vw;
 }
 
+:host ::ng-deep vrs-user-menu {
+}
+
+.oi-external-link {
+    margin-left: 5px;
+}
+
 /* #dropdown-user ul#dropdown-basic.dropdown-menu-right.show {
     background: $neutral-2;
     opacity: 0.9;
@@ -480,6 +485,11 @@ nav .navbar-nav li.nav-item a.nav-link:hover {
 
 /* Language Selector */
 
+:host ::ng-deep vrs-language-selector {
+    padding: 3px 11px;
+    font-size: .7rem;
+}
+
 #language-selector {
     @include media-breakpoint-down(md) {
         margin-left:8px;
@@ -509,8 +519,8 @@ a {
     height: 3px;
     z-index: 103;
     opacity: 1;
-    background: $accent-3;
-    animation: load 1s infinite;
+    background: $accent-2;
+    animation: load 2s infinite;
 }
 
 @keyframes load {
@@ -526,4 +536,11 @@ a {
         left: 0vw;
         right: 80vw;
     }
+}
+
+.static-active {
+    color: $neutral-1 !important;
+    background-color: $neutral-6 !important;
+    border-radius: 5px;
+    cursor: default;
 }

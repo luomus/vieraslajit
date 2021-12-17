@@ -9,35 +9,61 @@ export enum LoadingEvent {
 @Injectable()
 export class LoaderService {
     loading = new EventEmitter<LoadingEvent>();
-    _reqs = 0
+
+    private ttls: {[i: number]: number} = {};
+    private loaderNameIndex = 1;
 
     constructor(
         @Inject(DOCUMENT) private document: Document,
         @Inject(PLATFORM_ID) private platformId: object
-    ) {}
+    ) {
+        if (isPlatformBrowser(this.platformId)) {
+            window.setInterval(() => {
+                Object.entries(this.ttls).forEach(([key, ttl]) => {
+                    this.ttls[key] = ttl - 1;
+                    if (ttl <= 0) {
+                        this.complete(key);
+                    }
+                });
+            }, 1000);
+        }
+    }
 
     reset() {
-        this._reqs = 0;
+        this.ttls = {};
     }
-    register() {
+
+    register(name?: string | number, ttl = 5) {
+        let loaderName;
+        if (name) {
+            loaderName = name
+        } else {
+            loaderName = this.loaderNameIndex;
+            this.loaderNameIndex++;
+        }
+        this.ttls[loaderName] = ttl;
+
         this.loading.emit(LoadingEvent.Start);
-        this._reqs++;
+        return loaderName;
     }
-    complete() {
-        this._reqs--;
-        if (this._reqs === 0) {
+
+    complete(name: string | number) {
+        if (!name) {
+            console.error('LoaderService.complete: No loader name supplied!')
+            return;
+        }
+        delete this.ttls[name];
+
+        if (Object.keys(this.ttls).length === 0) {
             if(isPlatformBrowser(this.platformId)) {
                 setTimeout(() => {
-                    if (this._reqs === 0) {
+                    if (Object.keys(this.ttls).length === 0) {
                         this.loading.emit(LoadingEvent.End);
                     }
                 }, 100);
             } else {
                 this.loading.emit(LoadingEvent.End);
             }
-        }
-        if (this._reqs < 0) {
-            this._reqs = 0;
         }
     }
 }

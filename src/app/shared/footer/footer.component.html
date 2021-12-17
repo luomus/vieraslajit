@@ -1,107 +1,66 @@
-<!-- <footer class="container-fluid footer-content">
-  <ul class="list-inline">
-      <li class="list-inline-item"><a href="https://laji.fi/" translate>footer.laji</a></li>
-      <li class="list-inline-item"><a href="https://www.facebook.com/vieraslajit/" translate>footer.facebook</a></li>
-    </ul>
-</footer> -->
 <footer>
   <div class="container">
     <ul class="list-inline links">
-      <li class="list-inline-item"><a href="https://www.facebook.com/vieraslajit/" translate>footer.facebook</a></li>
+      <li class="list-inline-item"><a [routerLink]="['info', 'i-3998']" translate>footer.accessibility</a></li>
       <li class="list-inline-item">|</li>
-      <li class="list-inline-item"><a href="https://www.luomus.fi/fi/tietosuojaseloste" translate>footer.privacy</a></li>
+<!--  TODO kun saavutettavuusseloste saatavilla
+      <li class="list-inline-item"><a [routerLink]="" translate>Saavutettavuusseloste</a></li>
       <li class="list-inline-item">|</li>
-      <li class="list-inline-item"><a href="mailto:helpdesk@laji.fi?subject=Vieraslajit.fi" translate>footer.feedback</a></li>
+ -->
+      <li class="list-inline-item"><a href="https://laji.fi/about/713" target="_blank" translate>footer.privacy</a></li>
     </ul>
-  </div>
-  <div class="container vrs-container">
-    <div class="sll-desc">
-        <a href="https://www.sll.fi/" target="_blank"><img src="./../../../assets/images/logos/sll_logo_full.png" alt="Suomen luonnonsuojeluliitto"></a>
-        <a href="https://www.sll.fi/viekas-life" target="_blank"><img id="viekas-logo" src="./../../../assets/images/logos/VieKas-logo-RGB-cutout.png" alt="Viekas LIFE"></a>
-        <div class="desc">
-          <p translate>footer.viekas.coordinator</p>
-          <p translate>footer.viekas.disclaimer</p>
-        </div>
+    <div class="row mb-4 sitemap">
+      <div class="col-12 col-sm-4 mb-4">
+        <h6>{{'footer.sitemap.1' | translate}}</h6>
+        <ul>
+          <li><a [routerLink]="['info', findContentId(StaticContent.SiteInfo)]">{{'footer.sitemap.1.1' | translate}}</a></li>
+          <li><a [routerLink]="['info', findContentId(StaticContent.Info)]">{{'footer.sitemap.1.2' | translate}}</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-sm-4 mb-4">
+        <h6>{{'footer.sitemap.2' | translate}}</h6>
+        <ul>
+          <li><a href="https://www.ely-keskus.fi/ymparistoasiakaspalvelu" target="_blank">{{'footer.sitemap.2.1' | translate}}</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-sm-4 mb-4">
+        <h6>{{'footer.sitemap.3' | translate}}</h6>
+        <ul>
+          <li><a [routerLink]="['info', findContentId(StaticContent.Contact)]">{{'footer.sitemap.3.1' | translate}}</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="vrs-affiliates">
-    <!-- Affiliates -->
     <ul class="list-inline">
-      <li class="list-inline-item">
-        <a href="http://luomus.fi" target="_blank">
-          <img class="affiliate-img" [ngStyle]="{'max-height': '60px'}" alt="LUOMUS - Luonnontieteellinen keskusmuseo"
-              src="./../../../assets/images/logos/luomus_logo.png">
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="http://www.luke.fi/" target="_blank">
-          <img class="affiliate-img" alt="LUKE - Luonnonvarakeskus"
-              src="./../../../assets/images/logos/luke_logo.png">
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="http://www.luontoliitto.fi/" target="_blank">
-          <img class="affiliate-img" alt="Luontoliitto"
-              src="./../../../assets/images/logos/luonto_liitto.png">
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="https://www.jyvaskyla.fi/" target="_blank">
-          <img class="affiliate-img" alt="Jyväskylä"
-              src="./../../../assets/images/logos/jyvaskyla_logo.png">
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="https://www.riihimaki.fi/" target="_blank">
-          <img class="affiliate-img" alt="Riihimäki"
-              src="./../../../assets/images/logos/riihimaki-logo.png">
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="https://www.martat.fi/" target="_blank">
-          <img class="affiliate-img" alt="Martat"
-              src="./../../../assets/images/logos/martat_logo.png">
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div class="container pt-3"><hr></div>
-  <div class="container vrs-container">
-    <div>
-      <a target="_blank" href="http://vieraslajit.fi"><div class="vrs-portal">
-          <img class="vrs-logo" src="./assets/images/logos/vieraslaji-logo-160x160_cleaned.png">
-          <span class="vrs-title">Vieraslajit.fi</span>
-      </div></a>
-      <p class="vrs-description">{{'footer.viekas.portal.1' | translate}} <a target="_blank" href="http://vieraslajit.fi">vieraslajit.fi</a> {{'footer.viekas.portal.2' | translate}}</p>
-    </div>
-    <a target="_blank" href="https://laji.fi">
-      <img class="laji-logo" src="./assets/images/logos/LAJI_FI_sin.png">
-    </a>
-  </div>
-<!--   <div class="vrs-affiliates">
-    <ul class="list-inline">
-      <li class="list-inline-item">
-        <a href="http://luomus.fi" target="_blank">
-          <img class="affiliate-img" [ngStyle]="{'max-height': '60px'}" alt="LUOMUS - Luonnontieteellinen keskusmuseo"
-              src="./../../../assets/images/logos/luomus_logo.png">
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="http://www.luke.fi/" target="_blank">
-          <img class="affiliate-img" alt="LUKE - Luonnonvarakeskus"
-              src="./../../../assets/images/logos/luke_logo.png">
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a href="https://www.ely-keskus.fi/" target="_blank">
-          <img class="affiliate-img" alt="ELY - Elinkeino-, liikenne- ja ympäristökeskus"
-              src="./../../../assets/images/logos/ELY_logo2.png">
-        </a>
-      </li>
       <li class="list-inline-item">
         <a href="http://mmm.fi/etusivu/" target="_blank">
           <img class="affiliate-img mmm-img" alt="MMM - Maa- ja Metsätalousministeriö"
               src="./../../../assets/images/logos/MMM_logo_vaaka_2r_FIN_RGB.svg">
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a href="http://www.luke.fi/" target="_blank">
+          <img class="affiliate-img" alt="LUKE - Luonnonvarakeskus"
+              src="./../../../assets/images/logos/luke_logo.png">
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a href="http://luomus.fi" target="_blank">
+          <img class="affiliate-img luomus" alt="LUOMUS - Luonnontieteellinen keskusmuseo"
+              src="./../../../assets/images/logos/luomus_logo.png">
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a href="https://laji.fi/" target="_blank">
+          <img class="affiliate-img laji" alt="LAJI.fi - Suomen Lajitietokeskus"
+              src="./../../../assets/images/logos/LAJI_FI_sin.png">
+        </a>
+      </li>
+<!--       <li class="list-inline-item">
+        <a href="https://www.ely-keskus.fi/" target="_blank">
+          <img class="affiliate-img" alt="ELY - Elinkeino-, liikenne- ja ympäristökeskus"
+              src="./../../../assets/images/logos/ELY_logo2.png">
         </a>
       </li>
       <li class="list-inline-item">
@@ -117,12 +76,12 @@
         </a>
       </li>
       <li class="list-inline-item">
-        <a href="http://www.luontoliitto.fi/" target="_blank">
-          <img class="affiliate-img" alt="Luontoliitto"
-              src="./../../../assets/images/logos/luonto_liitto.png">
+        <a href="http://www.ruokavirasto.fi/" target="_blank">
+          <img class="affiliate-img" alt="Ruokavirasto"
+              src="./../../../assets/images/logos/ruokavirasto-logo.png">
         </a>
-      </li>
+      </li> -->
     </ul>
-  </div> -->
-  <div class="container hero-credit">{{'footer.headerCredit' | translate}}: <a href="https://www.geograph.org.uk/more.php?id=4030573">M. J. Richardson</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">Creative Commons BY SA 2.0 </a></div>
+  </div>
+  <div *ngIf="onHomePage$ | async" class="container hero-credit">{{'footer.headerCredit' | translate}}: Kimmo Rampanen, Juha Ahvenainen, Jari Niskanen - Vastavalo</div>
 </footer>

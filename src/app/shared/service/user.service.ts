@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../api/api.service';
-import { Observable ,  Subject } from 'rxjs';
+import { Observable ,  Subject, BehaviorSubject } from 'rxjs';
 
 export enum userProperty {
   PERSON = 'person',
@@ -16,7 +16,7 @@ export enum Role {
 @Injectable()
 export class UserService {
 
-  public loginStateChange: Subject<any> = new Subject<any>();
+  public loginStateChange: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(private apiService: ApiService) { }
 
@@ -27,7 +27,7 @@ export class UserService {
       + '&next=' + next).replace('%lang%', 'fi');
   }
 
-  public static getUserProperties() {
+  public static getUserProperties(): any {
     let res = {};
     for (let u in userProperty) {
       res[userProperty[u]] = JSON.parse(window.sessionStorage.getItem(userProperty[u]));
@@ -61,7 +61,7 @@ export class UserService {
     UserService.clearUserProperties();
     UserService.clearUserToken();
     this.setUserProperty(userProperty.LOGIN, false);
-    this.loginStateChange.next();
+    this.loginStateChange.next(null);
   }
 
   private static clearUserProperties() {
@@ -89,7 +89,7 @@ export class UserService {
         this.setUserProperty(userProperty.PERSON, data);
 
         this.setUserProperty(userProperty.LOGIN, "true");
-        this.loginStateChange.next();
+        this.loginStateChange.next(null);
         s.next();
       }, (error) => {
         s.next(error);

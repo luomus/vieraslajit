@@ -5,13 +5,16 @@ import * as moment from 'moment';
 import { UserService } from '../../../shared/service/user.service';
 import { ObsMapOptions, ObsMapOption } from './services/data/ObsMapOptions';
 import { MapApiService } from './services/MapApiService';
-import { ObsMapListComponent } from './obs-map-list/obs-map-list';
-import { TaxonSearchComponent } from './taxon-search/taxon-search.component';
+import { ObsMapListComponent } from './obs-map-list/obs-map-list.component';
 import { ObsMapData } from './services/data/ObsMapData';
 import { BsModalRef } from 'ngx-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MapService } from './services/MapService';
 import { FilterMenuComponent } from './filter-menu/filter-menu.component';
+import { TaxonSearchComponent } from 'app/shared-modules/taxon-search/taxon-search.component';
+import { map, tap } from 'rxjs/operators';
+import { TaxonService } from 'app/shared/service/taxon.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'vrs-observation-map',
@@ -23,19 +26,21 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
   @Input() id?: string;
   @Input() listMenuEnabled?: boolean = false;
   @Input() filterMenuEnabled?: boolean = false;
-  @Input() lajiLinkEnabled?: boolean = true;
-
+  @Input() showLegend?: boolean = true;
+  @Input() set controls(c: boolean) {
+    this.mapService.setControls(c)
+  }
   @Input() mapHeight: number = 400;
 
-  @ViewChild('maprow') mapRow: ElementRef;
+  @ViewChild('maprow', { static: true }) mapRow: ElementRef;
 
-  @ViewChild(ObsMapListComponent)
+  @ViewChild(ObsMapListComponent, { static: false })
   mapTaxonList : ObsMapListComponent;
 
-  @ViewChild(TaxonSearchComponent)
+  @ViewChild(TaxonSearchComponent, { static: false })
   taxonSearch : TaxonSearchComponent;
 
-  @ViewChild(FilterMenuComponent)
+  @ViewChild(FilterMenuComponent, { static: false })
   filterMenu : FilterMenuComponent;
 
   bsModalRef: BsModalRef;
@@ -43,23 +48,24 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
   municipalities:Array<any> = [];
   isLoggedIn = UserService.loggedIn();
 
-  filterMenuHidden = false;
-  listHidden = false;
+  filterMenuHidden = true;
+  listHidden = true;
 
   resizeUnlisten = () => {}
 
   constructor(private obsMapOptions:ObsMapOptions,
-              private mapApiController:MapApiService,
+              private mapApiService:MapApiService,
               private mapService:MapService,
               private obsMapData: ObsMapData,
               private route: ActivatedRoute,
+              private taxonService: TaxonService,
+              private translate: TranslateService,
               private router: Router,
               private renderer: Renderer2,
               private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.mapApiController.initialize();
-    this.mapApiController.getAreas().subscribe((r)=>{
+    this.mapApiService.getAreas().subscribe((r)=>{
       r.results.forEach(element => {
         this.municipalities.push(element);
       });
@@ -109,7 +115,9 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
         strToBool(res['plantPest'])
       );
       if (res['taxonId']) {
-        this.filterMenu.updateTaxon(res['taxonId']);
+        this.taxonService.getTaxon(res['taxonId'], this.translate.currentLang).subscribe(
+          res => this.filterMenu.updateTaxon(res.vernacularName)
+        )
         this.obsMapOptions.setOptionSilent("id", res['taxonId']);
       } else if (this.filterMenu) {
         this.filterMenu.updateTaxon(null);
@@ -145,7 +153,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
 
     if(this.id) {
       if (this.taxonSearch) this.taxonSearch.fillValue(this.id);
-      this.obsMapOptions.setOption('id', this.id);
+      this.obsMapOptions.setOptionSilent('id', this.id);
     }
 
     if(this.mapTaxonList) this.mapTaxonList.eventEmitter.addListener("change", (e)=>{
@@ -219,7 +227,10 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
     temp ? this.obsMapOptions.setOptionSilent(option, optionValue) : this.obsMapOptions.setOptionSilent(option, null);
   }
 
-  onTimeChange(event: any[]) {
+  onTimeChange(event: any[] | undefined) {
+    if (!event) {
+      this.updateQueryParam('time', undefined);
+    }
     const startMoment = moment(event[0])
     const endMoment = moment(event[1])
     const start = startMoment.format("YYYY-MM-DD");
