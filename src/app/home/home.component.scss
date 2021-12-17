@@ -178,3 +178,29 @@ ul.news-list > li > hr {
         color: #fff;
     }
 }
+
+.viekas {
+    max-width: 340px;
+    background: $neutral-2;
+    margin: 0 20px;
+    margin-top: 20px;
+    padding: 30px;
+    box-shadow: $raised-1;
+    .logos {
+        display: flex;
+        flex-flow: row wrap;
+    }
+    img {
+        display: block;
+        margin-bottom: 16px;
+        margin-right: 16px;
+    }
+    .viekas-logo {
+        width: 150px;
+    }
+    .life-logo {
+        width: 50px;
+    }
+    a {
+    }
+}

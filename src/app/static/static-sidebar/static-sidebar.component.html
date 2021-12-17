@@ -1,12 +1,23 @@
+<!-- TODO: Refactor to support depth n trees... -->
 <h5>{{title}}</h5>
 <div class="level-0" *ngFor="let item0 of levels[0]">
     <a [routerLink]="'../' + item0?.id" [ngClass]="{'active': item0?.id === activeId}">{{item0.title}}</a>
     <ng-container *ngIf="item0.active">
-        <div class="level-1" *ngFor="let item1 of levels[1]">
+        <div class="level-n" *ngFor="let item1 of levels[1]">
             <a [routerLink]="'../' + item1?.id" [ngClass]="{'active': item1?.id === activeId}">{{item1.title}}</a>
             <ng-container *ngIf="item1.active">
-                <div class="level-2" *ngFor="let item2 of levels[2]">
+                <div class="level-n" *ngFor="let item2 of levels[2]">
                     <a [routerLink]="'../' + item2?.id" [ngClass]="{'active': item2?.id === activeId}">{{item2.title}}</a>
+                    <ng-container *ngIf="item2.active">
+                        <div class="level-n" *ngFor="let item3 of levels[3]">
+                            <a [routerLink]="'../' + item3?.id" [ngClass]="{'active': item3?.id === activeId}">{{item3.title}}</a>
+                            <ng-container *ngIf="item3.active">
+                                <div class="level-n" *ngFor="let item4 of levels[4]">
+                                    <a [routerLink]="'../' + item4?.id" [ngClass]="{'active': item4?.id === activeId}">{{item4.title}}</a>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </ng-container>
                 </div>
             </ng-container>
         </div>

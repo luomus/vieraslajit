@@ -2,9 +2,7 @@
 @import '~bootstrap/scss/bootstrap-grid';
 
 :host {
-    @include media-breakpoint-up (xl) {
-        min-width: 300px;
-    }
+    max-width: 400px;
 }
 
 h5 {
@@ -27,13 +25,7 @@ h5 {
 
 }
 
-.level-1 {
-    margin-left: 0.5em;
-    padding-left: 0.5em;
-    border-left: 2px dashed rgba(#000, 0.1);
-}
-
-.level-2 {
+.level-n {
     margin-left: 0.5em;
     padding-left: 0.5em;
     border-left: 2px dashed rgba(#000, 0.1);
@@ -41,6 +33,7 @@ h5 {
 
 a {
     color: $neutral-6;
+    white-space: nowrap;
     &:hover {
         color: $neutral-8;
         text-shadow: 0 0 1px rgba(#000, 0.3);
