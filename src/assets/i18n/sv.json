@@ -65,6 +65,7 @@
   "forms.list.vernacularName": "Allmänspråkligt namn",
   "forms.title": "Rapportformulär för invasiva främmande arter",
   "gathering.eventDate.begin": "Datum",
+  "home.campaign": "Osallistu soolotalkoisiin",
   "home.desc.1": "Vad är en främmande art?",
   "home.desc.2": "En främmande art är en art som har spridit sig till ett nytt område med mänsklig intervention.",
   "home.desc.3": "Läs mer om definitionerna av främmande arter",
@@ -73,8 +74,11 @@
   "home.moreNews": "Mera nyheter",
   "home.title": "Främmander arter till kontroll",
   "home.topicalSpecies": "Aktuella arter",
+  "home.viekas.a": "VieKas LIFE",
   "home.viekas.calendar": "Evenemangskalendar",
   "home.viekas.description": " VieKas LIFE (2018–2023) är Finlands största och mest ambitiösa projekt som syftar till att kartlägga, förebygga och öka medvetenheten om invasiva främmande arter. I projektet lär finländarna känna skadliga invasiva främmande arter med exempelarter som jättepalsamin, jätteloka och skunkkalla.",
+  "home.viekas.h": "Kansalaistoiminta",
+  "home.viekas.p": "Kiinnostaako vieraslajityö? Tutustu kansalaistoimintaan ja tule mukaan!",
   "home.viekas.report": "Rapportera en observation av invasiva främmande arter",
   "home.viekas.title": "VieKas LIFE",
   "home.viekas.viekasLink": "Till Viekas LIFE-sidorna",
@@ -217,6 +221,5 @@
   "topicalSpecies.header.description": "Det är särskilt viktigt att rapportera observationer av följande främmande arter som som hittats i Finland.",
   "topicalSpecies.header.title": "Observera",
   "true": "Ja",
-  "vieraslajit.fi": "nyhet",
-  "home.campaign": "Delta i solotalkot"
+  "vieraslajit.fi": "nyhet"
 }

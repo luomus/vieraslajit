@@ -65,6 +65,7 @@
   "forms.list.vernacularName": "Common name",
   "forms.title": "Report form for invasive alien species",
   "gathering.eventDate.begin": "Date",
+  "home.campaign": "Osallistu soolotalkoisiin",
   "home.desc.1": "What is an invasive alien species?",
   "home.desc.2": "An invasive alien species is a species that has spread to a new area with human intervention.",
   "home.desc.3": "Read more about the definitions of invasive alien species",
@@ -73,8 +74,11 @@
   "home.moreNews": "More news",
   "home.title": "Invasive alien species under controll",
   "home.topicalSpecies": "Topical species",
+  "home.viekas.a": "Finvasive LIFE",
   "home.viekas.calendar": "Event calendar",
   "home.viekas.description": "VieKas LIFE (2018–2023) is the Finland’s largest and most ambitious project that aims to survey, prevent and raise awareness of invasive alien species. In the project, Finns are familiarized with harmful invasive alien species with example species such as Indian balsam, giant hogweeds and yellow skunk gabbage..",
+  "home.viekas.h": "Citizen Science",
+  "home.viekas.p": "Are you interested in joining the forces to tackle the invasive alien species problem. Get acquainted to citizen activities and participate!",
   "home.viekas.report": "Report an observation of invasive alien species",
   "home.viekas.title": "VieKas LIFE",
   "home.viekas.viekasLink": "To Viekas LIFE pages",
@@ -217,6 +221,5 @@
   "topicalSpecies.header.description": "It is especially important to report the observations of the following invasive alien species found in Finland.",
   "topicalSpecies.header.title": "Keep an eye on",
   "true": "Yes",
-  "vieraslajit.fi": "news",
-  "home.campaign": "Take part in eradication campaign"
+  "vieraslajit.fi": "news"
 }
