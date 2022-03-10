@@ -10,7 +10,7 @@
                         <h2 translate>home.h2</h2>
                         <p><b translate>home.desc.1</b> {{'home.desc.2' | translate}} <a [routerLink]="['/info', getReadMoreId()]" translate>home.desc.3</a></p>
                         <a class="btn vrs-button accent mr-2" routerLink="/ilmoita" translate>navigation.observations.report</a>
-<!--                         <a class="btn vrs-button campaign" [routerLink]="['/info', getCampaignId()]" translate>home.campaign</a> -->
+                        <a class="btn vrs-button" [routerLink]="['/info', getCampaignId()]" translate>home.campaign</a>
                     </div>
                 </div>
             </div>
@@ -44,6 +44,10 @@
             </div>
             <div class="col-12 col-md-3">
                 <div class="topical-species-container">
+                    <a [routerLink]="getCampaignId()" class="topical-species-campaign">
+                        <img src="https://image.laji.fi/MM.51790/MX.38815_Kurtturuusunkukka_TerhiRyttari_thumb.jpg" alt="Kurtturuusu">
+                        <div class="image-label">{{'home.campaign' | translate}}</div>
+                    </a>
                     <div class="topical-species-mobile-header">
                         <h3 translate>topicalSpecies.header.title</h3>
                         <p translate>topicalSpecies.header.description</p>

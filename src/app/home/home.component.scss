@@ -66,6 +66,13 @@ $raised-1: 0 2px 6px rgba(#000, .2);
     align-items: flex-end;
 }
 
+.topical-species-campaign {
+    padding: 10px;
+    background: $primary-1;
+    border: 1px solid $primary-3;
+    border-radius: 5px;
+}
+
 .caret-bottom {
     display: flex;
     justify-content: center;
