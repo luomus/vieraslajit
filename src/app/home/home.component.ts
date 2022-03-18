@@ -100,4 +100,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   getCampaignId() {
     return findContentID(StaticContent.Campaign, this.translate.currentLang);
   }
+
+  getCampaign2Id() {
+    return findContentID(StaticContent.Campaign2, this.translate.currentLang);
+  }
 }
