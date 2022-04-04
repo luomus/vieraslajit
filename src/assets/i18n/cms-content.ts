@@ -38,7 +38,7 @@ export function findContentID(target: StaticContent, lang: string) {
         case StaticContent.Campaign:
             if (lang == "fi") r = "i-5977";
             if (lang == "en") r = "i-5977";
-            if (lang == "sv") r = "i-5977";
+            if (lang == "sv") r = "i-6030";
             break;
         case StaticContent.Campaign2:
             if (lang == "fi") r = "i-4507";
