@@ -63,4 +63,20 @@ export class FormsComponent implements OnInit {
     getEmptyMessage() {
         return this.translate.instant('datatable.observations.empty')
     }
+
+    getLukeFormLink() {
+        return {
+            fi: 'https://lomakkeet.luke.fi/vieraslaji',
+            en: 'https://lomakkeet.luke.fi/vieraslaji',
+            sv: 'https://lomakkeet.luke.fi/vieraslaji?lang=sv'
+        }[this.translate.currentLang];
+    }
+
+    getRuokaVirastoLink() {
+        return {
+            fi: 'https://www.ruokavirasto.fi/viljelijat/kasvintuotanto/kasvinterveys/kasvintuhoojat/karanteenituhoojat/',
+            en: 'https://www.ruokavirasto.fi/viljelijat/kasvintuotanto/kasvinterveys/kasvintuhoojat/karanteenituhoojat/',
+            sv: 'https://www.ruokavirasto.fi/sv/odlare/vaxtproduktion/vaxthalsa/vaxtskadegorare/karantanskadegorare/'
+        }[this.translate.currentLang];
+    }
 }
