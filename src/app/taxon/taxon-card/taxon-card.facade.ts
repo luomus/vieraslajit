@@ -108,7 +108,7 @@ export class TaxonCardFacade {
                 }
               )
             } else {
-              return taxa[0].multimedia
+              return taxa.length > 0 ? taxa[0].multimedia : []
             }
           })
         ).subscribe(this.updateMedia.bind(this));
