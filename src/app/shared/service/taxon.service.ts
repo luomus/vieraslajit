@@ -20,8 +20,6 @@ export class TaxonService {
       {
         q,
         includePayload: true,
-        onlyFinnish: false,
-        onlySpecies: true,
         onlyInvasive: true,
         lang: this.translate.currentLang
       }
@@ -30,6 +28,10 @@ export class TaxonService {
 
   getTaxa(query) {
     return this.apiService.taxonomyFindById(LajiApi.Endpoints.taxa, '', query);
+  }
+
+  getTaxaMedia(id: string) {
+    return this.apiService.getTaxaMedia(id);
   }
 
   getTaxon(taxonId: string, query) {

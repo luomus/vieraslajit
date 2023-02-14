@@ -158,6 +158,11 @@ export class ApiService {
     );
   }
 
+  getTaxaMedia(id: string): Observable<Array<TaxonomyImage>> {
+    const url = `${environment.lajiApi.url}/taxa/${id}/media`;
+    return <Observable<Array<TaxonomyImage>>>this.httpClient.get(url);
+  }
+
   /**
   * News API
   * @param endpoint Target API endpoint

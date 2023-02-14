@@ -77,7 +77,9 @@ export class TaxonCardFacade {
         const query = {
           selectedFields: 'administrativeStatuses,vernacularName,scientificName,invasiveSpeciesEstablishment,occurrence,id,customReportFormLink,species,finnish,alternativeVernacularName,occurrenceInFinland'
         };
-        return this.taxonService.getTaxon(taxonId, query).subscribe(this.updateTaxon.bind(this))
+        return this.taxonService.getTaxon(taxonId, query).pipe(
+          tap(taxon => this.subscribeMedia(taxonId, taxon.species))
+        ).subscribe(this.updateTaxon.bind(this))
     }
 
     private subscribeDescription(taxonId: string) {
@@ -93,25 +95,28 @@ export class TaxonCardFacade {
         ).subscribe(this.updateDescription.bind(this))
     }
 
-    private subscribeMedia(taxonId: string) {
-        return this.taxonService.getSpecies(taxonId, {
-          includeMedia: true
-        }).pipe(
-          map(res => res.results.filter(
-            taxon => taxon.multimedia && taxon.multimedia.length > 0
-          )),
-          map(taxa => {
-            if (taxa.length > 1) {
-              return taxa.map(
-                taxon => {
-                  return taxon.multimedia[0]
-                }
-              )
-            } else {
-              return taxa.length > 0 ? taxa[0].multimedia : []
-            }
-          })
-        ).subscribe(this.updateMedia.bind(this));
+    private subscribeMedia(taxonId: string, species = true) {
+      if (!species) {
+        return this.taxonService.getTaxaMedia(taxonId).subscribe(this.updateMedia.bind(this));
+      }
+      return this.taxonService.getSpecies(taxonId, {
+        includeMedia: true
+      }).pipe(
+        map(res => res.results.filter(
+          taxon => taxon.multimedia && taxon.multimedia.length > 0
+        )),
+        map(taxa => {
+          if (taxa.length > 1) {
+            return taxa.map(
+              taxon => {
+                return taxon.multimedia[0]
+              }
+            )
+          } else {
+            return taxa.length > 0 ? taxa[0].multimedia : []
+          }
+        })
+      ).subscribe(this.updateMedia.bind(this));
     }
 
     /////////////
@@ -121,7 +126,6 @@ export class TaxonCardFacade {
     loadTaxon(taxonId: string) {
         this.subscribeTaxon(taxonId)
         this.subscribeDescription(taxonId)
-        this.subscribeMedia(taxonId)
     }
 }
 
