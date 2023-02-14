@@ -58,12 +58,6 @@
             <strong>{{'taxon.establishedFin' | translate}}</strong>
             <span>{{taxon?.invasiveSpeciesEstablishment | metadatalabel: 'MX.invasiveSpeciesEstablishmentStatuses' | async}}</span>
           </div>
-          <div>
-            <strong>{{'taxon.occurrence' | translate}}</strong>
-            <span>{{(taxon?.occurrenceInFinland | metadatalabel: 'MX.occurrenceInFinlandEnum' | async) || 'taxon.unknown' | translate
-              }}
-            </span>
-          </div>
           <hr/>
           <ng-container *ngIf="taxon?.administrativeStatuses">
             <div>
