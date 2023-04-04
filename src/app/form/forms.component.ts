@@ -74,9 +74,9 @@ export class FormsComponent implements OnInit {
 
     getRuokaVirastoLink() {
         return {
-            fi: 'https://www.ruokavirasto.fi/viljelijat/kasvintuotanto/kasvinterveys/kasvintuhoojat/karanteenituhoojat/',
-            en: 'https://www.ruokavirasto.fi/viljelijat/kasvintuotanto/kasvinterveys/kasvintuhoojat/karanteenituhoojat/',
-            sv: 'https://www.ruokavirasto.fi/sv/odlare/vaxtproduktion/vaxthalsa/vaxtskadegorare/karantanskadegorare/'
+            fi: 'https://www.ruokavirasto.fi/kasvit/kasvitaudit-ja-tuholaiset/kasvintuhoojahaku/karanteenituhoojat/ilmoita-karanteenituhoojasta/',
+            en: 'https://www.ruokavirasto.fi/kasvit/kasvitaudit-ja-tuholaiset/kasvintuhoojahaku/karanteenituhoojat/ilmoita-karanteenituhoojasta/',
+            sv: 'https://www.ruokavirasto.fi/sv/vaxter/vaxtsjukdomar-och-skadedjur/sokning-av-skadegorare/karantanskadegorare/gor-en-anmalan-om-en-karantanskadegorare/'
         }[this.translate.currentLang];
     }
 }
