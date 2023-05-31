@@ -11,7 +11,7 @@
                         <p><b translate>home.desc.1</b> {{'home.desc.2' | translate}} <a [routerLink]="['/info', getReadMoreId()]" translate>home.desc.3</a></p>
                         <a class="btn vrs-button accent mr-2" routerLink="/ilmoita" translate>navigation.observations.report</a>
 <!--                         <a class="btn vrs-button kurtturuusu-campaign mr-2" [routerLink]="['/info', getCampaignId()]" translate>home.campaign</a> -->
-<!--                         <a class="btn vrs-button soolotalkoot-campaign" [routerLink]="['/info', getCampaign2Id()]" translate>home.campaign2</a> -->
+                        <a class="btn vrs-button soolotalkoot-campaign" [routerLink]="['/info', getCampaign2Id()]" translate>home.campaign2</a>
                     </div>
                 </div>
             </div>
@@ -67,15 +67,17 @@
         <div class="some-container">
             <div class="fb-page" data-href="https://www.facebook.com/vieraslajit" data-tabs="timeline" data-width="340" data-height="500" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/vieraslajit" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/vieraslajit">Facebook</a></blockquote></div>
             <a class="twitter-timeline" data-lang="fi" data-width="340" data-height="500" href="https://twitter.com/Vieraslajit?ref_src=twsrc%5Etfw">Twitter</a>
-            <div class="viekas">
+            <div class="projects">
                 <h3 translate>home.viekas.h</h3>
                 <hr>
                 <div class="logos">
                     <img class="viekas-logo" src="../../../assets/images/logos/VieKas-logo-RGB-cutout.png" alt="">
                     <img class="life-logo" src="../../../assets/images/logos/life.png" alt="">
                 </div>
-                <p class="mt-3" translate>home.viekas.p</p>
-                <a [routerLink]="['/info', 'i-3137']" translate>home.viekas.a</a>
+                <p class="mt-1" translate>home.viekas.p</p>
+                <a class="mb-3" [routerLink]="['/info', 'i-3137']" translate>home.viekas.a</a>
+                <img class="viekas-logo" src="../../../assets/images/logos/barents-ias-logo-1row.png" alt="">
+                <a [href]="getBarentsUrl()" target="_blank">{{ 'home.barents' | translate }} <span class="oi oi-external-link ml-2"></span></a>
             </div>
         </div>
     </div>

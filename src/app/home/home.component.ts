@@ -104,4 +104,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
   getCampaign2Id() {
     return findContentID(StaticContent.Campaign2, this.translate.currentLang);
   }
+
+  getBarentsUrl() {
+    return {
+      fi: 'https://barents-ias.info/fi/etusivu/',
+      sv: 'https://barents-ias.info/sv/hem/',
+      en: 'https://barents-ias.info/'
+    }[this.translate.currentLang];
+  }
 }

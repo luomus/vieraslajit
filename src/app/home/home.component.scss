@@ -204,7 +204,7 @@ ul.news-list > li > hr {
     }
 }
 
-.viekas {
+.projects {
     max-width: 340px;
     background: $neutral-2;
     margin: 0 20px;
@@ -227,5 +227,6 @@ ul.news-list > li > hr {
         width: 50px;
     }
     a {
+        display: inline-block;
     }
 }
