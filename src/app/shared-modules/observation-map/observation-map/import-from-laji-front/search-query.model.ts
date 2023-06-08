@@ -62,7 +62,9 @@ export class SearchQuery implements SearchQueryInterface {
     'reliabilityOfCollection',
     'teamMember',
     'teamMemberId',
-    'taxonCensus'
+    'taxonCensus',
+    'recordQuality',
+    'reliability'
   ];
 
   booleanTypes = [
@@ -84,7 +86,8 @@ export class SearchQuery implements SearchQueryInterface {
     'breedingSite',
     'useIdentificationAnnotations',
     'includeSubTaxa',
-    'annotated'
+    'annotated',
+    'needsCheck'
   ];
 
   numericTypes = [

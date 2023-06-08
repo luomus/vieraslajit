@@ -16,15 +16,17 @@ and updates the map accordingly */
 
 const countToOpacityMap = (a: number): number => .2 + .4 * (Math.min(500, a) / 500)
 const obsIsConfirmed = obs => (
-    (
-        obs.unit.interpretations.recordQuality === 'EXPERT_VERIFIED'
-        || obs.unit.interpretations.recordQuality === 'COMMUNITY_VERIFIED'
-    )
-    || (
-        obs.document.linkings.collectionQuality === 'PROFESSIONAL'
-        && !(
-            obs.unit.interpretations.recordQuality === 'UNCERTAIN'
-            || obs.unit.interpretations.recordQuality === 'ERRONEUS'
+    obs.unit.interpretations && obs.unit.interpretations.recordQuality && (
+        (
+            obs.unit.interpretations.recordQuality === 'EXPERT_VERIFIED'
+            || obs.unit.interpretations.recordQuality === 'COMMUNITY_VERIFIED'
+        )
+        || (
+            obs.document.linkings.collectionQuality === 'PROFESSIONAL'
+            && !(
+                obs.unit.interpretations.recordQuality === 'UNCERTAIN'
+                || obs.unit.interpretations.recordQuality === 'ERRONEUS'
+            )
         )
     )
 );

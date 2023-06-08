@@ -1,6 +1,6 @@
 import { ObsMapData } from "./data/ObsMapData";
 import { ObsMapOptions, ObsMapOption } from "./data/ObsMapOptions";
-import { ObservationService } from "../../../../shared/service/observation.service";
+import { ObservationService, observationBaseQuery } from "../../../../shared/service/observation.service";
 import { Injectable } from "@angular/core";
 import { AreaService } from "../../../../shared/service/area.service";
 import { YkjService } from "../import-from-laji-front/ykj.service";
@@ -38,7 +38,7 @@ export class MapApiService {
     }
 
     private getWarehouseQuery() {
-        const query: WarehouseQueryInterface = {}
+        const query: WarehouseQueryInterface = {...observationBaseQuery};
         if (this.obsMapOptions.getOption("id")) query["taxonId"] = this.obsMapOptions.getOption("id");
         if (this.obsMapOptions.getOption("municipality")) query["area"] = this.obsMapOptions.getOption("municipality");
         if (this.obsMapOptions.getOption("personToken")) query["observerPersonToken"] = this.obsMapOptions.getOption("personToken");

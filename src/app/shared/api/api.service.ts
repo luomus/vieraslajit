@@ -231,11 +231,11 @@ export class ApiService {
 
   getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query:LajiApi.WarehouseQueryListQuery ):Observable<any>;
   getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query: object={}):Observable<any>{
-        const url = `${environment.lajiApi.url}/${endpoint}`;
-        return this.httpClient.get(
-          url,
-          { params: {...query} }
-          );}
+    const url = `${environment.lajiApi.url}/${endpoint}`;
+    return this.httpClient.get(
+      url,
+      { params: {...query} }
+      );}
 
   /**
    * Document API for POST method

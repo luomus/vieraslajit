@@ -1,34 +1,36 @@
 import { Injectable } from '@angular/core';
 import { ApiService, LajiApi } from '../api/api.service';
+import { WarehouseApi } from '@observation-map/observation-map/import-from-laji-front/WarehouseApi';
 
-const baseQuery = {
+export const observationBaseQuery = {
   invasive: true,
-  countryId: "ML.206",
-  reliability: "RELIABLE,UNDEFINED",
+  reliability: ['RELIABLE','UNDEFINED'],
   needsCheck: false,
+  countryId: ['ML.206'],
+  recordQuality: ['EXPERT_VERIFIED','COMMUNITY_VERIFIED','NEUTRAL']
 }
 
 @Injectable()
 export class ObservationService {
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private warehouse: WarehouseApi) { }
 
   getObservationCount(query: any) {
     const _query = {
-      ...baseQuery,
+      ...observationBaseQuery,
       individualCountMin: 1,
       ...query
     };
-    return this.apiService.warehouseQueryCountGet(LajiApi.Endpoints.warehousequerycount, "count", _query);
+    return this.warehouse.warehouseQueryCountGet(_query);
   }
 
   getObservations(query: any) {
     const _query = {
-      ...baseQuery,
+      ...observationBaseQuery,
       page: 1,
       pageSize: 10000,
       ...query
     }
-    return this.apiService.getObservations(LajiApi.Endpoints.warehousequerylist, _query);
+    return this.warehouse.warehouseQueryListGet(_query);
   }
 }
