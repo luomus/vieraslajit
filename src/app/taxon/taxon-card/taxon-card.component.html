@@ -63,9 +63,11 @@
             <div>
               <!-- <strong translate>taxon.administrative</strong> -->
               <ul>
-                <li *ngFor="let status of taxon.administrativeStatuses">
-                  {{status | metadatalabel:'MX.adminStatusEnum' | async}}
-                </li>
+                <ng-container *ngFor="let status of taxon.administrativeStatuses">
+                  <li *ngIf="showAdminStatus(status)">
+                    {{status | metadatalabel:'MX.adminStatusEnum' | async}}
+                  </li>
+                </ng-container>
               </ul>
             </div>
           </ng-container>

@@ -141,6 +141,13 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
     return this.translate.currentLang;
   }
 
+  showAdminStatus(status: string): boolean {
+    return [
+      'MX.euInvasiveSpeciesList', 'MX.controllingRisksOfInvasiveAlienSpecies',
+      'MX.quarantinePlantPest', 'MX.qualityPlantPest'
+    ].includes(status);
+  }
+
   ngOnDestroy() {
     if (this.destroyResizeListener) {
       this.destroyResizeListener();
