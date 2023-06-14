@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService, LajiApi } from '../api/api.service';
-import { WarehouseApi } from '@observation-map/observation-map/import-from-laji-front/WarehouseApi';
+import { WarehouseApi } from '../../shared-modules/observation-map/observation-map/import-from-laji-front/WarehouseApi';
 
 export const observationBaseQuery = {
   invasive: true,
