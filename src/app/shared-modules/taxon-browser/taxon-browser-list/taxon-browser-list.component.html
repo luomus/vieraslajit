@@ -15,3 +15,9 @@
                 }"
                 >
                </ngx-datatable>
+
+<ng-template let-value="value" ngx-datatable-cell-template #invasiveSpeciesEstablishment>
+<span *ngIf="value">
+    {{ value | metadatalabel: 'MX.invasiveSpeciesEstablishmentStatuses' | async }}
+</span>
+</ng-template>
