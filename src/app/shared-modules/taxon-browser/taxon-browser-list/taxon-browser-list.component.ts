@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter, TemplateRef, ViewChild, AfterViewInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { Router } from "@angular/router";
 import { Taxonomy } from "../../../shared/model";
@@ -8,7 +8,9 @@ import { Taxonomy } from "../../../shared/model";
     templateUrl: './taxon-browser-list.component.html',
     styleUrls: ['./taxon-browser-list.component.scss']
 })
-export class TaxonBrowserListComponent {
+export class TaxonBrowserListComponent implements AfterViewInit {
+    @ViewChild('invasiveSpeciesEstablishment', {static: true}) establishmentCellTemplate: TemplateRef<any>;
+
     private _taxa: Array<Taxonomy> = [];
 
     columns:any[] = [];
@@ -20,11 +22,13 @@ export class TaxonBrowserListComponent {
     }
 
     constructor(private translate:TranslateService,
-                private router: Router) {
+                private router: Router) {}
+
+    ngAfterViewInit(): void {
         this.columns = [
             { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), comparator: this.comparator},
             { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), comparator: this.comparator },
-            { prop: 'stableString', name: this.translate.instant('taxonomy.established'), comparator: this.comparator, maxWidth: 180 },
+            { prop: 'invasiveSpeciesEstablishment', name: this.translate.instant('taxonomy.established'), comparator: this.comparator, maxWidth: 180, cellTemplate: this.establishmentCellTemplate },
             { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), comparator: this.comparatorReverse, maxWidth: 180 },
             { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), comparator: this.comparatorReverse, maxWidth: 180 },
             { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), comparator: this.comparatorReverse, maxWidth: 180 }
