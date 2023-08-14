@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, TemplateRef, Renderer2, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef, Renderer2, ChangeDetectorRef, Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TaxonomyDescription, TaxonomyImage, Taxonomy, TaxonomyDescriptionVariable } from '../../shared/model/Taxonomy';
 import { Subject } from 'rxjs';
@@ -10,6 +10,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Title, Meta } from '@angular/platform-browser';
 import { environment } from 'environments/environment';
 import { removeHTMLTagFragments } from 'app/utils';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'vrs-taxon-card',
@@ -31,13 +32,16 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
 
   quarantinePlantPest = false;
 
-  constructor(private route: ActivatedRoute,
-              private translate: TranslateService,
-              private title: Title,
-              private modalService: BsModalService,
-              private renderer: Renderer2,
-              private facade: TaxonCardFacade,
-              private meta: Meta) {}
+  constructor(
+    private route: ActivatedRoute,
+    private translate: TranslateService,
+    private title: Title,
+    private modalService: BsModalService,
+    private renderer: Renderer2,
+    private facade: TaxonCardFacade,
+    private meta: Meta,
+    @Inject(PLATFORM_ID) private platformId
+  ) {}
 
   ngOnInit() {
     this.facade.state$
@@ -146,6 +150,10 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       'MX.euInvasiveSpeciesList', 'MX.controllingRisksOfInvasiveAlienSpecies',
       'MX.quarantinePlantPest', 'MX.qualityPlantPest'
     ].includes(status);
+  }
+
+  isPlatformBrowser() {
+      return isPlatformBrowser(this.platformId);
   }
 
   ngOnDestroy() {
