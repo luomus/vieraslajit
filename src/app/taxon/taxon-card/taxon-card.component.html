@@ -38,7 +38,7 @@
 
     <div class="col-sm-12 order-1 col-md-5 order-md-2">
       <div class="card taxon-info-card" id="taxoncard-right">
-        <div class="card-block">
+        <div class="card-block" *ngIf="isPlatformBrowser()">
           <carousel *ngIf="media && media.length > 0" id="image-carousel" [interval]="false">
             <slide class="card-slide slide" *ngFor="let image of media">
               <img alt="" class="img-fluid center-block" src="{{image.fullURL}}" (click)="openImage(imageModal, image)">
