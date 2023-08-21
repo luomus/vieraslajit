@@ -57,8 +57,7 @@ nav {
     color: $neutral-7;
     flex-shrink: 0;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    flex-direction: row;
     margin-right: 2em;
     .heading {
         //margin-left: 55px;
@@ -68,17 +67,6 @@ nav {
             color: $neutral-9;
             text-decoration: underline;
         }
-    }
-    .header-link {
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: flex-end;
-
-        margin-bottom: -10px;
-
-        cursor: pointer;
-        max-height: 36px;
-        overflow: visible;
     }
 }
 
@@ -219,6 +207,11 @@ nav.notransition:after {
 
 .vrs-logo {
     height: 36px;
+    display: block;
+}
+
+.some-logo {
+    height: 20px;
     display: block;
 }
 

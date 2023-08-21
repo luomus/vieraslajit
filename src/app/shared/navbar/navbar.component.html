@@ -3,13 +3,23 @@
     <section class="nav-top">
         <div class="container">
             <div class="header">
-                <a class="header-link" routerLink="/">
+                <a class="mr-3" routerLink="/">
 <!--                     <img class="viekas-logo" src="./assets/images/logos/VieKas-logo-RGB-cutout.png">
                     <img class="life-logo" src="./assets/images/logos/life.png"> -->
                     <div class="vrs-logo-container">
                         <img alt="Vieraslajit.fi" class="vrs-logo" src="./assets/images/logos/vieraslajit_monochrome.svg">
                     </div>
                 </a>
+                <div class="d-flex align-items-end mr-1">
+                    <a href="https://www.facebook.com/vieraslajit" target="_blank">
+                        <img class="some-logo" src="./assets/icons/facebook.svg">
+                    </a>
+                </div>
+                <div class="d-flex align-items-end mr-1">
+                    <a href="https://twitter.com/Vieraslajit" target="_blank">
+                        <img class="some-logo" src="./assets/icons/twitter.svg">
+                    </a>
+                </div>
             </div>
             <div class="nav-top-right-wrapper">
                 <a [routerLink]="['./lajit']" [queryParams]="{'FiList': 'true'}" class="administrative-list btn vrs-button borderless"><img alt="" src="./assets/images/logos/flag-fi.png">{{ 'navigation.fiList' | translate }}</a>

@@ -29,7 +29,7 @@
             "stylePreprocessorOptions": {
               "includePaths": ["src/assets/styles"]
             },
-            "scripts": ["./src/assets/scripts/fb.js", "./src/assets/scripts/twitter.js"]
+            "scripts": []
           },
           "configurations": {
             "production": {
