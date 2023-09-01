@@ -26,8 +26,10 @@ $raised-1: 0 2px 6px rgba(#000, .2);
 }
 
 .heading-box-wrapper {
-    @include media-breakpoint-down(xs) {
+    display: flex;
+    @include media-breakpoint-down(sm) {
         padding: 0;
+        flex-direction: column;
     }
 }
 
@@ -36,21 +38,29 @@ $raised-1: 0 2px 6px rgba(#000, .2);
     display: flex;
     padding: 30px;
     box-shadow: $raised-1;
-    @include media-breakpoint-down(xs) {
+    margin-right: 12px;
+    margin-bottom: 12px;
+    @include media-breakpoint-down(sm) {
         flex-direction: column;
+        margin-right: 0;
     }
 }
 
-.heading-box-2 {
-    background: $neutral-2;
-    padding: 30px;
+.logo-box {
+
+}
+
+.some-box {
     flex-direction: column;
-    box-shadow: $raised-1;
+    min-width: 300px;
 }
 
 .some-logo {
-    height: 40px;
+    height: 20px;
     display: inline-block;
+    @include media-breakpoint-down(sm) {
+        height: 20px;
+    }
 }
 
 .heading-box p {
