@@ -1,4 +1,4 @@
-import { Injectable } from "../../../../../node_modules/@angular/core";
+import { Injectable } from "@angular/core";
 import { EventEmitter } from "events";
 
 import { TaxonBrowserApiSettingsService } from "./taxon-browser-api-settings.service";

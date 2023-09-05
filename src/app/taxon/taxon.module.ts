@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AccordionModule, CollapseModule, PaginationModule, TabsModule, CarouselModule, BsDropdownModule } from 'ngx-bootstrap';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { TaxonListComponent } from './taxon-list/taxon-list.component';
 import { TaxonCardComponent } from './taxon-card/taxon-card.component';

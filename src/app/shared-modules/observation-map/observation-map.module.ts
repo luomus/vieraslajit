@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ObservationMapComponent } from './observation-map/observation-map.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { RouterModule } from '@angular/router';
 import { ObsMapListComponent } from './observation-map/obs-map-list/obs-map-list.component';
 import { MapApiService } from './observation-map/services/MapApiService';
@@ -12,7 +11,7 @@ import { ObsMapData } from './observation-map/services/data/ObsMapData';
 import { SpinnerModule } from '../spinner/spinner.module';
 import { YkjService } from './observation-map/import-from-laji-front/ykj.service';
 import { ObservationModalComponent } from './observation-map/observation-modal.component';
-import { ModalModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { TranslateModule } from '@ngx-translate/core';
 import { ObservationMapPopupComponent } from './observation-map/observation-map-popup.component';
 import { TimeSelectorComponent } from './observation-map/time-selector/time-selector.component';
@@ -30,8 +29,6 @@ import { MapLegendComponent } from './observation-map/legend/map-legend.componen
     ModalModule,
     TranslateModule,
     SharedModule,
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule,
     TaxonSearchModule
   ],
   declarations: [

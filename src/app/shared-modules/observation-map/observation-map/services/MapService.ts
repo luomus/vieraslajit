@@ -7,7 +7,7 @@ import { PathOptions } from 'leaflet';
 import { Injectable, TemplateRef, ElementRef, ComponentFactoryResolver, Injector, OnDestroy } from '@angular/core';
 import { EventEmitter } from 'events';
 import { ObservationMapPopupComponent } from '../observation-map-popup.component';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';

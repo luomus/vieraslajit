@@ -7,7 +7,7 @@ import { ObsMapOptions, ObsMapOption } from './services/data/ObsMapOptions';
 import { MapApiService } from './services/MapApiService';
 import { ObsMapListComponent } from './obs-map-list/obs-map-list.component';
 import { ObsMapData } from './services/data/ObsMapData';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MapService } from './services/MapService';
 import { FilterMenuComponent } from './filter-menu/filter-menu.component';

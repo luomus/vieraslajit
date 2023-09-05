@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, AfterViewInit, Renderer2, Inject, PLATFORM_ID } from "@angular/core";
 import { isPlatformBrowser } from "@angular/common";
-import { TranslateService } from "../../../../node_modules/@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
 import { Subscription, Observable } from "rxjs";
 
 import { TaxonBrowserApiService } from "./services/taxon-browser-api.service";

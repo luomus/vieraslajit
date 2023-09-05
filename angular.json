@@ -130,7 +130,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/server",
-            "main": "src/main.server.ts",
+            "main": "server.ts",
             "tsConfig": "src/tsconfig.server.json",
             "stylePreprocessorOptions": {
               "includePaths": ["src/assets/styles"]
@@ -153,6 +153,32 @@
                 }
               ]
             }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "vieraslajit:build",
+            "serverTarget": "vieraslajit:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "vieraslajit:build:production",
+              "serverTarget": "vieraslajit:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "vieraslajit:build:production",
+            "serverTarget": "vieraslajit:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }
@@ -183,7 +209,6 @@
       }
     }
   },
-  "defaultProject": "vieraslajit",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "vrs",

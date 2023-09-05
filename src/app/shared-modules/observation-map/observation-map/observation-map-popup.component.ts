@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { BsModalRef, BsModalService } from "ngx-bootstrap";
+import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { ObservationModalComponent } from "./observation-modal.component";
 
 @Component({

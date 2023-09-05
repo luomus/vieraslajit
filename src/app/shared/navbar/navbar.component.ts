@@ -3,7 +3,7 @@ import { UserService } from '../service/user.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { BsDropdownDirective } from '../../../../node_modules/ngx-bootstrap';
+import { BsDropdownDirective } from 'ngx-bootstrap/dropdown';
 import { LoaderService, LoadingEvent } from '../service/loader.service';
 import { findContentID, StaticContent } from 'assets/i18n/cms-content';
 

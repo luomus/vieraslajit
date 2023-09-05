@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { BsModalRef } from "ngx-bootstrap";
+import { BsModalRef } from "ngx-bootstrap/modal";
 import { DomSanitizer } from "@angular/platform-browser";
 import { environment } from "environments/environment";
 

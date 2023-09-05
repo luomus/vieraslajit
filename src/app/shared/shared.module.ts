@@ -14,7 +14,9 @@ import { LabelPipe } from './pipe/label.pipe';
 import { MetadataService } from './service/metadata.service';
 import { OmnisearchComponent } from './omnisearch/omnisearch.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { FormService } from './service/form.service';
 import { FormApiClient } from './api/FormApiClient';
 import { UserService } from './service/user.service';
@@ -40,7 +42,7 @@ import { LoaderService } from './service/loader.service';
 import { DateTranslatePipe } from './pipe/date-translate.pipe';
 import { SpreadSheetService } from './service/spread-sheet.service';
 import { TruncatePipe } from './pipe/truncate.pipe';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 /**
  * Provides common utilities for other modules
  */
@@ -57,7 +59,7 @@ import { HttpModule } from '@angular/http';
     EditcmsModule,
     ModalModule.forRoot(),
     CollapseModule.forRoot(),
-    HttpModule
+    HttpClientModule
   ],
   entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,4 +1,4 @@
-import { Headers, Http, RequestOptionsArgs, URLSearchParams } from '@angular/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,14 +8,14 @@ import { UserService } from '../service/user.service';
 @Injectable()
 export class FormApiClient {
   protected basePath = environment.lajiApi.url;
-  public defaultHeaders: Headers = new Headers();
+  public defaultHeaders: HttpHeaders = new HttpHeaders();
 
-  constructor(protected http: Http, private translate: TranslateService) {}
+  constructor(protected http: HttpClient, private translate: TranslateService) {}
 
-  public fetch(resource: string, query: any, options?: RequestOptionsArgs): Promise<any> {
+  public fetch(resource: string, query: any, options?: any): Promise<any> {
     const path = this.basePath + resource;
 
-    const queryParameters = new URLSearchParams();
+    const queryParameters = new HttpParams();
 
     queryParameters.set('lang', this.translate.currentLang);
     queryParameters.set('personToken', UserService.getToken());
@@ -32,9 +32,9 @@ export class FormApiClient {
       options = {};
     }
 
-    const requestOptions: RequestOptionsArgs = {
+    const requestOptions: any = {
       method: options['method'] || 'GET',
-      headers: options['headers'] ? new Headers(options['headers']) : this.defaultHeaders,
+      headers: options['headers'] ? new HttpHeaders(options['headers']) : this.defaultHeaders,
       params: queryParameters,
       body: options['body'] || undefined
     };

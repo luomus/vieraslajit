@@ -4,7 +4,7 @@ import { TaxonomyDescription, TaxonomyImage, Taxonomy, TaxonomyDescriptionVariab
 import { Subject } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
-import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { TaxonCardFacade, TaxonomyDescriptionFlattened } from './taxon-card.facade';
 import { takeUntil } from 'rxjs/operators';
 import { Title, Meta } from '@angular/platform-browser';

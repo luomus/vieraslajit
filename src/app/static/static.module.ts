@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {StaticRoutingModule} from './static-routing.module';
-import { TabsModule } from 'ngx-bootstrap';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import {SharedModule} from '../shared/shared.module';
 import { SpinnerModule } from '../shared-modules/spinner/spinner.module';
 import { StaticContainerComponent } from './static.container';

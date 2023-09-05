@@ -3,7 +3,10 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { BsDropdownModule, AccordionModule, TabsModule, PaginationModule } from 'ngx-bootstrap';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 
 import { VrsRouterModule } from './vrs-router.module';
