@@ -21,7 +21,6 @@ import { NewsletterFormComponent } from './newsletter-form/newsletter-form.compo
     SharedModule,
     SpinnerModule
   ],
-  declarations: [StaticContainerComponent, StaticSidebarComponent, StaticContentComponent, NewsletterFormComponent],
-  entryComponents: [NewsletterFormComponent]
+  declarations: [StaticContainerComponent, StaticSidebarComponent, StaticContentComponent, NewsletterFormComponent]
 })
 export class StaticModule { }

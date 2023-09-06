@@ -10,10 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "bundle-report": "ng build --prod --aot --stats-json --named-chunks=true && webpack-bundle-analyzer dist/browser/stats.json",
-
     "serve:ssr": "node dist/server/main.js",
     "dev:ssr": "ng run vieraslajit:serve-ssr",
-
     "build:local": "ng build --prod --configuration=beta --base-href=http://localhost:4000/ && ng run vieraslajit:server:beta",
     "build:beta": "ng build --prod --configuration=beta --base-href=https://vieraslajit-dev.laji.fi/ && ng run vieraslajit:server:beta",
     "build:prod": "ng build --prod --configuration=production --base-href=https://vieraslajit.fi/ && ng run vieraslajit:server:production",
@@ -81,7 +79,7 @@
     "ts-loader": "^5.2.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "^3.8.0",
+    "typescript": "~3.8.3",
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.10"
   }

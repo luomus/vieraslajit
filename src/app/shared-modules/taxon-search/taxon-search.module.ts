@@ -17,8 +17,6 @@ import { SharedModule } from "app/shared/shared.module";
   ],
   exports: [
       TaxonSearchComponent
-  ],
-  entryComponents: [
   ]
 })
 export class TaxonSearchModule { }

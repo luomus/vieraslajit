@@ -50,9 +50,6 @@ import { MapLegendComponent } from './observation-map/legend/map-legend.componen
   exports: [
     ObservationMapComponent,
     MapLegendComponent
-  ],
-  entryComponents: [
-    ObservationModalComponent, ObservationMapPopupComponent
   ]
 })
 export class ObservationMapModule { }

@@ -61,7 +61,6 @@ import { HttpClientModule } from '@angular/common/http';
     CollapseModule.forRoot(),
     HttpClientModule
   ],
-  entryComponents: [SearchComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [NavbarComponent, NavbarContainer, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent, RouteTransformerDirective, TaxonNamePipe, HtmlSanitizerPipe, DateTranslatePipe, TruncatePipe],
   providers: [],
