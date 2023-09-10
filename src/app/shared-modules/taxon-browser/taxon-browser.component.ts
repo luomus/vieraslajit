@@ -107,8 +107,8 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
         this.parameterService.init();
 
         this.langChangeSub = this.translate.onLangChange.subscribe((lang)=> {
-            this.settingsService.apiSettings.lang = lang;
-        })
+            this.settingsService.apiSettings.lang = lang.lang;
+        });
 
         this.viewMode = this.settingsService.apiSettings.mode;
     }

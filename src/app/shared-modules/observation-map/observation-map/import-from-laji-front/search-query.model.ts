@@ -299,8 +299,6 @@ export class SearchQuery implements SearchQueryInterface {
     const extra = {skipLocationChange: skipHistory};
     if (Object.keys(query).length > 0) {
       extra['queryParams'] = this.getQueryObject(skipParams);
-    } else {
-      extra['preserveQueryParams'] = false;
     }
     this.router.navigate(
       [],
