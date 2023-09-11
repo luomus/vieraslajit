@@ -3,6 +3,12 @@ import { Component, Output, EventEmitter, Renderer2, ViewChild, ElementRef, Inpu
 @Component({
     selector: 'vrs-time-selector',
     template: `
+<!--     <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="Start date">
+        <input matEndDate placeholder="End date">
+    </mat-date-range-input>
+
+    <mat-date-range-picker #picker></mat-date-range-picker> -->
     <div class="input-group mb-3">
 <!--         <input class="form-control" #timeInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [selectMode]="'range'" (dateTimeChange)="onTimeChange($event)">
         <div class="input-group-append">

@@ -14,6 +14,7 @@ import { FormFacade } from './form.facade';
 import { filter, takeUntil, tap } from 'rxjs/operators';
 import { Title, Meta } from '@angular/platform-browser';
 import { environment } from 'environments/environment';
+import { Lang } from 'laji-form/lib/components/LajiForm';
 
 @Component({
     selector: 'vrs-form',
@@ -112,7 +113,6 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
             data.uiSchemaContext['creator'] = UserService.getUserId();
             data.uiSchemaContext.isAdmin = UserService.hasRole(Role.CMS_ADMIN);
             this.lajiFormWrapper = new LajiForm({
-                staticImgPath: '/assets/images/laji-form',
                 rootElem: this.formElem.nativeElement,
                 schema: data.schema,
                 uiSchema: data.uiSchema,
@@ -125,7 +125,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
                 //onSettingsChange: this._onSettingsChange.bind(this),
                 settings: undefined,
                 apiClient: this.apiClient,
-                lang: this.translate.currentLang,
+                lang: <Lang>this.translate.currentLang,
                 renderSubmit: false,
                 topOffset: 50,
                 bottomOffset: 50,
