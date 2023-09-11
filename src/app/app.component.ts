@@ -9,6 +9,7 @@ import { LoaderService } from './shared/service/loader.service';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { environment } from 'environments/environment';
+import { filter } from 'rxjs/operators';
 
 /**
  * Main component that acts as a container for navigation, content and footer.
@@ -129,7 +130,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     if (this.swUpdate.isEnabled) {
-      this.swUpdate.available.subscribe(() => {
+      this.swUpdate.versionUpdates.pipe(filter(e => e.type === 'VERSION_READY')).subscribe(() => {
           this.displaySwUpdate = true;
       });
     }
