@@ -17,7 +17,7 @@ import {
 } from '@angular/core';
 import { Subscription, of } from 'rxjs'
 import { tap, combineLatest, debounceTime } from 'rxjs/operators'
-import { FormControl } from '@angular/forms'
+import { UntypedFormControl } from '@angular/forms'
 import { TaxonService } from '../../shared/service/taxon.service'
 import { ApiService } from '../../shared/api/api.service';
 import { Router } from '@angular/router'
@@ -45,7 +45,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   @Input() comparisonView: boolean;
   @Output() visibleTaxon = new EventEmitter<any>();
   public search = '';
-  public searchControl:FormControl = new FormControl();
+  public searchControl:UntypedFormControl = new UntypedFormControl();
   public active = 0;
   public taxa = [];
   public content: any = { items: [] };
