@@ -71,8 +71,10 @@ export class TaxonBrowserApiService {
             this.query.informalGroupFilters = this.settingsService.apiSettings.informalTaxonGroups.toString();
         }
 
-        if (this.settingsService.apiSettings.invasiveSpeciesMainGroups) {
+        if (this.settingsService.apiSettings.invasiveSpeciesMainGroups && this.settingsService.apiSettings.invasiveSpeciesMainGroups.length > 0) {
             this.query.invasiveSpeciesMainGroups = this.settingsService.apiSettings.invasiveSpeciesMainGroups.toString();
+        } else {
+            this.query.invasiveSpeciesMainGroups = 'HBE.MG14';
         }
 
         this.settingsService.apiSettings.lang? this.query.lang = this.settingsService.apiSettings.lang : null;
