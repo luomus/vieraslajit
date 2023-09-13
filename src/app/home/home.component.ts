@@ -80,9 +80,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
         // @ts-ignore
-        window.FB.init({version: 'v5.0', xfbml: true});
+        //window.FB.init({version: 'v5.0', xfbml: true});
         // @ts-ignore
-        window.twttr.widgets.load();
+        //window.twttr.widgets.load();
     }
   }
 

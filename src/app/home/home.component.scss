@@ -26,8 +26,10 @@ $raised-1: 0 2px 6px rgba(#000, .2);
 }
 
 .heading-box-wrapper {
-    @include media-breakpoint-down(xs) {
+    display: flex;
+    @include media-breakpoint-down(sm) {
         padding: 0;
+        flex-direction: column;
     }
 }
 
@@ -36,9 +38,26 @@ $raised-1: 0 2px 6px rgba(#000, .2);
     display: flex;
     padding: 30px;
     box-shadow: $raised-1;
-    @include media-breakpoint-down(xs) {
+    margin-right: 12px;
+    margin-bottom: 12px;
+    @include media-breakpoint-down(sm) {
         flex-direction: column;
+        margin-right: 0;
     }
+}
+
+.logo-box {
+
+}
+
+.some-box {
+    flex-direction: column;
+    min-width: 300px;
+}
+
+.some-logo {
+    height: 40px;
+    display: inline-block;
 }
 
 .heading-box p {
@@ -207,8 +226,6 @@ ul.news-list > li > hr {
 .projects {
     max-width: 340px;
     background: $neutral-2;
-    margin: 0 20px;
-    margin-top: 20px;
     padding: 30px;
     box-shadow: $raised-1;
     .logos {
