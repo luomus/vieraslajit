@@ -56,11 +56,8 @@ $raised-1: 0 2px 6px rgba(#000, .2);
 }
 
 .some-logo {
-    height: 20px;
+    height: 40px;
     display: inline-block;
-    @include media-breakpoint-down(sm) {
-        height: 20px;
-    }
 }
 
 .heading-box p {
