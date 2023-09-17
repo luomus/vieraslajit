@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ObservationMapComponent } from './observation-map/observation-map.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker'
 import { RouterModule } from '@angular/router';
 import { ObsMapListComponent } from './observation-map/obs-map-list/obs-map-list.component';
 import { MapApiService } from './observation-map/services/MapApiService';
@@ -19,6 +20,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { FilterMenuComponent } from './observation-map/filter-menu/filter-menu.component';
 import { TaxonSearchModule } from '../taxon-search/taxon-search.module';
 import { MapLegendComponent } from './observation-map/legend/map-legend.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -29,7 +31,9 @@ import { MapLegendComponent } from './observation-map/legend/map-legend.componen
     ModalModule,
     TranslateModule,
     SharedModule,
-    TaxonSearchModule
+    TaxonSearchModule,
+    BsDatepickerModule.forRoot(),
+    FormsModule
   ],
   declarations: [
     ObservationMapComponent,

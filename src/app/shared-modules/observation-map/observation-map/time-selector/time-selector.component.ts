@@ -3,40 +3,39 @@ import { Component, Output, EventEmitter, Renderer2, ViewChild, ElementRef, Inpu
 @Component({
     selector: 'vrs-time-selector',
     template: `
-<!--     <mat-date-range-input [rangePicker]="picker">
-        <input matStartDate placeholder="Start date">
-        <input matEndDate placeholder="End date">
-    </mat-date-range-input>
-
-    <mat-date-range-picker #picker></mat-date-range-picker> -->
     <div class="input-group mb-3">
-<!--         <input class="form-control" #timeInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [selectMode]="'range'" (dateTimeChange)="onTimeChange($event)">
+        <input type="text"
+            class="form-control"
+            [ngModel]="dateRange"
+            (ngModelChange)="onDateRangeChange($event)"
+            placement="right"
+            bsDaterangepicker>
         <div class="input-group-append">
             <button class="btn btn-outline-secondary remove" (click)="onRemove()" type="button">x</button>
-        </div> -->
+        </div>
     </div>
-    
-<!--     <owl-date-time #dt1 [pickerType]="'calendar'" [firstDayOfWeek]="1"></owl-date-time> -->
     `, styleUrls: ['./time-selector.component.scss']
 })
 export class TimeSelectorComponent {
-    @Output() timeChangeEvent = new EventEmitter();
+    @Output() timeChange = new EventEmitter<Date[]>();
 
-    @ViewChild('timeInput', { static: true }) timeInput: ElementRef;
+    dateRange: Date[] = [];
 
-    constructor(private renderer: Renderer2) {}
+    onDateRangeChange(event) {
+        this.timeChange.emit(event);
+    }
 
     setTimeValue(time: string) {
-        this.renderer.setAttribute(this.timeInput.nativeElement, 'placeholder', time);
+        console.log(time);
+        this.dateRange = time.split('/').map(s => new Date(s));
     }
 
     onTimeChange(event) {
-        this.timeChangeEvent.emit(event.value);
+        this.timeChange.emit(event.value);
     }
 
     onRemove() {
-        this.timeChangeEvent.emit(undefined);
-        this.timeInput.nativeElement.value = '';
+        this.timeChange.emit(undefined);
         this.setTimeValue('');
     }
 }

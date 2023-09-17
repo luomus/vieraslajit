@@ -227,7 +227,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
     temp ? this.obsMapOptions.setOptionSilent(option, optionValue) : this.obsMapOptions.setOptionSilent(option, null);
   }
 
-  onTimeChange(event: any[] | undefined) {
+  onTimeChange(event: Date[] | undefined) {
     if (!event) {
       this.updateQueryParam('time', undefined);
     }

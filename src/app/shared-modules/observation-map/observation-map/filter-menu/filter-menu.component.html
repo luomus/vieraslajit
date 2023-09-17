@@ -15,7 +15,7 @@
   </div>
   <div class="filter-group">
     <h5 translate>observation-map.filterMenu.time</h5>
-    <vrs-time-selector (timeChangeEvent)="onTimeChange($event)"></vrs-time-selector>
+    <vrs-time-selector (timeChange)="onTimeChange($event)"></vrs-time-selector>
   </div>
   <div class="filter-group" *ngIf="isLoggedIn">
     <h5 translate>observation-map.filterMenu.own</h5>
