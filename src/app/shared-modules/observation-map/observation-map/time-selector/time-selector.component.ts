@@ -26,7 +26,6 @@ export class TimeSelectorComponent {
     }
 
     setTimeValue(time: string) {
-        console.log(time);
         this.dateRange = time.split('/').map(s => new Date(s));
     }
 
