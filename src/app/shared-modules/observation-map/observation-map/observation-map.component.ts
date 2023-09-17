@@ -230,6 +230,7 @@ export class ObservationMapComponent implements AfterViewInit, OnInit, OnDestroy
   onTimeChange(event: Date[] | undefined) {
     if (!event) {
       this.updateQueryParam('time', undefined);
+      return;
     }
     const startMoment = moment(event[0])
     const endMoment = moment(event[1])
