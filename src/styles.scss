@@ -1,4 +1,4 @@
-/* Järjestyksellä väliä */
+/* Import order matters */
 @import './assets/styles/vars';
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import '../node_modules/bootstrap/scss/bootstrap-grid';
@@ -123,7 +123,7 @@ p {
 .laji-map {
     width: 100%;
     height: 100%;
-  }
+}
 
 /* ngx-pagination */
 

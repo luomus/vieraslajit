@@ -3,9 +3,18 @@
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 @import '../../../../assets/styles/datatable';
 @import '~bootstrap/scss/bootstrap-grid';
-@import '~laji-map/dist/styles.css';
+@import 'assets/styles/laji-map-compat';
 
 $zIndex: 800;
+
+:host ::ng-deep .leaflet-top.leaflet-left {
+  margin-top: 80px;
+  margin-left: 10px;
+  @include media-breakpoint-down(xs) {
+    margin-top: 50px;
+    margin-left: 0px;
+  }
+}
 
 #map {
   height: 400px;
@@ -84,10 +93,6 @@ a.laji-link {
   }
 }
 
-
-
-
-
 .map-container {
   position: relative;
 }
@@ -125,56 +130,6 @@ vrs-map-filters {
   }
 }
 
-:host ::ng-deep {
-  .leaflet-rrose-content-wrapper {
-    background: rgba(#333, 0.8);
-    border-radius: 5px;
-  }
-  .leaflet-rrose-close-button {
-    font-size: 22px;
-    right: 6px;
-    top: 2px;
-  }
-  .leaflet-rrose-tip.leaflet-rrose-tip-n {
-    background: rgba(#333,0.8);
-  }
-  .leaflet-rrose-content {
-    width: 200px;
-    color: $neutral-2;
-    font-size: 0.8rem;
-    .popup {
-      .popup-link {
-        display: block;
-        color: $primary-4;
-        cursor: pointer;
-        &:hover {
-          color: $primary-5;
-          text-decoration: underline;
-        }
-      }
-      .oi {
-        margin-right: 5px;
-      }
-      .oi-eye {
-      }
-      .oi-info {
-      }
-    }
-    h5 {
-      color: $neutral-4;
-      margin: 0;
-      font-size: 1em;
-    }
-    hr {
-      margin: 10px 0;
-      border-color: rgba(white, 0.1);
-    }
-  }
-  .leaflet-rrose.leaflet-zoom-animated {
-    bottom: 15px !important;
-  }
-}
-
 #view-buttons {
   position: absolute;
   top: 25px;
@@ -206,40 +161,6 @@ vrs-map-filters {
 .right-float-menu button.close {
     margin-top: -15px;
     margin-right: -12px;
-}
-
-:host ::ng-deep .leaflet-top.leaflet-left {
-  margin-top: 80px;
-  margin-left: 10px;
-  @include media-breakpoint-down(xs) {
-    margin-top: 50px;
-    margin-left: 0px;
-  }
-}
-
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('../../../../assets/fonts/glyphicons-halflings-regular.eot');
-  src: url('../../../../assets/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../../../../assets/fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../../../../assets/fonts/glyphicons-halflings-regular.woff') format('woff'), url('../../../../assets/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../../../../assets/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
-
-:host ::ng-deep {
-.glyphicon {
-    position: relative;
-    top: 1px;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-.glyphicon-screenshot { &:before { content: "\e087"; } }
-}
-
-:host ::ng-deep .laji-map .leaflet-top {
-  z-index: 600;
 }
 
 .legend {

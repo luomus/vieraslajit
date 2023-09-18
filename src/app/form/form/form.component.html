@@ -2,7 +2,7 @@
     <div class="vrs-form" *ngIf="loggedIn;else loginError">
         <h3 #formName></h3>
         <div class="vrs-laji-form" #lajiform></div>
-        <button id="formSend" type="submit" class="btn btn-primary" (click)="submit()" [disabled]="saving" translate>
+        <button id="formSend" type="submit" class="btn btn-primary" (click)="onBtnSubmit()" [disabled]="saving" translate>
             form.send
         </button>
         <div class="info mt-4">

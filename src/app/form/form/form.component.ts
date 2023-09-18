@@ -6,6 +6,7 @@ import {
 import { Subscription, Subject } from 'rxjs';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import LajiForm from 'laji-form';
+import Theme from 'laji-form/lib/themes/bs5';
 import { FormApiClient } from '../../shared/api/FormApiClient';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService, Role } from '../../shared/service/user.service';
@@ -24,34 +25,35 @@ import { Lang } from 'laji-form/lib/components/LajiForm';
     providers: [FormFacade]
 })
 export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
-    unsubscribe$ = new Subject<void>()
+    private unsubscribe$ = new Subject<void>()
 
     @ViewChild('lajiform', { static: false }) formElem: ElementRef;
     @ViewChild('formName', { static: false }) formName: ElementRef;
     @ViewChild('formDesc', { static: false }) formDesc: ElementRef;
 
-    private id: string;
-    private documentId: string;
-    private personToken: string;
-
     lajiFormWrapper: LajiForm;
     loggedIn = false;
     loginUrl: string;
     saving = false;
+    prepopulatedName: string | undefined;
 
-    public prepopulatedName: string | undefined;
+    private id: string;
+    private documentId: string;
+    private personToken: string;
 
-    constructor(@Inject(ElementRef) elementRef: ElementRef,
-    private facade: FormFacade,
-    private renderer: Renderer2,
-    private apiClient: FormApiClient,
-    private docService: DocumentService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private translate: TranslateService,
-    private title: Title,
-    private meta: Meta,
-    private ngZone: NgZone) {
+    constructor(
+        @Inject(ElementRef) elementRef: ElementRef,
+        private facade: FormFacade,
+        private renderer: Renderer2,
+        private apiClient: FormApiClient,
+        private docService: DocumentService,
+        private route: ActivatedRoute,
+        private router: Router,
+        private translate: TranslateService,
+        private title: Title,
+        private meta: Meta,
+        private ngZone: NgZone
+    ) {
         this.loggedIn = UserService.loggedIn();
         const nav = this.router.getCurrentNavigation()
         if (nav.extras.state && nav.extras.state.name) {
@@ -112,6 +114,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
             data.uiSchemaContext.formID = this.id;
             data.uiSchemaContext['creator'] = UserService.getUserId();
             data.uiSchemaContext.isAdmin = UserService.hasRole(Role.CMS_ADMIN);
+            console.log(data.uiSchema, data.uiSchemaContext);
             this.lajiFormWrapper = new LajiForm({
                 rootElem: this.formElem.nativeElement,
                 schema: data.schema,
@@ -120,7 +123,8 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
                 formData: data.formData,
                 validators: data.validators,
                 warnings: data.warnings,
-                onSubmit: this.onSubmit.bind(this),
+                onSubmit: this.onFormSubmit.bind(this),
+                theme: Theme,
                 //onChange: this._onChange.bind(this),
                 //onSettingsChange: this._onSettingsChange.bind(this),
                 settings: undefined,
@@ -134,7 +138,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
         });
     }
 
-    submit() {
+    onBtnSubmit() {
         if (this.lajiFormWrapper) {
             this.ngZone.runOutsideAngular(() => {
                 this.lajiFormWrapper.submit();
@@ -142,7 +146,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
         }
     }
 
-    onSubmit(data) {
+    onFormSubmit(data) {
         if (this.saving) {
             return;
         }
