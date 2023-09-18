@@ -42,16 +42,15 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     @ViewChild('optionsmenu', { static: true }) optionsMenu: ElementRef;
 
     /* CHECKBOXES */
-    @ViewChild('plantsCheckbox', { static: true })        plantsCheckbox: ElementRef;
-    @ViewChild('mammalsCheckbox', { static: true })       mammalsCheckbox: ElementRef;
-    @ViewChild('freshwaterCheckbox', { static: true })    freshwaterCheckbox: ElementRef;
-    @ViewChild('balticCheckbox', { static: true })        balticCheckbox: ElementRef;
-    @ViewChild('interiorCheckbox', { static: true })      interiorCheckbox: ElementRef;
-    @ViewChild('forestryCheckbox', { static: true })      forestryCheckbox: ElementRef;
-    @ViewChild('agriculturalCheckbox', { static: true })  agriculturalCheckbox: ElementRef;
-    @ViewChild('fiCheckbox', { static: true })            fiCheckbox: ElementRef;
-    @ViewChild('euCheckbox', { static: true })            euCheckbox: ElementRef;
-    @ViewChild('plantPestsCheckbox', { static: true })    plantPestsCheckbox: ElementRef;
+    @ViewChild('plantsCheckbox', { static: true })          plantsCheckbox: ElementRef;
+    @ViewChild('mammalsCheckbox', { static: true })         mammalsCheckbox: ElementRef;
+    @ViewChild('freshwaterCheckbox', { static: true })      freshwaterCheckbox: ElementRef;
+    @ViewChild('balticCheckbox', { static: true })          balticCheckbox: ElementRef;
+    @ViewChild('interiorCheckbox', { static: true })        interiorCheckbox: ElementRef;
+    @ViewChild('plantPestsGroupCheckbox', { static: true }) plantPestsGroupCheckbox: ElementRef;
+    @ViewChild('fiCheckbox', { static: true })              fiCheckbox: ElementRef;
+    @ViewChild('euCheckbox', { static: true })              euCheckbox: ElementRef;
+    @ViewChild('plantPestsCheckbox', { static: true })      plantPestsCheckbox: ElementRef;
 
     constructor(private settingsService:TaxonBrowserApiSettingsService,
                 private apiService: TaxonBrowserApiService,
@@ -96,8 +95,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
                 groups.includes("HBE.MG5") ? this.freshwaterCheckbox.nativeElement.checked = true : this.freshwaterCheckbox.nativeElement.checked = false;
                 groups.includes("HBE.MG4") ? this.balticCheckbox.nativeElement.checked = true : this.balticCheckbox.nativeElement.checked = false;
                 groups.includes("HBE.MG9") ? this.interiorCheckbox.nativeElement.checked = true : this.interiorCheckbox.nativeElement.checked = false;
-                groups.includes("HBE.MG6") ? this.forestryCheckbox.nativeElement.checked = true : this.forestryCheckbox.nativeElement.checked = false;
-                groups.includes("HBE.MG7") ? this.agriculturalCheckbox.nativeElement.checked = true : this.agriculturalCheckbox.nativeElement.checked = false;
+                groups.includes("HBE.MG13") ? this.plantPestsGroupCheckbox.nativeElement.checked = true : this.plantPestsGroupCheckbox.nativeElement.checked = false;
             }
             event.hasOwnProperty('FiList') ? this.fiCheckbox.nativeElement.checked = event.FiList: this.fiCheckbox.nativeElement.checked = false;
             event.hasOwnProperty('EuList') ? this.euCheckbox.nativeElement.checked = event.EuList: this.euCheckbox.nativeElement.checked = false;
