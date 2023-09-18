@@ -114,7 +114,6 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
             data.uiSchemaContext.formID = this.id;
             data.uiSchemaContext['creator'] = UserService.getUserId();
             data.uiSchemaContext.isAdmin = UserService.hasRole(Role.CMS_ADMIN);
-            console.log(data.uiSchema, data.uiSchemaContext);
             this.lajiFormWrapper = new LajiForm({
                 rootElem: this.formElem.nativeElement,
                 schema: data.schema,
