@@ -125,6 +125,27 @@ p {
     height: 100%;
 }
 
+.modal-dialog.laji-form.media-add-modal .modal-header {
+    justify-content: flex-end;
+}
+.modal-dialog.laji-form .btn-close {
+    background-color: $neutral-1;
+    font-size: 18px;
+    color: $neutral-7;
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,.3);
+    border-radius: 2px;
+    border: none;
+    padding: 4px 8px;
+
+    &:hover {
+        background-color: $neutral-2
+    }
+
+    &::before {
+        content: '×';
+    }
+}
+
 /* ngx-pagination */
 
 .ngx-pagination {
