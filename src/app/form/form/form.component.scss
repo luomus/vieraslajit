@@ -68,6 +68,21 @@
     }
 }
 
+:host ::ng-deep .laji-form-error-list.laji-form-failed-jobs-list.laji-form-popped {
+    top: 120px !important;
+}
+
+:host ::ng-deep .laji-form-drop-zone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+        height: 50%;
+        width: 50%;
+        color: $neutral-4;
+    }
+}
+
 // LOGIN
 
 .login-section {
