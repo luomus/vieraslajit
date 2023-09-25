@@ -29,15 +29,15 @@
             <div class="nav-links">
                 <a class="link" routerLink="/lajit" routerLinkActive="active" translate>navigation.taxonomy</a>
                 <div class="dropdown link vrs-dropdown" tabindex="0" dropdown>
-                <a class="dropdown-toggle" translate>navigation.observations<span class="caret"></span></a>
-                <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
-                    <li role="menuitem"><a class="dropdown-item"
-                        routerLink="/havainnot" translate>navigation.observations.map</a></li>
-                    <li role="menuitem"><a class="dropdown-item"
-                        routerLink="/ilmoita" translate>navigation.observations.report</a></li>
-                    <li role="menuitem"><a class="dropdown-item"
-                        routerLink="/info/i-2277">{{'navigation.observations.report2' | translate}}</a></li>
-                </ul>
+                    <a class="dropdown-toggle" translate>navigation.observations<span class="caret"></span></a>
+                    <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" id="dropdown-menu" role="menu">
+                        <li role="menuitem"><a class="dropdown-item"
+                            routerLink="/havainnot" translate>navigation.observations.map</a></li>
+                        <li role="menuitem"><a class="dropdown-item"
+                            routerLink="/ilmoita" translate>navigation.observations.report</a></li>
+                        <li role="menuitem"><a class="dropdown-item"
+                            routerLink="/info/i-2277">{{'navigation.observations.report2' | translate}}</a></li>
+                    </ul>
                 </div>
                 <a class="link" [routerLink]="['/info/', getFAQId()]" routerLinkActive="active" translate>navigation.FAQ</a>
                 <div class="dropdown link vrs-dropdown" id="dropdown-about" tabindex="0" dropdown>
