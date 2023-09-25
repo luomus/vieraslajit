@@ -76,7 +76,7 @@
               "ngswConfigPath": "src/ngsw-config.json"
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "beta"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -150,7 +150,7 @@
               ]
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "beta"
         },
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",

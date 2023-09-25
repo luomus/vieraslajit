@@ -8,14 +8,12 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TransferHttpCacheModule } from '@nguniversal/common';
-
 import { VrsRouterModule } from './vrs-router.module';
 import { AppComponent } from './app.component';
 import { SpinnerModule } from './shared-modules/spinner/spinner.module';
 import { EditcmsModule } from './shared-modules/editcms/editcms.module';
 import { SharedModule } from './shared/shared.module';
 import { UserService } from './shared/service/user.service';
-
 import { registerLocaleData } from '@angular/common';
 import localeFi from '@angular/common/locales/fi';
 import { StateService } from './state.service';

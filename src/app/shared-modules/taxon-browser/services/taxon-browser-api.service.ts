@@ -1,20 +1,16 @@
 import { Injectable } from "@angular/core";
-import { EventEmitter } from "events";
-
 import { TaxonBrowserApiSettingsService } from "./taxon-browser-api-settings.service";
-import { map, tap } from "rxjs/operators";
+import { filter, map, tap } from "rxjs/operators";
 import { Taxonomy } from "../../../shared/model";
 import { TaxonService } from "app/shared/service/taxon.service";
+import { Subject } from "rxjs";
 
 @Injectable()
 export class TaxonBrowserApiService {
-
     taxa:Array<Taxonomy> = [];
-    private query;
-
     lastPage = 1;
-
-    eventEmitter:EventEmitter = new EventEmitter();
+    eventEmitter = new Subject<'done' | 'change'>();
+    private query;
 
     constructor(
         private settingsService: TaxonBrowserApiSettingsService,
@@ -41,7 +37,7 @@ export class TaxonBrowserApiService {
     }
 
     initialize() {
-        this.settingsService.eventEmitter.addListener("change", ()=>{
+        this.settingsService.eventEmitter.subscribe(()=>{
             this.query.page = 1;
             this.updateQuery();
             this.updateTaxa();
@@ -95,9 +91,9 @@ export class TaxonBrowserApiService {
             } else {
                 this.taxa = res;
             }
-            this.eventEmitter.emit('done');
+            this.eventEmitter.next('done');
         });
-        this.eventEmitter.emit('change');
+        this.eventEmitter.next('change');
     }
 
     loadMore() {

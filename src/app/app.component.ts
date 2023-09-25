@@ -15,8 +15,6 @@ import { filter } from 'rxjs/operators';
  * Main component that acts as a container for navigation, content and footer.
  */
 
-declare const ga: Function;
-
 @Component({
   selector: 'vrs-root',
   templateUrl: './app.component.html',
@@ -40,7 +38,6 @@ export class AppComponent implements OnInit {
     state: StateService,
     private translate: TranslateService,
     private userService: UserService,
-    private location: Location,
     private router: Router,
     private swUpdate: SwUpdate,
     private loaderService: LoaderService,
@@ -49,8 +46,6 @@ export class AppComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: object
   ) {
-    this.useAnalytics = environment.useAnalytics;
-
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.loaderService.reset();
@@ -65,14 +60,6 @@ export class AppComponent implements OnInit {
             content: environment.baseUrl + this.router.url
           }
         );
-
-        const path = location.path() || '/';
-        // Use analytics
-        if (this.useAnalytics && path.indexOf('/user') !== 0) {
-          try {
-            ga('send', 'pageview', path);
-          } catch (e) {}
-        }
       }
     });
 

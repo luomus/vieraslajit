@@ -1,5 +1,5 @@
-import { EventEmitter } from "events";
-import { Injectable } from "../../../../../../../node_modules/@angular/core";
+import { Subject } from "rxjs";
+import { Injectable } from "@angular/core";
 
 export type ObsMapOption = "id" | "list" | "municipality" | "personToken"
                            | "taxonSearch" | 'fiList' | 'euList' | 'plantPest'
@@ -11,13 +11,12 @@ type Options = {
 }
 
 @Injectable()
-
 export class ObsMapOptions {
 
     private options:Options;
 
     private _loadState:boolean = false;
-    eventEmitter:EventEmitter = new EventEmitter();
+    eventEmitter = new Subject<string>();
 
     constructor() {
         this.options = {};
@@ -29,7 +28,7 @@ export class ObsMapOptions {
 
     set loadState(b:boolean) {
         this._loadState = b;
-        this.eventEmitter.emit('stateChange');
+        this.eventEmitter.next('stateChange');
     }
 
     getOption(option:ObsMapOption){
@@ -42,7 +41,7 @@ export class ObsMapOptions {
 
     setOption(option:ObsMapOption, value:any) {
         this.options[option] = value;
-        this.eventEmitter.emit('change');
+        this.eventEmitter.next('change');
     }
 
     setOptionSilent(option:ObsMapOption, value:any) {
@@ -50,14 +49,13 @@ export class ObsMapOptions {
     }
 
     emitChange() {
-        this.eventEmitter.emit('change');
+        this.eventEmitter.next('change');
     }
 
     setOptions(options:Array<[ObsMapOption, any]>) {
         options.forEach(option => {
             this.options[option[0]] = option[1];
         })
-        this.eventEmitter.emit('change');
+        this.eventEmitter.next('change');
     }
-
 }

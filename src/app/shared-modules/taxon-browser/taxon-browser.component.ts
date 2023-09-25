@@ -8,7 +8,7 @@ import { TaxonBrowserApiSettingsService } from "./services/taxon-browser-api-set
 import { Taxonomy } from "../../shared/model";
 import { TaxonBrowserParameterService, TaxonBrowserQuery } from "./services/taxon-browser-parameter.service";
 import { FilterInfoType } from "./filter-info/filter-info.component";
-import { map } from "rxjs/operators";
+import { filter, map } from "rxjs/operators";
 import { SpreadSheetService } from "app/shared/service/spread-sheet.service";
 import { SortOrder } from "./select-sort-order/select-sort-order.component";
 
@@ -66,9 +66,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
 
         this.apiService.initialize();
 
-        this.apiService.eventEmitter.addListener('change', ()=>{
-        });
-        this.apiService.eventEmitter.addListener('done', ()=>{
+        this.apiService.eventEmitter.pipe(filter(x => x === "done")).subscribe(()=>{
             // duplicate array to avoid mutability problems
             this.taxa = this.apiService.taxa.slice();
             this.total = this.settingsService.apiSettings.total;

@@ -7,6 +7,7 @@ import { YkjService } from "../import-from-laji-front/ykj.service";
 import { environment } from "../../../../../environments/environment";
 import { ApiService, LajiApi } from "../../../../shared/api/api.service";
 import { WarehouseQueryInterface } from "../import-from-laji-front/WarehouseQueryInterface";
+import { filter } from "rxjs/operators";
 
 /* Listens to updates in obsMapOptions
     and updates obsMapObservations accordingly */
@@ -14,14 +15,13 @@ import { WarehouseQueryInterface } from "../import-from-laji-front/WarehouseQuer
 @Injectable()
 
 export class MapApiService {
-
     constructor(private obsMapOptions:ObsMapOptions,
                 private obsMapData:ObsMapData,
                 private observationService: ObservationService,
                 private areaService: AreaService,
                 private ykjService: YkjService){
         /* Update observation list whenever there's a change in options */
-        this.obsMapOptions.eventEmitter.addListener("change", ()=>{
+        this.obsMapOptions.eventEmitter.pipe(filter(x => x === 'change')).subscribe(()=>{
             this.getObservationCount().subscribe(res => {
                 this.obsMapData.observationCount = res.total
                 if (res.total > 2000) {

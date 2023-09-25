@@ -3,6 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { ObsMapData, VrsObservation, ObsMapDataMeta } from "../services/data/ObsMapData";
 import { EventEmitter } from "events";
 import { ObsMapOptions } from "../services/data/ObsMapOptions";
+import { filter } from "rxjs/operators";
 
 @Component({
     selector: 'vrs-obs-map-list',
@@ -32,7 +33,7 @@ export class ObsMapListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.obsMapOptions.eventEmitter.addListener('stateChange',()=>{
+        this.obsMapOptions.eventEmitter.pipe(filter(x => x === 'stateChange')).subscribe(()=>{
             this.loading = this.obsMapOptions.loadState;
         })
     }
