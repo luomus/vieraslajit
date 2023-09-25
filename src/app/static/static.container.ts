@@ -8,18 +8,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'environments/environment';
 import { removeHTMLTagFragments } from 'app/utils';
-
-export interface StaticNavItem {
-    title: string,
-    id: string,
-    active: boolean,
-    parent: string,
-    idx: number
-}
-
-export interface InformationItemWithIdx extends InformationItem {
-    idx?: number
-}
+import { InformationItemWithIdx, StaticNavItem } from './static-model';
 
 @Component({
     selector: 'vrs-static',

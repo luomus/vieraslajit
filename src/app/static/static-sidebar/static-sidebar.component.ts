@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { StaticNavItem } from "../static.container";
+import { StaticNavItem } from "../static-model";
 
 @Component({
     selector: 'vrs-static-sidebar',
