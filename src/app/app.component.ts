@@ -123,6 +123,9 @@ export class AppComponent implements OnInit {
     }
   }
   onAcceptUpdate() {
-    window.location.reload();
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.activateUpdate().then(() => window.location.reload());
+    }
   }
 }
+
