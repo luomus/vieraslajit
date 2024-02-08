@@ -8,7 +8,7 @@ import { filter, map, tap } from 'rxjs/operators';
     selector: 'vrs-technical-news',
     template: `
 <div *ngFor="let item of (news$ | async)" class="mb-3">
-    <a [routerLink]="['/news', item.id]">{{ item.title }} <span class="oi oi-external-link"></span></a>
+    <a [routerLink]="['/ajankohtaista', item.id]">{{ item.title }}</a>
 </div>`,
     styleUrls: ['technical-news.component.scss']
 })
