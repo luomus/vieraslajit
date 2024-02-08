@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { TopicalSpeciesComponent } from './topical-species/topical-species.component';
 import { TaxonSearchModule } from 'app/shared-modules/taxon-search/taxon-search.module';
+import { TechnicalNewsModule } from 'app/shared-modules/technical-news/technical-news.module';
 
 /**
  * Declares routes and component for rendering the home/front -page
@@ -14,7 +15,8 @@ import { TaxonSearchModule } from 'app/shared-modules/taxon-search/taxon-search.
   imports: [
     HomeRoutingModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    TechnicalNewsModule
   ],
   declarations: [HomeComponent, TopicalSpeciesComponent]
 })

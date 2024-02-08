@@ -1,0 +1,13 @@
+@import 'vars';
+
+div {
+    border-radius: 5px;
+    background-color: $danger-1;
+    border: 1px solid $danger-3;
+    padding: 12px;
+
+    a {
+        color: $danger-7;
+    }
+}
+

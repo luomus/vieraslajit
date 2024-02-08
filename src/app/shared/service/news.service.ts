@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { PagedResult } from '../model/PagedResult';
 import { NewsElement } from '../model/NewsElement';
 import { ApiService, LajiApi } from '../api/api.service';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class NewsService {
@@ -19,4 +20,10 @@ export class NewsService {
     return this.apiService.newsFindById(LajiApi.Endpoints.newsElement, id);
   }
 
+  getTechnical(): Observable<NewsElement[]> {
+    return this.apiService.newsFindAll(LajiApi.Endpoints.newsArray, { pageSize: '5', tag: 'technical' }).pipe(
+      map(res => res.results)
+    );
+  }
 }
+
