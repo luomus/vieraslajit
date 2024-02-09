@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../api/api.service';
 import { Observable ,  Subject, BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 export enum userProperty {
   PERSON = 'person',
@@ -18,7 +19,7 @@ export class UserService {
 
   public loginStateChange: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private http: HttpClient) { }
 
   public static getLoginUrl(next) {
     return (environment.lajiAuth.authUrl + 'login'
@@ -56,12 +57,22 @@ export class UserService {
   public static getUserId() {
     return UserService.getUserProperties()[userProperty.PERSON].id;
   }
-  
+
   logout() {
-    UserService.clearUserProperties();
-    UserService.clearUserToken();
-    this.setUserProperty(userProperty.LOGIN, false);
-    this.loginStateChange.next(null);
+    const token = UserService.getToken();
+    const cb = () => {
+      UserService.clearUserProperties();
+      UserService.clearUserToken();
+      this.setUserProperty(userProperty.LOGIN, false);
+      this.loginStateChange.next(null);
+    }
+    if (token) {
+      const url = environment.baseUrl + `/person-token/${UserService.getToken()}`;
+      this.http.delete(url, {observe: 'response'}).subscribe(() => cb());
+    } else {
+      cb();
+    }
+
   }
 
   private static clearUserProperties() {
@@ -78,14 +89,14 @@ export class UserService {
 
   updateUserProperties(token:string) {
     let s: Subject<any> = new Subject<any>();
-    this.apiService.personToken(UserService.getToken()).subscribe((data) => { 
+    this.apiService.personToken(UserService.getToken()).subscribe((data) => {
       this.setUserProperty(userProperty.PTOKEN, data);
       this.apiService.personByToken(UserService.getToken()).subscribe((data) => {
         // Admin role for testing purposes
         if(!environment.production) {
           data['role'] = [Role.CMS_ADMIN];
         }
-        
+
         this.setUserProperty(userProperty.PERSON, data);
 
         this.setUserProperty(userProperty.LOGIN, "true");
