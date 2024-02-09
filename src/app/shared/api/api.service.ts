@@ -54,6 +54,13 @@ export class ApiService {
     );
   }
 
+  deletePersonToken(token: string) {
+    return this.httpClient.delete(
+      environment.lajiApi.url + `/person-token/${token}`,
+      { responseType: 'text' }
+    );
+  }
+
   /**
    * Used for autocompletion of searchqueries
    *

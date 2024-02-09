@@ -19,7 +19,7 @@ export class UserService {
 
   public loginStateChange: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(private apiService: ApiService, private http: HttpClient) { }
+  constructor(private apiService: ApiService) { }
 
   public static getLoginUrl(next) {
     return (environment.lajiAuth.authUrl + 'login'
@@ -65,10 +65,9 @@ export class UserService {
       UserService.clearUserToken();
       this.setUserProperty(userProperty.LOGIN, false);
       this.loginStateChange.next(null);
-    }
+    };
     if (token) {
-      const url = environment.baseUrl + `/person-token/${UserService.getToken()}`;
-      this.http.delete(url, {observe: 'response'}).subscribe(() => cb());
+      this.apiService.deletePersonToken(UserService.getToken()).subscribe(_ => cb());
     } else {
       cb();
     }
