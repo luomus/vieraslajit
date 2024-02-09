@@ -1,16 +1,17 @@
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { UserService, userProperty } from '../../shared/service/user.service';
+import { isPlatformBrowser } from '@angular/common';
 
 /**
  * This component is loaded when laji-auth redirects the client
  * to /user/login?token=...
- * 
+ *
  * 1. Captures the token url parameter and stores it in UserService
  * 2. Requests UserService to update the session based on token
  * 3. Redirects the client to whatever page they were in before the
  * login operation started
- * 
+ *
  * Note that redirection requires UserService to complete an API request
  * on laji.fi server, because the next page parameter is stored there
  */
@@ -22,9 +23,17 @@ import { UserService, userProperty } from '../../shared/service/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: object
+    ) { }
 
   ngOnInit() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
     if (this.activatedRoute.snapshot.queryParams['token']) {
       // save laji-auth token to userproperties
       UserService.setToken(this.activatedRoute.snapshot.queryParams['token']);
