@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   newsTag: 'vieraslajit.fi',
-  baseUrl: 'https://vieraslajit-dev.laji.fi',
+  baseUrl: 'localhost:4200',
   embedUrl: 'https://dev-embedded.laji.fi',
   useAnalytics: false,
   lajiApi: {

@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "update": "ng update @angular/cli @angular/core",
-    "start": "ng serve",
+    "start": "ng serve --configuration local",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

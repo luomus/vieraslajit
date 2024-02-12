@@ -42,8 +42,8 @@ export class UserService {
     } else return false;
   }
 
-  public static loggedIn() {
-    return UserService.getUserProperties()[userProperty.LOGIN];
+  public static loggedIn(): boolean {
+    return !!UserService.getUserProperties()[userProperty.LOGIN];
   }
 
   public static setToken(token: string) {

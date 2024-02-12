@@ -43,10 +43,11 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.loginSub = this.userService.loginStateChange.subscribe(() => {
+      const previousState = this.loggedIn;
       this.loggedIn = UserService.loggedIn();
-      if(this.loggedIn == false) {
+      if(previousState === true && this.loggedIn === false) {
         // Use reload hack to force re-render of the component
-        this.router.navigate(["reload/" + this.router.url], {skipLocationChange: true});
+         this.router.navigate(["reload/" + this.router.url], {skipLocationChange: true});
       }
     });
 
