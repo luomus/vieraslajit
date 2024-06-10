@@ -40,9 +40,16 @@
       <div class="card taxon-info-card" id="taxoncard-right">
         <div class="card-block" *ngIf="isPlatformBrowser()">
           <carousel *ngIf="media && media.length > 0" id="image-carousel" [interval]="false">
-            <slide class="card-slide slide" *ngFor="let image of media">
-              <img alt="" class="img-fluid center-block" src="{{image.fullURL}}" (click)="openImage(imageModal, image)">
-            </slide>
+            <ng-container *ngIf="taxon?.species; else nonSpeciesImg">
+              <slide class="card-slide slide" *ngFor="let image of media">
+                <img alt="" class="img-fluid center-block" src="{{image.fullURL}}" (click)="openImage(imageModal, image)">
+              </slide>
+            </ng-container>
+            <ng-template #nonSpeciesImg>
+              <slide class="card-slide slide non-species-slide">
+                <img alt="" class="img-fluid center-block" src="assets/images/logos/vieraslajit_logo_musta.png">
+              </slide>
+            </ng-template>
           </carousel>
         </div>
         <div class="taxon-info">

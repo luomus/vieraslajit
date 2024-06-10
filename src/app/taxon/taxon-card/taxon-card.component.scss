@@ -56,6 +56,10 @@
     border-top-left-radius: $content-border-radius;
 }
 
+:host ::ng-deep carousel .card-slide.slide.carousel-item.non-species-slide {
+    background: $neutral-1;
+}
+
 .taxon-info-card {
     background: $neutral-1;
     box-shadow: 0px 2px 35px rgba(#000, 0.1);
