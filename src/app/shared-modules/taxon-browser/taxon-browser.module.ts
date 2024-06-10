@@ -6,7 +6,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaxonBrowserListComponent } from './taxon-browser-list/taxon-browser-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SpinnerModule } from '../../shared-modules/spinner/spinner.module';
@@ -21,7 +21,7 @@ import { SelectSortOrderComponent } from './select-sort-order/select-sort-order.
 
 @NgModule({
     imports: [NgxPaginationModule, TabsModule, NgxDatatableModule, RouterModule,
-        CommonModule, TranslateModule, FormsModule, SpinnerModule, SharedModule, InfiniteScrollModule],
+        CommonModule, TranslateModule, FormsModule, SpinnerModule, SharedModule, InfiniteScrollModule, ReactiveFormsModule],
     declarations: [GroupDropdownComponent, TaxonGridComponent, TaxonBrowserComponent, TaxonBrowserListComponent, InformalGroupComponent, InformalGroupGridComponent, OptionsAccordionComponent, FilterInfoComponent, SelectSortOrderComponent ],
     exports: [TaxonBrowserComponent]
 })

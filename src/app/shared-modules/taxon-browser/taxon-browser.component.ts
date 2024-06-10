@@ -1,112 +1,175 @@
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, AfterViewInit, Renderer2, Inject, PLATFORM_ID } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, AfterViewInit, Renderer2, Inject, PLATFORM_ID, ChangeDetectionStrategy } from "@angular/core";
 import { isPlatformBrowser } from "@angular/common";
 import { TranslateService } from "@ngx-translate/core";
-import { Subscription, Observable } from "rxjs";
+import { Subscription, combineLatest, BehaviorSubject } from "rxjs";
 
-import { TaxonBrowserApiService } from "./services/taxon-browser-api.service";
-import { TaxonBrowserApiSettingsService } from "./services/taxon-browser-api-settings.service";
 import { Taxonomy } from "../../shared/model";
-import { TaxonBrowserParameterService, TaxonBrowserQuery } from "./services/taxon-browser-parameter.service";
 import { FilterInfoType } from "./filter-info/filter-info.component";
-import { filter, map } from "rxjs/operators";
+import { filter, map, tap, switchMap } from "rxjs/operators";
 import { SpreadSheetService } from "app/shared/service/spread-sheet.service";
 import { SortOrder } from "./select-sort-order/select-sort-order.component";
+import { FormBuilder } from "@angular/forms";
+import { TaxonService } from "app/shared/service/taxon.service";
+import { ActivatedRoute, Router } from "@angular/router";
+
+const initialFilters = {
+    plants: false,
+    mammalsAndBirds: false,
+    freshwater: false,
+    baltic: false,
+    interior: false,
+    plantPestsGroup: false,
+    fi: false,
+    eu: false,
+    plantPests: false,
+};
+
+type Filters = {
+    [key in keyof typeof initialFilters]: boolean;
+}
+
+interface SortParams {
+    sortOrder: string;
+}
+
+type TaxonBrowserQueryParams = Filters & SortParams;
+
+const getTaxaQuery = (params: TaxonBrowserQueryParams, page: number, lang: string): any => {
+    const query: any = {
+        page,
+        pageSize: 12,
+        invasiveSpeciesFilter: true,
+        lang,
+        includeMedia: true,
+        selectedFields: [
+            'vernacularName',
+            'scientificName',
+            'cursiveName',
+            'invasiveSpeciesEstablishment',
+            'administrativeStatuses',
+            'id',
+            'species',
+            'finnish'
+        ],
+        sortOrder: params.sortOrder ? params.sortOrder : 'observationCountInvasiveFinland DESC'
+    };
+
+    const adminStatusFilters = [];
+    if (params.eu) { adminStatusFilters.push('MX.euInvasiveSpeciesList'); }
+    if (params.fi) { adminStatusFilters.push('MX.controllingRisksOfInvasiveAlienSpecies'); }
+    if (params.plantPests) { adminStatusFilters.push('MX.quarantinePlantPest', 'MX.qualityPlantPest'); }
+    query.adminStatusFilters = adminStatusFilters;
+
+    const invasiveSpeciesMainGroups = [];
+    if (params.plants)          { invasiveSpeciesMainGroups.push('HBE.MG2'); }
+    if (params.mammalsAndBirds) { invasiveSpeciesMainGroups.push('HBE.MG8'); }
+    if (params.freshwater)      { invasiveSpeciesMainGroups.push('HBE.MG5'); }
+    if (params.baltic)          { invasiveSpeciesMainGroups.push('HBE.MG4'); }
+    if (params.interior)        { invasiveSpeciesMainGroups.push('HBE.MG9'); }
+    if (params.plantPestsGroup) { invasiveSpeciesMainGroups.push('HBE.MG13'); }
+    if (invasiveSpeciesMainGroups.length === 0) { invasiveSpeciesMainGroups.push('HBE.MG14') }
+    query.invasiveSpeciesMainGroups = invasiveSpeciesMainGroups;
+
+    return query;
+};
+
+const parseFiltersFromQueryParams = (queryParams: Record<string, string>): Partial<Filters> => {
+    const filters: Partial<Filters> = {};
+    Object.entries(queryParams).filter(([key, val]) => key in initialFilters).forEach(([key, val]) => filters[key] = JSON.parse(val));
+    return filters;
+};
+
+const filtersToQueryParams = (filters: any): any => {
+    const queryParams = {};
+    Object.entries(filters).forEach(([key, val]) => queryParams[key] = val ? val : undefined);
+    return queryParams;
+};
 
 @Component({
     selector: "vrs-taxon-browser",
     styleUrls: ["taxon-browser.component.scss"],
     templateUrl: "taxon-browser.component.html",
-    providers: [TaxonBrowserApiService, TaxonBrowserApiSettingsService, TaxonBrowserParameterService]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaxonBrowserComponent implements OnInit, AfterViewInit {
-    taxa:Taxonomy[] = [];
-    total: number = 0;
-    filterInfo$: Observable<FilterInfoType[]>;
-
-    private langChangeSub:Subscription;
-
-    viewMode: "list" | "grid" = "grid"
-
-    loading = true;
-
-    maxHeight = 400;
-    optionsHeight = 400;
-
-    sidebarActive = true;
-
-    resizeUnlisten = () => {}
-
     @ViewChild('sidebar', { static: true }) sidebar: ElementRef;
     @ViewChild('sidebarToggle', { static: true }) sidebarToggle: ElementRef;
     @ViewChild('cardscont', { static: true }) cardsContainer: ElementRef;
     @ViewChild('optionsmenu', { static: true }) optionsMenu: ElementRef;
 
-    /* CHECKBOXES */
-    @ViewChild('plantsCheckbox', { static: true })          plantsCheckbox: ElementRef;
-    @ViewChild('mammalsCheckbox', { static: true })         mammalsCheckbox: ElementRef;
-    @ViewChild('freshwaterCheckbox', { static: true })      freshwaterCheckbox: ElementRef;
-    @ViewChild('balticCheckbox', { static: true })          balticCheckbox: ElementRef;
-    @ViewChild('interiorCheckbox', { static: true })        interiorCheckbox: ElementRef;
-    @ViewChild('plantPestsGroupCheckbox', { static: true }) plantPestsGroupCheckbox: ElementRef;
-    @ViewChild('fiCheckbox', { static: true })              fiCheckbox: ElementRef;
-    @ViewChild('euCheckbox', { static: true })              euCheckbox: ElementRef;
-    @ViewChild('plantPestsCheckbox', { static: true })      plantPestsCheckbox: ElementRef;
+    filtersForm = this.fb.group(<Filters>initialFilters);
+    taxa: Taxonomy[] = [];
+    loadNextPage = new BehaviorSubject<void>(undefined);
+    total = 0;
+    currentPage = 1;
+    lastPage = Infinity;
+    pageCache: Taxonomy[] = [];
+    sortOrder: SortOrder = 'observations';
+    filterInfo: FilterInfoType[] = [];
+    viewMode: "list" | "grid" = "grid"
+    maxHeight = 400;
+    optionsHeight = 400;
+    sidebarActive = true;
+    resizeUnlisten = () => {}
+    subscription = new Subscription();
 
-    constructor(private settingsService:TaxonBrowserApiSettingsService,
-                private apiService: TaxonBrowserApiService,
-                private translate: TranslateService,
-                private parameterService: TaxonBrowserParameterService,
-                private cd: ChangeDetectorRef,
-                private renderer: Renderer2,
-                @Inject(PLATFORM_ID) private platformId: object,
-                private spreadSheetService: SpreadSheetService) {}
+    constructor(
+        private taxonService: TaxonService,
+        private translate: TranslateService,
+        private cd: ChangeDetectorRef,
+        private renderer: Renderer2,
+        private cdr: ChangeDetectorRef,
+        private fb: FormBuilder,
+        private router: Router,
+        private route: ActivatedRoute,
+        @Inject(PLATFORM_ID) private platformId: object,
+        private spreadSheetService: SpreadSheetService
+    ) {}
 
     ngOnInit() {
-        this.settingsService.lang = this.translate.currentLang;
-
-        this.apiService.initialize();
-
-        this.apiService.eventEmitter.pipe(filter(x => x === "done")).subscribe(()=>{
-            // duplicate array to avoid mutability problems
-            this.taxa = this.apiService.taxa.slice();
-            this.total = this.settingsService.apiSettings.total;
-            this.loading=false;
-        });
-
-        this.filterInfo$ = this.parameterService.queryEventEmitter
-        .pipe(
-            map((query: TaxonBrowserQuery) => {
-                let infoTypes: FilterInfoType[] = []
-                query.FiList ? infoTypes.push('fiList') : null;
-                query.EuList ? infoTypes.push('euList') : null;
-                query.PlantPests ? infoTypes.push('plantPest') : null;
-                return infoTypes;
+        this.subscription.add(
+            this.filtersForm.valueChanges.subscribe(vals => {
+                this.router.navigate([], {
+                    relativeTo: this.route,
+                    queryParamsHandling: 'merge',
+                    queryParams: filtersToQueryParams(vals)
+                });
             })
-        )
+        );
 
-        this.parameterService.queryEventEmitter
-        .subscribe((event: TaxonBrowserQuery) => {
-            if (event.hasOwnProperty('invasiveSpeciesMainGroups')) {
-                const groups: string[] = event.invasiveSpeciesMainGroups;
-                groups.includes("HBE.MG2") ? this.plantsCheckbox.nativeElement.checked = true : this.plantsCheckbox.nativeElement.checked = false;
-                groups.includes("HBE.MG8") ? this.mammalsCheckbox.nativeElement.checked = true : this.mammalsCheckbox.nativeElement.checked = false;
-                groups.includes("HBE.MG5") ? this.freshwaterCheckbox.nativeElement.checked = true : this.freshwaterCheckbox.nativeElement.checked = false;
-                groups.includes("HBE.MG4") ? this.balticCheckbox.nativeElement.checked = true : this.balticCheckbox.nativeElement.checked = false;
-                groups.includes("HBE.MG9") ? this.interiorCheckbox.nativeElement.checked = true : this.interiorCheckbox.nativeElement.checked = false;
-                groups.includes("HBE.MG13") ? this.plantPestsGroupCheckbox.nativeElement.checked = true : this.plantPestsGroupCheckbox.nativeElement.checked = false;
-            }
-            event.hasOwnProperty('FiList') ? this.fiCheckbox.nativeElement.checked = event.FiList: this.fiCheckbox.nativeElement.checked = false;
-            event.hasOwnProperty('EuList') ? this.euCheckbox.nativeElement.checked = event.EuList: this.euCheckbox.nativeElement.checked = false;
-            event.hasOwnProperty('PlantPests') ? this.plantPestsCheckbox.nativeElement.checked = event.PlantPests: this.plantPestsCheckbox.nativeElement.checked = false;
-        });
-
-        this.parameterService.init();
-
-        this.langChangeSub = this.translate.onLangChange.subscribe((lang)=> {
-            this.settingsService.apiSettings.lang = lang.lang;
-        });
-
-        this.viewMode = this.settingsService.apiSettings.mode;
+        this.subscription.add(
+            combineLatest([
+                this.loadNextPage.pipe(
+                    filter(_ => this.currentPage < this.lastPage),
+                    tap(_ => this.currentPage++)
+                ),
+                this.route.queryParams.pipe(
+                    tap(params => {
+                        this.filtersForm.setValue({ ...initialFilters, ...parseFiltersFromQueryParams(params) }, { emitEvent: false });
+                        this.sortOrder = params['sortOrder'] ?? 'observations';
+                        this.currentPage = 1;
+                        this.pageCache = [];
+                    })
+                )
+            ]).pipe(
+                switchMap(([_, params]) => this.taxonService.getTaxa(getTaxaQuery(<TaxonBrowserQueryParams>params, this.currentPage, this.translate.currentLang)).pipe(
+                    tap(res => {
+                        this.total = res.total;
+                        this.lastPage = res.lastPage;
+                        this.filterInfo = [];
+                        if (params.fi) { this.filterInfo.push('fiList'); }
+                        if (params.eu) { this.filterInfo.push('euList'); }
+                        if (params.plantPests) { this.filterInfo.push('plantPest'); }
+                    }),
+                    map(res => res.results)
+                )),
+                tap(res => this.pageCache.push(...res)),
+                map(_ => this.pageCache)
+            ).subscribe(taxa => {
+                this.taxa = taxa;
+                this.cdr.markForCheck();
+            })
+        );
     }
 
     ngAfterViewInit() {
@@ -134,61 +197,32 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     }
 
     ngOnDestroy() {
-        this.langChangeSub ? this.langChangeSub.unsubscribe() : null;
+        this.subscription.unsubscribe();
         this.resizeUnlisten();
     }
 
-    getTotalItems() {
-        return this.settingsService.apiSettings.total;
-    }
-
-    onInformalGroupSelection(event) {
-        this.parameterService.updateQuery({informalTaxonGroups: event});
-    }
-
-    onInvasiveGroupCheckbox(event, groupId:string) {
-        let invasiveSpeciesMainGroups: string[];
-        if (typeof this.settingsService.apiSettings.invasiveSpeciesMainGroups === 'string') {
-            invasiveSpeciesMainGroups = [this.settingsService.apiSettings.invasiveSpeciesMainGroups];
-        } else {
-            invasiveSpeciesMainGroups = this.settingsService.apiSettings.invasiveSpeciesMainGroups;
-        }
-        if (event.target.checked) {
-            if (invasiveSpeciesMainGroups) invasiveSpeciesMainGroups.push(groupId);
-            else invasiveSpeciesMainGroups = [groupId];
-        } else if(invasiveSpeciesMainGroups) {
-            invasiveSpeciesMainGroups = invasiveSpeciesMainGroups.filter((group: string) => group !== groupId);
-        }
-        this.parameterService.updateQuery({invasiveSpeciesMainGroups: invasiveSpeciesMainGroups});
-    }
-
-    onCheckboxChange(event, target) {
-        this.parameterService.updateQuery({[target]: event.target.checked});
-    }
-
     onScroll() {
-        this.apiService.loadMore();
-    }
-
-    onGroupSelected(event) {
-        this.parameterService.updateQuery({informalTaxonGroups: Array.from(event)});
+        this.loadNextPage.next();
     }
 
     onClearSettings() {
-        this.parameterService.clearQuery();
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: { }
+        });
     }
 
     onSwitchViewMode() {
         this.viewMode === 'grid' ? this.viewMode = 'list' : this.viewMode = 'grid';
-        this.parameterService.updateQuery({mode: this.viewMode});
-    }
-
-    getSortOrder() {
-        return this.settingsService.apiSettings.sortOrder;
     }
 
     onChangeSortOrder(sortOrder: SortOrder) {
-        this.parameterService.updateQuery({ sortOrder });
+        this.sortOrder = sortOrder;
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParamsHandling: 'merge',
+            queryParams: { sortOrder: sortOrder === 'observations' ? undefined : sortOrder }
+        });
     }
 
     onToggleSidebar() {

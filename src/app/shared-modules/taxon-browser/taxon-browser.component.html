@@ -1,51 +1,51 @@
 <div class="taxon-browser">
     <div class="options-menu-wrapper" #sidebar>
-        <div class="sidebar-toggle" (click)="onToggleSidebar()"><span class="oi oi-arrow-thick-left" #sidebarToggle></span></div>
-        <div class="options-menu" #optionsmenu [ngStyle]="{'height': optionsHeight+'px'}">
+        <div class="sidebar-toggle" (click)="onToggleSidebar()" tabindex="0"><span class="oi oi-arrow-thick-left" #sidebarToggle></span></div>
+        <div [formGroup]="filtersForm" class="options-menu" #optionsmenu [ngStyle]="{'height': optionsHeight+'px'}">
             <div class="filters-title">
                 <h5 translate>taxonomy.filters</h5>
-                <a class="clear-settings" (click)="onClearSettings()" tabindex="0" translate>taxonomy.filters.clear</a>
+                <a class="clear-settings" (click)="onClearSettings()" translate>taxonomy.filters.clear</a>
             </div>
 <!--         <vrs-informal-group-grid (informalGroupSelection)="onInformalGroupSelection($event)"></vrs-informal-group-grid> -->
 <!--             <vrs-group-dropdown [groups]="['MVL.232', 'MVL.27', 'MVL.343', 'MVL.1', 'MVL.28', 'MVL.26', 'MVL.40', 'MVL.2', 'MVL.233', 'MVL.37', 'MVL.39', 'MVL.41']"
             (selected)="onGroupSelected($event)"></vrs-group-dropdown> -->
             <options-accordion header="{{'taxonomy.filters.harmful' | translate}}">
                 <div class="checkbox">
-                    <input type="checkbox" (change)="onCheckboxChange($event, 'FiList')" id="finnishList" #fiCheckbox>
+                    <input type="checkbox" formControlName="fi" id="finnishList">
                     <label for="finnishList" translate>taxonomy.filters.finnishList</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" (change)="onCheckboxChange($event, 'EuList')" id="euList" #euCheckbox>
+                    <input type="checkbox" formControlName="eu" id="euList">
                     <label for="euList" translate>taxonomy.filters.euList</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" (change)="onCheckboxChange($event, 'PlantPests')" id="plantPests" #plantPestsCheckbox>
+                    <input type="checkbox" formControlName="plantPests" id="plantPests">
                     <label for="plantPests" translate>taxonomy.filters.pests</label>
                 </div>
             </options-accordion>
             <options-accordion header="{{'taxonomy.filters.iasGroups' | translate}}">
                 <div class="checkbox">
-                    <input type="checkbox" id="plants" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG2')" #plantsCheckbox>
+                    <input type="checkbox" formControlName="plants" id="plants">
                     <label for="plants" translate>iasGroupName.plants</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="mammals-and-birds" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG8')" #mammalsCheckbox>
+                    <input type="checkbox" formControlName="mammalsAndBirds" id="mammals-and-birds">
                     <label for="mammals-and-birds" translate>iasGroupName.mammals</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="freshwater-species" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG5')" #freshwaterCheckbox>
+                    <input type="checkbox" formControlName="freshwater" id="freshwater-species">
                     <label for="freshwater-species" translate>iasGroupName.freshwater</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="baltic-species" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG4')" #balticCheckbox>
+                    <input type="checkbox" formControlName="baltic" id="baltic-species">
                     <label for="baltic-species" translate>iasGroupName.baltic</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="interior-pests" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG9')" #interiorCheckbox>
+                    <input type="checkbox" formControlName="interior" id="interior-pests">
                     <label for="interior-pests" translate>iasGroupName.interior</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="plant-pests-group" (change)="onInvasiveGroupCheckbox($event, 'HBE.MG13')" #plantPestsGroupCheckbox>
+                    <input type="checkbox" formControlName="plantPestsGroup" id="plant-pests-group">
                     <label for="plant-pests-group" translate>iasGroupName.plantPestsGroup</label>
                 </div>
             </options-accordion>
@@ -54,7 +54,7 @@
     <div class="browser-content-wrapper">
         <div class="browser-content-menu">
             <div>
-                <vrs-select-sort-order *ngIf="viewMode === 'grid'" [current]="getSortOrder()" (sorted)="onChangeSortOrder($event)"></vrs-select-sort-order>
+                <vrs-select-sort-order *ngIf="viewMode === 'grid'" [current]="sortOrder" (sorted)="onChangeSortOrder($event)"></vrs-select-sort-order>
                 <div class="total-taxa" *ngIf="viewMode === 'list'">
                     {{'taxonomy.grid.results.1' | translate}} {{total}} {{'taxonomy.grid.results.2' | translate}}
                 </div>
@@ -72,7 +72,7 @@
         <div class="cards-container" #cardscont [ngStyle]="{'height': maxHeight+'px'}">
             <div *ngIf="viewMode == 'grid'" class="cards-wrapper">
                 <vrs-taxon-grid [taxa]="taxa" [total]="total" (scrolled)="onScroll()">
-                    <vrs-filter-info [filters]="filterInfo$ | async"></vrs-filter-info>
+                    <vrs-filter-info [filters]="filterInfo"></vrs-filter-info>
                 </vrs-taxon-grid>
             </div>
             <div *ngIf="viewMode == 'list'" class="cards-wrapper">
