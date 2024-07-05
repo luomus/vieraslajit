@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef, Renderer2, OnDestroy, OnChanges, SimpleChanges, SimpleChange, HostListener, ComponentFactoryResolver, Injector } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef, Renderer2, OnDestroy, OnChanges, SimpleChanges, SimpleChange, HostListener, ComponentFactoryResolver, Injector, ChangeDetectionStrategy } from '@angular/core';
 
 import { UserService } from '../../../shared/service/user.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -15,7 +15,6 @@ import { YkjService } from './import-from-laji-front/ykj.service';
 import { PathOptions } from 'leaflet';
 import { ObservationMapPopupComponent } from './observation-map-popup.component';
 import { FormControl } from '@angular/forms';
-import { ChangeDetectionStrategy } from '@angular/compiler';
 
 interface QueryParams {
     own?: boolean,
