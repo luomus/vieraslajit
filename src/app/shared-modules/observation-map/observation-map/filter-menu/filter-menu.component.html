@@ -1,42 +1,42 @@
-<div class="menu" [ngStyle]="hidden && {'display': 'none'}">
+<div [formGroup]="form" class="menu" [ngStyle]="hidden && {'display': 'none'}">
     <button class="close" (click)="onClose.emit($event)">×</button>
-  <div class="filter-group">
-    <h5 translate>observation-map.filterMenu.municipality</h5>
-    <div class="input-group">
-      <select (change)="onSelectMunicipality($event)" class="custom-select">
-        <option value="" translate>observation-map.filterMenu.municipality.all</option>
-        <option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</option>
-      </select>
+    <div class="filter-group">
+        <h5 translate>observation-map.filterMenu.municipality</h5>
+        <div class="input-group">
+          <select class="custom-select" formControlName="municipality">
+            <option value="" translate>observation-map.filterMenu.municipality.all</option>
+            <option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</option>
+          </select>
+        </div>
     </div>
-  </div>
-  <div class="filter-group">
-    <h5 translate>observation-map.filterMenu.species</h5>
-    <vrs-taxon-search (taxonChange)="onTaxonChange($event)"></vrs-taxon-search>
-  </div>
-  <div class="filter-group">
-    <h5 translate>observation-map.filterMenu.time</h5>
-    <vrs-time-selector (timeChange)="onTimeChange($event)"></vrs-time-selector>
-  </div>
-  <div class="filter-group" *ngIf="isLoggedIn">
-    <h5 translate>observation-map.filterMenu.own</h5>
-    <div class="checkbox">
-      <input type="checkbox" id="ownCheck" (change)="onOwnModeChange($event)">
-      <label for="ownCheck" translate>observation-map.filterMenu.own.label</label>
+    <div class="filter-group">
+        <h5 translate>observation-map.filterMenu.species</h5>
+        <vrs-taxon-search (taxonChange)="onTaxonChange($event)"></vrs-taxon-search>
     </div>
-  </div>
-  <div class="filter-group">
-    <h5 translate>observation-map.filterMenu.administrative</h5>
-    <div class="checkbox">
-        <input type="checkbox" (change)="onFiListCheckbox($event)" id="finnishList">
-        <label for="finnishList" translate>observation-map.filterMenu.administrative.fi</label>
+    <div class="filter-group">
+        <h5 translate>observation-map.filterMenu.time</h5>
+        <vrs-time-selector (timeChange)="onTimeChange($event)"></vrs-time-selector>
     </div>
-    <div class="checkbox">
-        <input type="checkbox" (change)="onEuListCheckbox($event)" id="euList">
-        <label for="euList" translate>observation-map.filterMenu.administrative.eu</label>
+    <div class="filter-group" *ngIf="isLoggedIn">
+        <h5 translate>observation-map.filterMenu.own</h5>
+        <div class="checkbox">
+          <input type="checkbox" id="ownCheck" (change)="onOwnModeChange($event)" formControlName="own">
+          <label for="ownCheck" translate>observation-map.filterMenu.own.label</label>
+        </div>
     </div>
-    <div class="checkbox">
-        <input type="checkbox" (change)="onPlantPestCheckbox($event)" id="plantPest">
-        <label for="plantPest" translate>observation-map.filterMenu.administrative.pest</label>
+    <div class="filter-group">
+        <h5 translate>observation-map.filterMenu.administrative</h5>
+        <div class="checkbox">
+            <input type="checkbox" id="finnishList" formControlName="fiList">
+            <label for="finnishList" translate>observation-map.filterMenu.administrative.fi</label>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox" id="euList" formControlName="euList">
+            <label for="euList" translate>observation-map.filterMenu.administrative.eu</label>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox" id="plantPest" formControlName="plantPest">
+            <label for="plantPest" translate>observation-map.filterMenu.administrative.pest</label>
+        </div>
     </div>
-  </div>
 </div>

@@ -5,10 +5,6 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker'
 import { RouterModule } from '@angular/router';
 import { ObsMapListComponent } from './observation-map/obs-map-list/obs-map-list.component';
-import { MapApiService } from './observation-map/services/MapApiService';
-import { MapService } from './observation-map/services/MapService';
-import { ObsMapOptions } from './observation-map/services/data/ObsMapOptions';
-import { ObsMapData } from './observation-map/services/data/ObsMapData';
 import { SpinnerModule } from '../spinner/spinner.module';
 import { YkjService } from './observation-map/import-from-laji-front/ykj.service';
 import { ObservationModalComponent } from './observation-map/observation-modal.component';
@@ -20,7 +16,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { FilterMenuComponent } from './observation-map/filter-menu/filter-menu.component';
 import { TaxonSearchModule } from '../taxon-search/taxon-search.module';
 import { MapLegendComponent } from './observation-map/legend/map-legend.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { defineLocale, fiLocale } from 'ngx-bootstrap/chronos';
 defineLocale('fi', fiLocale);
 
@@ -35,7 +31,8 @@ defineLocale('fi', fiLocale);
     SharedModule,
     TaxonSearchModule,
     BsDatepickerModule.forRoot(),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ObservationMapComponent,
@@ -47,10 +44,6 @@ defineLocale('fi', fiLocale);
     MapLegendComponent
   ],
   providers: [
-    MapApiService,
-    MapService,
-    ObsMapOptions,
-    ObsMapData,
     YkjService
   ],
   exports: [

@@ -1,27 +1,21 @@
 <div class="map-container" #maprow>
-  <div id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
+  <div #map id="map" [ngStyle]="{'height': mapHeight+'px'}"></div>
   <div id="view-buttons" *ngIf="listMenuEnabled && filterMenuEnabled">
     <button (click)="filterMenuHidden = !filterMenuHidden" [ngClass]="{'active': !filterMenuHidden}"><span class="oi oi-beaker"></span>{{ 'observation-map.filters' | translate }}</button>
     <button (click)="listHidden = !listHidden" [ngClass]="{'active': !listHidden}"><span class="oi oi-list"></span>{{ 'observation-map.list' | translate }}</button>
   </div>
-  <vrs-map-filters *ngIf="filterMenuEnabled"
+  <vrs-map-filters
+    *ngIf="filterMenuEnabled"
+    [formControl]="filterControl"
     [hidden]="filterMenuHidden"
-    [municipalities]="municipalities"
-    [isLoggedIn]="isLoggedIn"
-    (euListChange)="onEuListCheckbox($event)"
-    (fiListChange)="onFiListCheckbox($event)"
-    (ownModeChange)="onOwnModeChange($event)"
-    (plantPestChange)="onPlantPestCheckbox($event)"
-    (municipalityChange)="onSelectMunicipality($event)"
-    (timeChange)="onTimeChange($event)"
-    (taxonChange)="onTaxonChange($event)"
-    (onClose)="filterMenuHidden = true">
+    [municipalities]="municipalities$ | async"
+    (onClose)="onFilterMenuClose()">
   </vrs-map-filters>
   <div class="right-float-menu" *ngIf="listMenuEnabled" [ngStyle]="listHidden && {'display': 'none'}">
     <button class="close" (click)="listHidden = true">×</button>
-    <vrs-obs-map-list [ngClass]="{'hidden': isAggregateMap()}"></vrs-obs-map-list>
-    <div [ngClass]="{'hidden': !isAggregateMap()}">
-      <h5 class="observation-count"><b>{{getObservationCount() | number}}</b> {{'observation-map.count' | translate}}</h5>
+    <vrs-obs-map-list [observations]="observations" [ngClass]="{'hidden': mapType === 'aggregate'}" (onTableActivate)="onTableActivate($event)"></vrs-obs-map-list>
+    <div [ngClass]="{'hidden': mapType !== 'aggregate'}">
+      <h5 class="observation-count"><b>{{count | number}}</b> {{'observation-map.count' | translate}}</h5>
       <p translate>observation-map.instructions</p>
     </div>
     <a [href]="getLajiLink()" target="_blank" rel="noopener noreferrer" class="right-laji-link d-block mt-3" translate>observation-map.laji</a>

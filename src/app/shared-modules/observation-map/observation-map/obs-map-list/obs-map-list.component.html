@@ -1,15 +1,17 @@
+<!--
 <laji-spinner [ngClass]="{'list-spinner': loading}" [spinning]="loading" [fullViewport]="false"></laji-spinner>
+-->
 <ngx-datatable class="material"
-[rows]="observations"
-[columnMode]="'force'"
-[columns]="columns"
-[headerHeight]="50"
-[rowHeight]="50"
-[reorderable]='false'
-scrollbarV="true"
-(activate)="onTableActivate($event)"
-[messages]="{
-    emptyMessage: getEmptyMessage()
-}"
->
+    [rows]="observations"
+    [columnMode]="'force'"
+    [columns]="columns"
+    [headerHeight]="50"
+    [rowHeight]="50"
+    [reorderable]='false'
+    scrollbarV="true"
+    (activate)="onTableActivate.emit($event)"
+    [messages]="{
+        emptyMessage: getEmptyMessage()
+    }"
+    >
 </ngx-datatable>
