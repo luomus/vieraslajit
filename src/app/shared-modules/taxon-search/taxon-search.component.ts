@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, Inject, PLATFORM_ID, Output, EventEmitter, OnDestroy, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from "@angular/core";
+import { Component, OnInit, Renderer2, Inject, PLATFORM_ID, Output, EventEmitter, OnDestroy, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core";
 import * as $ from 'jquery';
 import { TranslateService } from "@ngx-translate/core";
 import { isPlatformBrowser } from "@angular/common";
@@ -6,7 +6,6 @@ import { TaxonService } from "app/shared/service/taxon.service";
 import { Taxonomy } from "app/shared/model";
 import { fromEvent, Subject } from "rxjs";
 import { debounceTime, takeUntil, filter, map, switchMap } from "rxjs/operators";
-import { ChangeDetectionStrategy } from "@angular/compiler";
 
 @Component({
     selector: "vrs-taxon-search",
