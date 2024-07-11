@@ -32,8 +32,8 @@ input {
 }
 
 .autocomplete-items {
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.1);
-    position: absolute;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.3);
+    position: relative;
     border-bottom: none;
     border-top: none;
     z-index: 475;
@@ -47,10 +47,10 @@ input {
     li {
         padding: 10px;
         cursor: pointer;
-        background-color: $neutral-1; 
+        background-color: $neutral-1;
         border-bottom: 1px solid $neutral-4;
     }
-    
+
     li:hover, li:focus {
         background-color: $neutral-3;
     }
