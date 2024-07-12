@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FilterMenuComponent } from './filter-menu/filter-menu.component';
 import { map, tap, switchMap, take, delay } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, of, Subscription } from 'rxjs';
+import { combineLatest, Observable, of, Subject, Subscription } from 'rxjs';
 import { AreaService } from 'app/shared/service/area.service';
 import LajiMap, { Lang, Options, TileLayerName, Data, DataOptions, GetPopupOptions, GetFeatureStyleOptions } from 'laji-map';
 import { observationBaseQuery, ObservationService } from 'app/shared/service/observation.service';
@@ -211,6 +211,7 @@ export class ObservationMapComponent implements AfterViewInit, OnDestroy, OnChan
     subscription = new Subscription();
     mapType: 'aggregate' | 'observation';
     count: number;
+    idChange = new Subject<void>();
 
     constructor(
         private route: ActivatedRoute,
@@ -287,15 +288,15 @@ export class ObservationMapComponent implements AfterViewInit, OnDestroy, OnChan
         });
 
         this.subscription.add(
-            this.route.queryParams.pipe(
-                tap((res: QueryParams) => {
+            combineLatest([this.route.queryParams, this.idChange]).pipe(
+                tap(([res]) => {
                     this.filterControl.setValue({...this.filterControl.getRawValue(), ...res});
                     this.cdr.detectChanges(); // necessary to prevent "Expression has changed after checked"
                 }),
                 delay(0), // once again yielding to make sure checkbox updates...
                           // why does angular make me do this ??
                           // i wish i was writing elm
-                map((res: QueryParams) => {
+                map(([res]) => {
                     const query: WarehouseQueryInterface = { ...observationBaseQuery };
                     const taxonId = this.id ?? res.taxonId;
                     if (taxonId) { query.taxonId = [taxonId]; }
@@ -348,11 +349,19 @@ export class ObservationMapComponent implements AfterViewInit, OnDestroy, OnChan
             ).subscribe()
         );
 
-        // todo unsub
-        this.translate.onLangChange.subscribe(lang => this.map.lang = lang);
+        this.idChange.next();
+        this.subscription.add(
+            this.translate.onLangChange.subscribe(lang => {
+                this.map.lang = lang;
+                this.cdr.markForCheck();
+            })
+        );
     }
 
     ngOnChanges(changes: SimpleChanges) {
+        if (changes['id']) {
+            this.idChange.next();
+        }
         if (changes['mapHeight'] && changes['mapHeight'].currentValue === 0) {
             this.resizeUnlisten?.();
             this.resizeUnlisten = this.renderer.listen(window, 'resize', this.updateMapHeight.bind(this));
