@@ -15,7 +15,8 @@
     "build:local": "ng build --configuration beta --base-href=http://localhost:4000/ && ng run vieraslajit:server:beta",
     "build:beta": "ng build --configuration beta --base-href=https://vieraslajit-dev.laji.fi/ && ng run vieraslajit:server:beta",
     "build:prod": "ng build --configuration production --base-href=https://vieraslajit.fi/ && ng run vieraslajit:server:production",
-    "prerender": "ng run vieraslajit:prerender"
+    "prerender": "ng run vieraslajit:prerender",
+    "postinstall": "patch-package"
   },
   "private": true,
   "dependencies": {
@@ -77,6 +78,7 @@
     "karma-coverage-istanbul-reporter": "^1.4.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "patch-package": "^8.0.0",
     "protractor": "~7.0.0",
     "ts-loader": "^5.2.0",
     "ts-node": "~7.0.0",

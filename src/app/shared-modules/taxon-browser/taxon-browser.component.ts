@@ -98,7 +98,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     @ViewChild('optionsmenu', { static: true }) optionsMenu: ElementRef;
 
     filtersForm = this.fb.group(<Filters>initialFilters);
-    taxa: Taxonomy[] = [];
+    taxa$ = new BehaviorSubject<Taxonomy[]>([]);
     loadNextPage = new BehaviorSubject<void>(undefined);
     total = 0;
     currentPage = 1;
@@ -166,7 +166,8 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
                 tap(res => this.pageCache.push(...res)),
                 map(_ => this.pageCache)
             ).subscribe(taxa => {
-                this.taxa = taxa;
+                // create a shallow copy to change the reference for angular inputs
+                this.taxa$.next([...taxa]);
                 this.cdr.markForCheck();
             })
         );
@@ -252,7 +253,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
         // first row: column names
         rows.push(columns.map(obj => obj["name"]))
         // rows
-        for (const taxon of this.taxa) {
+        for (const taxon of this.taxa$.getValue()) {
             const row = []
             for (const column of columns) {
                 row.push(taxon[column.prop])

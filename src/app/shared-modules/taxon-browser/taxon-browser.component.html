@@ -70,14 +70,16 @@
             </div>
         </div>
         <div class="cards-container" #cardscont [ngStyle]="{'height': maxHeight+'px'}">
-            <div *ngIf="viewMode == 'grid'" class="cards-wrapper">
-                <vrs-taxon-grid [taxa]="taxa" [total]="total" (scrolled)="onScroll()">
-                    <vrs-filter-info [filters]="filterInfo"></vrs-filter-info>
-                </vrs-taxon-grid>
-            </div>
-            <div *ngIf="viewMode == 'list'" class="cards-wrapper">
-                <vrs-taxon-browser-list [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxon-browser-list>
-            </div>
+            <ng-container *ngIf="taxa$ | async; let taxa">
+                <div *ngIf="viewMode == 'grid'" class="cards-wrapper">
+                    <vrs-taxon-grid [taxa]="taxa" [total]="total" (scrolled)="onScroll()">
+                        <vrs-filter-info [filters]="filterInfo"></vrs-filter-info>
+                    </vrs-taxon-grid>
+                </div>
+                <div *ngIf="viewMode == 'list'" class="cards-wrapper">
+                    <vrs-taxon-browser-list [taxa]="taxa" (scrolled)="onScroll()"></vrs-taxon-browser-list>
+                </div>
+            </ng-container>
         </div>
     </div>
 </div>

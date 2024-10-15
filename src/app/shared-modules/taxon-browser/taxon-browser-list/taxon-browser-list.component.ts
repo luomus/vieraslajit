@@ -1,19 +1,89 @@
-import { Component, Input, Output, EventEmitter, TemplateRef, ViewChild, AfterViewInit } from "@angular/core";
+import { Component, Input, Output, EventEmitter, TemplateRef, ViewChild, AfterViewInit, ChangeDetectionStrategy, ElementRef } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { Router } from "@angular/router";
 import { Taxonomy } from "../../../shared/model";
+import { TableColumn } from "@swimlane/ngx-datatable";
+import { BehaviorSubject, combineLatest, Subject} from "rxjs";
+import { takeUntil } from "rxjs/operators";
+
+const comparator = (valueA, valueB, rowA, rowB, sortDirection) => {
+    if (!valueA && !valueB) return 0;
+    if (!valueA) return 1;
+    if (!valueB) return -1;
+    if (valueA > valueB) return 1;
+    if (valueA < valueB) return -1;
+    return 0;
+}
+
+const comparatorReverse = (valueA, valueB, rowA, rowB, sortDirection) => {
+    if (!valueA && !valueB) return 0;
+    if (!valueA) return 1;
+    if (!valueB) return -1;
+    if (valueA > valueB) return -1;
+    if (valueA < valueB) return 1;
+    return 0;
+}
+
+const mapTaxonToRow = (t: Taxonomy, translate: TranslateService): Taxonomy => {
+    const taxon = { ...t };
+
+    if(taxon.vernacularName) {
+        taxon.vernacularName = taxon.vernacularName.charAt(0).toUpperCase() + taxon.vernacularName.substring(1);
+    }
+    taxon.onEUList = false;
+    taxon.onNationalList = false;
+    taxon.isQuarantinePlantPest = false;
+    if(taxon.administrativeStatuses){
+        taxon.onEUList = translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.euInvasiveSpeciesList')));
+        taxon.onNationalList = translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.controllingRisksOfInvasiveAlienSpecies')));
+        taxon.isQuarantinePlantPest = translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.quarantinePlantPest')));
+    }
+    switch(taxon.invasiveSpeciesEstablishment) {
+        case 'MX.invasiveNotYetInFinland':
+            taxon.stableString = translate.instant(String('stableString.notyet'));
+            break;
+
+        case 'MX.invasiveEstablishmentUnknown':
+            taxon.stableString = translate.instant(String('stableString.unknown'));
+            break;
+
+        case 'MX.invasiveEstablished':
+            taxon.stableString = translate.instant(String('stableString.established'));
+            break;
+
+        case 'MX.invasiveSporadic':
+            taxon.stableString = translate.instant(String('stableString.sporadic'));
+            break;
+
+        case 'MX.invasiveAccidental':
+            taxon.stableString = translate.instant(String('stableString.accidental'));
+            break;
+
+        default:
+            taxon.stableString = "";
+            break;
+    }
+
+    return taxon;
+}
 
 @Component({
     selector: 'vrs-taxon-browser-list',
     templateUrl: './taxon-browser-list.component.html',
-    styleUrls: ['./taxon-browser-list.component.scss']
+    styleUrls: ['./taxon-browser-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaxonBrowserListComponent implements AfterViewInit {
+    private unsubscribe$ = new Subject();
+
     @ViewChild('invasiveSpeciesEstablishment', {static: true}) establishmentCellTemplate: TemplateRef<any>;
 
-    private _taxa: Array<Taxonomy> = [];
+    columns: TableColumn[] = [];
+    rows$ = new BehaviorSubject<Taxonomy[]>([]);
+    ROW_COL_HEIGHT = 50;
 
-    columns:any[] = [];
+    checkHeight$ = new Subject();
+    afterViewInit$ = new Subject();
 
     @Output() scrolled = new EventEmitter();
 
@@ -21,94 +91,46 @@ export class TaxonBrowserListComponent implements AfterViewInit {
         this.scrolled.emit();
     }
 
-    constructor(private translate:TranslateService,
-                private router: Router) {}
-
-    ngAfterViewInit(): void {
+    constructor(
+        private translate: TranslateService,
+        private router: Router,
+        private elementRef: ElementRef
+    ) {
         this.columns = [
-            { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), comparator: this.comparator},
-            { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), comparator: this.comparator },
-            { prop: 'invasiveSpeciesEstablishment', name: this.translate.instant('taxonomy.established'), comparator: this.comparator, maxWidth: 180, cellTemplate: this.establishmentCellTemplate },
-            { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), comparator: this.comparatorReverse, maxWidth: 180 },
-            { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), comparator: this.comparatorReverse, maxWidth: 180 },
-            { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), comparator: this.comparatorReverse, maxWidth: 180 }
+            { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), comparator: comparator},
+            { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), comparator: comparator },
+            { prop: 'invasiveSpeciesEstablishment', name: this.translate.instant('taxonomy.established'), comparator: comparator, maxWidth: 180, cellTemplate: this.establishmentCellTemplate },
+            { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList'), comparator: comparatorReverse, maxWidth: 180 },
+            { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList'), comparator: comparatorReverse, maxWidth: 180 },
+            { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), comparator: comparatorReverse, maxWidth: 180 }
         ];
+
+        combineLatest(this.checkHeight$, this.afterViewInit$).pipe(takeUntil(this.unsubscribe$)).subscribe(([height, _]) => {
+            if (height <= this.elementRef.nativeElement.offsetHeight) {
+                this.onScroll();
+            }
+        });
+    }
+
+    ngAfterViewInit() {
+        this.afterViewInit$.next();
     }
 
     @Input()
-    set taxa(t:Array<Taxonomy>) {
-        if(t) {
-            this._taxa = t;
-            this.updateRows(this.taxa);
-        }
-    }
-    get taxa() {
-        return this._taxa;
-    }
-
-    updateRows(taxa) {
-        taxa.forEach((taxon)=>{
-            if(taxon.vernacularName) {
-                taxon.vernacularName = taxon.vernacularName.charAt(0).toUpperCase() + taxon.vernacularName.substring(1);
-            }
-            taxon.onEUList = false;
-            taxon.onNationalList = false;
-            taxon.isQuarantinePlantPest = false;
-            if(taxon.administrativeStatuses){
-                taxon.onEUList = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.euInvasiveSpeciesList')));
-                taxon.onNationalList = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.controllingRisksOfInvasiveAlienSpecies')));
-                taxon.isQuarantinePlantPest = this.translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.quarantinePlantPest')));
-            }
-            switch(taxon.invasiveSpeciesEstablishment) {
-                case 'MX.invasiveNotYetInFinland':
-                    taxon.stableString = this.translate.instant(String('stableString.notyet'));
-                    break;
-
-                case 'MX.invasiveEstablishmentUnknown':
-                    taxon.stableString = this.translate.instant(String('stableString.unknown'));
-                    break;
-
-                case 'MX.invasiveEstablished':
-                    taxon.stableString = this.translate.instant(String('stableString.established'));
-                    break;
-
-                case 'MX.invasiveSporadic':
-                    taxon.stableString = this.translate.instant(String('stableString.sporadic'));
-                    break;
-
-                case 'MX.invasiveAccidental':
-                    taxon.stableString = this.translate.instant(String('stableString.accidental'));
-                    break;
-
-                default:
-                    taxon.stableString = "";
-                    break;
-            }
-        });
+    set taxa(taxa: Array<Taxonomy> | undefined) {
+        const totalRowColHeight = (1 + (taxa ? taxa.length : 0)) * this.ROW_COL_HEIGHT;
+        this.checkHeight$.next(totalRowColHeight);
+        this.rows$.next(
+            !taxa
+                ? []
+                : taxa.map(t => mapTaxonToRow(t, this.translate))
+        );
     }
 
     onDatatableActivate(e) {
         if(e.type=="click") {
             this.router.navigate(['/lajit', e.row.id]);
         }
-    }
-
-    comparator(valueA, valueB, rowA, rowB, sortDirection) {
-        if (!valueA && !valueB) return 0;
-        if (!valueA) return 1;
-        if (!valueB) return -1;
-        if (valueA > valueB) return 1;
-        if (valueA < valueB) return -1;
-        return 0;
-    }
-
-    comparatorReverse(valueA, valueB, rowA, rowB, sortDirection) {
-        if (!valueA && !valueB) return 0;
-        if (!valueA) return 1;
-        if (!valueB) return -1;
-        if (valueA > valueB) return -1;
-        if (valueA < valueB) return 1;
-        return 0;
     }
 
     getEmptyMessage() {

@@ -1,20 +1,21 @@
-<ngx-datatable class="material"
-                [rows]="taxa" [columnMode]="'force'" [columns]="columns"
-                [headerHeight]="50" [rowHeight]="50" [reorderable]='true'
-                [count]="taxa.length"
-                [scrollbarV]="true"
-                (activate)="onDatatableActivate($event)"
-                infiniteScroll
-                [infiniteScrollDistance]="0.1"
-                [infiniteScrollThrottle]="1000"
-                [infiniteScrollContainer]="'datatable-body'"
-                [fromRoot]="true"
-                (scrolled)="onScroll()"
-                [messages]="{
-                    emptyMessage: getEmptyMessage()
-                }"
-                >
-               </ngx-datatable>
+<ng-container *ngIf="rows$ | async; let rows">
+    <ngx-datatable
+        class="material"
+        [rows]="rows" [columnMode]="'force'" [columns]="columns"
+        [headerHeight]="ROW_COL_HEIGHT" [rowHeight]="ROW_COL_HEIGHT" [reorderable]='true'
+        [count]="rows.length"
+        [scrollbarV]="true"
+        (activate)="onDatatableActivate($event)"
+        infiniteScroll
+        [infiniteScrollDistance]="0.1"
+        [infiniteScrollThrottle]="1000"
+        [infiniteScrollContainer]="'datatable-body'"
+        (scrolled)="onScroll()"
+        [messages]="{
+            emptyMessage: getEmptyMessage()
+        }"
+    ></ngx-datatable>
+</ng-container>
 
 <ng-template let-value="value" ngx-datatable-cell-template #invasiveSpeciesEstablishment>
 <span *ngIf="value">

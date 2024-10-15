@@ -3,6 +3,8 @@ The new frontend for [vieraslajit.fi](https://vieraslajit.fi.laji.fi).
 Beta environment: [vieraslajit-dev](https://vieraslajit-dev.laji.fi).
 
 ## Setup
+Requires node 14.20.0 (node-sass won't build on newer versions).
+
 ```
 npm ci
 ```
