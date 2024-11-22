@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 
+export type DataDisplayMode = 'aggregate' | 'observation';
+
 @Component({
   selector: 'vrs-observation-map',
   template: ''
 })
-
 export class ObservationMapComponent {
   @Input() id?: string;
   @Input() listMenuEnabled?: boolean = false;
