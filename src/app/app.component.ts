@@ -118,13 +118,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.versionUpdates.pipe(filter(e => e.type === 'VERSION_READY')).subscribe(() => {
-          this.displaySwUpdate = true;
+          this.swUpdate.activateUpdate().then(() => window.location.reload());
       });
-    }
-  }
-  onAcceptUpdate() {
-    if (this.swUpdate.isEnabled) {
-      this.swUpdate.activateUpdate().then(() => window.location.reload());
     }
   }
 }

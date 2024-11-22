@@ -5,27 +5,3 @@
     min-height: 60vh;
 }
 
-.notification {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 100;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-end;
-    background-color: $primary-6;
-    color: $primary-2;
-    font-size: 0.8rem;
-    * {
-        margin: 0 .5em;
-    }
-}
-
-.accept-update, .ignore-update {
-    cursor: pointer;
-    color: $primary-3;
-
-    &:hover {
-        color: $primary-1;
-    }
-}

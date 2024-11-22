@@ -2,11 +2,6 @@
 <div class="vrs-content">
     <router-outlet></router-outlet>
 </div>
-<div *ngIf="displaySwUpdate" class="notification">
-    {{'swUpdate' | translate}}
-    <a tabindex="0" class="accept-update" (click)="onAcceptUpdate()">{{'swUpdate.accept' | translate}}</a>
-    <a tabindex="0" class="ignore-update" (click)="displaySwUpdate = false">{{'swUpdate.ignore' | translate}}</a>
-</div>
 <footer>
     <vrs-footer *ngIf="!hideFooter"></vrs-footer>
 </footer>
