@@ -11,6 +11,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { environment } from 'environments/environment';
 import { removeHTMLTagFragments } from 'app/utils';
 import { isPlatformBrowser } from '@angular/common';
+import { DataDisplayMode } from '@observation-map/observation-map/observation-map.component';
 
 @Component({
   selector: 'vrs-taxon-card',
@@ -22,15 +23,13 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
   private destroyResizeListener: () => void;
 
   mapToggle = true;
-
   modalRef: BsModalRef;
   selectedImage: any;
-
   taxon: Taxonomy;
   desc: TaxonomyDescriptionFlattened;
   media: Array<any>;
-
   quarantinePlantPest = false;
+  mapDisplayMode: DataDisplayMode;
 
   constructor(
     private route: ActivatedRoute,

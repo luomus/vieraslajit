@@ -61,6 +61,10 @@
             <strong>{{'taxon.scientific' | translate}}</strong>
             <em>{{taxon?.scientificName}}</em>
           </div>
+          <div *ngIf="taxon?.synonymNames">
+            <strong>{{'taxon.synonymNames' | translate}}</strong>
+            {{taxon?.synonymNames}}
+          </div>
           <div *ngIf="taxon?.invasiveSpeciesEstablishment">
             <strong>{{'taxon.establishedFin' | translate}}</strong>
             <span>{{taxon?.invasiveSpeciesEstablishment | metadatalabel: 'MX.invasiveSpeciesEstablishmentStatuses' | async}}</span>
@@ -87,11 +91,11 @@
           <span class="oi oi-chevron-bottom" [ngClass]="{'oi-chevron-bottom': mapToggle, 'oi-chevron-left': !mapToggle}"></span>
         </div>
         <div [ngStyle]="!mapToggle && {'display': 'none'}">
-          <vrs-observation-map [id]="taxon.id" [mapHeight]="600" [showLegend]="false"></vrs-observation-map>
-          <vrs-map-legend></vrs-map-legend>
+          <vrs-observation-map [id]="taxon.id" [mapHeight]="600" [showLegend]="false" (displayModeChange)="mapDisplayMode = $event"></vrs-observation-map>
+          <vrs-map-legend [isAggregateMode]="mapDisplayMode === 'aggregate'"></vrs-map-legend>
           <div class="row">
             <div class="col-12">
-                <button [routerLink]="['/havainnot']" [queryParams]="{taxonId: taxon.id}" class="btn vrs-button" translate>taxon.viewOnMap</button>
+                <button [routerLink]="['/havainnot']" [queryParams]="{taxonId: taxon.id}" class="btn vrs-button mt-0" translate>taxon.viewOnMap</button>
             </div>
           </div>
         </div>

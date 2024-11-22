@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef, Renderer2, OnDestroy, OnChanges, SimpleChanges, SimpleChange, HostListener, ComponentFactoryResolver, Injector, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, OnInit, ElementRef, ChangeDetectorRef, Renderer2, OnDestroy, OnChanges, SimpleChanges, SimpleChange, HostListener, ComponentFactoryResolver, Injector, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 
 import { UserService } from '../../../shared/service/user.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -172,6 +172,8 @@ const getAggregateMapData = (geoJSONFeatures: any[]): DataOptions => ({
     }
 });
 
+export type DataDisplayMode = 'aggregate' | 'observation';
+
 @Component({
     selector: 'vrs-observation-map',
     templateUrl: './observation-map.component.html',
@@ -185,6 +187,8 @@ export class ObservationMapComponent implements AfterViewInit, OnDestroy, OnChan
     @Input() showLegend?: boolean = true;
     @Input() controls? = false;
     @Input() mapHeight: number = 400;
+
+    @Output() displayModeChange = new EventEmitter<DataDisplayMode>();
 
     @ViewChild('maprow', { static: true }) mapRow: ElementRef;
     @ViewChild('map', { static: true }) mapElement: ElementRef;
@@ -209,7 +213,7 @@ export class ObservationMapComponent implements AfterViewInit, OnDestroy, OnChan
     modalRef: BsModalRef<any>;
     observations: Observation[];
     subscription = new Subscription();
-    mapType: 'aggregate' | 'observation';
+    mapType: DataDisplayMode;
     count: number;
     idChange = new Subject<void>();
 
@@ -345,7 +349,10 @@ export class ObservationMapComponent implements AfterViewInit, OnDestroy, OnChan
                             })
                         )
                 ),
-                tap(_ => this.cdr.markForCheck())
+                tap(_ => {
+                    this.displayModeChange.emit(this.mapType);
+                    this.cdr.markForCheck();
+                })
             ).subscribe()
         );
 

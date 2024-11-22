@@ -194,6 +194,10 @@ export interface Taxonomy {
     redListStatusesInFinland?: LatestRedListStatusFinland[];
 
     descriptions?: TaxonomyDescription[];
+
+    hasAlternativeName?: String[];
+
+    synonymNames?: String;
 }
 
 export interface LatestRedListStatusFinland {
