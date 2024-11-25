@@ -173,6 +173,7 @@
   "taxon.report": "Ilmoita havainto",
   "taxon.report.custom": "Ilmoita havainto",
   "taxon.scientific": "Tieteellinen nimi: ",
+  "taxon.synonymNames": "Synonyymit: ",
   "taxon.unknown": "Tuntematon",
   "taxon.viewOnMap": "Havaintokarttanäkymään",
   "taxonomy.established": "Vakiintuneisuus",
@@ -224,6 +225,5 @@
   "topicalSpecies.header.description": "Seuraavien Suomessa tavattujen vieraslajien havainnoista olisi erityisen tärkeää ilmoittaa.",
   "topicalSpecies.header.title": "Silmä tarkkana",
   "true": "Kyllä",
-  "vieraslajit.fi": "uutinen",
-  "taxon.synonymNames": "Synonyymit: "
+  "vieraslajit.fi": "uutinen"
 }
