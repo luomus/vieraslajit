@@ -22,6 +22,10 @@
                     <input type="checkbox" formControlName="plantPests" id="plantPests">
                     <label for="plantPests" translate>taxonomy.filters.pests</label>
                 </div>
+                <div class="checkbox">
+                    <input type="checkbox" formControlName="other" id="other">
+                    <label for="other" translate>taxonomy.filters.other</label>
+                </div>
             </options-accordion>
             <options-accordion header="{{'taxonomy.filters.iasGroups' | translate}}">
                 <div class="checkbox">
@@ -33,20 +37,32 @@
                     <label for="mammals-and-birds" translate>iasGroupName.mammals</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" formControlName="freshwater" id="freshwater-species">
-                    <label for="freshwater-species" translate>iasGroupName.freshwater</label>
+                    <input type="checkbox" formControlName="fishAndCrayfish" id="fish">
+                    <label for="fish" translate>iasGroupName.fishAndCrayfish</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" formControlName="baltic" id="baltic-species">
-                    <label for="baltic-species" translate>iasGroupName.baltic</label>
+                    <input type="checkbox" formControlName="snails" id="snails">
+                    <label for="snails" translate>iasGroupName.snails</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" formControlName="interior" id="interior-pests">
-                    <label for="interior-pests" translate>iasGroupName.interior</label>
+                    <input type="checkbox" formControlName="insects" id="insects">
+                    <label for="insects" translate>iasGroupName.insects</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" formControlName="plantPestsGroup" id="plant-pests-group">
-                    <label for="plant-pests-group" translate>iasGroupName.plantPestsGroup</label>
+                    <input type="checkbox" formControlName="otherInvertebrates" id="other-invertebrates">
+                    <label for="other-invertebrates" translate>iasGroupName.otherInvertebrates</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" formControlName="diseasesAndPathogens" id="diseases">
+                    <label for="diseases" translate>iasGroupName.diseasesAndPathogens</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" formControlName="reptilesAndAmphibians" id="reptiles">
+                    <label for="reptiles" translate>iasGroupName.reptilesAndAmphibians</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" formControlName="otherIasGroup" id="other-ias-group">
+                    <label for="other-ias-group" translate>iasGroupName.other</label>
                 </div>
             </options-accordion>
         </div>

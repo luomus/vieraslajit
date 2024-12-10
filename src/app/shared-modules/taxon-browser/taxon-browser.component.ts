@@ -15,13 +15,18 @@ import { ActivatedRoute, Router } from "@angular/router";
 const initialFilters = {
     plants: false,
     mammalsAndBirds: false,
-    freshwater: false,
-    baltic: false,
-    interior: false,
-    plantPestsGroup: false,
+    fishAndCrayfish: false,
+    snails: false,
+    insects: false,
+    otherInvertebrates: false,
+    diseasesAndPathogens: false,
+    reptilesAndAmphibians: false,
+    otherIasGroup: false,
+
     fi: false,
     eu: false,
     plantPests: false,
+    other: false,
 };
 
 type Filters = {
@@ -58,15 +63,20 @@ const getTaxaQuery = (params: TaxonBrowserQueryParams, page: number, lang: strin
     if (params.eu) { adminStatusFilters.push('MX.euInvasiveSpeciesList'); }
     if (params.fi) { adminStatusFilters.push('MX.controllingRisksOfInvasiveAlienSpecies'); }
     if (params.plantPests) { adminStatusFilters.push('MX.quarantinePlantPest', 'MX.qualityPlantPest'); }
+    if (params.other) { adminStatusFilters.push('MX.otherInvasiveSpeciesList'); }
     query.adminStatusFilters = adminStatusFilters;
 
     const invasiveSpeciesMainGroups = [];
     if (params.plants)          { invasiveSpeciesMainGroups.push('HBE.MG2'); }
     if (params.mammalsAndBirds) { invasiveSpeciesMainGroups.push('HBE.MG8'); }
-    if (params.freshwater)      { invasiveSpeciesMainGroups.push('HBE.MG5'); }
-    if (params.baltic)          { invasiveSpeciesMainGroups.push('HBE.MG4'); }
-    if (params.interior)        { invasiveSpeciesMainGroups.push('HBE.MG9'); }
-    if (params.plantPestsGroup) { invasiveSpeciesMainGroups.push('HBE.MG13'); }
+    if (params.fishAndCrayfish)      { invasiveSpeciesMainGroups.push('HBE.MG15'); }
+    if (params.snails)          { invasiveSpeciesMainGroups.push('HBE.MG16'); }
+    if (params.insects)        { invasiveSpeciesMainGroups.push('HBE.MG17'); }
+    if (params.otherInvertebrates) { invasiveSpeciesMainGroups.push('HBE.MG18'); }
+    if (params.diseasesAndPathogens) { invasiveSpeciesMainGroups.push('HBE.MG19'); }
+    if (params.reptilesAndAmphibians) { invasiveSpeciesMainGroups.push('HBE.MG20'); }
+    if (params.otherIasGroup) { invasiveSpeciesMainGroups.push('HBE.MG10'); }
+
     if (invasiveSpeciesMainGroups.length === 0) { invasiveSpeciesMainGroups.push('HBE.MG14') }
     query.invasiveSpeciesMainGroups = invasiveSpeciesMainGroups;
 
