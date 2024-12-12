@@ -63,7 +63,7 @@ const getTaxaQuery = (params: TaxonBrowserQueryParams, page: number, lang: strin
     if (params.eu) { adminStatusFilters.push('MX.euInvasiveSpeciesList'); }
     if (params.fi) { adminStatusFilters.push('MX.controllingRisksOfInvasiveAlienSpecies'); }
     if (params.plantPests) { adminStatusFilters.push('MX.quarantinePlantPest', 'MX.qualityPlantPest'); }
-    if (params.other) { adminStatusFilters.push('MX.otherInvasiveSpeciesList'); }
+    if (params.other) { adminStatusFilters.push('MX.concernInvasiveSpeciesNotOnOtherLists'); }
     query.adminStatusFilters = adminStatusFilters;
 
     const invasiveSpeciesMainGroups = [];
@@ -75,7 +75,7 @@ const getTaxaQuery = (params: TaxonBrowserQueryParams, page: number, lang: strin
     if (params.otherInvertebrates) { invasiveSpeciesMainGroups.push('HBE.MG18'); }
     if (params.diseasesAndPathogens) { invasiveSpeciesMainGroups.push('HBE.MG19'); }
     if (params.reptilesAndAmphibians) { invasiveSpeciesMainGroups.push('HBE.MG20'); }
-    if (params.otherIasGroup) { invasiveSpeciesMainGroups.push('HBE.MG10'); }
+    if (params.otherIasGroup) { invasiveSpeciesMainGroups.push('HBE.MG21'); }
 
     if (invasiveSpeciesMainGroups.length === 0) { invasiveSpeciesMainGroups.push('HBE.MG14') }
     query.invasiveSpeciesMainGroups = invasiveSpeciesMainGroups;
