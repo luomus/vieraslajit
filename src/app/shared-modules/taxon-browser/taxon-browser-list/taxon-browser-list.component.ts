@@ -96,6 +96,14 @@ export class TaxonBrowserListComponent implements AfterViewInit {
         private router: Router,
         private elementRef: ElementRef
     ) {
+        combineLatest(this.checkHeight$, this.afterViewInit$).pipe(takeUntil(this.unsubscribe$)).subscribe(([height, _]) => {
+            if (height <= this.elementRef.nativeElement.offsetHeight) {
+                this.onScroll();
+            }
+        });
+    }
+
+    ngAfterViewInit() {
         this.columns = [
             { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname'), comparator: comparator},
             { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname'), comparator: comparator },
@@ -105,14 +113,6 @@ export class TaxonBrowserListComponent implements AfterViewInit {
             { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest'), comparator: comparatorReverse, maxWidth: 180 }
         ];
 
-        combineLatest(this.checkHeight$, this.afterViewInit$).pipe(takeUntil(this.unsubscribe$)).subscribe(([height, _]) => {
-            if (height <= this.elementRef.nativeElement.offsetHeight) {
-                this.onScroll();
-            }
-        });
-    }
-
-    ngAfterViewInit() {
         this.afterViewInit$.next();
     }
 
