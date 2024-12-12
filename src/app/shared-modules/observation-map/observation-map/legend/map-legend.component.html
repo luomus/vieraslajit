@@ -1,5 +1,9 @@
 <div class="mb-2" *ngIf="isAggregateMode">
-  <div class="v-marker box-marker"></div> {{'observation-map.legend.box' | translate}}
+  <div class="legend-box-row"><div class="v-marker box-marker-0"></div> 1-10 {{'observation-map.legend.box' | translate}}</div>
+  <div class="legend-box-row"><div class="v-marker box-marker-1"></div> 11-100 {{'observation-map.legend.box' | translate}}</div>
+  <div class="legend-box-row"><div class="v-marker box-marker-2"></div> 101-1000 {{'observation-map.legend.box' | translate}}</div>
+  <div class="legend-box-row"><div class="v-marker box-marker-3"></div> 1001-10000 {{'observation-map.legend.box' | translate}}</div>
+  <div class="legend-box-row"><div class="v-marker box-marker-4"></div> 10001+ {{'observation-map.legend.box' | translate}}</div>
 </div>
 <ng-container *ngIf="!isAggregateMode">
   <div class="mb-2">

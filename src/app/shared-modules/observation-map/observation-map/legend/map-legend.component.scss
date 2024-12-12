@@ -10,12 +10,28 @@
   width: 15px;
   border-radius: 100%;
   margin-right: 5px;
+  border-radius: 0;
 }
 
-.v-marker.box-marker {
-  background-color: rgba(#f89525, .5);
-  border: 1px solid rgba(#f89525, .8);
-  border-radius: 0;
+.box-marker-0 {
+  background-color: rgba(#348CF0, .5);
+  border: 1px solid rgba(#348CF0, .8);
+}
+.box-marker-1 {
+  background-color: rgba(#90DACF, .5);
+  border: 1px solid rgba(#90DACF, .8);
+}
+.box-marker-2 {
+  background-color: rgba(#FFFFBF, .5);
+  border: 1px solid rgba(#FFFFBF, .8);
+}
+.box-marker-3 {
+  background-color: rgba(#FDBF66, .5);
+  border: 1px solid rgba(#FDBF66, .8);
+}
+.box-marker-4 {
+  background-color: rgba(#F26840, .5);
+  border: 1px solid rgba(#F26840, .8);
 }
 
 .grey-marker {

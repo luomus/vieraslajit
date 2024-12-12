@@ -150,6 +150,17 @@ const getObservationMapData = (obs: any[], geoJSON: any, modalRef: BsModalRef, r
     return mapData;
 }
 
+const countToAggregateBoxColor = (count: number): string =>
+    count <= 10
+        ? "#348CF0"
+    : count <= 100
+        ? "#90DACF"
+    : count <= 1000
+        ? "#FFFFBF"
+    : count <= 10000
+        ? "#FDBF66"
+    : "#F26840"
+
 const getAggregateMapData = (geoJSONFeatures: any[]): DataOptions => ({
     cluster: false,
     featureCollection: {
@@ -157,13 +168,13 @@ const getAggregateMapData = (geoJSONFeatures: any[]): DataOptions => ({
         features: geoJSONFeatures
     },
     getFeatureStyle: (options: GetFeatureStyleOptions): PathOptions=>{
-
-        const opacity = countToOpacityMap(options.feature.properties.count);
+        const color = countToAggregateBoxColor(geoJSONFeatures[options.featureIdx].properties.count);
         let p: PathOptions = {
-            color: "#f89525",
-            fillColor: "#f89525",
-            opacity: opacity,
-            fillOpacity: opacity
+            color: color,
+            fillColor: color,
+            opacity: 0.6,
+            fillOpacity: 0.4,
+            weight: 1,
         }
         return p;
     },

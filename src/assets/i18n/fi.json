@@ -136,7 +136,7 @@
   "observation-map.filters": "Rajaukset",
   "observation-map.instructions": "Rajaa hakua nähdäksesi listan tarkoista havainnoista.",
   "observation-map.laji": "Rajaa hakua monipuolisemmin ja lataa tiedot käyttöösi Laji.fi-palvelussa",
-  "observation-map.legend.box": "havainnot näkyvät ruutuina kun karttanäkymässä on yli 2000 havaintoa",
+  "observation-map.legend.box": "havaintoa",
   "observation-map.legend.reliable": "havaintoja, joista ainakin osa varmistettu",
   "observation-map.legend.unreliable": "havaintoja, joita ei ole varmistettu",
   "observation-map.list": "Luettelo",
