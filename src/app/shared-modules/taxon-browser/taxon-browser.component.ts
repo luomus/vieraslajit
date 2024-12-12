@@ -170,6 +170,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
                         if (params.fi) { this.filterInfo.push('fiList'); }
                         if (params.eu) { this.filterInfo.push('euList'); }
                         if (params.plantPests) { this.filterInfo.push('plantPest'); }
+                        if (params.other) { this.filterInfo.push('other'); }
                     }),
                     map(res => res.results)
                 )),

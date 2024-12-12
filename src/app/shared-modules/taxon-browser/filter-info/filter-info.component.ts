@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 
-export type FilterInfoType = 'fiList' | 'euList' | 'plantPest'
+export type FilterInfoType = 'fiList' | 'euList' | 'plantPest' | 'other';
 
 @Component({
     selector: 'vrs-filter-info',
