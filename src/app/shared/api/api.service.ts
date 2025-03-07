@@ -255,7 +255,7 @@ export class ApiService {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.post(
       url,
-      JSON.stringify(data),
+      data,
       {params: {'personToken': personToken}}
     );
   }
@@ -289,11 +289,10 @@ export class ApiService {
   }
 
   documentUpdate(endpoint: LajiApi.Endpoints.updateDocument, id: string, data: Document, personToken: string): Observable<any> {
-
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
     return this.httpClient.put(
       url,
-      JSON.stringify(data),
+      data,
       {params: {'personToken': personToken}}
     );
   }
