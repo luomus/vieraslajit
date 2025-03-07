@@ -38,7 +38,7 @@ export class FormsFacade {
                 "gatherings.dateBegin",
                 "gatherings.units.identifications.taxon",
                 "id"
-            ],
+            ].join(','),
             pageSize: 10
         }
         of({}).pipe(
