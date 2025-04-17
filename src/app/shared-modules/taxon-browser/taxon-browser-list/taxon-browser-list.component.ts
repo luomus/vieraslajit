@@ -4,7 +4,8 @@ import { Router } from "@angular/router";
 import { Taxonomy } from "../../../shared/model";
 import { TableColumn } from "@swimlane/ngx-datatable";
 import { BehaviorSubject, combineLatest, Subject} from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { take, takeUntil } from "rxjs/operators";
+import { SpreadSheetService } from "app/shared/service/spread-sheet.service";
 
 const comparator = (valueA, valueB, rowA, rowB, sortDirection) => {
     if (!valueA && !valueB) return 0;
@@ -94,7 +95,8 @@ export class TaxonBrowserListComponent implements AfterViewInit {
     constructor(
         private translate: TranslateService,
         private router: Router,
-        private elementRef: ElementRef
+        private elementRef: ElementRef,
+        private spreadSheetService: SpreadSheetService
     ) {
         combineLatest(this.checkHeight$, this.afterViewInit$).pipe(takeUntil(this.unsubscribe$)).subscribe(([height, _]) => {
             if (height <= this.elementRef.nativeElement.offsetHeight) {
@@ -135,5 +137,19 @@ export class TaxonBrowserListComponent implements AfterViewInit {
 
     getEmptyMessage() {
         return this.translate.instant('datatable.species.empty')
+    }
+
+    export(taxa: Taxonomy[]) {
+        const tableRows = taxa.map(taxon => mapTaxonToRow(taxon, this.translate));
+        const spreadsheet = [];
+        spreadsheet.push(this.columns.map(obj => obj["name"]));
+        for (const row of tableRows) {
+            const spreadsheetRow = [];
+            for (const column of this.columns) {
+                spreadsheetRow.push(row[column.prop]);
+            }
+            spreadsheet.push(spreadsheetRow);
+        }
+        this.spreadSheetService.export(spreadsheet);
     }
 }
