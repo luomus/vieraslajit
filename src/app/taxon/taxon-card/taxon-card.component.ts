@@ -155,6 +155,12 @@ export class TaxonCardComponent implements OnInit, OnDestroy {
       return isPlatformBrowser(this.platformId);
   }
 
+  getCustomReportFormLink() {
+    return this.taxon.customReportFormLink.includes('?')
+      ? this.taxon.customReportFormLink.concat(`&lang=${this.translate.currentLang}&locale=${this.translate.currentLang}`)
+      : this.taxon.customReportFormLink.concat(`?lang=${this.translate.currentLang}&locale=${this.translate.currentLang}`);
+  }
+
   ngOnDestroy() {
     if (this.destroyResizeListener) {
       this.destroyResizeListener();

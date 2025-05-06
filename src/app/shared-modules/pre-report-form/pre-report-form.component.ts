@@ -34,6 +34,10 @@ export class PreReportFormComponent implements OnInit, OnDestroy {
         ],
       }).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
         this.customReportFormLink = res.customReportFormLink
+          ? (res.customReportFormLink.includes('?')
+            ? res.customReportFormLink.concat(`&lang=${this.translate.currentLang}&locale=${this.translate.currentLang}`)
+            : res.customReportFormLink.concat(`?lang=${this.translate.currentLang}&locale=${this.translate.currentLang}`)
+          ) : undefined;
         this.taxonName = res.vernacularName ? res.vernacularName : res.scientificName
         this.linkEnabled = true
       })
