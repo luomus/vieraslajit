@@ -11,6 +11,7 @@ import { SortOrder } from "./select-sort-order/select-sort-order.component";
 import { FormBuilder } from "@angular/forms";
 import { TaxonService } from "app/shared/service/taxon.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { TaxonBrowserListComponent } from "./taxon-browser-list/taxon-browser-list.component";
 
 const initialFilters = {
     plants: false,
@@ -106,6 +107,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     @ViewChild('sidebarToggle', { static: true }) sidebarToggle: ElementRef;
     @ViewChild('cardscont', { static: true }) cardsContainer: ElementRef;
     @ViewChild('optionsmenu', { static: true }) optionsMenu: ElementRef;
+    @ViewChild(TaxonBrowserListComponent) taxonBrowserList: TaxonBrowserListComponent;
 
     filtersForm = this.fb.group(<Filters>initialFilters);
     taxa$ = new BehaviorSubject<Taxonomy[]>([]);
@@ -132,8 +134,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
         private fb: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        @Inject(PLATFORM_ID) private platformId: object,
-        private spreadSheetService: SpreadSheetService
+        @Inject(PLATFORM_ID) private platformId: object
     ) {}
 
     ngOnInit() {
@@ -162,18 +163,22 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
                     })
                 )
             ]).pipe(
-                switchMap(([_, params]) => this.taxonService.getTaxa(getTaxaQuery(<TaxonBrowserQueryParams>params, this.currentPage, this.translate.currentLang)).pipe(
-                    tap(res => {
-                        this.total = res.total;
-                        this.lastPage = res.lastPage;
-                        this.filterInfo = [];
-                        if (params.fi) { this.filterInfo.push('fiList'); }
-                        if (params.eu) { this.filterInfo.push('euList'); }
-                        if (params.plantPests) { this.filterInfo.push('plantPest'); }
-                        if (params.other) { this.filterInfo.push('other'); }
-                    }),
-                    map(res => res.results)
-                )),
+                switchMap(
+                    ([_, params]) => this.taxonService.getTaxa(
+                        getTaxaQuery(<TaxonBrowserQueryParams>params, this.currentPage, this.translate.currentLang)
+                    ).pipe(
+                        tap(res => {
+                            this.total = res.total;
+                            this.lastPage = res.lastPage;
+                            this.filterInfo = [];
+                            if (params.fi) { this.filterInfo.push('fiList'); }
+                            if (params.eu) { this.filterInfo.push('euList'); }
+                            if (params.plantPests) { this.filterInfo.push('plantPest'); }
+                            if (params.other) { this.filterInfo.push('other'); }
+                        }),
+                        map(res => res.results)
+                    )
+                ),
                 tap(res => this.pageCache.push(...res)),
                 map(_ => this.pageCache)
             ).subscribe(taxa => {
@@ -251,26 +256,10 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     }
 
     onExport() {
-        // create 2d array from data
-        const columns = [
-            { prop: 'vernacularName', name: this.translate.instant('taxonomy.folkname')},
-            { prop: 'scientificName', name: this.translate.instant('taxonomy.scientificname')},
-            { prop: 'stableString', name: this.translate.instant('taxonomy.established')},
-            { prop: 'onEUList', name: this.translate.instant('taxonomy.onEuList')},
-            { prop: 'onNationalList', name: this.translate.instant('taxonomy.finnishList')},
-            { prop: 'isQuarantinePlantPest', name: this.translate.instant('taxonomy.list.quarantinePlantPest')}
-        ]
-        const rows = []
-        // first row: column names
-        rows.push(columns.map(obj => obj["name"]))
-        // rows
-        for (const taxon of this.taxa$.getValue()) {
-            const row = []
-            for (const column of columns) {
-                row.push(taxon[column.prop])
-            }
-            rows.push(row)
-        }
-        this.spreadSheetService.export(rows)
+        const q = getTaxaQuery(<TaxonBrowserQueryParams>this.route.snapshot.queryParams, 1, this.translate.currentLang);
+        q.pageSize = 10000;
+        this.taxonService.getTaxa(q).subscribe(res => {
+            this.taxonBrowserList.export(res.results);
+        });
     }
 }

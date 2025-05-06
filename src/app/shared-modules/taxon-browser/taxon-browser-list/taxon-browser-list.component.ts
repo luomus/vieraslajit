@@ -4,7 +4,9 @@ import { Router } from "@angular/router";
 import { Taxonomy } from "../../../shared/model";
 import { TableColumn } from "@swimlane/ngx-datatable";
 import { BehaviorSubject, combineLatest, Subject} from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { take, takeUntil } from "rxjs/operators";
+import { SpreadSheetService } from "app/shared/service/spread-sheet.service";
+import { MetadataService } from "app/shared/service/metadata.service";
 
 const comparator = (valueA, valueB, rowA, rowB, sortDirection) => {
     if (!valueA && !valueB) return 0;
@@ -24,7 +26,7 @@ const comparatorReverse = (valueA, valueB, rowA, rowB, sortDirection) => {
     return 0;
 }
 
-const mapTaxonToRow = (t: Taxonomy, translate: TranslateService): Taxonomy => {
+const mapTaxonToRow = (t: Taxonomy, translate: TranslateService) => {
     const taxon = { ...t };
 
     if(taxon.vernacularName) {
@@ -37,31 +39,6 @@ const mapTaxonToRow = (t: Taxonomy, translate: TranslateService): Taxonomy => {
         taxon.onEUList = translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.euInvasiveSpeciesList')));
         taxon.onNationalList = translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.controllingRisksOfInvasiveAlienSpecies')));
         taxon.isQuarantinePlantPest = translate.instant(String(taxon.administrativeStatuses.some(value => value === 'MX.quarantinePlantPest')));
-    }
-    switch(taxon.invasiveSpeciesEstablishment) {
-        case 'MX.invasiveNotYetInFinland':
-            taxon.stableString = translate.instant(String('stableString.notyet'));
-            break;
-
-        case 'MX.invasiveEstablishmentUnknown':
-            taxon.stableString = translate.instant(String('stableString.unknown'));
-            break;
-
-        case 'MX.invasiveEstablished':
-            taxon.stableString = translate.instant(String('stableString.established'));
-            break;
-
-        case 'MX.invasiveSporadic':
-            taxon.stableString = translate.instant(String('stableString.sporadic'));
-            break;
-
-        case 'MX.invasiveAccidental':
-            taxon.stableString = translate.instant(String('stableString.accidental'));
-            break;
-
-        default:
-            taxon.stableString = "";
-            break;
     }
 
     return taxon;
@@ -94,7 +71,9 @@ export class TaxonBrowserListComponent implements AfterViewInit {
     constructor(
         private translate: TranslateService,
         private router: Router,
-        private elementRef: ElementRef
+        private elementRef: ElementRef,
+        private spreadSheetService: SpreadSheetService,
+        private metadataService: MetadataService
     ) {
         combineLatest(this.checkHeight$, this.afterViewInit$).pipe(takeUntil(this.unsubscribe$)).subscribe(([height, _]) => {
             if (height <= this.elementRef.nativeElement.offsetHeight) {
@@ -135,5 +114,29 @@ export class TaxonBrowserListComponent implements AfterViewInit {
 
     getEmptyMessage() {
         return this.translate.instant('datatable.species.empty')
+    }
+
+    export(taxa: Taxonomy[]) {
+        this.metadataService
+            .getMetadataRange('MX.invasiveSpeciesEstablishmentStatuses', this.translate.currentLang)
+            .subscribe(labels => {
+                const getEstablishmentLabel = (label: string) => labels.filter(l => l.id === label)[0];
+                const tableRows = taxa.map(taxon => mapTaxonToRow(taxon, this.translate));
+                const spreadsheet = [];
+                spreadsheet.push(this.columns.map(obj => obj["name"]));
+                for (const row of tableRows) {
+                    const spreadsheetRow = [];
+                    for (const column of this.columns) {
+                        const prop = column.prop;
+                        spreadsheetRow.push(
+                            prop === 'invasiveSpeciesEstablishment'
+                                ? (getEstablishmentLabel(row[prop])?.value?.[this.translate.currentLang] ?? '')
+                                : row[prop]
+                        );
+                    }
+                    spreadsheet.push(spreadsheetRow);
+                }
+                this.spreadSheetService.export(spreadsheet);
+            });
     }
 }
