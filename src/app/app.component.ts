@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { ApplicationRef, Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Location } from '@angular/common';
 import { UserService } from './shared/service/user.service';
@@ -9,7 +9,8 @@ import { LoaderService } from './shared/service/loader.service';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { environment } from 'environments/environment';
-import { filter } from 'rxjs/operators';
+import { interval } from 'rxjs';
+import { filter, first } from 'rxjs/operators';
 
 /**
  * Main component that acts as a container for navigation, content and footer.
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
   useAnalytics = false;
 
   private navLoaderIdx;
+  private readonly swUpdateCheckInterval = 60 * 60 * 1000;
 
   /**
   * Initializes TranslateService
@@ -40,6 +42,7 @@ export class AppComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private swUpdate: SwUpdate,
+    private appRef: ApplicationRef,
     private loaderService: LoaderService,
     private meta: Meta,
     private title: Title,
@@ -116,11 +119,29 @@ export class AppComponent implements OnInit {
     ])
   }
   ngOnInit() {
-    if (this.swUpdate.isEnabled) {
-      this.swUpdate.versionUpdates.pipe(filter(e => e.type === 'VERSION_READY')).subscribe(() => {
-          this.swUpdate.activateUpdate().then(() => window.location.reload());
-      });
+    if (!isPlatformBrowser(this.platformId) || !this.swUpdate.isEnabled) {
+      return;
     }
+
+    this.swUpdate.versionUpdates.pipe(filter(e => e.type === 'VERSION_READY')).subscribe(() => {
+        window.location.reload();
+    });
+    this.swUpdate.unrecoverable.subscribe(() => window.location.reload());
+
+    this.appRef.isStable.pipe(first(isStable => isStable)).subscribe(() => {
+      this.checkForServiceWorkerUpdate();
+      interval(this.swUpdateCheckInterval).subscribe(() => this.checkForServiceWorkerUpdate());
+
+      window.addEventListener('focus', this.checkForServiceWorkerUpdate);
+      this.document.addEventListener('visibilitychange', () => {
+        if (this.document.visibilityState === 'visible') {
+          this.checkForServiceWorkerUpdate();
+        }
+      });
+    });
+  }
+
+  private checkForServiceWorkerUpdate = () => {
+    this.swUpdate.checkForUpdate().catch(() => undefined);
   }
 }
-
