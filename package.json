@@ -10,6 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "bundle-report": "ng build --configuration production --aot --stats-json --named-chunks=true && webpack-bundle-analyzer dist/browser/stats.json",
+    "generate:sitemap": "ts-node --compiler-options '{\"module\":\"commonjs\"}' src/generate_sitemap.ts",
     "serve:ssr": "node dist/server/main.js",
     "dev:ssr": "ng run vieraslajit:serve-ssr",
     "build:local": "ng build --configuration beta --base-href=http://localhost:4000/ && ng run vieraslajit:server:beta",
