@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../model/Taxonomy';
+import { Taxonomy, TaxonomyImage } from '../model/Taxonomy';
 import { Observable } from 'rxjs';
 import { PagedResult } from '../model/PagedResult';
 import { Informal } from '../model/Informal';
@@ -17,7 +17,25 @@ import { Document } from '../model/Document';
 @Injectable()
 export class ApiService {
 
+  private readonly lajiApiHeaders = new HttpHeaders({ 'Api-Version': '1' });
+
   constructor(private httpClient: HttpClient) { }
+
+  private httpGet(url: string, options: any = {}): Observable<any> {
+    return this.httpClient.get(url, { ...options, headers: this.lajiApiHeaders });
+  }
+
+  private httpPost(url: string, body: any, options: any = {}): Observable<any> {
+    return this.httpClient.post(url, body, { ...options, headers: this.lajiApiHeaders });
+  }
+
+  private httpPut(url: string, body: any, options: any = {}): Observable<any> {
+    return this.httpClient.put(url, body, { ...options, headers: this.lajiApiHeaders });
+  }
+
+  private httpDelete(url: string, options: any = {}): Observable<any> {
+    return this.httpClient.delete(url, { ...options, headers: this.lajiApiHeaders });
+  }
 
   /**
    * Returns person details from /person/ endpoint:
