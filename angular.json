@@ -216,5 +216,8 @@
     "@schematics/angular:directive": {
       "prefix": "vrs"
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
