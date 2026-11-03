@@ -101,6 +101,7 @@
               "browserTarget": "vieraslajit:build:beta"
             },
             "local": {
+              "proxyConfig": "proxy.conf.js",
               "browserTarget": "vieraslajit:build:local"
             }
           }

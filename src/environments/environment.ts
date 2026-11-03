@@ -5,7 +5,7 @@ export const environment = {
   embedUrl: 'https://dev-embedded.laji.fi',
   useAnalytics: false,
   lajiApi: {
-    url: 'https://vieraslajit-dev.laji.fi/api'
+    url: '/api'
   },
   lajiAuth: {
     authUrl: 'https://fmnh-ws-test.it.helsinki.fi/laji-auth/',

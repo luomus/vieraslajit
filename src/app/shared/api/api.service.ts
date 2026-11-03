@@ -9,6 +9,7 @@ import { NewsElement } from '../model/NewsElement';
 import { WarehouseQueryList } from '../model/Warehouse';
 import { Information } from '../model/Information';
 import { Document } from '../model/Document';
+import { UserService } from '../service/user.service';
 
 /**
  * Handles creation of API requests
@@ -17,23 +18,26 @@ import { Document } from '../model/Document';
 @Injectable()
 export class ApiService {
 
-  private readonly lajiApiHeaders = new HttpHeaders({ 'Api-Version': '1' });
+  private readonly lajiApiHeaders = new HttpHeaders({
+    'Api-Version': '1',
+    'Person-Token': `${UserService.getToken()}`
+  });
 
   constructor(private httpClient: HttpClient) { }
 
-  private httpGet(url: string, options: any = {}): Observable<any> {
+  httpGet(url: string, options: any = {}): Observable<any> {
     return this.httpClient.get(url, { ...options, headers: this.lajiApiHeaders });
   }
 
-  private httpPost(url: string, body: any, options: any = {}): Observable<any> {
+  httpPost(url: string, body: any, options: any = {}): Observable<any> {
     return this.httpClient.post(url, body, { ...options, headers: this.lajiApiHeaders });
   }
 
-  private httpPut(url: string, body: any, options: any = {}): Observable<any> {
+  httpPut(url: string, body: any, options: any = {}): Observable<any> {
     return this.httpClient.put(url, body, { ...options, headers: this.lajiApiHeaders });
   }
 
-  private httpDelete(url: string, options: any = {}): Observable<any> {
+  httpDelete(url: string, options: any = {}): Observable<any> {
     return this.httpClient.delete(url, { ...options, headers: this.lajiApiHeaders });
   }
 
