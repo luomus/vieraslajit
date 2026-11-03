@@ -67,7 +67,7 @@ export class UserService {
       this.loginStateChange.next(null);
     };
     if (token) {
-      this.apiService.deletePersonToken(UserService.getToken()).subscribe(_ => cb());
+      this.apiService.deleteAuthenticationEvent().subscribe(_ => cb());
     } else {
       cb();
     }
@@ -88,9 +88,9 @@ export class UserService {
 
   updateUserProperties(token:string) {
     let s: Subject<any> = new Subject<any>();
-    this.apiService.personToken(UserService.getToken()).subscribe((data) => {
+    this.apiService.getAuthenticationEvent().subscribe((data) => {
       this.setUserProperty(userProperty.PTOKEN, data);
-      this.apiService.personByToken(UserService.getToken()).subscribe((data) => {
+      this.apiService.getPerson().subscribe((data) => {
         // Admin role for testing purposes
         if(!environment.production) {
           data['role'] = [Role.CMS_ADMIN];

@@ -35,20 +35,33 @@ export class ApiService {
     return headers;
   }
 
-  httpGet(url: string, options: any = {}): Observable<any> {
-    return this.httpClient.get(url, { ...options, headers: this.lajiApiHeaders });
+  httpGet(path: string, options: any = {}): Observable<any> {
+    return this.httpClient.get(
+      `${environment.lajiApi.url}` + `${path}`,
+      { ...options, headers: this.lajiApiHeaders }
+    );
   }
 
-  httpPost(url: string, body: any, options: any = {}): Observable<any> {
-    return this.httpClient.post(url, body, { ...options, headers: this.lajiApiHeaders });
+  httpPost(path: string, body: any, options: any = {}): Observable<any> {
+    return this.httpClient.post(
+      `${environment.lajiApi.url}` + `${path}`,
+      body,
+      { ...options, headers: this.lajiApiHeaders }
+    );
   }
 
-  httpPut(url: string, body: any, options: any = {}): Observable<any> {
-    return this.httpClient.put(url, body, { ...options, headers: this.lajiApiHeaders });
+  httpPut(path: string, body: any, options: any = {}): Observable<any> {
+    return this.httpClient.put(
+      `${environment.lajiApi.url}` + `${path}`,
+      body,
+      { ...options, headers: this.lajiApiHeaders });
   }
 
-  httpDelete(url: string, options: any = {}): Observable<any> {
-    return this.httpClient.delete(url, { ...options, headers: this.lajiApiHeaders });
+  httpDelete(path: string, options: any = {}): Observable<any> {
+    return this.httpClient.delete(
+      `${environment.lajiApi.url}` + `${path}`,
+      { ...options, headers: this.lajiApiHeaders }
+    );
   }
 
   /**
@@ -56,16 +69,14 @@ export class ApiService {
    * {
    *  "id": "string",
    *  "fullName": "string",
-   *  "emailAddress",
+   *  "emailAddress": "string",
    *  "defaultLanguage": "string",
    *  "role": ["string"]
    * }
    *
-   * @param personToken person-token received from laji-auth on login
    */
-  personByToken(personToken: string) {
-    return this.httpClient.get(
-      `${environment.lajiApi.url}/person/` + personToken);
+  getPerson() {
+    return this.httpGet(`/person`);
   }
 
   /**
@@ -80,17 +91,12 @@ export class ApiService {
    *
    * @param token person-token received from laji-auth on login
    */
-  personToken(token: string) {
-    return this.httpClient.get(
-      `${environment.lajiApi.url}/person-token/` + token
-    );
+  getAuthenticationEvent() {
+    return this.httpGet(`/authentication-event`);
   }
 
-  deletePersonToken(token: string) {
-    return this.httpClient.delete(
-      environment.lajiApi.url + `/person-token/${token}`,
-      { responseType: 'text' }
-    );
+  deleteAuthenticationEvent() {
+    return this.httpDelete(`/authentication-event`);
   }
 
   /**
