@@ -11,7 +11,7 @@ export class DocumentService {
 
 
   createDocument(personToken: string, data: Document): Observable<Document> {
-    return this.apiService.documentPost(LajiApi.Endpoints.createDocument, personToken, this.prepareForSave(data));
+    return this.apiService.documentPost(LajiApi.Endpoints.documents, personToken, this.prepareForSave(data));
   }
 
   updateDocument(id: string, data: Document, personToken: string): Observable<Document> {

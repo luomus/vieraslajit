@@ -35,31 +35,31 @@ export class ApiService {
     return headers;
   }
 
-  httpGet(path: string, options: any = {}): Observable<any> {
+  httpGet(endpoint: LajiApi.Endpoints, options: any = {}): Observable<any> {
     return this.httpClient.get(
-      `${environment.lajiApi.url}` + `${path}`,
+      `${environment.lajiApi.url}/${endpoint}`,
       { ...options, headers: this.lajiApiHeaders }
     );
   }
 
-  httpPost(path: string, body: any, options: any = {}): Observable<any> {
+  httpPost(endpoint: LajiApi.Endpoints, body: any, options: any = {}): Observable<any> {
     return this.httpClient.post(
-      `${environment.lajiApi.url}` + `${path}`,
+      `${environment.lajiApi.url}/${endpoint}`,
       body,
       { ...options, headers: this.lajiApiHeaders }
     );
   }
 
-  httpPut(path: string, body: any, options: any = {}): Observable<any> {
+  httpPut(endpoint: LajiApi.Endpoints, body: any, options: any = {}): Observable<any> {
     return this.httpClient.put(
-      `${environment.lajiApi.url}` + `${path}`,
+      `${environment.lajiApi.url}/${endpoint}`,
       body,
       { ...options, headers: this.lajiApiHeaders });
   }
 
-  httpDelete(path: string, options: any = {}): Observable<any> {
+  httpDelete(endpoint: LajiApi.Endpoints, options: any = {}): Observable<any> {
     return this.httpClient.delete(
-      `${environment.lajiApi.url}` + `${path}`,
+      `${environment.lajiApi.url}/${endpoint}`,
       { ...options, headers: this.lajiApiHeaders }
     );
   }
@@ -76,7 +76,7 @@ export class ApiService {
    *
    */
   getPerson() {
-    return this.httpGet(`/person`);
+    return this.httpGet(LajiApi.Endpoints.person);
   }
 
   /**
@@ -92,11 +92,11 @@ export class ApiService {
    * @param token person-token received from laji-auth on login
    */
   getAuthenticationEvent() {
-    return this.httpGet(`/authentication-event`);
+    return this.httpGet(LajiApi.Endpoints.authenticationEvent);
   }
 
   deleteAuthenticationEvent() {
-    return this.httpDelete(`/authentication-event`);
+    return this.httpDelete(LajiApi.Endpoints.authenticationEvent);
   }
 
   /**
@@ -288,7 +288,7 @@ export class ApiService {
    * @param personToken Persontoken received from laji-auth on login
    * @param data Data to send
    */
-  documentPost(endpoint: LajiApi.Endpoints.createDocument, personToken: string, data: Document): Observable<Document>;
+  documentPost(endpoint: LajiApi.Endpoints.documents, personToken: string, data: Document): Observable<Document>;
   documentPost(endpoint: LajiApi.Endpoints, personToken: string, data?: Document, documentId?: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
     return this.httpClient.post(
@@ -348,28 +348,29 @@ export class ApiService {
 export namespace LajiApi {
   /** Endpoints in api.laji.fi */
   export enum Endpoints {
-    informalRoots = 'informal-taxon-groups/roots',
-    informalChildren = 'informal-taxon-groups/%id%/children',
-    taxonParents = 'taxa/%id%/parents',
-    taxa = 'taxa/',
-    taxon = 'taxa/%id%',
-    taxonSpecies = 'taxa/%id%/species',
-    documents = 'documents',
+    areas = 'areas',
+    authenticationEvent = 'authentication-event',
+    autocomplete = 'autocomplete/taxon',
     description = 'taxa/%id%/descriptions',
+    documents = 'documents',
     feedback = 'feedback',
+    form = 'forms/%id%',
+    getDocument = 'documents/%id%',
+    informalChildren = 'informal-taxon-groups/%id%/children',
+    informalRoots = 'informal-taxon-groups/roots',
+    information = 'information/%id%',
     media = 'taxa/%id%/media',
     metadataRange = 'metadata/ranges/%range%',
     newsArray = 'news',
     newsElement = 'news/%id%',
-    autocomplete = 'autocomplete/taxon',
-    warehousequerycount = 'warehouse/query/count',
-    warehousequerylist = 'warehouse/query/list',
-    information = 'information/%id%',
-    form = 'forms/%id%',
-    createDocument = 'documents',
-    getDocument = 'documents/%id%',
+    person = 'person',
+    taxa = 'taxa/',
+    taxon = 'taxa/%id%',
+    taxonParents = 'taxa/%id%/parents',
+    taxonSpecies = 'taxa/%id%/species',
     updateDocument = 'documents/%id%',
-    areas = 'areas'
+    warehousequerycount = 'warehouse/query/count',
+    warehousequerylist = 'warehouse/query/list'
   }
   /** Possible query parameters. */
   export interface Query {
