@@ -1,6 +1,6 @@
 import { ApplicationRef, Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
-import { Location } from '@angular/common';
+import { LanguageService } from './shared/service/language.service';
 import { UserService } from './shared/service/user.service';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { StateService } from './state.service';
@@ -81,11 +81,7 @@ export class AppComponent implements OnInit {
     * User's language choice is stored in localStorage, if language is not found
     * then use Finnish
     */
-    if (window.localStorage.getItem("vrs-lang")) {
-      translate.use(window.localStorage.getItem("vrs-lang"));
-    } else {
-      translate.use('fi');
-    }
+    translate.use(LanguageService.getLanguage() ?? 'fi');
 
     if (UserService.getToken()) {
       userService.updateUserProperties(UserService.getToken());

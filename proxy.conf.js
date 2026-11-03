@@ -16,7 +16,7 @@ const proxyConfig = {
 if (process.env.ACCESS_TOKEN) {
   console.log("Using ACCESS_TOKEN for proxy requests: " + process.env.ACCESS_TOKEN)
   proxyConfig.headers = {
-    Authorization: process.env.ACCESS_TOKEN
+    Authorization: 'Bearer ' + process.env.ACCESS_TOKEN
   }
 }
 

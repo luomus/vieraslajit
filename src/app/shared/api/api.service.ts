@@ -9,6 +9,7 @@ import { NewsElement } from '../model/NewsElement';
 import { WarehouseQueryList } from '../model/Warehouse';
 import { Information } from '../model/Information';
 import { Document } from '../model/Document';
+import { LanguageService } from '../service/language.service';
 import { UserService } from '../service/user.service';
 
 /**
@@ -18,12 +19,21 @@ import { UserService } from '../service/user.service';
 @Injectable()
 export class ApiService {
 
-  private readonly lajiApiHeaders = new HttpHeaders({
-    'Api-Version': '1',
-    'Person-Token': `${UserService.getToken()}`
-  });
-
   constructor(private httpClient: HttpClient) { }
+
+  private get lajiApiHeaders(): HttpHeaders {
+    let headers = new HttpHeaders({ 'Api-Version': '1' });
+    const language = LanguageService.getLanguage();
+    const token = UserService.getToken();
+
+    headers = headers.set('Accept-Language', language ?? 'fi');
+
+    if (token !== null) {
+      headers = headers.set('Person-Token', token);
+    }
+
+    return headers;
+  }
 
   httpGet(url: string, options: any = {}): Observable<any> {
     return this.httpClient.get(url, { ...options, headers: this.lajiApiHeaders });
