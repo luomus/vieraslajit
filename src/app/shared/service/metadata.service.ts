@@ -1,23 +1,31 @@
 import { Injectable } from '@angular/core';
-import { ApiService, LajiApi } from '../api/api.service';
+import { ApiService } from '../api/api.service';
+import { LanguageService } from './language.service';
 import { Observable, of } from 'rxjs';
-import { tap } from '../../../../node_modules/rxjs/operators';
+import { map, tap } from '../../../../node_modules/rxjs/operators';
+import { Metadata } from '../model/Metadata';
 
 @Injectable()
 export class MetadataService {
 
-  private metadataCache: { [range: string]: Array<any> } = {};
+  private metadataCache: { [langAndRange: string]: NonNullable<Metadata['results']> } = {};
 
   constructor(private apiService: ApiService) { }
 
-  getMetadataRange(range: string, lang?: string): Observable<Array<any>> {
-    if (this.metadataCache[range]) {
-      return of(this.metadataCache[range]);
+  getMetadataRange(range: string): Observable<NonNullable<Metadata['results']>> {
+    const cacheKey = `${LanguageService.getLanguage() ?? 'fi'}:${range}`;
+    if (this.metadataCache[cacheKey]) {
+      return of(this.metadataCache[cacheKey]);
     }
     return this.apiService
-      .fetchMetadata(LajiApi.Endpoints.metadataRange, range, { lang: lang }).pipe(
-        tap(result => this.metadataCache[range] = result)
+      .getMetadataAlt(range).pipe(
+        map((response) => {
+          if (!response.results) {
+            throw new Error(`Missing results for metadata range: ${range}`);
+          }
+          return response.results;
+        }),
+        tap((results) => this.metadataCache[cacheKey] = results)
       );
   }
-
 }

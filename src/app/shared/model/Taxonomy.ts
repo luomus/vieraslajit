@@ -190,19 +190,24 @@ export interface Taxonomy {
 
     latestRedListStatusFinland?: LatestRedListStatusFinland;
 
-
     redListStatusesInFinland?: LatestRedListStatusFinland[];
 
-    descriptions?: TaxonomyDescription[];
+    descriptions?: TaxonomyDescriptionResult[];
 
     hasAlternativeName?: String[];
 
     synonymNames?: String;
+
+    observationCountInvasiveFinland: number;
 }
 
 export interface LatestRedListStatusFinland {
     status: string;
     year: number;
+}
+
+export interface TaxonomyDescription {
+    results?: Array<TaxonomyDescriptionResult>;
 }
 
 export interface TaxonomyDescriptionVariable {
@@ -219,7 +224,7 @@ export interface TaxonomyDescriptionGroup {
     group?: string;
 }
 
-export interface TaxonomyDescription {
+export interface TaxonomyDescriptionResult {
 
     id?: string;
 

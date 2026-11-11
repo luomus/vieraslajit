@@ -6,7 +6,6 @@ import { SearchComponent } from './googlesearch/search/search.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
-import { TaxonService } from './service/taxon.service';
 import { NewsService } from './service/news.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { LanguageSelectorComponent } from './navbar/language-selector/language-selector.component';
@@ -36,7 +35,6 @@ import { NavbarContainer } from './navbar/navbar.container';
 import { ParseWPPipe } from './pipe/parse-wp.pipe';
 import { GoogleSearchApiService } from './api/google-search.api.service';
 import { RouteTransformerDirective } from './directive/route-transformer.directive';
-import { TaxonNamePipe } from './pipe/taxonName.pipe';
 import { HtmlSanitizerPipe } from './pipe/html-sanitizer.pipe';
 import { LoaderService } from './service/loader.service';
 import { DateTranslatePipe } from './pipe/date-translate.pipe';
@@ -62,10 +60,10 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [NavbarComponent, NavbarContainer, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent, RouteTransformerDirective, TaxonNamePipe, HtmlSanitizerPipe, DateTranslatePipe, TruncatePipe],
+  declarations: [NavbarComponent, NavbarContainer, PersonMenuComponent, FooterComponent, SearchComponent, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, HelpPopupComponent, CapitalizePipe, UserMenuComponent, HamburgerBarComponent, RouteTransformerDirective, HtmlSanitizerPipe, DateTranslatePipe, TruncatePipe],
   providers: [],
   exports: [NavbarComponent, NavbarContainer, RouterModule, FooterComponent, SpinnerModule, EditcmsModule,
-    SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, CapitalizePipe, RouteTransformerDirective, TaxonNamePipe, HtmlSanitizerPipe, DateTranslatePipe, TruncatePipe]
+    SearchComponent, TranslateModule, LanguageSelectorComponent, OmnisearchComponent, LabelPipe, ParseWPPipe, HelpComponent, CapitalizePipe, RouteTransformerDirective, HtmlSanitizerPipe, DateTranslatePipe, TruncatePipe]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders<any> {
@@ -74,7 +72,6 @@ export class SharedModule {
       providers: [
         ApiService,
         GoogleSearchApiService,
-        TaxonService,
         NewsService,
         MetadataService,
         FormService,

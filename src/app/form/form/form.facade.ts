@@ -3,9 +3,8 @@ import { BehaviorSubject, Observable, forkJoin } from "rxjs";
 import { FormService } from "app/shared/service/form.service";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "app/shared/service/user.service";
-import { map, distinctUntilChanged, tap } from "rxjs/operators";
-import { ApiService, LajiApi } from "app/shared/api/api.service";
-import { TaxonService } from "app/shared/service/taxon.service";
+import { map, distinctUntilChanged } from "rxjs/operators";
+import { ApiService } from "app/shared/api/api.service";
 
 interface State {
     data: any
@@ -23,9 +22,11 @@ export class FormFacade {
         distinctUntilChanged()
     );
 
-    constructor(private formService: FormService,
-                private taxonService: TaxonService,
-                private translate: TranslateService) {}
+    constructor(
+        private apiService: ApiService,
+        private formService: FormService,
+        private translate: TranslateService
+    ) {}
     
     private dataReducer(data: any) {
         this.store$.next({
@@ -93,11 +94,13 @@ export class FormFacade {
 
     loadDataWithTaxon(formId: string, taxonId: string) {
         forkJoin(
-            this.taxonService.getTaxon(taxonId, {
+            this.apiService.getTaxon(taxonId, {
                 selectedFields: "vernacularName,scientificName"
             }),
             this.formService.getFormById(formId, this.translate.currentLang)
         )
-        .subscribe((data) => this.getDataReducerWithTaxon(taxonId)(data))
+        .subscribe((data) => {
+            this.getDataReducerWithTaxon(taxonId)(data)
+        })
     }
 }

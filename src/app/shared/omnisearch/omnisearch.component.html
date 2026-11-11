@@ -42,11 +42,11 @@
             </div>
             <div class="col-10 taxon-match" *ngIf="!comparisonView;else comparisonTemplate">
               <a [routerLink]="['/lajit/' + taxon?.key]" (click)="close()">
-                <span class="vernacularName">{{taxon?.payload?.vernacularName}}</span>
+                <span class="vernacularName">{{taxon?.vernacularName}}</span>
               </a>
               <br>
               <a [routerLink]="['/lajit/' + taxon?.key]" (click)="close()">
-                <span class="scientificName" [ngClass]="{cursive: taxon?.payload?.cursiveName}">{{taxon?.payload?.scientificName}}</span>
+                <span class="scientificName" [ngClass]="{cursive: taxon?.cursiveName}">{{taxon?.scientificName}}</span>
               </a>
               <br>
               <ul>
@@ -73,16 +73,16 @@
 
 <ng-template #comparisonTemplate>
   <div class="col-md-12 taxon-match">
-    <a [routerLink]="['/lajit/' + taxon.key]" [queryParams]="{comparison: true}">
-      <span class="vernacularName">{{taxon.payload.vernacularName}}</span>
+    <a [routerLink]="['/lajit/' + taxon?.key]" [queryParams]="{comparison: true}">
+      <span class="vernacularName">{{taxon?.vernacularName}}</span>
     </a>
     <br>
-    <a [routerLink]="['/lajit/' + taxon.key]" [queryParams]="{comparison: true}">
-      <span class="scientificName" [ngClass]="{cursive: taxon.payload.cursiveName}">{{taxon.payload.scientificName}}</span>
+    <a [routerLink]="['/lajit/' + taxon?.key]" [queryParams]="{comparison: true}">
+      <span class="scientificName" [ngClass]="{cursive: taxon?.cursiveName}">{{taxon?.scientificName}}</span>
     </a>
     <br>
     <ul>
-      <li *ngFor="let group of taxon.informalTaxonGroups">{{group}}</li>
+      <li *ngFor="let group of taxon?.informalTaxonGroups">{{group}}</li>
     </ul>
   </div>
 </ng-template>

@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Taxonomy, TaxonomyImage } from '../model/Taxonomy';
+import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../model/Taxonomy';
 import { Observable } from 'rxjs';
+import { AuthenticationEvent } from '../model/AuthenticationEvent';
+import { Autocomplete } from '../model/Autocomplete';
+import { Metadata } from '../model/Metadata';
 import { PagedResult } from '../model/PagedResult';
-import { Informal } from '../model/Informal';
+import { Person } from '../model/Person';
 import { NewsElement } from '../model/NewsElement';
-import { WarehouseQueryList } from '../model/Warehouse';
 import { Information } from '../model/Information';
 import { Document } from '../model/Document';
 import { LanguageService } from '../service/language.service';
@@ -35,14 +37,14 @@ export class ApiService {
     return headers;
   }
 
-  httpGet(endpoint: LajiApi.Endpoints, options: any = {}): Observable<any> {
+  httpGet(endpoint: LajiApi.Endpoints | string, options: any = {}): Observable<any> {
     return this.httpClient.get(
       `${environment.lajiApi.url}/${endpoint}`,
       { ...options, headers: this.lajiApiHeaders }
     );
   }
 
-  httpPost(endpoint: LajiApi.Endpoints, body: any, options: any = {}): Observable<any> {
+  httpPost(endpoint: LajiApi.Endpoints | string, body: any, options: any = {}): Observable<any> {
     return this.httpClient.post(
       `${environment.lajiApi.url}/${endpoint}`,
       body,
@@ -50,14 +52,14 @@ export class ApiService {
     );
   }
 
-  httpPut(endpoint: LajiApi.Endpoints, body: any, options: any = {}): Observable<any> {
+  httpPut(endpoint: LajiApi.Endpoints | string, body: any, options: any = {}): Observable<any> {
     return this.httpClient.put(
       `${environment.lajiApi.url}/${endpoint}`,
       body,
       { ...options, headers: this.lajiApiHeaders });
   }
 
-  httpDelete(endpoint: LajiApi.Endpoints, options: any = {}): Observable<any> {
+  httpDelete(endpoint: LajiApi.Endpoints | string, options: any = {}): Observable<any> {
     return this.httpClient.delete(
       `${environment.lajiApi.url}/${endpoint}`,
       { ...options, headers: this.lajiApiHeaders }
@@ -75,7 +77,7 @@ export class ApiService {
    * }
    *
    */
-  getPerson() {
+  getPerson(): Observable<Person> {
     return this.httpGet(LajiApi.Endpoints.person);
   }
 
@@ -91,11 +93,11 @@ export class ApiService {
    *
    * @param token person-token received from laji-auth on login
    */
-  getAuthenticationEvent() {
+  getAuthenticationEvent(): Observable<AuthenticationEvent> {
     return this.httpGet(LajiApi.Endpoints.authenticationEvent);
   }
 
-  deleteAuthenticationEvent() {
+  deleteAuthenticationEvent(): Observable<void> {
     return this.httpDelete(LajiApi.Endpoints.authenticationEvent);
   }
 
@@ -103,67 +105,18 @@ export class ApiService {
    * Used for autocompletion of searchqueries
    *
    * Returns:
-   * [
+   * "results": [
    *   {
    *     "key": "string",
-   *     "value": "string",
-   *     "payload": {}
+   *     "value": "string"
    *   }
    * ]
    *
-   * @param endpoint Target API endpoint
-   * @param field Field type to be autocompleted: taxon, collection, friends, unit, person
    * @param query Query as defined by LajiApi.AutocompleteQuery
    */
-  autocompleteFindByField(endpoint: LajiApi.Endpoints.autocomplete, field: string, query: object = {}): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`;
-    return this.httpClient.get(
-      url,
-      { params: {...query} }
-    );
-  }
-
-  /**
-   *
-   *
-   * @param endpoint Target API endpoint
-   * @param count
-   * @param query Query as defined by LajiApi.warehousequeryCountQuery
-   */
-  warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: LajiApi.warehousequerycountQuery | any): Observable<any>;
-  warehouseQueryCountGet(endpoint: LajiApi.Endpoints.warehousequerycount, count: string, query: object = {}): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`;
-    return this.httpClient.get(
-      url,
-      { params: {...query} }
-    );
-  }
-
-  /**
-   *
-   * @param endpoint
-   * @param query
-   */
-  warehouseQueryListById(endpoint: LajiApi.Endpoints.warehousequerylist, query: LajiApi.WarehouseQueryListQuery): Observable<PagedResult<WarehouseQueryList>>;
-  warehouseQueryListById(endpoint: LajiApi.Endpoints.warehousequerylist, query: object = {}): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`;
-    return this.httpClient.get(
-      url,
-      { params: {...query} }
-    );
-  }
-
-  /**
-   * @param endpoint Target API endpoint
-   * @param query
-   * @param id Optional group id.
-   */
-  informalTaxonGroups(endpoint: LajiApi.Endpoints.informalRoots, query: LajiApi.Query): Observable<PagedResult<Informal>>;
-  informalTaxonGroups(endpoint: LajiApi.Endpoints.informalChildren, query: LajiApi.Query, id: string): Observable<PagedResult<Informal>>;
-  informalTaxonGroups(endpoint: LajiApi.Endpoints, query: object = {}, id?: string): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
-    return this.httpClient.get(
-      url,
+  getAutocompleteTaxa(query: LajiApi.AutocompleteQuery): Observable<Autocomplete> {
+    return this.httpGet(
+      LajiApi.Endpoints.autocompleteTaxa,
       { params: {...query} }
     );
   }
@@ -171,41 +124,46 @@ export class ApiService {
   /**
    * Returns range that is of type select (alt)
    * @param endpoint Target API endpoint
-   * @param range Type of range
+   * @param alt Type of range
    * @param query
   */
-  fetchMetadata(endpoint: LajiApi.Endpoints.metadataRange, range: string, query: LajiApi.Query): Observable<Array<any>>;
-  fetchMetadata(endpoint: LajiApi.Endpoints, range?: string, query: object = {}): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%range%', range);
-    return this.httpClient.get(
-      url,
+  getMetadataAlt(alt: string): Observable<Metadata>{
+    return this.httpGet(LajiApi.Endpoints.metadataAlt.replace('%alt%', alt));
+  }
+
+  postTaxa(body: LajiApi.PostTaxaBody, query: LajiApi.PostTaxaQuery): Observable<PagedResult<Taxonomy>>{
+    return this.httpPost(
+      LajiApi.Endpoints.taxa,
+      body,
+      { params: {...query} }
+    )
+  }
+
+  getTaxon(id: string, query?: LajiApi.GetTaxonQuery): Observable<Taxonomy> {
+    return this.httpGet(
+      LajiApi.Endpoints.taxon.replace('%id%', id),
       { params: {...query} }
     );
   }
 
-  /**
-  * Taxonomy API
-  * @param endpoint Target API endpoint
-  * @param id Id of the given taxon
-  * @param query
-  */
-  taxonomyFindById(endpoint: LajiApi.Endpoints.taxon, id: string, query: LajiApi.Query): Observable<Taxonomy>;
-  taxonomyFindById(endpoint: LajiApi.Endpoints.taxa, id: string, query: LajiApi.Query): Observable<PagedResult<Taxonomy>>;
-  taxonomyFindById(endpoint: LajiApi.Endpoints.media, id: string, query: LajiApi.Query): Observable<Array<TaxonomyImage>>;
-  taxonomyFindById(endpoint: LajiApi.Endpoints.description, id: string, query: LajiApi.Query): Observable<Array<any>>;
-  taxonomyFindById(endpoint: LajiApi.Endpoints.taxonSpecies, id: string, query: {}): Observable<PagedResult<Taxonomy>>;
-  taxonomyFindById(endpoint: LajiApi.Endpoints.taxonParents, id: string, query: LajiApi.Query): Observable<Array<Taxonomy>>;
-  taxonomyFindById(endpoint: LajiApi.Endpoints, id: string, query: object = {}): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
-    return this.httpClient.get(
-      url,
+  getTaxonDescription(id: string): Observable<TaxonomyDescription> {
+    return this.httpGet(
+      LajiApi.Endpoints.description.replace('%id%', id),
+      { params: {} }
+    );
+  }
+
+  getTaxonSpecies(id: string, query: LajiApi.GetTaxonQuery): Observable<PagedResult<Taxonomy>> {
+    return this.httpGet(
+      LajiApi.Endpoints.taxonSpecies.replace('%id%', id),
       { params: {...query} }
     );
   }
 
-  getTaxaMedia(id: string): Observable<Array<TaxonomyImage>> {
-    const url = `${environment.lajiApi.url}/taxa/${id}/media`;
-    return <Observable<Array<TaxonomyImage>>>this.httpClient.get(url);
+  getTaxonMedia(id: string): Observable<Array<TaxonomyImage>> {
+    return this.httpGet(
+      LajiApi.Endpoints.taxonMedia.replace('%id%', id)
+    )
   }
 
   /**
@@ -350,7 +308,7 @@ export namespace LajiApi {
   export enum Endpoints {
     areas = 'areas',
     authenticationEvent = 'authentication-event',
-    autocomplete = 'autocomplete/taxon',
+    autocompleteTaxa = 'autocomplete/taxa',
     description = 'taxa/%id%/descriptions',
     documents = 'documents',
     feedback = 'feedback',
@@ -359,13 +317,13 @@ export namespace LajiApi {
     informalChildren = 'informal-taxon-groups/%id%/children',
     informalRoots = 'informal-taxon-groups/roots',
     information = 'information/%id%',
-    media = 'taxa/%id%/media',
-    metadataRange = 'metadata/ranges/%range%',
+    metadataAlt = 'metadata/alts/%alt%',
     newsArray = 'news',
     newsElement = 'news/%id%',
     person = 'person',
-    taxa = 'taxa/',
+    taxa = 'taxa',
     taxon = 'taxa/%id%',
+    taxonMedia = 'taxa/%id%/media',
     taxonParents = 'taxa/%id%/parents',
     taxonSpecies = 'taxa/%id%/species',
     updateDocument = 'documents/%id%',
@@ -386,19 +344,36 @@ export namespace LajiApi {
     langFallback?: boolean;
     hasMediaFilter?: boolean;
     includeMedia?: boolean;
-    adminStatusFilters?:String;
-    personToken?:String;
+    administrativeStatuses?: string;
+    personToken?: string;
     invasive?:boolean;
-
-
   }
+
   export interface AutocompleteQuery {
-    q?: string;
-    includePayload?: boolean;
-    onlyInvasive?: boolean;
-    lang?: string;
-    onlySpecies?: boolean;
-    onlyFinnish?: boolean;
+    query?: string;
+    invasiveSpecies?: boolean;
+    species?: boolean;
+    finnish?: boolean;
+  }
+
+  export interface PostTaxaQuery {
+    page?: number;
+    pageSize?: number;
+    includeMedia?: boolean;
+    selectedFields?: string;
+    sortOrder?: string;
+  }
+
+  export interface PostTaxaBody {
+    administrativeStatuses?: string[];
+    invasiveSpecies?: boolean;
+    invasiveSpeciesMainGroups?: string[];
+  }
+
+  export interface GetTaxonQuery {
+    includeMedia?: boolean;
+    invasiveSpecies?: boolean;
+    selectedFields?: string;
   }
 
   export interface warehousequerycountQuery {

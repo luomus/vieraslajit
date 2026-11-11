@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, TemplateRef, Renderer2, ChangeDetectorRef, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef, Renderer2, Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TaxonomyDescription, TaxonomyImage, Taxonomy, TaxonomyDescriptionVariable } from '../../shared/model/Taxonomy';
+import { TaxonomyImage, Taxonomy } from '../../shared/model/Taxonomy';
 import { Subject } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 

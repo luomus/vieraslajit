@@ -118,7 +118,7 @@ export class TaxonBrowserListComponent implements AfterViewInit {
 
     export(taxa: Taxonomy[]) {
         this.metadataService
-            .getMetadataRange('MX.invasiveSpeciesEstablishmentStatuses', this.translate.currentLang)
+            .getMetadataRange('MX.invasiveSpeciesEstablishmentStatuses')
             .subscribe(labels => {
                 const getEstablishmentLabel = (label: string) => labels.filter(l => l.id === label)[0];
                 const tableRows = taxa.map(taxon => mapTaxonToRow(taxon, this.translate));
@@ -130,7 +130,7 @@ export class TaxonBrowserListComponent implements AfterViewInit {
                         const prop = column.prop;
                         spreadsheetRow.push(
                             prop === 'invasiveSpeciesEstablishment'
-                                ? (getEstablishmentLabel(row[prop])?.value?.[this.translate.currentLang] ?? '')
+                                ? (getEstablishmentLabel(row[prop])?.value ?? '')
                                 : row[prop]
                         );
                     }

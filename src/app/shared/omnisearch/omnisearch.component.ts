@@ -18,16 +18,12 @@ import {
 import { Subscription, of } from 'rxjs'
 import { tap, combineLatest, debounceTime } from 'rxjs/operators'
 import { UntypedFormControl } from '@angular/forms'
-import { TaxonService } from '../../shared/service/taxon.service'
 import { ApiService } from '../../shared/api/api.service';
 import { Router } from '@angular/router'
-import { TranslateService } from '@ngx-translate/core';
 import { GoogleSearchApiService } from '../api/google-search.api.service';
-import { environment } from '../../../environments/environment';
 import { isDescendant } from '../../utils';
 import { ObservationService } from '../service/observation.service';
-
-
+import { AutocompleteResult } from '../../shared/model/Autocomplete';
 
 @Component({
   selector: 'vrs-omnisearch',
@@ -47,7 +43,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
   public search = '';
   public searchControl:UntypedFormControl = new UntypedFormControl();
   public active = 0;
-  public taxa = [];
+  public taxa: AutocompleteResult[] = [];
   public content: any = { items: [] };
   public taxon: any;
   public loading = false;
@@ -73,12 +69,10 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
 
 
   constructor(
-
+    private apiService: ApiService,
     private changeDetector: ChangeDetectorRef,
-    private taxonservice: TaxonService,
     private observationService: ObservationService,
     private router: Router,
-    private translate: TranslateService,
     private renderer: Renderer2,
     private googleApi: GoogleSearchApiService,
     viewContainerRef: ViewContainerRef
@@ -151,7 +145,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
       let compatibleTaxonGroups = ['MVL.1', 'MVL.2', 'MVL.21', 'MVL.22', 'MVL.26', 'MVL.27', 'MVL.28',
                                    'MVL.37', 'MVL.39', 'MVL.40', 'MVL.41', 'MVL.232', 'MVL.233', 'MVL.343'];
       compatibleTaxonGroups.forEach(g => {
-        this.taxa[index].payload.informalTaxonGroups.forEach(t => {
+        (this.taxa[index].informalGroups || []).forEach((t: any) => {
           if(t.id == g) {
             this.groupId = g;
           }
@@ -231,9 +225,14 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
     }
 
     this.loading = true;
-    this.subTaxa = this.taxonservice.getAutocomplete(this.search).subscribe(
+    this.subTaxa = this.apiService.getAutocompleteTaxa(
+      {
+        query: this.search,
+        invasiveSpecies: true
+      }
+    ).subscribe(
       data => {
-        this.taxa = data;
+        this.taxa = data.results || [];
         this.loading = false;
         this.activate(0);
         this.changeDetector.markForCheck();

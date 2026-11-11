@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { InformationService } from 'app/shared/service/information.service';
 import { map, concatMap } from 'rxjs/operators';
-import { TaxonService } from 'app/shared/service/taxon.service';
+import { ApiService } from 'app/shared/api/api.service';
 import { TranslateService } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
 import { NewsService } from 'app/shared/service/news.service';
@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   news: Array<any>= [];
 
   constructor(
+    private apiService: ApiService,
     private informationService: InformationService,
-    private taxonService: TaxonService,
     private newsService: NewsService,
     private title: Title,
     private meta: Meta,
@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }), concatMap((res) => {
         return res;
       }), concatMap(res => {
-        return this.taxonService.getTaxon(res, {
+        return this.apiService.getTaxon(res, {
           includeMedia: true
         });
       })
