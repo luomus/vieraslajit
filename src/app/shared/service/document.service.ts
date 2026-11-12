@@ -9,17 +9,17 @@ export class DocumentService {
 
   constructor(private apiService: ApiService) { }
 
-
-  createDocument(personToken: string, data: Document): Observable<Document> {
-    return this.apiService.documentPost(LajiApi.Endpoints.documents, personToken, this.prepareForSave(data));
+  createDocument(data: Document): Observable<Document> {
+    return this.apiService.postDocument(this.prepareForSave(data));
   }
 
-  updateDocument(id: string, data: Document, personToken: string): Observable<Document> {
-    return this.apiService.documentUpdate(LajiApi.Endpoints.document, id, this.prepareForSave(data), personToken);
+  updateDocument(id: string, data: Document): Observable<Document> {
+    return this.apiService.putDocument(id, this.prepareForSave(data));
   }
 
-  getDocuments(personToken: string, query): Observable<PagedResult<Document>> {
-    return this.apiService.documents(LajiApi.Endpoints.documents, personToken, query);
+  getDocuments(query: LajiApi.GetDocumentsQuery): Observable<PagedResult<Document>> {
+    console.log(query)
+    return this.apiService.getDocuments(query);
   }
 
   private prepareForSave(data: Document) {

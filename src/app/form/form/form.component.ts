@@ -156,8 +156,8 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
                 formID: this.id
             };
             const doc$ = this.documentId ?
-            this.docService.updateDocument(this.documentId, formData, this.personToken) :
-            this.docService.createDocument(this.personToken, formData);
+            this.docService.updateDocument(this.documentId, formData) :
+            this.docService.createDocument(formData);
             doc$.subscribe(
                 (result) => {
                     this.router.navigate(['ilmoita'], {

@@ -191,18 +191,30 @@ export class ApiService {
     );
   }
 
-  getDocument(id: string): Observable<any> {
+  getDocuments(query: LajiApi.GetDocumentsQuery): Observable<PagedResult<Document>> {
+    return this.httpGet(
+      LajiApi.Endpoints.documents,
+      { params: {...query} }
+    );
+  }
+
+  postDocument(body: Document): Observable<Document> {
+    return this.httpPost(
+      LajiApi.Endpoints.documents,
+      body
+    );
+  }
+
+  getDocument(id: string): Observable<Document> {
     return this.httpGet(
       LajiApi.Endpoints.document.replace('%id%', id)
     );
   }
 
-  documentsByPersonToken(endpoint: LajiApi.Endpoints.documents, query: LajiApi.Query): Observable<any>;
-  documentsByPersonToken(endpoint: LajiApi.Endpoints.documents, query: object = {}): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`;
-    return this.httpClient.get(
-      url,
-      { params: {...query} }
+  putDocument(id: string, body: Document): Observable<Document> {
+    return this.httpPut(
+      LajiApi.Endpoints.document.replace('%id%', id),
+      body
     );
   }
 
@@ -221,59 +233,6 @@ export class ApiService {
       url,
       { params: {...query} }
       );}
-
-  /**
-   * Document API for POST method
-   * @param endpoint Target API endpoint
-   * @param personToken Persontoken received from laji-auth on login
-   * @param data Data to send
-   */
-  documentPost(endpoint: LajiApi.Endpoints.documents, personToken: string, data: Document): Observable<Document>;
-  documentPost(endpoint: LajiApi.Endpoints, personToken: string, data?: Document, documentId?: string): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`;
-    return this.httpClient.post(
-      url,
-      data,
-      {params: {'personToken': personToken}}
-    );
-  }
-  /**
-   * Document API for GET methods
-   * @param endpoint Target API endpoint
-   * @param personToken Persontoken received from laji-auth on login
-   * @param documentId ID of the document
-   */
-  documentGet(endpoint: LajiApi.Endpoints.document, personToken: string, documentId: string): Observable<Document>;
-  documentGet(endpoint: LajiApi.Endpoints, personToken: string, documentId: string): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', documentId);
-    return this.httpClient.get(
-      url,
-      {params: {'personToken': personToken}}
-    );
-  }
-
-  documents(endpoint: LajiApi.Endpoints.documents, personToken: string, query: any): Observable<PagedResult<Document>>;
-  documents(endpoint: LajiApi.Endpoints.documents, personToken: string, query: any): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`;
-    return this.httpClient.get(
-      url,
-      {
-        params: {
-          ...query,
-          'personToken': personToken
-        }
-      }
-    );
-  }
-
-  documentUpdate(endpoint: LajiApi.Endpoints.updateDocument, id: string, data: Document, personToken: string): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
-    return this.httpClient.put(
-      url,
-      data,
-      {params: {'personToken': personToken}}
-    );
-  }
 
   feedbackPost(endpoint: LajiApi.Endpoints.feedback, data: LajiApi.Feedback, personToken?: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
@@ -336,6 +295,13 @@ export namespace LajiApi {
     invasiveSpecies?: boolean;
     species?: boolean;
     finnish?: boolean;
+  }
+
+  export interface GetDocumentsQuery {
+    page?: number;
+    pageSize?: number;
+    collectionID: string;
+    selectedFields?: string;
   }
 
   export interface PostTaxaQuery {
