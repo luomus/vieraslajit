@@ -15,7 +15,7 @@ export class DocumentService {
   }
 
   updateDocument(id: string, data: Document, personToken: string): Observable<Document> {
-    return this.apiService.documentUpdate(LajiApi.Endpoints.getDocument, id, this.prepareForSave(data), personToken);
+    return this.apiService.documentUpdate(LajiApi.Endpoints.document, id, this.prepareForSave(data), personToken);
   }
 
   getDocuments(personToken: string, query): Observable<PagedResult<Document>> {

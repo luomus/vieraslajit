@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, forkJoin } from "rxjs";
 import { FormService } from "app/shared/service/form.service";
-import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "app/shared/service/user.service";
 import { map, distinctUntilChanged } from "rxjs/operators";
 import { ApiService } from "app/shared/api/api.service";
@@ -24,8 +23,7 @@ export class FormFacade {
 
     constructor(
         private apiService: ApiService,
-        private formService: FormService,
-        private translate: TranslateService
+        private formService: FormService
     ) {}
     
     private dataReducer(data: any) {
@@ -47,7 +45,7 @@ export class FormFacade {
         })
     }
 
-    private getDataReducerWithTaxon(taxonId) {
+    private getDataReducerWithTaxon(taxonId: string) {
         return (data: any) => this.store$.next({
             data: {
                 ...data[1],
@@ -79,16 +77,14 @@ export class FormFacade {
     }
 
     loadData(formId: string) {
-        this.formService.getFormById(formId, this.translate.currentLang)
+        this.formService.getFormById(formId)
         .subscribe(this.dataReducer.bind(this))
     }
 
     loadDataWithDocument(formId: string, documentId: string) {
         this.formService.loadFormWithDocument(
             formId,
-            this.translate.currentLang,
-            documentId,
-            UserService.getToken()
+            documentId
         ).subscribe(this.dataReducerWithFormData.bind(this))
     }
 
@@ -97,7 +93,7 @@ export class FormFacade {
             this.apiService.getTaxon(taxonId, {
                 selectedFields: "vernacularName,scientificName"
             }),
-            this.formService.getFormById(formId, this.translate.currentLang)
+            this.formService.getFormById(formId)
         )
         .subscribe((data) => {
             this.getDataReducerWithTaxon(taxonId)(data)

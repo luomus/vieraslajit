@@ -185,20 +185,18 @@ export class ApiService {
     )
   }
 
-  /**
-  * Form API
-  * @param endpoint Target API endpoint
-  * @param id Id of the form
-  * @param lang Language of the form
-  */
-  formById(endpoint: LajiApi.Endpoints.form, id: string, lang: string): Observable<any>;
-  formById(endpoint: LajiApi.Endpoints, id: string, lang: string): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
-    return this.httpClient.get(
-      url,
-      { params: { lang } }
+  getForm(id: string): Observable<any> {
+    return this.httpGet(
+      LajiApi.Endpoints.form.replace('%id%', id)
     );
   }
+
+  getDocument(id: string): Observable<any> {
+    return this.httpGet(
+      LajiApi.Endpoints.document.replace('%id%', id)
+    );
+  }
+
   documentsByPersonToken(endpoint: LajiApi.Endpoints.documents, query: LajiApi.Query): Observable<any>;
   documentsByPersonToken(endpoint: LajiApi.Endpoints.documents, query: object = {}): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`;
@@ -245,7 +243,7 @@ export class ApiService {
    * @param personToken Persontoken received from laji-auth on login
    * @param documentId ID of the document
    */
-  documentGet(endpoint: LajiApi.Endpoints.getDocument, personToken: string, documentId: string): Observable<Document>;
+  documentGet(endpoint: LajiApi.Endpoints.document, personToken: string, documentId: string): Observable<Document>;
   documentGet(endpoint: LajiApi.Endpoints, personToken: string, documentId: string): Observable<any> {
     const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', documentId);
     return this.httpClient.get(
@@ -294,10 +292,10 @@ export namespace LajiApi {
     authenticationEvent = 'authentication-event',
     autocompleteTaxa = 'autocomplete/taxa',
     description = 'taxa/%id%/descriptions',
+    document = 'documents/%id%',
     documents = 'documents',
     feedback = 'feedback',
     form = 'forms/%id%',
-    getDocument = 'documents/%id%',
     informalChildren = 'informal-taxon-groups/%id%/children',
     informalRoots = 'informal-taxon-groups/roots',
     information = 'information/%id%',
