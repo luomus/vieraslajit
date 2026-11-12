@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../model/Taxonomy';
 import { Observable } from 'rxjs';
+import { Area } from '../model/Area';
 import { AuthenticationEvent } from '../model/AuthenticationEvent';
 import { Autocomplete } from '../model/Autocomplete';
 import { Metadata } from '../model/Metadata';
@@ -218,28 +219,10 @@ export class ApiService {
     );
   }
 
-  areas(endpoint: LajiApi.Endpoints.areas, query: object): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`;
-    return this.httpClient.get(
-      url,
+  getAreas(query: LajiApi.GetAreasQuery): Observable<PagedResult<Area>> {
+    return this.httpGet(
+      LajiApi.Endpoints.areas,
       { params: {...query} }
-      );
-  }
-
-  getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query:LajiApi.WarehouseQueryListQuery ):Observable<any>;
-  getObservations(endpoint: LajiApi.Endpoints.warehousequerylist, query: object={}):Observable<any>{
-    const url = `${environment.lajiApi.url}/${endpoint}`;
-    return this.httpClient.get(
-      url,
-      { params: {...query} }
-      );}
-
-  feedbackPost(endpoint: LajiApi.Endpoints.feedback, data: LajiApi.Feedback, personToken?: string): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`;
-    return this.httpClient.post(
-      url,
-      JSON.stringify(data),
-      {params: {'personToken': personToken}}
     );
   }
 }
@@ -253,7 +236,6 @@ export namespace LajiApi {
     description = 'taxa/%id%/descriptions',
     document = 'documents/%id%',
     documents = 'documents',
-    feedback = 'feedback',
     form = 'forms/%id%',
     informalChildren = 'informal-taxon-groups/%id%/children',
     informalRoots = 'informal-taxon-groups/roots',
@@ -288,6 +270,12 @@ export namespace LajiApi {
     administrativeStatuses?: string;
     personToken?: string;
     invasive?:boolean;
+  }
+
+  export interface GetAreasQuery {
+    page?: string;
+    pageSize?: string;
+    areaType: string;
   }
 
   export interface AutocompleteQuery {
@@ -337,11 +325,4 @@ export namespace LajiApi {
     observerPersonToken?: string;
     invasive?:boolean;
   }
-
-  export interface Feedback {
-    subject: string;
-    message: string;
-    meta: string;
-  }
-
 }

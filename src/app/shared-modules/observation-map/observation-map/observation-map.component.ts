@@ -240,13 +240,13 @@ export class ObservationMapComponent implements AfterViewInit, OnDestroy, OnChan
         private resolver: ComponentFactoryResolver,
         private injector: Injector
     ) {
-        this.municipalities$ = this.areaService.getMunicipalities("municipality").pipe(
+        this.municipalities$ = this.areaService.getMunicipalities("ML.municipality").pipe(
             map(res => res.results),
             map(res =>
                 res.sort((a, b)=>{
                     // Sort in alphabetical order
-                    let nameA = a.name;
-                    let nameB = b.name;
+                    let nameA = a.name ? a.name : "";
+                    let nameB = b.name ? b.name : "";
                     if(nameA > nameB) return 1;
                     if(nameA < nameB) return -1;
                     return 0;
