@@ -51,7 +51,7 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   getPage(page:number) {
     this.newsLoading = true;
-    this.asyncNews = this.newsService.getPage(page.toString(),this.pageSize.toString(), this.translate.currentLang, this.currentTags)
+    this.asyncNews = this.newsService.getPage(page.toString(),this.pageSize.toString(), this.currentTags)
     .pipe(tap(res=>{this.totalItems = res.total;
                     this.currentPage = page;
                     this.newsLoading = false; }),

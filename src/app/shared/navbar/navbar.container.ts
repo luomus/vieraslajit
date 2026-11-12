@@ -6,6 +6,7 @@ import { findContentID, StaticContent } from "../../../assets/i18n/cms-content";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../service/user.service";
 import { Router } from "@angular/router";
+import { InformationItem } from "../model/Information";
 
 @Component({
     selector: `vrs-navbar-wrapper`,
@@ -14,7 +15,7 @@ import { Router } from "@angular/router";
 })
 export class NavbarContainer implements OnInit, OnDestroy {
     mobile = false;
-    menu = [];
+    menu: InformationItem[] = [];
     loginUrl = "#";
     private rootId = "";
     private translateSub: Subscription;
@@ -72,7 +73,7 @@ export class NavbarContainer implements OnInit, OnDestroy {
         this.menu = [];
         this.informationService.getInformation(this.rootId)
         .subscribe((data) => {
-            this.menu = data.children;
+            this.menu = data.children ? data.children : [];
         });
     }
 
@@ -81,6 +82,6 @@ export class NavbarContainer implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.translateSub ? this.translateSub.unsubscribe : null;
+        this.translateSub ? this.translateSub.unsubscribe() : null;
     }
 }

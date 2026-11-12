@@ -166,39 +166,23 @@ export class ApiService {
     )
   }
 
-  /**
-  * News API
-  * @param endpoint Target API endpoint
-  * @param query
-  */
-  newsFindAll(endpoint: LajiApi.Endpoints.newsArray, query: LajiApi.Query): Observable<PagedResult<NewsElement>>;
-  newsFindAll(endpoint: LajiApi.Endpoints, query: object = {}): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`;
-    return this.httpClient.get(
-      url,
+  getNews(query: LajiApi.Query): Observable<PagedResult<NewsElement>> {
+    return this.httpGet(
+      LajiApi.Endpoints.news,
       { params: {...query} }
     );
   }
 
-  newsFindById(endpoint: LajiApi.Endpoints.newsElement, id: string): Observable<NewsElement>;
-  newsFindById(endpoint: LajiApi.Endpoints, id: string): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
-    return this.httpClient.get(
-      url
-    );
+  getNewsId(id: string): Observable<NewsElement> {
+    return this.httpGet(
+      LajiApi.Endpoints.newsId.replace('%id%', id),
+    )
   }
 
-  /**
-  * Information API
-  * @param endpoint Target API endpoint
-  * @param id Id of the information
-  */
-  informationFindById(endpoint: LajiApi.Endpoints.information, id: string): Observable<Information>;
-  informationFindById(endpoint: LajiApi.Endpoints, id: string): Observable<any> {
-    const url = `${environment.lajiApi.url}/${endpoint}`.replace('%id%', id);
-    return this.httpClient.get(
-      url
-    );
+  getInformation(id: string): Observable<Information> {
+    return this.httpGet(
+      LajiApi.Endpoints.information.replace('%id%', id)
+    )
   }
 
   /**
@@ -318,8 +302,8 @@ export namespace LajiApi {
     informalRoots = 'informal-taxon-groups/roots',
     information = 'information/%id%',
     metadataAlt = 'metadata/alts/%alt%',
-    newsArray = 'news',
-    newsElement = 'news/%id%',
+    news = 'news',
+    newsId = 'news/%id%',
     person = 'person',
     taxa = 'taxa',
     taxon = 'taxa/%id%',

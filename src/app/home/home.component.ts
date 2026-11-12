@@ -57,13 +57,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
 
     this.onLangChange = this.translate.onLangChange.subscribe((event) => {
-      this.getNews(1);
+      this.getNewsPage(1);
     });
-    this.getNews(1);
+    this.getNewsPage(1);
 
     this.informationService.getInformation('i-386').pipe(
       map((res) => {
-        return res.content.replace(/<.*?>/g, "").split(',');
+        return res.content ? res.content.replace(/<.*?>/g, "").split(',') : [];
       }), concatMap((res) => {
         return res;
       }), concatMap(res => {
@@ -86,8 +86,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getNews(page){
-    this.newsService.getPage('1', '5', this.translate.currentLang, this.newsTag/* +",technical" */)
+  getNewsPage(page: number){
+    this.newsService.getPage(page.toString(), '5', this.newsTag/* +",technical" */)
     .subscribe((data) => {
       this.news = data.results;
     });
