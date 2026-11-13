@@ -8,7 +8,7 @@ import { map, tap, switchMap, take, delay } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { combineLatest, Observable, of, Subject, Subscription } from 'rxjs';
 import { AreaService } from 'app/shared/service/area.service';
-import LajiMap, { Lang, Options, TileLayerName, Data, DataOptions, GetPopupOptions, GetFeatureStyleOptions } from 'laji-map';
+import LajiMap, { Lang, Options, TileLayerName, Data, DataOptions, GetPopupOptions, GetFeatureStyleOptions } from '@luomus/laji-map';
 import { observationBaseQuery, ObservationService } from 'app/shared/service/observation.service';
 import { WarehouseQueryInterface } from './import-from-laji-front/WarehouseQueryInterface';
 import { YkjService } from './import-from-laji-front/ykj.service';

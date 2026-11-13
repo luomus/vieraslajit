@@ -34,6 +34,8 @@
     "@angular/pwa": "^14.2.12",
     "@angular/router": "^14.3.0",
     "@angular/service-worker": "^14.3.0",
+    "@luomus/laji-form": "^15.1.146",
+    "@luomus/laji-map": "^5.1.32",
     "@nguniversal/common": "^14.2.3",
     "@nguniversal/express-engine": "^14.2.3",
     "@ngx-translate/core": "^10.0.2",
@@ -45,8 +47,6 @@
     "dotenv": "^18.0.9",
     "express": "4.17.2",
     "fast-deep-equal": "^2.0.1",
-    "laji-form": "^14.2.5",
-    "laji-map": "^3.22.3",
     "moment": "^2.24.0",
     "ngx-bootstrap": "^9.0.0",
     "ngx-infinite-scroll": "^8.0.1",
@@ -88,6 +88,11 @@
     "typescript": "~4.7.4",
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.10"
+  },
+  "overrides": {
+    "@luomus/laji-map": {
+      "leaflet-geosearch": "3.0.0"
+    }
   },
   "volta": {
     "node": "14.20.0"

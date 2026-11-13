@@ -5,7 +5,7 @@
 import { concat, take, delay, retryWhen,  map } from 'rxjs/operators';
 import { Observable, Observer, of as ObservableOf, throwError as observableThrowError } from 'rxjs';
 import { Injectable } from '@angular/core';
-import * as MapUtil from 'laji-map/lib/utils';
+import * as MapUtil from '@luomus/laji-map/lib/utils';
 import { WarehouseApi } from './WarehouseApi';
 import { WarehouseQueryInterface } from './WarehouseQueryInterface';
 
@@ -143,7 +143,8 @@ export class YkjService {
   }
 
   private convertYkjLatLngToWgsLngLat(latLng: [any, any]): [number, number] {
-    return MapUtil.convertLatLng(latLng, 'EPSG:2393', 'WGS84').reverse();
+    const [lat, lng] = MapUtil.convertLatLng(latLng, 'EPSG:2393', 'WGS84');
+    return [lng, lat];
   }
 
   private convertWgs84ToYkj(lat: any, lng: any) {

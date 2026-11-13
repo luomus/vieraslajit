@@ -13,7 +13,8 @@
     "paths": {
       "@observation-map/*": ["app/shared-modules/observation-map/*"],
       "@form/*": ["app/form/*"]
-    }
+    },
+    "skipLibCheck": true
   },
   "include": [
     "main.ts",
