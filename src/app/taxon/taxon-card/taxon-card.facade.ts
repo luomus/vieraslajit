@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from "rxjs";
 import { Taxonomy, TaxonomyDescriptionResult, TaxonomyImage, TaxonomyDescriptionVariable } from "app/shared/model";
 import { map, distinctUntilChanged, tap } from "rxjs/operators";
 import { ApiService } from "app/shared/api/api.service";
+import { TaxonService } from "app/shared/service/taxon.service";
 
 interface State {
     taxon: Taxonomy
@@ -39,7 +40,7 @@ export class TaxonCardFacade {
         distinctUntilChanged()
     );
 
-    constructor(private apiService: ApiService) {}
+    constructor(private apiService: ApiService, private taxonService: TaxonService) {}
 
     //////////////
     /* REDUCERS */
@@ -76,13 +77,13 @@ export class TaxonCardFacade {
         const query = {
           selectedFields: 'administrativeStatuses,vernacularName,scientificName,invasiveSpeciesEstablishment,occurrence,id,customReportFormLink,species,finnish,alternativeVernacularName,occurrenceInFinland,synonymNames'
         };
-        return this.apiService.getTaxon(taxonId, query).pipe(
+        return this.taxonService.getTaxonById(taxonId, query).pipe(
           tap(taxon => this.subscribeMedia(taxonId, taxon.species))
         ).subscribe(this.updateTaxon.bind(this))
     }
 
     private subscribeDescription(taxonId: string) {
-        return this.apiService.getTaxonDescription(taxonId).pipe(
+        return this.taxonService.getTaxonDescriptionById(taxonId).pipe(
             map(t => t.results || []),
             map(arr => arr[0]),
             map(desc => {
@@ -97,12 +98,9 @@ export class TaxonCardFacade {
 
     private subscribeMedia(taxonId: string, species = true) {
       if (!species) {
-        return this.apiService.getTaxonMedia(taxonId).subscribe(this.updateMedia.bind(this));
+        return this.taxonService.getTaxonMediaById(taxonId).subscribe(this.updateMedia.bind(this));
       }
-      return this.apiService.getTaxonSpecies(taxonId, {
-        includeMedia: true,
-        invasiveSpecies: true
-      }).pipe(
+      return this.taxonService.getSpecies(taxonId).pipe(
         map(res => res.results
           .map(taxon => taxon.multimedia || [])
           .filter(multimedia => multimedia.length > 0)

@@ -5,7 +5,7 @@ import { UserService } from "app/shared/service/user.service";
 import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { Subscription } from "rxjs";
 import * as moment from "moment";
-import { ApiService } from "app/shared/api/api.service";
+import { TaxonService } from 'app/shared/service/taxon.service';
 
 interface Filters {
     own: boolean,
@@ -55,7 +55,7 @@ export class FilterMenuComponent implements ControlValueAccessor, OnDestroy, OnI
     private onTouched;
     private subscription = new Subscription();
 
-    constructor(private apiService: ApiService, private fb: FormBuilder) {}
+    constructor(private taxonService: TaxonService, private fb: FormBuilder) {}
 
     ngOnInit(): void {
         this.form = this.fb.group({
@@ -84,7 +84,7 @@ export class FilterMenuComponent implements ControlValueAccessor, OnDestroy, OnI
 
             if (filters.taxonId) {
                 this.subscription.add(
-                    this.apiService.getTaxon(filters.taxonId).subscribe(
+                    this.taxonService.getTaxonById(filters.taxonId, {}).subscribe(
                         res => {
                             this.taxonSearch?.fillValue(res.vernacularName)
                         }

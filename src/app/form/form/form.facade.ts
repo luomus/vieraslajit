@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable, forkJoin } from "rxjs";
 import { FormService } from "app/shared/service/form.service";
 import { UserService } from "app/shared/service/user.service";
 import { map, distinctUntilChanged } from "rxjs/operators";
-import { ApiService } from "app/shared/api/api.service";
+import { TaxonService } from "app/shared/service/taxon.service";
 
 interface State {
     data: any
@@ -22,8 +22,8 @@ export class FormFacade {
     );
 
     constructor(
-        private apiService: ApiService,
-        private formService: FormService
+        private formService: FormService,
+        private taxonService: TaxonService
     ) {}
     
     private dataReducer(data: any) {
@@ -90,7 +90,7 @@ export class FormFacade {
 
     loadDataWithTaxon(formId: string, taxonId: string) {
         forkJoin(
-            this.apiService.getTaxon(taxonId, {
+            this.taxonService.getTaxonById(taxonId, {
                 selectedFields: "vernacularName,scientificName"
             }),
             this.formService.getFormById(formId)

@@ -154,17 +154,17 @@ export class ApiService {
     );
   }
 
+  getTaxonMedia(id: string): Observable<Array<TaxonomyImage>> {
+    return this.httpGet(
+      LajiApi.Endpoints.taxonMedia.replace('%id%', id)
+    )
+  }
+
   getTaxonSpecies(id: string, query: LajiApi.GetTaxonQuery): Observable<PagedResult<Taxonomy>> {
     return this.httpGet(
       LajiApi.Endpoints.taxonSpecies.replace('%id%', id),
       { params: {...query} }
     );
-  }
-
-  getTaxonMedia(id: string): Observable<Array<TaxonomyImage>> {
-    return this.httpGet(
-      LajiApi.Endpoints.taxonMedia.replace('%id%', id)
-    )
   }
 
   getNews(query: LajiApi.Query): Observable<PagedResult<NewsElement>> {

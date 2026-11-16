@@ -18,7 +18,7 @@ import {
 import { Subscription, of } from 'rxjs'
 import { tap, combineLatest, debounceTime } from 'rxjs/operators'
 import { UntypedFormControl } from '@angular/forms'
-import { ApiService } from '../../shared/api/api.service';
+import { TaxonService } from '../../shared/service/taxon.service';
 import { Router } from '@angular/router'
 import { GoogleSearchApiService } from '../api/google-search.api.service';
 import { isDescendant } from '../../utils';
@@ -69,7 +69,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
 
 
   constructor(
-    private apiService: ApiService,
+    private taxonService: TaxonService,
     private changeDetector: ChangeDetectorRef,
     private observationService: ObservationService,
     private router: Router,
@@ -225,12 +225,7 @@ export class OmnisearchComponent implements OnInit, OnChanges, OnDestroy, AfterV
     }
 
     this.loading = true;
-    this.subTaxa = this.apiService.getAutocompleteTaxa(
-      {
-        query: this.search,
-        invasiveSpecies: true
-      }
-    ).subscribe(
+    this.subTaxa = this.taxonService.getAutocompleteInvasive(this.search).subscribe(
       data => {
         this.taxa = data.results || [];
         this.loading = false;

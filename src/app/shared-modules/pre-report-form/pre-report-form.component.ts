@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ApiService } from 'app/shared/api/api.service';
+import { TaxonService } from 'app/shared/service/taxon.service';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntil } from 'rxjs/operators';
 
@@ -17,7 +17,7 @@ export class PreReportFormComponent implements OnInit, OnDestroy {
   taxonId: string | undefined;
   taxonName: string | undefined;
 
-  constructor(private apiService: ApiService, private translate: TranslateService) { }
+  constructor(private taxonService: TaxonService, private translate: TranslateService) { }
 
   ngOnInit() {
   }
@@ -26,7 +26,7 @@ export class PreReportFormComponent implements OnInit, OnDestroy {
     this.taxonId = id
     this.linkEnabled = false;
     if (id) {
-      this.apiService.getTaxon(id, {
+      this.taxonService.getTaxonById(id, {
         selectedFields: 'customReportFormLink,vernacularName,scientificName'
       }).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
         this.customReportFormLink = res.customReportFormLink

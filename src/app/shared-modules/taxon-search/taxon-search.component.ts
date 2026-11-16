@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, OnDestroy, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core";
-import { ApiService } from "app/shared/api/api.service";
+import { TaxonService } from "../../shared/service/taxon.service";
 import { AutocompleteResult } from "../../shared/model/Autocomplete";
 import { TranslateService } from "@ngx-translate/core";
 import { fromEvent, Subject } from "rxjs";
@@ -22,7 +22,7 @@ export class TaxonSearchComponent implements AfterViewInit, OnDestroy {
     @Output() taxonChange = new EventEmitter<string | null | undefined>();
 
     constructor(
-        private apiService: ApiService,
+        private taxonService: TaxonService,
         private cdr: ChangeDetectorRef,
         public translate: TranslateService
     ) {}
@@ -42,7 +42,7 @@ export class TaxonSearchComponent implements AfterViewInit, OnDestroy {
                 }
             }),
             map(event => (event.target as HTMLInputElement).value),
-            switchMap(val => this.apiService.getAutocompleteTaxa({ query: val, invasiveSpecies: true }))
+            switchMap(val => this.taxonService.getAutocompleteInvasive(val))
         ).subscribe(r => {
             this.autocompleteItems = r.results;
             this.cdr.markForCheck();

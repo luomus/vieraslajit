@@ -8,7 +8,8 @@ import { SortOrder } from "./select-sort-order/select-sort-order.component";
 import { FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TaxonBrowserListComponent } from "./taxon-browser-list/taxon-browser-list.component";
-import { ApiService, LajiApi } from "app/shared/api/api.service"
+import { LajiApi } from "app/shared/api/api.service"
+import { TaxonService } from "app/shared/service/taxon.service";
 
 const initialFilters = {
     plants: false,
@@ -117,13 +118,13 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     subscription = new Subscription();
 
     constructor(
-        private apiService: ApiService,
         private cd: ChangeDetectorRef,
         private renderer: Renderer2,
         private cdr: ChangeDetectorRef,
         private fb: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
+        private taxonService: TaxonService,
         @Inject(PLATFORM_ID) private platformId: object
     ) {}
 
@@ -155,7 +156,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
             ]).pipe(
                 switchMap(([_, params]) => {
                     const { body, query } = getTaxaParams(<TaxonBrowserQueryParams>params, this.currentPage);
-                    return this.apiService.postTaxa(body, query).pipe(
+                    return this.taxonService.postTaxaFilters(body, query).pipe(
                         tap(res => {
                             this.total = res.total;
                             this.lastPage = res.lastPage ? res.lastPage : 1;
@@ -247,7 +248,7 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     onExport() {
         const { body, query } = getTaxaParams(<TaxonBrowserQueryParams>this.route.snapshot.queryParams, 1);
         query.pageSize = 10000;
-        this.apiService.postTaxa(body, query).subscribe(res => {
+        this.taxonService.postTaxaFilters(body, query).subscribe(res => {
             this.taxonBrowserList.export(res.results);
         });
     }
