@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
 import { WarehouseQueryInterface } from './WarehouseQueryInterface';
-import { SearchQueryInterface } from './search-query.interface';
 
 @Injectable({providedIn: 'root'})
-export class SearchQuery implements SearchQueryInterface {
+export class SearchQuery {
   public queryType = 'observation';
-  public queryUpdatedSource = new Subject<any>();
-  public queryUpdated$ = this.queryUpdatedSource.asObservable();
   public tack = 0;
 
   public query: WarehouseQueryInterface = {};
@@ -121,68 +116,6 @@ export class SearchQuery implements SearchQueryInterface {
     'editorOrObserverPersonToken'
   ];
 
-  constructor(
-    private router: Router
-  ) {
-  }
-
-  public setQueryFromQueryObject(query) {
-    for (const i of this.arrayTypes) {
-      if (typeof query[i] !== 'undefined') {
-        this.query[i] = decodeURIComponent(query[i])
-          .split(this.separator[i] || ',')
-          .map(value => value);
-      } else {
-        this.query[i] = undefined;
-      }
-    }
-
-    for (const i of this.booleanTypes) {
-      if (typeof query[i] !== 'undefined') {
-        this.query[i] = query[i] === 'true';
-      } else {
-        this.query[i] = undefined;
-      }
-    }
-
-    for (const i of this.numericTypes) {
-      if (typeof query[i] !== 'undefined') {
-        const value = +query[i];
-        if (!isNaN(value)) {
-          this.query[i] = value;
-        }
-      } else {
-        this.query[i] = undefined;
-      }
-    }
-
-    for (const i of [...this.stringTypes, ...this.obscure]) {
-      if (typeof query[i] !== 'undefined') {
-        this.query[i] = query[i];
-      } else {
-        this.query[i] = undefined;
-      }
-    }
-
-    if (this.query.coordinates) {
-      this.query.coordinates = this.query.coordinates.map(coordinate => {
-        const parts = coordinate.split(':');
-        const last = parseFloat(parts[parts.length - 1]);
-        if (!isNaN(last)) {
-          parts.pop();
-          this.query._coordinatesIntersection = Math.floor(last * 100);
-        } else {
-          this.query._coordinatesIntersection = 100;
-        }
-        return parts.join(':');
-      });
-    }
-
-    if (typeof query['page'] !== 'undefined') {
-      this.page = +query['page'];
-    }
-  }
-
   public getQueryObject(skipParams: string[] = [], obscure = true) {
     const result: {[field: string]: string | string[]}  = {};
     if (this.query) {
@@ -273,10 +206,10 @@ export class SearchQuery implements SearchQueryInterface {
       result['page'] = String(this.page);
     }
 
-    if (result.editorPersonToken && result.observerPersonToken && result.observerPersonToken === result.editorPersonToken) {
-      result.editorOrObserverPersonToken = result.observerPersonToken;
-      delete result.editorPersonToken;
-      delete result.observerPersonToken;
+    if (result.selfAsEditor && result.selfAsObserver && result.selfAsObserver === result.selfAsEditor) {
+      result.selfAsEditorOrObserver = result.selfAsObserver;
+      delete result.selfAsEditor;
+      delete result.selfAsObserver;
     }
 
     return result;
@@ -294,19 +227,4 @@ export class SearchQuery implements SearchQueryInterface {
     return queryParameters;
   }
 
-  public updateUrl(skipParams: string[], skipHistory: boolean = true): void {
-    const query = this.getQueryObject(skipParams);
-    const extra = {skipLocationChange: skipHistory};
-    if (Object.keys(query).length > 0) {
-      extra['queryParams'] = this.getQueryObject(skipParams);
-    }
-    this.router.navigate(
-      [],
-      extra
-    );
-  }
-
-  public queryUpdate(data = {}): void {
-    this.queryUpdatedSource.next(data);
-  }
 }

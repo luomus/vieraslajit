@@ -316,7 +316,7 @@ export class ObservationMapComponent implements AfterViewInit, OnDestroy, OnChan
                     const taxonId = this.id ?? res.taxonId;
                     if (taxonId) { query.taxonId = [taxonId]; }
                     if (res.municipality) { query.area = [res.municipality]; }
-                    if (res.own) { query.observerPersonToken = UserService.getToken(); }
+                    if (res.own) { query.selfAsObserver = true; }
                     if (res.time) { query.time = [res.time]; }
                     const adminStatuses = [];
                     if (res.fiList) { adminStatuses.push("MX.controllingRisksOfInvasiveAlienSpecies") }

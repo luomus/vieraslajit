@@ -225,6 +225,27 @@ export class ApiService {
       { params: {...query} }
     );
   }
+
+  getWarehouseQueryCount(query: any): Observable<PagedResult<any>|any> {
+    return this.httpGet(
+      LajiApi.Endpoints.warehouseQueryCount,
+      { params: {...query} }
+    );
+  }
+
+  getWarehouseQueryList(query: any): Observable<PagedResult<any>|any> {
+    return this.httpGet(
+      LajiApi.Endpoints.warehouseQueryList,
+      { params: {...query} }
+    );
+  }
+
+  getWarehouseQueryUnitAggregate(query: any): Observable<PagedResult<any>|any> {
+    return this.httpGet(
+      LajiApi.Endpoints.warehouseQueryUnitAggregate,
+      { params: {...query} }
+    );
+  }
 }
 
 export namespace LajiApi {
@@ -250,8 +271,9 @@ export namespace LajiApi {
     taxonParents = 'taxa/%id%/parents',
     taxonSpecies = 'taxa/%id%/species',
     updateDocument = 'documents/%id%',
-    warehousequerycount = 'warehouse/query/count',
-    warehousequerylist = 'warehouse/query/list'
+    warehouseQueryCount = 'warehouse/query/count',
+    warehouseQueryList = 'warehouse/query/list',
+    warehouseQueryUnitAggregate = 'warehouse/query/unit/aggregate'
   }
   /** Possible query parameters. */
   export interface Query {
