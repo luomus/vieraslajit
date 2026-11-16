@@ -37,9 +37,7 @@ export class TaxonService {
     return this.apiService.getTaxonDescription(taxonId);
   }
 
-  //check
   getTaxonMediaById(id: string) {
-    console.log('Fetching media for taxon ID:', id);
     return this.apiService.getTaxonMedia(id);
   }
 

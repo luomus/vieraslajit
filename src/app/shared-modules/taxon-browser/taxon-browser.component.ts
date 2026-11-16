@@ -47,7 +47,7 @@ const getTaxaParams = (params: TaxonBrowserQueryParams, page: number): { body: L
         page,
         pageSize: 12,
         includeMedia: true,
-        selectedFields: 'vernacularName,scientificName,cursiveName,invasiveSpeciesEstablishment,administrativeStatuses,id,species,finnish,observationCountInvasiveFinland',
+        selectedFields: 'vernacularName,scientificName,cursiveName,invasiveSpeciesEstablishment,administrativeStatuses,id,species,finnish,observationCountInvasiveFinland,multimedia',
         sortOrder: params.sortOrder ? params.sortOrder : 'observationCountInvasiveFinland desc'
     };
 
