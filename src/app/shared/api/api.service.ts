@@ -14,6 +14,7 @@ import { Information } from '../model/Information';
 import { Document } from '../model/Document';
 import { LanguageService } from '../service/language.service';
 import { UserService } from '../service/user.service';
+import { WarehouseQueryInterface } from '@observation-map/observation-map/import-from-laji-front/WarehouseQueryInterface';
 
 /**
  * Handles creation of API requests
@@ -37,6 +38,8 @@ export class ApiService {
 
     return headers;
   }
+
+  // HTTP methods
 
   httpGet(endpoint: LajiApi.Endpoints | string, options: any = {}): Observable<any> {
     return this.httpClient.get(
@@ -67,33 +70,15 @@ export class ApiService {
     );
   }
 
-  /**
-   * Returns person details from /person/ endpoint:
-   * {
-   *  "id": "string",
-   *  "fullName": "string",
-   *  "emailAddress": "string",
-   *  "defaultLanguage": "string",
-   *  "role": ["string"]
-   * }
-   *
-   */
-  getPerson(): Observable<Person> {
-    return this.httpGet(LajiApi.Endpoints.person);
+  // API methods
+
+  getAreas(query: LajiApi.GetAreasQuery): Observable<PagedResult<Area>> {
+    return this.httpGet(
+      LajiApi.Endpoints.areas,
+      { params: {...query} }
+    );
   }
 
-  /**
-   * Returns login related information from /person-token/ endpoint
-   * {
-   *  "personId": "string",
-   *  "target": "string",
-   *  "next": "string"
-   * }
-   *
-   * next = path that is used for redirection after login is complete
-   *
-   * @param token person-token received from laji-auth on login
-   */
   getAuthenticationEvent(): Observable<AuthenticationEvent> {
     return this.httpGet(LajiApi.Endpoints.authenticationEvent);
   }
@@ -102,34 +87,71 @@ export class ApiService {
     return this.httpDelete(LajiApi.Endpoints.authenticationEvent);
   }
 
-  /**
-   * Used for autocompletion of searchqueries
-   *
-   * Returns:
-   * "results": [
-   *   {
-   *     "key": "string",
-   *     "value": "string"
-   *   }
-   * ]
-   *
-   * @param query Query as defined by LajiApi.AutocompleteQuery
-   */
-  getAutocompleteTaxa(query: LajiApi.AutocompleteQuery): Observable<Autocomplete> {
+  getAutocompleteTaxa(query: LajiApi.GetAutocompleteQuery): Observable<Autocomplete> {
     return this.httpGet(
       LajiApi.Endpoints.autocompleteTaxa,
       { params: {...query} }
     );
   }
 
-  /**
-   * Returns range that is of type select (alt)
-   * @param endpoint Target API endpoint
-   * @param alt Type of range
-   * @param query
-  */
+  getDocuments(query: LajiApi.GetDocumentsQuery): Observable<PagedResult<Document>> {
+    return this.httpGet(
+      LajiApi.Endpoints.documents,
+      { params: {...query} }
+    );
+  }
+
+  postDocument(body: Document): Observable<Document> {
+    return this.httpPost(
+      LajiApi.Endpoints.documents,
+      body
+    );
+  }
+
+  getDocument(id: string): Observable<Document> {
+    return this.httpGet(
+      LajiApi.Endpoints.document.replace('%id%', id)
+    );
+  }
+
+  putDocument(id: string, body: Document): Observable<Document> {
+    return this.httpPut(
+      LajiApi.Endpoints.document.replace('%id%', id),
+      body
+    );
+  }
+
+  getForm(id: string): Observable<any> {
+    return this.httpGet(
+      LajiApi.Endpoints.form.replace('%id%', id)
+    );
+  }
+
+  getInformation(id: string): Observable<Information> {
+    return this.httpGet(
+      LajiApi.Endpoints.information.replace('%id%', id)
+    )
+  }
+
   getMetadataAlt(alt: string): Observable<Metadata>{
     return this.httpGet(LajiApi.Endpoints.metadataAlt.replace('%alt%', alt));
+  }
+
+  getNews(query: LajiApi.Query): Observable<PagedResult<NewsElement>> {
+    return this.httpGet(
+      LajiApi.Endpoints.news,
+      { params: {...query} }
+    );
+  }
+
+  getNewsId(id: string): Observable<NewsElement> {
+    return this.httpGet(
+      LajiApi.Endpoints.newsId.replace('%id%', id),
+    )
+  }
+
+  getPerson(): Observable<Person> {
+    return this.httpGet(LajiApi.Endpoints.person);
   }
 
   postTaxa(body: LajiApi.PostTaxaBody, query: LajiApi.PostTaxaQuery): Observable<PagedResult<Taxonomy>>{
@@ -167,80 +189,21 @@ export class ApiService {
     );
   }
 
-  getNews(query: LajiApi.Query): Observable<PagedResult<NewsElement>> {
-    return this.httpGet(
-      LajiApi.Endpoints.news,
-      { params: {...query} }
-    );
-  }
-
-  getNewsId(id: string): Observable<NewsElement> {
-    return this.httpGet(
-      LajiApi.Endpoints.newsId.replace('%id%', id),
-    )
-  }
-
-  getInformation(id: string): Observable<Information> {
-    return this.httpGet(
-      LajiApi.Endpoints.information.replace('%id%', id)
-    )
-  }
-
-  getForm(id: string): Observable<any> {
-    return this.httpGet(
-      LajiApi.Endpoints.form.replace('%id%', id)
-    );
-  }
-
-  getDocuments(query: LajiApi.GetDocumentsQuery): Observable<PagedResult<Document>> {
-    return this.httpGet(
-      LajiApi.Endpoints.documents,
-      { params: {...query} }
-    );
-  }
-
-  postDocument(body: Document): Observable<Document> {
-    return this.httpPost(
-      LajiApi.Endpoints.documents,
-      body
-    );
-  }
-
-  getDocument(id: string): Observable<Document> {
-    return this.httpGet(
-      LajiApi.Endpoints.document.replace('%id%', id)
-    );
-  }
-
-  putDocument(id: string, body: Document): Observable<Document> {
-    return this.httpPut(
-      LajiApi.Endpoints.document.replace('%id%', id),
-      body
-    );
-  }
-
-  getAreas(query: LajiApi.GetAreasQuery): Observable<PagedResult<Area>> {
-    return this.httpGet(
-      LajiApi.Endpoints.areas,
-      { params: {...query} }
-    );
-  }
-
-  getWarehouseQueryCount(query: any): Observable<PagedResult<any>|any> {
+  getWarehouseQueryCount(query: WarehouseQueryInterface): Observable<PagedResult<any>|any> {
     return this.httpGet(
       LajiApi.Endpoints.warehouseQueryCount,
       { params: {...query} }
     );
   }
 
-  getWarehouseQueryList(query: any): Observable<PagedResult<any>|any> {
+  getWarehouseQueryList(query: WarehouseQueryInterface): Observable<PagedResult<any>|any> {
     return this.httpGet(
       LajiApi.Endpoints.warehouseQueryList,
       { params: {...query} }
     );
   }
 
-  getWarehouseQueryUnitAggregate(query: any): Observable<PagedResult<any>|any> {
+  getWarehouseQueryUnitAggregate(query: WarehouseQueryInterface): Observable<PagedResult<any>|any> {
     return this.httpGet(
       LajiApi.Endpoints.warehouseQueryUnitAggregate,
       { params: {...query} }
@@ -300,7 +263,7 @@ export namespace LajiApi {
     areaType: string;
   }
 
-  export interface AutocompleteQuery {
+  export interface GetAutocompleteQuery {
     query?: string;
     invasiveSpecies?: boolean;
     species?: boolean;
@@ -332,19 +295,5 @@ export namespace LajiApi {
     includeMedia?: boolean;
     invasiveSpecies?: boolean;
     selectedFields?: string;
-  }
-
-  export interface warehousequerycountQuery {
-    cache?: boolean;
-    taxonId?: string;
-    individualCountMin?: number;
-  }
-
-  export interface WarehouseQueryListQuery {
-    taxonId?: Array<string>;
-    pageSize?: string;
-    page?: string;
-    observerPersonToken?: string;
-    invasive?:boolean;
   }
 }
