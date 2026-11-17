@@ -12,8 +12,7 @@ import { Person } from '../model/Person';
 import { NewsElement } from '../model/NewsElement';
 import { Information } from '../model/Information';
 import { Document } from '../model/Document';
-import { LanguageService } from '../service/language.service';
-import { UserService } from '../service/user.service';
+import { getLanguage, getPersonToken } from '../../local-storage';
 import { WarehouseQueryInterface } from '@observation-map/observation-map/import-from-laji-front/WarehouseQueryInterface';
 
 /**
@@ -27,13 +26,13 @@ export class ApiService {
 
   private get lajiApiHeaders(): HttpHeaders {
     let headers = new HttpHeaders({ 'Api-Version': '1' });
-    const language = LanguageService.getLanguage();
-    const token = UserService.getToken();
+    const language = getLanguage();
+    const personToken = getPersonToken();
 
     headers = headers.set('Accept-Language', language ?? 'fi');
 
-    if (token !== null) {
-      headers = headers.set('Person-Token', token);
+    if (personToken !== null) {
+      headers = headers.set('Person-Token', personToken);
     }
 
     return headers;
