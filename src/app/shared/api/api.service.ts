@@ -5,7 +5,7 @@ import { Taxonomy, TaxonomyDescription, TaxonomyImage } from '../model/Taxonomy'
 import { Observable } from 'rxjs';
 import { Area } from '../model/Area';
 import { AuthenticationEvent } from '../model/AuthenticationEvent';
-import { Autocomplete } from '../model/Autocomplete';
+import { AutocompleteResult } from '../model/Autocomplete';
 import { Metadata } from '../model/Metadata';
 import { PagedResult } from '../model/PagedResult';
 import { Person } from '../model/Person';
@@ -87,7 +87,7 @@ export class ApiService {
     return this.httpDelete(LajiApi.Endpoints.authenticationEvent);
   }
 
-  getAutocompleteTaxa(query: LajiApi.GetAutocompleteQuery): Observable<Autocomplete> {
+  getAutocompleteTaxa(query: LajiApi.GetAutocompleteQuery): Observable<PagedResult<AutocompleteResult>> {
     return this.httpGet(
       LajiApi.Endpoints.autocompleteTaxa,
       { params: {...query} }
@@ -133,7 +133,7 @@ export class ApiService {
     )
   }
 
-  getMetadataAlt(alt: string): Observable<Metadata>{
+  getMetadataAlt(alt: string): Observable<PagedResult<Metadata>>{
     return this.httpGet(LajiApi.Endpoints.metadataAlt.replace('%alt%', alt));
   }
 

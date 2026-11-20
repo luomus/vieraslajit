@@ -1,7 +1,3 @@
-export interface Autocomplete {
-  results?: Array<AutocompleteResult>
-}
-
 export interface AutocompleteResult {
   checklist?: string
   count?: number

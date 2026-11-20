@@ -18,7 +18,6 @@ export class DocumentService {
   }
 
   getDocuments(query: LajiApi.GetDocumentsQuery): Observable<PagedResult<Document>> {
-    console.log(query)
     return this.apiService.getDocuments(query);
   }
 

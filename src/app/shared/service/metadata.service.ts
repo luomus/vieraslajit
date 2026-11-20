@@ -4,15 +4,16 @@ import { getLanguageFromLocalStorage } from '../../local-storage';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Metadata } from '../model/Metadata';
+import { PagedResult } from '../model/PagedResult';
 
 @Injectable()
 export class MetadataService {
 
-  private metadataCache: { [langAndRange: string]: NonNullable<Metadata['results']> } = {};
+  private metadataCache: { [langAndRange: string]: NonNullable<PagedResult<Metadata>['results']> } = {};
 
   constructor(private apiService: ApiService) { }
 
-  getMetadataRange(range: string): Observable<NonNullable<Metadata['results']>> {
+  getMetadataRange(range: string): Observable<NonNullable<PagedResult<Metadata>['results']>> {
     const cacheKey = `${getLanguageFromLocalStorage() ?? 'fi'}:${range}`;
     if (this.metadataCache[cacheKey]) {
       return of(this.metadataCache[cacheKey]);

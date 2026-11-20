@@ -1,6 +1,4 @@
 export interface Metadata {
-  results?: Array<{
-    id: string;
-    value?: string;
-  }>;
+  id: string;
+  value?: string;
 }
