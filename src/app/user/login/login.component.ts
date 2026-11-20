@@ -1,6 +1,5 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { setPersonTokenInLocalStorage } from '../../local-storage';
 import { UserService } from '../../shared/service/user.service';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -37,7 +36,7 @@ export class LoginComponent implements OnInit {
     }
     if (this.activatedRoute.snapshot.queryParams['token']) {
       // save laji-auth token to user properties
-      setPersonTokenInLocalStorage(this.activatedRoute.snapshot.queryParams['token']);
+      UserService.setPersonToken(this.activatedRoute.snapshot.queryParams['token']);
       // update user properties with laji api data
       this.userService.updateUserProperties().subscribe((err)=>{
         if(err) {

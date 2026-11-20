@@ -10,7 +10,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { environment } from 'environments/environment';
 import { interval } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
-import { getLanguageFromLocalStorage, getPersonTokenFromLocalStorage } from './local-storage';
+import { getLanguageFromLocalStorage } from './local-storage';
 
 /**
  * Main component that acts as a container for navigation, content and footer.
@@ -83,7 +83,7 @@ export class AppComponent implements OnInit {
     */
     translate.use(getLanguageFromLocalStorage() ?? 'fi');
 
-    if (getPersonTokenFromLocalStorage()) {
+    if (UserService.getPersonToken()) {
       userService.updateUserProperties();
     }
 

@@ -15,7 +15,7 @@ import { FormFacade } from './form.facade';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Title, Meta } from '@angular/platform-browser';
 import { environment } from 'environments/environment';
-import { getLanguageFromLocalStorage, getPersonTokenFromLocalStorage } from 'app/local-storage';
+import { getLanguageFromLocalStorage } from 'app/local-storage';
 
 type Lang = 'fi' | 'sv' | 'en';
 
@@ -116,7 +116,7 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
             data.uiSchemaContext.isAdmin = UserService.hasRole(Role.CMS_ADMIN);
 
             this.apiClient.lang = getLanguageFromLocalStorage();
-            this.apiClient.personToken = getPersonTokenFromLocalStorage();
+            this.apiClient.personToken = UserService.getPersonToken();
 
             this.lajiFormWrapper = new LajiForm({
                 rootElem: this.formElem.nativeElement,

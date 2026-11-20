@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../api/api.service';
 import { Subject, BehaviorSubject } from 'rxjs';
-import { getPersonTokenFromLocalStorage } from '../../local-storage';
+import { getPersonTokenFromLocalStorage, setPersonTokenInLocalStorage } from '../../local-storage';
 
 export enum userProperty {
   PERSON = 'person',
@@ -48,6 +48,14 @@ export class UserService {
 
   public static getUserId() {
     return UserService.getUserProperties()[userProperty.PERSON].id;
+  }
+
+  public static getPersonToken() {
+    return getPersonTokenFromLocalStorage();
+  }
+
+  public static setPersonToken(token: string) {
+    setPersonTokenInLocalStorage(token);
   }
 
   logout() {
