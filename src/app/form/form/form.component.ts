@@ -1,21 +1,23 @@
 import {
-    Component, OnDestroy, ElementRef, Inject, ViewEncapsulation,
-    ViewChild, AfterViewInit, Output, NgZone, EventEmitter,
-    ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges, OnInit, Renderer2
+    Component, OnDestroy, ElementRef, Inject,
+    ViewChild, AfterViewInit, NgZone,
+    ChangeDetectionStrategy, OnInit, Renderer2
 } from '@angular/core';
-import { Subscription, Subject } from 'rxjs';
-import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
-import LajiForm from 'laji-form';
-import Theme from 'laji-form/lib/themes/bs5';
+import { Subject } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import LajiForm from '@luomus/laji-form';
+import Theme from '@luomus/laji-form/lib/themes/bs5';
 import { FormApiClient } from '../../shared/api/FormApiClient';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService, Role } from '../../shared/service/user.service';
 import { DocumentService } from '../../shared/service/document.service';
 import { FormFacade } from './form.facade';
-import { filter, takeUntil, tap } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { Title, Meta } from '@angular/platform-browser';
 import { environment } from 'environments/environment';
-import { Lang } from 'laji-form/lib/components/LajiForm';
+import { getLanguage, getPersonToken } from 'app/local-storage';
+
+type Lang = 'fi' | 'sv' | 'en';
 
 @Component({
     selector: 'vrs-form',
@@ -87,8 +89,6 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
     ngAfterViewInit() {
         if (!this.loggedIn) return
 
-        this.personToken = UserService.getToken();
-
         this.facade.data$.pipe(takeUntil(this.unsubscribe$), filter(a => a)).subscribe(this.initForm.bind(this));
         this.route.params.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
             this.id = params['formId'];
@@ -114,6 +114,10 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
             data.uiSchemaContext.formID = this.id;
             data.uiSchemaContext['creator'] = UserService.getUserId();
             data.uiSchemaContext.isAdmin = UserService.hasRole(Role.CMS_ADMIN);
+
+            this.apiClient.lang = getLanguage();
+            this.apiClient.personToken = getPersonToken();
+
             this.lajiFormWrapper = new LajiForm({
                 rootElem: this.formElem.nativeElement,
                 schema: data.schema,
@@ -156,8 +160,8 @@ export class FormComponent implements AfterViewInit, OnDestroy, OnInit {
                 formID: this.id
             };
             const doc$ = this.documentId ?
-            this.docService.updateDocument(this.documentId, formData, this.personToken) :
-            this.docService.createDocument(this.personToken, formData);
+            this.docService.updateDocument(this.documentId, formData) :
+            this.docService.createDocument(formData);
             doc$.subscribe(
                 (result) => {
                     this.router.navigate(['ilmoita'], {

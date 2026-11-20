@@ -3,67 +3,50 @@ import { ApiService, LajiApi } from '../api/api.service';
 import { Observable } from 'rxjs';
 import { PagedResult } from '../model/PagedResult';
 import { Taxonomy, TaxonomyDescription } from '../model/Taxonomy';
-import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class TaxonService {
 
   constructor(
-    private apiService: ApiService,
-    private translate: TranslateService
+    private apiService: ApiService
   ) { }
 
-  getAutocomplete(q: string) {
-    return this.apiService.autocompleteFindByField(
-      LajiApi.Endpoints.autocomplete,
-      'taxon',
+  getAutocompleteInvasive(query: string) {
+    return this.apiService.getAutocompleteTaxa(
       {
-        q,
-        includePayload: true,
-        onlyInvasive: true,
-        lang: this.translate.currentLang
+        query,
+        invasiveSpecies: true
       }
     );
   }
 
-  getTaxa(query) {
-    return this.apiService.taxonomyFindById(LajiApi.Endpoints.taxa, '', query);
+  postTaxaFilters(body: LajiApi.PostTaxaBody, query: LajiApi.PostTaxaQuery) {
+    return this.apiService.postTaxa(body, query);
   }
 
-  getTaxaMedia(id: string) {
-    return this.apiService.getTaxaMedia(id);
-  }
-
-  getTaxon(taxonId: string, query) {
-    return this.apiService.taxonomyFindById(
-      LajiApi.Endpoints.taxon,
+  getTaxonById(taxonId: string, query: LajiApi.GetTaxonQuery) {
+    return this.apiService.getTaxon(
       taxonId,
       {
-        lang: this.translate.currentLang,
-        langFallback: false,
         ...query
       }
     );
   }
 
-  getTaxonDescription(taxonId: string): Observable<Array<TaxonomyDescription>> {
-    return this.apiService.taxonomyFindById(
-      LajiApi.Endpoints.description,
-      taxonId,
-      {
-        lang: this.translate.currentLang,
-        langFallback: false
-      });
+  getTaxonDescriptionById(taxonId: string): Observable<TaxonomyDescription> {
+    return this.apiService.getTaxonDescription(taxonId);
   }
 
-  getSpecies(taxonId: string, query: LajiApi.Query): Observable<PagedResult<Taxonomy>> {
-    return this.apiService.taxonomyFindById(
-      LajiApi.Endpoints.taxonSpecies,
+  getTaxonMediaById(id: string) {
+    return this.apiService.getTaxonMedia(id);
+  }
+
+  getSpecies(taxonId: string): Observable<PagedResult<Taxonomy>> {
+    return this.apiService.getTaxonSpecies(
       taxonId,
       {
-        invasiveSpeciesFilter: true,
-        lang: this.translate.currentLang,
-        ...query
+        invasiveSpecies: true,
+        includeMedia: true
       }
     );
   }

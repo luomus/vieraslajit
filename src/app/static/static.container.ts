@@ -42,14 +42,14 @@ export class StaticContainerComponent implements OnInit {
         this.informationService.getInformation(id).subscribe(base => {
             this.selectedInformation = base;
             const regex = /\[redirectTo:(\d+)\]/g
-            const redirects = regex.exec(base.content);
+            const redirects = regex.exec(base.content ? base.content : '');
             if (redirects && redirects.length > 0) {
                 this.router.navigate(['info', 'i-' + redirects[1]], {
                     replaceUrl: true
                 });
             }
             if (!base.parents) return;
-            const parents$ = base.parents.map(parent => this.informationService.getInformation(parent.id));
+            const parents$ = base.parents.map(parent => this.informationService.getInformation(parent.id!));
             forkJoin(...parents$).subscribe((parents: Information[]) => {
                 this.sidebarTitle = parents[0].title;
                 const pages: Information[] = [...parents, base];

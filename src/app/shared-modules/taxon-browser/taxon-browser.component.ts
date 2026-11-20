@@ -1,17 +1,15 @@
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, AfterViewInit, Renderer2, Inject, PLATFORM_ID, ChangeDetectionStrategy } from "@angular/core";
 import { isPlatformBrowser } from "@angular/common";
-import { TranslateService } from "@ngx-translate/core";
 import { Subscription, combineLatest, BehaviorSubject } from "rxjs";
-
 import { Taxonomy } from "../../shared/model";
 import { FilterInfoType } from "./filter-info/filter-info.component";
 import { filter, map, tap, switchMap } from "rxjs/operators";
-import { SpreadSheetService } from "app/shared/service/spread-sheet.service";
 import { SortOrder } from "./select-sort-order/select-sort-order.component";
 import { FormBuilder } from "@angular/forms";
-import { TaxonService } from "app/shared/service/taxon.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TaxonBrowserListComponent } from "./taxon-browser-list/taxon-browser-list.component";
+import { LajiApi } from "app/shared/api/api.service"
+import { TaxonService } from "app/shared/service/taxon.service";
 
 const initialFilters = {
     plants: false,
@@ -40,32 +38,24 @@ interface SortParams {
 
 type TaxonBrowserQueryParams = Filters & SortParams;
 
-const getTaxaQuery = (params: TaxonBrowserQueryParams, page: number, lang: string): any => {
-    const query: any = {
-        page,
-        pageSize: 12,
-        invasiveSpeciesFilter: true,
-        lang,
-        includeMedia: true,
-        selectedFields: [
-            'vernacularName',
-            'scientificName',
-            'cursiveName',
-            'invasiveSpeciesEstablishment',
-            'administrativeStatuses',
-            'id',
-            'species',
-            'finnish'
-        ],
-        sortOrder: params.sortOrder ? params.sortOrder : 'observationCountInvasiveFinland DESC'
+const getTaxaParams = (params: TaxonBrowserQueryParams, page: number): { body: LajiApi.PostTaxaBody; query: LajiApi.PostTaxaQuery } => {
+    const body: LajiApi.PostTaxaBody = {
+        invasiveSpecies: true,
     };
 
-    const adminStatusFilters = [];
-    if (params.eu) { adminStatusFilters.push('MX.euInvasiveSpeciesList'); }
-    if (params.fi) { adminStatusFilters.push('MX.controllingRisksOfInvasiveAlienSpecies'); }
-    if (params.plantPests) { adminStatusFilters.push('MX.quarantinePlantPest', 'MX.qualityPlantPest'); }
-    if (params.other) { adminStatusFilters.push('MX.concernInvasiveSpeciesNotOnOtherLists'); }
-    query.adminStatusFilters = adminStatusFilters;
+    const query: LajiApi.PostTaxaQuery = {
+        page,
+        pageSize: 12,
+        includeMedia: true,
+        selectedFields: 'vernacularName,scientificName,cursiveName,invasiveSpeciesEstablishment,administrativeStatuses,id,species,finnish,observationCountInvasiveFinland,multimedia',
+        sortOrder: params.sortOrder ? params.sortOrder : 'observationCountInvasiveFinland desc'
+    };
+
+    const administrativeStatuses = [];
+    if (params.eu) { administrativeStatuses.push('MX.euInvasiveSpeciesList'); }
+    if (params.fi) { administrativeStatuses.push('MX.controllingRisksOfInvasiveAlienSpecies'); }
+    if (params.plantPests) { administrativeStatuses.push('MX.quarantinePlantPest', 'MX.qualityPlantPest'); }
+    if (params.other) { administrativeStatuses.push('MX.concernInvasiveSpeciesNotOnOtherLists'); }
 
     const invasiveSpeciesMainGroups = [];
     if (params.plants)          { invasiveSpeciesMainGroups.push('HBE.MG2'); }
@@ -79,9 +69,11 @@ const getTaxaQuery = (params: TaxonBrowserQueryParams, page: number, lang: strin
     if (params.otherIasGroup) { invasiveSpeciesMainGroups.push('HBE.MG21'); }
 
     if (invasiveSpeciesMainGroups.length === 0) { invasiveSpeciesMainGroups.push('HBE.MG14') }
-    query.invasiveSpeciesMainGroups = invasiveSpeciesMainGroups;
 
-    return query;
+    return {
+        body: { ...body, administrativeStatuses, invasiveSpeciesMainGroups },
+        query
+    };
 };
 
 const parseFiltersFromQueryParams = (queryParams: Record<string, string>): Partial<Filters> => {
@@ -126,14 +118,13 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     subscription = new Subscription();
 
     constructor(
-        private taxonService: TaxonService,
-        private translate: TranslateService,
         private cd: ChangeDetectorRef,
         private renderer: Renderer2,
         private cdr: ChangeDetectorRef,
         private fb: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
+        private taxonService: TaxonService,
         @Inject(PLATFORM_ID) private platformId: object
     ) {}
 
@@ -163,13 +154,12 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
                     })
                 )
             ]).pipe(
-                switchMap(
-                    ([_, params]) => this.taxonService.getTaxa(
-                        getTaxaQuery(<TaxonBrowserQueryParams>params, this.currentPage, this.translate.currentLang)
-                    ).pipe(
+                switchMap(([_, params]) => {
+                    const { body, query } = getTaxaParams(<TaxonBrowserQueryParams>params, this.currentPage);
+                    return this.taxonService.postTaxaFilters(body, query).pipe(
                         tap(res => {
                             this.total = res.total;
-                            this.lastPage = res.lastPage;
+                            this.lastPage = res.lastPage ? res.lastPage : 1;
                             this.filterInfo = [];
                             if (params.fi) { this.filterInfo.push('fiList'); }
                             if (params.eu) { this.filterInfo.push('euList'); }
@@ -177,8 +167,8 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
                             if (params.other) { this.filterInfo.push('other'); }
                         }),
                         map(res => res.results)
-                    )
-                ),
+                    );
+                }),
                 tap(res => this.pageCache.push(...res)),
                 map(_ => this.pageCache)
             ).subscribe(taxa => {
@@ -256,9 +246,9 @@ export class TaxonBrowserComponent implements OnInit, AfterViewInit {
     }
 
     onExport() {
-        const q = getTaxaQuery(<TaxonBrowserQueryParams>this.route.snapshot.queryParams, 1, this.translate.currentLang);
-        q.pageSize = 10000;
-        this.taxonService.getTaxa(q).subscribe(res => {
+        const { body, query } = getTaxaParams(<TaxonBrowserQueryParams>this.route.snapshot.queryParams, 1);
+        query.pageSize = 10000;
+        this.taxonService.postTaxaFilters(body, query).subscribe(res => {
             this.taxonBrowserList.export(res.results);
         });
     }

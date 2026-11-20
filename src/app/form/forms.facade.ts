@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Document } from "app/shared/model";
+import { LajiApi } from "app/shared/api/api.service";
 import { DocumentService } from "app/shared/service/document.service";
 import { BehaviorSubject, Observable, of } from "rxjs";
 import { UserService } from "app/shared/service/user.service";
@@ -30,7 +31,7 @@ export class FormsFacade {
     }
 
     private subscribeDocuments() {
-        const query = {
+        const query: LajiApi.GetDocumentsQuery = {
             collectionID: 'HR.3791',
             selectedFields: [
                 "dateEdited",
@@ -43,7 +44,7 @@ export class FormsFacade {
         }
         of({}).pipe(
             filter(() => UserService.loggedIn()),
-            switchMap(() => this.documentService.getDocuments(UserService.getToken(), query)),
+            switchMap(() => this.documentService.getDocuments(query)),
             map((res) => {
                 const output: Document[] = []
                 for (const r of res.results) {

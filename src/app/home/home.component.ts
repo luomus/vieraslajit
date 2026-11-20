@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { InformationService } from 'app/shared/service/information.service';
 import { map, concatMap } from 'rxjs/operators';
 import { TaxonService } from 'app/shared/service/taxon.service';
@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   news: Array<any>= [];
 
   constructor(
-    private informationService: InformationService,
     private taxonService: TaxonService,
+    private informationService: InformationService,
     private newsService: NewsService,
     private title: Title,
     private meta: Meta,
@@ -57,17 +57,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
 
     this.onLangChange = this.translate.onLangChange.subscribe((event) => {
-      this.getNews(1);
+      this.getNewsPage(1);
     });
-    this.getNews(1);
+    this.getNewsPage(1);
 
     this.informationService.getInformation('i-386').pipe(
       map((res) => {
-        return res.content.replace(/<.*?>/g, "").split(',');
+        return res.content ? res.content.replace(/<.*?>/g, "").split(',') : [];
       }), concatMap((res) => {
         return res;
       }), concatMap(res => {
-        return this.taxonService.getTaxon(res, {
+        return this.taxonService.getTaxonById(res, {
           includeMedia: true
         });
       })
@@ -86,8 +86,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getNews(page){
-    this.newsService.getPage('1', '5', this.translate.currentLang, this.newsTag/* +",technical" */)
+  getNewsPage(page: number){
+    this.newsService.getPage(page.toString(), '5', this.newsTag/* +",technical" */)
     .subscribe((data) => {
       this.news = data.results;
     });

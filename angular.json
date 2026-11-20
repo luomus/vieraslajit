@@ -23,8 +23,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/laji-map/dist/styles.css",
-              "node_modules/laji-form/dist/styles.css"
+              "node_modules/@luomus/laji-map/dist/styles.css",
+              "node_modules/@luomus/laji-form/dist/styles.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["src/assets/styles"]
@@ -101,6 +101,7 @@
               "browserTarget": "vieraslajit:build:beta"
             },
             "local": {
+              "proxyConfig": "proxy.conf.js",
               "browserTarget": "vieraslajit:build:local"
             }
           }

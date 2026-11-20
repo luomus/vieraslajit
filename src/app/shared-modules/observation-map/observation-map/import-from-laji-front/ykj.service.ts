@@ -5,7 +5,7 @@
 import { concat, take, delay, retryWhen,  map } from 'rxjs/operators';
 import { Observable, Observer, of as ObservableOf, throwError as observableThrowError } from 'rxjs';
 import { Injectable } from '@angular/core';
-import * as MapUtil from 'laji-map/lib/utils';
+import * as MapUtil from '@luomus/laji-map/lib/utils';
 import { WarehouseApi } from './WarehouseApi';
 import { WarehouseQueryInterface } from './WarehouseQueryInterface';
 
@@ -31,14 +31,13 @@ export class YkjService {
   ) { }
 
   getGeoJson(query: WarehouseQueryInterface, grid: Grid = '10kmCenter', key?: string,
-             useStatistics = false, zeroObservations = false): Observable<any> {
-    return this.getList(query, grid, key, useStatistics, zeroObservations).pipe(
+             zeroObservations = false): Observable<any> {
+    return this.getList(query, grid, key).pipe(
       map(data => this.resultToGeoJson(data, grid, zeroObservations))
     );
   }
 
-  getList(query: WarehouseQueryInterface, grid: Grid = '10kmCenter', key?: string,
-             useStatistics = false, zeroObservations = false, selected = []): Observable<any> {
+  getList(query: WarehouseQueryInterface, grid: Grid = '10kmCenter', key?: string, selected = []): Observable<any> {
     if (!key) {
       key = JSON.stringify(query);
     }
@@ -55,11 +54,7 @@ export class YkjService {
       });
     }
     this.pendingKey = key;
-    const sourceMethod: (query, aggregate, orderBy, pageSize, page, geoJson, onlyCount) => Observable<any> = zeroObservations
-      ? this.warehouseApi.warehouseQueryGatheringStatisticsGet.bind(this.warehouseApi) : useStatistics
-      ? this.warehouseApi.warehouseQueryStatisticsGet.bind(this.warehouseApi)
-      : this.warehouseApi.warehouseQueryAggregateGet.bind(this.warehouseApi);
-    this.pending = sourceMethod(
+    this.pending = this.warehouseApi.warehouseQueryAggregateGet(
         {...query, cache: (query.cache || WarehouseApi.isEmptyQuery(query))},
         [`gathering.conversions.ykj${grid}.lat,gathering.conversions.ykj${grid}.lon`, ...selected],
         selected.length > 0 ? [`gathering.conversions.ykj${grid}.lat,gathering.conversions.ykj${grid}.lon`] : undefined,
@@ -143,7 +138,8 @@ export class YkjService {
   }
 
   private convertYkjLatLngToWgsLngLat(latLng: [any, any]): [number, number] {
-    return MapUtil.convertLatLng(latLng, 'EPSG:2393', 'WGS84').reverse();
+    const [lat, lng] = MapUtil.convertLatLng(latLng, 'EPSG:2393', 'WGS84');
+    return [lng, lat];
   }
 
   private convertWgs84ToYkj(lat: any, lng: any) {

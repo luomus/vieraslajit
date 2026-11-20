@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../api/api.service';
-import { Observable ,  Subject, BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Subject, BehaviorSubject } from 'rxjs';
+import { getPersonToken } from '../../local-storage';
 
 export enum userProperty {
   PERSON = 'person',
@@ -46,20 +46,12 @@ export class UserService {
     return !!UserService.getUserProperties()[userProperty.LOGIN];
   }
 
-  public static setToken(token: string) {
-    window.localStorage.setItem("token", token);
-  }
-
-  public static getToken() {
-    return window.localStorage.getItem("token");
-  }
-
   public static getUserId() {
     return UserService.getUserProperties()[userProperty.PERSON].id;
   }
 
   logout() {
-    const token = UserService.getToken();
+    const token = getPersonToken();
     const cb = () => {
       UserService.clearUserProperties();
       UserService.clearUserToken();
@@ -67,7 +59,7 @@ export class UserService {
       this.loginStateChange.next(null);
     };
     if (token) {
-      this.apiService.deletePersonToken(UserService.getToken()).subscribe(_ => cb());
+      this.apiService.deleteAuthenticationEvent().subscribe(_ => cb());
     } else {
       cb();
     }
@@ -86,11 +78,11 @@ export class UserService {
     window.sessionStorage.setItem(key, JSON.stringify(value));
   }
 
-  updateUserProperties(token:string) {
+  updateUserProperties() {
     let s: Subject<any> = new Subject<any>();
-    this.apiService.personToken(UserService.getToken()).subscribe((data) => {
+    this.apiService.getAuthenticationEvent().subscribe((data) => {
       this.setUserProperty(userProperty.PTOKEN, data);
-      this.apiService.personByToken(UserService.getToken()).subscribe((data) => {
+      this.apiService.getPerson().subscribe((data) => {
         // Admin role for testing purposes
         if(!environment.production) {
           data['role'] = [Role.CMS_ADMIN];

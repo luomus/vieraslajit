@@ -4,10 +4,8 @@ import { TaxonSearchComponent } from "app/shared-modules/taxon-search/taxon-sear
 import { UserService } from "app/shared/service/user.service";
 import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { Subscription } from "rxjs";
-
 import * as moment from "moment";
-import { TaxonService } from "app/shared/service/taxon.service";
-import { TranslateService } from "@ngx-translate/core";
+import { TaxonService } from 'app/shared/service/taxon.service';
 
 interface Filters {
     own: boolean,
@@ -57,7 +55,7 @@ export class FilterMenuComponent implements ControlValueAccessor, OnDestroy, OnI
     private onTouched;
     private subscription = new Subscription();
 
-    constructor(private fb: FormBuilder, private taxonService: TaxonService, private translate: TranslateService) {}
+    constructor(private taxonService: TaxonService, private fb: FormBuilder) {}
 
     ngOnInit(): void {
         this.form = this.fb.group({
@@ -86,8 +84,10 @@ export class FilterMenuComponent implements ControlValueAccessor, OnDestroy, OnI
 
             if (filters.taxonId) {
                 this.subscription.add(
-                    this.taxonService.getTaxon(filters.taxonId, this.translate.currentLang).subscribe(
-                        res => this.taxonSearch?.fillValue(res.vernacularName)
+                    this.taxonService.getTaxonById(filters.taxonId, {}).subscribe(
+                        res => {
+                            this.taxonSearch?.fillValue(res.vernacularName)
+                        }
                     )
                 );
             }

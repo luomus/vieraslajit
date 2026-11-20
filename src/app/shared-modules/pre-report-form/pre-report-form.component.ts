@@ -13,9 +13,9 @@ export class PreReportFormComponent implements OnInit, OnDestroy {
   unsubscribe$ = new Subject<void>();
 
   linkEnabled = false;
-  customReportFormLink: string
-  taxonId: string
-  taxonName: string
+  customReportFormLink: string | undefined;
+  taxonId: string | undefined;
+  taxonName: string | undefined;
 
   constructor(private taxonService: TaxonService, private translate: TranslateService) { }
 
@@ -26,12 +26,8 @@ export class PreReportFormComponent implements OnInit, OnDestroy {
     this.taxonId = id
     this.linkEnabled = false;
     if (id) {
-      this.taxonService.getTaxon(id, {
-        selectedFields: [
-          'customReportFormLink',
-          'vernacularName',
-          'scientificName'
-        ],
+      this.taxonService.getTaxonById(id, {
+        selectedFields: 'customReportFormLink,vernacularName,scientificName'
       }).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
         this.customReportFormLink = res.customReportFormLink
           ? (res.customReportFormLink.includes('?')

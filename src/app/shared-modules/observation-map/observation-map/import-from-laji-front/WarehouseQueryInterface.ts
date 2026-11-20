@@ -164,9 +164,9 @@ export interface WarehouseQueryInterface {
   unidentified?: boolean;
   cache?: boolean;
   reliable?: boolean;
-  observerPersonToken?: string;
-  editorPersonToken?: string;
-  editorOrObserverPersonToken?: string;
+  selfAsObserver?: boolean;
+  selfAsEditor?: boolean;
+  selfAsEditorOrObserver?: boolean;
   qualityIssues?: string;
   annotationType?: Array<string>;
   annotatedSameOrAfter?: string;

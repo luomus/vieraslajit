@@ -1,6 +1,5 @@
 import { ApplicationRef, Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
-import { Location } from '@angular/common';
 import { UserService } from './shared/service/user.service';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { StateService } from './state.service';
@@ -11,6 +10,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { environment } from 'environments/environment';
 import { interval } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
+import { getLanguage, getPersonToken } from './local-storage';
 
 /**
  * Main component that acts as a container for navigation, content and footer.
@@ -81,14 +81,10 @@ export class AppComponent implements OnInit {
     * User's language choice is stored in localStorage, if language is not found
     * then use Finnish
     */
-    if (window.localStorage.getItem("vrs-lang")) {
-      translate.use(window.localStorage.getItem("vrs-lang"));
-    } else {
-      translate.use('fi');
-    }
+    translate.use(getLanguage() ?? 'fi');
 
-    if (UserService.getToken()) {
-      userService.updateUserProperties(UserService.getToken());
+    if (getPersonToken()) {
+      userService.updateUserProperties();
     }
 
     this.meta.addTags([

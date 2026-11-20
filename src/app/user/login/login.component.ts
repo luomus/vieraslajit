@@ -1,6 +1,7 @@
-import {Router, ActivatedRoute, Params} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { UserService, userProperty } from '../../shared/service/user.service';
+import { setPersonToken } from '../../local-storage';
+import { UserService } from '../../shared/service/user.service';
 import { isPlatformBrowser } from '@angular/common';
 
 /**
@@ -35,10 +36,10 @@ export class LoginComponent implements OnInit {
       return;
     }
     if (this.activatedRoute.snapshot.queryParams['token']) {
-      // save laji-auth token to userproperties
-      UserService.setToken(this.activatedRoute.snapshot.queryParams['token']);
-      // update userproperties with laji api data
-      this.userService.updateUserProperties(UserService.getToken()).subscribe((err)=>{
+      // save laji-auth token to user properties
+      setPersonToken(this.activatedRoute.snapshot.queryParams['token']);
+      // update user properties with laji api data
+      this.userService.updateUserProperties().subscribe((err)=>{
         if(err) {
           alert("Login failed: Invalid person-token\nStatus: " + err.status + "\nDescription: " + err.statusText);
           this.router.navigateByUrl("/home");

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ApiService, LajiApi } from '../api/api.service';
-import { Observable, of } from 'rxjs';
-import { tap, switchMap, combineLatest } from '../../../../node_modules/rxjs/operators';
-
+import { of } from 'rxjs';
+import { tap, switchMap, combineLatest } from 'rxjs/operators';
+import { ApiService } from '../api/api.service';
 
 @Injectable()
 export class FormService {
@@ -11,19 +10,19 @@ export class FormService {
 
   constructor(private apiService: ApiService) { }
 
-  getFormById(id: string, lang: string) {
+  getFormById(id: string) {
     if (this.formCache[id]) {
       return of(this.formCache[id]);
     }
-    return this.apiService.formById(LajiApi.Endpoints.form, id, lang).pipe(tap(result => this.formCache[id] = result));
+    return this.apiService.getForm(id).pipe(tap(result => this.formCache[id] = result));
   }
 
-  loadFormWithDocument(formId: string, lang: string, documentId: string, personToken: string) {
+  loadFormWithDocument(formId: string, documentId: string) {
     const form$ = this.formCache[formId] ?
       of(this.formCache[formId]) :
-      this.apiService.formById(LajiApi.Endpoints.form, formId, lang).pipe(tap(result => this.formCache[formId] = result));
+      this.apiService.getForm(formId).pipe(tap(result => this.formCache[formId] = result));
 
-    const data$ = this.apiService.documentGet(LajiApi.Endpoints.getDocument, personToken, documentId);
+    const data$ = this.apiService.getDocument(documentId);
 
     return data$
       .pipe(switchMap(data => {

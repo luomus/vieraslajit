@@ -8,7 +8,7 @@ import { map, tap, switchMap, take, delay } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { combineLatest, Observable, of, Subject, Subscription } from 'rxjs';
 import { AreaService } from 'app/shared/service/area.service';
-import LajiMap, { Lang, Options, TileLayerName, Data, DataOptions, GetPopupOptions, GetFeatureStyleOptions } from 'laji-map';
+import LajiMap, { Lang, Options, TileLayerName, Data, DataOptions, GetPopupOptions, GetFeatureStyleOptions } from '@luomus/laji-map';
 import { observationBaseQuery, ObservationService } from 'app/shared/service/observation.service';
 import { WarehouseQueryInterface } from './import-from-laji-front/WarehouseQueryInterface';
 import { YkjService } from './import-from-laji-front/ykj.service';
@@ -240,13 +240,13 @@ export class ObservationMapComponent implements AfterViewInit, OnDestroy, OnChan
         private resolver: ComponentFactoryResolver,
         private injector: Injector
     ) {
-        this.municipalities$ = this.areaService.getMunicipalities("municipality").pipe(
+        this.municipalities$ = this.areaService.getMunicipalities("ML.municipality").pipe(
             map(res => res.results),
             map(res =>
                 res.sort((a, b)=>{
                     // Sort in alphabetical order
-                    let nameA = a.name;
-                    let nameB = b.name;
+                    let nameA = a.name ? a.name : "";
+                    let nameB = b.name ? b.name : "";
                     if(nameA > nameB) return 1;
                     if(nameA < nameB) return -1;
                     return 0;
@@ -316,7 +316,7 @@ export class ObservationMapComponent implements AfterViewInit, OnDestroy, OnChan
                     const taxonId = this.id ?? res.taxonId;
                     if (taxonId) { query.taxonId = [taxonId]; }
                     if (res.municipality) { query.area = [res.municipality]; }
-                    if (res.own) { query.observerPersonToken = UserService.getToken(); }
+                    if (res.own) { query.selfAsObserver = true; }
                     if (res.time) { query.time = [res.time]; }
                     const adminStatuses = [];
                     if (res.fiList) { adminStatuses.push("MX.controllingRisksOfInvasiveAlienSpecies") }

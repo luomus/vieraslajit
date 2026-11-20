@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { Observable, BehaviorSubject, forkJoin } from "rxjs";
-import { Taxonomy, TaxonomyDescription, TaxonomyImage, TaxonomyDescriptionGroup, TaxonomyDescriptionVariable } from "app/shared/model";
+import { Observable, BehaviorSubject } from "rxjs";
+import { Taxonomy, TaxonomyDescriptionResult, TaxonomyImage, TaxonomyDescriptionVariable } from "app/shared/model";
 import { map, distinctUntilChanged, tap } from "rxjs/operators";
+import { ApiService } from "app/shared/api/api.service";
 import { TaxonService } from "app/shared/service/taxon.service";
-import { TranslateService } from "@ngx-translate/core";
 
 interface State {
     taxon: Taxonomy
@@ -12,7 +12,7 @@ interface State {
     quarantinePlantPest: boolean
 }
 
-export interface TaxonomyDescriptionFlattened extends TaxonomyDescription {
+export interface TaxonomyDescriptionFlattened extends TaxonomyDescriptionResult {
   variables: TaxonomyDescriptionVariable2[]
 }
 
@@ -40,7 +40,7 @@ export class TaxonCardFacade {
         distinctUntilChanged()
     );
 
-    constructor(private taxonService: TaxonService, private translate: TranslateService) {}
+    constructor(private apiService: ApiService, private taxonService: TaxonService) {}
 
     //////////////
     /* REDUCERS */
@@ -61,7 +61,7 @@ export class TaxonCardFacade {
 
     private updateMedia(media: any) {
         this.updateState(
-            {...this.store$.getValue(), media}
+        {...this.store$.getValue(), media: media || []}
         )
     }
 
@@ -77,13 +77,14 @@ export class TaxonCardFacade {
         const query = {
           selectedFields: 'administrativeStatuses,vernacularName,scientificName,invasiveSpeciesEstablishment,occurrence,id,customReportFormLink,species,finnish,alternativeVernacularName,occurrenceInFinland,synonymNames'
         };
-        return this.taxonService.getTaxon(taxonId, query).pipe(
+        return this.taxonService.getTaxonById(taxonId, query).pipe(
           tap(taxon => this.subscribeMedia(taxonId, taxon.species))
         ).subscribe(this.updateTaxon.bind(this))
     }
 
     private subscribeDescription(taxonId: string) {
-        return this.taxonService.getTaxonDescription(taxonId).pipe(
+        return this.taxonService.getTaxonDescriptionById(taxonId).pipe(
+            map(t => t.results || []),
             map(arr => arr[0]),
             map(desc => {
                 //sortDescriptionGroups(desc)
@@ -97,23 +98,18 @@ export class TaxonCardFacade {
 
     private subscribeMedia(taxonId: string, species = true) {
       if (!species) {
-        return this.taxonService.getTaxaMedia(taxonId).subscribe(this.updateMedia.bind(this));
+        return this.taxonService.getTaxonMediaById(taxonId).subscribe(this.updateMedia.bind(this));
       }
-      return this.taxonService.getSpecies(taxonId, {
-        includeMedia: true
-      }).pipe(
-        map(res => res.results.filter(
-          taxon => taxon.multimedia && taxon.multimedia.length > 0
-        )),
+      return this.taxonService.getSpecies(taxonId).pipe(
+        map(res => res.results
+          .map(taxon => taxon.multimedia || [])
+          .filter(multimedia => multimedia.length > 0)
+        ),
         map(taxa => {
           if (taxa.length > 1) {
-            return taxa.map(
-              taxon => {
-                return taxon.multimedia[0]
-              }
-            )
+            return taxa.map(multimedia => multimedia[0])
           } else {
-            return taxa.length > 0 ? taxa[0].multimedia : []
+            return taxa.length > 0 ? taxa[0] : []
           }
         })
       ).subscribe(this.updateMedia.bind(this));
@@ -149,7 +145,7 @@ interface TaxonomyDescriptionVariable2 extends TaxonomyDescriptionVariable {
   variable?: string
 }
 
-function getTaxonomyDescriptionVariables(desc: TaxonomyDescription): TaxonomyDescriptionVariable2[] {
+function getTaxonomyDescriptionVariables(desc: TaxonomyDescriptionResult): TaxonomyDescriptionVariable2[] {
   if (desc && desc.groups) {
     return desc.groups.reduce((prev: TaxonomyDescriptionVariable2[], curr) => {
       prev.push(...curr.variables);
@@ -172,7 +168,7 @@ function getTaxonomyDescriptionVariables(desc: TaxonomyDescription): TaxonomyDes
  * Mutates desc
  * @param desc
  */
-function sortDescriptionGroups(desc: TaxonomyDescription) {
+function sortDescriptionGroups(desc: TaxonomyDescriptionResult) {
   if (desc && desc.groups) {
     desc.groups.sort((group1, group2) => {
       let pos1 = 100

@@ -1,10 +1,8 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, forkJoin } from "rxjs";
 import { FormService } from "app/shared/service/form.service";
-import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "app/shared/service/user.service";
-import { map, distinctUntilChanged, tap } from "rxjs/operators";
-import { ApiService, LajiApi } from "app/shared/api/api.service";
+import { map, distinctUntilChanged } from "rxjs/operators";
 import { TaxonService } from "app/shared/service/taxon.service";
 
 interface State {
@@ -23,9 +21,10 @@ export class FormFacade {
         distinctUntilChanged()
     );
 
-    constructor(private formService: FormService,
-                private taxonService: TaxonService,
-                private translate: TranslateService) {}
+    constructor(
+        private formService: FormService,
+        private taxonService: TaxonService
+    ) {}
     
     private dataReducer(data: any) {
         this.store$.next({
@@ -46,7 +45,7 @@ export class FormFacade {
         })
     }
 
-    private getDataReducerWithTaxon(taxonId) {
+    private getDataReducerWithTaxon(taxonId: string) {
         return (data: any) => this.store$.next({
             data: {
                 ...data[1],
@@ -78,26 +77,26 @@ export class FormFacade {
     }
 
     loadData(formId: string) {
-        this.formService.getFormById(formId, this.translate.currentLang)
+        this.formService.getFormById(formId)
         .subscribe(this.dataReducer.bind(this))
     }
 
     loadDataWithDocument(formId: string, documentId: string) {
         this.formService.loadFormWithDocument(
             formId,
-            this.translate.currentLang,
-            documentId,
-            UserService.getToken()
+            documentId
         ).subscribe(this.dataReducerWithFormData.bind(this))
     }
 
     loadDataWithTaxon(formId: string, taxonId: string) {
         forkJoin(
-            this.taxonService.getTaxon(taxonId, {
+            this.taxonService.getTaxonById(taxonId, {
                 selectedFields: "vernacularName,scientificName"
             }),
-            this.formService.getFormById(formId, this.translate.currentLang)
+            this.formService.getFormById(formId)
         )
-        .subscribe((data) => this.getDataReducerWithTaxon(taxonId)(data))
+        .subscribe((data) => {
+            this.getDataReducerWithTaxon(taxonId)(data)
+        })
     }
 }
