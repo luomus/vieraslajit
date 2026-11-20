@@ -13,7 +13,7 @@ import { NewsElement } from '../model/NewsElement';
 import { Information } from '../model/Information';
 import { Document } from '../model/Document';
 import { getLanguage, getPersonToken } from '../../local-storage';
-import { WarehouseQueryInterface } from '@observation-map/observation-map/import-from-laji-front/WarehouseQueryInterface';
+import { WarehouseQueryInterface } from '../../shared-modules/observation-map/observation-map/import-from-laji-front/WarehouseQueryInterface';
 
 /**
  * Handles creation of API requests
