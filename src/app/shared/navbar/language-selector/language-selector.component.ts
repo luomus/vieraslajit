@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { take, map } from 'rxjs/operators';
 import { Location } from '@angular/common';
-import { setLanguage } from 'app/local-storage';
+import { setLanguageInLocalStorage } from 'app/local-storage';
 
 @Component({
   selector: 'vrs-language-selector',
@@ -20,7 +20,7 @@ export class LanguageSelectorComponent implements OnInit {
 
   switchLanguage(language: string) {
     this.translate.use(language);
-    setLanguage(language);
+    setLanguageInLocalStorage(language);
 
     const path = this.location.path().split('?')[0]
     this.router.navigate(

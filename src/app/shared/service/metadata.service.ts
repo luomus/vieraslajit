@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api/api.service';
-import { getLanguage } from '../../local-storage';
+import { getLanguageFromLocalStorage } from '../../local-storage';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Metadata } from '../model/Metadata';
@@ -13,7 +13,7 @@ export class MetadataService {
   constructor(private apiService: ApiService) { }
 
   getMetadataRange(range: string): Observable<NonNullable<Metadata['results']>> {
-    const cacheKey = `${getLanguage() ?? 'fi'}:${range}`;
+    const cacheKey = `${getLanguageFromLocalStorage() ?? 'fi'}:${range}`;
     if (this.metadataCache[cacheKey]) {
       return of(this.metadataCache[cacheKey]);
     }

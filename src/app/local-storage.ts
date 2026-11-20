@@ -1,16 +1,16 @@
 
-export const getLanguage = () => {
+export const getLanguageFromLocalStorage = () => {
   return window.localStorage.getItem("vrs-lang");
 }
 
-export const setLanguage = (language: string) => {
+export const setLanguageInLocalStorage = (language: string) => {
   window.localStorage.setItem("vrs-lang", language);
 }
 
-export const getPersonToken = () => {
+export const getPersonTokenFromLocalStorage = () => {
   return window.localStorage.getItem("token");
 }
 
-export const setPersonToken = (token: string) => {
+export const setPersonTokenInLocalStorage = (token: string) => {
   window.localStorage.setItem("token", token);
 }

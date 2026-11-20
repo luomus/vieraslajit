@@ -10,7 +10,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { environment } from 'environments/environment';
 import { interval } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
-import { getLanguage, getPersonToken } from './local-storage';
+import { getLanguageFromLocalStorage, getPersonTokenFromLocalStorage } from './local-storage';
 
 /**
  * Main component that acts as a container for navigation, content and footer.
@@ -81,9 +81,9 @@ export class AppComponent implements OnInit {
     * User's language choice is stored in localStorage, if language is not found
     * then use Finnish
     */
-    translate.use(getLanguage() ?? 'fi');
+    translate.use(getLanguageFromLocalStorage() ?? 'fi');
 
-    if (getPersonToken()) {
+    if (getPersonTokenFromLocalStorage()) {
       userService.updateUserProperties();
     }
 

@@ -12,7 +12,7 @@ import { Person } from '../model/Person';
 import { NewsElement } from '../model/NewsElement';
 import { Information } from '../model/Information';
 import { Document } from '../model/Document';
-import { getLanguage, getPersonToken } from '../../local-storage';
+import { getLanguageFromLocalStorage, getPersonTokenFromLocalStorage } from '../../local-storage';
 import { WarehouseQueryInterface } from '../../shared-modules/observation-map/observation-map/import-from-laji-front/WarehouseQueryInterface';
 
 /**
@@ -26,8 +26,8 @@ export class ApiService {
 
   private get lajiApiHeaders(): HttpHeaders {
     let headers = new HttpHeaders({ 'Api-Version': '1' });
-    const language = getLanguage();
-    const personToken = getPersonToken();
+    const language = getLanguageFromLocalStorage();
+    const personToken = getPersonTokenFromLocalStorage();
 
     headers = headers.set('Accept-Language', language ?? 'fi');
 

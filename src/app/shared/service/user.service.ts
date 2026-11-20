@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../api/api.service';
 import { Subject, BehaviorSubject } from 'rxjs';
-import { getPersonToken } from '../../local-storage';
+import { getPersonTokenFromLocalStorage } from '../../local-storage';
 
 export enum userProperty {
   PERSON = 'person',
@@ -51,7 +51,7 @@ export class UserService {
   }
 
   logout() {
-    const token = getPersonToken();
+    const token = getPersonTokenFromLocalStorage();
     const cb = () => {
       UserService.clearUserProperties();
       UserService.clearUserToken();
